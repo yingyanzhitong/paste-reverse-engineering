@@ -5,3 +5,6 @@ __pycache__/
 *.dylib
 *.zip
 *.tar.gz
+replica/.build/
+replica/dist/
+replica/.swiftpm/

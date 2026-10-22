@@ -1,4 +1,19 @@
-# Paste 原生程序反编译研究
+# Paste 原生复刻与反编译研究
+
+`replica/` 现包含可编译运行的 Swift/AppKit/SwiftUI 菜单栏应用 **Paste Replica**，以及独立的 stdio MCP 服务。原版参考为本机 Paste 6.6.6，复刻使用独立应用标识和数据目录。
+
+```sh
+bash replica/scripts/build-app.sh
+open 'replica/dist/Paste Replica.app'
+```
+
+需要 macOS 14+、Apple Silicon 与 Swift Command Line Tools。本机已用 Swift 6.0.3、macOS 26.2 实际构建运行。构建只依赖系统框架，不需要下载第三方 Swift 包。
+
+已实现底部横向卡片面板、剪贴板监听、多格式保留、搜索筛选、Pinboard、编辑预览、删除恢复、Stack、归档导入导出、设置、全局快捷键和 MCP 项目读写。原版工具名称、主要参数和关键分支优先由 REA 伪代码及公开资源核对；界面使用实际原版窗口作对照。
+
+当前交付是可运行的独立实现，**尚未达到全功能一比一验收**。原厂 iCloud 跨设备服务、订阅账号、系统直接粘贴授权后的完整跨应用矩阵等尚未通过对照；不能用反编译覆盖率或测试通过数替代等价性结论。运行与验证方法见 [replica/README.md](replica/README.md) 和 [测试范围](replica/TESTING.md)。
+
+## REA 静态研究
 
 使用 [REA](https://github.com/morluto/rea) 6.7.0 和 Ghidra 12.1.4，对本机安装的 Paste 6.6.6（29766850）进行 arm64 静态分析和批量反编译。
 

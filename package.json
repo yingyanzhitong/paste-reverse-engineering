@@ -1,10 +1,13 @@
 {
   "name": "paste-reverse-engineering",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Paste macOS 应用的 REA/Ghidra 静态反编译研究记录",
+  "description": "基于 REA 分析的 Paste 原生复刻实现与反编译研究",
   "scripts": {
     "inventory": "python3 scripts/inventory.py",
-    "decompile": "python3 scripts/decompile.py"
+    "decompile": "python3 scripts/decompile.py",
+    "build:app": "bash replica/scripts/build-app.sh",
+    "test:core": "swift run --package-path replica paste-replica-core-tests",
+    "test:mcp": "python3 replica/scripts/test-mcp.py"
   }
 }

@@ -1,0 +1,217 @@
+{
+  "date": "2026-10-22",
+  "version": "0.2.0",
+  "reference": "Paste 6.6.6 (29766850), macOS arm64",
+  "environment": "macOS 26.2, Swift 6.0.3 Command Line Tools",
+  "full_one_to_one_acceptance": false,
+  "core": {
+    "failure_count": 0,
+    "passed": true,
+    "scope": "Temporary isolated stores and private named pasteboards; two independent worker processes; original app and user clipboard untouched.",
+    "test_count": 14,
+    "tests": [
+      {
+        "duration_seconds": 0.03192007541656494,
+        "failures": [],
+        "name": "unicode-search-deduplication",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.039917945861816406,
+        "failures": [],
+        "name": "pinboards-edit-trash-restore",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.02028799057006836,
+        "failures": [],
+        "name": "history-limit-preserves-pins",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.07148396968841553,
+        "failures": [],
+        "name": "stale-store-three-way-merge",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.01803898811340332,
+        "failures": [],
+        "name": "archive-corruption-safety",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.1423560380935669,
+        "failures": [],
+        "name": "rtf-html-plain-text-write-loop",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.0064280033111572266,
+        "failures": [],
+        "name": "rich-text-edit-format-reopen",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.004053950309753418,
+        "failures": [],
+        "name": "rtf-only-text-extraction",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.006047964096069336,
+        "failures": [],
+        "name": "multiple-file-urls",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.18651795387268066,
+        "failures": [],
+        "name": "real-large-png-binary-roundtrip",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.012086033821105957,
+        "failures": [],
+        "name": "privacy-pause-exclusion",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.008887052536010742,
+        "failures": [],
+        "name": "history-retention-age-boundaries",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.03174698352813721,
+        "failures": [],
+        "name": "refresh-pending-edits-no-op-io",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.11942994594573975,
+        "failures": [],
+        "name": "two-independent-process-writers",
+        "passed": true
+      }
+    ]
+  },
+  "mcp": {
+    "status": "passed",
+    "checks": [
+      "initialization gate and ping before initialize",
+      "all 11 evidence-backed tool names and schemas; 2 extensions separately named",
+      "notifications produce no response and never execute mutation tools",
+      "Unicode, combining characters, escaped NUL/newlines and exact full-content roundtrip; deduplication",
+      "Pinboard creation/rename/list, pinned-only items, promotion, idempotent pinning, selective unpin",
+      "update title/body and type detection; combined type/title/app/device/date filters and pagination",
+      "two-step deletion preview; confirmed permanent deletion; board removal preserves historical item",
+      "general clipboard denied by default; explicit copy writes only unique private pasteboard",
+      "invalid params/types/UUID/dates, unknown methods/tools, JSON/UTF-8 errors, 1 MiB bound and recovery",
+      "shared persistence across running processes, reload before each call and soft-delete restoration extension",
+      "PNG/file fixture reads and image downscaling, image/file body edit rejection, image title edit and 2 MiB response bound recovery",
+      "6 real concurrent CLI processes, 48 persistent writes without lost updates"
+    ],
+    "check_groups": 12,
+    "scope": "Replica MCP executable end-to-end; fixture-only. Not an original-vs-replica semantic equivalence claim.",
+    "system_clipboard_used": false,
+    "binary_sha256": "eaa2448d4a0bf930a1332e6795dee30493f97e06fec7fc748e62092736a6d67b",
+    "elapsed_seconds": 2.059
+  },
+  "hotkey": {
+    "callbacks": {
+      "conflicting": 0,
+      "first": 1,
+      "second": 1
+    },
+    "conflict_register": -9878,
+    "delivery_status": {
+      "failed_registration": -9874,
+      "first": 0,
+      "old_id": -9874,
+      "second": 0,
+      "wrong_signature": -9874
+    },
+    "key_codes": [
+      79,
+      80
+    ],
+    "reregister": 0,
+    "scope": "Temporary unused shift-command F13...F20 registrations; synthetic Carbon events to this process only. No keyboard input, default shortcut changes, or pasteboard access.",
+    "status": "passed"
+  },
+  "app_monitor": {
+    "passed": true,
+    "checks": [
+      "real AppKit bundle launched without a window",
+      "400ms timer captured private pasteboard Unicode into persistent store",
+      "running monitor ignored AutoGenerated representation"
+    ],
+    "system_clipboard_used": false,
+    "original_app_data_used": false
+  },
+  "gui_functional": {
+    "new_text_saved": true,
+    "restored_not_deleted": true,
+    "created_pinboard": true,
+    "observed_via": "CUA interactions with running AppKit bundle, then persisted synthetic state verification",
+    "tested_flows": [
+      "new text",
+      "Unicode and multiline save",
+      "search match and empty",
+      "Space preview",
+      "edit from preview",
+      "soft delete",
+      "recently deleted",
+      "restore",
+      "create pinboard"
+    ],
+    "system_clipboard_used": false
+  },
+  "gui_release": {
+    "release_gui_created_rich_text": true,
+    "rtf_payload_present": true,
+    "settings_copy_only_saved": true,
+    "settings_always_plain_saved": true,
+    "checked_in_running_gui": [
+      "rich editor initial disabled button",
+      "Unicode text and native counts",
+      "Cmd+A Cmd+B applied visible bold",
+      "Cmd+S created item",
+      "history reopen cleared query",
+      "settings copy destination and always plain toggles",
+      "retention choices page",
+      "MCP binary ready/config page"
+    ],
+    "system_clipboard_commands_used": false
+  },
+  "visual_empty": {
+    "fraction_differing_over_2_levels": 0.09751904443169504,
+    "height": 664,
+    "mean_absolute_channel_error_0_255": 1.4935407772097222,
+    "pixel_identical": false,
+    "sample_stride_pixels": 2,
+    "samples": 501984,
+    "scope": "Empty search screenshots only. Focus, cursor overlay, blur and renderer differences included; no full UI equivalence claim.",
+    "width": 3024
+  },
+  "bundle": {
+    "identifier": "com.yingyanzhitong.paste-replica",
+    "version": "0.2.0",
+    "signature": "ad-hoc; codesign --verify --deep --strict passed; not notarized",
+    "binaries_sha256": {
+      "PasteReplica": "d35de9edc8e67ddd86c5a3657c19ea5d4720c261bf92e3a3bf8d597dfc511a96",
+      "paste-replica-mcp": "eaa2448d4a0bf930a1332e6795dee30493f97e06fec7fc748e62092736a6d67b"
+    }
+  },
+  "unresolved": [
+    "原厂 iCloud、账号与订阅服务未复现",
+    "所有页面与菜单未逐像素一致；空搜索采样也非像素相同",
+    "全局快捷键自定义录制未实现，当前固定快捷键并报告冲突",
+    "多选复制/粘贴目前只处理主选项；批量分组与删除可用",
+    "链接卡片网络预览/OCR检索与全部原厂数据格式尚未实现或核验",
+    "直接粘贴辅助功能授权后的跨应用矩阵、真实外部拖放接收端和登录启动尚未动态验收",
+    "REA窗口观察受宿主辅助功能权限和layer0限制，使用CUA完成受控界面对照",
+    "大型长期历史仍采用全量JSON写入；多GB/断电故障未压力验证"
+  ]
+}

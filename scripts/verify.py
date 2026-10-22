@@ -5,6 +5,7 @@ import hashlib
 import json
 import pathlib
 import re
+import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 EXCLUDED = {".local", ".git", "__pycache__"}
@@ -83,8 +84,11 @@ def main():
     patterns = [r"gh[pousr]_[A-Za-z0-9]{30,}", r"github_pat_[A-Za-z0-9_]{30,}",
                 r"GOCSPX-[A-Za-z0-9_-]{20,}", r"sk-(?:proj-)?[A-Za-z0-9_-]{40,}",
                 r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"]
-    files = [p for p in ROOT.rglob("*") if p.is_file()
-             and not EXCLUDED.intersection(p.relative_to(ROOT).parts)]
+    # Check exactly the tracked and publishable untracked files, excluding local builds.
+    names = subprocess.check_output(
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=ROOT
+    ).decode().split("\0")
+    files = [ROOT / name for name in sorted(set(names)) if name and (ROOT / name).is_file()]
     issues = []
     for path in files:
         if path.name == ".DS_Store":

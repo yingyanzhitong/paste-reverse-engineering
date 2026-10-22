@@ -1,0 +1,720 @@
+{
+  "reference": "Paste 6.6.6 arm64 / installed immutable application resources and retained REA 6.7.0 Ghidra 12.1.4 Evidence",
+  "input_sha256": {
+    "application": "Paste",
+    "version": "6.6.6",
+    "build": "29766850",
+    "bundle_id": "com.wiheads.paste",
+    "date": "2026-10-22",
+    "binaries": [
+      {
+        "name": "Paste",
+        "relative_path": "Contents/MacOS/Paste",
+        "sha256": "7255357661f83d0d10ae8eaedefa64442cb3b1c300d8963ac50cb8547251d9af",
+        "size": 39181200,
+        "analyzed_architecture": "arm64",
+        "arm64_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+        "arm64_size": 19045264,
+        "symbols_lines": 5591
+      },
+      {
+        "name": "paste-mcp-stdio",
+        "relative_path": "Contents/MacOS/paste-mcp-stdio",
+        "sha256": "d485d7b49ff933e46e7274ec1c12f48d962a6f9682320b470e9eee9be392e37b",
+        "size": 200656,
+        "analyzed_architecture": "arm64",
+        "arm64_sha256": "cb868953a620e4343464bd80e1f55603eca23e462a6cfac100895b249977cd00",
+        "arm64_size": 102352,
+        "symbols_lines": 166
+      },
+      {
+        "name": "Paste Helper",
+        "relative_path": "Contents/Library/LoginItems/Paste Helper.app/Contents/MacOS/Paste Helper",
+        "sha256": "5bb6aa1123552939755003ab96981ecf0b619ae8edd8822149ab4866fd367f55",
+        "size": 196992,
+        "analyzed_architecture": "arm64",
+        "arm64_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
+        "arm64_size": 98688,
+        "symbols_lines": 149
+      }
+    ]
+  },
+  "collection_scope": "Static installed application executable and localization resources only; no original user configuration, accounts, clipboard or network sessions read.",
+  "http_bridge": {
+    "helper": "paste-mcp-stdio",
+    "required_environment_names": [
+      "MCP_TOKEN",
+      "MCP_URL"
+    ],
+    "url_schemes": [
+      "http",
+      "https"
+    ],
+    "endpoint_literal": "/mcp",
+    "headers": [
+      "Content-Type: application/json",
+      "Accept: application/json, text/event-stream",
+      "Authorization: Bearer <environment token>",
+      "Mcp-Session-Id"
+    ],
+    "rea_reference": {
+      "evidence_id": "ev_83bd271b2acdda7e38f5de0ce9e9bf1278b6f455adcdd67a798dc7d4abcb430e",
+      "procedure": "0x1000033c0",
+      "file": "decompiled/paste-mcp-stdio/part-0000.c",
+      "line": 2082
+    },
+    "note": "Replica directly implements local stdio; does not contact the original HTTP server and does not read token values."
+  },
+  "original_tool_input_fields": {
+    "search": {
+      "optional": [
+        "query",
+        "type",
+        "app",
+        "device",
+        "title",
+        "pinboard_id",
+        "date_from",
+        "date_to",
+        "limit"
+      ]
+    },
+    "read_item": {
+      "required": [
+        "id"
+      ]
+    },
+    "create_item": {
+      "required": [
+        "content"
+      ],
+      "optional": [
+        "list_id"
+      ]
+    },
+    "update_item": {
+      "required": [
+        "id"
+      ],
+      "optional": [
+        "title",
+        "content"
+      ],
+      "constraint": "title or content required"
+    },
+    "delete_item": {
+      "required": [
+        "id"
+      ],
+      "optional": [
+        "confirm"
+      ]
+    },
+    "list_pinboards": {},
+    "create_pinboard": {
+      "required": [
+        "name"
+      ]
+    },
+    "rename_pinboard": {
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "delete_pinboard": {
+      "required": [
+        "id"
+      ],
+      "optional": [
+        "confirm"
+      ]
+    },
+    "add_item_to_pinboard": {
+      "required": [
+        "item_id",
+        "pinboard_id"
+      ]
+    },
+    "remove_item_from_pinboard": {
+      "required": [
+        "item_id",
+        "pinboard_id"
+      ]
+    }
+  },
+  "small_string_tool_name_getters": {
+    "create_item": {
+      "address": "0x100491760",
+      "file": "decompiled/Paste/part-0371.c",
+      "line": 1144,
+      "small_string": "create_item",
+      "rea_evidence_id": "ev_57d4546932fd2012f0e7ab39ed91ea5cb61bfb4876c49cde2399244fbdc36ee8",
+      "cache": ".local/Paste/batch-0371.json"
+    },
+    "create_pinboard": {
+      "address": "0x100492408",
+      "file": "decompiled/Paste/part-0372.c",
+      "line": 80,
+      "small_string": "create_pinboard",
+      "rea_evidence_id": "ev_7535ae26d74ebe9eee0c7623d964ecf461b18e663b3d5c1ce6e1df48891ffad9",
+      "cache": ".local/Paste/batch-0372.json"
+    },
+    "delete_item": {
+      "address": "0x10049352c",
+      "file": "decompiled/Paste/part-0372.c",
+      "line": 1280,
+      "small_string": "delete_item",
+      "rea_evidence_id": "ev_7535ae26d74ebe9eee0c7623d964ecf461b18e663b3d5c1ce6e1df48891ffad9",
+      "cache": ".local/Paste/batch-0372.json"
+    },
+    "delete_pinboard": {
+      "address": "0x100494c44",
+      "file": "decompiled/Paste/part-0373.c",
+      "line": 697,
+      "small_string": "delete_pinboard",
+      "rea_evidence_id": "ev_f5db249abb6b5682475278a9b83b89bd58829265fa30d7219205f9b6614c13de",
+      "cache": ".local/Paste/batch-0373.json"
+    },
+    "list_pinboards": {
+      "address": "0x100496008",
+      "file": "decompiled/Paste/part-0374.c",
+      "line": 368,
+      "small_string": "list_pinboards",
+      "rea_evidence_id": "ev_5e6ad4bccbe1fc9dcd8c3a3ff693436264b0b063c7ccf1f75b02f61f397dbd95",
+      "cache": ".local/Paste/batch-0374.json"
+    },
+    "read_item": {
+      "address": "0x10049a9b0",
+      "file": "decompiled/Paste/part-0376.c",
+      "line": 361,
+      "small_string": "read_item",
+      "rea_evidence_id": "ev_0dbf656697eb92fed8250f79ce5c5669586181a8fe58813b83caea0a80303ed0",
+      "cache": ".local/Paste/batch-0376.json"
+    },
+    "rename_pinboard": {
+      "address": "0x10049d3b8",
+      "file": "decompiled/Paste/part-0377.c",
+      "line": 1121,
+      "small_string": "rename_pinboard",
+      "rea_evidence_id": "ev_947f367841722a1f47509bd97848433351faf94b69f0227fb7c5c4317f8fc0f0",
+      "cache": ".local/Paste/batch-0377.json"
+    },
+    "search": {
+      "address": "0x10049fd90",
+      "file": "decompiled/Paste/part-0378.c",
+      "line": 1453,
+      "small_string": "search",
+      "rea_evidence_id": "ev_c39ee07ea692ab07750fda65c74deafaa52ca474c1d8516fa51d5ca8cfe6b8b1",
+      "cache": ".local/Paste/batch-0378.json"
+    },
+    "update_item": {
+      "address": "0x1004a2d98",
+      "file": "decompiled/Paste/part-0379.c",
+      "line": 1256,
+      "small_string": "update_item",
+      "rea_evidence_id": "ev_7eab962281e861aaaff773fc95fa904ab39288ba5e33c95366ec7f296a02eaf3",
+      "cache": ".local/Paste/batch-0379.json"
+    }
+  },
+  "schema_constructor_references": {
+    "decompiled/Paste/part-0371.c": [
+      {
+        "address": "0x100490a90",
+        "line": 328,
+        "rea_evidence_id": "ev_57d4546932fd2012f0e7ab39ed91ea5cb61bfb4876c49cde2399244fbdc36ee8",
+        "cache": ".local/Paste/batch-0371.json"
+      },
+      {
+        "address": "0x1004918f4",
+        "line": 1292,
+        "rea_evidence_id": "ev_57d4546932fd2012f0e7ab39ed91ea5cb61bfb4876c49cde2399244fbdc36ee8",
+        "cache": ".local/Paste/batch-0371.json"
+      }
+    ],
+    "decompiled/Paste/part-0372.c": [
+      {
+        "address": "0x100493658",
+        "line": 1401,
+        "rea_evidence_id": "ev_7535ae26d74ebe9eee0c7623d964ecf461b18e663b3d5c1ce6e1df48891ffad9",
+        "cache": ".local/Paste/batch-0372.json"
+      }
+    ],
+    "decompiled/Paste/part-0373.c": [
+      {
+        "address": "0x100494d60",
+        "line": 806,
+        "rea_evidence_id": "ev_f5db249abb6b5682475278a9b83b89bd58829265fa30d7219205f9b6614c13de",
+        "cache": ".local/Paste/batch-0373.json"
+      }
+    ],
+    "decompiled/Paste/part-0376.c": [
+      {
+        "address": "0x10049af24",
+        "line": 756,
+        "rea_evidence_id": "ev_0dbf656697eb92fed8250f79ce5c5669586181a8fe58813b83caea0a80303ed0",
+        "cache": ".local/Paste/batch-0376.json"
+      }
+    ],
+    "decompiled/Paste/part-0377.c": [
+      {
+        "address": "0x10049ca1c",
+        "line": 518,
+        "rea_evidence_id": "ev_947f367841722a1f47509bd97848433351faf94b69f0227fb7c5c4317f8fc0f0",
+        "cache": ".local/Paste/batch-0377.json"
+      },
+      {
+        "address": "0x10049d4ec",
+        "line": 1218,
+        "rea_evidence_id": "ev_947f367841722a1f47509bd97848433351faf94b69f0227fb7c5c4317f8fc0f0",
+        "cache": ".local/Paste/batch-0377.json"
+      }
+    ],
+    "decompiled/Paste/part-0378.c": [
+      {
+        "address": "0x10049ffdc",
+        "line": 1649,
+        "rea_evidence_id": "ev_c39ee07ea692ab07750fda65c74deafaa52ca474c1d8516fa51d5ca8cfe6b8b1",
+        "cache": ".local/Paste/batch-0378.json"
+      }
+    ],
+    "decompiled/Paste/part-0379.c": [
+      {
+        "address": "0x1004a2f1c",
+        "line": 1408,
+        "rea_evidence_id": "ev_7eab962281e861aaaff773fc95fa904ab39288ba5e33c95366ec7f296a02eaf3",
+        "cache": ".local/Paste/batch-0379.json"
+      }
+    ]
+  },
+  "string_evidence": [
+    {
+      "strings_line_1based": 39114,
+      "text": "data:image/png;base64,"
+    },
+    {
+      "strings_line_1based": 39115,
+      "text": "add_item_to_pinboard"
+    },
+    {
+      "strings_line_1based": 39116,
+      "text": "Add item to pinboard"
+    },
+    {
+      "strings_line_1based": 39117,
+      "text": "Pin a clipboard history item to a pinboard. Idempotent "
+    },
+    {
+      "strings_line_1based": 39118,
+      "text": " adding the same item twice keeps it pinned once. Returns the updated pinboard summary."
+    },
+    {
+      "strings_line_1based": 39119,
+      "text": "Identifier of the clipboard item (from search results)."
+    },
+    {
+      "strings_line_1based": 39120,
+      "text": "Identifier of the destination pinboard (from list_pinboards)."
+    },
+    {
+      "strings_line_1based": 39121,
+      "text": "`content` cannot be empty."
+    },
+    {
+      "strings_line_1based": 39122,
+      "text": "Create clipboard item"
+    },
+    {
+      "strings_line_1based": 39123,
+      "text": "Create an item from text `content`. Without `list_id` it is added to clipboard history, where it shows up in search. With `list_id` (a private, non-shared pinboard) it is pinned to that pinboard: if the same content is already in history the existing item is pinned (and stays in history), otherwise a new pinned-only item is created that is not added to history. Shared pinboards are not supported. Does not write to the system clipboard. The item's type is auto-detected from the content "
+    },
+    {
+      "strings_line_1based": 39124,
+      "text": " usually `text`, but content that reads as a 6-digit hex color (e.g. \"#FF0000\") becomes a `color` and a URL becomes a `link`. Returns the created item summary (id, type, preview, timestamp, app, device); `timestamp` is absent when the item is pinned to a pinboard only (not in history)."
+    },
+    {
+      "strings_line_1based": 39125,
+      "text": "Text content for the new item. Stored verbatim."
+    },
+    {
+      "strings_line_1based": 39126,
+      "text": "Optional id of a private (non-shared) pinboard from list_pinboards. When set, the item is pinned to that pinboard instead of going to history; content already in history is pinned rather than duplicated."
+    },
+    {
+      "strings_line_1based": 39127,
+      "text": "`name` cannot be empty."
+    },
+    {
+      "strings_line_1based": 39128,
+      "text": "Create a new pinboard with the given name. Returns the created pinboard summary (id, name, itemCount)."
+    },
+    {
+      "strings_line_1based": 39129,
+      "text": "Display name for the new pinboard (whitespace-trimmed)."
+    },
+    {
+      "strings_line_1based": 39130,
+      "text": "Preview "
+    },
+    {
+      "strings_line_1based": 39131,
+      "text": " would delete this item from history and its pinboard, for good. Call again with confirm: true to delete."
+    },
+    {
+      "strings_line_1based": 39132,
+      "text": "Delete saved item"
+    },
+    {
+      "strings_line_1based": 39133,
+      "text": "Delete a saved item entirely and irreversibly "
+    },
+    {
+      "strings_line_1based": 39134,
+      "text": " from clipboard history and the pinboard it's pinned to, removing the underlying record for good. Destructive, two-step: call without `confirm` to preview, then with `confirm: true` to delete. To only unpin an item while keeping it, use remove_item_from_pinboard."
+    },
+    {
+      "strings_line_1based": 39135,
+      "text": "Identifier of the item to delete (from search results)."
+    },
+    {
+      "strings_line_1based": 39136,
+      "text": "Must be true to actually delete. Omit or false to preview only."
+    },
+    {
+      "strings_line_1based": 39137,
+      "text": "Preview "
+    },
+    {
+      "strings_line_1based": 39138,
+      "text": " would delete pinboard \""
+    },
+    {
+      "strings_line_1based": 39139,
+      "text": " items). Call again with confirm: true to delete. "
+    },
+    {
+      "strings_line_1based": 39140,
+      "text": "Pinned items stay in clipboard history."
+    },
+    {
+      "strings_line_1based": 39141,
+      "text": "Deleted pinboard \""
+    },
+    {
+      "strings_line_1based": 39142,
+      "text": "Delete a pinboard. Destructive, two-step: call without `confirm` to preview (nothing changes), then with `confirm: true` to delete. Pinned items stay in clipboard history."
+    },
+    {
+      "strings_line_1based": 39143,
+      "text": "Identifier of the pinboard to delete (from list_pinboards)."
+    },
+    {
+      "strings_line_1based": 39144,
+      "text": "List the user's pinboards. Returns flat summaries (id, name, itemCount). Use the returned id with add_item_to_pinboard / remove_item_from_pinboard / rename_pinboard."
+    },
+    {
+      "strings_line_1based": 39145,
+      "text": "file"
+    },
+    {
+      "strings_line_1based": 39146,
+      "text": "color"
+    },
+    {
+      "strings_line_1based": 39147,
+      "text": "link"
+    },
+    {
+      "strings_line_1based": 39148,
+      "text": "Invalid arguments: "
+    },
+    {
+      "strings_line_1based": 39149,
+      "text": "No clipboard item found with id "
+    },
+    {
+      "strings_line_1based": 39150,
+      "text": ". Use search to find valid item ids."
+    },
+    {
+      "strings_line_1based": 39151,
+      "text": " is a shared pinboard, which create_item doesn't support. Use a private pinboard."
+    },
+    {
+      "strings_line_1based": 39152,
+      "text": "No pinboard found with id "
+    },
+    {
+      "strings_line_1based": 39153,
+      "text": ". Use list_pinboards to see valid ids."
+    },
+    {
+      "strings_line_1based": 39154,
+      "text": "Read the full content of a saved item by id (returned by search). Text comes back verbatim; links return their URL; colors return a `#RRGGBB` hex string; files return their paths one per line; images return the image itself (downscaled and re-encoded) for vision-capable clients."
+    },
+    {
+      "strings_line_1based": 39155,
+      "text": "Identifier of the item (from search results)."
+    },
+    {
+      "strings_line_1based": 39156,
+      "text": "content"
+    },
+    {
+      "strings_line_1based": 39157,
+      "text": "remove_item_from_pinboard"
+    },
+    {
+      "strings_line_1based": 39158,
+      "text": "Remove item from pinboard"
+    },
+    {
+      "strings_line_1based": 39159,
+      "text": "Unpin an item from a pinboard. The item stays in clipboard history if it was there; only the pinning is removed. Returns the updated pinboard summary."
+    },
+    {
+      "strings_line_1based": 39160,
+      "text": "Identifier of the clipboard item to unpin."
+    },
+    {
+      "strings_line_1based": 39161,
+      "text": "Identifier of the pinboard to unpin the item from."
+    },
+    {
+      "strings_line_1based": 39162,
+      "text": "Rename an existing pinboard. Returns the updated pinboard summary."
+    },
+    {
+      "strings_line_1based": 39163,
+      "text": "Identifier of the pinboard to rename (from list_pinboards)."
+    },
+    {
+      "strings_line_1based": 39164,
+      "text": "New display name (whitespace-trimmed)."
+    },
+    {
+      "strings_line_1based": 39165,
+      "text": "`date_from` must be before `date_to`."
+    },
+    {
+      "strings_line_1based": 39166,
+      "text": "` must be an ISO-8601 date or date-time: "
+    },
+    {
+      "strings_line_1based": 39167,
+      "text": "Search saved items"
+    },
+    {
+      "strings_line_1based": 39168,
+      "text": "Search the user's saved items "
+    },
+    {
+      "strings_line_1based": 39169,
+      "text": " clipboard history and pinboards both "
+    },
+    {
+      "strings_line_1based": 39170,
+      "text": " with optional filters. With no arguments, returns the most recent items. `query` is free text matched against titles and content. Filters (combinable): `type` (see allowed values); `app` / `device` "
+    },
+    {
+      "strings_line_1based": 39171,
+      "text": " match the `app` / `device` field shown on returned items; `pinboard_id` "
+    },
+    {
+      "strings_line_1based": 39172,
+      "text": " a pinboard id from `list_pinboards`; `title` "
+    },
+    {
+      "strings_line_1based": 39173,
+      "text": " a title substring; `date_from` / `date_to` "
+    },
+    {
+      "strings_line_1based": 39174,
+      "text": " ISO-8601 bounds for a half-open timestamp range (either may be omitted for an open end). Returns flat summaries (id, type, preview, timestamp, app, device); `timestamp` is when the item entered clipboard history (ISO-8601), absent for pinned-only items; call read_item for full content."
+    },
+    {
+      "strings_line_1based": 39175,
+      "text": "Free text matched against item titles and content."
+    },
+    {
+      "strings_line_1based": 39176,
+      "text": "Item type filter."
+    },
+    {
+      "strings_line_1based": 39177,
+      "text": "Source application filter "
+    },
+    {
+      "strings_line_1based": 39178,
+      "text": " matches the `app` field shown on returned items."
+    },
+    {
+      "strings_line_1based": 39179,
+      "text": "Device filter "
+    },
+    {
+      "strings_line_1based": 39180,
+      "text": " matches the `device` field shown on returned items."
+    },
+    {
+      "strings_line_1based": 39181,
+      "text": "Title substring filter."
+    },
+    {
+      "strings_line_1based": 39182,
+      "text": "Restrict to items pinned to this pinboard (id from list_pinboards)."
+    },
+    {
+      "strings_line_1based": 39183,
+      "text": "ISO-8601 start (inclusive) of the timestamp range, e.g. 2026-05-01T00:00:00Z. A date-only value (e.g. 2026-05-01) starts at the beginning of that day."
+    },
+    {
+      "strings_line_1based": 39184,
+      "text": "ISO-8601 end of the timestamp range. A full date-time is exclusive; a date-only value (e.g. 2026-05-01) covers that whole day."
+    },
+    {
+      "strings_line_1based": 39185,
+      "text": "Maximum number of items to return. Defaults to 20, capped at 100."
+    },
+    {
+      "strings_line_1based": 39186,
+      "text": "Pass at least one of `title` or `content` to update."
+    },
+    {
+      "strings_line_1based": 39187,
+      "text": "Cannot edit the content of an image or file item. You can still change its title."
+    },
+    {
+      "strings_line_1based": 39188,
+      "text": "Update saved item"
+    },
+    {
+      "strings_line_1based": 39189,
+      "text": "Update a saved item's `title`, its `content`, or both (at least one is required). Passing `title` sets the item's title; an empty string clears it. Passing `content` replaces the body and re-runs type auto-detection (text/color/link), exactly like create_item. Content edits are rejected for image and file items (their title can still be changed). Returns the updated item summary."
+    },
+    {
+      "strings_line_1based": 39190,
+      "text": "Identifier of the item to update (from search results)."
+    },
+    {
+      "strings_line_1based": 39191,
+      "text": "New title. Pass an empty string to clear the title."
+    },
+    {
+      "strings_line_1based": 39192,
+      "text": "New text content. Replaces the body and re-detects the type."
+    }
+  ],
+  "semantics_confirmed_by_strings": {
+    "create_item": "No clipboard write; history by default; list_id pins existing history content or creates pinned-only item without timestamp; type text/color/link auto-detected.",
+    "delete_item": "confirm false/omitted preview; true irreversibly deletes underlying record and pinning.",
+    "delete_pinboard": "confirm false/omitted preview; true deletes board, preserves historical items.",
+    "search": "history and pinboards; default20 max100; text filters/title/app/device; ISO8601 half-open bounds, date-only upper includes full day.",
+    "read_item": "verbatim text/link/color, newline file paths; image payload for image items.",
+    "update_item": "title or content required; empty title clears; image/file body immutable; content reclassifies text/color/link."
+  },
+  "explicit_replica_extensions": [
+    "replica_restore_item (soft-delete only)",
+    "replica_copy_item (named private pasteboard default; general requires explicit flag)"
+  ],
+  "not_claimed_identical": [
+    "Original dynamically emitted full tools/list JSON Schema was not queried from the private running application. UUID constraints and exact descriptions/errors are reconstructed choices.",
+    "Preview truncation and image resize policy remain implementation limits; exact original thresholds not proven.",
+    "Local data persistence architecture and device identity have no cloud sync; no semantic-equivalence or complete 1:1 claim."
+  ],
+  "localization_evidence": {
+    "en": {
+      "settings.mcp.connection-sheet.title": "Connect %@",
+      "settings.mcp.tools.empty": "Nothing connected yet",
+      "settings.mcp.enable.subtitle": "Allow AI apps to connect to Paste. Only apps you approve can access your clipboard items and pinboards.",
+      "settings.mcp.connection-sheet.action.connect": "Connect",
+      "settings.mcp.disconnect.confirm.title": "Disconnect “%@”?",
+      "settings.mcp.connect.token.token": "Token",
+      "settings.mcp.port.warning": "Changing the port disconnects and removes all connected AI tools.",
+      "settings.mcp.connect.mcpb-instruction": "Claude Desktop will open. Install the Paste extension there to finish connecting.",
+      "settings.mcp.add-tool.cancel": "Cancel",
+      "settings.mcp.connect.config-instruction": "Add this to your app's MCP config, then approve Paste in your browser.",
+      "settings.mcp.copy": "Copy",
+      "settings.mcp.connect.action.connect-to": "Connect AI Tool...",
+      "settings.mcp.disconnect.confirm.action": "Disconnect",
+      "settings.mcp.connected-tools.title": "Connected AI Tools",
+      "settings.mcp.title": "MCP & AI Tools",
+      "settings.mcp.tool.options": "Client options",
+      "settings.mcp.tools.last-used": "Last used %@",
+      "settings.mcp.advanced": "Advanced…",
+      "settings.mcp.disconnect.confirm.message": "%@ will no longer be able to access Paste.",
+      "settings.mcp.connect.deeplink-instruction": "%@ will open and ask you to confirm installing the Paste MCP. Then approve the connection in your browser.",
+      "settings.mcp.add-tool.title": "Add an AI Tool",
+      "settings.mcp.connect.token.server-url": "Server URL",
+      "settings.mcp.enable.title": "Enable MCP",
+      "settings.mcp.add-tool.name-placeholder": "Name (e.g. My AI Tool)",
+      "settings.mcp.tool.custom": "Custom Tool",
+      "settings.mcp.connect.cli-authentication-instruction": "Start Claude Code, type /mcp, then select Paste and authenticate.",
+      "settings.mcp.port.change-failed": "Couldn't change the port",
+      "settings.mcp.add-tool.create": "Create",
+      "settings.mcp.port.title": "MCP Server Port",
+      "settings.mcp.tools.never-used": "Never used",
+      "settings.mcp.connection-sheet.action.install-extension": "Install Extension",
+      "settings.mcp.connection-sheet.done": "Done",
+      "settings.mcp.connect.token-instruction": "Add the following to your AI tool's MCP configuration.",
+      "settings.mcp.connect.cli-instruction": "Run this command in Terminal:",
+      "settings.mcp.disconnect.action.disconnect": "Disconnect...",
+      "settings.mcp.port.change": "Change"
+    },
+    "zh-Hans": {
+      "settings.mcp.connection-sheet.title": "连接 %@",
+      "settings.mcp.tools.empty": "尚未连接任何工具",
+      "settings.mcp.enable.subtitle": "允许 AI 应用连接到 Paste。只有经你批准的应用才能访问你的剪贴板项目和钉板。",
+      "settings.mcp.connection-sheet.action.connect": "连接",
+      "settings.mcp.disconnect.confirm.title": "要断开“%@”的连接吗？",
+      "settings.mcp.connect.token.token": "令牌",
+      "settings.mcp.port.warning": "更改端口会断开并移除所有已连接的 AI 工具。",
+      "settings.mcp.connect.mcpb-instruction": "Claude Desktop 将打开。在其中安装 Paste 扩展以完成连接。",
+      "settings.mcp.add-tool.cancel": "取消",
+      "settings.mcp.connect.config-instruction": "将以下内容添加到你的应用 MCP 配置中,然后在浏览器中批准 Paste。",
+      "settings.mcp.copy": "复制",
+      "settings.mcp.connect.action.connect-to": "连接 AI 工具…",
+      "settings.mcp.disconnect.confirm.action": "断开连接",
+      "settings.mcp.connected-tools.title": "已连接的 AI 工具",
+      "settings.mcp.title": "MCP 与 AI 工具",
+      "settings.mcp.tool.options": "客户端选项",
+      "settings.mcp.tools.last-used": "最近使用 %@",
+      "settings.mcp.advanced": "高级…",
+      "settings.mcp.disconnect.confirm.message": "%@ 将无法再访问 Paste。",
+      "settings.mcp.connect.deeplink-instruction": "%@ 将打开，并请你确认安装 Paste MCP。随后在浏览器中批准此连接。",
+      "settings.mcp.add-tool.title": "添加 AI 工具",
+      "settings.mcp.connect.token.server-url": "服务器 URL",
+      "settings.mcp.enable.title": "启用 MCP",
+      "settings.mcp.add-tool.name-placeholder": "名称（例如：我的 AI 工具）",
+      "settings.mcp.tool.custom": "自定义工具",
+      "settings.mcp.connect.cli-authentication-instruction": "启动 Claude Code，输入 /mcp，然后选择 Paste 并完成认证。",
+      "settings.mcp.port.change-failed": "无法更改端口",
+      "settings.mcp.add-tool.create": "创建",
+      "settings.mcp.port.title": "MCP 服务器端口",
+      "settings.mcp.tools.never-used": "从未使用",
+      "settings.mcp.connection-sheet.action.install-extension": "安装扩展",
+      "settings.mcp.connection-sheet.done": "完成",
+      "settings.mcp.connect.token-instruction": "将以下内容添加到你的 AI 工具 MCP 配置中。",
+      "settings.mcp.connect.cli-instruction": "在“终端”中运行此命令：",
+      "settings.mcp.disconnect.action.disconnect": "断开连接…",
+      "settings.mcp.port.change": "更改"
+    }
+  },
+  "behavior_function_references": [
+    {
+      "procedure": "0x10049e6b8",
+      "file": "decompiled/Paste/part-0378.c",
+      "line": 508,
+      "observed_behavior": "search limit clamps to1..100; missing limit defaults20",
+      "rea_evidence_id": "ev_c39ee07ea692ab07750fda65c74deafaa52ca474c1d8516fa51d5ca8cfe6b8b1"
+    }
+  ],
+  "replica_implementation_limits": {
+    "request_frame_max_bytes": 1048576,
+    "response_max_bytes": 2097152,
+    "text_argument_max_bytes": 524288,
+    "image_max_dimension": 1024,
+    "image_max_png_bytes": 1048576,
+    "summary_preview_max_characters": 300
+  }
+}
