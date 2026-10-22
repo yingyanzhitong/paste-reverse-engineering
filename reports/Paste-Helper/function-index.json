@@ -1,0 +1,2082 @@
+[
+  {
+    "address": "0x100001410",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001410",
+      "name": "entry"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 6
+  },
+  {
+    "address": "0x100001488",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001488",
+      "name": "FUN_100001488"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 36
+  },
+  {
+    "address": "0x1000019f4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000019f4",
+      "name": "FUN_1000019f4"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 204
+  },
+  {
+    "address": "0x100001db0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001db0",
+      "name": "FUN_100001db0"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 327
+  },
+  {
+    "address": "0x100001f84",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001f84",
+      "name": "_TtC6Helper17HelperAppDelegate::applicationDidFinishLaunching:"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 392
+  },
+  {
+    "address": "0x1000020b4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000020b4",
+      "name": "_TtC6Helper17HelperAppDelegate::init"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 436
+  },
+  {
+    "address": "0x1000021f0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000021f0",
+      "name": "FUN_1000021f0"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 485
+  },
+  {
+    "address": "0x100002224",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002224",
+      "name": "_TtC6Helper17HelperAppDelegate::.cxx_destruct"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 497
+  },
+  {
+    "address": "0x100002270",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002270",
+      "name": "FUN_100002270"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 516
+  },
+  {
+    "address": "0x100002278",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002278",
+      "name": "FUN_100002278"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 527
+  },
+  {
+    "address": "0x1000022b0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000022b0",
+      "name": "FUN_1000022b0"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 541
+  },
+  {
+    "address": "0x100002340",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002340",
+      "name": "FUN_100002340"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 578
+  },
+  {
+    "address": "0x10000239c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000239c",
+      "name": "FUN_10000239c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 598
+  },
+  {
+    "address": "0x100002510",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002510",
+      "name": "FUN_100002510"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 651
+  },
+  {
+    "address": "0x1000025a0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000025a0",
+      "name": "FUN_1000025a0"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 677
+  },
+  {
+    "address": "0x100002614",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002614",
+      "name": "FUN_100002614"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 704
+  },
+  {
+    "address": "0x100002a30",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002a30",
+      "name": "FUN_100002a30"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 847
+  },
+  {
+    "address": "0x100002cd0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002cd0",
+      "name": "FUN_100002cd0"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 967
+  },
+  {
+    "address": "0x100002f5c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002f5c",
+      "name": "FUN_100002f5c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1086
+  },
+  {
+    "address": "0x10000307c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000307c",
+      "name": "FUN_10000307c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1144
+  },
+  {
+    "address": "0x100003100",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003100",
+      "name": "FUN_100003100"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1164
+  },
+  {
+    "address": "0x100003170",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003170",
+      "name": "FUN_100003170"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1197
+  },
+  {
+    "address": "0x100003314",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003314",
+      "name": "FUN_100003314"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1276
+  },
+  {
+    "address": "0x1000034c8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000034c8",
+      "name": "FUN_1000034c8"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1357
+  },
+  {
+    "address": "0x100003514",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003514",
+      "name": "FUN_100003514"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1374
+  },
+  {
+    "address": "0x100003758",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003758",
+      "name": "FUN_100003758"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1477
+  },
+  {
+    "address": "0x10000385c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000385c",
+      "name": "FUN_10000385c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1531
+  },
+  {
+    "address": "0x100003bcc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003bcc",
+      "name": "FUN_100003bcc"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1651
+  },
+  {
+    "address": "0x100003c20",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003c20",
+      "name": "FUN_100003c20"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1674
+  },
+  {
+    "address": "0x100003d58",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003d58",
+      "name": "FUN_100003d58"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1723
+  },
+  {
+    "address": "0x100003f68",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003f68",
+      "name": "FUN_100003f68"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1803
+  },
+  {
+    "address": "0x100004020",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004020",
+      "name": "FUN_100004020"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1843
+  },
+  {
+    "address": "0x1000040cc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000040cc",
+      "name": "FUN_1000040cc"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1870
+  },
+  {
+    "address": "0x10000413c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000413c",
+      "name": "FUN_10000413c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1903
+  },
+  {
+    "address": "0x1000041a8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000041a8",
+      "name": "FUN_1000041a8"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1930
+  },
+  {
+    "address": "0x100004230",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004230",
+      "name": "FUN_100004230"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1963
+  },
+  {
+    "address": "0x1000042e8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000042e8",
+      "name": "FUN_1000042e8"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1998
+  },
+  {
+    "address": "0x10000434c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000434c",
+      "name": "FUN_10000434c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2021
+  },
+  {
+    "address": "0x1000043e8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000043e8",
+      "name": "FUN_1000043e8"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2057
+  },
+  {
+    "address": "0x1000044f0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000044f0",
+      "name": "FUN_1000044f0"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2093
+  },
+  {
+    "address": "0x100004594",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004594",
+      "name": "FUN_100004594"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2129
+  },
+  {
+    "address": "0x1000045d0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000045d0",
+      "name": "FUN_1000045d0"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2148
+  },
+  {
+    "address": "0x100004698",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004698",
+      "name": "FUN_100004698"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2189
+  },
+  {
+    "address": "0x1000047a8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000047a8",
+      "name": "FUN_1000047a8"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2238
+  },
+  {
+    "address": "0x10000480c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000480c",
+      "name": "FUN_10000480c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2252
+  },
+  {
+    "address": "0x100004940",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004940",
+      "name": "FUN_100004940"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2328
+  },
+  {
+    "address": "0x100004a30",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004a30",
+      "name": "FUN_100004a30"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2392
+  },
+  {
+    "address": "0x100004aa0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004aa0",
+      "name": "FUN_100004aa0"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2418
+  },
+  {
+    "address": "0x100004b90",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004b90",
+      "name": "FUN_100004b90"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2476
+  },
+  {
+    "address": "0x100004bf4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004bf4",
+      "name": "FUN_100004bf4"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2499
+  },
+  {
+    "address": "0x100004c34",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004c34",
+      "name": "FUN_100004c34"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2517
+  },
+  {
+    "address": "0x100004eb0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004eb0",
+      "name": "FUN_100004eb0"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2623
+  },
+  {
+    "address": "0x100004ed0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004ed0",
+      "name": "FUN_100004ed0"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2640
+  },
+  {
+    "address": "0x100004f0c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004f0c",
+      "name": "FUN_100004f0c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2655
+  },
+  {
+    "address": "0x100004f5c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004f5c",
+      "name": "FUN_100004f5c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2672
+  },
+  {
+    "address": "0x100004f68",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004f68",
+      "name": "thunk_FUN_100002340"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2682
+  },
+  {
+    "address": "0x100004f6c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004f6c",
+      "name": "FUN_100004f6c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2693
+  },
+  {
+    "address": "0x100004f90",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004f90",
+      "name": "FUN_100004f90"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2707
+  },
+  {
+    "address": "0x100004f98",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004f98",
+      "name": "FUN_100004f98"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2718
+  },
+  {
+    "address": "0x100004fe8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004fe8",
+      "name": "FUN_100004fe8"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2742
+  },
+  {
+    "address": "0x10000503c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000503c",
+      "name": "FUN_10000503c"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2761
+  },
+  {
+    "address": "0x1000050a8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000050a8",
+      "name": "FUN_1000050a8"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2787
+  },
+  {
+    "address": "0x1000050f8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000050f8",
+      "name": "FUN_1000050f8"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2802
+  },
+  {
+    "address": "0x100005168",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005168",
+      "name": "FUN_100005168"
+    },
+    "file": "decompiled/Paste-Helper/part-0000.c",
+    "line": 2826
+  },
+  {
+    "address": "0x10000518c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000518c",
+      "name": "FUN_10000518c"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 6
+  },
+  {
+    "address": "0x1000051fc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000051fc",
+      "name": "FUN_1000051fc"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 30
+  },
+  {
+    "address": "0x100005238",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005238",
+      "name": "thunk_FUN_10000523c"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 48
+  },
+  {
+    "address": "0x10000523c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000523c",
+      "name": "FUN_10000523c"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 63
+  },
+  {
+    "address": "0x100005268",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005268",
+      "name": "FUN_100005268"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 78
+  },
+  {
+    "address": "0x1000052d4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000052d4",
+      "name": "FUN_1000052d4"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 104
+  },
+  {
+    "address": "0x100005344",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005344",
+      "name": "FUN_100005344"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 128
+  },
+  {
+    "address": "0x100005370",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005370",
+      "name": "FUN_100005370"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 143
+  },
+  {
+    "address": "0x1000053e8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000053e8",
+      "name": "FUN_1000053e8"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 171
+  },
+  {
+    "address": "0x100005424",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005424",
+      "name": "FUN_100005424"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 191
+  },
+  {
+    "address": "0x100005468",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005468",
+      "name": "FUN_100005468"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 211
+  },
+  {
+    "address": "0x100005478",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005478",
+      "name": "FUN_100005478"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 222
+  },
+  {
+    "address": "0x100005480",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005480",
+      "name": "FUN_100005480"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 233
+  },
+  {
+    "address": "0x1000054a4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000054a4",
+      "name": "FUN_1000054a4"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 251
+  },
+  {
+    "address": "0x1000054e4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000054e4",
+      "name": "FUN_1000054e4"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 269
+  },
+  {
+    "address": "0x100005534",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005534",
+      "name": "FUN_100005534"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 284
+  },
+  {
+    "address": "0x100005574",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005574",
+      "name": "thunk_FUN_100005168"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 296
+  },
+  {
+    "address": "0x100005578",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005578",
+      "name": "thunk_FUN_100005168"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 307
+  },
+  {
+    "address": "0x10000557c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000557c",
+      "name": "thunk_FUN_100005168"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 318
+  },
+  {
+    "address": "0x100005580",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005580",
+      "name": "thunk_FUN_1000051fc"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 329
+  },
+  {
+    "address": "0x100005584",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005584",
+      "name": "thunk_FUN_100004bf4"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 340
+  },
+  {
+    "address": "0x100005588",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005588",
+      "name": "thunk_FUN_10000523c"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 351
+  },
+  {
+    "address": "0x10000558c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000558c",
+      "name": "FUN_10000558c"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 362
+  },
+  {
+    "address": "0x10000559c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000559c",
+      "name": "FUN_10000559c"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 373
+  },
+  {
+    "address": "0x1000055bc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000055bc",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Notification::$_unconditionallyBridgeFromObjectiveC"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 385
+  },
+  {
+    "address": "0x1000055c8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000055c8",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Notification::typeMetadataAccessor"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 401
+  },
+  {
+    "address": "0x1000055d4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000055d4",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Foundation::_KeyValueCodingAndObservingPublishing::$publisher"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 418
+  },
+  {
+    "address": "0x1000055e0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000055e0",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::$init"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 437
+  },
+  {
+    "address": "0x1000055ec",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000055ec",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::get_lastPathComponent"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 454
+  },
+  {
+    "address": "0x1000055f8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000055f8",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::_bridgeToObjectiveC"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 474
+  },
+  {
+    "address": "0x100005604",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005604",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::deletingLastPathComponent"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 489
+  },
+  {
+    "address": "0x100005610",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005610",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::$_unconditionallyBridgeFromObjectiveC"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 504
+  },
+  {
+    "address": "0x10000561c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000561c",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::get_path"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 519
+  },
+  {
+    "address": "0x100005628",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005628",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::typeMetadataAccessor"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 539
+  },
+  {
+    "address": "0x100005634",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005634",
+      "name": "/usr/lib/swift/libswiftos.dylib::os::Logger::get_logObject"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 556
+  },
+  {
+    "address": "0x100005640",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005640",
+      "name": "/usr/lib/swift/libswiftos.dylib::os::Logger::init"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 571
+  },
+  {
+    "address": "0x10000564c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000564c",
+      "name": "/usr/lib/swift/libswiftos.dylib::os::Logger::typeMetadataAccessor"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 590
+  },
+  {
+    "address": "0x100005658",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005658",
+      "name": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit::AppKit::$NSApplicationMain"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 607
+  },
+  {
+    "address": "0x100005664",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005664",
+      "name": "/System/Library/Frameworks/Combine.framework/Versions/A/Combine::Combine::AnyCancellable::store"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 626
+  },
+  {
+    "address": "0x100005670",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005670",
+      "name": "/System/Library/Frameworks/Combine.framework/Versions/A/Combine::(extension_Combine)::Combine::Publisher::$sink"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 641
+  },
+  {
+    "address": "0x10000567c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000567c",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::String::_bridgeToObjectiveC"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 659
+  },
+  {
+    "address": "0x100005688",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005688",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::String::$_unconditionallyBridgeFromObjectiveC"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 676
+  },
+  {
+    "address": "0x100005694",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005694",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::get_utf8CString"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 698
+  },
+  {
+    "address": "0x1000056a0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000056a0",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::UTF8View::_foreignCount"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 716
+  },
+  {
+    "address": "0x1000056ac",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000056ac",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::Array<undefined>::$_unconditionallyBridgeFromObjectiveC"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 731
+  },
+  {
+    "address": "0x1000056b8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000056b8",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Actor::get_unownedExecutor"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 747
+  },
+  {
+    "address": "0x1000056c4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000056c4",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::CheckedContinuation::init"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 764
+  },
+  {
+    "address": "0x1000056d0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000056d0",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::CheckedContinuation::resume"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 782
+  },
+  {
+    "address": "0x1000056dc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000056dc",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::CheckedContinuation::resume"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 797
+  },
+  {
+    "address": "0x1000056e8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000056e8",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::MainActor::get_shared"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 812
+  },
+  {
+    "address": "0x1000056f4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000056f4",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::MainActor::typeMetadataAccessor"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 827
+  },
+  {
+    "address": "0x100005700",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005700",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::TaskPriority::get_rawValue"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 844
+  },
+  {
+    "address": "0x10000570c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000570c",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::TaskPriority::typeMetadataAccessor"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 862
+  },
+  {
+    "address": "0x100005718",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005718",
+      "name": "/usr/lib/swift/libswiftos.dylib::static_(extension_in_os):__C.os_log_type_t.info.getter_:___C.os_log_type_t::$get_info"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 879
+  },
+  {
+    "address": "0x100005724",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005724",
+      "name": "/usr/lib/swift/libswiftos.dylib::static_(extension_in_os):__C.os_log_type_t.error.getter_:___C.os_log_type_t::$get_error"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 894
+  },
+  {
+    "address": "0x100005730",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005730",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::CommandLine::$get_unsafeArgv"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 909
+  },
+  {
+    "address": "0x10000573c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000573c",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::CommandLine::get_argc"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 931
+  },
+  {
+    "address": "0x100005748",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005748",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_StringGuts::$_foreignCopyUTF8"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 949
+  },
+  {
+    "address": "0x100005754",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005754",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_ArrayBuffer::$_getElementSlowPath"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 966
+  },
+  {
+    "address": "0x100005760",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005760",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_StringObject::get_sharedUTF8"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 982
+  },
+  {
+    "address": "0x10000576c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000576c",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::ContinuousClock::Instant::typeMetadataAccessor"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 997
+  },
+  {
+    "address": "0x100005778",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005778",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::ContinuousClock::typeMetadataAccessor"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 1014
+  },
+  {
+    "address": "0x100005784",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005784",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::InstantProtocol::$advanced"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 1031
+  },
+  {
+    "address": "0x100005790",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005790",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_CocoaArrayWrapper::get_endIndex"
+    },
+    "file": "decompiled/Paste-Helper/part-0001.c",
+    "line": 1046
+  },
+  {
+    "address": "0x10000579c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000579c",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::CustomStringConvertible::get_description"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 6
+  },
+  {
+    "address": "0x1000057a8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000057a8",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_stringCompareWithSmolCheck"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 27
+  },
+  {
+    "address": "0x1000057b4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000057b4",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Clock::$get_now"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 47
+  },
+  {
+    "address": "0x1000057c0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000057c0",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Clock::$sleep"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 62
+  },
+  {
+    "address": "0x1000057cc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000057cc",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::(extension_Swift)::Swift::Clock::$get_continuous"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 78
+  },
+  {
+    "address": "0x1000057d8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000057d8",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::Error::get_localizedDescription"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 96
+  },
+  {
+    "address": "0x1000057e4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000057e4",
+      "name": "__os_log_impl"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 117
+  },
+  {
+    "address": "0x1000057f0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000057f0",
+      "name": "_malloc_size"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 130
+  },
+  {
+    "address": "0x1000057fc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000057fc",
+      "name": "_memcpy"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 143
+  },
+  {
+    "address": "0x100005808",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005808",
+      "name": "_memmove"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 158
+  },
+  {
+    "address": "0x100005814",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005814",
+      "name": "_objc_allocWithZone"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 173
+  },
+  {
+    "address": "0x100005820",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005820",
+      "name": "_objc_msgSendSuper2"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 186
+  },
+  {
+    "address": "0x10000582c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000582c",
+      "name": "_objc_opt_self"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 201
+  },
+  {
+    "address": "0x100005838",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005838",
+      "name": "_objc_release"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 216
+  },
+  {
+    "address": "0x100005844",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005844",
+      "name": "_objc_retain"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 231
+  },
+  {
+    "address": "0x100005850",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005850",
+      "name": "_objc_retainAutoreleasedReturnValue"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 246
+  },
+  {
+    "address": "0x10000585c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000585c",
+      "name": "_os_log_type_enabled"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 261
+  },
+  {
+    "address": "0x100005868",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005868",
+      "name": "_swift_allocBox"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 274
+  },
+  {
+    "address": "0x100005874",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005874",
+      "name": "_swift_allocObject"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 287
+  },
+  {
+    "address": "0x100005880",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005880",
+      "name": "_swift_beginAccess"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 300
+  },
+  {
+    "address": "0x10000588c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000588c",
+      "name": "_swift_bridgeObjectRelease"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 313
+  },
+  {
+    "address": "0x100005898",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005898",
+      "name": "_swift_bridgeObjectRetain"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 326
+  },
+  {
+    "address": "0x1000058a4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000058a4",
+      "name": "_swift_continuation_await"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 339
+  },
+  {
+    "address": "0x1000058b0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000058b0",
+      "name": "_swift_continuation_init"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 352
+  },
+  {
+    "address": "0x1000058bc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000058bc",
+      "name": "_swift_deallocClassInstance"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 365
+  },
+  {
+    "address": "0x1000058c8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000058c8",
+      "name": "_swift_deallocObject"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 378
+  },
+  {
+    "address": "0x1000058d4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000058d4",
+      "name": "_swift_endAccess"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 391
+  },
+  {
+    "address": "0x1000058e0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000058e0",
+      "name": "_swift_errorRelease"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 404
+  },
+  {
+    "address": "0x1000058ec",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000058ec",
+      "name": "_swift_errorRetain"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 417
+  },
+  {
+    "address": "0x1000058f8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000058f8",
+      "name": "_swift_getErrorValue"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 430
+  },
+  {
+    "address": "0x100005904",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005904",
+      "name": "_swift_getKeyPath"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 443
+  },
+  {
+    "address": "0x100005910",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005910",
+      "name": "_swift_getObjCClassMetadata"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 456
+  },
+  {
+    "address": "0x10000591c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000591c",
+      "name": "_swift_getObjectType"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 469
+  },
+  {
+    "address": "0x100005928",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005928",
+      "name": "_swift_getSingletonMetadata"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 482
+  },
+  {
+    "address": "0x100005934",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005934",
+      "name": "_swift_getTypeByMangledNameInContext2"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 495
+  },
+  {
+    "address": "0x100005940",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005940",
+      "name": "_swift_getTypeByMangledNameInContextInMetadataState2"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 508
+  },
+  {
+    "address": "0x10000594c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000594c",
+      "name": "_swift_getWitnessTable"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 521
+  },
+  {
+    "address": "0x100005958",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005958",
+      "name": "_swift_initStaticObject"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 534
+  },
+  {
+    "address": "0x100005964",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005964",
+      "name": "_swift_isUniquelyReferenced_nonNull_native"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 547
+  },
+  {
+    "address": "0x100005970",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005970",
+      "name": "_swift_release"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 560
+  },
+  {
+    "address": "0x10000597c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000597c",
+      "name": "_swift_retain"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 573
+  },
+  {
+    "address": "0x100005988",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005988",
+      "name": "_swift_slowAlloc"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 586
+  },
+  {
+    "address": "0x100005994",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005994",
+      "name": "_swift_slowDealloc"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 599
+  },
+  {
+    "address": "0x1000059a0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059a0",
+      "name": "_swift_task_alloc"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 612
+  },
+  {
+    "address": "0x1000059ac",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059ac",
+      "name": "_swift_task_create"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 625
+  },
+  {
+    "address": "0x1000059b8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059b8",
+      "name": "_swift_task_dealloc"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 638
+  },
+  {
+    "address": "0x1000059c4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059c4",
+      "name": "_swift_task_isCurrentExecutor"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 651
+  },
+  {
+    "address": "0x1000059d0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059d0",
+      "name": "_swift_task_reportUnexpectedExecutor"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 664
+  },
+  {
+    "address": "0x1000059dc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059dc",
+      "name": "_swift_task_switch"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 677
+  },
+  {
+    "address": "0x1000059e8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059e8",
+      "name": "_swift_unknownObjectRelease"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 690
+  },
+  {
+    "address": "0x1000059f4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059f4",
+      "name": "_swift_unknownObjectRetain"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 703
+  },
+  {
+    "address": "0x100005a00",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a00",
+      "name": "_swift_unknownObjectWeakDestroy"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 716
+  },
+  {
+    "address": "0x100005a0c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a0c",
+      "name": "_swift_unknownObjectWeakInit"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 729
+  },
+  {
+    "address": "0x100005a18",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a18",
+      "name": "_swift_unknownObjectWeakLoadStrong"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 742
+  },
+  {
+    "address": "0x100005a24",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a24",
+      "name": "_swift_updateClassMetadata2"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 755
+  },
+  {
+    "address": "0x100005a30",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a30",
+      "name": "_swift_willThrow"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 768
+  },
+  {
+    "address": "0x100005a40",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a40",
+      "name": "objc_stub::URLForApplicationWithBundleIdentifier:"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 781
+  },
+  {
+    "address": "0x100005a60",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a60",
+      "name": "objc_stub::boolForKey:"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 792
+  },
+  {
+    "address": "0x100005a80",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a80",
+      "name": "objc_stub::bundleIdentifier"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 803
+  },
+  {
+    "address": "0x100005aa0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005aa0",
+      "name": "objc_stub::bundleURL"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 814
+  },
+  {
+    "address": "0x100005ac0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ac0",
+      "name": "objc_stub::init"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 825
+  },
+  {
+    "address": "0x100005ae0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ae0",
+      "name": "objc_stub::initWithSuiteName:"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 836
+  },
+  {
+    "address": "0x100005b00",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b00",
+      "name": "objc_stub::mainBundle"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 847
+  },
+  {
+    "address": "0x100005b20",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b20",
+      "name": "objc_stub::openApplicationAtURL:configuration:completionHandler:"
+    },
+    "file": "decompiled/Paste-Helper/part-0002.c",
+    "line": 858
+  },
+  {
+    "address": "0x100005b40",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b40",
+      "name": "objc_stub::runningApplications"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 6
+  },
+  {
+    "address": "0x100005b60",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b60",
+      "name": "objc_stub::setActivates:"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 17
+  },
+  {
+    "address": "0x100005b80",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b80",
+      "name": "objc_stub::setBool:forKey:"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 28
+  },
+  {
+    "address": "0x100005ba0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ba0",
+      "name": "objc_stub::setDelegate:"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 39
+  },
+  {
+    "address": "0x100005bc0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005bc0",
+      "name": "objc_stub::sharedApplication"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 50
+  },
+  {
+    "address": "0x100005be0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005be0",
+      "name": "objc_stub::sharedWorkspace"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 61
+  },
+  {
+    "address": "0x10001cf00",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001cf00",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Clock::$sleep"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 72
+  },
+  {
+    "address": "0x10001d401",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001d401",
+      "name": "NSApplication::sharedApplication"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 87
+  },
+  {
+    "address": "0x10001d501",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001d501",
+      "name": "NSBundle::mainBundle"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 101
+  },
+  {
+    "address": "0x10001d502",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001d502",
+      "name": "NSBundle::bundleURL"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 115
+  },
+  {
+    "address": "0x10001d901",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001d901",
+      "name": "NSWorkspace::sharedWorkspace"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 129
+  },
+  {
+    "address": "0x10001d902",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001d902",
+      "name": "NSWorkspace::URLForApplicationWithBundleIdentifier:"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 143
+  },
+  {
+    "address": "0x10001d903",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001d903",
+      "name": "NSWorkspace::runningApplications"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 157
+  },
+  {
+    "address": "0x10001d904",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001d904",
+      "name": "NSWorkspace::openApplicationAtURL:configuration:completionHandler:"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 171
+  },
+  {
+    "address": "0x10001df00",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001df00",
+      "name": "/usr/lib/libSystem.B.dylib::___chkstk_darwin"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 185
+  },
+  {
+    "address": "0x10001f200",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001f200",
+      "name": "_objc_msgSend"
+    },
+    "file": "decompiled/Paste-Helper/part-0003.c",
+    "line": 199
+  }
+]

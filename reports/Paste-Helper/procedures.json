@@ -1,0 +1,2828 @@
+[
+  {
+    "address": "EXTERNAL:0x1",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Notification::$_unconditionallyBridgeFromObjectiveC",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x2",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Notification::typeMetadataAccessor",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x3",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Foundation::_KeyValueCodingAndObservingPublishing::$publisher",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x4",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::$init",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x5",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::get_lastPathComponent",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x6",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::_bridgeToObjectiveC",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x7",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::deletingLastPathComponent",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x8",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::$_unconditionallyBridgeFromObjectiveC",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x9",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::get_path",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0xa",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::typeMetadataAccessor",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0xb",
+    "value": "/usr/lib/swift/libswiftos.dylib::os::Logger::get_logObject",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0xc",
+    "value": "/usr/lib/swift/libswiftos.dylib::os::Logger::init",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0xd",
+    "value": "/usr/lib/swift/libswiftos.dylib::os::Logger::typeMetadataAccessor",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0xe",
+    "value": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit::AppKit::$NSApplicationMain",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0xf",
+    "value": "/System/Library/Frameworks/Combine.framework/Versions/A/Combine::Combine::AnyCancellable::store",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x10",
+    "value": "/System/Library/Frameworks/Combine.framework/Versions/A/Combine::(extension_Combine)::Combine::Publisher::$sink",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x11",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::String::_bridgeToObjectiveC",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x12",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::String::$_unconditionallyBridgeFromObjectiveC",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x13",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::String::get_utf8CString",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x14",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::String::UTF8View::_foreignCount",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x15",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::Array<undefined>::$_unconditionallyBridgeFromObjectiveC",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x16",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Actor::get_unownedExecutor",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x17",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::CheckedContinuation::init",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x18",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::CheckedContinuation::resume",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x19",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::CheckedContinuation::resume",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x1a",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::MainActor::get_shared",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x1b",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::MainActor::typeMetadataAccessor",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x1c",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::TaskPriority::get_rawValue",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x1d",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::TaskPriority::typeMetadataAccessor",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x1e",
+    "value": "/usr/lib/swift/libswiftos.dylib::static_(extension_in_os):__C.os_log_type_t.info.getter_:___C.os_log_type_t::$get_info",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x1f",
+    "value": "/usr/lib/swift/libswiftos.dylib::static_(extension_in_os):__C.os_log_type_t.error.getter_:___C.os_log_type_t::$get_error",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x20",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::CommandLine::$get_unsafeArgv",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x21",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::CommandLine::get_argc",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x22",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::_StringGuts::$_foreignCopyUTF8",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x23",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::_ArrayBuffer::$_getElementSlowPath",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x24",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::_StringObject::get_sharedUTF8",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x25",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::ContinuousClock::Instant::typeMetadataAccessor",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x26",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::ContinuousClock::typeMetadataAccessor",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x27",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::InstantProtocol::$advanced",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x28",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::_CocoaArrayWrapper::get_endIndex",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x29",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::CustomStringConvertible::get_description",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x2a",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::_stringCompareWithSmolCheck",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x2b",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Clock::$get_now",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x2c",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Clock::$sleep",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x2d",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::(extension_Swift)::Swift::Clock::$get_continuous",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x2e",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::Error::get_localizedDescription",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x2f",
+    "value": "/usr/lib/libSystem.B.dylib::__os_log_impl",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x30",
+    "value": "/usr/lib/libSystem.B.dylib::_malloc_size",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x31",
+    "value": "/usr/lib/libSystem.B.dylib::_memcpy",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x32",
+    "value": "/usr/lib/libSystem.B.dylib::_memmove",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x33",
+    "value": "/usr/lib/libobjc.A.dylib::_objc_allocWithZone",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x34",
+    "value": "/usr/lib/libobjc.A.dylib::_objc_msgSendSuper2",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x35",
+    "value": "/usr/lib/libobjc.A.dylib::_objc_opt_self",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x36",
+    "value": "/usr/lib/libobjc.A.dylib::_objc_release",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x37",
+    "value": "/usr/lib/libobjc.A.dylib::_objc_retain",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x38",
+    "value": "/usr/lib/libobjc.A.dylib::_objc_retainAutoreleasedReturnValue",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x39",
+    "value": "/usr/lib/libSystem.B.dylib::_os_log_type_enabled",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x3a",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_allocBox",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x3b",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_allocObject",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x3c",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_beginAccess",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x3d",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_bridgeObjectRelease",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x3e",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_bridgeObjectRetain",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x3f",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::_swift_continuation_await",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x40",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::_swift_continuation_init",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x41",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_deallocClassInstance",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x42",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_deallocObject",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x43",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_endAccess",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x44",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_errorRelease",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x45",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_errorRetain",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x46",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_getErrorValue",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x47",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_getKeyPath",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x48",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_getObjCClassMetadata",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x49",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_getObjectType",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x4a",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_getSingletonMetadata",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x4b",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_getTypeByMangledNameInContext2",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x4c",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_getTypeByMangledNameInContextInMetadataState2",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x4d",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_getWitnessTable",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x4e",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_initStaticObject",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x4f",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_isUniquelyReferenced_nonNull_native",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x50",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_release",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x51",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_retain",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x52",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_slowAlloc",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x53",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_slowDealloc",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x54",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::_swift_task_alloc",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x55",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::_swift_task_create",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x56",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::_swift_task_dealloc",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x57",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::_swift_task_isCurrentExecutor",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x58",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::_swift_task_reportUnexpectedExecutor",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x59",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::_swift_task_switch",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x5a",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_unknownObjectRelease",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x5b",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_unknownObjectRetain",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x5c",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_unknownObjectWeakDestroy",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x5d",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_unknownObjectWeakInit",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x5e",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_unknownObjectWeakLoadStrong",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x5f",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_updateClassMetadata2",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x60",
+    "value": "/usr/lib/swift/libswiftCore.dylib::_swift_willThrow",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x70",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Clock::$sleep",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x80",
+    "value": "/usr/lib/libSystem.B.dylib::___chkstk_darwin",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x93",
+    "value": "/usr/lib/libobjc.A.dylib::_objc_msgSend",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x95",
+    "value": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit::sharedWorkspace",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x96",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::mainBundle",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x97",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::bundleURL",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x98",
+    "value": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit::URLForApplicationWithBundleIdentifier:",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x99",
+    "value": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit::sharedApplication",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x9a",
+    "value": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit::runningApplications",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "EXTERNAL:0x9b",
+    "value": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit::openApplicationAtURL:configuration:completionHandler:",
+    "procedure": {
+      "external": true,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100001410",
+    "value": "entry",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100001488",
+    "value": "FUN_100001488",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000019f4",
+    "value": "FUN_1000019f4",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100001db0",
+    "value": "FUN_100001db0",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100001f84",
+    "value": "_TtC6Helper17HelperAppDelegate::applicationDidFinishLaunching:",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000020b4",
+    "value": "_TtC6Helper17HelperAppDelegate::init",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000021f0",
+    "value": "FUN_1000021f0",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100002224",
+    "value": "_TtC6Helper17HelperAppDelegate::.cxx_destruct",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100002270",
+    "value": "FUN_100002270",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100002278",
+    "value": "FUN_100002278",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000022b0",
+    "value": "FUN_1000022b0",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100002340",
+    "value": "FUN_100002340",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x10000239c",
+    "value": "FUN_10000239c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100002510",
+    "value": "FUN_100002510",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000025a0",
+    "value": "FUN_1000025a0",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100002614",
+    "value": "FUN_100002614",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100002a30",
+    "value": "FUN_100002a30",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100002cd0",
+    "value": "FUN_100002cd0",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100002f5c",
+    "value": "FUN_100002f5c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x10000307c",
+    "value": "FUN_10000307c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100003100",
+    "value": "FUN_100003100",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100003170",
+    "value": "FUN_100003170",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100003314",
+    "value": "FUN_100003314",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000034c8",
+    "value": "FUN_1000034c8",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100003514",
+    "value": "FUN_100003514",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100003758",
+    "value": "FUN_100003758",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x10000385c",
+    "value": "FUN_10000385c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100003bcc",
+    "value": "FUN_100003bcc",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100003c20",
+    "value": "FUN_100003c20",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100003d58",
+    "value": "FUN_100003d58",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100003f68",
+    "value": "FUN_100003f68",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004020",
+    "value": "FUN_100004020",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000040cc",
+    "value": "FUN_1000040cc",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x10000413c",
+    "value": "FUN_10000413c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000041a8",
+    "value": "FUN_1000041a8",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004230",
+    "value": "FUN_100004230",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000042e8",
+    "value": "FUN_1000042e8",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x10000434c",
+    "value": "FUN_10000434c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000043e8",
+    "value": "FUN_1000043e8",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000044f0",
+    "value": "FUN_1000044f0",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004594",
+    "value": "FUN_100004594",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000045d0",
+    "value": "FUN_1000045d0",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004698",
+    "value": "FUN_100004698",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000047a8",
+    "value": "FUN_1000047a8",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x10000480c",
+    "value": "FUN_10000480c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004940",
+    "value": "FUN_100004940",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004a30",
+    "value": "FUN_100004a30",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004aa0",
+    "value": "FUN_100004aa0",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004b90",
+    "value": "FUN_100004b90",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004bf4",
+    "value": "FUN_100004bf4",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004c34",
+    "value": "FUN_100004c34",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004eb0",
+    "value": "FUN_100004eb0",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004ed0",
+    "value": "FUN_100004ed0",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004f0c",
+    "value": "FUN_100004f0c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004f5c",
+    "value": "FUN_100004f5c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004f68",
+    "value": "thunk_FUN_100002340",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "0x100002340"
+    }
+  },
+  {
+    "address": "0x100004f6c",
+    "value": "FUN_100004f6c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004f90",
+    "value": "FUN_100004f90",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004f98",
+    "value": "FUN_100004f98",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100004fe8",
+    "value": "FUN_100004fe8",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x10000503c",
+    "value": "FUN_10000503c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000050a8",
+    "value": "FUN_1000050a8",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000050f8",
+    "value": "FUN_1000050f8",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005168",
+    "value": "FUN_100005168",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x10000518c",
+    "value": "FUN_10000518c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000051fc",
+    "value": "FUN_1000051fc",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005238",
+    "value": "thunk_FUN_10000523c",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "0x10000523c"
+    }
+  },
+  {
+    "address": "0x10000523c",
+    "value": "FUN_10000523c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005268",
+    "value": "FUN_100005268",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000052d4",
+    "value": "FUN_1000052d4",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005344",
+    "value": "FUN_100005344",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005370",
+    "value": "FUN_100005370",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000053e8",
+    "value": "FUN_1000053e8",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005424",
+    "value": "FUN_100005424",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005468",
+    "value": "FUN_100005468",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005478",
+    "value": "FUN_100005478",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005480",
+    "value": "FUN_100005480",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000054a4",
+    "value": "FUN_1000054a4",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000054e4",
+    "value": "FUN_1000054e4",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005534",
+    "value": "FUN_100005534",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005574",
+    "value": "thunk_FUN_100005168",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "0x100005168"
+    }
+  },
+  {
+    "address": "0x100005578",
+    "value": "thunk_FUN_100005168",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "0x100005168"
+    }
+  },
+  {
+    "address": "0x10000557c",
+    "value": "thunk_FUN_100005168",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "0x100005168"
+    }
+  },
+  {
+    "address": "0x100005580",
+    "value": "thunk_FUN_1000051fc",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "0x1000051fc"
+    }
+  },
+  {
+    "address": "0x100005584",
+    "value": "thunk_FUN_100004bf4",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "0x100004bf4"
+    }
+  },
+  {
+    "address": "0x100005588",
+    "value": "thunk_FUN_10000523c",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "0x100005238"
+    }
+  },
+  {
+    "address": "0x10000558c",
+    "value": "FUN_10000558c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x10000559c",
+    "value": "FUN_10000559c",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x1000055bc",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Notification::$_unconditionallyBridgeFromObjectiveC",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x1"
+    }
+  },
+  {
+    "address": "0x1000055c8",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Notification::typeMetadataAccessor",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x2"
+    }
+  },
+  {
+    "address": "0x1000055d4",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Foundation::_KeyValueCodingAndObservingPublishing::$publisher",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x3"
+    }
+  },
+  {
+    "address": "0x1000055e0",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::$init",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x4"
+    }
+  },
+  {
+    "address": "0x1000055ec",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::get_lastPathComponent",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x5"
+    }
+  },
+  {
+    "address": "0x1000055f8",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::_bridgeToObjectiveC",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x6"
+    }
+  },
+  {
+    "address": "0x100005604",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::deletingLastPathComponent",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x7"
+    }
+  },
+  {
+    "address": "0x100005610",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::$_unconditionallyBridgeFromObjectiveC",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x8"
+    }
+  },
+  {
+    "address": "0x10000561c",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::get_path",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x9"
+    }
+  },
+  {
+    "address": "0x100005628",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::typeMetadataAccessor",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0xa"
+    }
+  },
+  {
+    "address": "0x100005634",
+    "value": "/usr/lib/swift/libswiftos.dylib::os::Logger::get_logObject",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0xb"
+    }
+  },
+  {
+    "address": "0x100005640",
+    "value": "/usr/lib/swift/libswiftos.dylib::os::Logger::init",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0xc"
+    }
+  },
+  {
+    "address": "0x10000564c",
+    "value": "/usr/lib/swift/libswiftos.dylib::os::Logger::typeMetadataAccessor",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0xd"
+    }
+  },
+  {
+    "address": "0x100005658",
+    "value": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit::AppKit::$NSApplicationMain",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0xe"
+    }
+  },
+  {
+    "address": "0x100005664",
+    "value": "/System/Library/Frameworks/Combine.framework/Versions/A/Combine::Combine::AnyCancellable::store",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0xf"
+    }
+  },
+  {
+    "address": "0x100005670",
+    "value": "/System/Library/Frameworks/Combine.framework/Versions/A/Combine::(extension_Combine)::Combine::Publisher::$sink",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x10"
+    }
+  },
+  {
+    "address": "0x10000567c",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::String::_bridgeToObjectiveC",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x11"
+    }
+  },
+  {
+    "address": "0x100005688",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::String::$_unconditionallyBridgeFromObjectiveC",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x12"
+    }
+  },
+  {
+    "address": "0x100005694",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::String::get_utf8CString",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x13"
+    }
+  },
+  {
+    "address": "0x1000056a0",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::String::UTF8View::_foreignCount",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x14"
+    }
+  },
+  {
+    "address": "0x1000056ac",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::Array<undefined>::$_unconditionallyBridgeFromObjectiveC",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x15"
+    }
+  },
+  {
+    "address": "0x1000056b8",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Actor::get_unownedExecutor",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x16"
+    }
+  },
+  {
+    "address": "0x1000056c4",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::CheckedContinuation::init",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x17"
+    }
+  },
+  {
+    "address": "0x1000056d0",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::CheckedContinuation::resume",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x18"
+    }
+  },
+  {
+    "address": "0x1000056dc",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::CheckedContinuation::resume",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x19"
+    }
+  },
+  {
+    "address": "0x1000056e8",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::MainActor::get_shared",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x1a"
+    }
+  },
+  {
+    "address": "0x1000056f4",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::MainActor::typeMetadataAccessor",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x1b"
+    }
+  },
+  {
+    "address": "0x100005700",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::TaskPriority::get_rawValue",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x1c"
+    }
+  },
+  {
+    "address": "0x10000570c",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::TaskPriority::typeMetadataAccessor",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x1d"
+    }
+  },
+  {
+    "address": "0x100005718",
+    "value": "/usr/lib/swift/libswiftos.dylib::static_(extension_in_os):__C.os_log_type_t.info.getter_:___C.os_log_type_t::$get_info",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x1e"
+    }
+  },
+  {
+    "address": "0x100005724",
+    "value": "/usr/lib/swift/libswiftos.dylib::static_(extension_in_os):__C.os_log_type_t.error.getter_:___C.os_log_type_t::$get_error",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x1f"
+    }
+  },
+  {
+    "address": "0x100005730",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::CommandLine::$get_unsafeArgv",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x20"
+    }
+  },
+  {
+    "address": "0x10000573c",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::CommandLine::get_argc",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x21"
+    }
+  },
+  {
+    "address": "0x100005748",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::_StringGuts::$_foreignCopyUTF8",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x22"
+    }
+  },
+  {
+    "address": "0x100005754",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::_ArrayBuffer::$_getElementSlowPath",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x23"
+    }
+  },
+  {
+    "address": "0x100005760",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::_StringObject::get_sharedUTF8",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x24"
+    }
+  },
+  {
+    "address": "0x10000576c",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::ContinuousClock::Instant::typeMetadataAccessor",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x25"
+    }
+  },
+  {
+    "address": "0x100005778",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::ContinuousClock::typeMetadataAccessor",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x26"
+    }
+  },
+  {
+    "address": "0x100005784",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::InstantProtocol::$advanced",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x27"
+    }
+  },
+  {
+    "address": "0x100005790",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::_CocoaArrayWrapper::get_endIndex",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x28"
+    }
+  },
+  {
+    "address": "0x10000579c",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::CustomStringConvertible::get_description",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x29"
+    }
+  },
+  {
+    "address": "0x1000057a8",
+    "value": "/usr/lib/swift/libswiftCore.dylib::Swift::_stringCompareWithSmolCheck",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x2a"
+    }
+  },
+  {
+    "address": "0x1000057b4",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Clock::$get_now",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x2b"
+    }
+  },
+  {
+    "address": "0x1000057c0",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Clock::$sleep",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x2c"
+    }
+  },
+  {
+    "address": "0x1000057cc",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::(extension_Swift)::Swift::Clock::$get_continuous",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x2d"
+    }
+  },
+  {
+    "address": "0x1000057d8",
+    "value": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::Error::get_localizedDescription",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x2e"
+    }
+  },
+  {
+    "address": "0x1000057e4",
+    "value": "__os_log_impl",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x2f"
+    }
+  },
+  {
+    "address": "0x1000057f0",
+    "value": "_malloc_size",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x30"
+    }
+  },
+  {
+    "address": "0x1000057fc",
+    "value": "_memcpy",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x31"
+    }
+  },
+  {
+    "address": "0x100005808",
+    "value": "_memmove",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x32"
+    }
+  },
+  {
+    "address": "0x100005814",
+    "value": "_objc_allocWithZone",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x33"
+    }
+  },
+  {
+    "address": "0x100005820",
+    "value": "_objc_msgSendSuper2",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x34"
+    }
+  },
+  {
+    "address": "0x10000582c",
+    "value": "_objc_opt_self",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x35"
+    }
+  },
+  {
+    "address": "0x100005838",
+    "value": "_objc_release",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x36"
+    }
+  },
+  {
+    "address": "0x100005844",
+    "value": "_objc_retain",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x37"
+    }
+  },
+  {
+    "address": "0x100005850",
+    "value": "_objc_retainAutoreleasedReturnValue",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x38"
+    }
+  },
+  {
+    "address": "0x10000585c",
+    "value": "_os_log_type_enabled",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x39"
+    }
+  },
+  {
+    "address": "0x100005868",
+    "value": "_swift_allocBox",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x3a"
+    }
+  },
+  {
+    "address": "0x100005874",
+    "value": "_swift_allocObject",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x3b"
+    }
+  },
+  {
+    "address": "0x100005880",
+    "value": "_swift_beginAccess",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x3c"
+    }
+  },
+  {
+    "address": "0x10000588c",
+    "value": "_swift_bridgeObjectRelease",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x3d"
+    }
+  },
+  {
+    "address": "0x100005898",
+    "value": "_swift_bridgeObjectRetain",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x3e"
+    }
+  },
+  {
+    "address": "0x1000058a4",
+    "value": "_swift_continuation_await",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x3f"
+    }
+  },
+  {
+    "address": "0x1000058b0",
+    "value": "_swift_continuation_init",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x40"
+    }
+  },
+  {
+    "address": "0x1000058bc",
+    "value": "_swift_deallocClassInstance",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x41"
+    }
+  },
+  {
+    "address": "0x1000058c8",
+    "value": "_swift_deallocObject",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x42"
+    }
+  },
+  {
+    "address": "0x1000058d4",
+    "value": "_swift_endAccess",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x43"
+    }
+  },
+  {
+    "address": "0x1000058e0",
+    "value": "_swift_errorRelease",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x44"
+    }
+  },
+  {
+    "address": "0x1000058ec",
+    "value": "_swift_errorRetain",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x45"
+    }
+  },
+  {
+    "address": "0x1000058f8",
+    "value": "_swift_getErrorValue",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x46"
+    }
+  },
+  {
+    "address": "0x100005904",
+    "value": "_swift_getKeyPath",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x47"
+    }
+  },
+  {
+    "address": "0x100005910",
+    "value": "_swift_getObjCClassMetadata",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x48"
+    }
+  },
+  {
+    "address": "0x10000591c",
+    "value": "_swift_getObjectType",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x49"
+    }
+  },
+  {
+    "address": "0x100005928",
+    "value": "_swift_getSingletonMetadata",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x4a"
+    }
+  },
+  {
+    "address": "0x100005934",
+    "value": "_swift_getTypeByMangledNameInContext2",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x4b"
+    }
+  },
+  {
+    "address": "0x100005940",
+    "value": "_swift_getTypeByMangledNameInContextInMetadataState2",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x4c"
+    }
+  },
+  {
+    "address": "0x10000594c",
+    "value": "_swift_getWitnessTable",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x4d"
+    }
+  },
+  {
+    "address": "0x100005958",
+    "value": "_swift_initStaticObject",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x4e"
+    }
+  },
+  {
+    "address": "0x100005964",
+    "value": "_swift_isUniquelyReferenced_nonNull_native",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x4f"
+    }
+  },
+  {
+    "address": "0x100005970",
+    "value": "_swift_release",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x50"
+    }
+  },
+  {
+    "address": "0x10000597c",
+    "value": "_swift_retain",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x51"
+    }
+  },
+  {
+    "address": "0x100005988",
+    "value": "_swift_slowAlloc",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x52"
+    }
+  },
+  {
+    "address": "0x100005994",
+    "value": "_swift_slowDealloc",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x53"
+    }
+  },
+  {
+    "address": "0x1000059a0",
+    "value": "_swift_task_alloc",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x54"
+    }
+  },
+  {
+    "address": "0x1000059ac",
+    "value": "_swift_task_create",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x55"
+    }
+  },
+  {
+    "address": "0x1000059b8",
+    "value": "_swift_task_dealloc",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x56"
+    }
+  },
+  {
+    "address": "0x1000059c4",
+    "value": "_swift_task_isCurrentExecutor",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x57"
+    }
+  },
+  {
+    "address": "0x1000059d0",
+    "value": "_swift_task_reportUnexpectedExecutor",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x58"
+    }
+  },
+  {
+    "address": "0x1000059dc",
+    "value": "_swift_task_switch",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x59"
+    }
+  },
+  {
+    "address": "0x1000059e8",
+    "value": "_swift_unknownObjectRelease",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x5a"
+    }
+  },
+  {
+    "address": "0x1000059f4",
+    "value": "_swift_unknownObjectRetain",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x5b"
+    }
+  },
+  {
+    "address": "0x100005a00",
+    "value": "_swift_unknownObjectWeakDestroy",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x5c"
+    }
+  },
+  {
+    "address": "0x100005a0c",
+    "value": "_swift_unknownObjectWeakInit",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x5d"
+    }
+  },
+  {
+    "address": "0x100005a18",
+    "value": "_swift_unknownObjectWeakLoadStrong",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x5e"
+    }
+  },
+  {
+    "address": "0x100005a24",
+    "value": "_swift_updateClassMetadata2",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x5f"
+    }
+  },
+  {
+    "address": "0x100005a30",
+    "value": "_swift_willThrow",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x60"
+    }
+  },
+  {
+    "address": "0x100005a40",
+    "value": "objc_stub::URLForApplicationWithBundleIdentifier:",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005a60",
+    "value": "objc_stub::boolForKey:",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005a80",
+    "value": "objc_stub::bundleIdentifier",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005aa0",
+    "value": "objc_stub::bundleURL",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005ac0",
+    "value": "objc_stub::init",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005ae0",
+    "value": "objc_stub::initWithSuiteName:",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005b00",
+    "value": "objc_stub::mainBundle",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005b20",
+    "value": "objc_stub::openApplicationAtURL:configuration:completionHandler:",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005b40",
+    "value": "objc_stub::runningApplications",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005b60",
+    "value": "objc_stub::setActivates:",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005b80",
+    "value": "objc_stub::setBool:forKey:",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005ba0",
+    "value": "objc_stub::setDelegate:",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005bc0",
+    "value": "objc_stub::sharedApplication",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x100005be0",
+    "value": "objc_stub::sharedWorkspace",
+    "procedure": {
+      "external": false,
+      "thunk": false,
+      "thunk_target": null
+    }
+  },
+  {
+    "address": "0x10001cf00",
+    "value": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Clock::$sleep",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x70"
+    }
+  },
+  {
+    "address": "0x10001d401",
+    "value": "NSApplication::sharedApplication",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x99"
+    }
+  },
+  {
+    "address": "0x10001d501",
+    "value": "NSBundle::mainBundle",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x96"
+    }
+  },
+  {
+    "address": "0x10001d502",
+    "value": "NSBundle::bundleURL",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x97"
+    }
+  },
+  {
+    "address": "0x10001d901",
+    "value": "NSWorkspace::sharedWorkspace",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x95"
+    }
+  },
+  {
+    "address": "0x10001d902",
+    "value": "NSWorkspace::URLForApplicationWithBundleIdentifier:",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x98"
+    }
+  },
+  {
+    "address": "0x10001d903",
+    "value": "NSWorkspace::runningApplications",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x9a"
+    }
+  },
+  {
+    "address": "0x10001d904",
+    "value": "NSWorkspace::openApplicationAtURL:configuration:completionHandler:",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x9b"
+    }
+  },
+  {
+    "address": "0x10001df00",
+    "value": "/usr/lib/libSystem.B.dylib::___chkstk_darwin",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x80"
+    }
+  },
+  {
+    "address": "0x10001f200",
+    "value": "_objc_msgSend",
+    "procedure": {
+      "external": false,
+      "thunk": true,
+      "thunk_target": "EXTERNAL:0x93"
+    }
+  }
+]

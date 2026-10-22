@@ -1,0 +1,39 @@
+{
+  "application": "Paste",
+  "version": "6.6.6",
+  "build": "29766850",
+  "bundle_id": "com.wiheads.paste",
+  "date": "2026-10-22",
+  "binaries": [
+    {
+      "name": "Paste",
+      "relative_path": "Contents/MacOS/Paste",
+      "sha256": "7255357661f83d0d10ae8eaedefa64442cb3b1c300d8963ac50cb8547251d9af",
+      "size": 39181200,
+      "analyzed_architecture": "arm64",
+      "arm64_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+      "arm64_size": 19045264,
+      "symbols_lines": 5591
+    },
+    {
+      "name": "paste-mcp-stdio",
+      "relative_path": "Contents/MacOS/paste-mcp-stdio",
+      "sha256": "d485d7b49ff933e46e7274ec1c12f48d962a6f9682320b470e9eee9be392e37b",
+      "size": 200656,
+      "analyzed_architecture": "arm64",
+      "arm64_sha256": "cb868953a620e4343464bd80e1f55603eca23e462a6cfac100895b249977cd00",
+      "arm64_size": 102352,
+      "symbols_lines": 166
+    },
+    {
+      "name": "Paste Helper",
+      "relative_path": "Contents/Library/LoginItems/Paste Helper.app/Contents/MacOS/Paste Helper",
+      "sha256": "5bb6aa1123552939755003ab96981ecf0b619ae8edd8822149ab4866fd367f55",
+      "size": 196992,
+      "analyzed_architecture": "arm64",
+      "arm64_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
+      "arm64_size": 98688,
+      "symbols_lines": 149
+    }
+  ]
+}

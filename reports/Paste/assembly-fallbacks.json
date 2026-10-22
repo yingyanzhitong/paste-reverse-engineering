@@ -1,0 +1,54 @@
+[
+  {
+    "address": "0x100ac35f8",
+    "stop_address_exclusive": "0x100ac52c4",
+    "range_method": "entry-to-next-ghidra-discovered-entry",
+    "instruction_rows": 1843,
+    "file": "decompiled/Paste/failures/0x100ac35f8.s",
+    "source_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+    "command": [
+      "xcrun",
+      "llvm-objdump",
+      "--disassemble",
+      "--no-show-raw-insn",
+      "--start-address=0x100ac35f8",
+      "--stop-address=0x100ac52c4",
+      ".local/targets/Paste.arm64"
+    ],
+    "decompilation_error": {
+      "name": "GhidraRemoteError",
+      "message": "Ghidra decompilation failed:  Recoverable Error: Unable to find unique hash for varnode",
+      "code": "decompile_failed"
+    },
+    "limitations": [
+      "This is an assembly slice, not recovered C pseudocode.",
+      "The next discovered entry bounds the slice; detached blocks and shared tails may lie outside it."
+    ]
+  },
+  {
+    "address": "0x100ac746c",
+    "stop_address_exclusive": "0x100ac9000",
+    "range_method": "entry-to-next-ghidra-discovered-entry",
+    "instruction_rows": 1765,
+    "file": "decompiled/Paste/failures/0x100ac746c.s",
+    "source_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+    "command": [
+      "xcrun",
+      "llvm-objdump",
+      "--disassemble",
+      "--no-show-raw-insn",
+      "--start-address=0x100ac746c",
+      "--stop-address=0x100ac9000",
+      ".local/targets/Paste.arm64"
+    ],
+    "decompilation_error": {
+      "name": "GhidraRemoteError",
+      "message": "Ghidra decompilation failed:  Recoverable Error: Unable to find unique hash for varnode",
+      "code": "decompile_failed"
+    },
+    "limitations": [
+      "This is an assembly slice, not recovered C pseudocode.",
+      "The next discovered entry bounds the slice; detached blocks and shared tails may lie outside it."
+    ]
+  }
+]

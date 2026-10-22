@@ -1,0 +1,175 @@
+Paste.PausePasteManager
+Paste.FilterBrowserViewModel
+Paste.FilterBrowserPopover
+Paste.PrivacySettingsViewModel
+Paste.Toolbar
+Paste.FilterSuggestionRow
+Paste.PasteStackWindowController
+Paste.PasteStackWindow
+Paste.ItemPreviewView.PreviewHeader
+Paste.ItemPreviewView.PreviewHeader.(TitleLabel in _A72CB0B1B9A220F7DF1AC8954FD1EEF4)
+Paste.ItemPreviewView.EditorHeader
+Paste.TabBarCellIcon
+Paste.(PaywallViewController in _0834BD6CB1CDAA1FA46B007E7F711758)
+Paste.ItemsSharingPicker
+Paste.MainWindowController
+Paste.V5WhatsNewViewModel
+Paste.MainWindow.ClosedStateManager
+Paste.TabBarCellMenu
+Paste.(ColorPicker in _57C9F60CD5BFD66172B46B652E0868F7)
+Paste.(ColorPickerCell in _57C9F60CD5BFD66172B46B652E0868F7)
+Paste.StatusItem
+Paste.ItemCollectionView.PreviewPopover
+Paste.PaneContainerViewController
+Paste.(TitleView in _C8067A41E76F827CDFBEE7DC7D00B018)
+Paste.SyncStatusItem
+Paste.NotificationBar
+Paste.FilterSuggestionsList
+Paste.MainView
+Paste.ItemCollectionView.EmptyPlaceholderView
+Paste.PauseStatusItem
+Paste.TabBarViewModel
+Paste.SearchBar
+Paste.SearchField.InputView
+Paste.SearchField.InputView.(TextViewScroller in _88626D17C36931F5670CC3740FF35050)
+Paste.SearchField.InputView.(TextView in _88626D17C36931F5670CC3740FF35050)
+Paste.SearchField.FilterView
+Paste.SearchField
+Paste.FilterSuggestionsMenuScroller
+Paste.(ScrollIndicator in _440D5F9337F1EB13F5FFF548CA401815)
+Paste.AppMenuProvider
+Paste.CreateItemWindow
+Paste.ScreensharingPrivacyManager
+Paste.TabBarScrollView
+Paste.(ShadowOverlayView in _4BA0ACC1644C941FA8736E10D68D547E)
+Paste.PasteStackSnippetCell
+Paste.ItemCollectionViewModel
+Paste.SidebarViewModel
+Paste.AboutViewModel
+Paste.SettingsWindowController
+Paste.FilterSuggestionsMenu
+Paste.ShortcutsSettingsViewModel
+Paste.ItemCollectionView
+Paste.SoundFeedback
+Paste.MainWindow
+Paste.TabBarCell
+Paste.ItemPreviewView
+Paste.MainViewModel
+Paste.PasteStackViewController
+Paste.(DirectPasteAction in _16CD034C0A0F4F2E25A6B5B5E128F7CB)
+Paste.ToolbarViewModel
+Paste.ItemPreviewWindowManager
+Paste.CreateItemView
+Paste.TabBarCellLabel
+Paste.TabBarCellLabel.(TextField in _0F41DE770CBB3D48BD1AF75457DFD7ED)
+Paste.AppDelegate
+Paste.MainWindow.ResizeHandle
+Paste.NotificationBarViewModel
+Paste.SubscriptionSettingsViewModel
+Paste.TabBar
+Paste.OpenAtLoginManager
+Paste.SearchBarViewModel
+Paste.ItemCollectionView.ContextMenu
+Paste.ItemsPinboardMenu
+Paste.NotificationItem
+Paste.PasteStackTableView
+Paste.AppCoordinator
+Paste.HandoffWiring
+Paste.GeneralSettingsViewModel
+Paste.PasteHelper
+Paste.SettingsViewModel
+Paste.ItemPreviewWindow
+Paste.HandoffSnapshotBuilder
+Paste.MCPSettingsViewModel
+Paste.(ResourceBundleClass in _7C5711E66C0AF46CBC73FFD25FF09F82)
+PasteLogging.InjectedLogger
+PasteLogging.LoggerImpl
+PasteLogging.LoggingConfigurationImpl
+PasteLogging.FileLogOutput
+PasteLogging.OSLogOutput
+PasteDI.MockScope
+PasteDI.RecursiveLockedStore
+PasteLicensingDirect.(BundleFinder in _240F8FCBE4BDF9ED9A020CEF5A5A5B49)
+PasteLicensingDirect.DirectLicenseManager
+PasteLicensingDirect.DirectLicenseProvider
+PasteLicensingDirect.DirectPurchaseURLHandlerImpl
+PasteLicensingDirect.TrialLicenseProvider
+PasteLicensingDirect.TrialManager
+PasteLicensingDirect.PaywallViewModel
+PastePlatform.ActivePreview
+PastePlatform.ActiveSelection
+PastePlatform.Device
+PostHog.(BundleFinder in _DC4B16F10C10C26A57103DC459BDBEE7)
+PostHog.ApplicationLifecyclePublisher
+PostHog.PostHogAppLifeCycleIntegration
+PostHogRageClickConfig
+PostHog.RageClickDetector
+PostHog.DI.Container
+PostHog.PostHogErrorTrackingAutoCaptureIntegration
+PostHog.PostHogErrorTrackingConfig
+PostHog.PostHogExceptionStepsConfig
+PostHog.PostHogExceptionStepsBuffer
+PostHog.PostHogCrashCustomDataWriter
+PostHog.PostHogLogRecord
+PostHog.PostHogLogger
+PostHog.PostHogLogsConfig
+PostHogEvent
+PostHogFeatureFlagResult
+PostHog.PostHogApi
+PostHog.(PostHogRedirectHeaderStripper in _8029BAEF3E5842E77DDAAD37085E69E4)
+PostHogBootstrapConfig
+PostHogConfig
+PostHog.PostHogContext
+PostHog.PostHogFileBackedQueue
+PostHog.PostHogIntegrationInstallState
+PostHog.PostHogRemoteConfig
+PostHog.PostHogSDK
+PostHog.PostHogSessionManager
+PostHog.PostHogStorage
+PostHog.PostHogStorageManager
+PostHog.PostHogPushNotificationOpenIntegration
+PostHog.PostHogPushSubscriptionHandler
+PostHog.PushNotificationPublisher
+PostHog.PostHogReplayBufferQueue
+PostHog.PostHogReplayQueue
+PostHog.RRStyle
+PostHog.RRWireframe
+PostHog.ViewTreeSnapshotStatus
+PostHog.ApplicationScreenViewPublisher
+PostHog.PostHogScreenViewIntegration
+PostHog.PostHogDisplaySurvey
+PostHog.PostHogDisplaySurveyAppearance
+PostHog.PostHogDisplaySurveyQuestion
+PostHog.PostHogDisplayOpenQuestion
+PostHog.PostHogDisplayLinkQuestion
+PostHog.PostHogDisplayRatingQuestion
+PostHog.PostHogDisplayChoiceQuestion
+PostHog.PostHogNextSurveyQuestion
+PostHog.PostHogSurveyResponse
+PostHog.PostHogSurveysConfig
+PostHog.PostHogSurveysDefaultDelegate
+PostHog.BoxedBeforeSendBlock
+PostHog.BoxedBeforeSendLogBlock
+PostHog.PostHogAPIDateFormatter
+PostHog.RegistrationToken
+PostHog.Reachability
+PostHog.(ReachabilityWeakifier in _3DFB586ECAC1F5E51C5BA27D2BDC75E5)
+PostHog.TimeBasedEpochGenerator
+PHURLSessionTaskSafeAccess
+PostHog_PHPLCrashReporter_SWIFTPM_MODULE_BUNDLER_FINDER
+PHPLCrashHostInfo
+PHPLCrashMachExceptionPort
+PHPLCrashMachExceptionPortSet
+PHPLCrashMachExceptionServer
+PHPLCrashProcessInfo
+PHPLCrashReport
+PHPLCrashReportApplicationInfo
+PHPLCrashReportBinaryImageInfo
+PHPLCrashReportExceptionInfo
+PHPLCrashReportMachExceptionInfo
+PHPLCrashReportMachineInfo
+PHPLCrashReportProcessInfo
+PHPLCrashReportProcessorInfo
+PHPLCrashReportRegisterInfo
+PHPLCrashReportSignalInfo
+

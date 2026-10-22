@@ -1,0 +1,10 @@
+{
+  "name": "paste-reverse-engineering",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Paste macOS 应用的 REA/Ghidra 静态反编译研究记录",
+  "scripts": {
+    "inventory": "python3 scripts/inventory.py",
+    "decompile": "python3 scripts/decompile.py"
+  }
+}

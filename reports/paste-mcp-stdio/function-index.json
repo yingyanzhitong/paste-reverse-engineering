@@ -1,0 +1,2212 @@
+[
+  {
+    "address": "0x1000010b0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000010b0",
+      "name": "entry"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 6
+  },
+  {
+    "address": "0x100001108",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001108",
+      "name": "FUN_100001108"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 30
+  },
+  {
+    "address": "0x100001580",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001580",
+      "name": "FUN_100001580"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 218
+  },
+  {
+    "address": "0x100001604",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001604",
+      "name": "FUN_100001604"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 249
+  },
+  {
+    "address": "0x10000163c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000163c",
+      "name": "FUN_10000163c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 270
+  },
+  {
+    "address": "0x100001680",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001680",
+      "name": "FUN_100001680"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 289
+  },
+  {
+    "address": "0x1000016c0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000016c0",
+      "name": "FUN_1000016c0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 307
+  },
+  {
+    "address": "0x100001710",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001710",
+      "name": "FUN_100001710"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 324
+  },
+  {
+    "address": "0x1000017ec",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000017ec",
+      "name": "FUN_1000017ec"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 376
+  },
+  {
+    "address": "0x100001cd8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001cd8",
+      "name": "FUN_100001cd8"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 661
+  },
+  {
+    "address": "0x100001d3c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001d3c",
+      "name": "FUN_100001d3c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 684
+  },
+  {
+    "address": "0x100001d80",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001d80",
+      "name": "FUN_100001d80"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 704
+  },
+  {
+    "address": "0x100001dc0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001dc0",
+      "name": "FUN_100001dc0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 724
+  },
+  {
+    "address": "0x100001e00",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001e00",
+      "name": "FUN_100001e00"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 744
+  },
+  {
+    "address": "0x100001eac",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001eac",
+      "name": "FUN_100001eac"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 783
+  },
+  {
+    "address": "0x100001f78",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001f78",
+      "name": "FUN_100001f78"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 828
+  },
+  {
+    "address": "0x100001fb8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100001fb8",
+      "name": "FUN_100001fb8"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 840
+  },
+  {
+    "address": "0x100002350",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002350",
+      "name": "FUN_100002350"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1036
+  },
+  {
+    "address": "0x10000236c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000236c",
+      "name": "FUN_10000236c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1065
+  },
+  {
+    "address": "0x1000023dc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000023dc",
+      "name": "FUN_1000023dc"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1091
+  },
+  {
+    "address": "0x100002488",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002488",
+      "name": "FUN_100002488"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1132
+  },
+  {
+    "address": "0x100002500",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002500",
+      "name": "FUN_100002500"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1163
+  },
+  {
+    "address": "0x100002558",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002558",
+      "name": "FUN_100002558"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1192
+  },
+  {
+    "address": "0x10000260c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000260c",
+      "name": "FUN_10000260c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1236
+  },
+  {
+    "address": "0x100002680",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002680",
+      "name": "FUN_100002680"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1261
+  },
+  {
+    "address": "0x1000026e4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000026e4",
+      "name": "FUN_1000026e4"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1290
+  },
+  {
+    "address": "0x100002748",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002748",
+      "name": "FUN_100002748"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1322
+  },
+  {
+    "address": "0x1000027e4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000027e4",
+      "name": "FUN_1000027e4"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1356
+  },
+  {
+    "address": "0x1000027fc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000027fc",
+      "name": "FUN_1000027fc"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1369
+  },
+  {
+    "address": "0x10000283c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000283c",
+      "name": "FUN_10000283c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1389
+  },
+  {
+    "address": "0x100002850",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002850",
+      "name": "FUN_100002850"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1403
+  },
+  {
+    "address": "0x100002868",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002868",
+      "name": "FUN_100002868"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1427
+  },
+  {
+    "address": "0x10000288c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000288c",
+      "name": "FUN_10000288c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1445
+  },
+  {
+    "address": "0x1000028ac",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000028ac",
+      "name": "FUN_1000028ac"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1462
+  },
+  {
+    "address": "0x1000028f4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000028f4",
+      "name": "FUN_1000028f4"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1481
+  },
+  {
+    "address": "0x10000292c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000292c",
+      "name": "FUN_10000292c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1498
+  },
+  {
+    "address": "0x10000293c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000293c",
+      "name": "FUN_10000293c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1512
+  },
+  {
+    "address": "0x10000294c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000294c",
+      "name": "FUN_10000294c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1526
+  },
+  {
+    "address": "0x100002958",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002958",
+      "name": "FUN_100002958"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1536
+  },
+  {
+    "address": "0x1000029b0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000029b0",
+      "name": "FUN_1000029b0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1556
+  },
+  {
+    "address": "0x100002a90",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002a90",
+      "name": "FUN_100002a90"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1588
+  },
+  {
+    "address": "0x100002b60",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002b60",
+      "name": "FUN_100002b60"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1619
+  },
+  {
+    "address": "0x100002bd4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002bd4",
+      "name": "FUN_100002bd4"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1641
+  },
+  {
+    "address": "0x100002c70",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002c70",
+      "name": "FUN_100002c70"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1675
+  },
+  {
+    "address": "0x100002c84",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002c84",
+      "name": "FUN_100002c84"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1692
+  },
+  {
+    "address": "0x100002c90",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002c90",
+      "name": "FUN_100002c90"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1707
+  },
+  {
+    "address": "0x100002cb4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002cb4",
+      "name": "FUN_100002cb4"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1720
+  },
+  {
+    "address": "0x100002d38",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002d38",
+      "name": "FUN_100002d38"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1743
+  },
+  {
+    "address": "0x100002d94",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002d94",
+      "name": "FUN_100002d94"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1761
+  },
+  {
+    "address": "0x100002e5c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002e5c",
+      "name": "FUN_100002e5c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1803
+  },
+  {
+    "address": "0x100002f50",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002f50",
+      "name": "FUN_100002f50"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1842
+  },
+  {
+    "address": "0x100002fd8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100002fd8",
+      "name": "FUN_100002fd8"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1875
+  },
+  {
+    "address": "0x100003090",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003090",
+      "name": "FUN_100003090"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1915
+  },
+  {
+    "address": "0x100003100",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003100",
+      "name": "FUN_100003100"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1942
+  },
+  {
+    "address": "0x100003188",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003188",
+      "name": "FUN_100003188"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 1975
+  },
+  {
+    "address": "0x100003200",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003200",
+      "name": "FUN_100003200"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 2004
+  },
+  {
+    "address": "0x100003334",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003334",
+      "name": "FUN_100003334"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 2047
+  },
+  {
+    "address": "0x1000033c0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000033c0",
+      "name": "FUN_1000033c0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 2082
+  },
+  {
+    "address": "0x100003618",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003618",
+      "name": "FUN_100003618"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 2165
+  },
+  {
+    "address": "0x1000037b0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000037b0",
+      "name": "FUN_1000037b0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 2236
+  },
+  {
+    "address": "0x100003c9c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003c9c",
+      "name": "FUN_100003c9c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 2521
+  },
+  {
+    "address": "0x100003d90",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100003d90",
+      "name": "FUN_100003d90"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 2562
+  },
+  {
+    "address": "0x1000043d0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000043d0",
+      "name": "FUN_1000043d0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 2857
+  },
+  {
+    "address": "0x100004474",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004474",
+      "name": "FUN_100004474"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0000.c",
+    "line": 2882
+  },
+  {
+    "address": "0x100004518",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004518",
+      "name": "FUN_100004518"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 6
+  },
+  {
+    "address": "0x100004524",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004524",
+      "name": "FUN_100004524"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 16
+  },
+  {
+    "address": "0x10000452c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000452c",
+      "name": "FUN_10000452c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 27
+  },
+  {
+    "address": "0x100004564",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004564",
+      "name": "FUN_100004564"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 41
+  },
+  {
+    "address": "0x10000460c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000460c",
+      "name": "FUN_10000460c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 84
+  },
+  {
+    "address": "0x100004614",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004614",
+      "name": "FUN_100004614"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 95
+  },
+  {
+    "address": "0x1000046ac",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000046ac",
+      "name": "FUN_1000046ac"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 120
+  },
+  {
+    "address": "0x100004700",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004700",
+      "name": "FUN_100004700"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 139
+  },
+  {
+    "address": "0x100004730",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004730",
+      "name": "FUN_100004730"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 155
+  },
+  {
+    "address": "0x100004770",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004770",
+      "name": "FUN_100004770"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 175
+  },
+  {
+    "address": "0x1000047b0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000047b0",
+      "name": "FUN_1000047b0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 195
+  },
+  {
+    "address": "0x100004818",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004818",
+      "name": "FUN_100004818"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 222
+  },
+  {
+    "address": "0x1000048e8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000048e8",
+      "name": "FUN_1000048e8"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 258
+  },
+  {
+    "address": "0x100004a0c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004a0c",
+      "name": "FUN_100004a0c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 316
+  },
+  {
+    "address": "0x100004bb0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004bb0",
+      "name": "FUN_100004bb0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 414
+  },
+  {
+    "address": "0x100004e6c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100004e6c",
+      "name": "FUN_100004e6c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 579
+  },
+  {
+    "address": "0x10000501c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000501c",
+      "name": "FUN_10000501c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 668
+  },
+  {
+    "address": "0x10000505c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000505c",
+      "name": "FUN_10000505c"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 686
+  },
+  {
+    "address": "0x100005188",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005188",
+      "name": "FUN_100005188"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 747
+  },
+  {
+    "address": "0x1000057f4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000057f4",
+      "name": "FUN_1000057f4"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1005
+  },
+  {
+    "address": "0x100005838",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005838",
+      "name": "FUN_100005838"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1025
+  },
+  {
+    "address": "0x100005848",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005848",
+      "name": "FUN_100005848"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1046
+  },
+  {
+    "address": "0x100005884",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005884",
+      "name": "FUN_100005884"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1061
+  },
+  {
+    "address": "0x1000058cc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000058cc",
+      "name": "FUN_1000058cc"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1073
+  },
+  {
+    "address": "0x100005904",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005904",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URLRequest::$set_httpMethod"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1088
+  },
+  {
+    "address": "0x100005910",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005910",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URLRequest::set_timeoutInterval"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1103
+  },
+  {
+    "address": "0x10000591c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000591c",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URLRequest::init"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1118
+  },
+  {
+    "address": "0x100005928",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005928",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URLRequest::$setValue"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1135
+  },
+  {
+    "address": "0x100005934",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005934",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URLRequest::typeMetadataAccessor"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1150
+  },
+  {
+    "address": "0x100005940",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005940",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::CharacterSet::get_whitespaces"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1167
+  },
+  {
+    "address": "0x10000594c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000594c",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::CharacterSet::typeMetadataAccessor"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1182
+  },
+  {
+    "address": "0x100005958",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005958",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::__DataStorage::$init"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1199
+  },
+  {
+    "address": "0x100005964",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005964",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::__DataStorage::$init"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1217
+  },
+  {
+    "address": "0x100005970",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005970",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::__DataStorage::$get__bytes"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1233
+  },
+  {
+    "address": "0x10000597c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10000597c",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::__DataStorage::init"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1248
+  },
+  {
+    "address": "0x100005988",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005988",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::__DataStorage::get__length"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1263
+  },
+  {
+    "address": "0x100005994",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005994",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::__DataStorage::get__offset"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1279
+  },
+  {
+    "address": "0x1000059a0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059a0",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::__DataStorage::typeMetadataAccessor"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1295
+  },
+  {
+    "address": "0x1000059ac",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059ac",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::ContiguousBytes::$withUnsafeBytes"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1312
+  },
+  {
+    "address": "0x1000059b8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059b8",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::AsyncLineSequence::$makeAsyncIterator"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1328
+  },
+  {
+    "address": "0x1000059c4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059c4",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::AsyncLineSequence::AsyncIterator::$next"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1344
+  },
+  {
+    "address": "0x1000059d0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059d0",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::$_convertNSErrorToError"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1359
+  },
+  {
+    "address": "0x1000059dc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059dc",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::$get_scheme"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1374
+  },
+  {
+    "address": "0x1000059e8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059e8",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::$init"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1389
+  },
+  {
+    "address": "0x1000059f4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x1000059f4",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::URL::typeMetadataAccessor"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1404
+  },
+  {
+    "address": "0x100005a00",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a00",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Data::LargeSlice::ensureUniqueReference"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1421
+  },
+  {
+    "address": "0x100005a0c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a0c",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Data::RangeReference::typeMetadataAccessor"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1436
+  },
+  {
+    "address": "0x100005a18",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a18",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Data::_Representation::$replaceSubrange"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1453
+  },
+  {
+    "address": "0x100005a24",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a24",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Data::_Representation::append"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1470
+  },
+  {
+    "address": "0x100005a30",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a30",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Data::_bridgeToObjectiveC"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1486
+  },
+  {
+    "address": "0x100005a3c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a3c",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::Data::$_unconditionallyBridgeFromObjectiveC"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1501
+  },
+  {
+    "address": "0x100005a48",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a48",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::Dictionary::_bridgeToObjectiveC"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1516
+  },
+  {
+    "address": "0x100005a54",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a54",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::Dictionary::$_unconditionallyBridgeFromObjectiveC"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1533
+  },
+  {
+    "address": "0x100005a60",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a60",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::String::_bridgeToObjectiveC"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1553
+  },
+  {
+    "address": "0x100005a6c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a6c",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::String::$_unconditionallyBridgeFromObjectiveC"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1570
+  },
+  {
+    "address": "0x100005a78",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a78",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::String::$init"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1592
+  },
+  {
+    "address": "0x100005a84",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a84",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Encoding::$get_utf8"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1608
+  },
+  {
+    "address": "0x100005a90",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a90",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Encoding::$typeMetadataAccessor"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1624
+  },
+  {
+    "address": "0x100005a9c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005a9c",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::lowercased"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1641
+  },
+  {
+    "address": "0x100005aa8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005aa8",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::$_fromSubstring"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1664
+  },
+  {
+    "address": "0x100005ab4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ab4",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::hash"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1687
+  },
+  {
+    "address": "0x100005ac0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ac0",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::get_count"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1702
+  },
+  {
+    "address": "0x100005acc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005acc",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::$index"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1720
+  },
+  {
+    "address": "0x100005ad8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ad8",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::append"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0001.c",
+    "line": 1736
+  },
+  {
+    "address": "0x100005ae4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ae4",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::UTF8View::_foreignCount"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 6
+  },
+  {
+    "address": "0x100005af0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005af0",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::UTF8View::_foreignIndex"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 21
+  },
+  {
+    "address": "0x100005afc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005afc",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::UTF8View::_foreignIndex"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 36
+  },
+  {
+    "address": "0x100005b08",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b08",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::UTF8View::_foreignSubscript"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 52
+  },
+  {
+    "address": "0x100005b14",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b14",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::UTF16View::index"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 70
+  },
+  {
+    "address": "0x100005b20",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b20",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::hasPrefix"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 85
+  },
+  {
+    "address": "0x100005b2c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b2c",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::String::get_subscript"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 103
+  },
+  {
+    "address": "0x100005b38",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b38",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::Actor::get_unownedExecutor"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 118
+  },
+  {
+    "address": "0x100005b44",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b44",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::MainActor::get_shared"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 135
+  },
+  {
+    "address": "0x100005b50",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b50",
+      "name": "/usr/lib/swift/libswift_Concurrency.dylib::Swift::MainActor::typeMetadataAccessor"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 150
+  },
+  {
+    "address": "0x100005b5c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b5c",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::AsyncSequence::$get_lines"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 167
+  },
+  {
+    "address": "0x100005b68",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b68",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::AsyncBytes::$typeMetadataAccessor"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 185
+  },
+  {
+    "address": "0x100005b74",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b74",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::__C::NSFileHandle::$get_bytes"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 202
+  },
+  {
+    "address": "0x100005b80",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b80",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::__C::NSFileHandle::$write"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 218
+  },
+  {
+    "address": "0x100005b8c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b8c",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::__C::NSURLSession::$upload"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 234
+  },
+  {
+    "address": "0x100005b98",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005b98",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::StringProtocol::$components"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 255
+  },
+  {
+    "address": "0x100005ba4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ba4",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::StringProtocol::trimmingCharacters"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 271
+  },
+  {
+    "address": "0x100005bb0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005bb0",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::StringProtocol::$data"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 292
+  },
+  {
+    "address": "0x100005bbc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005bbc",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::$_bridgeAnyObjectToAny"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 308
+  },
+  {
+    "address": "0x100005bc8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005bc8",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_HashTable::previousHole"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 323
+  },
+  {
+    "address": "0x100005bd4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005bd4",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_StringGuts::grow"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 338
+  },
+  {
+    "address": "0x100005be0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005be0",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_StringGuts::$copyUTF8"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 353
+  },
+  {
+    "address": "0x100005bec",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005bec",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_StringObject::get_sharedUTF8"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 368
+  },
+  {
+    "address": "0x100005bf8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005bf8",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_DictionaryStorage::$copy"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 383
+  },
+  {
+    "address": "0x100005c04",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c04",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_DictionaryStorage::$resize"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 400
+  },
+  {
+    "address": "0x100005c10",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c10",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_DictionaryStorage::$allocate"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 418
+  },
+  {
+    "address": "0x100005c1c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c1c",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::_stringCompareWithSmolCheck"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 434
+  },
+  {
+    "address": "0x100005c28",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c28",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::$KEY_TYPE_OF_DICTIONARY_VIOLATES_HASHABLE_REQUIREMENTS"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 454
+  },
+  {
+    "address": "0x100005c34",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c34",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::Swift::Error::get_localizedDescription"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 471
+  },
+  {
+    "address": "0x100005c40",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c40",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::Hasher::init"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 492
+  },
+  {
+    "address": "0x100005c4c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c4c",
+      "name": "/usr/lib/swift/libswiftCore.dylib::Swift::Hasher::_finalize"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 507
+  },
+  {
+    "address": "0x100005c58",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c58",
+      "name": "___stack_chk_fail"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 522
+  },
+  {
+    "address": "0x100005c64",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c64",
+      "name": "_bzero"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 535
+  },
+  {
+    "address": "0x100005c70",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c70",
+      "name": "_exit"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 550
+  },
+  {
+    "address": "0x100005c7c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c7c",
+      "name": "_memcpy"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 565
+  },
+  {
+    "address": "0x100005c88",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c88",
+      "name": "_memmove"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 580
+  },
+  {
+    "address": "0x100005c94",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005c94",
+      "name": "_objc_allocWithZone"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 595
+  },
+  {
+    "address": "0x100005ca0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ca0",
+      "name": "_objc_opt_self"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 608
+  },
+  {
+    "address": "0x100005cac",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005cac",
+      "name": "_objc_release"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 623
+  },
+  {
+    "address": "0x100005cb8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005cb8",
+      "name": "_objc_retain"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 638
+  },
+  {
+    "address": "0x100005cc4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005cc4",
+      "name": "_objc_retainAutoreleasedReturnValue"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 653
+  },
+  {
+    "address": "0x100005cd0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005cd0",
+      "name": "_swift_allocObject"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 668
+  },
+  {
+    "address": "0x100005cdc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005cdc",
+      "name": "_swift_arrayDestroy"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 681
+  },
+  {
+    "address": "0x100005ce8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ce8",
+      "name": "_swift_bridgeObjectRelease"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 694
+  },
+  {
+    "address": "0x100005cf4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005cf4",
+      "name": "_swift_bridgeObjectRetain"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 707
+  },
+  {
+    "address": "0x100005d00",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d00",
+      "name": "_swift_deallocObject"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 720
+  },
+  {
+    "address": "0x100005d0c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d0c",
+      "name": "_swift_defaultActor_deallocate"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 733
+  },
+  {
+    "address": "0x100005d18",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d18",
+      "name": "_swift_defaultActor_destroy"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 746
+  },
+  {
+    "address": "0x100005d24",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d24",
+      "name": "_swift_defaultActor_initialize"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 759
+  },
+  {
+    "address": "0x100005d30",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d30",
+      "name": "_swift_dynamicCast"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 772
+  },
+  {
+    "address": "0x100005d3c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d3c",
+      "name": "_swift_dynamicCastObjCClass"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 785
+  },
+  {
+    "address": "0x100005d48",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d48",
+      "name": "_swift_errorRelease"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 798
+  },
+  {
+    "address": "0x100005d54",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d54",
+      "name": "_swift_getErrorValue"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 811
+  },
+  {
+    "address": "0x100005d60",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d60",
+      "name": "_swift_getExtendedFunctionTypeMetadata"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 824
+  },
+  {
+    "address": "0x100005d6c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d6c",
+      "name": "_swift_getFunctionTypeMetadata"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 837
+  },
+  {
+    "address": "0x100005d78",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d78",
+      "name": "_swift_getObjCClassMetadata"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 850
+  },
+  {
+    "address": "0x100005d84",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d84",
+      "name": "_swift_getObjectType"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 863
+  },
+  {
+    "address": "0x100005d90",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d90",
+      "name": "_swift_getSingletonMetadata"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 876
+  },
+  {
+    "address": "0x100005d9c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005d9c",
+      "name": "_swift_getTypeByMangledNameInContext2"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 889
+  },
+  {
+    "address": "0x100005da8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005da8",
+      "name": "_swift_getTypeByMangledNameInContextInMetadataState2"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 902
+  },
+  {
+    "address": "0x100005db4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005db4",
+      "name": "_swift_getWitnessTable"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 915
+  },
+  {
+    "address": "0x100005dc0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005dc0",
+      "name": "_swift_initStackObject"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 928
+  },
+  {
+    "address": "0x100005dcc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005dcc",
+      "name": "_swift_isUniquelyReferenced_nonNull_native"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 941
+  },
+  {
+    "address": "0x100005dd8",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005dd8",
+      "name": "_swift_job_run"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0002.c",
+    "line": 954
+  },
+  {
+    "address": "0x100005de4",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005de4",
+      "name": "_swift_release"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 6
+  },
+  {
+    "address": "0x100005df0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005df0",
+      "name": "_swift_release_n"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 19
+  },
+  {
+    "address": "0x100005dfc",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005dfc",
+      "name": "_swift_retain"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 32
+  },
+  {
+    "address": "0x100005e08",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e08",
+      "name": "_swift_setDeallocating"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 45
+  },
+  {
+    "address": "0x100005e14",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e14",
+      "name": "_swift_task_alloc"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 58
+  },
+  {
+    "address": "0x100005e20",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e20",
+      "name": "_swift_task_asyncMainDrainQueue"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 71
+  },
+  {
+    "address": "0x100005e2c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e2c",
+      "name": "_swift_task_create"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 84
+  },
+  {
+    "address": "0x100005e38",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e38",
+      "name": "_swift_task_dealloc"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 97
+  },
+  {
+    "address": "0x100005e44",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e44",
+      "name": "_swift_task_getMainExecutor"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 110
+  },
+  {
+    "address": "0x100005e50",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e50",
+      "name": "_swift_task_switch"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 123
+  },
+  {
+    "address": "0x100005e5c",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e5c",
+      "name": "_swift_unknownObjectRelease"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 136
+  },
+  {
+    "address": "0x100005e68",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e68",
+      "name": "_swift_updateClassMetadata2"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 149
+  },
+  {
+    "address": "0x100005e74",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e74",
+      "name": "_swift_willThrow"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 162
+  },
+  {
+    "address": "0x100005e80",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005e80",
+      "name": "FUN_100005e80"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 175
+  },
+  {
+    "address": "0x100005ea0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ea0",
+      "name": "FUN_100005ea0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 186
+  },
+  {
+    "address": "0x100005ec0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ec0",
+      "name": "FUN_100005ec0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 197
+  },
+  {
+    "address": "0x100005ee0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005ee0",
+      "name": "FUN_100005ee0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 208
+  },
+  {
+    "address": "0x100005f00",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005f00",
+      "name": "FUN_100005f00"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 219
+  },
+  {
+    "address": "0x100005f20",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005f20",
+      "name": "FUN_100005f20"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 230
+  },
+  {
+    "address": "0x100005f40",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005f40",
+      "name": "FUN_100005f40"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 241
+  },
+  {
+    "address": "0x100005f60",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005f60",
+      "name": "FUN_100005f60"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 252
+  },
+  {
+    "address": "0x100005f80",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005f80",
+      "name": "FUN_100005f80"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 263
+  },
+  {
+    "address": "0x100005fa0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005fa0",
+      "name": "FUN_100005fa0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 274
+  },
+  {
+    "address": "0x100005fc0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005fc0",
+      "name": "FUN_100005fc0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 285
+  },
+  {
+    "address": "0x100005fe0",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x100005fe0",
+      "name": "FUN_100005fe0"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 296
+  },
+  {
+    "address": "0x10001c100",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001c100",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::Foundation::AsyncLineSequence::AsyncIterator::$next"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 307
+  },
+  {
+    "address": "0x10001d500",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001d500",
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation::(extension_Foundation)::__C::NSURLSession::$upload"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 322
+  },
+  {
+    "address": "0x10001e300",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001e300",
+      "name": "/usr/lib/libSystem.B.dylib::___chkstk_darwin"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 338
+  },
+  {
+    "address": "0x10001ee00",
+    "procedure": {
+      "status": "resolved",
+      "address": "0x10001ee00",
+      "name": "/usr/lib/libobjc.A.dylib::_objc_msgSend"
+    },
+    "file": "decompiled/paste-mcp-stdio/part-0003.c",
+    "line": 352
+  }
+]

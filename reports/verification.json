@@ -1,0 +1,25 @@
+{
+  "verified": true,
+  "public_text_files": 1305,
+  "known_secret_values_checked": 10,
+  "targets": [
+    {
+      "target": "Paste",
+      "succeeded": 80703,
+      "failed": 2,
+      "local_input_sha256_checked": true
+    },
+    {
+      "target": "paste-mcp-stdio",
+      "succeeded": 221,
+      "failed": 0,
+      "local_input_sha256_checked": true
+    },
+    {
+      "target": "Paste-Helper",
+      "succeeded": 208,
+      "failed": 0,
+      "local_input_sha256_checked": true
+    }
+  ]
+}

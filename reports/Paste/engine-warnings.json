@@ -1,0 +1,18 @@
+{
+  "scope": "Ghidra auto-analysis diagnostics; pseudocode export status is recorded separately in coverage.json",
+  "warnings": [
+    "2026-10-22 17:13:17 ERROR (ObjcUtils) Unhandled method signature: Unsupported Objective C type encoding: T java.lang.UnsupportedOperationException: Unsupported Objective C type encoding: T",
+    "2026-10-22 17:13:17 ERROR (ObjcUtils) Unhandled method signature: Unsupported Objective C type encoding: T java.lang.UnsupportedOperationException: Unsupported Objective C type encoding: T",
+    "2026-10-22 17:13:17 ERROR (ObjcUtils) Unhandled method signature: Unsupported Objective C type encoding: T java.lang.UnsupportedOperationException: Unsupported Objective C type encoding: T",
+    "2026-10-22 17:13:18 ERROR (ObjcUtils) Unhandled method signature: Unsupported Objective C type encoding: < java.lang.UnsupportedOperationException: Unsupported Objective C type encoding: <",
+    "2026-10-22 17:13:18 ERROR (ObjcUtils) Unhandled method signature: Unsupported Objective C type encoding: T java.lang.UnsupportedOperationException: Unsupported Objective C type encoding: T",
+    "2026-10-22 17:13:40 WARN  (DecompileCallback) Decompiling 100bdd7f0: Unable to read bytes at ram:aa7c2ab0  ",
+    "2026-10-22 17:13:48 WARN  (DecompileCallback) Decompiling 100158aa0: Unable to read bytes at ram:d1175420  ",
+    "2026-10-22 17:13:55 WARN  (DecompileCallback) Decompiling 100bdd7f0: Unable to read bytes at ram:aa7c2ab0  ",
+    "2026-10-22 17:15:09 WARN  (DecompileCallback) Decompiling 1008017c0: Unable to read bytes at ram:d1821bf0  ",
+    "2026-10-22 17:15:10 WARN  (DecompileCallback) Decompiling 10083a9e8: Unable to read bytes at ram:d1872e54  ",
+    "2026-10-22 17:15:31 WARN  (DecompileCallback) Decompiling 1008339d8: Unable to read bytes at ram:aa3ea610  ",
+    "2026-10-22 17:19:17 WARN  (DecompileCallback) Decompiling 100158aa0: Unable to read bytes at ram:d1175420  ",
+    "2026-10-22 17:19:45 ERROR (InternalResultListener) Unexpected exception getting Decompiler result java.util.concurrent.ExecutionException: java.lang.ArrayIndexOutOfBoundsException"
+  ]
+}

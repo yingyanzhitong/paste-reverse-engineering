@@ -1,0 +1,33 @@
+[
+  {
+    "tool": "Ghidra",
+    "version": "12.1.4",
+    "release_url": "https://github.com/NationalSecurityAgency/ghidra/releases/tag/Ghidra_12.1.4_build",
+    "archive_sha256": "ddac49f903da9d5bac833e5cc79395098b9c33cfd3279be5f31bd00387d2d4db"
+  },
+  {
+    "tool": "Eclipse Temurin JDK",
+    "version": "21.0.12.1+1",
+    "release_url": "https://github.com/adoptium/temurin21-binaries/releases/tag/jdk-21.0.12.1%2B1",
+    "archive_sha256": "3623232f33a9c3baadf304480b2535f9a3cba8a58d42ecbb438ba267315d9998"
+  },
+  {
+    "tool": "REA",
+    "version": "6.7.0",
+    "repository": "https://github.com/morluto/rea",
+    "npm": "rea-agents@6.7.0",
+    "npm_integrity": "sha512-yhIx2ioJYYT1C/tONfYeitC6LhnKmCh+ZwRUOgYuhSc733lGhkkt73zhug9WmLgxoMdKuqIYGCoBfD4fXkOhFw=="
+  },
+  {
+    "tool": "Node.js",
+    "version_output": "v24.12.0"
+  },
+  {
+    "tool": "Python",
+    "version_output": "Python 3.9.6"
+  },
+  {
+    "tool": "Apple Swift Demangler",
+    "version_output": "LLVM (http://llvm.org/):\n  LLVM version 16.0.0\n  Optimized build."
+  }
+]

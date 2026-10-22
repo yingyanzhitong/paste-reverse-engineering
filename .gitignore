@@ -1,0 +1,7 @@
+.local/
+.DS_Store
+__pycache__/
+*.app/
+*.dylib
+*.zip
+*.tar.gz

@@ -1,0 +1,20 @@
+[
+  {
+    "target": "Paste-Helper",
+    "LC_FUNCTION_STARTS_entries": 88,
+    "data_file_offset": 70624,
+    "data_size": 128
+  },
+  {
+    "target": "Paste",
+    "LC_FUNCTION_STARTS_entries": 74585,
+    "data_file_offset": 18507304,
+    "data_size": 97040
+  },
+  {
+    "target": "paste-mcp-stdio",
+    "LC_FUNCTION_STARTS_entries": 87,
+    "data_file_offset": 73072,
+    "data_size": 128
+  }
+]

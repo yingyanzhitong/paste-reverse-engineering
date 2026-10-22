@@ -1,0 +1,59 @@
+{
+  "healthy": true,
+  "scope": {
+    "mode": "explicit",
+    "clients": [],
+    "providers": [
+      "ghidra"
+    ],
+    "skill": false,
+    "target": null
+  },
+  "checks": [
+    {
+      "name": "node",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-platform",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-architecture",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-installation",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-version",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-headless",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-native_decompiler",
+      "ok": true,
+      "classification": "healthy"
+    },
+    {
+      "name": "ghidra-java",
+      "ok": true,
+      "classification": "healthy"
+    }
+  ]
+}
