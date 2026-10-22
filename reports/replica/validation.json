@@ -2,7 +2,7 @@
   "reference": "Paste 6.6.6 (29766850), macOS arm64",
   "environment": "macOS 26.2, Swift 6.0.3 Command Line Tools",
   "date": "2026-10-23",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "full_one_to_one_acceptance": false,
   "core": {
     "failure_count": 0,
@@ -11,115 +11,115 @@
     "test_count": 19,
     "tests": [
       {
-        "duration_seconds": 0.008164048194885254,
+        "duration_seconds": 0.0073059797286987305,
         "failures": [],
         "name": "unicode-search-deduplication",
         "passed": true
       },
       {
-        "duration_seconds": 0.011889934539794922,
+        "duration_seconds": 0.011831045150756836,
         "failures": [],
         "name": "pinboards-edit-trash-restore",
         "passed": true
       },
       {
-        "duration_seconds": 0.002684950828552246,
+        "duration_seconds": 0.0029720067977905273,
         "failures": [],
         "name": "history-limit-preserves-pins",
         "passed": true
       },
       {
-        "duration_seconds": 0.0062639713287353516,
+        "duration_seconds": 0.006443977355957031,
         "failures": [],
         "name": "stale-store-three-way-merge",
         "passed": true
       },
       {
-        "duration_seconds": 0.004948973655700684,
+        "duration_seconds": 0.005226016044616699,
         "failures": [],
         "name": "archive-corruption-safety",
         "passed": true
       },
       {
-        "duration_seconds": 0.07496404647827148,
+        "duration_seconds": 0.05087006092071533,
         "failures": [],
         "name": "rtf-html-plain-text-write-loop",
         "passed": true
       },
       {
-        "duration_seconds": 0.003419041633605957,
+        "duration_seconds": 0.0033539533615112305,
         "failures": [],
         "name": "rich-text-edit-format-reopen",
         "passed": true
       },
       {
-        "duration_seconds": 0.002375006675720215,
+        "duration_seconds": 0.001877903938293457,
         "failures": [],
         "name": "rtf-only-text-extraction",
         "passed": true
       },
       {
-        "duration_seconds": 0.0031141042709350586,
+        "duration_seconds": 0.00253903865814209,
         "failures": [],
         "name": "multiple-file-urls",
         "passed": true
       },
       {
-        "duration_seconds": 0.11091101169586182,
+        "duration_seconds": 0.12228310108184814,
         "failures": [],
         "name": "real-large-png-binary-roundtrip",
         "passed": true
       },
       {
-        "duration_seconds": 0.004953980445861816,
+        "duration_seconds": 0.006237030029296875,
         "failures": [],
         "name": "privacy-pause-exclusion",
         "passed": true
       },
       {
-        "duration_seconds": 0.0038999319076538086,
+        "duration_seconds": 0.004639029502868652,
         "failures": [],
         "name": "history-retention-age-boundaries",
         "passed": true
       },
       {
-        "duration_seconds": 0.016359925270080566,
+        "duration_seconds": 0.026951074600219727,
         "failures": [],
         "name": "refresh-pending-edits-no-op-io",
         "passed": true
       },
       {
-        "duration_seconds": 0.061491966247558594,
+        "duration_seconds": 0.07348990440368652,
         "failures": [],
         "name": "two-independent-process-writers",
         "passed": true
       },
       {
-        "duration_seconds": 0.01353001594543457,
+        "duration_seconds": 0.010294914245605469,
         "failures": [],
         "name": "multiple-selection-raw-and-text-order",
         "passed": true
       },
       {
-        "duration_seconds": 0.005375981330871582,
+        "duration_seconds": 0.00589299201965332,
         "failures": [],
         "name": "pinboard-reorder-duplicate-removal",
         "passed": true
       },
       {
-        "duration_seconds": 0.48628103733062744,
+        "duration_seconds": 0.43474698066711426,
         "failures": [],
         "name": "local-vision-ocr-real-pixels",
         "passed": true
       },
       {
-        "duration_seconds": 0.002339005470275879,
+        "duration_seconds": 0.0020689964294433594,
         "failures": [],
         "name": "transient-opt-out-loop-guard",
         "passed": true
       },
       {
-        "duration_seconds": 0.005529046058654785,
+        "duration_seconds": 0.005761981010437012,
         "failures": [],
         "name": "history-erasure-queue-persistence-merge",
         "passed": true
@@ -146,7 +146,7 @@
     "scope": "Replica MCP executable end-to-end; fixture-only. Not an original-vs-replica semantic equivalence claim.",
     "system_clipboard_used": false,
     "binary_sha256": "07938cc23a3d45b6e7c63e5c0641c8cc530651d5b551ecaafc5e726aa201a32a",
-    "elapsed_seconds": 0.995
+    "elapsed_seconds": 1.026
   },
   "hotkey": {
     "callbacks": {
@@ -206,7 +206,7 @@
       "multi-selection paste delivery order",
       "custom quick paste and plain text modifiers",
       "custom Pinboard navigation",
-      "Stack duplicate prevention, reverse persistence and queue consumption"
+      "Stack duplicate prevention, reverse persistence and queue consumption; all pause durations and resume; async NSItemProvider binary/HTML/Unicode loads; multi-file URLs and legacy paths; internal OCR data excluded"
     ],
     "scope": "Hidden native panel, synthetic key events, temporary store and private named pasteboard; no global hooks, visible windows or cross-application paste"
   },
@@ -239,18 +239,18 @@
   "historical_visual_note": "Measurement predates current UI; not current-version pixel acceptance.",
   "bundle": {
     "identifier": "com.yingyanzhitong.paste-replica",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "signature": "ad-hoc; codesign --verify --deep --strict passed; not notarized",
     "binaries_sha256": {
-      "PasteReplica": "81c186a5053e513fcb7682704588af509c06ea44119f5cf9c1708f36cb9eedbb",
+      "PasteReplica": "db51598d7b0037090439cd5dd2d91f18937a1def897286ba4c908784d01dbfb5",
       "paste-replica-mcp": "07938cc23a3d45b6e7c63e5c0641c8cc530651d5b551ecaafc5e726aa201a32a",
-      "PasteReplicaHelper": "d74104d6babd3943727ab43187b1e65562f66ab7ea0fadda8bb4eaaf4d389c8a"
+      "PasteReplicaHelper": "9f3f415d1a975dced15a87a75dec9bc65e3e8c6a190906634c3251ced27d1645"
     }
   },
   "unresolved_local": [
     "全状态像素与动画对照",
     "辅助功能授权后的跨应用粘贴/Stack全流程",
-    "真实SMAppService后台服务注册与崩溃恢复",
+    "SMAppService production registration remains unverified; isolated helper crash/quit lifecycle passes",
     "原版私有归档格式兼容",
     "文件promise及不同接收App的拖放与粘贴",
     "来源应用图标颜色后备算法未证明与原版相同"
@@ -260,5 +260,21 @@
     "原厂账号与订阅",
     "远程共享Pinboard",
     "联网链接预览"
-  ]
+  ],
+  "helper_lifecycle": {
+    "passed": true,
+    "launch_count": 2,
+    "checks": [
+      "false shared marker prevents startup launch",
+      "marked missing target opens after recovered three-second wait",
+      "running target is not duplicated",
+      "real SIGKILL triggers workspace observation and new target PID",
+      "graceful exit clears marker and prevents relaunch"
+    ],
+    "scope": "Real AppKit helper process and NSWorkspace runningApplications KVO; only the two identity literals are replaced in a temporary helper source copy. Disposable signed target app, isolated defaults suite; no service registration, production clipboard, or user data.",
+    "limits": [
+      "SMAppService registration is not exercised",
+      "Launch failure retry branch not exercised"
+    ]
+  }
 }

@@ -4,7 +4,7 @@ import PasteReplicaCore
 
 @main
 struct UIInteractionHarness {
-    @MainActor static func main() throws {
+    @MainActor static func main() async throws {
         _ = NSApplication.shared
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: directory) }
@@ -68,7 +68,42 @@ struct UIInteractionHarness {
         precondition(store.preferences.isMonitoringPaused && store.preferences.pauseUntil == nil)
         state.resumeMonitoring()
         precondition(!store.preferences.isMonitoringPaused && store.preferences.pauseUntil == nil)
+        func load(_ provider: NSItemProvider, _ type: String) async throws -> Data {
+            try await withCheckedThrowingContinuation { continuation in
+                provider.loadDataRepresentation(forTypeIdentifier: type) { data, error in
+                    if let error { continuation.resume(throwing: error) }
+                    else { continuation.resume(returning: data ?? Data()) }
+                }
+            }
+        }
+        let bytes = Data([0, 127, 255, 42])
+        let dragItem = ClipboardItem(title: "drag fixture", plainText: "Unicode drag 中文", payloads: [
+            "com.example.drag-fixture": bytes,
+            "public.html": Data("<b>Unicode drag 中文</b>".utf8),
+            "com.pastereplica.internal.recognized-text": Data("private index".utf8)
+        ])
+        let provider = itemDragProvider(dragItem)
+        let rawDrag = try await load(provider, "com.example.drag-fixture")
+        let htmlDrag = try await load(provider, "public.html")
+        let textDrag = try await load(provider, "public.utf8-plain-text")
+        precondition(rawDrag == bytes && htmlDrag == dragItem.payloads["public.html"])
+        precondition(String(data: textDrag, encoding: .utf8) == "Unicode drag 中文")
+        precondition(!provider.registeredTypeIdentifiers.contains { $0.hasPrefix("com.pastereplica.internal.") })
+        let fileA = directory.appendingPathComponent("first 中文.txt")
+        let fileB = directory.appendingPathComponent("second.txt")
+        try Data("first".utf8).write(to: fileA)
+        try Data("second".utf8).write(to: fileB)
+        let representations = [fileA, fileB].map { ["public.file-url": Data($0.absoluteString.utf8)] }
+        let filesItem = ClipboardItem(kind: .files, payloads: [
+            "public.file-url": Data(fileA.absoluteString.utf8),
+            "com.pastereplica.internal.items+json": try JSONEncoder().encode(representations)
+        ])
+        precondition(itemFileURLs(filesItem) == [fileA, fileB])
+        let fileProvider = itemDragProvider(filesItem)
+        let filePaths = try await load(fileProvider, "NSFilenamesPboardType")
+        let restoredPaths = try PropertyListSerialization.propertyList(from: filePaths, format: nil) as? [String]
+        precondition(restoredPaths == [fileA.path, fileB.path])
         precondition(!ui.panel.isVisible && NSApp.windows.allSatisfy { !$0.isVisible })
-        print("{\"passed\":true,\"checks\":[\"panel event routing for select/copy/deselect\",\"multi-selection paste delivery order\",\"custom quick paste and plain text modifiers\",\"custom Pinboard navigation\",\"Stack duplicate prevention, reverse persistence and queue consumption\"],\"scope\":\"Hidden native panel, synthetic key events, temporary store and private named pasteboard; no global hooks, visible windows or cross-application paste\"}")
+        print("{\"passed\":true,\"checks\":[\"panel event routing for select/copy/deselect\",\"multi-selection paste delivery order\",\"custom quick paste and plain text modifiers\",\"custom Pinboard navigation\",\"Stack duplicate prevention, reverse persistence and queue consumption; all pause durations and resume; async NSItemProvider binary/HTML/Unicode loads; multi-file URLs and legacy paths; internal OCR data excluded\"],\"scope\":\"Hidden native panel, synthetic key events, temporary store and private named pasteboard; no global hooks, visible windows or cross-application paste\"}")
     }
 }

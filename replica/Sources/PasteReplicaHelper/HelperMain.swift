@@ -1,4 +1,5 @@
 import AppKit
+import Combine
 import Foundation
 
 @main
@@ -17,15 +18,14 @@ enum HelperMain {
 final class HelperDelegate: NSObject, NSApplicationDelegate {
     private let defaults = UserDefaults(suiteName: "com.yingyanzhitong.paste-replica.session")!
     private let mainID = "com.yingyanzhitong.paste-replica"
-    private var observers: [NSObjectProtocol] = []
+    private var runningApplicationsObservation: AnyCancellable?
     private var pending: Task<Void, Never>?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        for name in [NSWorkspace.didTerminateApplicationNotification, NSWorkspace.didLaunchApplicationNotification] {
-            observers.append(NSWorkspace.shared.notificationCenter.addObserver(forName: name, object: nil, queue: .main) {
-                [weak self] _ in Task { @MainActor in self?.checkRunning() }
-            })
-        }
+        // REA 0x100001db0 observes the runningApplications collection via KVO.
+        runningApplicationsObservation = NSWorkspace.shared.publisher(for: \.runningApplications)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.checkRunning() }
         checkRunning()
     }
 
@@ -39,8 +39,11 @@ final class HelperDelegate: NSObject, NSApplicationDelegate {
         guard pending == nil, shouldLaunch else { return }
         pending = Task { @MainActor [weak self] in
             defer { self?.pending = nil }
-            for delay in [1, 2, 4, 8] {
-                try? await Task.sleep(nanoseconds: UInt64(delay) * 1_000_000_000)
+            var failures: UInt64 = 0
+            while !Task.isCancelled {
+                // REA 0x10000307c: three seconds before each launch attempt.
+                do { try await Task.sleep(nanoseconds: 3_000_000_000) }
+                catch { return }
                 guard !Task.isCancelled, let self, self.shouldLaunch else { return }
                 var url = Bundle.main.bundleURL
                 for _ in 0..<4 { url.deleteLastPathComponent() }
@@ -50,13 +53,19 @@ final class HelperDelegate: NSObject, NSApplicationDelegate {
                 do {
                     _ = try await NSWorkspace.shared.openApplication(at: url, configuration: configuration)
                     return
-                } catch { NSLog("Paste Replica background launch failed: %@", error.localizedDescription) }
+                } catch {
+                    NSLog("Paste Replica background launch failed: %@", error.localizedDescription)
+                    // REA 0x100003514 / 0x100004020: failures * 10 seconds, then recheck.
+                    failures += 1
+                    do { try await Task.sleep(nanoseconds: failures * 10_000_000_000) }
+                    catch { return }
+                }
             }
         }
     }
 
     func applicationWillTerminate(_ notification: Notification) {
         pending?.cancel()
-        observers.forEach { NSWorkspace.shared.notificationCenter.removeObserver($0) }
+        runningApplicationsObservation?.cancel()
     }
 }

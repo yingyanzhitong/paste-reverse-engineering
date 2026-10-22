@@ -71,11 +71,16 @@
         "0x1000ac170",
         "0x100001488",
         "0x100001db0",
-        "0x100002614"
+        "0x100002614",
+        "0x10000307c",
+        "0x100003514",
+        "0x100004020",
+        "0x10000413c"
       ],
       "observation": "主App用SMAppService.loginItem；辅助进程观察运行程序，只在共享运行标志为真且主进程消失时后台重启",
-      "validation": "独立helper编译、LoginItems嵌套打包、签名验证；正常退出清除标志，隔离App测试不写共享标志",
-      "limitation": "未执行真实系统服务注册及崩溃重启对照；复刻重试间隔1/2/4/8秒尚未与原版确证"
+      "validation": "Isolated real helper/target processes: false marker, 3-second initial delay, no duplicate, SIGKILL triggers new PID, graceful exit does not relaunch. Only temporary app and suite identifiers substituted; no system service registration.",
+      "limitation": "SMAppService system registration and the launch-error retry branch remain unverified.",
+      "retry_timing": "Each attempt waits 3 seconds; failed launch increments retryCount and waits retryCount * 10 seconds before rechecking and the next 3-second wait."
     },
     {
       "feature": "设置与暂停菜单",
