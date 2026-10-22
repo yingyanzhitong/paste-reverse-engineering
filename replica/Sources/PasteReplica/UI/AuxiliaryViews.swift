@@ -196,72 +196,49 @@ struct ReplicaEditorView: View {
 @MainActor
 struct ReplicaStackView: View {
     @ObservedObject var state: ReplicaUIState
-    @State private var selectedID: UUID?
-    private var selectedItem: ClipboardItem? {
-        state.stackItems.first { $0.id == selectedID } ?? state.stackItems.first
-    }
-
     var body: some View {
         VStack(spacing: 0) {
+            ZStack {
+                Text("Paste Stack").font(.system(size: 12, weight: .medium))
+                HStack {
+                    Button { state.controller?.hideStack() } label: { Image(systemName: "xmark.circle.fill") }
+                        .accessibilityLabel("关闭 Paste Stack")
+                    Spacer()
+                    Button { state.reverseStack() } label: { Image(systemName: "arrow.up.arrow.down") }
+                        .accessibilityLabel("反转 Stack 顺序")
+                }.buttonStyle(.plain).padding(.horizontal, 8)
+            }.frame(height: 32)
             if state.stackItems.isEmpty {
-                ContentUnavailableView("Stack 为空", systemImage: "square.stack.3d.up",
-                                       description: Text("在卡片的右键菜单中将项目添加到 Paste Stack。"))
+                Text("Empty").font(.system(size: 12)).foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity).frame(height: 44)
             } else {
-                List(selection: $selectedID) {
-                    ForEach(Array(state.stackItems.enumerated()), id: \.element.id) { index, item in
-                        HStack(spacing: 12) {
-                            Text("\(index + 1)").monospacedDigit().foregroundStyle(.secondary).frame(width: 22)
-                            SourceAppIcon(item: item).frame(width: 26, height: 26)
-                            VStack(alignment: .leading, spacing: 3) {
-                                Text(item.title.isEmpty ? item.kind.displayName : item.title).lineLimit(1)
-                                Text(item.plainText ?? itemSummary(item)).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                ScrollView {
+                    LazyVStack(spacing: 0) {
+                        ForEach(state.stackItems) { item in
+                            HStack(spacing: 8) {
+                                SourceAppIcon(item: item).frame(width: 24, height: 24)
+                                Text(item.plainText ?? item.title).font(.system(size: 12)).lineLimit(2)
+                                Spacer(minLength: 0)
+                            }.padding(.horizontal, 10).frame(height: 44)
+                            .contextMenu {
+                                Button("复制") { state.controller?.copy(item: item, plainTextOnly: false) }
+                                Button("粘贴") {
+                                    if state.controller?.paste(item: item, plainTextOnly: false) == true {
+                                        state.stackIDs.removeAll { $0 == item.id }
+                                        if state.stackItems.isEmpty { state.controller?.hideStack() }
+                                    }
+                                }
+                                Button("预览") { state.controller?.showPreview(item: item) }
+                                Button("移除") { state.stackIDs.removeAll { $0 == item.id } }
                             }
-                            Spacer()
-                            Button {
-                                state.stackIDs.removeAll { $0 == item.id }
-                            } label: { Image(systemName: "minus.circle") }
-                            .buttonStyle(.plain).foregroundStyle(.secondary).accessibilityLabel("从 Stack 移除")
-                        }
-                        .padding(.vertical, 5)
-                        .tag(item.id)
-                        .contextMenu {
-                            Button("上移") { move(item.id, by: -1) }.disabled(index == 0)
-                            Button("下移") { move(item.id, by: 1) }.disabled(index == state.stackItems.count - 1)
-                            Button("预览") { state.controller?.showPreview(item: item) }
                         }
                     }
-                }
+                }.frame(height: CGFloat(min(10, max(1, state.stackItems.count)) * 44))
             }
-            Divider()
-            HStack {
-                Text("\(state.stackItems.count) 个项目").font(.caption).foregroundStyle(.secondary)
-                Spacer()
-                Button("清空 Stack") { state.stackIDs = [] }.disabled(state.stackItems.isEmpty)
-                Button("拷贝") {
-                    if let item = selectedItem {
-                        state.controller?.copy(item: item, plainTextOnly: false)
-                    }
-                }.disabled(selectedItem == nil)
-                Button("粘贴并移除") {
-                    if let item = selectedItem {
-                        if state.controller?.paste(item: item, plainTextOnly: false) == true {
-                            state.stackIDs.removeAll { $0 == item.id }
-                            selectedID = state.stackItems.first?.id
-                        }
-                    }
-                }.disabled(selectedItem == nil)
-            }
-            .padding(14)
         }
-        .frame(minWidth: 390, minHeight: 320)
+        .frame(width: 264)
+        .background(.regularMaterial).clipShape(RoundedRectangle(cornerRadius: 10))
         .preferredColorScheme(state.preferredScheme)
-    }
-
-    private func move(_ id: UUID, by offset: Int) {
-        guard let index = state.stackIDs.firstIndex(of: id) else { return }
-        let destination = index + offset
-        guard state.stackIDs.indices.contains(destination) else { return }
-        state.stackIDs.swapAt(index, destination)
     }
 }
 
@@ -270,14 +247,14 @@ struct ReplicaSettingsView: View {
     @ObservedObject var state: ReplicaUIState
     @State private var exclusions = ""
     @State private var tab = 0
+    @State private var shortcutError = ""
+    @State private var backgroundEnabled = BackgroundService.isEnabled
 
     var body: some View {
         HStack(spacing: 0) {
             VStack(spacing: 4) {
                 sidebarButton("通用", icon: "gearshape", index: 0)
                 sidebarButton("隐私", icon: "hand.raised", index: 1)
-                sidebarButton("外观", icon: "paintpalette", index: 2)
-                sidebarButton("历史与数据", icon: "externaldrive", index: 3)
                 sidebarButton("键盘快捷键", icon: "keyboard", index: 4)
                 sidebarButton("MCP 与 AI 工具", icon: "point.3.connected.trianglepath.dotted", index: 5)
                 Spacer()
@@ -289,8 +266,6 @@ struct ReplicaSettingsView: View {
             Group {
                 switch tab {
                 case 1: privacy
-                case 2: appearance
-                case 3: data
                 case 4: shortcuts
                 case 5: mcp
                 default: general
@@ -314,23 +289,16 @@ struct ReplicaSettingsView: View {
 
     private var general: some View {
         Form {
-            Section("剪贴板采集") {
-                Toggle("暂停采集", isOn: preference(\.isMonitoringPaused))
-                Toggle("采集时播放提示音", isOn: preference(\.playSounds))
-                Toggle("忽略应用标记为隐藏的内容", isOn: preference(\.ignoreConcealedContent))
-                Button("暂停一小时") {
-                    state.store.preferences.isMonitoringPaused = true
-                    state.store.preferences.pauseUntil = Date().addingTimeInterval(3600)
-                    state.perform { try state.store.save() }
-                }
-                if let until = state.store.preferences.pauseUntil {
-                    Text("暂停至 \(until.formatted(date: .omitted, time: .shortened))")
-                        .font(.caption).foregroundStyle(.secondary)
-                }
-            }
-            Section("启动") {
-                Toggle("登录时启动", isOn: Binding(get: { state.store.preferences.launchAtLogin },
+            Section {
+                Toggle("登录时打开", isOn: Binding(get: { state.store.preferences.launchAtLogin },
                                               set: { value in setLaunchAtLogin(value) }))
+                Toggle("后台运行", isOn: Binding(get: { backgroundEnabled }, set: { value in
+                    do {
+                        try BackgroundService.setEnabled(value)
+                        backgroundEnabled = BackgroundService.isEnabled
+                    } catch { state.controller?.presentError(error) }
+                }))
+                Toggle("音效", isOn: preference(\.playSounds))
             }
             Section("粘贴项目") {
                 Picker("粘贴项目", selection: preference(\.pasteToActiveApp)) {
@@ -341,12 +309,33 @@ struct ReplicaSettingsView: View {
                 .labelsHidden()
                 Toggle("始终以纯文本粘贴", isOn: preference(\.alwaysPastePlainText))
             }
+            Section("保留历史") {
+                Slider(value: Binding(get: {
+                    Double([1, 7, 30, 365, 0].firstIndex(of: state.store.preferences.historyRetentionDays) ?? 4)
+                }, set: { value in
+                    let index = max(0, min(4, Int(value.rounded())))
+                    state.store.preferences.historyRetentionDays = [1, 7, 30, 365, 0][index]
+                    state.perform { try state.store.save() }
+                }), in: 0...4, step: 1)
+                .accessibilityLabel("保留历史")
+                HStack {
+                    ForEach(["天", "周", "个月", "年", "永久"], id: \.self) { title in
+                        Text(title).frame(maxWidth: .infinity)
+                    }
+                }.font(.caption).foregroundStyle(.secondary)
+                Button("删除历史…") { state.controller?.clearHistory() }
+            }
         }
         .formStyle(.grouped)
     }
 
     private var privacy: some View {
         Form {
+            Section("内容与窗口") {
+                Toggle("在屏幕共享期间显示", isOn: preference(\.showDuringScreenSharing))
+                Toggle("忽略机密内容", isOn: preference(\.ignoreConcealedContent))
+                Toggle("忽略瞬时内容", isOn: preference(\.ignoreTransientContent))
+            }
             Section("排除来源应用") {
                 Text("每行输入一个应用 Bundle ID，例如 com.apple.Safari。列表中的应用不会被采集。")
                     .font(.caption).foregroundStyle(.secondary)
@@ -378,75 +367,30 @@ struct ReplicaSettingsView: View {
         .formStyle(.grouped)
     }
 
-    private var appearance: some View {
-        Form {
-            Section("外观") {
-                Picker("主题", selection: preference(\.appearance)) {
-                    Text("跟随系统").tag("system")
-                    Text("浅色").tag("light")
-                    Text("深色").tag("dark")
-                }
-                HStack {
-                    Text("面板高度")
-                    Slider(value: preference(\.panelHeight), in: 300...600, step: 1)
-                    Text("\(Int(state.store.preferences.panelHeight)) pt").monospacedDigit().frame(width: 60)
-                }
-                Button("恢复默认高度") {
-                    state.store.preferences.panelHeight = 332
-                    state.perform { try state.store.save() }
-                }
-            }
-        }
-        .formStyle(.grouped)
-    }
-
-    private var data: some View {
-        Form {
-            Section("历史") {
-                Picker("保留历史记录", selection: preference(\.historyRetentionDays)) {
-                    Text("一天").tag(1)
-                    Text("一周").tag(7)
-                    Text("一个月").tag(30)
-                    Text("一年").tag(365)
-                    Text("永久").tag(0)
-                }
-                HStack {
-                    Text("最多保留")
-                    TextField("项目数", value: Binding(get: { state.store.preferences.historyLimit }, set: { value in
-                        state.store.preferences.historyLimit = max(1, value)
-                        state.perform { try state.store.save() }
-                    }), format: .number)
-                        .frame(width: 100).textFieldStyle(.roundedBorder)
-                        .accessibilityLabel("历史保留数量")
-                    Text("个项目").foregroundStyle(.secondary)
-                }
-                Text("已分组的项目会保留。当前共 \(state.store.items.filter { !$0.isDeleted }.count) 个项目。")
-                    .font(.caption).foregroundStyle(.secondary)
-                Button("清空未分组的历史…", role: .destructive, action: clearHistory)
-            }
-            Section("归档") {
-                HStack {
-                    Button("导出归档…") { state.controller?.exportArchive() }
-                    Button("导入归档…") { state.controller?.importArchive() }
-                }
-                Text("归档包含剪贴板内容及原始格式，请妥善保管。")
-                    .font(.caption).foregroundStyle(.secondary)
-            }
-        }
-        .formStyle(.grouped)
-    }
-
     private var shortcuts: some View {
         Form {
-            Section("面板") {
-                shortcut("显示或隐藏面板", "⇧⌘V")
-                shortcut("显示 Paste Stack", "⇧⌘C")
-                shortcut("切换 Pinboard", "⌘←  ⌘→")
-                shortcut("搜索", "⌘F")
-                shortcut("新建文本", "⌘N")
-                shortcut("新建 Pinboard", "⇧⌘N")
-                shortcut("设置", "⌘,")
-                shortcut("关闭面板", "Esc")
+            Section("键盘快捷键") {
+                shortcutRecorder("启动 Paste", path: \.historyShortcut)
+                shortcutRecorder("启动 Paste Stack", path: \.stackShortcut)
+                shortcutRecorder("显示下一个 Pinboard", path: \.nextPinboardShortcut)
+                shortcutRecorder("显示上一个 Pinboard", path: \.previousPinboardShortcut)
+                Picker("快速粘贴", selection: preference(\.quickPasteModifierRawValue)) {
+                    Text("⌘ Command + 1…9").tag(NSEvent.ModifierFlags.command.rawValue)
+                    Text("⌥ Option + 1…9").tag(NSEvent.ModifierFlags.option.rawValue)
+                    Text("⌃ Control + 1…9").tag(NSEvent.ModifierFlags.control.rawValue)
+                    Text("未设置").tag(UInt(0))
+                }
+                Picker("纯文本模式", selection: preference(\.plainTextModifierRawValue)) {
+                    Text("⇧ Shift").tag(NSEvent.ModifierFlags.shift.rawValue)
+                    Text("⌥ Option").tag(NSEvent.ModifierFlags.option.rawValue)
+                    Text("⌃ Control").tag(NSEvent.ModifierFlags.control.rawValue)
+                    Text("未设置").tag(UInt(0))
+                }
+                Button("将快捷方式重置为默认…") { resetShortcuts() }
+                if !shortcutError.isEmpty { Text(shortcutError).foregroundStyle(.red).font(.caption) }
+                if !state.hotKeyStatusMessage.isEmpty {
+                    Text(state.hotKeyStatusMessage).font(.caption).foregroundStyle(.secondary)
+                }
             }
             Section("项目") {
                 shortcut("切换选择", "←  →")
@@ -460,6 +404,50 @@ struct ReplicaSettingsView: View {
             }
         }
         .formStyle(.grouped)
+    }
+
+    private func shortcutRecorder(_ title: String, path: WritableKeyPath<AppPreferences, PasteReplicaCore.KeyboardShortcut?>) -> some View {
+        HStack {
+            Text(title)
+            Spacer()
+            ReplicaShortcutRecorder(shortcut: Binding(get: { state.store.preferences[keyPath: path] }, set: { value in
+                let paths: [WritableKeyPath<AppPreferences, PasteReplicaCore.KeyboardShortcut?>] = [
+                    \.historyShortcut, \.stackShortcut, \.nextPinboardShortcut, \.previousPinboardShortcut]
+                if let value, paths.contains(where: { $0 != path && state.store.preferences[keyPath: $0] == value }) {
+                    shortcutError = "此快捷键已用于其他 Paste 命令。"
+                    return
+                }
+                shortcutError = ""
+                state.store.preferences[keyPath: path] = value
+                state.perform { try state.store.save() }
+                state.controller?.hotKeyConfigurationChanged?()
+            }), label: title, error: { shortcutError = $0 }, recordingChanged: {
+                state.controller?.hotKeyRecordingChanged?($0)
+            }).frame(width: 120, height: 26)
+            Button {
+                state.store.preferences[keyPath: path] = nil
+                state.perform { try state.store.save() }
+                state.controller?.hotKeyConfigurationChanged?()
+            } label: { Image(systemName: "xmark.circle") }
+            .buttonStyle(.plain).disabled(state.store.preferences[keyPath: path] == nil)
+            .accessibilityLabel("清除\(title)快捷键")
+        }
+    }
+
+    private func resetShortcuts() {
+        let alert = NSAlert()
+        alert.messageText = "您确定要将所有快捷方式重置为默认值吗？"
+        alert.addButton(withTitle: "重置"); alert.addButton(withTitle: "取消")
+        guard alert.runModal() == .alertFirstButtonReturn else { return }
+        state.store.preferences.historyShortcut = .historyDefault
+        state.store.preferences.stackShortcut = .stackDefault
+        state.store.preferences.nextPinboardShortcut = .nextPinboardDefault
+        state.store.preferences.previousPinboardShortcut = .previousPinboardDefault
+        state.store.preferences.quickPasteModifierRawValue = NSEvent.ModifierFlags.command.rawValue
+        state.store.preferences.plainTextModifierRawValue = NSEvent.ModifierFlags.shift.rawValue
+        state.perform { try state.store.save() }
+        state.controller?.hotKeyConfigurationChanged?()
+        shortcutError = ""
     }
 
     private var mcpExecutable: URL {
@@ -535,15 +523,5 @@ struct ReplicaSettingsView: View {
         } catch { state.controller?.presentError(error) }
     }
 
-    private func clearHistory() {
-        let ids = Set(state.store.items.filter { !$0.isDeleted && $0.pinboardIDs.isEmpty }.map(\.id))
-        let alert = NSAlert()
-        alert.messageText = "清空未分组的历史？"
-        alert.informativeText = "将删除 \(ids.count) 个项目。你可以在“最近删除”中恢复。"
-        alert.addButton(withTitle: "清空历史")
-        alert.addButton(withTitle: "取消")
-        if alert.runModal() == .alertFirstButtonReturn {
-            state.perform { try state.store.delete(ids: ids) }
-        }
-    }
+
 }

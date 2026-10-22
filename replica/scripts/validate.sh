@@ -10,6 +10,9 @@ python3 "$replica_root/scripts/test-mcp.py" \
   --binary "$replica_root/dist/Paste Replica.app/Contents/MacOS/paste-replica-mcp" \
   --report "$report_root/mcp.json"
 bash "$replica_root/scripts/test-hotkey.sh" "$report_root/hotkey.json"
+bash "$replica_root/scripts/test-shortcut-model.sh" "$report_root/shortcut-model.json"
+bash "$replica_root/scripts/test-window-policy.sh" > "$report_root/window-policy.json"
+bash "$replica_root/scripts/test-ui-interaction.sh" > "$report_root/ui-interaction.json"
 python3 "$replica_root/scripts/test-app-monitor.py" --report "$report_root/app-monitor.json"
 python3 "$repository_root/scripts/verify.py" > "$report_root/research.json"
 printf '验证报告：%s\n' "$report_root"

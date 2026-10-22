@@ -38,7 +38,7 @@ struct ReplicaPanelView: View {
                         if let id { reader.scrollTo(id, anchor: .center) }
                     }
                 }
-                .frame(height: 242)
+                .frame(height: 242).offset(y: 11)
                 Spacer(minLength: 0)
             }
             if state.visibleItems.isEmpty {
@@ -56,91 +56,125 @@ struct ReplicaPanelView: View {
         .preferredColorScheme(state.preferredScheme)
         .onChange(of: state.query) { _, _ in state.normalizeSelection() }
         .onChange(of: state.kind) { _, _ in state.normalizeSelection() }
+        .onChange(of: state.sourceFilter) { _, _ in state.normalizeSelection() }
+        .onChange(of: state.deviceFilter) { _, _ in state.normalizeSelection() }
+        .onChange(of: state.dateFilterDays) { _, _ in state.normalizeSelection() }
         .onChange(of: state.searchFocus) { _, _ in searchFocused = true }
+        .onChange(of: state.searchVisible) { _, visible in if !visible { searchFocused = false } }
         .accessibilityIdentifier("clipboard-panel")
     }
 
+    private var searching: Bool { searchFocused || state.searchVisible || !state.query.isEmpty }
+
     private var header: some View {
         ZStack {
-            HStack(spacing: 8) {
-                if !searchFocused && state.query.isEmpty { boardTabs }
-                Spacer(minLength: 430)
-                trailingControls
+            HStack { Spacer(); trailingControls }
+            if searching {
+                searchField
+                historyControls.offset(x: 246)
+            } else {
+                HStack(spacing: 20) {
+                    Button { state.searchVisible = true; searchFocused = true } label: {
+                        Image(systemName: "magnifyingglass").font(.system(size: 19))
+                    }.buttonStyle(.plain).accessibilityLabel("搜索剪贴板")
+                    boardTabs
+                }.fixedSize(horizontal: true, vertical: false)
             }
-            HStack(spacing: 7) {
-                Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
-                TextField("搜索", text: $state.query)
-                    .textFieldStyle(.plain)
-                    .focused($searchFocused)
-                    .font(.system(size: 14))
-                    .accessibilityLabel("搜索剪贴板")
-                    .accessibilityIdentifier("clipboard-search")
-                if !state.query.isEmpty {
-                    Button { state.query = "" } label: { Image(systemName: "xmark.circle.fill") }
-                        .buttonStyle(.plain).foregroundStyle(.secondary)
-                        .accessibilityLabel("清空搜索")
+        }.padding(.horizontal, 24)
+    }
+
+    private var searchField: some View {
+        HStack(spacing: 7) {
+            Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
+            TextField("搜索", text: $state.query)
+                .textFieldStyle(.plain).focused($searchFocused).font(.system(size: 14))
+                .accessibilityLabel("搜索剪贴板").accessibilityIdentifier("clipboard-search")
+            if !state.query.isEmpty {
+                Button { state.query = "" } label: { Image(systemName: "xmark.circle.fill") }
+                    .buttonStyle(.plain).foregroundStyle(.secondary).accessibilityLabel("清空搜索")
+            }
+            Menu {
+                Button("清除筛选") { state.kind = nil; state.sourceFilter = nil; state.dateFilterDays = nil; state.deviceFilter = nil }
+                Section("类型") {
+                    ForEach(ClipboardKind.allCases, id: \.self) { kind in Button(kind.displayName) { state.kind = kind } }
                 }
-                Menu {
-                    Button("全部类型") { state.kind = nil }
-                    Divider()
-                    ForEach(ClipboardKind.allCases, id: \.self) { kind in
-                        Button(kind.displayName) { state.kind = kind }
+                Section("应用") {
+                    ForEach(Array(Set(state.store.items.map(\.sourceName))).sorted(), id: \.self) { name in
+                        Button(name) { state.sourceFilter = name }
                     }
-                } label: {
-                    Image(systemName: state.kind == nil ? "line.3.horizontal.decrease" : "line.3.horizontal.decrease.circle.fill")
-                        .foregroundStyle(state.kind == nil ? Color.secondary : Color.accentColor)
                 }
-                .menuStyle(.borderlessButton)
-                .menuIndicator(.hidden)
-                .fixedSize()
-                .accessibilityLabel("按类型筛选")
-                .help(state.kind?.displayName ?? "全部类型")
-            }
-            .padding(.horizontal, 12)
-            .frame(width: 400, height: 32)
-            .background(.primary.opacity(0.07), in: Capsule())
-            .overlay(Capsule().strokeBorder(searchFocused ? Color.accentColor.opacity(0.55) : .clear,
-                                            lineWidth: 3))
-            historyControls.offset(x: 246)
+                Section("日期") {
+                    Button("今天") { state.dateFilterDays = 1 }
+                    Button("过去一周") { state.dateFilterDays = 7 }
+                    Button("过去一个月") { state.dateFilterDays = 30 }
+                }
+                Section("设备") {
+                    ForEach(Array(Set(state.store.items.map(\.sourceDevice))).sorted(), id: \.self) { name in
+                        Button(name) { state.deviceFilter = name }
+                    }
+                }
+                Section("Pinboard") {
+                    ForEach(state.store.pinboards) { board in Button(board.name) { state.chooseBoard(board.id) } }
+                }
+            } label: { Image(systemName: "line.3.horizontal.decrease").foregroundStyle(.secondary) }
+            .menuStyle(.borderlessButton).menuIndicator(.hidden).fixedSize()
+            .accessibilityLabel("筛选").help("筛选 (⌘F)")
         }
-        .padding(.horizontal, 24)
+        .padding(.horizontal, 12).frame(width: 400, height: 32)
+        .background(.primary.opacity(0.07), in: Capsule())
+        .overlay(Capsule().strokeBorder(searchFocused ? Color.accentColor.opacity(0.55) : .clear, lineWidth: 3))
     }
 
     private var boardTabs: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 7) {
-                boardButton("剪贴板", icon: "clipboard", id: nil)
-                ForEach(state.store.pinboards.sorted { $0.sortOrder < $1.sortOrder }) { board in
-                    boardButton(board.name, icon: "pin.fill", id: board.id)
-                        .contextMenu {
-                            Button("重命名") { state.controller?.renamePinboard(board) }
-                            Button("删除分组", role: .destructive) { state.controller?.removePinboard(board) }
+        HStack(spacing: 7) {
+            boardButton(state.store.preferences.historyTitle, board: nil)
+                .contextMenu {
+                    Button("重命名") { state.controller?.renameHistory() }
+                    Button("删除历史…") { state.controller?.clearHistory() }
+                }
+            ForEach(state.store.pinboards.sorted { $0.sortOrder < $1.sortOrder }) { board in
+                boardButton(board.name, board: board)
+                    .contextMenu {
+                        Button("重命名") { state.controller?.renamePinboard(board) }
+                        Menu("颜色") {
+                            ForEach(["FF3B30", "FF9500", "FFCC00", "34C759", "00C7BE", "007AFF", "AF52DE", "8E8E93"], id: \.self) { color in
+                                Button(colorName(color)) { state.perform { try state.store.updatePinboard(id: board.id, colorHex: color) } }
+                            }
                         }
-                }
-                Button { state.controller?.createPinboard() } label: {
-                    Image(systemName: "plus").frame(width: 24, height: 26)
-                }
-                .buttonStyle(.plain)
-                .foregroundStyle(.secondary)
-                .accessibilityLabel("新建 Pinboard")
-                .help("新建 Pinboard ⇧⌘N")
+                        Button("向左移动") { state.movePinboard(board, by: -1) }
+                        Button("向右移动") { state.movePinboard(board, by: 1) }
+                        Button("删除…", role: .destructive) { state.controller?.removePinboard(board) }
+                    }
+                    .onDrag { NSItemProvider(object: ("paste-pinboard:" + board.id.uuidString) as NSString) }
+                    .onDrop(of: [UTType.text], isTargeted: nil) { providers in
+                        guard let provider = providers.first else { return false }
+                        _ = provider.loadObject(ofClass: String.self) { value, _ in
+                            guard let value, value.hasPrefix("paste-pinboard:"), let id = UUID(uuidString: String(value.dropFirst(15))) else { return }
+                            Task { @MainActor in state.movePinboard(id: id, before: board.id) }
+                        }
+                        return true
+                    }
             }
-        }
-        .frame(maxWidth: 420)
+            Button { state.controller?.createPinboard() } label: { Image(systemName: "plus").font(.system(size: 21)).frame(width: 30, height: 28) }
+                .buttonStyle(.plain).accessibilityLabel("创建 Pinboard").help("创建 Pinboard (⇧⌘N)")
+        }.fixedSize()
     }
 
-    private func boardButton(_ name: String, icon: String, id: UUID?) -> some View {
-        Button { state.chooseBoard(id) } label: {
-            Label(name, systemImage: icon)
-                .font(.system(size: 13, weight: .medium))
-                .lineLimit(1)
-                .padding(.horizontal, 11).padding(.vertical, 7)
-                .background(state.pinboardID == id && !state.showDeleted ? Color.primary.opacity(0.10) : .clear,
-                            in: RoundedRectangle(cornerRadius: 8))
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel(name)
-        .accessibilityAddTraits(state.pinboardID == id ? .isSelected : [])
+    private func colorName(_ hex: String) -> String {
+        ["FF3B30":"红色", "FF9500":"橙色", "FFCC00":"黄色", "34C759":"绿色", "00C7BE":"青色", "007AFF":"蓝色", "AF52DE":"紫色", "8E8E93":"灰色"][hex] ?? hex
+    }
+
+    private func boardButton(_ name: String, board: Pinboard?) -> some View {
+        Button { state.chooseBoard(board?.id) } label: {
+            HStack(spacing: 6) {
+                if let board { Circle().fill(parseColor(board.colorHex) ?? .red).frame(width: 12, height: 12) }
+                else { Image(systemName: "clock.arrow.circlepath").font(.system(size: 15)) }
+                Text(name).font(.system(size: 13, weight: .medium))
+            }
+            .lineLimit(1).padding(.horizontal, 10).padding(.vertical, 6)
+            .background(state.pinboardID == board?.id && !state.showDeleted ? Color.primary.opacity(0.10) : .clear, in: Capsule())
+        }.buttonStyle(.plain).accessibilityLabel(name)
+        .accessibilityAddTraits(state.pinboardID == board?.id ? .isSelected : [])
     }
 
     private var trailingControls: some View {
@@ -159,6 +193,18 @@ struct ReplicaPanelView: View {
                 Button("导出归档…", action: { state.controller?.exportArchive() })
                 Divider()
                 Button("设置…", action: { state.controller?.showSettings() })
+                if state.store.preferences.isMonitoringPaused {
+                    Button("继续 Paste", action: state.resumeMonitoring)
+                } else {
+                    Menu("暂停 Paste") {
+                        Button("暂停") { state.pauseMonitoring() }
+                        ForEach([15, 30, 60, 180, 480], id: \.self) { minutes in
+                            Button(minutes < 60 ? "暂停 \(minutes)分钟" : "暂停 \(minutes / 60)小时") {
+                                state.pauseMonitoring(minutes: minutes)
+                            }
+                        }
+                    }
+                }
             } label: { Image(systemName: "ellipsis").frame(width: 16) }
             .menuStyle(.borderlessButton).menuIndicator(.hidden).fixedSize()
             .accessibilityLabel("更多操作")
@@ -172,29 +218,16 @@ struct ReplicaPanelView: View {
     private var historyControls: some View {
         HStack(spacing: 22) {
             Button {
-                state.query = ""
-                state.chooseBoard(nil)
-                searchFocused = false
+                state.query = ""; state.chooseBoard(nil); state.searchVisible = false; searchFocused = false
                 state.controller?.panel.makeFirstResponder(nil)
-            } label: {
-                Image(systemName: "clock.arrow.circlepath").font(.system(size: 17)).frame(width: 18, height: 32)
+            } label: { Image(systemName: "clock.arrow.circlepath").font(.system(size: 17)).frame(width: 18, height: 32) }
+            .buttonStyle(.plain).accessibilityLabel("返回剪贴板历史")
+            ForEach(state.store.pinboards) { board in
+                Button { state.chooseBoard(board.id) } label: {
+                    Circle().fill(parseColor(board.colorHex) ?? .red).frame(width: 12, height: 12).frame(height: 32)
+                }.buttonStyle(.plain).accessibilityLabel(board.name)
             }
-            .buttonStyle(.plain).fixedSize()
-            .accessibilityLabel("返回剪贴板历史")
-            Button {
-                state.store.preferences.isMonitoringPaused.toggle()
-                state.store.preferences.pauseUntil = nil
-                state.perform { try state.store.save() }
-            } label: {
-                Circle().fill(state.store.preferences.isMonitoringPaused ? Color.gray : Color.red)
-                    .frame(width: 12, height: 12).frame(height: 32)
-            }
-            .buttonStyle(.plain)
-            .help(state.store.preferences.isMonitoringPaused ? "恢复剪贴板采集" : "暂停剪贴板采集")
-            .accessibilityLabel(state.store.preferences.isMonitoringPaused ? "恢复采集" : "暂停采集")
-        }
-        .foregroundStyle(Color(nsColor: .labelColor))
-        .frame(width: 52, height: 32)
+        }.foregroundStyle(Color(nsColor: .labelColor)).fixedSize()
     }
 
     private var footer: some View {
@@ -215,6 +248,7 @@ struct ReplicaClipboardCard: View {
     @ObservedObject var state: ReplicaUIState
     let item: ClipboardItem
     private var selected: Bool { state.selection.contains(item.id) }
+    @Environment(\.controlActiveState) private var activeState
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -225,19 +259,17 @@ struct ReplicaClipboardCard: View {
                 .clipped()
             HStack(spacing: 4) {
                 if !item.pinboardIDs.isEmpty { Image(systemName: "pin.fill").font(.system(size: 10)) }
-                Text(itemSummary(item)).lineLimit(1)
-                Spacer(minLength: 0)
+                Text(itemSummary(item)).lineLimit(2).frame(maxWidth: .infinity, alignment: item.kind == .link ? .leading : .center)
             }
             .font(.system(size: 12)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
             .padding(.horizontal, 16).padding(.bottom, 13).padding(.top, 7)
         }
         .frame(width: 232, height: 232)
         .background(Color(nsColor: .textBackgroundColor))
-        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(selected ? Color.gray.opacity(0.85) : .black.opacity(0.08),
-                                                                lineWidth: selected ? 4 : 1))
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(selected ? (activeState == .key ? Color.accentColor : .gray) : .black.opacity(0.08), lineWidth: selected ? 4 : 1).padding(selected ? -2 : 0))
         .shadow(color: .black.opacity(0.10), radius: 3, y: 2)
-        .contentShape(RoundedRectangle(cornerRadius: 12))
+        .contentShape(RoundedRectangle(cornerRadius: 16))
         .onTapGesture(count: 2) {
             prepareSelection()
             state.controller?.pasteSelection(plainTextOnly: NSEvent.modifierFlags.contains(.shift))
@@ -262,7 +294,7 @@ struct ReplicaClipboardCard: View {
             .padding(.leading, 16).padding(.top, 8)
             Spacer(minLength: 0)
             SourceAppIcon(item: item)
-                .frame(width: 34, height: 34)
+                .frame(width: 48, height: 48)
                 .frame(width: 52, height: 48)
                 .background(Color(nsColor: .textBackgroundColor),
                             in: UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: 24,
@@ -277,12 +309,30 @@ struct ReplicaClipboardCard: View {
             Button("恢复") { prepareSelection(); state.perform { try state.store.restore(ids: state.selection) } }
         } else {
             Button("拷贝") { prepareSelection(); state.controller?.copySelection(plainTextOnly: false) }
-            Button("拷贝为纯文本") { prepareSelection(); state.controller?.copySelection(plainTextOnly: true) }
-                .disabled(item.plainText == nil)
+            Button("复制为纯文本") { prepareSelection(); state.controller?.copySelection(plainTextOnly: true) }
+                .disabled(item.plainText == nil && item.recognizedText == nil)
             Button("粘贴") { prepareSelection(); state.controller?.pasteSelection(plainTextOnly: false) }
+            Button("以纯文本粘贴") { prepareSelection(); state.controller?.pasteSelection(plainTextOnly: true) }
+                .disabled(item.plainText == nil && item.recognizedText == nil)
             Divider()
             Button("预览") { state.controller?.showPreview(item: item) }
             if item.plainText != nil { Button("编辑…") { state.controller?.showEditor(item: item) } }
+            Button("重命名…") { state.controller?.renameItem(item) }
+            Button("副本") { state.perform { _ = try state.store.duplicateItem(id: item.id) } }
+            if item.kind == .image {
+                Button("复制图中文字") {
+                    Task {
+                        do {
+                            _ = try await state.store.recognizeImageText(id: item.id)
+                            state.controller?.copy(item: item, plainTextOnly: true)
+                        } catch { state.controller?.presentError(error) }
+                    }
+                }
+            }
+            if item.kind == .files {
+                Button("打开") { for url in itemFileURLs(item) { NSWorkspace.shared.open(url) } }
+                Button("在 Finder 中显示") { NSWorkspace.shared.activateFileViewerSelecting(itemFileURLs(item)) }
+            }
             Menu("添加到 Pinboard") {
                 ForEach(state.store.pinboards) { board in
                     Button(board.name) { prepareSelection(); state.assignSelection(to: board.id) }
@@ -291,9 +341,21 @@ struct ReplicaClipboardCard: View {
                 Button("新建 Pinboard…") { prepareSelection(); state.controller?.createPinboard(assignSelection: true) }
             }
             if !item.pinboardIDs.isEmpty {
+                if let board = state.pinboardID {
+                    Button("从此 Pinboard 移除") {
+                        prepareSelection()
+                        state.perform { try state.store.unassign(ids: state.selection, from: board) }
+                    }
+                }
                 Button("从所有 Pinboard 移除") { prepareSelection(); state.assignSelection(to: nil) }
             }
-            Button("添加到 Paste Stack") { state.addToStack(item); state.controller?.showStack() }
+            Button("添加到 Paste Stack") {
+                prepareSelection()
+                for selected in state.selectedItems { state.addToStack(selected) }
+                state.controller?.showStack()
+            }
+            Button("全选") { state.selectAll() }
+            Button("取消全选") { state.deselectAll() }
             Divider()
             Button("删除", role: .destructive) { prepareSelection(); state.deleteSelection() }
         }
@@ -438,15 +500,9 @@ func parseColor(_ text: String) -> Color? {
                  blue: Double(rgb & 255) / 255)
 }
 
+@MainActor
 func sourceColor(_ item: ClipboardItem) -> Color {
-    let colors: [Color] = [Color(red: 0.55, green: 0.65, blue: 0.71),
-                           Color(red: 0.41, green: 0.59, blue: 0.76),
-                           Color(red: 0.67, green: 0.58, blue: 0.75),
-                           Color(red: 0.78, green: 0.55, blue: 0.49),
-                           Color(red: 0.41, green: 0.66, blue: 0.56)]
-    let key = item.sourceBundleID ?? item.sourceName
-    let hash = key.utf8.reduce(0) { ($0 &* 31 &+ Int($1)) & 0x7fffffff }
-    return colors[hash % colors.count]
+    Color(nsColor: SourceAppColor.color(bundleID: item.sourceBundleID, name: item.sourceName))
 }
 
 func itemSummary(_ item: ClipboardItem) -> String {

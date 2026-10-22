@@ -7,12 +7,14 @@ let package = Package(
     products: [
         .library(name: "PasteReplicaCore", targets: ["PasteReplicaCore"]),
         .executable(name: "PasteReplica", targets: ["PasteReplica"]),
+        .executable(name: "PasteReplicaHelper", targets: ["PasteReplicaHelper"]),
         .executable(name: "paste-replica-mcp", targets: ["PasteReplicaMCP"]),
         .executable(name: "paste-replica-core-tests", targets: ["PasteReplicaCoreTests"])
     ],
     targets: [
         .target(name: "PasteReplicaCore"),
         .executableTarget(name: "PasteReplica", dependencies: ["PasteReplicaCore"]),
+        .executableTarget(name: "PasteReplicaHelper"),
         .executableTarget(name: "PasteReplicaMCP", dependencies: ["PasteReplicaCore"]),
         .executableTarget(name: "PasteReplicaCoreTests", dependencies: ["PasteReplicaCore"], path: "Tests/PasteReplicaCoreTests")
     ]

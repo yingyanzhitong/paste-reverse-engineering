@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-22",
+  "reference": {
+    "version": "6.6.6",
+    "build": "29766850",
+    "binaries": [
+      {
+        "name": "Paste",
+        "sha256": "7255357661f83d0d10ae8eaedefa64442cb3b1c300d8963ac50cb8547251d9af"
+      },
+      {
+        "name": "paste-mcp-stdio",
+        "sha256": "d485d7b49ff933e46e7274ec1c12f48d962a6f9682320b470e9eee9be392e37b"
+      },
+      {
+        "name": "Paste Helper",
+        "sha256": "5bb6aa1123552939755003ab96981ecf0b619ae8edd8822149ab4866fd367f55"
+      }
+    ]
+  },
+  "full_one_to_one_acceptance": false,
+  "rea_interface_builder_evidence_id": "ev_cd7663e5a21b76a588a2a0e232c5151190d7c5dbe383625931ee3cf678739813",
+  "evidence": [
+    {
+      "feature": "离线OCR",
+      "functions": [
+        "0x1002d4830",
+        "0x1002d576c"
+      ],
+      "observation": "Vision识别、自动语言、纠错、后台处理；候选文字提取",
+      "validation": "合成真实PNG像素识别、检索、重开、原始图片表示不受内部索引影响"
+    },
+    {
+      "feature": "多选原始表示写回",
+      "functions": [
+        "0x10037875c"
+      ],
+      "observation": "逐项目逐类型构建NSPasteboardItem并按数组写回",
+      "validation": "私有NSPasteboard逐项顺序/字节保留；无效项目在清空剪贴板前拒绝",
+      "limitation": "纯文本多项目前换行合并，分隔规则尚无原版受控对照"
+    },
+    {
+      "feature": "共享窗口策略",
+      "functions": [
+        "0x10004fa08",
+        "0x100029f60"
+      ],
+      "observation": "setSharingType按偏好使用none/readOnly",
+      "validation": "隐藏原生NSWindow现有窗口动态切换和新建窗口策略",
+      "limitation": "未验证系统录屏或会议软件实际遮蔽"
+    },
+    {
+      "feature": "Stack面板",
+      "functions": [
+        "0x1000114fc",
+        "0x100011138",
+        "0x1000844fc",
+        "0x10008468c",
+        "0x100085670",
+        "0x100083a20",
+        "0x100083e58",
+        "0x10008413c"
+      ],
+      "observation": "不能成为key/main，level25，全空间与全屏辅助；行44，1至10行夹取；反转、禁止行选择、取队首、空时关闭",
+      "validation": "Nib解析78对象/15连接；隐藏UI验证队列去重、反转持久化及队首消费",
+      "limitation": "尚未完成辅助功能授权后的跨应用CmdV及全部窗口视觉对照"
+    },
+    {
+      "feature": "后台辅助服务",
+      "functions": [
+        "0x1000ac170",
+        "0x100001488",
+        "0x100001db0",
+        "0x100002614"
+      ],
+      "observation": "主App用SMAppService.loginItem；辅助进程观察运行程序，只在共享运行标志为真且主进程消失时后台重启",
+      "validation": "独立helper编译、LoginItems嵌套打包、签名验证；正常退出清除标志，隔离App测试不写共享标志",
+      "limitation": "未执行真实系统服务注册及崩溃重启对照；复刻重试间隔1/2/4/8秒尚未与原版确证"
+    },
+    {
+      "feature": "设置与暂停菜单",
+      "source": "本机原版CUA只读观察",
+      "observation": "通用/隐私/快捷键/MCP/订阅侧栏；通用保留历史五档；暂停15/30分钟及1/3/8小时",
+      "validation": "隐藏UI事件测试、5档暂停截止与恢复；界面重排后编译通过"
+    }
+  ],
+  "remaining_local_gaps": [
+    "全状态像素与动画对照",
+    "辅助功能授权后的跨应用粘贴/Stack全流程",
+    "真实SMAppService后台服务注册与崩溃恢复",
+    "原版私有归档格式兼容",
+    "文件promise及不同接收App的拖放与粘贴",
+    "来源应用图标颜色后备算法未证明与原版相同"
+  ],
+  "excluded_network_features": [
+    "iCloud同步",
+    "原厂账号与订阅",
+    "远程共享Pinboard",
+    "联网链接预览"
+  ]
+}

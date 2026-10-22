@@ -87,6 +87,11 @@ struct ValidationMain {
             ("history-retention-age-boundaries", suite.testHistoryRetentionPermanentExpiredPinnedAndFreshBoundaries),
             ("refresh-pending-edits-no-op-io", suite.testRefreshPreservesPendingEditsWithoutNoOpWrites),
             ("two-independent-process-writers", suite.testTwoRealProcessesDoNotLoseConcurrentWrites)
+            ,("multiple-selection-raw-and-text-order", suite.testMultiSelectionOrderRawRepresentationsAndAtomicFailure)
+            ,("pinboard-reorder-duplicate-removal", suite.testPinboardReorderingDuplicationAndDeletingPinOnlyContent)
+            ,("local-vision-ocr-real-pixels", suite.testLocalVisionOCRSearchPersistenceAndOriginalPayloadIsolation)
+            ,("transient-opt-out-loop-guard", suite.testTransientOptOutStillRejectsReplicaWriteBack)
+            ,("history-erasure-queue-persistence-merge", suite.testHistoryErasureAndQueuePreferencesSurviveReopenAndMerge)
         ]
         var results: [[String: Any]] = []
         for (name, run) in tests {

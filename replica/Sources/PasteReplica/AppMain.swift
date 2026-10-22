@@ -22,12 +22,17 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
     private var monitor: ClipboardMonitor?
     private let hotKey = GlobalHotKey()
     private let stackHotKey = GlobalHotKey()
+    private let stackPasteHotKey = GlobalHotKey()
+    private var stackPasteRegistered = false
     private var statusItem: NSStatusItem!
     private var targetApplication: NSRunningApplication?
     private var activationObserver: NSObjectProtocol?
     private var refreshTimer: Timer?
     private var hotKeyStatus: OSStatus = noErr
     private var stackHotKeyStatus: OSStatus = noErr
+    private var hotKeyObservation: AnyCancellable?
+    private var lastHotKeyConfiguration: [KeyboardShortcut?]?
+    private var isRecordingHotKey = false
     private var pasteGeneration = UUID()
     private let arguments = ProcessInfo.processInfo.arguments
     private var pasteboard: NSPasteboard = .general
@@ -66,6 +71,16 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
             ui = ReplicaUIController(store: store)
             ui.pasteboard = pasteboard
             ui.pasteHandler = { [weak self] id, plain in self?.paste(id: id, plain: plain) }
+            ui.pasteItemsHandler = { [weak self] ids, plain in self?.paste(ids: ids, plain: plain) }
+            ui.hotKeyConfigurationChanged = { [weak self] in self?.configureGlobalHotKeys() }
+            ui.stackDidChange = { [weak self] in self?.configureStackPasteShortcut() }
+            ui.hotKeyRecordingChanged = { [weak self] recording in
+                guard let self else { return }
+                self.isRecordingHotKey = recording
+                if recording { self.hotKey.unregister(); self.stackHotKey.unregister(); self.updateStatus() }
+                else { self.configureGlobalHotKeys(force: true) }
+                self.configureStackPasteShortcut()
+            }
             setupMenus()
             targetApplication = NSWorkspace.shared.frontmostApplication
             activationObserver = NSWorkspace.shared.notificationCenter.addObserver(
@@ -77,22 +92,41 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
             }
             if !arguments.contains("--no-monitor") {
                 monitor = ClipboardMonitor(store: store, pasteboard: pasteboard)
+                monitor?.onCapture = { [weak self] id in self?.ui.captureIntoStack(id: id) }
                 monitor?.start()
             }
-            if !arguments.contains("--no-global-hotkey") {
-                hotKey.action = { [weak self] in self?.togglePanel(nil) }
-                hotKeyStatus = hotKey.register()
-                stackHotKey.action = { [weak self] in self?.ui.showStack() }
-                stackHotKeyStatus = stackHotKey.register(keyCode: 8, identifier: 2)
+            hotKey.action = { [weak self] in self?.togglePanel(nil) }
+            stackHotKey.action = { [weak self] in
+                guard let self else { return }
+                if NSApp.isActive, self.ui.panel.isKeyWindow, self.store.preferences.stackShortcut == .stackDefault {
+                    self.ui.copySelection(plainTextOnly: true)
+                } else { self.ui.showStack() }
             }
+            hotKeyObservation = store.$preferences.sink { [weak self] _ in
+                // @Published 在赋值前通知，下一轮读取完整的新偏好。
+                DispatchQueue.main.async { self?.configureGlobalHotKeys() }
+            }
+            stackPasteHotKey.action = { [weak self] in
+                guard let self else { return }
+                if NSApp.isActive {
+                    NSApp.sendAction(#selector(NSText.paste(_:)), to: nil, from: nil)
+                    return
+                }
+                guard let first = self.ui.state.stackItems.first else { return }
+                self.targetApplication = NSWorkspace.shared.frontmostApplication
+                if self.paste(ids: [first.id], plain: false, forceDirect: true) { self.ui.consumeStackHead() }
+            }
+            configureGlobalHotKeys(force: true)
             refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
                 Task { @MainActor in
                     guard let self else { return }
                     do { try self.store.reload() }
                     catch { self.statusItem.button?.toolTip = "无法刷新历史：\(error.localizedDescription)" }
+                    self.configureStackPasteShortcut()
                 }
             }
             updateStatus()
+            if argument("--data-dir") == nil { BackgroundService.markRunning(true) }
             if arguments.contains("--show-panel") { ui.showPanel() }
             if arguments.contains("--show-settings") { ui.showSettings() }
         } catch {
@@ -144,10 +178,50 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func updateStatus() {
-        let key = hotKeyStatus == noErr && !arguments.contains("--no-global-hotkey")
-            ? "⇧⌘V 打开历史" : "点击打开历史；⇧⌘V 不可用（可能已被其他应用占用）"
-        let stack = stackHotKeyStatus != noErr ? "；⇧⌘C Paste Stack 不可用（可能已被占用）" : ""
-        statusItem.button?.toolTip = "Paste Replica · \(key)\(stack)"
+        if arguments.contains("--no-global-hotkey") {
+            ui.hotKeyStatusMessage = "本次运行已停用全局快捷键。"
+        } else if isRecordingHotKey {
+            ui.hotKeyStatusMessage = "正在录制快捷键，全局快捷键暂时停用。"
+        } else {
+            func message(_ title: String, _ shortcut: KeyboardShortcut?, _ status: OSStatus) -> String {
+                guard let shortcut else { return "\(title)：未设置" }
+                return status == noErr ? "\(title)：\(shortcut.displayName)" : "\(title)：\(shortcut.displayName) 无法注册（可能已被占用，错误 \(status)）"
+            }
+            ui.hotKeyStatusMessage = [message("历史", store.preferences.historyShortcut, hotKeyStatus),
+                                      message("Paste Stack", store.preferences.stackShortcut, stackHotKeyStatus)].joined(separator: "；")
+        }
+        statusItem.button?.toolTip = "Paste Replica · \(ui.hotKeyStatusMessage)"
+    }
+
+    private func configureGlobalHotKeys(force: Bool = false) {
+        guard !isRecordingHotKey else { updateStatus(); return }
+        let configuration = [store.preferences.historyShortcut, store.preferences.stackShortcut]
+        guard force || configuration != lastHotKeyConfiguration else { return }
+        lastHotKeyConfiguration = configuration
+        hotKey.unregister(); stackHotKey.unregister()
+        func register(_ shortcut: KeyboardShortcut?, with hotKey: GlobalHotKey, identifier: UInt32) -> OSStatus {
+            guard let shortcut else { return noErr }
+            guard shortcut.isValidGlobal else { return OSStatus(-50) }
+            return hotKey.register(keyCode: shortcut.keyCode, modifiers: shortcut.modifiers, identifier: identifier)
+        }
+        if !arguments.contains("--no-global-hotkey") {
+            hotKeyStatus = register(configuration[0], with: hotKey, identifier: 1)
+            stackHotKeyStatus = register(configuration[1], with: stackHotKey, identifier: 2)
+        } else { hotKeyStatus = noErr; stackHotKeyStatus = noErr }
+        updateStatus()
+    }
+
+    private func configureStackPasteShortcut() {
+        let enabled = ui.isStackVisible && !ui.state.stackItems.isEmpty && !isRecordingHotKey
+            && !arguments.contains("--no-global-hotkey") && pasteboard.name == NSPasteboard.general.name
+            && AXIsProcessTrusted()
+        guard enabled != stackPasteRegistered else { return }
+        stackPasteHotKey.unregister()
+        stackPasteRegistered = false
+        if enabled {
+            stackPasteRegistered = stackPasteHotKey.register(keyCode: 9, modifiers: .command, identifier: 3) == noErr
+            if !stackPasteRegistered { ui.hotKeyStatusMessage = "Paste Stack 的 ⌘V 无法注册，请使用项目菜单粘贴。" }
+        }
     }
 
     @objc private func statusClicked(_ sender: Any?) {
@@ -158,11 +232,11 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
             menu.addItem(menuItem("设置…", #selector(settings(_:))))
             menu.addItem(menuItem(store.preferences.isMonitoringPaused ? "继续采集" : "暂停采集", #selector(pause(_:))))
             if hotKeyStatus != noErr {
-                let notice = NSMenuItem(title: "⇧⌘V 已被占用", action: nil, keyEquivalent: "")
+                let notice = NSMenuItem(title: "历史快捷键无法注册", action: nil, keyEquivalent: "")
                 menu.addItem(notice)
             }
             if stackHotKeyStatus != noErr {
-                menu.addItem(NSMenuItem(title: "⇧⌘C Paste Stack 已被占用", action: nil, keyEquivalent: ""))
+                menu.addItem(NSMenuItem(title: "Paste Stack 快捷键无法注册", action: nil, keyEquivalent: ""))
             }
             menu.addItem(.separator())
             menu.addItem(menuItem("退出", #selector(quit(_:))))
@@ -200,16 +274,21 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func paste(id: UUID, plain: Bool) {
+        _ = paste(ids: [id], plain: plain)
+    }
+
+    @discardableResult
+    private func paste(ids: [UUID], plain: Bool, forceDirect: Bool = false) -> Bool {
         let generation = UUID()
         pasteGeneration = generation
-        do { try store.writeToPasteboard(id: id, pasteboard: pasteboard,
+        do { try store.writeToPasteboard(ids: ids, pasteboard: pasteboard,
                                         plainTextOnly: plain || store.preferences.alwaysPastePlainText) }
-        catch { ui.presentError(error); return }
+        catch { ui.presentError(error); return false }
         // Named pasteboards support isolated acceptance runs and never generate system keystrokes.
-        guard pasteboard.name == NSPasteboard.general.name else { return }
+        guard pasteboard.name == NSPasteboard.general.name else { return true }
         guard let target = targetApplication, !target.isTerminated,
-              target.processIdentifier != ProcessInfo.processInfo.processIdentifier else { return }
-        guard store.preferences.pasteToActiveApp else { target.activate(options: []); return }
+              target.processIdentifier != ProcessInfo.processInfo.processIdentifier else { return false }
+        guard forceDirect || store.preferences.pasteToActiveApp else { target.activate(options: []); return true }
         guard AXIsProcessTrusted() else {
             let alert = NSAlert()
             alert.messageText = "已拷贝到剪贴板"
@@ -220,12 +299,13 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
                let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
                 NSWorkspace.shared.open(url)
             } else { target.activate(options: []) }
-            return
+            return false
         }
         let changeCount = pasteboard.changeCount
         target.activate(options: [])
         let deadline = Date().addingTimeInterval(1)
         waitForTarget(target, deadline: deadline, generation: generation, changeCount: changeCount)
+        return true
     }
 
     private func waitForTarget(_ target: NSRunningApplication, deadline: Date, generation: UUID, changeCount: Int) {
@@ -258,8 +338,10 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ notification: Notification) {
+        if argument("--data-dir") == nil { BackgroundService.markRunning(false) }
         pasteGeneration = UUID()
-        monitor?.stop(); hotKey.unregister(); stackHotKey.unregister(); refreshTimer?.invalidate()
+        hotKeyObservation?.cancel()
+        monitor?.stop(); hotKey.unregister(); stackHotKey.unregister(); stackPasteHotKey.unregister(); refreshTimer?.invalidate()
         if let activationObserver { NSWorkspace.shared.notificationCenter.removeObserver(activationObserver) }
     }
 }

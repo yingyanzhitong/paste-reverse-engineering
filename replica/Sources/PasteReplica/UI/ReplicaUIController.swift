@@ -15,11 +15,25 @@ final class ReplicaUIState: ObservableObject {
     @Published var selection: Set<UUID> = []
     @Published var primaryID: UUID?
     @Published var searchFocus = UUID()
-    @Published var stackIDs: [UUID] = []
+    @Published var searchVisible = false
+    @Published var sourceFilter: String?
+    @Published var deviceFilter: String?
+    @Published var dateFilterDays: Int?
+    @Published var stackIDs: [UUID] = [] {
+        didSet {
+            guard oldValue != stackIDs, store.preferences.stackItemIDs != stackIDs else { return }
+            store.preferences.stackItemIDs = stackIDs
+            perform { try store.save() }
+            controller?.stackContentsChanged()
+        }
+    }
+    @Published var hotKeyStatusMessage = ""
+    @Published var allowsEmptySelection = false
     private var observation: AnyCancellable?
 
     init(store: ClipboardStore) {
         self.store = store
+        stackIDs = store.preferences.stackItemIDs
         observation = store.objectWillChange.sink { [weak self] _ in
             self?.objectWillChange.send()
             DispatchQueue.main.async { [weak self] in self?.normalizeSelection() }
@@ -29,6 +43,11 @@ final class ReplicaUIState: ObservableObject {
     var visibleItems: [ClipboardItem] {
         store.search(query: query, kind: kind, pinboardID: pinboardID, includeDeleted: showDeleted)
             .filter { !showDeleted || $0.isDeleted }
+            .filter { item in
+                (sourceFilter == nil || item.sourceName == sourceFilter)
+                    && (deviceFilter == nil || item.sourceDevice == deviceFilter)
+                    && (dateFilterDays == nil || item.createdAt >= Calendar.current.startOfDay(for: Date()).addingTimeInterval(-Double(max(0, dateFilterDays! - 1)) * 86400))
+            }
     }
     var selectedItems: [ClipboardItem] { visibleItems.filter { selection.contains($0.id) } }
     var primaryItem: ClipboardItem? {
@@ -48,7 +67,7 @@ final class ReplicaUIState: ObservableObject {
     func normalizeSelection() {
         let ids = Set(visibleItems.map(\.id))
         selection.formIntersection(ids)
-        if selection.isEmpty, let first = visibleItems.first { selection = [first.id] }
+        if selection.isEmpty, !allowsEmptySelection, let first = visibleItems.first { selection = [first.id] }
         if primaryID == nil || !ids.contains(primaryID!) || !selection.contains(primaryID!) {
             primaryID = visibleItems.first { selection.contains($0.id) }?.id
         }
@@ -58,6 +77,7 @@ final class ReplicaUIState: ObservableObject {
     }
 
     func select(_ item: ClipboardItem, modifiers: NSEvent.ModifierFlags = []) {
+        allowsEmptySelection = false
         controller?.panel.makeFirstResponder(nil)
         if modifiers.contains(.shift), let anchor = primaryID,
            let start = visibleItems.firstIndex(where: { $0.id == anchor }),
@@ -74,6 +94,7 @@ final class ReplicaUIState: ObservableObject {
     }
 
     func moveSelection(_ offset: Int, extending: Bool = false) {
+        allowsEmptySelection = false
         let items = visibleItems
         guard !items.isEmpty else { return }
         let current = items.firstIndex { $0.id == primaryID } ?? 0
@@ -83,6 +104,7 @@ final class ReplicaUIState: ObservableObject {
     }
 
     func chooseBoard(_ id: UUID?) {
+        allowsEmptySelection = false
         pinboardID = id
         showDeleted = false
         selection = []
@@ -115,6 +137,43 @@ final class ReplicaUIState: ObservableObject {
     func addToStack(_ item: ClipboardItem) {
         if !stackIDs.contains(item.id) { stackIDs.append(item.id) }
     }
+
+    func reverseStack() {
+        stackIDs.reverse()
+        store.preferences.stackReversed.toggle()
+        perform { try store.save() }
+    }
+
+    func selectAll() { allowsEmptySelection = false; selection = Set(visibleItems.map(\.id)) }
+    func deselectAll() { allowsEmptySelection = true; selection = []; primaryID = nil }
+
+    func pauseMonitoring(minutes: Int? = nil) {
+        store.preferences.isMonitoringPaused = true
+        store.preferences.pauseUntil = minutes.map { Date().addingTimeInterval(Double($0) * 60) }
+        perform { try store.save() }
+    }
+
+    func resumeMonitoring() {
+        store.preferences.isMonitoringPaused = false
+        store.preferences.pauseUntil = nil
+        perform { try store.save() }
+    }
+
+    func movePinboard(_ board: Pinboard, by offset: Int) {
+        var ids = store.pinboards.sorted { $0.sortOrder < $1.sortOrder }.map(\.id)
+        guard let index = ids.firstIndex(of: board.id), ids.indices.contains(index + offset) else { return }
+        ids.swapAt(index, index + offset)
+        perform { try store.reorderPinboards(ids: ids) }
+    }
+
+    func movePinboard(id: UUID, before target: UUID) {
+        guard id != target else { return }
+        var ids = store.pinboards.sorted { $0.sortOrder < $1.sortOrder }.map(\.id)
+        guard ids.contains(id), ids.contains(target) else { return }
+        ids.removeAll { $0 == id }
+        ids.insert(id, at: ids.firstIndex(of: target)!)
+        perform { try store.reorderPinboards(ids: ids) }
+    }
 }
 
 @MainActor
@@ -135,12 +194,28 @@ private final class ReplicaEditorWindow: NSWindow {
 }
 
 @MainActor
+private final class ReplicaStackPanel: NSPanel {
+    override var canBecomeKey: Bool { false }
+    override var canBecomeMain: Bool { false }
+}
+
+@MainActor
 final class ReplicaUIController {
     let store: ClipboardStore
     let state: ReplicaUIState
     let panel: NSPanel
     var pasteHandler: ((UUID, Bool) -> Void)?
+    var pasteItemsHandler: (([UUID], Bool) -> Void)?
     var pasteboard: NSPasteboard = .general
+    var hotKeyConfigurationChanged: (() -> Void)?
+    var hotKeyRecordingChanged: ((Bool) -> Void)?
+    var stackDidChange: (() -> Void)?
+    var isStackVisible: Bool { stackWindow?.isVisible == true }
+    var hotKeyStatusMessage: String {
+        get { state.hotKeyStatusMessage }
+        set { state.hotKeyStatusMessage = newValue }
+    }
+    private let sharingPolicy: WindowSharingPolicy
     private var settingsWindow: NSWindow?
     private var stackWindow: NSWindow?
     private var itemWindows: [UUID: NSWindow] = [:]
@@ -148,6 +223,7 @@ final class ReplicaUIController {
 
     init(store: ClipboardStore) {
         self.store = store
+        sharingPolicy = WindowSharingPolicy(store: store)
         state = ReplicaUIState(store: store)
         let panel = ReplicaPanel(contentRect: .init(x: 0, y: 0, width: 1512, height: 332),
                                  styleMask: [.borderless, .nonactivatingPanel],
@@ -163,6 +239,7 @@ final class ReplicaUIController {
         panel.hidesOnDeactivate = false
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
         panel.isReleasedWhenClosed = false
+        sharingPolicy.apply(to: panel)
         panel.contentView = NSHostingView(rootView: ReplicaPanelView(state: state))
         state.controller = self
         panel.keyHandler = { [weak self] event in self?.handleKey(event) ?? false }
@@ -175,6 +252,7 @@ final class ReplicaUIController {
     func showPanel() {
         if !panel.isVisible {
             state.query = ""
+            state.searchVisible = false
             panel.makeFirstResponder(nil)
         }
         state.normalizeSelection()
@@ -185,7 +263,7 @@ final class ReplicaUIController {
 
     func hidePanel() { panel.orderOut(nil) }
     func togglePanel() { panel.isVisible ? hidePanel() : showPanel() }
-    func focusSearch() { showPanel(); state.searchFocus = UUID() }
+    func focusSearch() { showPanel(); state.searchVisible = true; state.searchFocus = UUID() }
     func showError(message: String) {
         presentError(NSError(domain: "PasteReplica", code: 1,
                              userInfo: [NSLocalizedDescriptionKey: message]))
@@ -201,38 +279,113 @@ final class ReplicaUIController {
 
     func showStack() {
         if stackWindow == nil {
-            stackWindow = makeWindow(title: "Paste Stack", size: .init(width: 470, height: 470),
-                                     view: ReplicaStackView(state: state))
+            let window = ReplicaStackPanel(contentRect: .init(x: 0, y: 0, width: 264, height: 76),
+                                           styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
+            window.title = "Paste Stack"
+            window.level = .statusBar
+            window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+            window.isMovableByWindowBackground = true
+            window.isReleasedWhenClosed = false
+            window.isOpaque = false; window.backgroundColor = .clear; window.hasShadow = true
+            window.contentView = NSHostingView(rootView: ReplicaStackView(state: state))
+            sharingPolicy.apply(to: window)
+            if !window.setFrameUsingName("PasteReplicaStack") {
+                let frame = NSScreen.main?.visibleFrame ?? .init(x: 0, y: 0, width: 1200, height: 800)
+                window.setFrameOrigin(.init(x: frame.maxX - 284, y: frame.maxY - 96))
+            }
+            window.setFrameAutosaveName("PasteReplicaStack")
+            stackWindow = window
         }
-        show(stackWindow!)
+        hidePanel()
+        stackWindow!.orderFrontRegardless()
+        stackContentsChanged()
+    }
+
+    func hideStack() { stackWindow?.orderOut(nil); stackDidChange?() }
+
+    func stackContentsChanged() {
+        if let window = stackWindow {
+            let height = CGFloat(32 + min(10, max(1, state.stackItems.count)) * 44)
+            let top = window.frame.maxY
+            window.setFrame(.init(x: window.frame.minX, y: top - height, width: 264, height: height), display: true)
+        }
+        stackDidChange?()
+    }
+
+    func captureIntoStack(id: UUID) {
+        guard isStackVisible, let item = store.items.first(where: { $0.id == id && !$0.isDeleted }) else { return }
+        state.addToStack(item)
+    }
+
+    func consumeStackHead() {
+        guard let first = state.stackItems.first else { return }
+        state.stackIDs.removeAll { $0 == first.id }
+        if state.stackItems.isEmpty { hideStack() }
     }
 
     func newTextItem() { showEditor(item: nil) }
 
+    func renameHistory() {
+        guard let name = prompt(title: "重命名", message: "", initial: store.preferences.historyTitle) else { return }
+        store.preferences.historyTitle = name
+        state.perform { try store.save() }
+    }
+
+    func renameItem(_ item: ClipboardItem) {
+        guard let title = prompt(title: "重命名", message: "", initial: item.title) else { return }
+        state.perform { try store.updateItem(id: item.id, title: title, text: nil) }
+    }
+
+    func clearHistory() {
+        let alert = NSAlert()
+        sharingPolicy.apply(to: alert.window)
+        alert.messageText = "您确定要删除剪贴板历史记录吗？"
+        alert.informativeText = "已固定的项目和 Pinboards 不会被删除。此操作无法撤销。"
+        alert.addButton(withTitle: "删除历史"); alert.addButton(withTitle: "取消")
+        if alert.runModal() == .alertFirstButtonReturn { state.perform { try store.eraseHistory() } }
+    }
+
     func copySelection(plainTextOnly: Bool) {
-        guard let item = state.primaryItem, !item.isDeleted else { return }
-        copy(item: item, plainTextOnly: plainTextOnly)
+        let items = state.selectedItems
+        guard !items.isEmpty else { return }
+        copy(ids: items.map(\.id), plainTextOnly: plainTextOnly)
     }
 
     func copy(item: ClipboardItem, plainTextOnly: Bool) {
-        state.perform { try store.writeToPasteboard(id: item.id, pasteboard: pasteboard,
+        copy(ids: [item.id], plainTextOnly: plainTextOnly)
+    }
+
+    func copy(ids: [UUID], plainTextOnly: Bool) {
+        state.perform { try store.writeToPasteboard(ids: ids, pasteboard: pasteboard,
                                                     plainTextOnly: plainTextOnly) }
     }
 
     func pasteSelection(plainTextOnly: Bool) {
-        guard let item = state.primaryItem, !item.isDeleted else { return }
-        paste(item: item, plainTextOnly: plainTextOnly)
+        let items = state.selectedItems
+        guard !items.isEmpty else { return }
+        paste(ids: items.map(\.id), plainTextOnly: plainTextOnly)
     }
 
     @discardableResult
     func paste(item: ClipboardItem, plainTextOnly: Bool) -> Bool {
-        guard let pasteHandler else {
+        paste(ids: [item.id], plainTextOnly: plainTextOnly)
+    }
+
+    @discardableResult
+    func paste(ids: [UUID], plainTextOnly: Bool) -> Bool {
+        guard !ids.isEmpty else { return false }
+        if let pasteItemsHandler {
+            hidePanel()
+            pasteItemsHandler(ids, plainTextOnly)
+            return true
+        }
+        guard ids.count == 1, let id = ids.first, let pasteHandler else {
             presentError(NSError(domain: "PasteReplica", code: 1,
                                  userInfo: [NSLocalizedDescriptionKey: "粘贴服务尚未就绪，请使用“拷贝”后粘贴。 "]))
             return false
         }
         hidePanel()
-        pasteHandler(item.id, plainTextOnly)
+        pasteHandler(id, plainTextOnly)
         return true
     }
 
@@ -256,6 +409,7 @@ final class ReplicaUIController {
         window.backgroundColor = .clear
         window.hasShadow = true
         window.level = .floating
+        sharingPolicy.apply(to: window)
         window.contentView = NSHostingView(rootView: ReplicaEditorView(state: state, item: item, close: { [weak self] in
             self?.itemWindows[windowID]?.close()
             self?.itemWindows.removeValue(forKey: windowID)
@@ -294,6 +448,7 @@ final class ReplicaUIController {
 
     func exportArchive() {
         let chooser = NSSavePanel()
+        sharingPolicy.apply(to: chooser)
         chooser.title = "导出剪贴板归档"
         chooser.nameFieldStringValue = "PasteReplica-archive.json"
         chooser.allowedContentTypes = [.json]
@@ -304,6 +459,7 @@ final class ReplicaUIController {
 
     func importArchive() {
         let chooser = NSOpenPanel()
+        sharingPolicy.apply(to: chooser)
         chooser.title = "导入剪贴板归档"
         chooser.allowedContentTypes = [.json]
         chooser.allowsMultipleSelection = false
@@ -315,12 +471,14 @@ final class ReplicaUIController {
 
     func presentError(_ error: Error) {
         let alert = NSAlert(error: error)
+        sharingPolicy.apply(to: alert.window)
         alert.messageText = "操作未完成"
         alert.runModal()
     }
 
     private func prompt(title: String, message: String, initial: String) -> String? {
         let alert = NSAlert()
+        sharingPolicy.apply(to: alert.window)
         alert.messageText = title
         alert.informativeText = message
         let input = NSTextField(string: initial)
@@ -365,6 +523,7 @@ final class ReplicaUIController {
         window.title = title
         window.isReleasedWhenClosed = false
         window.contentView = NSHostingView(rootView: view)
+        sharingPolicy.apply(to: window)
         window.center()
         return window
     }
@@ -381,26 +540,31 @@ final class ReplicaUIController {
         let shift = modifiers.contains(.shift)
         let isEditing = panel.firstResponder is NSTextView
         let key = event.charactersIgnoringModifiers?.lowercased() ?? ""
+        if store.preferences.previousPinboardShortcut?.matches(event) == true { state.switchBoard(-1); return true }
+        if store.preferences.nextPinboardShortcut?.matches(event) == true { state.switchBoard(1); return true }
+        let plainModifiers = NSEvent.ModifierFlags(rawValue: store.preferences.plainTextModifierRawValue)
+        let plain = !plainModifiers.isEmpty && modifiers.isSuperset(of: plainModifiers)
+        let quickModifiers = NSEvent.ModifierFlags(rawValue: store.preferences.quickPasteModifierRawValue)
+        let numericKeys: [UInt16: Int] = [18: 1, 19: 2, 20: 3, 21: 4, 23: 5, 22: 6, 26: 7, 28: 8, 25: 9]
+        if !quickModifiers.isEmpty, modifiers.isSuperset(of: quickModifiers),
+           let number = numericKeys[event.keyCode], state.visibleItems.indices.contains(number - 1) {
+            state.select(state.visibleItems[number - 1])
+            pasteSelection(plainTextOnly: plain)
+            return true
+        }
         if command {
-            if event.keyCode == 123 { state.switchBoard(-1); return true }
-            if event.keyCode == 124 { state.switchBoard(1); return true }
-            if let number = Int(key), (1...9).contains(number), state.visibleItems.indices.contains(number - 1) {
-                state.select(state.visibleItems[number - 1])
-                pasteSelection(plainTextOnly: shift)
-                return true
-            }
             switch key {
             case "f": focusSearch(); return true
             case "n": shift ? createPinboard() : newTextItem(); return true
             case ",": showSettings(); return true
             case "c" where !isEditing: copySelection(plainTextOnly: shift); return true
-            case "a" where !isEditing: state.selection = Set(state.visibleItems.map(\.id)); return true
+            case "a" where !isEditing: shift ? state.deselectAll() : state.selectAll(); return true
             default: break
             }
         }
         switch event.keyCode {
         case 53: hidePanel(); return true
-        case 36, 76: pasteSelection(plainTextOnly: command || shift); return true
+        case 36, 76: pasteSelection(plainTextOnly: command || plain); return true
         case 123 where !isEditing: state.moveSelection(-1, extending: shift); return true
         case 124 where !isEditing: state.moveSelection(1, extending: shift); return true
         case 49 where !isEditing:

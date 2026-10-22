@@ -43,6 +43,10 @@ open -n 'replica/dist/Paste Replica.app' --args \
 
 ## 验证与差异
 
+0.3.0 增加离线 Vision OCR、多选原始表示写回、快捷键录制及 Stack 队列持久化。通用设置中的“后台运行”使用独立 LoginItems 辅助进程，默认不自动注册；系统服务注册及崩溃恢复尚未动态验收。本轮证据与未验范围见 [local-evidence.json](../reports/replica/local-evidence.json)。
+
+多选纯文本目前以换行合并，尚未证明分隔规则等同原版；窗口共享测试验证 NSWindow 状态，不代表会议或录屏软件实际遮蔽。
+
 完整本地验证入口：`bash replica/scripts/validate.sh`。报告默认写入被 Git 忽略的 `.local/replica-validation/`。
 
 ```sh

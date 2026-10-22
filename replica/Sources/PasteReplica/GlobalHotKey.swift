@@ -8,8 +8,10 @@ final class GlobalHotKey {
     private var identifier: UInt32 = 1
     var action: (() -> Void)?
 
-    func register(keyCode: UInt32 = UInt32(kVK_ANSI_V), identifier: UInt32 = 1) -> OSStatus {
+    func register(keyCode: UInt32 = UInt32(kVK_ANSI_V), modifiers: NSEvent.ModifierFlags = [.command, .shift],
+                  identifier: UInt32 = 1) -> OSStatus {
         unregister()
+        guard keyCode < 128, modifiers.subtracting([.command, .shift, .option, .control]).isEmpty else { return OSStatus(paramErr) }
         self.identifier = identifier
         var specification = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: UInt32(kEventHotKeyPressed))
         let context = Unmanaged.passUnretained(self).toOpaque()
@@ -29,7 +31,12 @@ final class GlobalHotKey {
         }, 1, &specification, context, &handler)
         guard install == noErr else { return install }
         let identifier = EventHotKeyID(signature: 0x5052504c, id: identifier)
-        let status = RegisterEventHotKey(keyCode, UInt32(cmdKey | shiftKey), identifier,
+        var carbonModifiers: UInt32 = 0
+        if modifiers.contains(.command) { carbonModifiers |= UInt32(cmdKey) }
+        if modifiers.contains(.shift) { carbonModifiers |= UInt32(shiftKey) }
+        if modifiers.contains(.option) { carbonModifiers |= UInt32(optionKey) }
+        if modifiers.contains(.control) { carbonModifiers |= UInt32(controlKey) }
+        let status = RegisterEventHotKey(keyCode, carbonModifiers, identifier,
                                         GetApplicationEventTarget(), 0, &reference)
         if status != noErr { unregister() }
         return status

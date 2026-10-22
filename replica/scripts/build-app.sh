@@ -13,6 +13,26 @@ bundle="$replica_root/dist/Paste Replica.app"
 mkdir -p "$bundle/Contents/MacOS" "$bundle/Contents/Resources"
 cp "$binary_root/PasteReplica" "$bundle/Contents/MacOS/PasteReplica"
 cp "$binary_root/paste-replica-mcp" "$bundle/Contents/MacOS/paste-replica-mcp"
+helper="$bundle/Contents/Library/LoginItems/Paste Replica Helper.app"
+mkdir -p "$helper/Contents/MacOS"
+cp "$binary_root/PasteReplicaHelper" "$helper/Contents/MacOS/PasteReplicaHelper"
+cat > "$helper/Contents/Info.plist" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>CFBundleIdentifier</key><string>com.yingyanzhitong.paste-replica.helper</string>
+<key>CFBundleName</key><string>Paste Replica Helper</string>
+<key>CFBundleExecutable</key><string>PasteReplicaHelper</string>
+<key>CFBundlePackageType</key><string>APPL</string>
+<key>CFBundleShortVersionString</key><string>$version</string>
+<key>CFBundleVersion</key><string>$version</string>
+<key>LSMinimumSystemVersion</key><string>14.0</string>
+<key>LSUIElement</key><true/>
+<key>NSPrincipalClass</key><string>NSApplication</string>
+</dict></plist>
+PLIST
+plutil -lint "$helper/Contents/Info.plist"
+codesign --force --sign - "$helper"
 cat > "$bundle/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

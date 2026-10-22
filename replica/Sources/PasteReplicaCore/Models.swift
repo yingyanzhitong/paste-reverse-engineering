@@ -1,6 +1,6 @@
 import Foundation
 
-public enum ClipboardKind: String, Codable, CaseIterable {
+public enum ClipboardKind: String, Codable, CaseIterable, Sendable {
     case text, link, image, files, richText, color, unknown
 
     public var displayName: String {
@@ -16,7 +16,7 @@ public enum ClipboardKind: String, Codable, CaseIterable {
     }
 }
 
-public struct ClipboardItem: Identifiable, Codable, Equatable {
+public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
     public var id: UUID
     public var createdAt: Date
     public var updatedAt: Date
@@ -52,7 +52,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable {
     }
 }
 
-public struct Pinboard: Identifiable, Codable, Equatable {
+public struct Pinboard: Identifiable, Codable, Equatable, Sendable {
     public var id: UUID
     public var name: String
     public var colorHex: String
@@ -66,7 +66,7 @@ public struct Pinboard: Identifiable, Codable, Equatable {
     }
 }
 
-public struct AppPreferences: Codable, Equatable {
+public struct AppPreferences: Codable, Equatable, Sendable {
     public var historyLimit: Int
     public var isMonitoringPaused: Bool
     public var pauseUntil: Date?
@@ -79,12 +79,30 @@ public struct AppPreferences: Codable, Equatable {
     public var pasteToActiveApp: Bool
     public var alwaysPastePlainText: Bool
     public var historyRetentionDays: Int
+    public var historyShortcut: KeyboardShortcut?
+    public var stackShortcut: KeyboardShortcut?
+    public var previousPinboardShortcut: KeyboardShortcut?
+    public var nextPinboardShortcut: KeyboardShortcut?
+    public var quickPasteModifierRawValue: UInt
+    public var plainTextModifierRawValue: UInt
+    public var showDuringScreenSharing: Bool
+    public var ignoreTransientContent: Bool
+    public var historyTitle: String
+    public var stackItemIDs: [UUID]
+    public var stackReversed: Bool
 
     public init(historyLimit: Int = 1000, isMonitoringPaused: Bool = false, pauseUntil: Date? = nil,
                 excludedBundleIDs: [String] = [], ignoreConcealedContent: Bool = true,
                 playSounds: Bool = false, appearance: String = "system", panelHeight: Double = 332,
                 launchAtLogin: Bool = false, pasteToActiveApp: Bool = true, alwaysPastePlainText: Bool = false,
-                historyRetentionDays: Int = 0) {
+                historyRetentionDays: Int = 0,
+                historyShortcut: KeyboardShortcut? = KeyboardShortcut.historyDefault,
+                stackShortcut: KeyboardShortcut? = KeyboardShortcut.stackDefault,
+                previousPinboardShortcut: KeyboardShortcut? = KeyboardShortcut.previousPinboardDefault,
+                nextPinboardShortcut: KeyboardShortcut? = KeyboardShortcut.nextPinboardDefault,
+                quickPasteModifierRawValue: UInt = 1 << 20, plainTextModifierRawValue: UInt = 1 << 17,
+                showDuringScreenSharing: Bool = true, ignoreTransientContent: Bool = true,
+                historyTitle: String = "剪贴板", stackItemIDs: [UUID] = [], stackReversed: Bool = false) {
         self.historyLimit = historyLimit
         self.isMonitoringPaused = isMonitoringPaused
         self.pauseUntil = pauseUntil
@@ -97,11 +115,25 @@ public struct AppPreferences: Codable, Equatable {
         self.pasteToActiveApp = pasteToActiveApp
         self.alwaysPastePlainText = alwaysPastePlainText
         self.historyRetentionDays = historyRetentionDays
+        self.historyShortcut = historyShortcut
+        self.stackShortcut = stackShortcut
+        self.previousPinboardShortcut = previousPinboardShortcut
+        self.nextPinboardShortcut = nextPinboardShortcut
+        self.quickPasteModifierRawValue = quickPasteModifierRawValue
+        self.plainTextModifierRawValue = plainTextModifierRawValue
+        self.showDuringScreenSharing = showDuringScreenSharing
+        self.ignoreTransientContent = ignoreTransientContent
+        self.historyTitle = historyTitle
+        self.stackItemIDs = stackItemIDs
+        self.stackReversed = stackReversed
     }
 
     private enum CodingKeys: String, CodingKey {
         case historyLimit, isMonitoringPaused, pauseUntil, excludedBundleIDs, ignoreConcealedContent
         case playSounds, appearance, panelHeight, launchAtLogin, pasteToActiveApp, alwaysPastePlainText, historyRetentionDays
+        case historyShortcut, stackShortcut, previousPinboardShortcut, nextPinboardShortcut
+        case quickPasteModifierRawValue, plainTextModifierRawValue, showDuringScreenSharing, ignoreTransientContent
+        case historyTitle, stackItemIDs, stackReversed
     }
 
     public init(from decoder: Decoder) throws {
@@ -117,7 +149,46 @@ public struct AppPreferences: Codable, Equatable {
                   launchAtLogin: try values.decodeIfPresent(Bool.self, forKey: .launchAtLogin) ?? false,
                   pasteToActiveApp: try values.decodeIfPresent(Bool.self, forKey: .pasteToActiveApp) ?? true,
                   alwaysPastePlainText: try values.decodeIfPresent(Bool.self, forKey: .alwaysPastePlainText) ?? false,
-                  historyRetentionDays: try values.decodeIfPresent(Int.self, forKey: .historyRetentionDays) ?? 0)
+                  historyRetentionDays: try values.decodeIfPresent(Int.self, forKey: .historyRetentionDays) ?? 0,
+                  historyShortcut: values.contains(.historyShortcut) ? try values.decodeIfPresent(KeyboardShortcut.self, forKey: .historyShortcut) : KeyboardShortcut.historyDefault,
+                  stackShortcut: values.contains(.stackShortcut) ? try values.decodeIfPresent(KeyboardShortcut.self, forKey: .stackShortcut) : KeyboardShortcut.stackDefault,
+                  previousPinboardShortcut: values.contains(.previousPinboardShortcut) ? try values.decodeIfPresent(KeyboardShortcut.self, forKey: .previousPinboardShortcut) : KeyboardShortcut.previousPinboardDefault,
+                  nextPinboardShortcut: values.contains(.nextPinboardShortcut) ? try values.decodeIfPresent(KeyboardShortcut.self, forKey: .nextPinboardShortcut) : KeyboardShortcut.nextPinboardDefault,
+                  quickPasteModifierRawValue: try values.decodeIfPresent(UInt.self, forKey: .quickPasteModifierRawValue) ?? (1 << 20),
+                  plainTextModifierRawValue: try values.decodeIfPresent(UInt.self, forKey: .plainTextModifierRawValue) ?? (1 << 17),
+                  showDuringScreenSharing: try values.decodeIfPresent(Bool.self, forKey: .showDuringScreenSharing) ?? true,
+                  ignoreTransientContent: try values.decodeIfPresent(Bool.self, forKey: .ignoreTransientContent) ?? true,
+                  historyTitle: try values.decodeIfPresent(String.self, forKey: .historyTitle) ?? "剪贴板",
+                  stackItemIDs: try values.decodeIfPresent([UUID].self, forKey: .stackItemIDs) ?? [],
+                  stackReversed: try values.decodeIfPresent(Bool.self, forKey: .stackReversed) ?? false)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        try values.encode(historyLimit, forKey: .historyLimit)
+        try values.encode(isMonitoringPaused, forKey: .isMonitoringPaused)
+        try values.encodeIfPresent(pauseUntil, forKey: .pauseUntil)
+        try values.encode(excludedBundleIDs, forKey: .excludedBundleIDs)
+        try values.encode(ignoreConcealedContent, forKey: .ignoreConcealedContent)
+        try values.encode(playSounds, forKey: .playSounds)
+        try values.encode(appearance, forKey: .appearance)
+        try values.encode(panelHeight, forKey: .panelHeight)
+        try values.encode(launchAtLogin, forKey: .launchAtLogin)
+        try values.encode(pasteToActiveApp, forKey: .pasteToActiveApp)
+        try values.encode(alwaysPastePlainText, forKey: .alwaysPastePlainText)
+        try values.encode(historyRetentionDays, forKey: .historyRetentionDays)
+        // nil 必须编码为 null，不能省略，否则重载会恢复默认快捷键。
+        try values.encode(historyShortcut, forKey: .historyShortcut)
+        try values.encode(stackShortcut, forKey: .stackShortcut)
+        try values.encode(previousPinboardShortcut, forKey: .previousPinboardShortcut)
+        try values.encode(nextPinboardShortcut, forKey: .nextPinboardShortcut)
+        try values.encode(quickPasteModifierRawValue, forKey: .quickPasteModifierRawValue)
+        try values.encode(plainTextModifierRawValue, forKey: .plainTextModifierRawValue)
+        try values.encode(showDuringScreenSharing, forKey: .showDuringScreenSharing)
+        try values.encode(ignoreTransientContent, forKey: .ignoreTransientContent)
+        try values.encode(historyTitle, forKey: .historyTitle)
+        try values.encode(stackItemIDs, forKey: .stackItemIDs)
+        try values.encode(stackReversed, forKey: .stackReversed)
     }
 }
 

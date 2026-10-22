@@ -165,6 +165,17 @@ public final class ClipboardStore: ObservableObject {
         if local.pasteToActiveApp != base.pasteToActiveApp { result.preferences.pasteToActiveApp = local.pasteToActiveApp }
         if local.alwaysPastePlainText != base.alwaysPastePlainText { result.preferences.alwaysPastePlainText = local.alwaysPastePlainText }
         if local.historyRetentionDays != base.historyRetentionDays { result.preferences.historyRetentionDays = local.historyRetentionDays }
+        if local.historyShortcut != base.historyShortcut { result.preferences.historyShortcut = local.historyShortcut }
+        if local.stackShortcut != base.stackShortcut { result.preferences.stackShortcut = local.stackShortcut }
+        if local.previousPinboardShortcut != base.previousPinboardShortcut { result.preferences.previousPinboardShortcut = local.previousPinboardShortcut }
+        if local.nextPinboardShortcut != base.nextPinboardShortcut { result.preferences.nextPinboardShortcut = local.nextPinboardShortcut }
+        if local.quickPasteModifierRawValue != base.quickPasteModifierRawValue { result.preferences.quickPasteModifierRawValue = local.quickPasteModifierRawValue }
+        if local.plainTextModifierRawValue != base.plainTextModifierRawValue { result.preferences.plainTextModifierRawValue = local.plainTextModifierRawValue }
+        if local.showDuringScreenSharing != base.showDuringScreenSharing { result.preferences.showDuringScreenSharing = local.showDuringScreenSharing }
+        if local.ignoreTransientContent != base.ignoreTransientContent { result.preferences.ignoreTransientContent = local.ignoreTransientContent }
+        if local.historyTitle != base.historyTitle { result.preferences.historyTitle = local.historyTitle }
+        if local.stackItemIDs != base.stackItemIDs { result.preferences.stackItemIDs = local.stackItemIDs }
+        if local.stackReversed != base.stackReversed { result.preferences.stackReversed = local.stackReversed }
         return result
     }
 
@@ -231,7 +242,9 @@ public final class ClipboardStore: ObservableObject {
     public func add(_ item: ClipboardItem) throws -> UUID {
         try mutate { state in
             if let i = state.items.firstIndex(where: {
-                $0.kind == item.kind && $0.plainText == item.plainText && $0.payloads == item.payloads
+                $0.kind == item.kind && $0.plainText == item.plainText
+                    && $0.payloads.filter { !Self.analysisPayloadKeys.contains($0.key) }
+                    == item.payloads.filter { !Self.analysisPayloadKeys.contains($0.key) }
             }) {
                 state.items[i].updatedAt = max(Date(), item.updatedAt)
                 state.items[i].sourceName = item.sourceName
@@ -261,7 +274,7 @@ public final class ClipboardStore: ObservableObject {
             guard (includeDeleted || !item.isDeleted), kind == nil || item.kind == kind,
                   pinboardID == nil || item.pinboardIDs.contains(pinboardID!),
                   pinboardID != nil || !terms.isEmpty || includeDeleted || item.isInHistory else { return false }
-            let haystack = folded([item.title, item.plainText ?? "", item.sourceName, item.sourceBundleID ?? "", item.kind.displayName].joined(separator: "\n"))
+            let haystack = folded([item.title, item.plainText ?? "", item.recognizedText ?? "", item.sourceName, item.sourceBundleID ?? "", item.kind.displayName].joined(separator: "\n"))
             return terms.allSatisfy { haystack.contains($0) }
         }.sorted { $0.updatedAt > $1.updatedAt }
     }
@@ -326,8 +339,22 @@ public final class ClipboardStore: ObservableObject {
     }
     public func removePinboard(id: UUID) throws {
         try mutate { state in
+            let affected = Set(state.items.filter { $0.pinboardIDs.contains(id) }.map(\.id))
             state.pinboards.removeAll { $0.id == id }
             for i in state.items.indices { state.items[i].pinboardIDs.remove(id) }
+            state.items.removeAll { affected.contains($0.id) && !$0.isInHistory && $0.pinboardIDs.isEmpty }
+        }
+    }
+
+    @discardableResult
+    public func duplicateItem(id: UUID) throws -> UUID {
+        try mutate { state in
+            guard var item = state.items.first(where: { $0.id == id && !$0.isDeleted }) else { throw ClipboardStoreError.itemNotFound }
+            item.id = UUID()
+            item.createdAt = Date()
+            item.updatedAt = item.createdAt
+            state.items.append(item)
+            return item.id
         }
     }
     public func assign(ids: Set<UUID>, to pinboardID: UUID?) throws {
@@ -342,6 +369,37 @@ public final class ClipboardStore: ObservableObject {
     public func unassign(ids: Set<UUID>, from pinboardID: UUID) throws {
         try mutate { state in
             for i in state.items.indices where ids.contains(state.items[i].id) { state.items[i].pinboardIDs.remove(pinboardID) }
+        }
+    }
+
+    public func updatePinboard(id: UUID, colorHex: String? = nil, sortOrder: Int? = nil) throws {
+        try mutate { state in
+            guard let i = state.pinboards.firstIndex(where: { $0.id == id }) else { throw ClipboardStoreError.pinboardNotFound }
+            if let colorHex { state.pinboards[i].colorHex = colorHex }
+            if let sortOrder { state.pinboards[i].sortOrder = sortOrder }
+        }
+    }
+
+    public func reorderPinboards(ids: [UUID]) throws {
+        try mutate { state in
+            guard Set(ids).count == ids.count, Set(ids) == Set(state.pinboards.map(\.id)) else { throw ClipboardStoreError.pinboardNotFound }
+            let positions = Dictionary(uniqueKeysWithValues: ids.enumerated().map { ($0.element, $0.offset) })
+            for i in state.pinboards.indices { state.pinboards[i].sortOrder = positions[state.pinboards[i].id]! }
+        }
+    }
+
+    public func eraseHistory() throws {
+        try mutate { state in
+            state.items.removeAll { $0.isInHistory && $0.pinboardIDs.isEmpty }
+            for i in state.items.indices { state.items[i].isInHistory = false }
+        }
+    }
+
+    func saveRecognizedText(id: UUID, text: String, expectedImageData: Data) throws {
+        try mutate { state in
+            guard let i = state.items.firstIndex(where: { $0.id == id && !$0.isDeleted }),
+                  state.items[i].kind == .image, state.items[i].imageData == expectedImageData else { return }
+            state.items[i].payloads[Self.recognizedTextPayloadKey] = Data(text.utf8)
         }
     }
 

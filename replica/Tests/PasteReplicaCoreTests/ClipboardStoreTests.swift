@@ -15,6 +15,23 @@ final class ClipboardStoreTests {
         NSPasteboard(name: .init("PasteReplicaTests-\(UUID().uuidString)"))
     }
 
+    @MainActor
+    private func textImageFixture() throws -> Data {
+        let bitmap = try requireValue(NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: 1400, pixelsHigh: 260,
+                                                       bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true,
+                                                       isPlanar: false, colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0))
+        let context = try requireValue(NSGraphicsContext(bitmapImageRep: bitmap))
+        NSGraphicsContext.saveGraphicsState()
+        NSGraphicsContext.current = context
+        NSColor.white.setFill()
+        NSRect(x: 0, y: 0, width: 1400, height: 260).fill()
+        ("PASTE REPLICA 8426" as NSString).draw(with: NSRect(x: 40, y: 90, width: 1320, height: 110), attributes: [
+            .font: NSFont.boldSystemFont(ofSize: 86), .foregroundColor: NSColor.black
+        ])
+        NSGraphicsContext.restoreGraphicsState()
+        return try requireValue(bitmap.representation(using: .png, properties: [:]))
+    }
+
     func testUnicodeSearchDeduplicationAndIndependentRepresentations() async throws {
         let directory = try temporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directory) }
@@ -135,6 +152,43 @@ final class ClipboardStoreTests {
             try b.permanentlyDelete(ids: [first])
             try a.save()
             expectFalse(a.items.contains { $0.id == first }, "A permanent deletion cannot be resurrected by stale edits")
+        }
+    }
+
+    func testHistoryErasureAndQueuePreferencesSurviveReopenAndMerge() async throws {
+        let directory = try temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directory) }
+        try await MainActor.run {
+            let store = try ClipboardStore(directoryURL: directory)
+            let pinned = try store.add(ClipboardItem(plainText: "keep pinned"))
+            let ordinary = try store.add(ClipboardItem(plainText: "erase ordinary"))
+            let board = try store.createPinboard(name: "保留", colorHex: "#00AAFF")
+            try store.assign(ids: [pinned], to: board.id)
+            let concurrent = try ClipboardStore(directoryURL: directory)
+            store.preferences.historyTitle = "本地剪贴板"
+            store.preferences.stackItemIDs = [pinned, ordinary]
+            store.preferences.stackReversed = true
+            concurrent.preferences.ignoreTransientContent = false
+            try concurrent.save()
+            try store.save()
+            let reopened = try ClipboardStore(directoryURL: directory)
+            expectEqual(reopened.preferences.historyTitle, "本地剪贴板")
+            expectEqual(reopened.preferences.stackItemIDs, [pinned, ordinary])
+            expectTrue(reopened.preferences.stackReversed)
+            expectFalse(reopened.preferences.ignoreTransientContent)
+            try reopened.eraseHistory()
+            let erased = try ClipboardStore(directoryURL: directory)
+            expectFalse(erased.items.contains { $0.id == ordinary })
+            let preserved = try requireValue(erased.items.first { $0.id == pinned })
+            expectFalse(preserved.isInHistory)
+            expectTrue(preserved.pinboardIDs.contains(board.id))
+            concurrent.preferences.historyTitle = "并发改名"
+            try concurrent.save()
+            try erased.reload()
+            expectEqual(erased.preferences.historyTitle, "并发改名")
+            expectFalse(erased.items.contains { $0.id == ordinary }, "Stale preferences cannot restore erased history")
+            expectFalse(try requireValue(erased.items.first { $0.id == pinned }).isInHistory)
+            expectEqual(erased.preferences.stackItemIDs, [pinned, ordinary])
         }
     }
 
@@ -406,6 +460,126 @@ final class ClipboardStoreTests {
             store.preferences.historyRetentionDays = 0
             _ = try store.add(ClipboardItem(createdAt: old, plainText: "old after setting permanent"))
             expectTrue(store.items.contains { $0.plainText == "old after setting permanent" })
+        }
+    }
+
+    func testMultiSelectionOrderRawRepresentationsAndAtomicFailure() async throws {
+        let directory = try temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directory) }
+        try await MainActor.run {
+            let store = try ClipboardStore(directoryURL: directory)
+            let pasteboard = privatePasteboard()
+            defer { pasteboard.releaseGlobally() }
+            let text = try store.add(ClipboardItem(plainText: "alpha 中文", payloads: [NSPasteboard.PasteboardType.string.rawValue: Data("alpha 中文".utf8)]))
+            let rich = try store.add(ClipboardItem(title: "rich"))
+            let attributed = NSAttributedString(string: "BOLD", attributes: [.font: NSFont.boldSystemFont(ofSize: 24)])
+            try store.updateRichTextItem(id: rich, attributedString: attributed)
+            let rtf = try requireValue(store.items.first { $0.id == rich }?.payloads[NSPasteboard.PasteboardType.rtf.rawValue])
+            let fileURL = directory.appendingPathComponent("synthetic file.txt").absoluteString
+            let file = try store.add(ClipboardItem(kind: .files, plainText: "synthetic file.txt", payloads: [NSPasteboard.PasteboardType.fileURL.rawValue: Data(fileURL.utf8)]))
+            let png = try textImageFixture()
+            let image = try store.add(ClipboardItem(kind: .image, payloads: [NSPasteboard.PasteboardType.png.rawValue: png]))
+            try store.writeToPasteboard(ids: [file, rich, image, text], pasteboard: pasteboard, plainTextOnly: false)
+            let objects = try requireValue(pasteboard.pasteboardItems)
+            expectEqual(objects.count, 4)
+            expectEqual(objects[0].data(forType: .fileURL), Data(fileURL.utf8))
+            expectEqual(objects[1].data(forType: .rtf), rtf)
+            expectEqual(objects[2].data(forType: .png), png)
+            expectEqual(objects[3].string(forType: .string), "alpha 中文")
+            try store.writeToPasteboard(ids: [rich, text, file], pasteboard: pasteboard, plainTextOnly: true)
+            expectEqual(pasteboard.string(forType: .string), "BOLD\nalpha 中文\nsynthetic file.txt")
+            expectEqual(pasteboard.pasteboardItems?.count, 1)
+            expectNil(pasteboard.data(forType: .rtf))
+            let previous = pasteboard.changeCount
+            expectThrows(try store.writeToPasteboard(ids: [text, UUID()], pasteboard: pasteboard, plainTextOnly: false))
+            expectEqual(pasteboard.changeCount, previous, "Invalid selections cannot partially replace the clipboard")
+            expectThrows(try store.writeToPasteboard(ids: [text, image], pasteboard: pasteboard, plainTextOnly: true))
+            expectEqual(pasteboard.changeCount, previous)
+        }
+    }
+
+    func testPinboardReorderingDuplicationAndDeletingPinOnlyContent() async throws {
+        let directory = try temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directory) }
+        try await MainActor.run {
+            let store = try ClipboardStore(directoryURL: directory)
+            let a = try store.createPinboard(name: "a", colorHex: "#112233")
+            let b = try store.createPinboard(name: "b", colorHex: "#445566")
+            try store.updatePinboard(id: a.id, colorHex: "#ABCDEF")
+            try store.reorderPinboards(ids: [b.id, a.id])
+            expectEqual(store.pinboards.map(\.id), [b.id, a.id])
+            expectEqual(store.pinboards.first { $0.id == a.id }?.colorHex, "#ABCDEF")
+            expectThrows(try store.reorderPinboards(ids: [b.id, b.id]))
+            let history = try store.add(ClipboardItem(plainText: "history", pinboardIDs: [a.id]))
+            let onlyA = try store.add(ClipboardItem(plainText: "pin only a", pinboardIDs: [a.id], isInHistory: false))
+            let both = try store.add(ClipboardItem(plainText: "pin both", pinboardIDs: [a.id, b.id], isInHistory: false))
+            let duplicate = try store.duplicateItem(id: history)
+            expectFalse(duplicate == history)
+            expectEqual(store.items.first { $0.id == duplicate }?.plainText, "history")
+            expectEqual(store.items.first { $0.id == duplicate }?.pinboardIDs, [a.id])
+            try store.removePinboard(id: a.id)
+            expectFalse(store.items.contains { $0.id == onlyA })
+            expectTrue(store.items.contains { $0.id == history })
+            expectTrue(store.items.contains { $0.id == duplicate })
+            expectEqual(store.items.first { $0.id == both }?.pinboardIDs, [b.id])
+            let reopened = try ClipboardStore(directoryURL: directory)
+            expectEqual(reopened.pinboards.map(\.id), [b.id])
+        }
+    }
+
+    func testLocalVisionOCRSearchPersistenceAndOriginalPayloadIsolation() async throws {
+        let directory = try temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let fixture = try await MainActor.run { () -> (ClipboardStore, UUID, Data) in
+            let store = try ClipboardStore(directoryURL: directory)
+            let data = try textImageFixture()
+            let id = try store.add(ClipboardItem(title: "OCR fixture", kind: .image, payloads: [NSPasteboard.PasteboardType.png.rawValue: data]))
+            return (store, id, data)
+        }
+        let recognized = try await fixture.0.recognizeImageText(id: fixture.1)
+        expectTrue(recognized.uppercased().contains("PASTE"), "Vision must recognize text from real rendered pixels")
+        expectTrue(recognized.contains("8426"))
+        try await MainActor.run {
+            let store = fixture.0
+            let item = try requireValue(store.items.first { $0.id == fixture.1 })
+            expectEqual(item.kind, .image)
+            expectNil(item.plainText, "OCR is an index, not a replacement of the original image representation")
+            expectEqual(item.recognizedText, recognized)
+            expectEqual(item.payloads[NSPasteboard.PasteboardType.png.rawValue], fixture.2)
+            expectEqual(store.search(query: "replica 8426").map(\.id), [fixture.1])
+            let reopened = try ClipboardStore(directoryURL: directory)
+            expectEqual(reopened.items.first?.recognizedText, recognized)
+            let duplicate = try reopened.add(ClipboardItem(kind: .image, payloads: [NSPasteboard.PasteboardType.png.rawValue: fixture.2]))
+            expectEqual(duplicate, fixture.1, "Persisted OCR metadata must not defeat raw-content deduplication")
+            let pasteboard = privatePasteboard()
+            defer { pasteboard.releaseGlobally() }
+            try reopened.writeToPasteboard(id: fixture.1, pasteboard: pasteboard, plainTextOnly: false)
+            expectEqual(pasteboard.data(forType: .png), fixture.2)
+            expectNil(pasteboard.data(forType: .init("com.pastereplica.internal.recognized-text")))
+            try reopened.writeToPasteboard(id: fixture.1, pasteboard: pasteboard, plainTextOnly: true)
+            expectEqual(pasteboard.string(forType: .string), recognized)
+        }
+        do { _ = try await ImageTextRecognizer.recognize(imageData: Data([0, 1, 2, 3])); expectTrue(false, "Invalid image data must throw") }
+        catch { }
+    }
+
+    func testTransientOptOutStillRejectsReplicaWriteBack() async throws {
+        let directory = try temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directory) }
+        try await MainActor.run {
+            let store = try ClipboardStore(directoryURL: directory)
+            store.preferences.ignoreTransientContent = false
+            let pasteboard = privatePasteboard()
+            defer { pasteboard.releaseGlobally() }
+            let object = NSPasteboardItem()
+            object.setString("external transient", forType: .string)
+            object.setData(Data(), forType: .init("org.nspasteboard.TransientType"))
+            pasteboard.clearContents()
+            expectTrue(pasteboard.writeObjects([object]))
+            let id = try requireValue(store.capture(pasteboard: pasteboard, sourceName: "Synthetic", sourceBundleID: nil))
+            try store.writeToPasteboard(id: id, pasteboard: pasteboard, plainTextOnly: false)
+            expectNil(try store.capture(pasteboard: pasteboard, sourceName: "Replica", sourceBundleID: nil))
+            expectEqual(store.items.count, 1)
         }
     }
 
