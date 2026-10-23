@@ -3,10 +3,10 @@
   "version": "0.8.0-dev.22",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "2c08314bd0e63ada540371d2a856cd277d814997cd97ae5fbc3f1bfc676893e9",
-    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "08725f484bc3fdde40d056dd5a5dae21d98b4731eef3a2e3b441bf8bba4d8d3b",
-    "replica/Sources/PasteReplicaCore/Models.swift": "06684cbb34bad29d69184de8a2de7ff03c5ff20f2411c4e08ea2ccfdc7596ad5",
-    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "e648705bd890e43d1109f4ba0aadd82eba7d45b11e3a9f7e42688e3b89d38356",
-    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "5db4a39608e0b52d1355589d3c1187390f0ae1b566f2d989f8e0b51611e01c4c",
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "1620a024a011c19294f16680ae2a8d6e92afac426d4ebbe1dd4e1fac1e364ca0",
+    "replica/Sources/PasteReplicaCore/Models.swift": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271",
     "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2",
     "replica/Sources/PasteReplicaCore/OriginalFilePreviewMetadata.swift": "abf5d495807ef79b7d857eff269f77de1d69c704eafac9130616c7664a6eebe0",
     "replica/Sources/PasteReplica/UI/ReplicaFilePreviewContent.swift": "e2bd5375e67f5e326d371bf4c07944358d2a47098469a078d8fd086925c2e5ec",
@@ -15,9 +15,14 @@
     "replica/Sources/PasteReplicaCore/OriginalTextPreviewMetadata.swift": "7c09e2e2297ef070a792bf8a50e51ab162146d27b516d7e92ac3bd53df36b676",
     "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
     "replica/Sources/PasteReplicaCore/OriginalPreviewFooter.swift": "97d14915cc4fa873a0d526a42f168ea5487864d0b8327e825bee18e28bd2e25c",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "7f2a54c73efecf8c6f445b293ab8ac7c7b0e40d4f10831afb56949480db59807"
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85",
+    "replica/Sources/PasteReplicaCore/OriginalLinkPreviewMetadata.swift": "cf30ef0714e8f3bfa31c11765ce3a0493b3228013c3d4096cc5c32e851c2be00",
+    "replica/Sources/PasteReplicaCore/OriginalLinkDisplay.swift": "22ddf146e091d4b1f9fb0315e95a8bfb527542b1e1f945c9c80a776e47302b20",
+    "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "06533b5b0a24c1d4cfbab707ff1042ba9e341c9d143679b59ca2d2223dc4a26c",
+    "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift": "1d9ad12dc1f5b46c40b8ee4f06ab8362693d22e0d099625cde7209f0bd62db37",
+    "replica/Sources/PasteReplica/UI/ReplicaReadOnlyPreviewContent.swift": "75c71b7c823ac6dfe3e59a033db183419afd55dca88b37941f4a35eb9021d36b"
   },
-  "compiled_app_sha256": "743d8161736f6a633b75b3f748e13886fbf50d0b08df3559ad42dd2d37b83a54",
+  "compiled_app_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
   "connected_calls": [
     "add/capture/original-import/deduplicate/image-update -> ordered items -> generator -> selected binary PropertyList/JSON image Stored -> canonical rawPreview",
     "archive add/import preserves existing generic raw wire; nonnil image raw decodes without regeneration",
@@ -36,7 +41,7 @@
     "nonimage import preserves generic wire bytes; only actual changed-content writers discard old payload-derived raw values"
   ],
   "remaining": [
-    "all-content ContentMetadata enum projections, CoreData getter/setter ABI and parent f316490/f3168a8/f31ebc8 remain partial; image wire schema recovery is not byte-for-byte runtime equivalence",
+    "Five local Stored valueprojections (text/default,link,image,files,color) now sourceimplemented; originalContentMetadataenum/ConfigDI/CoreDataABI andparentsf316490/f3168a8/f31ebc8 remainpartial. No byte-for-byte runtime equivalence.",
     "binary-vs-JSON flag uses replica own preferences adapter; original Config lookup/default remains unproven",
     "raw-nil old typed metadata is an explicit compatibility fallback; both-nil records are not forcibly regenerated or assigned a version",
     "complete original legacy-generation timing, VM actor/background/DI and functional regression unverified"
@@ -44,17 +49,17 @@
   "functional_tests_executed": false,
   "products_started": false,
   "unified_build": {
-    "name": "gap-build42",
+    "name": "gap-build45",
     "manifest": ".local/gap-build-complete.json",
-    "manifest_sha256": "368d6dd089a9046c229f49ec92895e8b8ac4bc2727bec3621b795c01aeedb2a9",
-    "log": ".local/gap-build-42.log",
-    "seconds": 20.63,
-    "compiler_log_seconds": 18.89,
-    "inputs": 148,
+    "manifest_sha256": "bd6eca92e438a64a6c108b65bc6812692e7d043532ef5b1c769ebe5a74b44840",
+    "log": ".local/gap-build-45.log",
+    "seconds": 21.99,
+    "compiler_log_seconds": 20.26,
+    "inputs": 153,
     "sha_before_after_equal": true,
     "result": "compiled",
     "functional_execution": false,
-    "app_sha256": "743d8161736f6a633b75b3f748e13886fbf50d0b08df3559ad42dd2d37b83a54"
+    "app_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685"
   },
   "original_parent_status": {
     "0x100316490": "partial",
@@ -82,5 +87,27 @@
     "separate_contracts": "Compact card uses metadata UTF16 count/sample; full editor uses complete payload and its footer Character count, unchanged. Missing copied metadata is not recreated by card/getter.",
     "pure_helper": "f31a3a8 complete-source candidate with finite final42 body and identical nonthrow NSAttributedString-to-AttributedString SDK binding.",
     "remaining": "Original link projection, full multi-type factory/CoreData/VM/DI/ABI and functional equivalence remain partial."
+  },
+  "link_extension": {
+    "audit": "reports/replica/link-preview-metadata-static-audit.json",
+    "unified_build": {
+      "name": "gap-build45",
+      "manifest": ".local/gap-build-complete.json",
+      "manifest_sha256": "bd6eca92e438a64a6c108b65bc6812692e7d043532ef5b1c769ebe5a74b44840",
+      "log": ".local/gap-build-45.log",
+      "seconds": 21.99,
+      "compiler_log_seconds": 20.26,
+      "inputs": 153,
+      "sha_before_after_equal": true,
+      "result": "compiled",
+      "functional_execution": false,
+      "app_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685"
+    },
+    "facts": [
+      "Canonical URL/name/icon/image generation/wire/rawgetter+store actualwritechain implemented.",
+      "Pureformatter complete-sourcecandidate f3189b0 and actualcard/readOnly consumers bind45.",
+      "RealpreferenceisLinkPreviewsEnabled defaulttrue mapped to ownpersistedbool, originalproviderkeypathproof closed.",
+      "EnclosingUI/VM/ConfigDI/CoreDataABI parentspartial; no networking or functionalregression."
+    ]
   }
 }

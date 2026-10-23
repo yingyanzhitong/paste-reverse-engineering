@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d48c8",
-  "reviewed_at": "2026-10-23T14:42:38.618352+00:00",
+  "reviewed_at": "2026-10-23T14:59:15.369801+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+  "compiled_app_binary_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "按 lock→name→optional logger 顺序释放字段，再释放类实例。",
-  "review": "最终build44完整0x10011d3dc..0x10011d410（52B）：同顺序释放，dealloc(self,50,7)stub185118；metadata1f28f8前destroy slot1f28e8绑定11d3dc。",
+  "review": "最终build45完整0x100120cc8..0x100120cfc（52B）：同顺序释放，dealloc(self,50,7)stub1889c8；metadata1f6bf8前destroy slot1f6be8绑定120cc8。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x10011d3dc",
-    "end_exclusive": "0x10011d410",
+    "start": "0x100120cc8",
+    "end_exclusive": "0x100120cfc",
     "size": 52,
-    "sha256": "22cec0438724da25d55a61564e45df334dad5c547e4495290cb28791ebb0082a",
-    "binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+    "sha256": "e96ab3941a7414e6df7296d62a5ef0e74c6c1afa6bf7fb299acfc66e7fdf0a6b",
+    "binary_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
     "lc_function_starts_verified": true
   }
 }

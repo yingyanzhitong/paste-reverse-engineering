@@ -221,16 +221,18 @@ struct ReplicaClipboardCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             cardHeader
-            ReplicaItemContent(item: item, compact: true)
+            ReplicaItemContent(item: item, compact: true, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.horizontal, 12).padding(.top, 11)
+                .padding(.horizontal, item.kind == .link ? 0 : 12).padding(.top, item.kind == .link ? 0 : 11)
                 .clipped()
-            HStack(spacing: 4) {
-                if !item.pinboardIDs.isEmpty { Image(systemName: "pin.fill").font(.system(size: 10)) }
-                Text(cardSummary).lineLimit(2).frame(maxWidth: .infinity, alignment: item.kind == .link ? .leading : .center)
+            if item.kind != .link {
+                HStack(spacing: 4) {
+                    if !item.pinboardIDs.isEmpty { Image(systemName: "pin.fill").font(.system(size: 10)) }
+                    Text(cardSummary).lineLimit(2).frame(maxWidth: .infinity, alignment: .center)
+                }
+                .font(.system(size: 13)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
+                .padding(.horizontal, 12).padding(.bottom, 11).padding(.top, 7)
             }
-            .font(.system(size: 13)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
-            .padding(.horizontal, 12).padding(.bottom, 11).padding(.top, 7)
         }
         .frame(width: sideLength, height: sideLength)
         .background(ReplicaItemPreviewAnchor(itemID: item.id, controller: state.controller))
@@ -434,6 +436,7 @@ struct SourceAppIcon: View {
 struct ReplicaItemContent: View {
     let item: ClipboardItem
     let compact: Bool
+    var linkPreviewsEnabled = true
     var body: some View {
         Group {
             if item.kind == .image, let image = itemImage(item) {
@@ -451,7 +454,7 @@ struct ReplicaItemContent: View {
                 }
             } else if item.kind == .link {
                 if let metadata = item.decodedLinkPreviewMetadata {
-                    ReplicaLinkMetadataContent(metadata: metadata, compact: compact)
+                    ReplicaLinkMetadataContent(metadata: metadata, compact: compact, linkPreviewsEnabled: linkPreviewsEnabled)
                 }
             } else if compact, item.kind == .text || item.kind == .richText {
                 if let metadata = item.decodedTextPreviewMetadata {

@@ -1,0 +1,312 @@
+{
+  "kind": "dev24_pinboard_ownership_context_delete_retention_concentrated_review",
+  "reviewed_at": "2026-10-23T14:50:19.579425+00:00",
+  "functions": {
+    "Paste:0x1003614c0": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "existing_extended",
+      "contract": "原share权限guard后先处理输入实体，再按history/pinboard分支；无CKShare普通本地路径复用实体。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func assign(ids: Set<UUID>, to pinboardID: UUID?)"
+        }
+      ],
+      "remaining": "原完整CKShare权限/复制分支未接；不得误称所有离线Pinboard均需copy-on-write。原CoreData事务/通知身份仍partial。",
+      "compiled_review": "reports/replica/pinboard-ownership-static-audit.json"
+    },
+    "Paste:0x1003620f8": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "existing_extended",
+      "contract": "普通本地pinboard add复用输入实体并setList(target)，从旧板移出，已有targetowner不重复追加；原displayOrder另重排。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "state.items[i].pinboardIDs = [pinboardID]"
+        }
+      ],
+      "remaining": "本轮显式assign单owner已接；既有legacy多板数据不后台迁移，原每实体displayOrderInPinboard未完整映射，仍partial。",
+      "compiled_review": "reports/replica/pinboard-ownership-static-audit.json"
+    },
+    "Paste:0x100363004": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "existing_extended",
+      "contract": "historycontext清timestamp→当前isInHistoryfalse；pinboardcontext只清相同list；只有timestampnil&&listnil才deleteObject。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func delete(ids: Set<UUID>, contextPinboardID: UUID?)"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "try store.delete(ids: ids, contextPinboardID: pinboardID)"
+        }
+      ],
+      "remaining": "独立JSON无CoreData identity/transaction notification/NSUndo完整语义；旧delete(ids:)globaltrash兼容保留，不当作原全局物理删除。",
+      "compiled_review": "reports/replica/pinboard-ownership-static-audit.json"
+    },
+    "Paste:0x100363a3c": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "existing_extended",
+      "contract": "仅pinboardrawType2项逐项解owner，经36299C无history/owner后清实体。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func unassign(ids: Set<UUID>, from pinboardID: UUID)"
+        }
+      ],
+      "remaining": "当前Set仅显式解除，保旧多owner其他归属；原本地单owner格式及完整NSContext/事件父仍partial。",
+      "compiled_review": "reports/replica/pinboard-ownership-static-audit.json"
+    },
+    "Paste:0x100363810": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "existing_extended",
+      "contract": "原正days才按list==nil&&timestamp<now-days*86400清理；pinboard关联项不因年龄清history。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "for item in state.items where item.isInHistory && item.pinboardIDs.isEmpty && item.createdAt < cutoff"
+        }
+      ],
+      "remaining": "本轮只修确证age谓词，原historyattributes全部case/清理链及当前额外historyLimit count策略未证明全等，父partial。",
+      "compiled_review": "reports/replica/pinboard-ownership-static-audit.json"
+    }
+  },
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+    "replica/Sources/PasteReplicaCore/Models.swift": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90",
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841"
+  },
+  "summary": {
+    "source_ready": true,
+    "source_frozen": true,
+    "compiled": true,
+    "full_contract_candidates": 0,
+    "partial_functions": 5,
+    "new_function_count": 0,
+    "functional_tests_executed": false,
+    "products_started": false,
+    "independent_build_executed": false
+  },
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_evidence": [
+    ".local/pasteboard-dev24-pinboard-original-bodies.json",
+    "decompiled/Paste/part-0275.c:501",
+    "decompiled/Paste/part-0275.c:580",
+    "decompiled/Paste/part-0275.c:985",
+    "decompiled/Paste/part-0275.c:1596",
+    "decompiled/Paste/part-0275.c:1785",
+    "decompiled/Paste/part-0275.c:1847",
+    "decompiled/Paste/part-0275.c:1925",
+    "decompiled/Paste/part-0292.c:1720",
+    "decompiled/Paste/part-0260.c:278",
+    "decompiled/Paste/part-0294.c:1867",
+    ".local/pasteboard-dev18-audit.json"
+  ],
+  "correction_to_prior_inference": {
+    "prior": ".local/pasteboard-dev13-audit.json remaining_model_mismatches over-broadly described Pinboard→historynewUUIDcopy without sharinggate.",
+    "verified": "f3B4444 returnsCKShare via cloudKitZoneOwnerName/shareRecordData/CKShare.initWithCoder; f32670C reads currentUserParticipant; f361690 clonegate depends targetvalidCKShare or inputpinboardwithvalidCKShare. NoCKSharetarget and no suchinput returns inputentities directly.",
+    "decision": "Do not implement blanket copy-on-write for offlineboards. Userexcluded networksharebranch remains originalpartial evidence, without deleting originalfunctions from totals."
+  },
+  "original_call_chains": {
+    "add": "UIcaller3BA130→repositorybasewitness+28→ecca78=364014→3614C0→361690→history361EC0 orpinboard3620F8.",
+    "title_edit": "UI3BAFF4→basewitness+20→ecca70=364010→364AB4 mutates existingentitytitle/sourceapp only; no general edit-time clone.",
+    "context_delete": "UI3BAB24 readsVMcontext+40→basewitness+40→ecca90=364074→3636B4; contexttop2bits0(search)→3637C0 deleteObject; nonzero→363004 low62bitlist. Historytag1/searchtag0 alreadyconfirmed dev17/18.",
+    "detach_all_boards": "UI3BA22C→basewitness+48→ecca98=364094→363A3C→36299C onlypinboardowner removal.",
+    "board_delete": "368818 fetchescurrentboarditems→363004 withthislist→deleteObject(board); keepsitemwhen historytimestamp remains.",
+    "search_over_board_priority": "7DAA8 querypublisher debounced120ms→7DF7C f2DDCF0 false(nonempty) returns searchVM withoutboardgate; CombineLatest7EAC0 prefersnonnullsearchVM over selectedListVM; searchcontexttag0 physicaldelete appliesevenboardselected. Debouncewindow originalpartial."
+  },
+  "existing_code_reused": [
+    "ClipboardStore.mutate/flock/ObjCexceptionbridge/merge/validate/normalize/atomicwrite/publish",
+    "Pinboardcreate/rename/color/reorder anddeleteboardcleanup alreadyreal; retained",
+    "Itemtitle/text/color/RTF existingedits retained; plainlocal move keepssameID/historyrelationship asoriginal",
+    "Archive schema1 and ClipboardItem pinboardIDs Set representation retained; no eager migration/removal ofuser legacydata"
+  ],
+  "independent_adapter_policy": {
+    "legacy_multiowner": "No normalization intooneboard atload/save. Explicitassign toC replacesonlyselecteditemmemberships with[C]. ScopeddeleteA removesonlyA, retainingB/history.",
+    "concurrent_merge": "Unchanged localrelation preservesremote persistedrelation. Changedlocalrelation replaceswhole relation ratherthan uniondeltas; thisprevents one explicitownerchange plusremotechange fromcreatingmultiowner. UItransaction appliesafter lateststate merge underflock. Otherunrelatedfields retainexistingthreewaymerge. Conflictpolicy is independentJSON adapter, not claimed CoreData equivalence.",
+    "old_global_api": "delete(ids:) still marksisDeleted forlegacyCLI/trash consumers; newUI listscopeAPI physicallyremoves onlyunreferenceditems. Searchglobalphysical delete consumer coordinatedwithRoot/Window, not guessednilhistory.",
+    "undo": "No emptyUndo notification or imaginedrestore implemented; originalCoreData+Undo remainspartial."
+  },
+  "static_case_review_not_executed_tests": [
+    {
+      "case": "plainlocalA→Bassign",
+      "source_result": "sameID/contents/historyflag, boardset[B], noA; no unconditionalclone"
+    },
+    {
+      "case": "deletehistory whenboardAowned",
+      "source_result": "historyfalse, boardA/content retained"
+    },
+    {
+      "case": "deleteboardAitem whenhistoryexists",
+      "source_result": "boardAremoved, history/content retained"
+    },
+    {
+      "case": "deleteonlyreference",
+      "source_result": "selecteditem physicallyremoved, no globaltrashflag"
+    },
+    {
+      "case": "legacyA+B deleteA",
+      "source_result": "B preserved; no eagercollapse"
+    },
+    {
+      "case": "legacyA+B unrelatedsave",
+      "source_result": "A+B preserved"
+    },
+    {
+      "case": "localrelationunchanged remoteB",
+      "source_result": "keepsremoteB"
+    },
+    {
+      "case": "localchangedB remoteC",
+      "source_result": "changedlocalB winswhole relation, no unionB+C"
+    },
+    {
+      "case": "ageexpiry withboardA",
+      "source_result": "notagecandidate; history retained unless independentcountpolicy applies"
+    },
+    {
+      "case": "legacy archive withoutlinkpref",
+      "source_result": "decodeIfPresentBool nil→true; storedfalse survivesencode/decode/merge; malformedBoolthrows existingdecode"
+    }
+  ],
+  "link_preview_preference": {
+    "replica_key": "linkPreviewsEnabled",
+    "original_key": "isLinkPreviewsEnabled",
+    "default": true,
+    "coverage": [
+      "storedproperty",
+      "initdefault/assignment",
+      "CodingKeys",
+      "decodeIfPresentBoolfallbacktrue",
+      "encode",
+      "perfieldmerge",
+      "existingtypeddecodeandStorevalidate reused"
+    ],
+    "original_evidence_pending": null,
+    "ui_consumer_pending": "Image linkpreview gatedcontent",
+    "original_evidence": [
+      ".local/image-dev24-layout-bindings.json",
+      ".local/image-dev24-provider-key-arm64.txt"
+    ],
+    "original_contract": "getter075184 defaultBool1 key100d8ecd0 isLinkPreviewsEnabled→2CCC34; keypathC26C78 relativegetterC26C98→075184; factory06DD84/vtable+178→LinkCell3D7EEC/provider06E168→075000 returnsfirstbyte."
+  },
+  "ui_consumer_pending": null,
+  "source_scope": "OwnedCoreStore/Models and Window-ownedrealUIconsumer hashesboundtofinal45; no sourceedited duringbinaryreview; no runtime/functional/unit/UI/MCP tests.",
+  "ui_consumer": {
+    "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+    "symbol": "func deleteSelection()",
+    "source_sha256": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841",
+    "contract": "recenttrash ornonemptyquery→permanentlyDelete; otherwisecontextPinboardID nilhistory/boardid; normalizedquery winsboard peroriginalMainViewModelpriority",
+    "compiled_pending": false,
+    "compiled_build": 45
+  },
+  "prior_objc_catcher_revalidation": {
+    "binary_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
+    "function": "Paste:0x1002d2b54",
+    "replica_symbol": "+[PRObjCExceptionCatcher catchExceptionIn:]",
+    "start": "0x100186164",
+    "end_exclusive": "0x1001861b4",
+    "size": 80,
+    "full_machine_code_hex": "f44fbea9fd7b01a9fd430091e00302aad0090094f30300aa080840f900013fd6140080d2e00313aac7090094e00314aafd7b41a9f44fc2a8b1090014b3090094ca090094f40300aab3090094f6ffff17",
+    "sha256": "0035c08019628b4811b61801a81abadc95d2a0d5e4837921417a260dc1a0ec4e",
+    "boundary_proof": "last LC_FUNCTION_STARTS entry through __TEXT,__text section end; next __stubs begins at endpoint",
+    "arc_enabled_in_actual_swiftpm_clang_command": true,
+    "compile_flags_confirmed": [
+      "-fobjc-arc",
+      "-O2",
+      "-fblocks",
+      "-target arm64-apple-macosx14.0"
+    ],
+    "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n0000000100186164 <+[PRObjCExceptionCatcher catchExceptionIn:]>:\n100186164:     \tstp\tx20, x19, [sp, #-0x20]!\n100186168:     \tstp\tx29, x30, [sp, #0x10]\n10018616c:     \tadd\tx29, sp, #0x10\n100186170:     \tmov\tx0, x2\n100186174:     \tbl\t0x1001888b4 <_swift_willThrowTypedImpl+0x1001888b4>\n100186178:     \tmov\tx19, x0\n10018617c:     \tldr\tx8, [x0, #0x10]\n100186180:     \tblr\tx8\n100186184:     \tmov\tx20, #0x0               ; =0\n100186188:     \tmov\tx0, x19\n10018618c:     \tbl\t0x1001888a8 <_swift_willThrowTypedImpl+0x1001888a8>\n100186190:     \tmov\tx0, x20\n100186194:     \tldp\tx29, x30, [sp, #0x10]\n100186198:     \tldp\tx20, x19, [sp], #0x20\n10018619c:     \tb\t0x100188860 <_swift_willThrowTypedImpl+0x100188860>\n1001861a0:     \tbl\t0x10018886c <_swift_willThrowTypedImpl+0x10018886c>\n1001861a4:     \tbl\t0x1001888cc <_swift_willThrowTypedImpl+0x1001888cc>\n1001861a8:     \tmov\tx20, x0\n1001861ac:     \tbl\t0x100188878 <_swift_willThrowTypedImpl+0x100188878>\n1001861b0:     \tb\t0x100186188 <+[PRObjCExceptionCatcher catchExceptionIn:]+0x24>\n",
+    "objc_method_table": {
+      "table": "0x100189e00",
+      "flags": "0x8000000c",
+      "stride": 12,
+      "count": 1,
+      "methods": [
+        {
+          "entry": "0x100189e08",
+          "name": "catchExceptionIn:",
+          "imp": "0x100186164"
+        }
+      ]
+    },
+    "lsda": {
+      "start": "0x1001c82e0",
+      "bytes": "ff9b15010c001c00001c043c01203000000100004ce90000",
+      "indirect_type_pointer_slot": "0x1001d6c40",
+      "type_binding": {
+        "import_index": 1296,
+        "import_table_slice_file_offset": 2086080,
+        "symbol": "_OBJC_EHTYPE_$_NSException",
+        "dylib_ordinal": 7,
+        "dylib": {
+          "install_name": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+          "load_command": "0xc",
+          "current_version": 210239488,
+          "current_version_string": "3208.0.0",
+          "compatibility_version": 9830400,
+          "compatibility_version_string": "150.0.0"
+        },
+        "weak_import": false,
+        "import_addend": 0,
+        "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+        "fixups_header_slice_file_offset": 2080768,
+        "pointer_format": 6,
+        "imports_format": 1,
+        "segment_index": 2,
+        "page_index": 0,
+        "page_start": 0,
+        "pointer_slice_file_offset": 1928256,
+        "pointer_raw_value": "0x8010000000000510",
+        "pointer_addend": 0,
+        "effective_addend": 0
+      }
+    },
+    "runtime_stubs": {
+      "0x1001888b4": "_objc_retain",
+      "0x1001888a8": "_objc_release",
+      "0x100188860": "_objc_autoreleaseReturnValue",
+      "0x10018886c": "_objc_begin_catch",
+      "0x1001888cc": "_objc_retainAutoreleasedReturnValue",
+      "0x100188878": "_objc_end_catch"
+    },
+    "ownership_review": "Normal: retain block→invoke→nil→release block→autoreleaseReturnValue(nil). Catch: objc_begin_catch→objc_retainAutoreleasedReturnValue(exception)→preserve x20→objc_end_catch→release block→objc_autoreleaseReturnValue(exception). Thus exception stays retained across end_catch and returned +0, original catch object identity preserved; original used objc_retain rather than retained-return optimization.",
+    "functional_tests_executed": false,
+    "compiled_build": 45,
+    "revalidation_only": true,
+    "new_function_count": 0
+  },
+  "compiled_build": 45,
+  "binary_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
+  "compiled_manifest": ".local/gap-build-complete.json",
+  "compiler_lifecycle_revalidation": {
+    "path": ".local/interaction-build45-compiled-reuse-review.json",
+    "old_functions_kept": 8,
+    "new_function_count": 0
+  },
+  "permissions_current_binary_review": {
+    "path": ".local/pasteboard-dev24-permissions-build45.json",
+    "getter_preserved": true,
+    "map_release_before_ax": true
+  },
+  "pure_getter_current_review": {
+    "start": "0x100109a18",
+    "end_exclusive": "0x100109a34",
+    "size": 28,
+    "sha256": "8dd85e68c3f5bc79c4d49cab6a8b390d37f770f6242ed53e2f1cfaeb51a677d9",
+    "binary_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
+    "decision": "preserve_existing_migrated"
+  },
+  "current_auxiliary_bindings": {
+    "permissions": ".local/pasteboard-dev24-permissions-build45.json",
+    "modal": ".local/pasteboard-dev24-modal-build45.json",
+    "sounds": ".local/pasteboard-dev24-sounds-build45.json"
+  }
+}

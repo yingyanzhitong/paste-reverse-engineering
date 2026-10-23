@@ -1,0 +1,386 @@
+{
+  "生成时间": "2026-10-23T14:57:42.077683+00:00",
+  "范围": "主Panel实际高度/resize/保存恢复一组静态恢复；非整窗口验收",
+  "源码": [
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+      "sha256": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaPanelResizeHandle.swift",
+      "sha256": "f0461fe70bbcb486c89ef24d7d2d119b051cd5bbfb34279df06f72636f6bcbbe"
+    }
+  ],
+  "原证据": {
+    "REA": [
+      {
+        "function": "Paste:0x1000775a8",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 864,
+        "fragment_sha256": "5fe308ed2eba2bafd5c7c8afcb31bbfa411ff5db4604e93c649d2307ce1d4aaf"
+      },
+      {
+        "function": "Paste:0x10007767c",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 898,
+        "fragment_sha256": "a451849b0843f639851094864f34bcc774b1f34339c510ddd5a0ec1b6de185fd"
+      },
+      {
+        "function": "Paste:0x10007836c",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 1576,
+        "fragment_sha256": "7a238752e7858fe37b60ce413230efc029fc6f255aa2b8401936c3e814d77276"
+      },
+      {
+        "function": "Paste:0x1000780f8",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 1452,
+        "fragment_sha256": "62d301e245493c9b225d58d1eaf2d16b5936deefd3d774fdd3992d716fe778c6"
+      },
+      {
+        "function": "Paste:0x1000781cc",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 1484,
+        "fragment_sha256": "3c42be58824d7f1e8705e3c85c866dc287ea7cfb31e88a751536a5b04e6fb1b2"
+      },
+      {
+        "function": "Paste:0x1000782b8",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 1534,
+        "fragment_sha256": "6b56308510046dacaa3ecf17afa99533a306c9586fb84ddd99eb9fb8620d30a1"
+      },
+      {
+        "function": "Paste:0x1000925c8",
+        "path": "decompiled/Paste/part-0048.c",
+        "line": 1476,
+        "fragment_sha256": "a6e68ef6c9d930fd438a5e3907e79538ebcb4b53353f3d2f18f7e9ab18362236"
+      },
+      {
+        "function": "Paste:0x1000926d4",
+        "path": "decompiled/Paste/part-0048.c",
+        "line": 1540,
+        "fragment_sha256": "574375c59b0764dfdb98fdb5d7f52c7e959675b7500a48eed6e307c3ce46626f"
+      },
+      {
+        "function": "Paste:0x100092794",
+        "path": "decompiled/Paste/part-0048.c",
+        "line": 1589,
+        "fragment_sha256": "cb1936970c3aab24a02e94b9b0ce227a31e2b524a0c92cd9e1d20db2554394b4"
+      },
+      {
+        "function": "Paste:0x100092b98",
+        "path": "decompiled/Paste/part-0049.c",
+        "line": 109,
+        "fragment_sha256": "caa32013803a19ef4c55f94747e9b845a46a378ae8c10bf2da541eaa5195bc76"
+      },
+      {
+        "function": "Paste:0x1000192b0",
+        "path": "decompiled/Paste/part-0010.c",
+        "line": 1394,
+        "fragment_sha256": "a716eba438f0127cd8b51f96bc6c8608d11a12e2ed0ffb7924f9c90fe958a357"
+      },
+      {
+        "function": "Paste:0x100018de4",
+        "path": "decompiled/Paste/part-0010.c",
+        "line": 1062,
+        "fragment_sha256": "b327659a201e929f5f3bb37d70a396e4e3bd8b9458783172bb1568779df42483"
+      }
+    ],
+    "arm64": [
+      {
+        "path": ".local/window-dev24-end-resize-arm64.txt",
+        "sha256": "b22c337e9733200b011fed379bd89e5f584db2e1b701935269bdcdd7594c22bb"
+      },
+      {
+        "path": ".local/window-dev24-live-resize-arm64.txt",
+        "sha256": "a30e17da2cb26d7b970533d9bfb5d5017ee250f1b35158c37eda7ad3945c2468"
+      },
+      {
+        "path": ".local/window-dev24-reset-height-arm64.txt",
+        "sha256": "25cd896a6f1a1153f61ddd7cc3c35a7d7c170605787f136a02298f1f0f076687"
+      },
+      {
+        "path": ".local/window-dev24-resize-gesture-arm64.txt",
+        "sha256": "803ef855d7313616364768892525bb19ba3b01e35520ecbc7ecd8c9babd9f0c6"
+      },
+      {
+        "path": ".local/window-dev24-restore-height-arm64.txt",
+        "sha256": "311a842a43815086d1bd199b6995d0429abfd3830b483b2d89a761a9de73e064"
+      },
+      {
+        "path": ".local/window-dev24-show-position-arm64.txt",
+        "sha256": "5518fa1807b6c8a8c17b5f005173a5c6c2cbf46d2b0cdfeaa6624c26a775d491"
+      }
+    ]
+  },
+  "精确原合同": [
+    {
+      "stage": "window initialrestore",
+      "function": "f0187d0→f0775a8",
+      "contract": "原初始化MainWindowNSPanel后restoreframe，setFrameUsingName(originalName)若true不再clamp/重置/保存；false且当前frame.height!=332时保x/y/width、改height332，displaytrue/animatefalse，save原name；若false但height已332，则无save。随后layoutIfNeeded使min/maxsize当前frame，安装10高handle。"
+    },
+    {
+      "stage": "handle installation",
+      "function": "f07767c→f07836c",
+      "contract": "窗口contentView内add原ResizeHandle，top=contentView.top、leading/trailing同contentView、height10；callbacks弱窗口onLiveResize=f0780f8，onEndResize=f0781cc，onResetSize=f0782b8。默认sizeResetClickCount2。"
+    },
+    {
+      "stage": "mouseDown",
+      "function": "f0925c8",
+      "contract": "super.mouseDown(event)，initialLocation=event.locationInWindow，initialWindowSize=window?.frame.size；clickCount==2时调用onResetSize。仍存两snapshot，不另阻止双击drag。"
+    },
+    {
+      "stage": "mouseDragged",
+      "function": "f092794",
+      "contract": "super.mouseDragged(event)，两个snapshot均非nil才onLiveResize(CGSize(width:initialWidth,height:initialHeight-(initialY-currentY)))；xdelta不用，不猜屏幕绝对鼠标坐标。"
+    },
+    {
+      "stage": "live resistance",
+      "function": "f0780f8",
+      "contract": "弱window存在才继续。h<252→252-round(sqrt(252-h)); h>412→412+round(sqrt(h-412)); 其余h。ARM fsqrt+frinta验证round(.toNearestOrAwayFromZero)。保当前window.frame.origin，width来自initialWindowSize.width，height用阻尼值；setFrame(display:false)，无animate/无save/无UserDefaults写。原Ghidra伪代码漏了此sqrt阻尼，不能仅读伪码声称unclamped。"
+    },
+    {
+      "stage": "mouseUp",
+      "function": "f0926d4",
+      "contract": "super.mouseUp(event)，先initialLocation=nil、initialWindowSize=nil；仅clickCount<2调用onEndResize，无需snapshot仍存在的额外guard。doubleclickreset的mouseUp不再end-save。"
+    },
+    {
+      "stage": "end resize",
+      "function": "f0781cc",
+      "contract": "弱window存在则h=min(max(currentFrame.height,252),412)，保x/y/currentwidth，setFrame(display:true,animate:true)，saveFrameUsingName(originalName)。即使height已在区间也set/save。"
+    },
+    {
+      "stage": "doubleclick reset",
+      "function": "f0782b8",
+      "contract": "弱window存在且frame.height!=332时保x/y/width、height332、setFrame(display:true,animate:true)、save原key；已332则不重设或保存。"
+    },
+    {
+      "stage": "show positioning",
+      "function": "f0192b0",
+      "contract": "生产show取NSScreen.main，window/contentView皆存在时window.frame=(screen.frame.origin,screen.frame.width,contentView.frame.height)，displayfalse；不在show把height重新限制252...412、不取鼠标屏幕、不加screenheight-80。原show还有transitionGeneration/closedWindowManager/内容滑入动画等，本轮不重写。"
+    },
+    {
+      "stage": "screen changed",
+      "function": "f018de4",
+      "contract": "原weak originalScreen存在且与window.screen不同才取新screen.frame.origin/width，保contentView.frame.height进行setFrame(display:true)，并更新weakoriginalScreen。该生产链与resize时保持origin并存，不是每drag重选鼠标屏幕。"
+    }
+  ],
+  "实际实现消费者": [
+    "UIController init creates independentMainPanel, thenrestorePanelFrame andinstallPanelResizeHandle before preferenceObservation; nativeNSViewtop10handle receivesactualwindowmouseDown/Dragged/Up, weakclosures callsameexistingpanel methods.",
+    "Live resize onlywindow.setFrame(display:false) withoriginalsqrt-roundrubberband; noJSONprefs/nativeautosave write ondrag. isPanelResizing suppressesapplyAppearance→positionPanel, onGestureFinished clears everymouseUp includingdoubleclick toavoidstuckguard.",
+    "End resize clamp252...412 andanimatedset/save, reset332 onlyifchanged; saves independentnativeframe thenJSON.panelHeight viaexistingstore.save. Currentappbundledefaultsdomainand stableSHA256(standardized/resolvedstore.directoryURL.path)inname isolate apps/store instances.",
+    "positionPanel nowNSScreen.main.frame origin/width andstoredheight; removesprefmin300/screenheight-80. restore-firstcapturedheight syncsJSONvalue in memorybeforeprefsubscription; noextraheightmodel.",
+    "UI deleteSelection uses showDeleted OR nonemptyquery→permanentlyDelete; elsecontextPinboardID currentboard/nilhistory. Root/PB evidencef7DF7C/f7EAC0 validatessearchoverboard. NoStore/Models edits bythisagent.",
+    "PanelViews passes livepref.linkPreviewsEnabled throughReplicaItemContent toimage-ownedlinkcontent; linkouterhorizontal12/top11去重，link跳过整条通用summary HStack（含旧pinicon/bottompad）。Image完整BaseCell/LinkCell/footer构造树证明无第三host行；原Header独立pinboardIcon完整链仍partial。"
+  ],
+  "持久兼容与剩余差异": [
+    "Neverread/write originalPasteApp autosavekey; independentname inowncurrentappdefaultsdomain + perphysicaldirectorySHA256. Exactoriginalkey exists onlyevidencereview, notimplementation.",
+    "Originalrestorefalse uses332; noindependent副本存档时保既有JSON.panelHeight isintentionallegacycompat. Invalidnonfinite/nonpositivelegacyheight fallsback332. Nativeautosaverestoresuccessnotunconditionallyclamped; endresizerangeonly.",
+    "Originalweakwindowcallbacks replacedweakcontrollerwhichownspanel; extraonGestureFinished bookkeeping forprefobserverguard doesnotpretendoriginalobjectlayout/ABI complete.",
+    "Originalprivateconditionalmodernresizecursor unproved; publicresizeUpDownfallbackonly. MainActor diagnosticobjcbridge mismatch remains priorpartial.",
+    "Nativeframeautosave write + JSONsave nottransactional; store.save failure presents existingerrorUI afterframeapplied. OriginalnonthrowingAppKitframesave + independentCoreData/prefs notclaimederroridentitymatched.",
+    "OriginalfullshowtransitionGeneration/animatedslide/closedWindowManager/resignscreenchanged/framesizefreezing notrestoredbyheightgroup. No product/regression/pixel claim.",
+    "Current drag expression uses initialHeight+currentY-initialY (fadd then fsub); original initialHeight-(initialY-currentY) (fsub then fsub). No bit-for-bit floating arithmetic equivalence claim; all height parents stay partial."
+  ],
+  "静态状态": {
+    "candidate": 0,
+    "partial": 10,
+    "new_complete_function_claims": 0,
+    "new_feature_rows": 0,
+    "source_frozen": true,
+    "compilation": "passed_final45",
+    "tests_or_product_execution": false
+  },
+  "验证": {
+    "parent_build": "gap-build45",
+    "result": "passed",
+    "elapsed_seconds": 21.99,
+    "compiler_log_elapsed_seconds": 20.26,
+    "stable_input_count": 153,
+    "input_sha_before_after_equal": true,
+    "kind": "static_compilation_only",
+    "functional_regression_executed": false,
+    "product_executed": false,
+    "build_log": ".local/gap-build-45.log",
+    "build_log_sha256": "5cdafaf6521db25027e1cfaed23383ae3ed35caac734526fd8856965d83dae5e",
+    "source_manifest_file": ".local/gap-build-complete.json",
+    "source_manifest_sha256": "bd6eca92e438a64a6c108b65bc6812692e7d043532ef5b1c769ebe5a74b44840",
+    "compiled_sha256": {
+      "replica/.build/release/PasteReplica": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
+      "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+      "replica/.build/release/paste-replica-mcp": "7cfb38953a21eaa3f95cd1784723043e1ea3739b2adf31376501fb6d7792346b"
+    },
+    "parent_partial_status_preserved": true
+  },
+  "current_compiled_body_review": {
+    "build": "final45",
+    "complete_boundaries": [
+      {
+        "symbol": "_$s12PasteReplica0B17PanelResizeHandleC9mouseDown4withySo7NSEventC_tF",
+        "start": "0x100086300",
+        "end": "0x100086428",
+        "path": ".local/window-dev24-build45-100086300-arm64.txt",
+        "sha256": "8b2c61b0305a158efab03c28a1644f82d33f06588bbc8337c8bf9891b95d523d"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B17PanelResizeHandleC9mouseDown4withySo7NSEventC_tFTo",
+        "start": "0x100086428",
+        "end": "0x100086478",
+        "path": ".local/window-dev24-build45-100086428-arm64.txt",
+        "sha256": "7f993813ebbf1d596e9e8c5425bec4e9f2d5be1a7e8635121e663d9b98d0c72e"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B17PanelResizeHandleC12mouseDragged4withySo7NSEventC_tF",
+        "start": "0x100086478",
+        "end": "0x100086550",
+        "path": ".local/window-dev24-build45-100086478-arm64.txt",
+        "sha256": "960649e7c624d41c74c3704eac4483bbd749ae7a7cd6f47a743264e468d070b3"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B17PanelResizeHandleC12mouseDragged4withySo7NSEventC_tFTo",
+        "start": "0x100086550",
+        "end": "0x1000865a0",
+        "path": ".local/window-dev24-build45-100086550-arm64.txt",
+        "sha256": "9e24319b04b7be84278bf43aa36b45b3f1e9a8378ebfdccb0ec48a3f1bc7ef3b"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B17PanelResizeHandleC7mouseUp4withySo7NSEventC_tF",
+        "start": "0x1000865a0",
+        "end": "0x100086694",
+        "path": ".local/window-dev24-build45-1000865a0-arm64.txt",
+        "sha256": "67be93a8a69e47dbb59620233b2b8aa95b90619c22c67684b5fd0ecdf4ae3bc5"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B17PanelResizeHandleC7mouseUp4withySo7NSEventC_tFTo",
+        "start": "0x100086694",
+        "end": "0x1000866e4",
+        "path": ".local/window-dev24-build45-100086694-arm64.txt",
+        "sha256": "3fca1e0b4a37c0f3842bdaafafca20f6816ec92842b9472b08bc538ca5310c48"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B5Panel33_8DF35B1D0DBF0966E4A8ADEB995D6C35LLC12canBecomeKeySbvgTo",
+        "start": "0x1000ac864",
+        "end": "0x1000ac86c",
+        "path": ".local/window-dev24-build45-1000ac864-arm64.txt",
+        "sha256": "d3ff2b521442895499f1cb5a32faa94fecb32d64538a1abad67c3a1568168f3d"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B5Panel33_8DF35B1D0DBF0966E4A8ADEB995D6C35LLC13canBecomeMainSbvgTo",
+        "start": "0x1000ac86c",
+        "end": "0x1000ac874",
+        "path": ".local/window-dev24-build45-1000ac86c-arm64.txt",
+        "sha256": "ff04fa58b077a4b57ff141f5f7fb56987ad4bac2cb104eb920262d49cd51a2cc"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B5Panel33_8DF35B1D0DBF0966E4A8ADEB995D6C35LLC18makeFirstResponderySbSo11NSResponderCSgFTo",
+        "start": "0x1000ac874",
+        "end": "0x1000ac948",
+        "path": ".local/window-dev24-build45-1000ac874-arm64.txt",
+        "sha256": "52b35e333c26be40ad29656c83ead9d50bf4691e956ba29b6918a3aad0741842"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B12UIControllerC17restorePanelFrame33_8DF35B1D0DBF0966E4A8ADEB995D6C35LLyyF",
+        "start": "0x1000ad908",
+        "end": "0x1000adaac",
+        "path": ".local/window-dev24-build45-1000ad908-arm64.txt",
+        "sha256": "29a80e6b990b81032865e12e96f6505162151d8e9874bf0d79f5ae58ba2eb66e"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B12UIControllerC24installPanelResizeHandle33_8DF35B1D0DBF0966E4A8ADEB995D6C35LLyyF",
+        "start": "0x1000adaac",
+        "end": "0x1000adea0",
+        "path": ".local/window-dev24-build45-1000adaac-arm64.txt",
+        "sha256": "76efd6824f6508fabe300bfcf994aaa153162ddaa5a550ee0ba2786ddaedeacd"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B12UIControllerC24installPanelResizeHandle33_8DF35B1D0DBF0966E4A8ADEB995D6C35LLyyFySo6CGSizeVcfU_",
+        "start": "0x1000b0f18",
+        "end": "0x1000b1018",
+        "path": ".local/window-dev24-build45-1000b0f18-arm64.txt",
+        "sha256": "4f79388fbf41c851f8d05cfc418b22aeeadc11b871a605b29799713283531925"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B12UIControllerC24installPanelResizeHandle33_8DF35B1D0DBF0966E4A8ADEB995D6C35LLyyFyycfU0_",
+        "start": "0x1000b1018",
+        "end": "0x1000b11bc",
+        "path": ".local/window-dev24-build45-1000b1018-arm64.txt",
+        "sha256": "920d6d4ec00bc41bc2294a5c1a8af86dc382128a5794a5435667234b3c9da5cd"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B12UIControllerC24installPanelResizeHandle33_8DF35B1D0DBF0966E4A8ADEB995D6C35LLyyFyycfU1_",
+        "start": "0x1000b11bc",
+        "end": "0x1000b1348",
+        "path": ".local/window-dev24-build45-1000b11bc-arm64.txt",
+        "sha256": "6cc5a561fc3420294e5afa2736748720c27a7a16e6cd7cbc6e1fa53bc86a1664"
+      },
+      {
+        "symbol": "_$s12PasteReplica0B12UIControllerC24installPanelResizeHandle33_8DF35B1D0DBF0966E4A8ADEB995D6C35LLyyFyycfU2_",
+        "start": "0x1000b1348",
+        "end": "0x1000b1394",
+        "path": ".local/window-dev24-build45-1000b1348-arm64.txt",
+        "sha256": "6063fd7d75ad13a3c07732c023e8f249ac186d2177a2b87ca87de97964834dfa"
+      }
+    ],
+    "getter_review": {
+      "key_entry": "0x1000ac864..0x1000ac86c",
+      "main_entry": "0x1000ac86c..0x1000ac874",
+      "body": "each mov w0,#1; ret",
+      "state": "partial",
+      "missing": "Original f077838 MainActor executor/reportUnexpectedExecutor effects absent; annotation alone does not prove Objective-C entry checking."
+    },
+    "prior_focus_review": {
+      "entry": "0x1000ac874..0x1000ac948",
+      "state": "existing_candidate_revalidated",
+      "original": "Paste:0x1000778c0",
+      "contract": "swift_getObjectType AC890; supplied responder direct; nil initialFirstResponder AC8B8 then contentView AC8D8; super AC910 and unchanged BOOL AC930..944; both original and current superclass NSPanel. Original actor wrapper f07796c not complete.",
+      "new_function_claim": false
+    },
+    "height_handle_review": [
+      "Live weak-controller closure B0F18..B1018: below252 fsub/fsqrt/frinta/fsub B0F7C..88; above412 fadd/fsqrt/frinta/fadd B0FB0..FC8; otherwise unchanged, display false, no prefs/save consumer.",
+      "End closure B1018..B11BC:252/412 finite clamp, animated frame, flag clear, native frame save, Store.preferences setter then Store.save via state.perform.",
+      "Reset closure B11BC..B1348:332 comparison and skip, animated frame and save only when changed.",
+      "Handle Down86300..86428 snapshots and double2; Dragged86478..86550 both nil guards and initial width/Y delta; Up865A0..86694 nil snapshots, adapter gesture finish, clickCount<2 only end.",
+      "Current drag expression uses initialHeight+currentY-initialY (fadd then fsub); original initialHeight-(initialY-currentY) (fsub then fsub). No bit-for-bit floating arithmetic equivalence claim; all height parents stay partial."
+    ],
+    "objc_and_sdk_evidence": [
+      {
+        "path": ".local/window-dev24-build45-objc-metadata.txt",
+        "sha256": "f6becb35fba62b27fd4180469fcf9b9c6ffb9f965d7ac54d1fe9131be5ccaee6"
+      },
+      {
+        "path": ".local/window-dev24-build45-indirect-symbols.txt",
+        "sha256": "3c418d18deed17956eacf091932c5c03a33679f439ce9cc28f43fd379ca2d65c"
+      },
+      {
+        "path": ".local/window-dev23-original-objc-metadata.txt",
+        "sha256": "4e7d2877eb26e97812a189d4db7b164d5d7c456d8b1850714c914be1ccaf7728"
+      }
+    ],
+    "compilation_review": {
+      "parent_build": "gap-build45",
+      "result": "passed",
+      "elapsed_seconds": 21.99,
+      "compiler_log_elapsed_seconds": 20.26,
+      "stable_input_count": 153,
+      "input_sha_before_after_equal": true,
+      "kind": "static_compilation_only",
+      "functional_regression_executed": false,
+      "product_executed": false,
+      "build_log": ".local/gap-build-45.log",
+      "build_log_sha256": "5cdafaf6521db25027e1cfaed23383ae3ed35caac734526fd8856965d83dae5e",
+      "source_manifest_file": ".local/gap-build-complete.json",
+      "source_manifest_sha256": "bd6eca92e438a64a6c108b65bc6812692e7d043532ef5b1c769ebe5a74b44840",
+      "compiled_sha256": {
+        "replica/.build/release/PasteReplica": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
+        "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+        "replica/.build/release/paste-replica-mcp": "7cfb38953a21eaa3f95cd1784723043e1ea3739b2adf31376501fb6d7792346b"
+      },
+      "parent_partial_status_preserved": true
+    },
+    "not_run": "No product/UI/MCP/functional/unit tests; nm/objdump static inspection only."
+  }
+}

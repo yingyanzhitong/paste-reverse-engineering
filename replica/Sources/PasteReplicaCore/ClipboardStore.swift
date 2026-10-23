@@ -156,8 +156,9 @@ public final class ClipboardStore: ObservableObject {
                 value.imagePreviewMetadata = local.imagePreviewMetadata
                 value.rawPreview = local.rawPreview
             }
-            value.pinboardIDs.formUnion(local.pinboardIDs.subtracting(base.pinboardIDs))
-            value.pinboardIDs.subtract(base.pinboardIDs.subtracting(local.pinboardIDs))
+            // A local ownership change replaces the relation; merging additions can recreate two owners.
+            // Unchanged legacy memberships retain the latest persisted value.
+            if local.pinboardIDs != base.pinboardIDs { value.pinboardIDs = local.pinboardIDs }
             if local.isDeleted != base.isDeleted { value.isDeleted = local.isDeleted }
             return value
         }
@@ -196,6 +197,7 @@ public final class ClipboardStore: ObservableObject {
         if local.isDiagnosticsEnabled != base.isDiagnosticsEnabled { result.preferences.isDiagnosticsEnabled = local.isDiagnosticsEnabled }
         if local.useBinaryPlist != base.useBinaryPlist { result.preferences.useBinaryPlist = local.useBinaryPlist }
         if local.fileQuickLookThumbnailsEnabled != base.fileQuickLookThumbnailsEnabled { result.preferences.fileQuickLookThumbnailsEnabled = local.fileQuickLookThumbnailsEnabled }
+        if local.linkPreviewsEnabled != base.linkPreviewsEnabled { result.preferences.linkPreviewsEnabled = local.linkPreviewsEnabled }
         return result
     }
 
@@ -207,9 +209,8 @@ public final class ClipboardStore: ObservableObject {
         var removed: Set<UUID> = []
         if state.preferences.historyRetentionDays > 0 {
             let cutoff = Date().addingTimeInterval(-Double(state.preferences.historyRetentionDays) * 86_400)
-            for i in state.items.indices where state.items[i].isInHistory && state.items[i].createdAt < cutoff {
-                if state.items[i].pinboardIDs.isEmpty { removed.insert(state.items[i].id) }
-                else { state.items[i].isInHistory = false }
+            for item in state.items where item.isInHistory && item.pinboardIDs.isEmpty && item.createdAt < cutoff {
+                removed.insert(item.id)
             }
         }
         for i in state.items.indices where !state.items[i].isDeleted && state.items[i].isInHistory {
@@ -490,6 +491,15 @@ public final class ClipboardStore: ObservableObject {
     }
 
     public func delete(ids: Set<UUID>) throws { try setDeleted(ids: ids, deleted: true) }
+    public func delete(ids: Set<UUID>, contextPinboardID: UUID?) throws {
+        try mutate { state in
+            for i in state.items.indices where ids.contains(state.items[i].id) {
+                if let contextPinboardID { state.items[i].pinboardIDs.remove(contextPinboardID) }
+                else { state.items[i].isInHistory = false }
+            }
+            state.items.removeAll { ids.contains($0.id) && !$0.isInHistory && $0.pinboardIDs.isEmpty }
+        }
+    }
     public func restore(ids: Set<UUID>) throws { try setDeleted(ids: ids, deleted: false) }
     private func setDeleted(ids: Set<UUID>, deleted: Bool) throws {
         try mutate { state in
@@ -543,14 +553,16 @@ public final class ClipboardStore: ObservableObject {
         try mutate { state in
             if let pinboardID, !state.pinboards.contains(where: { $0.id == pinboardID }) { throw ClipboardStoreError.pinboardNotFound }
             for i in state.items.indices where ids.contains(state.items[i].id) {
-                if let pinboardID { state.items[i].pinboardIDs.insert(pinboardID) }
+                if let pinboardID { state.items[i].pinboardIDs = [pinboardID] }
                 else { state.items[i].pinboardIDs.removeAll() }
             }
+            state.items.removeAll { ids.contains($0.id) && !$0.isInHistory && $0.pinboardIDs.isEmpty }
         }
     }
     public func unassign(ids: Set<UUID>, from pinboardID: UUID) throws {
         try mutate { state in
             for i in state.items.indices where ids.contains(state.items[i].id) { state.items[i].pinboardIDs.remove(pinboardID) }
+            state.items.removeAll { ids.contains($0.id) && !$0.isInHistory && $0.pinboardIDs.isEmpty }
         }
     }
 

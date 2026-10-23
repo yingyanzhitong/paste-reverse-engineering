@@ -1,5 +1,6 @@
 import AppKit
 import Combine
+import CryptoKit
 import SwiftUI
 import UniformTypeIdentifiers
 import PasteReplicaCore
@@ -169,7 +170,10 @@ final class ReplicaUIState: ObservableObject {
 
     func deleteSelection() {
         let ids = selection.isEmpty ? Set(primaryItem.map { [$0.id] } ?? []) : selection
-        perform { try store.delete(ids: ids) }
+        perform {
+            if showDeleted || !isSearchQueryEmpty { try store.permanentlyDelete(ids: ids) }
+            else { try store.delete(ids: ids, contextPinboardID: pinboardID) }
+        }
         normalizeSelection()
     }
 
@@ -272,6 +276,8 @@ final class ReplicaUIController {
         set { state.hotKeyStatusMessage = newValue }
     }
     private let sharingPolicy: WindowSharingPolicy
+    private let panelFrameAutosaveName: String
+    private var isPanelResizing = false
     private var settingsWindow: NSWindow?
     private var closedSearchTimer: Timer?
     private var closedCreateObserver: NSObjectProtocol?
@@ -286,6 +292,9 @@ final class ReplicaUIController {
 
     init(store: ClipboardStore) {
         self.store = store
+        let storePath = store.directoryURL.standardizedFileURL.resolvingSymlinksInPath().path
+        let namespace = SHA256.hash(data: Data(storePath.utf8)).map { String(format: "%02x", $0) }.joined()
+        panelFrameAutosaveName = "PasteReplicaMainWindow_NSWindowFrameAutosaveName.\(namespace)"
         sharingPolicy = WindowSharingPolicy(store: store)
         state = ReplicaUIState(store: store)
         let panel = ReplicaPanel(contentRect: .init(x: 0, y: 0, width: 1512, height: 332),
@@ -305,6 +314,8 @@ final class ReplicaUIController {
         panel.isReleasedWhenClosed = false
         sharingPolicy.apply(to: panel)
         panel.contentView = NSHostingView(rootView: ReplicaPanelView(state: state))
+        restorePanelFrame()
+        installPanelResizeHandle()
         state.controller = self
         panel.keyHandler = { [weak self] event in self?.handleKey(event) ?? false }
         preferenceObservation = store.$preferences.sink { [weak self] _ in
@@ -640,12 +651,79 @@ final class ReplicaUIController {
         return name.isEmpty ? nil : name
     }
 
+    private func restorePanelFrame() {
+        if !panel.setFrameUsingName(panelFrameAutosaveName) {
+            let storedHeight = store.preferences.panelHeight
+            let height = storedHeight.isFinite && storedHeight > 0 ? storedHeight : 332
+            if panel.frame.height != height {
+                var frame = panel.frame
+                frame.size.height = height
+                panel.setFrame(frame, display: true, animate: false)
+                panel.saveFrame(usingName: panelFrameAutosaveName)
+            }
+        }
+        store.preferences.panelHeight = panel.frame.height
+    }
+
+    private func installPanelResizeHandle() {
+        guard let content = panel.contentView else { return }
+        let handle = ReplicaPanelResizeHandle()
+        handle.translatesAutoresizingMaskIntoConstraints = false
+        content.addSubview(handle)
+        NSLayoutConstraint.activate([
+            handle.topAnchor.constraint(equalTo: content.topAnchor),
+            handle.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            handle.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            handle.heightAnchor.constraint(equalToConstant: 10)
+        ])
+        handle.onLiveResize = { [weak self] size in self?.resizePanel(size: size) }
+        handle.onEndResize = { [weak self] in self?.finishPanelResize() }
+        handle.onResetSize = { [weak self] in self?.resetPanelSize() }
+        handle.onGestureFinished = { [weak self] in self?.isPanelResizing = false }
+    }
+
+    private func resizePanel(size: NSSize) {
+        isPanelResizing = true
+        let height: CGFloat
+        if size.height < 252 {
+            height = 252 - (252 - size.height).squareRoot().rounded(.toNearestOrAwayFromZero)
+        } else if size.height > 412 {
+            height = 412 + (size.height - 412).squareRoot().rounded(.toNearestOrAwayFromZero)
+        } else {
+            height = size.height
+        }
+        panel.setFrame(NSRect(origin: panel.frame.origin,
+                              size: NSSize(width: size.width, height: height)), display: false)
+    }
+
+    private func finishPanelResize() {
+        var frame = panel.frame
+        frame.size.height = min(max(frame.height, 252), 412)
+        panel.setFrame(frame, display: true, animate: true)
+        isPanelResizing = false
+        savePanelFrame()
+    }
+
+    private func resetPanelSize() {
+        guard panel.frame.height != 332 else { return }
+        var frame = panel.frame
+        frame.size.height = 332
+        panel.setFrame(frame, display: true, animate: true)
+        isPanelResizing = false
+        savePanelFrame()
+    }
+
+    private func savePanelFrame() {
+        panel.saveFrame(usingName: panelFrameAutosaveName)
+        store.preferences.panelHeight = panel.frame.height
+        state.perform { try store.save() }
+    }
+
     private func positionPanel() {
-        let mouse = NSEvent.mouseLocation
-        let screen = NSScreen.screens.first { NSMouseInRect(mouse, $0.frame, false) } ?? NSScreen.main
-        guard let screen else { return }
+        guard !isPanelResizing, let screen = NSScreen.main else { return }
         let frame = screen.frame
-        let height = min(max(store.preferences.panelHeight, 300), frame.height - 80)
+        let storedHeight = store.preferences.panelHeight
+        let height = storedHeight.isFinite && storedHeight > 0 ? storedHeight : 332
         panel.setFrame(.init(x: frame.minX, y: frame.minY,
                              width: frame.width, height: height), display: true)
     }

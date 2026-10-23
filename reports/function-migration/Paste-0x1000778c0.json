@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000778c0",
-  "reviewed_at": "2026-10-23T14:42:39.204367+00:00",
+  "reviewed_at": "2026-10-23T14:59:15.902459+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0039.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "641b1fe3cff8dfc4b80b903c409c5e3e7d9f25a5058be0ea28835bda74febe70",
   "source_sha256": {
-    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "007eb4f293e043dfb9b45d759274fdd9789d5d569ce4d5bfe233d53039250d8e"
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+  "compiled_app_binary_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_corrected_existing_consumer",
   "contract": "完整原nil→initial→content、nonnil直传与superBOOL返回合同。",
-  "review": "最终build44成功151输入SHA一致，并完成真实ObjC入口/完整body边界与父类静态核对；不执行产品/功能/单测/UI/MCP。",
+  "review": "最终build44成功151输入SHA一致，并完成真实ObjC入口/完整body边界与父类静态核对；不执行产品/功能/单测/UI/MCP。 dev24实际build45焦点完整入口AC874..AC948及同NSPanel父类再核；保留已满足旧实现，无新计数。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

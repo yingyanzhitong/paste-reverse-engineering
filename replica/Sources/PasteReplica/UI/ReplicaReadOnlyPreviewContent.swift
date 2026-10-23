@@ -24,7 +24,8 @@ private struct ReplicaReadOnlyPreviewContent: View {
                     fileContent(urls: itemFileURLs(item))
                 } else {
                     ScrollView {
-                        ReplicaItemContent(item: item, compact: false)
+                        ReplicaItemContent(item: item, compact: false,
+                                           linkPreviewsEnabled: store.preferences.linkPreviewsEnabled)
                             .textSelection(.enabled)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             .padding(8)

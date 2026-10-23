@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037dd6c",
-  "reviewed_at": "2026-10-23T14:42:38.595476+00:00",
+  "reviewed_at": "2026-10-23T14:59:15.348241+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+  "compiled_app_binary_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "ObjC init入口：初始化types=[]、dataByType=[:]，调用NSObject super.init并返回同一个接收者。",
-  "review": "最终build44完整0x10011f3ac..0x10011f438（140B）：orderedTypes槽1f2978=8/dataByType槽1f2970=10；emptyArray指针槽1d2cc8，typed Dictionary<String,Data> literal7f5d8后super-init；方法表185ee0 entry185ee8绑定11f3ac。",
+  "review": "最终build45完整0x100122c98..0x100122d24（140B）：orderedTypes槽1f6c78=8/dataByType槽1f6c70=10；emptyArray指针槽1d6cd8，typed Dictionary<String,Data> literal80d28后super-init；方法表1897f0 entry1897f8绑定122c98。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x10011f3ac",
-    "end_exclusive": "0x10011f438",
+    "start": "0x100122c98",
+    "end_exclusive": "0x100122d24",
     "size": 140,
-    "sha256": "0183be78fdd08f86ee54372d688b5bdecc889286c054a403b8361a53fc122ab5",
-    "binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+    "sha256": "2d21c5ddf9752a8d9bcde8ee9361803898366350f27d21c526af9c4d15b89a18",
+    "binary_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
     "lc_function_starts_verified": true
   }
 }

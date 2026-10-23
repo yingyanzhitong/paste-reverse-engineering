@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-10-23T14:33:29.045015+00:00",
-  "scope": "dev23 concentrated local link copy-time metadata canonical chain",
+  "scope": "Local canonical linkcopytime metadata and final45 visibleformatter/preference/layoutvaluechain",
   "source_changed": true,
   "source_frozen": true,
   "owned_sources": [
@@ -8,19 +8,19 @@
     "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift",
     "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift"
   ],
-  "verification": "Original REA/arm64, current Source/actual consumers plus finite compiled44 generator and SDK binding; unified build44 successful151 unchanged inputs9.87s wrapper/9.08s log. No product/tests/UI/MCP execution.",
+  "verification": "Original complete REA/arm64/pattern/SDK + actual Source/consumerpeer + finite final45 compiledformatter body and6 matchingSDKbindings. Unified45 compiled21.99s/log20.26s,153 inputSHA unchanged; no runtime/product/functional/unit/UI/MCP execution.",
   "unified_build": {
-    "name": "gap-build44",
+    "name": "gap-build45",
     "manifest": ".local/gap-build-complete.json",
-    "manifest_sha256": "36207d2c37131b167240a3843f2627d9fbdefad6fe01f74592365e8166c6ae13",
-    "log": ".local/gap-build-44.log",
-    "seconds": 9.87,
-    "compiler_log_seconds": 9.08,
-    "inputs": 151,
+    "manifest_sha256": "bd6eca92e438a64a6c108b65bc6812692e7d043532ef5b1c769ebe5a74b44840",
+    "log": ".local/gap-build-45.log",
+    "seconds": 21.99,
+    "compiler_log_seconds": 20.26,
+    "inputs": 153,
     "sha_before_after_equal": true,
     "result": "compiled",
     "functional_execution": false,
-    "app_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306"
+    "app_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685"
   },
   "new_complete_original_addresses": 0,
   "local_helper_contract": "Local initial link metadata: first item URL only; missing item/URL nil; public.url-name trimmed whitespacesAndNewlines while nil and empty remain distinct; initial icon/image nil. Original function also invokes conditional asynchronous provider, so whole address stays partial.",
@@ -44,8 +44,8 @@
     {
       "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
       "symbol": "OriginalLinkPreviewMetadataGenerator.generate(items)",
-      "line": 290,
-      "sha256": "1aa4aa65d88069fbdb29cf3f1d801bc8405216a7fd40d40a85dbea8ef505caf5"
+      "line": 291,
+      "sha256": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c"
     },
     {
       "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
@@ -63,7 +63,7 @@
       "path": "replica/Sources/PasteReplicaCore/Models.swift",
       "symbol": "public var decodedLinkPreviewMetadata:",
       "line": 47,
-      "sha256": "c883bcc272ebb72558ab0eb14408de3efc5787efa425e56a9ef036583a011dad"
+      "sha256": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90"
     },
     {
       "path": "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift",
@@ -73,9 +73,9 @@
     },
     {
       "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-      "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact)",
-      "line": 454,
-      "sha256": "4bcf7d00baa7a8d907c4ee14cc22a5af62ba71eee6b580ec4b9cd8a3147ea3df"
+      "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact, linkPreviewsEnabled: linkPreviewsEnabled)",
+      "line": 457,
+      "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
     }
   ],
   "evidence_sha256": {
@@ -93,7 +93,11 @@
     "Original nil/nonlink VM traps explicitly adapted to optional UI; no all-VM equivalence claim.",
     "ReadOnlyView lifecycle and async provider not restored by this patch.",
     "Archive missing raw stays nil; getter never rebuilds from current payload/FS.",
-    "Linkcard original fullsize formatter, outerlayout/compactprovider/style/font parent remains partial."
+    "Original AppKit character-wrapping, field priorities/selector lifecycle and SwiftUI text layout not byte/pixel equivalent.",
+    "Main image uses SwiftUI scaledToFit; original custom drawing and fading/animation/OS-dependenticoncorner remainpartial.",
+    "Original compactheader style0/1/2 not all wired from local image width/height to parent card; fullsize enabled flag is real and mapped independently from replica compact argument.",
+    "Current readOnly full preview reuses local value UI, not assertion original fullpreview parent equals LinkItemCell.",
+    "Original DI/Config/UserDefaultsABI, VM, actor and wholecard parents remainpartial; no runtime/UI/functional regression."
   ],
   "network": "No HTTP preview/account/sync added; local URL/name initial value remains included, original enclosing function is not wholly excluded as network.",
   "five_case_peer": "No concrete mismatch found in current five local value projections against prior per-type original evidence: image size0/dataempty; files paths[]/size0/dataempty; color code0; link URLexample.com/name-icon-image optionals; default text excluding four recognized types length0/textempty. Whole parent still partial.",
@@ -103,32 +107,31 @@
       "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
       "symbol": "struct ReplicaLinkMetadataContent: View",
       "line": 7,
-      "sha256": "62b27bad20c21046ac63100c3c7776f360ad3e06c8ec66d3570c1c089f6636be"
+      "sha256": "06533b5b0a24c1d4cfbab707ff1042ba9e341c9d143679b59ca2d2223dc4a26c"
     },
     {
       "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
       "symbol": "if let image, image.size.width != image.size.height",
-      "line": 14,
-      "sha256": "62b27bad20c21046ac63100c3c7776f360ad3e06c8ec66d3570c1c089f6636be"
+      "line": 17,
+      "sha256": "06533b5b0a24c1d4cfbab707ff1042ba9e341c9d143679b59ca2d2223dc4a26c"
     },
     {
       "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
       "symbol": "private func fallbackIcon() -> NSImage?",
-      "line": 32,
-      "sha256": "62b27bad20c21046ac63100c3c7776f360ad3e06c8ec66d3570c1c089f6636be"
+      "line": 46,
+      "sha256": "06533b5b0a24c1d4cfbab707ff1042ba9e341c9d143679b59ca2d2223dc4a26c"
     }
   ],
   "visual_partial": [
     "MainImage.scaledToFit is existing SwiftUI host layout adaptation, not exact original ImageView drawing/layout equivalence.",
     "Original compact provider/style/fullsize state is documented, not equated to replica compact argument; exact outer constraints/heights remainpartial.",
-    "Title original font further transforms f1ffa18 and URLfontf1ff934 not fully mirrored; typographyparentpartial.",
     "Original fullsize URLf3189b0 prettifier absent in current Core; usesabsoluteString, explicitpartial.",
     "No functional regression/UI/running product validation."
   ],
-  "visual_consumer_status": "Window actual PanelViews canonical guard and new View call confirmed; compact and readOnly paths reuse same linked view.",
-  "bound_at": "2026-10-23T14:41:02.804164+00:00",
+  "visual_consumer_status": "Final45 canonicalcard/readOnly/auxiliary consume realpreference; exactformattervalues/titleURLfonts/linecounts/previewvisibility/footerinsets restored, outertextlayout/drawing/transitionparentsremainpartial.",
+  "bound_at": "2026-10-23T14:55:26.094657+00:00",
   "icon_layout_correction": "Original f3da848 independently enforces icon42x42 via f1f9e3c; constructor scalingraw3 isproportionallyUpOrDown. Root fixed build43 natural icon toresizable.scaledToFit.frame42 in final44; this is compile/static evidence only. Original outercentering, OS-dependent corners and parentlayout remainpartial.",
-  "compiled_local_generator": {
+  "historical_build44_local_generator": {
     "body": ".local/image-dev23-compiled-link44-arm64.txt",
     "binding": ".local/image-dev23-compiled-link44-binding.json",
     "range": [
@@ -137,5 +140,260 @@
     ],
     "fact": "Actual body calls first item.f37ce0c, literal public.url-name, optional branch then whitespace/newline set and trimming; initial icon/image nil. Same exact original SDK symbols/installname/nonweak/zeroaddend for CharacterSet.whitespacesAndNewlines and StringProtocol.trimmingCharacters.",
     "app_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306"
-  }
+  },
+  "dev24_extension": {
+    "generated_at": "2026-10-23T14:51:06.524143+00:00",
+    "scope": "dev24 single concentrated link visible-value group",
+    "source_frozen": true,
+    "source_changed": true,
+    "verification": "Original complete REA/arm64/pattern/SDK + actual Source/consumerpeer + finite final45 compiledformatter body and6 matchingSDKbindings. Unified45 compiled21.99s/log20.26s,153 inputSHA unchanged; no runtime/product/functional/unit/UI/MCP execution.",
+    "unified_build": {
+      "name": "gap-build45",
+      "manifest": ".local/gap-build-complete.json",
+      "manifest_sha256": "bd6eca92e438a64a6c108b65bc6812692e7d043532ef5b1c769ebe5a74b44840",
+      "log": ".local/gap-build-45.log",
+      "seconds": 21.99,
+      "compiler_log_seconds": 20.26,
+      "inputs": 153,
+      "sha_before_after_equal": true,
+      "result": "compiled",
+      "functional_execution": false,
+      "app_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685"
+    },
+    "formatter": {
+      "address": "Paste:0x1003189b0",
+      "api": "OriginalLinkDisplay.formattedURL(_ url:URL)->String",
+      "status": "Complete-source pure value candidate bound to final45 actualbody,6 matchingSDKbindings andUIconsumer.",
+      "steps": [
+        "host optional nil→empty; remove ALL case-sensitive www. occurrences using Foundation replacingOccurrences options0/fullrange.",
+        "Append legacy URL.path directly (decoded legacy getter), no port/credentials or fragment appended.",
+        "If scheme present and not Character-prefix http, prepend scheme+\"://\"; http/https/httpfoo all omit scheme, nil omits.",
+        "If query present (includingempty) and current result does NOT Character-startwith pasteapp.io, append\"?\"+query. This is prefix test, not exact host/eTLD; pasteapp.io.evil also suppresses.",
+        "Trim only Unicode scalar U+002F from both ends; do not trim whitespace, queries or #, do not URI-reparse."
+      ],
+      "nil_and_character_proof": "f318d70 firstparam prefix, secondparam target; iterators compare Characters, target exhaustion returns true only when prefix also exhausted; prefixexhaustion returns true. All empty prefix/target and canonical Character comparison match starts(with:).",
+      "constant_proof": "f1ab8f8→f1ab8e4→f1abd90→f1ab2ec baseURL string100d97f50=https://pasteapp.io, .host(percentEncoded:true) yieldspasteapp.io. Static trim array100fbf740 count1 scalar0x2f.",
+      "source_ref": {
+        "path": "replica/Sources/PasteReplicaCore/OriginalLinkDisplay.swift",
+        "symbol": "public static func formattedURL(_ url: URL) -> String",
+        "line": 5,
+        "sha256": "22ddf146e091d4b1f9fb0315e95a8bfb527542b1e1f945c9c80a776e47302b20"
+      }
+    },
+    "provider": {
+      "factory": "f10006dd84 at10006e044..54 calls cell+0x178 withthunkf10006e168→f100075000",
+      "firstbool": "f75000 at10007507c reads firstgetter result bytew19;100075164 returns itx0",
+      "vtable_slots": [
+        {
+          "slot": "0x100f99c10",
+          "raw": "0x100000003d7eec",
+          "rebase_target": "0x1003d7eec"
+        },
+        {
+          "slot": "0x100f99eb0",
+          "raw": "0x100000003d7eec",
+          "rebase_target": "0x1003d7eec"
+        }
+      ]
+    },
+    "preference": {
+      "original": "isLinkPreviewsEnabled",
+      "default": true,
+      "schema_adapter": "Preferences.linkPreviewsEnabled Bool; PB owns property/init/defaultmissingtrue/encode/merge. No HTTP provider resumed.",
+      "binding": "keypath100c26c78→relativecomponent100c26c98→f75184 passeslocalBool1 and key100d8ecd0 to f2ccc34; factoryf6dd84 callsLinkCellvtable+0x178 withthunkf6e168→f75000, actual LinkCell slot100f99eb0→f3d7eec, firstgetterbyte returnedx0 and testedbit0.",
+      "flag_behavior": "false→style2/fullsizefalse/previewhidden; true→style0 if image nil or square else style1; fullsizetrue/previewvisible. Default absentprovidertrue. Replica compact is not this flag."
+    },
+    "footer": {
+      "title": "metadata.name optionalnil hides; presentempty remainsvisible. fullsize?1:3 lines; preferredBody.pointSize→systemFont semibold; primary dynamicblack0.85/white0.85.",
+      "url": "fullsize?formattedURL:absoluteString; fullsize titlevisible1line/titlehidden2lines; nonfullsize0=unlimitedlines. Preferredcallout font, dynamicsecondaryblack0.5/white0.55. TooltipcanonicalabsoluteString.",
+      "layout": "Verticaltitle+URL stackspacing3,naturalalignment5 leading; footerstackinsets top10,left12,bottom10,right12; labels widths equalstackwidth. Titleverticalcompression1000/hugging1000,URLhugging250.",
+      "unmirrored": "Original titlecellwordwrapping/URLcellcharwrapping and fieldcell truncation/scroll selectors not fully mirrored by SwiftUI Text; keep parentpartial."
+    },
+    "preview_region": {
+      "implemented": "Enabledshows region maxwidth/maxheightcenter, disabledremoves region entirely. imageData nonsquaremain; squareicon; ifnil iconData→safari42regularsecondary. Icon width/height42 fitsupordown; no guessed mainheight.",
+      "known_constraints": "Original mainImageView allfouranchorszero to PreviewView via f3da848 and f1f9774 zero insets; icon42x42centerX/centerY. Main/fading/icon childarraylayer order preserved original separately; current SwiftUI does not restoreoriginalfading.",
+      "style_incomplete": "Original icon corner26+12continuous/earlier10circular and transitionoffset/opacity not guessed this round."
+    },
+    "actual_source_refs": [
+      {
+        "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+        "symbol": "let linkPreviewsEnabled: Bool",
+        "line": 10,
+        "sha256": "06533b5b0a24c1d4cfbab707ff1042ba9e341c9d143679b59ca2d2223dc4a26c"
+      },
+      {
+        "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+        "symbol": "if linkPreviewsEnabled {",
+        "line": 15,
+        "sha256": "06533b5b0a24c1d4cfbab707ff1042ba9e341c9d143679b59ca2d2223dc4a26c"
+      },
+      {
+        "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+        "symbol": "OriginalLinkDisplay.formattedURL(metadata.url)",
+        "line": 34,
+        "sha256": "06533b5b0a24c1d4cfbab707ff1042ba9e341c9d143679b59ca2d2223dc4a26c"
+      },
+      {
+        "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+        "symbol": ".padding(.vertical, 10)",
+        "line": 40,
+        "sha256": "06533b5b0a24c1d4cfbab707ff1042ba9e341c9d143679b59ca2d2223dc4a26c"
+      },
+      {
+        "path": "replica/Sources/PasteReplica/UI/ReplicaReadOnlyPreviewContent.swift",
+        "symbol": "linkPreviewsEnabled: store.preferences.linkPreviewsEnabled",
+        "line": 28,
+        "sha256": "75c71b7c823ac6dfe3e59a033db183419afd55dca88b37941f4a35eb9021d36b"
+      }
+    ],
+    "owned_sources": [
+      "replica/Sources/PasteReplicaCore/OriginalLinkDisplay.swift",
+      "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+      "replica/Sources/PasteReplica/UI/ReplicaReadOnlyPreviewContent.swift"
+    ],
+    "remaining": [
+      "Original AppKit character-wrapping, field priorities/selector lifecycle and SwiftUI text layout not byte/pixel equivalent.",
+      "Main image uses SwiftUI scaledToFit; original custom drawing and fading/animation/OS-dependenticoncorner remainpartial.",
+      "Original compactheader style0/1/2 not all wired from local image width/height to parent card; fullsize enabled flag is real and mapped independently from replica compact argument.",
+      "Current readOnly full preview reuses local value UI, not assertion original fullpreview parent equals LinkItemCell.",
+      "Original DI/Config/UserDefaultsABI, VM, actor and wholecard parents remainpartial; no runtime/UI/functional regression."
+    ],
+    "evidence_sha256": {
+      ".local/image-dev24-url-format-arm64.txt": "cf2767172881055eec3e4568e6d1f3f253a48db3c0e7e07a850012ace98d35a2",
+      ".local/image-dev24-prefix-arm64.txt": "60586da3e9a555e8070b8088c5cf7a36ce090d281c9268c6870cba97b5622eae",
+      ".local/image-dev24-format-query-url-arm64.txt": "8f716411e5986a732409d81a56854e9a5bee3f321998cffbd6ffd9a2490930fb",
+      ".local/image-dev24-provider-arm64.txt": "05a7912ad403c2dbd3dd82e075f9e1b33ac00f9733ecda7a0effbc5c4cba68c8",
+      ".local/image-dev24-provider-key-arm64.txt": "4638aca1ede661163337290ce68cadccf27c3770683387c4b0a64779a9fd2ca1",
+      ".local/image-dev24-provider-consumer-arm64.txt": "a5bcf816d6e99d40ba75351c40c2df547a2d02ddb305b3e4442251f7f857e50c",
+      ".local/image-dev24-label-style-arm64.txt": "57a84c37efaa217283c58dc16fa6b7bff45967ebe87b6804618fef5d86323ad4",
+      ".local/image-dev24-footer-layout-arm64.txt": "6799b6fa2bb5856143271512a81684ae73341e1f4370effd3bca86c2be340497",
+      ".local/image-dev24-layout-bindings.json": "e07c1b3da48585362bf97178489c5f2d48da665320ee82946674d230717fbd4e",
+      ".local/image-dev24-base-cell-children-arm64.txt": "2f798b458e123a0df55876777c5cb265036c269c64f47a9746b1a9fe17165d86",
+      ".local/image-dev24-link-cell-children-arm64.txt": "763fc4d93c71ccb06a2119a5ff53bd5e229a29c2cfb3f0ce9dddff789aa792cd",
+      ".local/image-dev24-compiled-formatter45-arm64.txt": "59a751194cb1d7f882e1a9c0d180db482aa3dd7aafbef94740da6c82a6e73fbb",
+      ".local/image-dev24-compiled-prefix45-arm64.txt": "6f72e28c1a5da67116fc65335705c1698f996f97896b94cb6dad3305af4662e0",
+      ".local/image-dev24-compiled-formatter45-binding.json": "eacfbbb6752ad288ea5654c047d3930c361a46f5d1b86127b298f13968256bcf"
+    },
+    "network": "No network operations added. Original isLinkPreviewsEnabled can also gate remote enhancement; this implementation only restores local visualpreferenceconsumption.",
+    "no_extra_host_summary": {
+      "status": "Confirmed from full positive view/constraint tree, not missing search result.",
+      "base": "f3d86d4 adds exactly body/header/shortcut/lock; f3d892c body.bottom==content.bottom, no separate hostsummarylabel/footer slot.",
+      "link": "f3d9748 installs body stack;f3d9640 stack contains only preview/footer;f3db0dc/f3dafd4 footer contains onlyname+url labels.",
+      "update": "f3d9d40 updates preview/two footerlabels/header/shortcut/lock only.",
+      "next": "Window skips common cardSummary HStack for link; original headerpinboard icon remains independent.",
+      "evidence": [
+        ".local/image-dev24-base-cell-children-arm64.txt",
+        ".local/image-dev24-link-cell-children-arm64.txt",
+        ".local/image-dev24-footer-layout-arm64.txt"
+      ]
+    },
+    "actual_consumer_peer_refs": [
+      {
+        "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+        "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact, linkPreviewsEnabled: linkPreviewsEnabled)",
+        "line": 457,
+        "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
+      },
+      {
+        "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+        "symbol": "ReplicaItemContent(item: item, compact: true, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)",
+        "line": 224,
+        "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
+      },
+      {
+        "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+        "symbol": "linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled",
+        "line": 38,
+        "sha256": "594f4d5def8462752221381b7d79e03701724c6b8b42c419a7b48e6b7cbe9917"
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Models.swift",
+        "symbol": "public var linkPreviewsEnabled: Bool",
+        "line": 127,
+        "sha256": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90"
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+        "symbol": "if local.linkPreviewsEnabled != base.linkPreviewsEnabled",
+        "line": 200,
+        "sha256": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c"
+      },
+      {
+        "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+        "symbol": "if item.kind != .link {",
+        "line": 228,
+        "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
+      }
+    ],
+    "preference_peer": "PB init/default/codingmissingtrue/encoding + Storemerge confirmed; Windowcard→ReplicaItemContent→LinkMetadataContent actualpref. RootAuxiliary + ObservedReadOnly actualpref. Linkextraouterpadding/cardSummaryremoved per fulloriginalviewtree.",
+    "bound_at": "2026-10-23T14:55:26.094657+00:00",
+    "compiled_formatter": {
+      "product_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
+      "function_range": [
+        "0x10011eb24",
+        "0x10011edf4"
+      ],
+      "body": ".local/image-dev24-compiled-formatter45-arm64.txt",
+      "SDK_pairs": [
+        {
+          "original_address": "0x100bf48b4",
+          "product_address": "0x1001865ec",
+          "symbol": "_$s10Foundation3URLV4hostSSSgvg",
+          "install_name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation",
+          "same_nonweak_zero_addend": true
+        },
+        {
+          "original_address": "0x100bf9384",
+          "product_address": "0x100187f60",
+          "symbol": "_$sSy10FoundationE20replacingOccurrences2of4with7options5rangeSSqd___qd_0_So22NSStringCompareOptionsVSnySS5IndexVGSgtSyRd__SyRd_0_r0_lF",
+          "install_name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation",
+          "same_nonweak_zero_addend": true
+        },
+        {
+          "original_address": "0x100bf48cc",
+          "product_address": "0x1001865f8",
+          "symbol": "_$s10Foundation3URLV4pathSSvg",
+          "install_name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation",
+          "same_nonweak_zero_addend": true
+        },
+        {
+          "original_address": "0x100bf48fc",
+          "product_address": "0x100186610",
+          "symbol": "_$s10Foundation3URLV6schemeSSSgvg",
+          "install_name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation",
+          "same_nonweak_zero_addend": true
+        },
+        {
+          "original_address": "0x100bf48f0",
+          "product_address": "0x100186604",
+          "symbol": "_$s10Foundation3URLV5querySSSgvg",
+          "install_name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation",
+          "same_nonweak_zero_addend": true
+        },
+        {
+          "original_address": "0x100bf9378",
+          "product_address": "0x100187f54",
+          "symbol": "_$sSy10FoundationE18trimmingCharacters2inSSAA12CharacterSetV_tF",
+          "install_name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation",
+          "same_nonweak_zero_addend": true
+        }
+      ],
+      "prefix_helper": {
+        "range": [
+          "0x1000e7acc",
+          "0x1000e7c30"
+        ],
+        "symbol": "specialized Sequence.starts(with:) for String,String",
+        "body": ".local/image-dev24-compiled-prefix45-arm64.txt",
+        "contract": "Character iterators/equality, matching original f318d70 prefix-first,target-second algorithm; no run/byteequality claim."
+      },
+      "charset_adaptation": "Original constructs CharacterSet from static singleUnicode.Scalar0x2f array; product CharacterSet(charactersIn:\"/\") has same soleU+002F membership; differentinitializer explicitly documented.",
+      "constant_adaptation": "Original cachedtrackingURL basehttps://pasteapp.io→host(percentEncoded:true); product directly uses samehostliteralpasteapp.io, not live networking/configlookup.",
+      "functional_execution": false
+    }
+  },
+  "new_complete_source_candidates": [
+    "Paste:0x1003189b0"
+  ],
+  "new_complete_original_addresses_note": "dev23 added0 wholeaddresses; dev24 onlypureformatter f3189b0 sourcecandidate, Rootledgerowns finalregistration."
 }

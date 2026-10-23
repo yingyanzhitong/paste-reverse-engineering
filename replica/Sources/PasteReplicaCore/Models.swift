@@ -124,6 +124,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
     public var isDiagnosticsEnabled: Bool
     public var useBinaryPlist: Bool
     public var fileQuickLookThumbnailsEnabled: Bool
+    public var linkPreviewsEnabled: Bool
 
     public init(historyLimit: Int = 1000, isMonitoringPaused: Bool = false, pauseUntil: Date? = nil,
                 excludedBundleIDs: [String] = [], ignoredPasteboardTypes: [String] = [], ignoreConcealedContent: Bool = true,
@@ -138,7 +139,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
                 showDuringScreenSharing: Bool = true, ignoreTransientContent: Bool = true,
                 historyTitle: String = "剪贴板", stackItemIDs: [UUID] = [], stackReversed: Bool = false,
                 isDiagnosticsEnabled: Bool = false, useBinaryPlist: Bool = false,
-                fileQuickLookThumbnailsEnabled: Bool = true) {
+                fileQuickLookThumbnailsEnabled: Bool = true, linkPreviewsEnabled: Bool = true) {
         self.historyLimit = historyLimit
         self.isMonitoringPaused = isMonitoringPaused
         self.pauseUntil = pauseUntil
@@ -166,6 +167,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         self.isDiagnosticsEnabled = isDiagnosticsEnabled
         self.useBinaryPlist = useBinaryPlist
         self.fileQuickLookThumbnailsEnabled = fileQuickLookThumbnailsEnabled
+        self.linkPreviewsEnabled = linkPreviewsEnabled
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -173,7 +175,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         case playSounds, appearance, panelHeight, launchAtLogin, pasteToActiveApp, alwaysPastePlainText, historyRetentionDays
         case historyShortcut, stackShortcut, previousPinboardShortcut, nextPinboardShortcut
         case quickPasteModifierRawValue, plainTextModifierRawValue, showDuringScreenSharing, ignoreTransientContent
-        case historyTitle, stackItemIDs, stackReversed, isDiagnosticsEnabled, useBinaryPlist, fileQuickLookThumbnailsEnabled
+        case historyTitle, stackItemIDs, stackReversed, isDiagnosticsEnabled, useBinaryPlist, fileQuickLookThumbnailsEnabled, linkPreviewsEnabled
     }
 
     public init(from decoder: Decoder) throws {
@@ -204,7 +206,8 @@ public struct AppPreferences: Codable, Equatable, Sendable {
                   stackReversed: try values.decodeIfPresent(Bool.self, forKey: .stackReversed) ?? false,
                   isDiagnosticsEnabled: try values.decodeIfPresent(Bool.self, forKey: .isDiagnosticsEnabled) ?? false,
                   useBinaryPlist: try values.decodeIfPresent(Bool.self, forKey: .useBinaryPlist) ?? false,
-                  fileQuickLookThumbnailsEnabled: try values.decodeIfPresent(Bool.self, forKey: .fileQuickLookThumbnailsEnabled) ?? true)
+                  fileQuickLookThumbnailsEnabled: try values.decodeIfPresent(Bool.self, forKey: .fileQuickLookThumbnailsEnabled) ?? true,
+                  linkPreviewsEnabled: try values.decodeIfPresent(Bool.self, forKey: .linkPreviewsEnabled) ?? true)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -237,6 +240,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         try values.encode(isDiagnosticsEnabled, forKey: .isDiagnosticsEnabled)
         try values.encode(useBinaryPlist, forKey: .useBinaryPlist)
         try values.encode(fileQuickLookThumbnailsEnabled, forKey: .fileQuickLookThumbnailsEnabled)
+        try values.encode(linkPreviewsEnabled, forKey: .linkPreviewsEnabled)
     }
 }
 

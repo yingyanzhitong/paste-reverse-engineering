@@ -34,7 +34,8 @@ struct ReplicaPreviewView: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
                         ScrollView {
-                            ReplicaItemContent(item: item, compact: false)
+                            ReplicaItemContent(item: item, compact: false,
+                                               linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)
                                 .textSelection(.enabled)
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                 .padding(8)
