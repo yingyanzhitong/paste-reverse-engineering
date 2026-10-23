@@ -30,7 +30,7 @@ enum ReplicaFilterMatching {
             image = item?.sourceBundleID.flatMap { NSWorkspace.shared.urlForApplication(withBundleIdentifier: $0) }
                 .map { NSWorkspace.shared.icon(forFile: $0.path) }
         case let .device(device): title = device
-        case let .date(filter): title = filter.title
+        case let .date(filter): title = OriginalSearchDateEncoding.title(for: filter.range)
         case let .pinboard(id): title = store.pinboards.first { $0.id == id }?.name ?? "Pinboard"
         }
         if image == nil {

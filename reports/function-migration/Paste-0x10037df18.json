@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037df18",
-  "reviewed_at": "2026-10-23T11:09:49.645281+00:00",
+  "reviewed_at": "2026-10-23T11:22:58.343017+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
+  "compiled_app_binary_sha256": "97cb8df62eb115348aa16a6a1ba9c792df63cadf12424fe14b10deb3263432ef",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "CodingKeys的description协议入口使用本类型CodingKey witness并转发Swift.CodingKey默认description。",
-  "review": "最终build24完整CodingKeys description witness eaffc..eb024：经当前ee558..ee59c CodingKey witness accessor调用Swift CodingKey description默认实现；当前description conformance14d744+24实际绑定eaffc。",
+  "review": "最终build25完整CodingKeys description witness ee184..ee1ac：通过当前f16e0..f1724 CodingKey witness accessor调用Swift CodingKey description默认实现；当前description conformance154b14+24绑定ee184。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000eaffc",
-    "end_exclusive": "0x1000eb024",
+    "start": "0x1000ee184",
+    "end_exclusive": "0x1000ee1ac",
     "size": 40,
-    "sha256": "01ac5531175c3eaea30df6413096c0ff79faeb63354e34641ef83d7f77b0cede",
-    "binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
+    "sha256": "0c914355f474d134c220a630f6752dea709b367c6f27519c04f2741e6babdf55",
+    "binary_sha256": "97cb8df62eb115348aa16a6a1ba9c792df63cadf12424fe14b10deb3263432ef",
     "lc_function_starts_verified": true
   }
 }

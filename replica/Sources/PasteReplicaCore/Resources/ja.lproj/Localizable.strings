@@ -28,3 +28,5 @@
 "edit-item.toolbar.image.rotate-right" = "右に回転";
 "general.browser" = "ブラウザ";
 "general.action.open-in" = "%@を開く";
+"item-type.multiple-files" = "複数のファイル";
+"preview.reveal-in-finder.title" = "Finderで表示";

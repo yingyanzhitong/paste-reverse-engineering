@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1003e29b0",
+  "reviewed_at": "2026-10-23T11:22:58.757761+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0309.c",
+    "line": 589
+  },
+  "original_pseudocode_sha256": "ec01e5b16105d830f9bd837d887774fa5cbe1ae70a3fd891fa6423452c70b2dc",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/ReplicaFilePreviewContent.swift": "b875e1c2e8bf25a355f2c4993861303db97d933c14b9fc11e29eb5879211bd4d"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "97cb8df62eb115348aa16a6a1ba9c792df63cadf12424fe14b10deb3263432ef",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "真实 footer NSTextField 设置文本、无限行、原 secondary foreground/body font、不可编辑/选择、无边框/背景及水平 defaultLow(250) 压缩优先级。",
+  "review": "原 REA 伪码及指定 arm64 调用链静态核对；真实 files factory 消费。最终 build25 统一 release 编译通过，124 输入 SHA 构建前后一致；本批绑定冻结源摘要。未执行产品、功能、单测、原版动态、UI 或 MCP 测试；完整父缺口继续 partial。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

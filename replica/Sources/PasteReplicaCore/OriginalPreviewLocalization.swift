@@ -102,6 +102,14 @@ public enum OriginalPreviewLocalization {
         resource("general.browser")
     }
 
+    public static func f_1001c6fb0() -> LocalizedStringResource {
+        resource("item-type.multiple-files")
+    }
+
+    public static func f_1001dac54() -> LocalizedStringResource {
+        resource("preview.reveal-in-finder.title")
+    }
+
     public static func f_1001e6b98(_ applicationName: String) -> LocalizedStringResource {
         LocalizedStringResource("general.action.open-in", defaultValue: "\(applicationName)",
                                 table: "Localizable", locale: .current,

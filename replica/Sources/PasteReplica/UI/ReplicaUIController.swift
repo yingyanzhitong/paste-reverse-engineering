@@ -55,8 +55,7 @@ final class ReplicaUIState: ObservableObject {
             case let .kind(kind): value = kind == .files ? "file" : kind == .richText ? "text" : kind.rawValue
             case let .source(source): value = source
             case let .device(device): value = device
-            case let .date(filter):
-                value = "\(Int(filter.range.lowerBound.timeIntervalSince1970)) \(Int(filter.range.upperBound.timeIntervalSince1970))"
+            case let .date(filter): return OriginalSearchDateEncoding.f_1002d9d2c(filter.range)
             case let .pinboard(id): value = id.uuidString
             }
             return .filter(selection.group, value)

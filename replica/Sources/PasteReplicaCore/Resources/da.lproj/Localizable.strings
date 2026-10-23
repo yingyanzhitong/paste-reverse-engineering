@@ -28,3 +28,5 @@
 "edit-item.toolbar.image.rotate-right" = "Roter til højre";
 "general.browser" = "Browser";
 "general.action.open-in" = "Åbn i %@";
+"item-type.multiple-files" = "Flere filer";
+"preview.reveal-in-finder.title" = "Vis i Finder";

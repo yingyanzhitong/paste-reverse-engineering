@@ -29,6 +29,8 @@ public enum OriginalPasteboardItemCreationError: Error {
 
 extension ClipboardStore {
     public nonisolated static let orderedPasteboardTypesPayloadKey = "com.pastereplica.internal.types+json"
+    private static let imageRestore = OriginalPasteboardImageRestore(
+        temporaryRoot: FileManager.default.temporaryDirectory.appendingPathComponent("PasteReplica", isDirectory: true))
 
     public nonisolated static func originalPasteboardItems(from payloads: [String: Data]) throws -> [OriginalPasteboardItem] {
         let items: [OriginalPasteboardItem]
@@ -253,7 +255,10 @@ extension ClipboardStore {
             }
         } else {
           for item in selected {
-            let representations = try Self.originalPasteboardItems(from: item.payloads)
+            var representations = try Self.originalPasteboardItems(from: item.payloads)
+            if item.kind == .image {
+                representations = Self.imageRestore.prepare(representations, sourceName: item.sourceName, timestamp: item.createdAt)
+            }
             for object in representations {
                 for type in Self.analysisPayloadKeys.union([multiItemPayloadKey, orderedTypesPayloadKey, originalItemDataPayloadKey]) {
                     object.f_10037dab0(type)

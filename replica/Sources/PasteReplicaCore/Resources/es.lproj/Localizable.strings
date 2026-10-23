@@ -28,3 +28,5 @@
 "edit-item.toolbar.image.rotate-right" = "Girar a la derecha";
 "general.browser" = "Navegador";
 "general.action.open-in" = "Abrir en %@";
+"item-type.multiple-files" = "Varios archivos";
+"preview.reveal-in-finder.title" = "Revelar en Finder";

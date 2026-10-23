@@ -26,6 +26,11 @@ func makeOriginalReplicaPreview(state: ReplicaUIState, item: ClipboardItem) -> O
         content = link
         contentSize = link.preferredPreviewSize
         metadata = link.previewMetadataView
+    case .files:
+        let files = ReplicaFilePreviewContent(state: state, item: item)
+        content = files
+        contentSize = files.preferredPreviewSize
+        metadata = files.previewMetadataView
     default:
         content = makeReplicaReadOnlyPreviewContent(store: state.store, item: item)
         contentSize = .init(width: max(380, screenSize.width * 0.25),

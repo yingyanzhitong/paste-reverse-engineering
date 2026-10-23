@@ -7,6 +7,7 @@ import PasteReplicaCore
 final class ReplicaImagePreviewContent: NSView, OriginalPreviewEditableContent, NSUserInterfaceValidations {
     private weak var state: ReplicaUIState?
     private let itemID: UUID
+    private let checkerboardView = OriginalImageCheckerboardView(frame: .zero)
     private let zoomView = OriginalZoomableImageView()
     private let metadataHost = NSView()
     private let editingUndoManager = UndoManager()
@@ -40,14 +41,11 @@ final class ReplicaImagePreviewContent: NSView, OriginalPreviewEditableContent, 
         self.state = state
         itemID = item.id
         super.init(frame: .zero)
+        addSubview(checkerboardView)
+        checkerboardView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(zoomView)
         zoomView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            zoomView.topAnchor.constraint(equalTo: topAnchor),
-            zoomView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            zoomView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            zoomView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+        NSLayoutConstraint.activate(f_1003e57b8())
         replaceDisplayedItem(item)
         itemObservation = state.store.$items.sink { [weak self] items in
             MainActor.assumeIsolated {
@@ -63,6 +61,19 @@ final class ReplicaImagePreviewContent: NSView, OriginalPreviewEditableContent, 
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    private func f_1003e57b8() -> [NSLayoutConstraint] {
+        [
+            checkerboardView.topAnchor.constraint(equalTo: topAnchor),
+            checkerboardView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            checkerboardView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -CGFloat.zero),
+            checkerboardView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -CGFloat.zero),
+            zoomView.topAnchor.constraint(equalTo: topAnchor),
+            zoomView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            zoomView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -CGFloat.zero),
+            zoomView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -CGFloat.zero)
+        ]
+    }
 
     override var acceptsFirstResponder: Bool { true }
     override var undoManager: UndoManager? { editingUndoManager }

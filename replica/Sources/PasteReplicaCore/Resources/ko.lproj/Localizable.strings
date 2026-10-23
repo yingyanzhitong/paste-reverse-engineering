@@ -28,3 +28,5 @@
 "edit-item.toolbar.image.rotate-right" = "오른쪽으로 회전";
 "general.browser" = "브라우저";
 "general.action.open-in" = "%@에서 열기";
+"item-type.multiple-files" = "여러 파일";
+"preview.reveal-in-finder.title" = "Finder에 공개";

@@ -28,3 +28,5 @@
 "edit-item.toolbar.image.rotate-right" = "Повернуть вправо";
 "general.browser" = "Браузер";
 "general.action.open-in" = "Открыть в %@";
+"item-type.multiple-files" = "Несколько файлов";
+"preview.reveal-in-finder.title" = "Показать в Finder";

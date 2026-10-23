@@ -28,3 +28,5 @@
 "edit-item.toolbar.image.rotate-right" = "סובב לימין";
 "general.browser" = "דפדפן";
 "general.action.open-in" = "פתח ב- %@";
+"item-type.multiple-files" = "מספר קבצים";
+"preview.reveal-in-finder.title" = "לחשוף ב Finder";
