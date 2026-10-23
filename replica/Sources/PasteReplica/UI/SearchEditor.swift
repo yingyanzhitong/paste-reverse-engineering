@@ -2,6 +2,17 @@ import AppKit
 import SwiftUI
 import PasteReplicaCore
 
+struct ReplicaSearchFilterChip {
+    enum Selection: Hashable {
+        case kind(ClipboardKind), source(String), device(String), date(Int)
+    }
+    let selection: Selection
+    let title: String
+    let image: NSImage?
+}
+
+private let searchFilterSelectionKey = NSAttributedString.Key("com.pastereplica.search.filter")
+
 @MainActor
 final class ReplicaSearchMenuAction: NSObject {
     private let action: () -> Void
@@ -23,6 +34,8 @@ final class ReplicaSearchMenuAction: NSObject {
 struct ReplicaSearchEditor: NSViewRepresentable {
     @Binding var text: String
     @Binding var focused: Bool
+    var filters: [ReplicaSearchFilterChip]
+    var onFiltersChange: ([ReplicaSearchFilterChip.Selection]) -> Void
     var onEnter: () -> Void
     var onCancel: () -> Void
     var onShowFilters: (NSButton) -> Void
@@ -39,10 +52,12 @@ struct ReplicaSearchEditor: NSViewRepresentable {
         editor.autoresizingMask = [.width]
         editor.setAccessibilityLabel("搜索剪贴板")
         editor.setAccessibilityIdentifier("clipboard-search")
-        editor.string = text
-        input.f_1000449e8()
         context.coordinator.attach(field, editor: editor)
-        field.onClear = { [weak coordinator = context.coordinator] _ in coordinator?.parent.text = "" }
+        context.coordinator.updateContents(field, editor: editor)
+        field.onClear = { [weak coordinator = context.coordinator] _ in
+            coordinator?.parent.text = ""
+            coordinator?.parent.onFiltersChange([])
+        }
         field.onShowFilters = { [weak coordinator = context.coordinator] button in coordinator?.parent.onShowFilters(button) }
         input.f_100042090().setAccessibilityLabel("清空搜索")
         field.f_100045730().setAccessibilityLabel("筛选")
@@ -53,11 +68,7 @@ struct ReplicaSearchEditor: NSViewRepresentable {
         context.coordinator.parent = self
         let input = field.f_100045c2c()
         guard let editor = input.f_100041f9c() as? SearchTextView else { return }
-        if editor.string != text, !editor.hasMarkedText() {
-            editor.string = text
-            input.f_1000449e8()
-            editor.setSelectedRange(NSRange(location: (text as NSString).length, length: 0))
-        }
+        context.coordinator.updateContents(field, editor: editor)
         editor.requestedFocus = focused
         if focused, let window = editor.window, window.firstResponder !== editor {
             window.makeFirstResponder(editor)
@@ -76,13 +87,60 @@ struct ReplicaSearchEditor: NSViewRepresentable {
 
     @MainActor final class Coordinator {
         var parent: ReplicaSearchEditor
+        private var renderedFilters: [ReplicaSearchFilterChip.Selection] = []
         init(_ parent: ReplicaSearchEditor) { self.parent = parent }
+
+        private func contents(_ storage: NSAttributedString, editor: NSTextView) -> (String, [ReplicaSearchFilterChip.Selection]) {
+            var selections: [ReplicaSearchFilterChip.Selection] = []
+            var ranges: [NSRange] = []
+            storage.enumerateAttribute(searchFilterSelectionKey,
+                in: NSRange(location: 0, length: storage.length)) { value, range, _ in
+                if let selection = value as? ReplicaSearchFilterChip.Selection {
+                    selections.append(selection)
+                    ranges.append(range)
+                }
+            }
+            let plain = NSMutableString(string: editor.f_1000f7254())
+            for range in ranges.reversed() { plain.deleteCharacters(in: range) }
+            return (plain as String, selections)
+        }
+
+        func updateContents(_ field: SearchField, editor: SearchTextView) {
+            guard !editor.hasMarkedText(), let storage = editor.textStorage else { return }
+            let selections = parent.filters.map(\.selection)
+            let previous = contents(storage, editor: editor)
+            guard previous.0 != parent.text || previous.1 != selections else { return }
+            let range = editor.selectedRange()
+            let position = max(0, range.location - previous.1.count)
+            let result = NSMutableAttributedString(string: "")
+            for filter in parent.filters {
+                let attachment = OriginalFilterTextAttachment { [weak field] in
+                    field?.f_100046914(title: filter.title, image: filter.image) ?? NSView()
+                }
+                let token = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
+                token.addAttributes(editor.preferredTypingAttributes,
+                                    range: NSRange(location: 0, length: token.length))
+                token.addAttribute(searchFilterSelectionKey, value: filter.selection,
+                                   range: NSRange(location: 0, length: token.length))
+                result.append(token)
+            }
+            result.append(NSAttributedString(string: parent.text, attributes: editor.preferredTypingAttributes))
+            if selections.isEmpty {
+                editor.f_1000f733c(parent.text)
+            } else {
+                storage.setAttributedString(result)
+            }
+            renderedFilters = selections
+            field.f_100045c2c().f_1000449e8()
+            let location = min(result.length, selections.count + position)
+            editor.setSelectedRange(NSRange(location: location,
+                length: min(range.length, result.length - location)))
+        }
 
         func attach(_ field: SearchField, editor: SearchTextView) {
             let editing = field.editingDelegate!
-            // The plain-text panel has no attachment proposal consumer yet.
-            // Keep the recovered optional callback nil so AppKit applies edits,
-            // preserving its undo registration and input-method composition.
+            // AppKit applies edits and records undo; the recovered delegate
+            // selects an attachment before a single backward deletion removes it.
             editing.onEndEditing = { [weak self] in
                 if self?.parent.focused == true { self?.parent.focused = false }
             }
@@ -103,8 +161,13 @@ struct ReplicaSearchEditor: NSViewRepresentable {
                 if self?.parent.focused == false { self?.parent.focused = true }
             }
             editor.didChange = { [weak self, weak editor] in
-                guard let editor, !editor.hasMarkedText() else { return }
-                self?.parent.text = editor.string
+                guard let self, let editor, !editor.hasMarkedText(), let storage = editor.textStorage else { return }
+                let (text, selections) = self.contents(storage, editor: editor)
+                self.parent.text = text
+                if selections != self.renderedFilters {
+                    self.renderedFilters = selections
+                    self.parent.onFiltersChange(selections)
+                }
             }
         }
     }

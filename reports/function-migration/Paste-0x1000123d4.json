@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000123d4",
+  "reviewed_at": "2026-10-23T09:13:58.205274+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0007.c",
+    "line": 1522
+  },
+  "original_pseudocode_sha256": "e2e98c396757ff43e9060107e9c4b45359571ee7b97450c935164f3af5550030",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "af7a542ae61543bac22779bbe7a5e7930b8788a93833cf2a1fe7c7689e044aa6"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "先尝试xmark.circle.fill，首次nil则用questionmark.square且nil不可继续；首次成功时再查原symbol且nil不可继续；设置imageOnly、共享foreground色、border=false、alpha0.6、close action及target。",
+  "review": "part-0007.c:1514；原版固定symbol槽0x100ec1640指向xmark.circle.fill；fallback字符串0x100d8de20+32的19字节静态精确解为questionmark.square。保留重复原symbol调用与两条nil失败条件。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001eb1e4",
-  "reviewed_at": "2026-10-23T08:50:59.400410+00:00",
+  "reviewed_at": "2026-10-23T09:13:57.990709+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0157.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "1ceae8eec07632d746668f61632d7d63f9eda0f9e064e9695bbd322533c5a278",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift": "1ac9905dbea68bb2ae3681177014696b71dbb15b84738e3a33718198401f7b82"
+    "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift": "4d9f01435d0b4ff2bcac5724479cc21c2175bba5fc9819a8d2d01d3fd5a8253b"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "在注册字典按完整快捷键写入注册对象；存在时替换并释放旧值，缺失时插入，必要扩容/COW保留其他元素。",
-  "review": "委托Swift Dictionary下标写入完成值语义和替换释放；在锁内由真实注册链调用，不把依赖的泛型runtime函数额外计数。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。",
+  "review": "委托Swift Dictionary下标写入完成值语义和替换释放；在锁内由真实注册链调用，不把依赖的泛型runtime函数额外计数。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。 本批复审后保留原恢复契约；真实入口改为直接SwiftUI StateObject组件，移除Native代理事件/窗口观察；当前候选待统一编译，不沿用旧文件摘要。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

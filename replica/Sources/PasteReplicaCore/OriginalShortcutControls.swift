@@ -26,6 +26,13 @@ public enum OriginalShortcutControlFunctions {
     public static func f_1001ee524() -> some View {
         Image(systemName: "xmark").font(.caption2)
     }
+
+    @ViewBuilder
+    public static func f_1001ed830(_ presentation: (String, String?, Bool), recording: Bool) -> some View {
+        let label = HStack(spacing: 1) { f_1001eda4c(presentation) }
+        if recording { label.help(OriginalShortcutMessages.value("general.action.cancel")) }
+        else { label }
+    }
 }
 
 public struct OriginalShortcutPrimaryButtonStyle: ButtonStyle {
@@ -58,36 +65,34 @@ public struct OriginalShortcutRemoveButtonStyle: ButtonStyle {
     public func makeBody(configuration: Configuration) -> some View { f_1001ee604(configuration) }
 }
 
-/// The native bridge retains the responder/monitor lifecycle. This view renders
-/// the recovered SwiftUI label, primary style and assigned-only remove control.
+/// The recovered label, primary style and assigned-only remove control.
 @MainActor
 public struct OriginalShortcutControls: View {
     public let presentation: (String, String?, Bool)
-    public let assigned: Bool
+    public let state: OriginalShortcutRecorderState
     public let begin: () -> Void
     public let clear: () -> Void
 
-    public init(presentation: (String, String?, Bool), assigned: Bool,
+    public init(presentation: (String, String?, Bool), state: OriginalShortcutRecorderState,
                 begin: @escaping () -> Void, clear: @escaping () -> Void) {
         self.presentation = presentation
-        self.assigned = assigned
+        self.state = state
         self.begin = begin
         self.clear = clear
     }
 
-    public var body: some View {
-        ZStack(alignment: .topTrailing) {
-            Button(action: begin) {
-                HStack(spacing: 1) {
-                    OriginalShortcutControlFunctions.f_1001eda4c(presentation)
-                }
-            }
-            .buttonStyle(OriginalShortcutPrimaryButtonStyle())
-            if assigned {
-                Button(action: clear) { OriginalShortcutControlFunctions.f_1001ee524() }
-                    .buttonStyle(OriginalShortcutRemoveButtonStyle())
-                    .help(OriginalShortcutRecorder.removeTitle)
-            }
+    @ViewBuilder
+    public func f_1001ed1c4() -> some View {
+        Button(action: begin) {
+            OriginalShortcutControlFunctions.f_1001ed830(presentation, recording: state.isRecording)
+        }
+        .buttonStyle(OriginalShortcutPrimaryButtonStyle())
+        if case .assigned = state {
+            Button(action: clear) { OriginalShortcutControlFunctions.f_1001ee524() }
+                .buttonStyle(OriginalShortcutRemoveButtonStyle())
+                .help(OriginalShortcutRecorder.removeTitle)
         }
     }
+
+    public var body: some View { ZStack(alignment: .topTrailing) { f_1001ed1c4() } }
 }

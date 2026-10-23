@@ -1,5 +1,6 @@
 import Foundation
 import OSLog
+import os
 
 public protocol OriginalDiagnosticSink {
     func emit(level: UInt8, message: String)
@@ -26,29 +27,36 @@ private struct OriginalOSLogDiagnosticSink: OriginalDiagnosticSink {
     }
 }
 
+extension OriginalDependencyValues {
+    public var diagnosticFactory: (String) -> any OriginalDiagnosticSink {
+        { OriginalOSLogDiagnosticSink(name: $0) }
+    }
+}
+
 public final class OriginalNamedDiagnostic {
-    private let lock = NSLock()
+    private static let factoryDependency = OriginalDependency(\OriginalDependencyValues.diagnosticFactory)
+    private let cached = OSAllocatedUnfairLock<(any OriginalDiagnosticSink)?>(uncheckedState: nil)
     public let name: String
-    private var cached: (any OriginalDiagnosticSink)?
     private let factory: (String) -> any OriginalDiagnosticSink
 
     private init(name: String, factory: @escaping (String) -> any OriginalDiagnosticSink) {
         self.name = name
         self.factory = factory
-        self.cached = nil
     }
 
     public static func f_1000d4624(name: String,
                                   factory: ((String) -> any OriginalDiagnosticSink)? = nil) -> OriginalNamedDiagnostic {
-        OriginalNamedDiagnostic(name: name, factory: factory ?? { OriginalOSLogDiagnosticSink(name: $0) })
+        OriginalNamedDiagnostic(name: name, factory: factory ?? {
+            factoryDependency.f_1000da768()($0)
+        })
     }
 
     public func f_1000d468c() -> any OriginalDiagnosticSink {
-        lock.lock()
-        defer { lock.unlock() }
-        if let cached { return cached }
-        let sink = factory(name)
-        cached = sink
-        return sink
+        cached.withLockUnchecked { cached in
+            if let cached { return cached }
+            let sink = factory(name)
+            cached = sink
+            return sink
+        }
     }
 }

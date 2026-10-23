@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100046acc",
+  "reviewed_at": "2026-10-23T09:13:58.089262+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0026.c",
+    "line": 60
+  },
+  "original_pseudocode_sha256": "842a972ed410df2ad867d53e68038020fb76fbd66501eb35590da165984a18fb",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "6a56456d5b45a28cacd291891380b97414e71c1eaf68bd1d9ee15c3ec1596600"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "弱SearchField上下文读取为强引用后，存活时向同一field原样转发NSEvent到点击选择实现；不存活无动作；返回0。",
+  "review": "真实FilterView click closure以weak self捕获后调用，完整本地选择方法未替换。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

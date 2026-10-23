@@ -56,6 +56,14 @@ public final class OriginalPasteboardItem: NSObject, Codable, NSSecureCoding {
         return item
     }
 
+    public static func f_10037c7bc(_ url: URL, title: String?) -> OriginalPasteboardItem {
+        let item = OriginalPasteboardItem()
+        item.f_10037c4a8(url.absoluteString, forType: UTType.utf8PlainText.identifier)
+        item.f_10037c4a8(url.absoluteString, forType: UTType.url.identifier)
+        if let title { item.f_10037c4a8(title, forType: "public.url-name") }
+        return item
+    }
+
     public func f_10037c4a8(_ string: String, forType type: String) {
         f_10037d8c8(string.data(using: .utf8, allowLossyConversion: false), forType: type)
     }
@@ -67,6 +75,20 @@ public final class OriginalPasteboardItem: NSObject, Codable, NSSecureCoding {
     public func f_10037d8c8(_ data: Data?, forType type: String) {
         orderedTypes.append(type)
         dataByType[type] = data
+    }
+
+    public func f_10037e6b0(_ value: Any, forType type: String) {
+        if let data = value as? Data {
+            f_10037d8c8(data, forType: type)
+        } else if let string = value as? String {
+            f_10037c4a8(string, forType: type)
+        } else if let string = value as? NSAttributedString {
+            f_10037c4a8(string.string, forType: type)
+        } else if let url = value as? URL {
+            f_10037c4a8(url.absoluteString, forType: type)
+        } else if let image = value as? NSImage {
+            f_10037d8c8(OriginalPasteboardImageEncoding.f_1003c89c8(image), forType: type)
+        }
     }
 
     public func f_10037da6c() -> [String] { orderedTypes }
@@ -95,6 +117,26 @@ public final class OriginalPasteboardItem: NSObject, Codable, NSSecureCoding {
     public func f_10037cc6c() -> URL? {
         guard let string = f_10037e4b8(forType: UTType.fileURL.identifier) else { return nil }
         return URL(string: string)
+    }
+
+    public func f_10037ce0c() -> URL? {
+        if let string = f_10037e4b8(forType: UTType.url.identifier), let url = URL(string: string) {
+            return url
+        }
+        var allowed = CharacterSet(charactersIn: "#")
+        allowed.formUnion(.urlQueryAllowed)
+        allowed.formUnion(.urlFragmentAllowed)
+        guard let string = f_10037c9a8(), let encoded = string.addingPercentEncoding(withAllowedCharacters: allowed),
+              let url = URL(string: encoded), url.scheme != nil, url.host != nil else { return nil }
+        return url
+    }
+
+    public func f_10037d210() -> String? {
+        f_10037e4b8(forType: "public.url-name")
+    }
+
+    public func f_10037cd68() -> NSImage? {
+        f_10037d5c4().flatMap(NSImage.init(data:))
     }
 
     public func f_10037d5c4() -> Data? {

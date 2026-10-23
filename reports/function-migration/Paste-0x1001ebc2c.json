@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001ebc2c",
-  "reviewed_at": "2026-10-23T08:50:59.023508+00:00",
+  "reviewed_at": "2026-10-23T09:13:57.746539+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0158.c",
@@ -10,19 +10,19 @@
   },
   "original_pseudocode_sha256": "1ef8045e3c97385a0e57c2a2e4826aa4a0f5cac4fe8496f9812aa4188de1bddf",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "324d72f9ea320945540033f076ad08350f3bdc2578fc71bbc28a5117200678a7",
-    "replica/Sources/PasteReplicaCore/KeyboardShortcut.swift": "b75d32ac942c969d2ab245ec31c9a3041ca752bea22527879753be29be0eb99f",
-    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "ffbad26b5a510378e501ccfbc0d6991eb9b49143321503595d8b7da809a2b3c3"
+    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "82c57689dfb20e2c4c02cd3c4ca72cf40ee7a3fd650b5fa832d79589761a9058",
+    "replica/Sources/PasteReplicaCore/KeyboardShortcut.swift": "eba51741928fc95619585980567b617d39f3c749564cddb5dff4bbd04bf189d6",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "f8f1c3701bce3d934d11e16942a0962cd300e84553f60aa349325232779a4001"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "返回快捷键修饰合法性：F1…F20 无需修饰即合法；其余键须包含 Command、Control 或 Option 至少一位，Shift 和其他位不满足条件。",
-  "review": "part-0158.c:654；只读薄切片 0x100fb5788…0x100fb5820 的 20 项 UInt64 确认 F1…F20（含 90）；与 NEON 合并比较及 0x140000/0x80000 分支完全核对，实际录制和 isValidGlobal 均调用该谓词。 本轮逐项复审：Core 原始契约不变；录制入口已改接三态 OriginalShortcutRecorder.f_1001f132c，Carbon 转换通过新注册对象真实使用；旧 ShortcutRecorderButton.record 引用已删除。isValidGlobal 现在严格复用原版谓词，不再额外排除 Escape/大于127键码/其他修饰位。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。",
+  "review": "part-0158.c:654；只读薄切片 0x100fb5788…0x100fb5820 的 20 项 UInt64 确认 F1…F20（含 90）；与 NEON 合并比较及 0x140000/0x80000 分支完全核对，实际录制和 isValidGlobal 均调用该谓词。 本轮逐项复审：Core 原始契约不变；录制入口已改接三态 OriginalShortcutRecorder.f_1001f132c，Carbon 转换通过新注册对象真实使用；旧 ShortcutRecorderButton.record 引用已删除。isValidGlobal 现在严格复用原版谓词，不再额外排除 Escape/大于127键码/其他修饰位。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。 本批复审后保留原恢复契约；真实入口改为直接SwiftUI StateObject组件，移除Native代理事件/窗口观察；当前候选待统一编译，不沿用旧文件摘要。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

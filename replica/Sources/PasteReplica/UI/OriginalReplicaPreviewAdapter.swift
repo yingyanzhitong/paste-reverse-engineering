@@ -9,16 +9,20 @@ import SwiftUI
 func makeOriginalReplicaTextPreview(state: ReplicaUIState, item: ClipboardItem) -> OriginalItemPreviewView? {
     guard item.kind == .text || item.kind == .richText else { return nil }
     let content = ReplicaInlineTextPreviewContent(state: state, item: item)
-    let header = ReplicaInlinePreviewHeader(item: item)
+    let header = ReplicaInlinePreviewHeader(state: state, item: item)
     let editorHeader = ReplicaInlinePreviewEditorHeader(document: content.document)
     let footer = ReplicaInlinePreviewFooter(document: content.document)
     let view = ReplicaInlinePreviewContainer(previewHeader: header, editorHeader: editorHeader,
                                             contentView: content, footer: footer,
                                             contentSize: content.preferredPreviewSize)
     header.onEdit = { [weak view] in view?.f_10007be8c() }
-    header.onCopy = { [weak state] in
-        guard let state, let current = state.store.items.first(where: { $0.id == item.id }) else { return }
-        state.controller?.copy(item: current, plainTextOnly: false)
+    header.onClose = { [weak header, weak view] in
+        header?.titleLabel.f_100011d28()
+        view?.window?.performClose(nil)
+    }
+    header.titleLabel.onCommitEditing = { [weak state] title in
+        guard let state else { return }
+        state.perform { try state.store.updateItem(id: item.id, title: title, text: nil) }
     }
     editorHeader.onCancel = { [weak view] in view?.f_10007c1fc() }
     editorHeader.onSave = { [weak view] in view?.f_10007c080() }
@@ -81,7 +85,8 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
     private let itemID: UUID
     private var itemObservation: AnyCancellable?
     private var contentObservation: AnyCancellable?
-    private var editingBaseline: NSAttributedString
+    private var originalText: NSAttributedString
+    private var editingText: NSAttributedString
     private(set) var canCommit = false
     var onCanCommitEditing: ((Bool) -> Void)?
     var onCancel: (() -> Void)?
@@ -92,7 +97,8 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
         self.state = state
         itemID = item.id
         let initial = Self.attributedContent(item)
-        editingBaseline = initial
+        originalText = initial
+        editingText = OriginalPreviewAttributedText.normalizedEditingText(initial)
         document = ReplicaRichTextDocument(content: initial)
         text = ReplicaInlinePreviewTextView(frame: .zero)
         super.init(frame: .zero)
@@ -113,8 +119,10 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
         text.textContainer?.containerSize = .init(width: 500, height: CGFloat.greatestFiniteMagnitude)
         text.textContainerInset = .init(width: 8, height: 8)
         text.usesAdaptiveColorMappingForDarkAppearance = true
-        text.textStorage?.setAttributedString(initial)
-        text.typingAttributes = [.font: NSFont.systemFont(ofSize: 14), .foregroundColor: NSColor.textColor]
+        OriginalPreviewAttributedText.f_100212e78(initial, editor: text)
+        if OriginalPreviewAttributedText.f_1003095bc(initial) {
+            text.font = OriginalPreviewAttributedText.f_1000f3e48()
+        }
         text.delegate = document
         text.document = document
         text.onSave = { [weak self] in self?.onSave?() }
@@ -124,7 +132,8 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
         contentObservation = document.$content.sink { [weak self] content in
             MainActor.assumeIsolated {
                 guard let self else { return }
-                self.canCommit = !content.string.isEmpty && !content.isEqual(to: self.editingBaseline)
+                self.canCommit = OriginalPreviewAttributedText.f_1003c0be0(
+                    candidate: content, original: self.originalText, editing: self.editingText)
                 self.onCanCommitEditing?(self.canCommit)
             }
         }
@@ -136,8 +145,7 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
                     return
                 }
                 if !self.text.isEditable {
-                    self.text.textStorage?.setAttributedString(Self.attributedContent(current))
-                    self.document.textDidChange(Notification(name: NSText.didChangeNotification, object: self.text))
+                    self.replaceModelAndDisplay(current)
                 }
             }
         }
@@ -158,9 +166,6 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
 
     func beginPreviewEditing() {
         text.isEditable = true
-        if let item = state?.store.items.first(where: { $0.id == itemID }) {
-            editingBaseline = Self.attributedContent(item)
-        }
         reloadStoredContent()
         window?.makeFirstResponder(text)
     }
@@ -174,7 +179,8 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
         text.isEditable = false
         guard let state else { return }
         do {
-            try state.store.updateRichTextItem(id: itemID, attributedString: text.attributedString())
+            try state.store.updateRichTextItem(id: itemID,
+                attributedString: OriginalPreviewAttributedText.f_100212ccc(editor: text))
             state.normalizeSelection()
         } catch { state.controller?.presentError(error) }
         reloadStoredContent()
@@ -182,43 +188,88 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
 
     private func reloadStoredContent() {
         guard let item = state?.store.items.first(where: { $0.id == itemID }) else { return }
-        text.textStorage?.setAttributedString(Self.attributedContent(item))
+        replaceModelAndDisplay(item)
+    }
+
+    private func replaceModelAndDisplay(_ item: ClipboardItem) {
+        originalText = Self.attributedContent(item)
+        editingText = OriginalPreviewAttributedText.normalizedEditingText(originalText)
+        OriginalPreviewAttributedText.f_1003eb330(original: originalText, editing: editingText, editor: text)
+        if !text.isEditable, OriginalPreviewAttributedText.f_1003095bc(originalText) {
+            text.font = OriginalPreviewAttributedText.f_1000f3e48()
+        }
         document.textDidChange(Notification(name: NSText.didChangeNotification, object: text))
     }
 
     private static func attributedContent(_ item: ClipboardItem) -> NSAttributedString {
+        for type in ["com.apple.flat-rtfd", "com.apple.rtfd"] {
+            if let data = item.payloads[type],
+               let content = NSAttributedString(rtfd: data, documentAttributes: nil) {
+                return OriginalPreviewAttributedText.f_1003097c0(content)
+            }
+        }
         if let data = item.payloads["public.rtf"],
-           let content = NSAttributedString(rtf: data, documentAttributes: nil) { return content }
-        return NSAttributedString(string: item.plainText ?? "", attributes: [
-            .font: NSFont.systemFont(ofSize: 14), .foregroundColor: NSColor.textColor
-        ])
+           let content = NSAttributedString(rtf: data, documentAttributes: nil) {
+            return OriginalPreviewAttributedText.f_1003097c0(content)
+        }
+        return NSAttributedString(string: item.plainText ?? "")
     }
 }
 
 @MainActor
 private final class ReplicaInlinePreviewHeader: NSView {
     var onEdit: (() -> Void)?
-    var onCopy: (() -> Void)?
-    init(item: ClipboardItem) {
+    var onClose: (() -> Void)?
+    let titleLabel = OriginalPreviewTitleLabel()
+    private var itemObservation: AnyCancellable?
+    init(state: ReplicaUIState, item: ClipboardItem) {
         super.init(frame: .zero)
-        let title = NSTextField(labelWithString: item.title.isEmpty ? item.kind.displayName : item.title)
-        title.lineBreakMode = .byTruncatingTail
+        let close = NSButton()
+        f_1000123d4(close)
         let edit = NSButton(title: "编辑", target: self, action: #selector(editAction))
-        let copy = NSButton(title: "拷贝", target: self, action: #selector(copyAction))
-        let row = NSStackView(views: [title, NSView(), edit, copy])
+        let row = NSStackView(views: [edit])
         row.spacing = 8
         row.alignment = .centerY
-        row.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(row)
+        for child in [close, titleLabel, row] {
+            child.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(child)
+        }
         NSLayoutConstraint.activate([
-            row.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            row.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            close.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            close.centerYAnchor.constraint(equalTo: centerYAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: close.trailingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: row.leadingAnchor, constant: -8),
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            row.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             row.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+        itemObservation = state.store.$items.sink { [weak self] items in
+            MainActor.assumeIsolated {
+                guard let self, let current = items.first(where: { $0.id == item.id }) else { return }
+                let field = self.titleLabel.f_100013084()
+                field.f_10023b600(current.kind.displayName)
+                field.f_10023b214(current.title)
+            }
+        }
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    private func f_1000123d4(_ button: NSButton) {
+        if NSImage(systemSymbolName: "xmark.circle.fill", accessibilityDescription: nil) == nil {
+            button.image = NSImage(systemSymbolName: "questionmark.square", accessibilityDescription: nil)!
+        } else {
+            button.image = NSImage(systemSymbolName: "xmark.circle.fill", accessibilityDescription: nil)!
+        }
+        button.imagePosition = .imageOnly
+        button.contentTintColor = OriginalSearchAppearance.f_1001fec18()
+        button.isBordered = false
+        button.alphaValue = 0.6
+        button.action = #selector(closeAction)
+        button.target = self
+    }
+
     @objc private func editAction() { onEdit?() }
-    @objc private func copyAction() { onCopy?() }
+    @objc private func closeAction() { onClose?() }
 }
 
 @MainActor

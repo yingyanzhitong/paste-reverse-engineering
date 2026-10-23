@@ -81,13 +81,64 @@ struct ReplicaPanelView: View {
 
     private var searchField: some View {
         ReplicaSearchEditor(text: $state.query, focused: $searchFocused,
+            filters: searchFilterChips,
+            onFiltersChange: { selections in
+                state.kind = nil
+                state.sourceFilter = nil
+                state.deviceFilter = nil
+                state.dateFilterDays = nil
+                for selection in selections {
+                    switch selection {
+                    case let .kind(value): state.kind = value
+                    case let .source(value): state.sourceFilter = value
+                    case let .device(value): state.deviceFilter = value
+                    case let .date(value): state.dateFilterDays = value
+                    }
+                }
+            },
             onEnter: { state.controller?.pasteSelection(plainTextOnly: false) },
             onCancel: { state.controller?.cancelSearchOrPanel() },
             onShowFilters: { button in
-                makeSearchFilterMenu().popUp(positioning: nil,
+                let menu = makeSearchFilterMenu()
+                menu.delegate = button.superview as? OriginalSearchField
+                menu.popUp(positioning: nil,
                     at: NSPoint(x: button.bounds.minX, y: button.bounds.minY - 4), in: button)
             })
             .frame(width: 400, height: 32)
+    }
+
+    private var searchFilterChips: [ReplicaSearchFilterChip] {
+        var result: [ReplicaSearchFilterChip] = []
+        if let kind = state.kind {
+            let symbol: String
+            switch kind {
+            case .text, .richText: symbol = "text.alignleft"
+            case .link: symbol = "link"
+            case .image: symbol = "photo"
+            case .files: symbol = "doc"
+            case .color: symbol = "paintpalette"
+            case .unknown: symbol = "questionmark.square"
+            }
+            result.append(.init(selection: .kind(kind), title: kind.displayName,
+                image: NSImage(systemSymbolName: symbol, accessibilityDescription: nil)))
+        }
+        if let source = state.sourceFilter {
+            let bundleID = state.store.items.first { $0.sourceName == source }?.sourceBundleID
+            let appURL = bundleID.flatMap { NSWorkspace.shared.urlForApplication(withBundleIdentifier: $0) }
+            let icon = appURL.map { NSWorkspace.shared.icon(forFile: $0.path) }
+            result.append(.init(selection: .source(source), title: source,
+                image: icon ?? NSImage(systemSymbolName: "app", accessibilityDescription: nil)))
+        }
+        if let days = state.dateFilterDays {
+            let title = [1: "今天", 7: "过去一周", 30: "过去一个月"][days] ?? "\(days) 天"
+            result.append(.init(selection: .date(days), title: title,
+                image: NSImage(systemSymbolName: "calendar", accessibilityDescription: nil)))
+        }
+        if let device = state.deviceFilter {
+            result.append(.init(selection: .device(device), title: device,
+                image: NSImage(systemSymbolName: "desktopcomputer", accessibilityDescription: nil)))
+        }
+        return result
     }
 
     private func makeSearchFilterMenu() -> NSMenu {
@@ -408,10 +459,7 @@ struct ReplicaItemContent: View {
 }
 
 func itemImage(_ item: ClipboardItem) -> NSImage? {
-    for key in ["public.png", "public.tiff", "public.jpeg", "public.heic"] {
-        if let data = item.payloads[key], let image = NSImage(data: data) { return image }
-    }
-    return nil
+    ClipboardStore.pasteboardImage(from: item.payloads)
 }
 
 func itemFileURLs(_ item: ClipboardItem) -> [URL] {

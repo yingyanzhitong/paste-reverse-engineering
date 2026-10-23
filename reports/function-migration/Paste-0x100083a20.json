@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100083a20",
-  "reviewed_at": "2026-10-23T08:50:58.902529+00:00",
+  "reviewed_at": "2026-10-23T09:13:57.654779+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0043.c",
@@ -11,11 +11,11 @@
   "original_pseudocode_sha256": "09b7ec41efa94f115ab747f33e6e48533244d1f722ea79762feb2c183b954981",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalStackTableController.swift": "bbd3276b4c9772cf92fcf68a59a3083c0f0f5569915cb56d83ce2b421419a717",
-    "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "dd14df902b40d6948662cc1018aae2b8c6be98d4f404e9b18aeca46fb5ae8fb1"
+    "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "dc7df71b37ab1e8f430ed0384c99e30cbd8121572adcd246629aababc1b0c67e"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,

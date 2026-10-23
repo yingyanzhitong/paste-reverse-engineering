@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001ec9ec",
+  "reviewed_at": "2026-10-23T09:13:58.125519+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0158.c",
+    "line": 1294
+  },
+  "original_pseudocode_sha256": "0e9144100ed60a67dc73d596c0d4286370f1d8822eea0e29f0f2f54a0e5a3a31",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorderView.swift": "3473a4b0c156365087e9527f73389b75e1e8a41adb5bbeaf5abf5581754ff16b"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "构造录制View，保存完整可选快捷键Binding与惰性StateObject初始化工厂；不在View值初始化时读取绑定或创建model。",
+  "review": "原版返回StateObject thunk/context+Binding存储；Swift StateObject的wrappedValue autoclosure提供相同惰性工厂与跨父View重绘身份，初值读取留在工厂。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

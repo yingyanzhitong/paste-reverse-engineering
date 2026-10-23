@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000f7138",
-  "reviewed_at": "2026-10-23T08:50:59.145391+00:00",
+  "reviewed_at": "2026-10-23T09:13:57.823732+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0084.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "121d20a97371c89ea3d087f2810fdd15f34bb5e67c2cd16abe7851d6566ae0fd",
   "source_sha256": {
-    "replica/Sources/PasteReplica/UI/RichTextEditor.swift": "5edc63aeb905465c0431755c4a0251aa69f85ee9b8a61e3e08b60ff781b68f3d"
+    "replica/Sources/PasteReplicaCore/OriginalPreviewAttributedText.swift": "36b96ffa221ab7e2368c506bd4705a9537af5388c69f9996d78a18d775eb32e4"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
-  "implementation_origin": "existing_reused",
-  "contract": "Swift NSTextView.attributedText setter：NSAttributedString 输入，textStorage 存在时 setAttributedString 原对象，否则无操作。",
-  "review": "当前富文本编辑器 text.textStorage?.setAttributedString(document.content) 完整涵盖 storage 有/无分支与同一原生写入副作用；不额外调用 didChangeText，符合原版。",
-  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
+  "implementation_origin": "newly_migrated",
+  "contract": "NSTextView attributedText Swift setter入口：非nil的textStorage.setAttributedString(value)，nil不操作，返回0。",
+  "review": "part-0084.c；无复制/无typingAttributes附加操作，wrapper转入同一业务体。 Swift独立实现保持MainActor隔离；不主张原对象布局/编译器桥接ABI逐字节兼容。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

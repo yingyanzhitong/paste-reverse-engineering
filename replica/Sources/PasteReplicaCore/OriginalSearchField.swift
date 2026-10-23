@@ -144,6 +144,21 @@ open class OriginalSearchField: OriginalLayerBackedView {
     }
     open override func mouseDown(with event: NSEvent) { f_1000471b4(event) }
 
+    public func f_100046914(title: String, image: NSImage?) -> NSStackView {
+        let filter = OriginalSearchFilterView(title: title, image: image) { [weak self] event in
+            Self.f_100046acc(event, field: self)
+        }
+        let stack = NSStackView(views: [filter])
+        stack.edgeInsets = NSEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
+        return stack
+    }
+
+    @discardableResult
+    public static func f_100046acc(_ event: NSEvent, field: OriginalSearchField?) -> Int {
+        field?.f_100046b10(event)
+        return 0
+    }
+
     public func f_100047450(_ event: NSEvent) -> Bool {
         let responder = window?.firstResponder
         let textView = f_100045c2c().f_100041f9c()

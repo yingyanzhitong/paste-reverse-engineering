@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002f5a50",
+  "reviewed_at": "2026-10-23T09:13:58.081206+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0244.c",
+    "line": 1533
+  },
+  "original_pseudocode_sha256": "5622a533e16b45bdc8858e815693c8fd88328808c145a50a348c17634408b243",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchFilterView.swift": "4628dc1edfd81fa48b4442c4b7f05ec5eea3a6f8598038d3a1f9f9480c62f6aa",
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "502704322ec8497735357798c9998f281888b3ee45950a03fa7b307261c2280b"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "为当前同一attachment构造专用provider，使用原parentView/location及textContainer可选textLayoutManager。",
+  "review": "逐地址REA及关键arm64对照；.local/search-filter-layout-assembly.txt确认四个返回浮点寄存器为0/-height*0.25/width/height与约束常量。当前真实SearchEditor把已选筛选呈现为TextKit2附件，工厂实例与点击链实际接入；父级token模型/全部解析/建议菜单仍partial，不外推整模块。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

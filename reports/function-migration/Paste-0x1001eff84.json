@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001eff84",
-  "reviewed_at": "2026-10-23T08:50:59.407434+00:00",
+  "reviewed_at": "2026-10-23T09:13:57.996489+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0159.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "dd88ddf8a1046871adb8adc6e7f2212a88ed2a1ce36422774f73f5304032109a",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "ffbad26b5a510378e501ccfbc0d6991eb9b49143321503595d8b7da809a2b3c3"
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "f8f1c3701bce3d934d11e16942a0962cd300e84553f60aa349325232779a4001"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "录制中toggle恢复previous已设或none并移除monitor；非录制保存previous、清空candidate并发布recording；替换旧monitor，监控keyDown与flagsChanged；弱self释放返回nil。",
-  "review": "核对原版Published状态构造、0x1400 mask、旧monitor移除、可选newmonitor以及弱回调nil行为；真实按钮与Escape/validator失败使用。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。",
+  "review": "核对原版Published状态构造、0x1400 mask、旧monitor移除、可选newmonitor以及弱回调nil行为；真实按钮与Escape/validator失败使用。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。 本批复审后保留原恢复契约；真实入口改为直接SwiftUI StateObject组件，移除Native代理事件/窗口观察；当前候选待统一编译，不沿用旧文件摘要。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

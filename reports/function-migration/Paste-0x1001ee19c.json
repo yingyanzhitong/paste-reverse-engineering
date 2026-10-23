@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001ee19c",
+  "reviewed_at": "2026-10-23T09:13:58.119495+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0158.c",
+    "line": 2278
+  },
+  "original_pseudocode_sha256": "bfe816878e34a4d23ee625e4ffff7be5a9994db9da88e33e0880bd2d489e6386",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "f8f1c3701bce3d934d11e16942a0962cd300e84553f60aa349325232779a4001",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorderView.swift": "3473a4b0c156365087e9527f73389b75e1e8a41adb5bbeaf5abf5581754ff16b"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "外部绑定变化时，nil发布unassigned、非nil发布assigned；不移除事件monitor、不因recording忽略新值。",
+  "review": "改用原版SwiftUI onChange(initial:false)，只在Binding实际变化后调用，消除旧Native refresh事务时序和初次创建差异。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

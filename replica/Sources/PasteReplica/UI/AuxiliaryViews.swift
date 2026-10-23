@@ -306,11 +306,9 @@ struct ReplicaSettingsView: View {
                 Toggle("登录时打开", isOn: Binding(get: { state.store.preferences.launchAtLogin },
                                               set: { value in setLaunchAtLogin(value) }))
                 Toggle("后台运行", isOn: Binding(get: { backgroundEnabled }, set: { value in
-                    do {
-                        try BackgroundService.setEnabled(value)
-                        backgroundEnabled = BackgroundService.isEnabled
-                    } catch { state.controller?.presentError(error) }
+                    BackgroundService.setEnabled(value)
                 }))
+                .onReceive(BackgroundService.enabledChanges) { backgroundEnabled = $0 }
                 Toggle("音效", isOn: preference(\.playSounds))
             }
             Section("粘贴项目") {

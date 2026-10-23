@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001e95fc",
+  "reviewed_at": "2026-10-23T09:13:58.129989+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0157.c",
+    "line": 282
+  },
+  "original_pseudocode_sha256": "aa07d472a1e4ac069a823de5a27b1e1508a10c3270e8a1ca1b46b26b1941b02e",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "82c57689dfb20e2c4c02cd3c4ca72cf40ee7a3fd650b5fa832d79589761a9058",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "f8f1c3701bce3d934d11e16942a0962cd300e84553f60aa349325232779a4001"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "无参数固定键码getter，完整函数仅返回Int 53（Escape），无其他分支或副作用。",
+  "review": "原版part-0157.c各地址函数体与返回常量逐项静态核对。这些是原版真实常量访问器，不是失败fallback/空壳；前三个接录制取消/清除，后两项接Pinboard默认快捷键初值。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

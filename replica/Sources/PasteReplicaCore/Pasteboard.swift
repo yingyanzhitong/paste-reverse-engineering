@@ -8,8 +8,26 @@ private let replicaGeneratedType = NSPasteboard.PasteboardType("com.pastereplica
 private let concealedTypes: Set<String> = ["org.nspasteboard.ConcealedType", "com.agilebits.onepassword"]
 private let transientTypes: Set<String> = ["org.nspasteboard.TransientType", "de.petermaurer.TransientPasteboardType", generatedType.rawValue]
 
+extension OriginalDependencyValues {
+    public var pasteboardUndoManager: UndoManager { UndoManager() }
+}
+
+public enum OriginalPasteboardItemCreationError: Error {
+    case emptyContent
+    case unsupportedContent
+}
+
 extension ClipboardStore {
     public nonisolated static let orderedPasteboardTypesPayloadKey = "com.pastereplica.internal.types+json"
+
+    public nonisolated static func pasteboardImage(from payloads: [String: Data]) -> NSImage? {
+        for values in normalizedPasteboardPayloads(payloads) {
+            let item = OriginalPasteboardItem()
+            for (type, data) in values { item.f_10037d8c8(data, forType: type) }
+            if let image = item.f_10037cd68() { return image }
+        }
+        return nil
+    }
 
     public nonisolated static func normalizedPasteboardPayloads(_ payloads: [String: Data]) -> [[String: Data]] {
         func cleaned(_ values: [String: Data]) -> [String: Data] {
@@ -43,7 +61,11 @@ extension ClipboardStore {
         let capturedItems = (snapshot ?? rawItems.map { item -> OriginalPasteboardItem in
             let captured = OriginalPasteboardItem()
             for type in item.types {
-                captured.f_10037d8c8(item.data(forType: type), forType: type.rawValue)
+                if let data = item.data(forType: type) {
+                    captured.f_10037e6b0(data, forType: type.rawValue)
+                } else {
+                    captured.f_10037d8c8(nil, forType: type.rawValue)
+                }
             }
             return captured
         }).map { item -> OriginalPasteboardItem in
@@ -89,27 +111,26 @@ extension ClipboardStore {
                 }
             }
         }
+        let richTypes: Set<String> = [NSPasteboard.PasteboardType.rtf.rawValue,
+                                      NSPasteboard.PasteboardType.rtfd.rawValue,
+                                      NSPasteboard.PasteboardType.html.rawValue]
         let kind: ClipboardKind
-        if types.contains(NSPasteboard.PasteboardType.fileURL.rawValue) || types.contains("NSFilenamesPboardType") {
-            kind = .files
-        } else if capturedItems.contains(where: { $0.f_10037d5c4() != nil }) {
-            kind = .image
-        } else if types.contains(NSPasteboard.PasteboardType.color.rawValue) {
-            kind = .color
-        } else if !types.isDisjoint(with: [NSPasteboard.PasteboardType.rtf.rawValue,
-                                          NSPasteboard.PasteboardType.rtfd.rawValue,
-                                          NSPasteboard.PasteboardType.html.rawValue]) {
-            kind = .richText
-        } else if plainText.map(Self.isLink) == true {
-            kind = .link
-        } else if plainText.map(Self.isColor) == true {
-            kind = .color
-        } else if plainText != nil {
-            kind = .text
-        } else {
-            kind = .unknown
+        switch OriginalPasteboardClassification.f_10032362c(capturedItems) {
+        case .files: kind = .files
+        case .image: kind = .image
+        case .color: kind = .color
+        case .link: kind = .link
+        case .text: kind = types.isDisjoint(with: richTypes) ? .text : .richText
+        case .unknown:
+            if types.contains("NSFilenamesPboardType") { kind = .files }
+            else if types.contains(NSPasteboard.PasteboardType.color.rawValue) { kind = .color }
+            else if !types.isDisjoint(with: richTypes) { kind = .richText }
+            else { kind = .unknown }
         }
-        let title = String((plainText?.split(whereSeparator: \.isNewline).first.map(String.init) ?? kind.displayName).prefix(100))
+        let linkTitle = kind == .link
+            ? capturedItems.first?.f_10037d210()?.trimmingCharacters(in: .whitespacesAndNewlines)
+            : nil
+        let title = String((linkTitle ?? plainText?.split(whereSeparator: \.isNewline).first.map(String.init) ?? kind.displayName).prefix(100))
         let id = try add(ClipboardItem(title: title, kind: kind, plainText: plainText, sourceName: sourceName,
                                        sourceBundleID: sourceBundleID, payloads: payloads))
         if kind == .image { startBackgroundTextRecognition(id: id) }
@@ -205,9 +226,16 @@ extension ClipboardStore {
 }
 
 @MainActor
-public final class ClipboardMonitor: NSObject {
+public final class ClipboardMonitor: NSObject, OriginalPasteboardCaptureDelegate {
     private let store: ClipboardStore
     private let captureState: OriginalPasteboardCaptureState
+    private let defaults: UserDefaults
+    private let undoManagerDependency = OriginalDependency(\OriginalDependencyValues.pasteboardUndoManager)
+    private let historyDiagnostics = OriginalNamedDiagnostic.f_1000d4624(name: "PasteboardHistoryManager")
+    public static let didSynchronizeNotification = Notification.Name("pasteboardHistoryManagerDidSync")
+    public static let didChangeStatusNotification = Notification.Name("pasteboardHistoryManagerDidChangeStatus")
+    public static let didCreateItemNotification = Notification.Name("pasteboardHistoryManagerDidCreateItem")
+    public static let didCaptureItemNotification = Notification.Name("pasteboardHistoryManagerDidCaptureItem")
     private var pasteboard: NSPasteboard { captureState.pasteboard }
     private var timer: Timer? {
         get { captureState.pollTimer }
@@ -231,16 +259,28 @@ public final class ClipboardMonitor: NSObject {
     public private(set) var lastError: Error?
     public var onCapture: ((UUID) -> Void)?
 
-    public init(store: ClipboardStore, pasteboard: NSPasteboard = .general, initialChangeCount: Int = 0) {
+    public init(store: ClipboardStore, pasteboard: NSPasteboard = .general, initialChangeCount: Int = 0,
+                defaults: UserDefaults = .standard) {
         self.store = store
-        self.captureState = OriginalPasteboardCaptureState.f_100378664(changeCount: initialChangeCount, pasteboard: pasteboard)
+        self.defaults = defaults
+        let savedCount = initialChangeCount == 0 ? defaults.integer(forKey: "pasteboard-change-token") : initialChangeCount
+        self.captureState = OriginalPasteboardCaptureState.f_100378664(changeCount: savedCount, pasteboard: pasteboard)
         super.init()
         captureState.delegate = self
         OriginalPasteboardCaptureState.register(captureState)
     }
 
     public func start() {
-        f_100378ac0()
+        f_10037ad40()
+    }
+
+    public func f_10037ad40() {
+        f_10037ad4c(f_100378ac0)
+    }
+
+    public func f_10037ad4c(_ action: () -> Void) {
+        withExtendedLifetime(captureState, action)
+        NotificationCenter.default.post(name: Self.didChangeStatusNotification, object: self)
     }
 
     public func f_100378ac0() {
@@ -257,7 +297,11 @@ public final class ClipboardMonitor: NSObject {
     }
 
     public func stop() {
-        f_100378bc8()
+        f_10037ad14()
+    }
+
+    public func f_10037ad14() {
+        f_10037ad4c(f_100378bc8)
     }
 
     public func f_100378bc8() {
@@ -287,6 +331,70 @@ public final class ClipboardMonitor: NSObject {
         synchronizePasteboard()
     }
 
+    public func originalPasteboardShouldRead(_ types: [String]) throws -> Bool {
+        try store.save()
+        var ignoredTypes = Set(store.preferences.ignoredPasteboardTypes)
+        if store.preferences.ignoreTransientContent { ignoredTypes.formUnion(transientTypes) }
+        if store.preferences.ignoreConcealedContent { ignoredTypes.formUnion(concealedTypes) }
+        guard OriginalPasteboardPolicies.f_10037ba14(allTypes: types,
+                                                     excludedApplications: Set(store.preferences.excludedBundleIDs),
+                                                     ignoredTypes: ignoredTypes,
+                                                     diagnostics: historyDiagnostics) else { return false }
+        return try store.allowsPasteboardCapture(types: Set(types),
+                                                sourceBundleID: NSWorkspace.shared.frontmostApplication?.bundleIdentifier)
+    }
+
+    public func originalPasteboardDidRead(_ state: OriginalPasteboardCaptureState) {
+        f_10037b428(state)
+    }
+
+    public func f_10037aaf4() -> Int {
+        defaults.integer(forKey: "pasteboardSyncCount")
+    }
+
+    public func f_10037b428(_ state: OriginalPasteboardCaptureState) {
+        defaults.set(state.lastChangeCount, forKey: "pasteboard-change-token")
+        let next = f_10037aaf4().addingReportingOverflow(1)
+        precondition(!next.overflow, "Pasteboard sync count overflow")
+        defaults.set(next.partialValue, forKey: "pasteboardSyncCount")
+        NotificationCenter.default.post(name: Self.didSynchronizeNotification, object: self)
+        guard !state.items.isEmpty else {
+            historyDiagnostics.f_1000d468c().f_1000d4db8("Empty pasteboard content")
+            return
+        }
+        f_10037ae9c(state.items)
+    }
+
+    public func f_10037ae9c(_ items: [OriginalPasteboardItem]) {
+        let created: Bool
+        do {
+            created = try f_10037b034(items)
+        } catch {
+            lastError = error
+            historyDiagnostics.f_1000d468c().f_1000d4df0("Error creating item for pasteboard content")
+            return
+        }
+        undoManagerDependency.f_1000da768().removeAllActions()
+        if created {
+            NotificationCenter.default.post(name: Self.didCreateItemNotification, object: self)
+        }
+        NotificationCenter.default.post(name: Self.didCaptureItemNotification, object: self)
+    }
+
+    public func f_10037b034(_ items: [OriginalPasteboardItem]) throws -> Bool {
+        guard !items.isEmpty else { throw OriginalPasteboardItemCreationError.emptyContent }
+        let identifiers = Set(store.items.map(\.id))
+        let app = NSWorkspace.shared.frontmostApplication
+        guard let captured = try store.capture(pasteboard: pasteboard, sourceName: app?.localizedName ?? "未知应用",
+                                               sourceBundleID: app?.bundleIdentifier, snapshot: items,
+                                               respectMonitoringPolicy: false) else {
+            throw OriginalPasteboardItemCreationError.unsupportedContent
+        }
+        if store.preferences.playSounds { NSSound(named: .init("Pop"))?.play() }
+        onCapture?(captured)
+        return !identifiers.contains(captured)
+    }
+
     private func synchronizePasteboard() {
         let app = NSWorkspace.shared.frontmostApplication
         let sourceBundleID = app?.bundleIdentifier
@@ -295,7 +403,9 @@ public final class ClipboardMonitor: NSObject {
         captureState.items = []
         _ = pasteboard.types
         guard OriginalPasteboardPolicies.permitsBackgroundRead(pasteboard) else {
-            NotificationCenter.default.post(name: OriginalPasteboardPolicies.accessRequestNotification, object: self)
+            if let delegate = captureState.delegate {
+                NotificationCenter.default.post(name: OriginalPasteboardPolicies.accessRequestNotification, object: delegate)
+            }
             return
         }
         do {
@@ -306,18 +416,8 @@ public final class ClipboardMonitor: NSObject {
             }
             let allTypes = rawItems.flatMap { $0.types.map(\.rawValue) }
             recordSynchronization("Retrieved \(allTypes.count) types: \(allTypes.joined(separator: ", "))")
-            try store.save()
-            var ignoredTypes = Set(store.preferences.ignoredPasteboardTypes)
-            if store.preferences.ignoreTransientContent { ignoredTypes.formUnion(transientTypes) }
-            if store.preferences.ignoreConcealedContent { ignoredTypes.formUnion(concealedTypes) }
-            guard OriginalPasteboardPolicies.f_10037ba14(allTypes: allTypes,
-                                                         excludedApplications: Set(store.preferences.excludedBundleIDs),
-                                                         ignoredTypes: ignoredTypes,
-                                                         diagnostics: captureState.diagnostics) else {
+            if let delegate = captureState.delegate, try !delegate.originalPasteboardShouldRead(allTypes) {
                 recordSynchronization("Cancelling pasteboard sync by delegate")
-                return
-            }
-            guard try store.allowsPasteboardCapture(types: Set(allTypes), sourceBundleID: sourceBundleID) else {
                 return
             }
             var totalBytes = 0
@@ -339,18 +439,15 @@ public final class ClipboardMonitor: NSObject {
                         continue
                     }
                     totalBytes = size.partialValue
-                    item.f_10037d8c8(data, forType: type.rawValue)
+                    item.f_10037e6b0(data, forType: type.rawValue)
                 }
                 if !item.f_10037da6c().isEmpty { snapshot.append(item) }
             }
             captureState.items = snapshot
             defer { captureState.items = [] }
             recordSynchronization("Pasteboard sync completed, sending delegate callback")
-            let captured = try store.capture(pasteboard: pasteboard, sourceName: app?.localizedName ?? "未知应用",
-                                             sourceBundleID: sourceBundleID, snapshot: snapshot)
-            if captured != nil, store.preferences.playSounds { NSSound(named: .init("Pop"))?.play() }
-            if let captured { onCapture?(captured) }
             lastError = nil
+            if let delegate = captureState.delegate { try delegate.originalPasteboardDidRead(captureState) }
             recordSynchronization("All done")
         } catch {
             lastError = error

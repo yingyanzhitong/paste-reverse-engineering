@@ -48,8 +48,8 @@ public struct KeyboardShortcut: Codable, Equatable, Hashable, Sendable {
     public static let modifierMask: NSEvent.ModifierFlags = [.command, .shift, .option, .control]
     public static let historyDefault = KeyboardShortcut(keyCode: 9, modifierRawValue: [.command, .shift])
     public static let stackDefault = KeyboardShortcut(keyCode: 8, modifierRawValue: [.command, .shift])
-    public static let previousPinboardDefault = KeyboardShortcut(keyCode: 123, modifierRawValue: NSEvent.ModifierFlags.command.rawValue)
-    public static let nextPinboardDefault = KeyboardShortcut(keyCode: 124, modifierRawValue: NSEvent.ModifierFlags.command.rawValue)
+    public static let previousPinboardDefault = KeyboardShortcut(keyCode: UInt32(OriginalShortcutFunctions.f_1001e9638()), modifierRawValue: NSEvent.ModifierFlags.command.rawValue)
+    public static let nextPinboardDefault = KeyboardShortcut(keyCode: UInt32(OriginalShortcutFunctions.f_1001e964c()), modifierRawValue: NSEvent.ModifierFlags.command.rawValue)
 
     private init(keyCode: UInt32, modifierRawValue flags: NSEvent.ModifierFlags) {
         self.init(keyCode: keyCode, modifierRawValue: flags.rawValue)

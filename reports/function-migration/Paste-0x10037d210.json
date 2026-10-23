@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10037d210",
+  "reviewed_at": "2026-10-23T09:13:58.093929+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0282.c",
+    "line": 671
+  },
+  "original_pseudocode_sha256": "e1ba16b5ffc6d54062251a4ba6f2bd4c087560d34bf553e649f34e2491e24d5f",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "09e6515a3319f392c14b86f18eef25256d311600dacd9d62160feade21391ccb",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "5f1bea0d3d32ce7ab054e8b14c091a66a21fc19cc718ea23e7ab6f69aedbb527"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "public.url-name对应Data严格UTF8解码；缺失/无效UTF8为nil，空Data为空串。",
+  "review": "arm64完整键立即数解为public.url-name；link标题路径调用并在调用方按原版319778 trim whitespace/newlines；getter本身不trim。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

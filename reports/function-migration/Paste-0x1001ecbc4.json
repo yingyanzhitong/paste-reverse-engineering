@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001ecbc4",
+  "reviewed_at": "2026-10-23T09:13:58.123936+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0158.c",
+    "line": 1430
+  },
+  "original_pseudocode_sha256": "02502e98170e384d9a1d8e9eff0befc4230118e7fe48c4ee45933e208abcb411",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorderView.swift": "3473a4b0c156365087e9527f73389b75e1e8a41adb5bbeaf5abf5581754ff16b"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "父View以StateObject读取状态/错误，topTrailing ZStack构建双按钮，id完整状态；Binding onChange(initial:false)无条件发布新值；读error.localizedDescription为alert标题，再次读error构造constant(error!=nil)绑定，OK清错误。",
+  "review": "移除旧NSButton/NSHostingView混合代理，使用真正SwiftUI StateObject、id、onChange与alert。保持内容先构造、错误描述读取、第二次错误判断的顺序，支持自定义Error描述重入；不再缓存一次error替代两次读取。App侧error/recording回调适配位于本函数外，不把其他设置页算完成。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

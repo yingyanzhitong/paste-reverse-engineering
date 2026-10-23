@@ -2,6 +2,12 @@ import AppKit
 import Foundation
 import OSLog
 
+@MainActor
+public protocol OriginalPasteboardCaptureDelegate: AnyObject {
+    func originalPasteboardShouldRead(_ types: [String]) throws -> Bool
+    func originalPasteboardDidRead(_ state: OriginalPasteboardCaptureState) throws
+}
+
 /// Local replacement for the original lazy logger dependency. Resolving the
 /// sink is deferred until the first diagnostic, as in the source initializer.
 public protocol OriginalPasteboardEventLogging {
@@ -14,15 +20,18 @@ private struct OriginalLocalPasteboardEventLogger: OriginalPasteboardEventLoggin
     }
 }
 
+extension OriginalDependencyValues {
+    public var pasteboardEventLogging: any OriginalPasteboardEventLogging {
+        OriginalLocalPasteboardEventLogger()
+    }
+}
+
 @MainActor
 public final class OriginalPasteboardLogDependency {
-    private var cached: (any OriginalPasteboardEventLogging)?
+    private let dependency = OriginalDependency(\OriginalDependencyValues.pasteboardEventLogging)
 
     public func resolve() -> any OriginalPasteboardEventLogging {
-        if let cached { return cached }
-        let logger = OriginalLocalPasteboardEventLogger()
-        cached = logger
-        return logger
+        dependency.f_1000da768()
     }
 }
 
@@ -35,7 +44,7 @@ public final class OriginalPasteboardCaptureState {
     private static var active: [NSPasteboard.Name: WeakState] = [:]
 
     public let pasteboard: NSPasteboard
-    public weak var delegate: AnyObject?
+    public weak var delegate: (any OriginalPasteboardCaptureDelegate)?
     public var items: [OriginalPasteboardItem] = []
     public var lastChangeCount: Int
     public var pollTimer: Timer?

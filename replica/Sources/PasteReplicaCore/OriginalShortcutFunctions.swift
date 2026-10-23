@@ -87,6 +87,13 @@ public enum OriginalShortcutFunctions {
         return keyCode
     }
 
+    // These original accessors consist solely of returning the fixed key code.
+    public static func f_1001e95fc() -> Int { 53 }
+    public static func f_1001e9610() -> Int { 51 }
+    public static func f_1001e9624() -> Int { 117 }
+    public static func f_1001e9638() -> Int { 123 }
+    public static func f_1001e964c() -> Int { 124 }
+
     /// The original 52-entry display table; F20 deliberately uses layout translation.
     public static func f_1001e822c() -> [UInt32: String] {
         var labels: [UInt32: String] = [

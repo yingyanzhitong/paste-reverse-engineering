@@ -3,6 +3,8 @@ import Foundation
 enum OriginalShortcutMessages {
     private static let messages: [String: [String: String]] = [
         "cs": [
+            "general.action.cancel": "Zrušit",
+            "general.action.ok": "OK",
             "shortcut-recorder.none": "Žádný",
             "shortcut-recorder.status.recording": "Nahrávání",
             "shortcut-recorder.action.remove": "Odebrat",
@@ -11,6 +13,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Klávesu Option lze použít pouze společně s klávesou Command nebo Control.",
         ],
         "da": [
+            "general.action.cancel": "Annuller",
+            "general.action.ok": "OK",
             "shortcut-recorder.none": "Ingen",
             "shortcut-recorder.status.recording": "Optagelse",
             "shortcut-recorder.action.remove": "Fjern",
@@ -19,6 +23,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Genveje, der bruger Option-tasten uden Command eller Control, fungerer muligvis ikke korrekt før macOS 15.2. Overvej at opdatere til den nyeste version af macOS.",
         ],
         "de": [
+            "general.action.cancel": "Abbrechen",
+            "general.action.ok": "Ok",
             "shortcut-recorder.none": "Keine",
             "shortcut-recorder.status.recording": "Aufnahme",
             "shortcut-recorder.action.remove": "Entfernen",
@@ -27,6 +33,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Die Optionstaste kann nur zusammen mit der Befehls- oder Steuerungstaste verwendet werden.",
         ],
         "en": [
+            "general.action.cancel": "Cancel",
+            "general.action.ok": "OK",
             "shortcut-recorder.none": "None",
             "shortcut-recorder.status.recording": "Recording",
             "shortcut-recorder.action.remove": "Remove",
@@ -35,6 +43,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Shortcuts using the Option key without Command or Control may not work correctly before macOS 15.2. Please consider updating to the latest version of macOS.",
         ],
         "es": [
+            "general.action.cancel": "Cancelar",
+            "general.action.ok": "Ok",
             "shortcut-recorder.none": "Ninguno",
             "shortcut-recorder.status.recording": "Grabando",
             "shortcut-recorder.action.remove": "Eliminar",
@@ -43,6 +53,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Los atajos que usan la tecla Opción sin Comando o Control pueden no funcionar correctamente antes de macOS 15.2. Por favor considera actualizar a la última versión de macOS.",
         ],
         "fr": [
+            "general.action.cancel": "Annuler",
+            "general.action.ok": "OK",
             "shortcut-recorder.none": "Aucun",
             "shortcut-recorder.status.recording": "Enregistrement",
             "shortcut-recorder.action.remove": "Supprimer",
@@ -51,6 +63,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Les raccourcis utilisant la touche Option sans Commande ou Contrôle peuvent ne pas fonctionner correctement avant macOS 15.2. Veuillez envisager de mettre à jour vers la dernière version de macOS.",
         ],
         "he": [
+            "general.action.cancel": "ביטול",
+            "general.action.ok": "אישור",
             "shortcut-recorder.none": "ללא",
             "shortcut-recorder.status.recording": "הקלטה",
             "shortcut-recorder.action.remove": "הסר",
@@ -59,6 +73,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "ניתן להשתמש במקש Option רק יחד עם ה-Command או Control.",
         ],
         "it": [
+            "general.action.cancel": "Annulla",
+            "general.action.ok": "OK",
             "shortcut-recorder.none": "Nessuno",
             "shortcut-recorder.status.recording": "In registrazione",
             "shortcut-recorder.action.remove": "Rimuovi",
@@ -67,6 +83,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Il tasto Opzione può essere utilizzato solo insieme ai tasti Comando o Controllo.",
         ],
         "ja": [
+            "general.action.cancel": "キャンセル",
+            "general.action.ok": "OK",
             "shortcut-recorder.none": "なし",
             "shortcut-recorder.status.recording": "録音",
             "shortcut-recorder.action.remove": "削除",
@@ -75,6 +93,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "OptionキーはCommandキーまたはControlキーと同時にしか使用できない。",
         ],
         "ko": [
+            "general.action.cancel": "취소",
+            "general.action.ok": "확인",
             "shortcut-recorder.none": "없음",
             "shortcut-recorder.status.recording": "녹음",
             "shortcut-recorder.action.remove": "제거",
@@ -83,6 +103,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Option 키는 Command 또는 Control 키와 함께만 사용할 수 있습니다.",
         ],
         "nl": [
+            "general.action.cancel": "Annuleren",
+            "general.action.ok": "OK",
             "shortcut-recorder.none": "Geen",
             "shortcut-recorder.status.recording": "Opname",
             "shortcut-recorder.action.remove": "Verwijderen",
@@ -91,6 +113,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "De Option-toets kan alleen samen met Command of Control worden gebruikt.",
         ],
         "pl": [
+            "general.action.cancel": "Anuluj",
+            "general.action.ok": "OK",
             "shortcut-recorder.none": "Brak",
             "shortcut-recorder.status.recording": "Nagrywanie",
             "shortcut-recorder.action.remove": "Usuń",
@@ -99,6 +123,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Klawisz Option może być używany tylko razem z Command lub Control.",
         ],
         "pt-BR": [
+            "general.action.cancel": "Cancelar",
+            "general.action.ok": "OK",
             "shortcut-recorder.none": "Nenhum",
             "shortcut-recorder.status.recording": "Gravando",
             "shortcut-recorder.action.remove": "Remover",
@@ -107,6 +133,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Atalhos usando a tecla Option sem Command ou Control podem não funcionar corretamente antes do macOS 15.2. Considere atualizar para a versão mais recente do macOS.",
         ],
         "pt-PT": [
+            "general.action.cancel": "Cancelar",
+            "general.action.ok": "OK",
             "shortcut-recorder.none": "Nenhum",
             "shortcut-recorder.status.recording": "Gravação",
             "shortcut-recorder.action.remove": "Remover",
@@ -115,6 +143,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Atalhos que utilizam a tecla Option sem Command ou Control podem não funcionar corretamente antes do macOS 15.2. Considere atualizar para a versão mais recente do macOS.",
         ],
         "ru": [
+            "general.action.cancel": "Отменить",
+            "general.action.ok": "ОК",
             "shortcut-recorder.none": "Отсутствует",
             "shortcut-recorder.status.recording": "Запись",
             "shortcut-recorder.action.remove": "Удалить",
@@ -123,6 +153,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Клавишу Option можно использовать только вместе с Command или Control.",
         ],
         "zh-Hans": [
+            "general.action.cancel": "取消",
+            "general.action.ok": "确定",
             "shortcut-recorder.none": "无",
             "shortcut-recorder.status.recording": "按下快捷键",
             "shortcut-recorder.action.remove": "删除",
@@ -131,6 +163,8 @@ enum OriginalShortcutMessages {
             "shortcut-recorder.error.option-key": "Option 键只能与 Command 或 Control 一起使用。",
         ],
         "zh-Hant": [
+            "general.action.cancel": "取消",
+            "general.action.ok": "確定",
             "shortcut-recorder.none": "沒有",
             "shortcut-recorder.status.recording": "錄製中",
             "shortcut-recorder.action.remove": "移除",

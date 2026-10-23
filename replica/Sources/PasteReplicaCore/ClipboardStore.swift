@@ -290,7 +290,15 @@ public final class ClipboardStore: ObservableObject {
                 state.items[i].plainText = text
                 state.items[i].payloads = [NSPasteboard.PasteboardType.string.rawValue: Data(text.utf8)]
                 state.items[i].kind = Self.isLink(text) ? .link : (Self.isColor(text) ? .color : .text)
-                if state.items[i].kind == .link { state.items[i].payloads[NSPasteboard.PasteboardType.URL.rawValue] = Data(text.utf8) }
+                if state.items[i].kind == .link,
+                   let url = OriginalPasteboardItem.f_10037c6d4(text).f_10037ce0c() {
+                    let representation = OriginalPasteboardItem.f_10037c7bc(url, title: state.items[i].title)
+                    for type in representation.f_10037da6c() {
+                        state.items[i].payloads[type] = representation.f_10037d810(forType: type)
+                    }
+                    state.items[i].payloads[Self.orderedPasteboardTypesPayloadKey] =
+                        try JSONEncoder().encode(representation.f_10037da6c())
+                }
             }
             state.items[i].updatedAt = Date()
         }
@@ -441,12 +449,10 @@ public final class ClipboardStore: ObservableObject {
     }
 
     static func isLink(_ text: String) -> Bool {
-        guard !text.isEmpty, !text.contains(where: \.isWhitespace), let url = URL(string: text),
-              let scheme = url.scheme?.lowercased() else { return false }
-        return ["http", "https", "ftp", "mailto"].contains(scheme) && (scheme == "mailto" || url.host != nil)
+        OriginalPasteboardClassification.f_10032362c([OriginalPasteboardItem.f_10037c6d4(text)]) == .link
     }
 
     static func isColor(_ text: String) -> Bool {
-        text.range(of: "^#?[0-9A-Fa-f]{6}$", options: .regularExpression) != nil
+        OriginalPasteboardClassification.f_100321f48(text)
     }
 }

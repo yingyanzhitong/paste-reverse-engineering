@@ -66,26 +66,17 @@ public struct OriginalShortcutRecorderError: LocalizedError {
 /// previous value separately from the unfinished modifier/key candidate.
 @MainActor
 public final class OriginalShortcutRecorder: ObservableObject {
-    @Published public private(set) var state: OriginalShortcutRecorderState {
-        didSet { stateDidChange?() }
-    }
-    @Published public private(set) var validationError: OriginalShortcutRecorderError? {
-        didSet { validationErrorDidChange?() }
-    }
+    @Published public private(set) var state: OriginalShortcutRecorderState
+    @Published public private(set) var validationError: Error?
     public var onDetect: (OriginalShortcutValue?) -> Void
-    public var stateDidChange: (() -> Void)?
-    public var validationErrorDidChange: (() -> Void)?
     private var eventMonitor: Any?
-    private let validator: (OriginalShortcutValue) -> String?
+    private let validator: OriginalDependency<@MainActor (OriginalShortcutValue) -> Error?>
 
-    public init(shortcut: OriginalShortcutValue?, onDetect: @escaping (OriginalShortcutValue?) -> Void,
-                validator: ((OriginalShortcutValue) -> String?)? = nil) {
+    public init(shortcut: OriginalShortcutValue?, onDetect: @escaping (OriginalShortcutValue?) -> Void) {
         state = shortcut.map(OriginalShortcutRecorderState.assigned) ?? .unassigned
         validationError = nil
         self.onDetect = onDetect
-        self.validator = validator ?? {
-            OriginalShortcutValidation.f_1001ebce4(shortcut: $0, menu: NSApp.mainMenu)
-        }
+        self.validator = OriginalDependency(\OriginalDependencyValues.shortcutValidator)
     }
 
     deinit {
@@ -101,7 +92,7 @@ public final class OriginalShortcutRecorder: ObservableObject {
     }
 
     public func f_1001f0460() -> OriginalShortcutRecorderState { state }
-    public func f_1001f04e8() -> OriginalShortcutRecorderError? { validationError }
+    public func f_1001f04e8() -> Error? { validationError }
 
     public func f_1001ee478() { validationError = nil }
 
@@ -144,11 +135,12 @@ public final class OriginalShortcutRecorder: ObservableObject {
         let eventShortcut = OriginalShortcutFunctions.f_1001e7d18(event)
         let shortcut = OriginalShortcutValue(keyCode: Int(eventShortcut.keyCode),
                                               internalModifiers: eventShortcut.modifierRawValue)
-        if [51, 117].contains(event.keyCode), shortcut.internalModifiers == 0 {
+        if [OriginalShortcutFunctions.f_1001e9610(), OriginalShortcutFunctions.f_1001e9624()]
+            .contains(shortcut.keyCode), shortcut.internalModifiers == 0 {
             f_1001ef434()
             return nil
         }
-        if event.keyCode == 53, shortcut.internalModifiers == 0 {
+        if shortcut.keyCode == OriginalShortcutFunctions.f_1001e95fc(), shortcut.internalModifiers == 0 {
             f_1001eff84()
             return nil
         }
@@ -169,9 +161,10 @@ public final class OriginalShortcutRecorder: ObservableObject {
             NSSound.beep()
             return event
         }
-        if let failure = validator(shortcut) {
+        let validate = validator.f_1000da768()
+        if let failure = validate(shortcut) {
             f_1001eff84()
-            validationError = OriginalShortcutRecorderError(failure)
+            validationError = failure
             return nil
         }
         onDetect(shortcut)
@@ -209,11 +202,4 @@ public final class OriginalShortcutRecorder: ObservableObject {
 
     public static var removeTitle: String { OriginalShortcutMessages.value("shortcut-recorder.action.remove") }
 
-    /// The native SwiftUI bridge can receive externally edited preferences.
-    /// Do not overwrite the previous/candidate payload of an active recording.
-    public func synchronizeShortcut(_ shortcut: OriginalShortcutValue?) {
-        guard !state.isRecording else { return }
-        let updated = shortcut.map(OriginalShortcutRecorderState.assigned) ?? .unassigned
-        if state != updated { state = updated }
-    }
 }

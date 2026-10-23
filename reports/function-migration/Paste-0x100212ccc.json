@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100212ccc",
+  "reviewed_at": "2026-10-23T09:13:58.163997+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0180.c",
+    "line": 1447
+  },
+  "original_pseudocode_sha256": "ad6a879ecfbc9c4873e2db3b1185eacd4573006d38af80a273c4632ee780c7b0",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPreviewAttributedText.swift": "36b96ffa221ab7e2368c506bd4705a9537af5388c69f9996d78a18d775eb32e4"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "TextEditor attributedText getter：取得平台NSTextView后经PastePlatform attributedText category读取，保留storage身份。",
+  "review": "part-0180.c；复刻已有textView作为恢复后的lazy依赖边界，保存路径实际调用。 Swift独立实现保持MainActor隔离；不主张原对象布局/编译器桥接ABI逐字节兼容。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100045edc",
-  "reviewed_at": "2026-10-23T08:50:59.307368+00:00",
+  "reviewed_at": "2026-10-23T09:13:57.926944+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0025.c",
@@ -10,18 +10,18 @@
   },
   "original_pseudocode_sha256": "993a88b28c4c9c351532911ccdb16dd2292221107a37c0e3eef17852a17702a4",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "34fe8c7ea93deadd47626298b9e631a8a985a1a6124e5634c5e44d356556a335",
-    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "7ccf867a3c2d7ca18ee876dfa03a54954c0675e3b3b691f599216afe6d2aaa95"
+    "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "6a56456d5b45a28cacd291891380b97414e71c1eaf68bd1d9ee15c3ec1596600",
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "502704322ec8497735357798c9998f281888b3ee45950a03fa7b307261c2280b"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "筛选按钮配置：line.3.horizontal.decrease探测后重载，缺失回退questionmark.square；didClickFiltersButton action、弱target、拒绝firstResponder、无边框、wantsLayer；tooltip为17种已恢复search.filters.title加固定ANSI f键的当前布局command快捷键显示。通用LocalizedStringResource构造仍未计完成。",
   "review": "逐地址对照既有REA伪代码及所需arm64指令，接入实际原生SearchField路径。ObjC/Swift执行器诊断、编译器私有对象布局采用当前Swift运行库，不承诺私有二进制ABI或诊断文本相同。候选等待稳定统一编译和主智能体登记；未运行功能测试。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

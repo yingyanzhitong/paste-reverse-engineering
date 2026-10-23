@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1003eb330",
+  "reviewed_at": "2026-10-23T09:13:58.157035+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0312.c",
+    "line": 459
+  },
+  "original_pseudocode_sha256": "dcca0fc9c0836163c3deb0e74ee70093746e28951b94606ae41bb1c4efecad05",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPreviewAttributedText.swift": "36b96ffa221ab7e2368c506bd4705a9537af5388c69f9996d78a18d775eb32e4"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "原版从实际textEditor.isEditable选择viewModel的editing/original文本；再读isEditable，只读且原文无attributes时复制并移除foregroundColor/backgroundColor；最后调用TextEditor.attributedText setter。",
+  "review": "part-0312.c:457及arm64逐指令确认无参数，实际isEditable读取两次；复刻恢复独立函数并接入replaceModelAndDisplay，先选原文/编辑文，再对只读plain复制和移除foreground/background，最后调用已恢复TextEditor setter。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

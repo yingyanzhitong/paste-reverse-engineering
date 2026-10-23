@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100048128",
-  "reviewed_at": "2026-10-23T08:50:58.922340+00:00",
+  "reviewed_at": "2026-10-23T09:13:57.672967+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0026.c",
@@ -11,19 +11,19 @@
   "original_pseudocode_sha256": "d87365857ebcdfd24bca9413937f4e8de378dd18b048b57c524dfefcdfb48c57",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchEditing.swift": "de4dbf21b72826fed9c0e9418c842eb8b0f1146a7d7aa9bfe22985af5d7ac73e",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "b1ca586054eb5cc3b844d0aa54a55565dbd8828e074ec73a7bb0df1bd8eb57a6",
-    "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "34fe8c7ea93deadd47626298b9e631a8a985a1a6124e5634c5e44d356556a335",
-    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "7ccf867a3c2d7ca18ee876dfa03a54954c0675e3b3b691f599216afe6d2aaa95"
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "ab18bd9404516407861af4854845335144310d32ff61aefeae5126136ba83f8d",
+    "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "6a56456d5b45a28cacd291891380b97414e71c1eaf68bd1d9ee15c3ec1596600",
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "502704322ec8497735357798c9998f281888b3ee45950a03fa7b307261c2280b"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "SearchField结束编辑通知入口；主执行器隔离，通知内容不被业务逻辑读取；可选onEndEditing存在则调用一次，不存在则不调用。由原生编辑器结束编辑通知调用。",
   "review": "逐项复审：OriginalSearchEditing的恢复函数体不变；委托在OriginalSearchField创建并保持，Coordinator从field.editingDelegate获取同一对象绑定回调，取代原先桥内构造。构建证据待统一登记；未重跑功能测试。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

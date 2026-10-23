@@ -77,24 +77,28 @@ public final class OriginalGlobalShortcutMonitor {
     private var handler: EventHandlerRef?
     private let lock = NSLock()
     private var registrations: [OriginalShortcutValue: OriginalShortcutRegistration] = [:]
-    private let diagnostic: (OriginalShortcutDiagnostic) -> Void
-    public private(set) var installationStatus: OSStatus = noErr
+    private let diagnostic: OriginalDependency<(OriginalShortcutDiagnostic) -> Void>
 
-    public init(diagnostic: ((OriginalShortcutDiagnostic) -> Void)? = nil) {
-        self.diagnostic = diagnostic ?? Self.writeDiagnostic
+    public init() {
+        self.diagnostic = OriginalDependency(\OriginalDependencyValues.shortcutDiagnostic)
         var specification = EventTypeSpec(eventClass: OSType(kEventClassKeyboard),
                                           eventKind: UInt32(kEventHotKeyPressed))
-        installationStatus = InstallEventHandler(GetEventDispatcherTarget(), { call, event, context in
+        let status = InstallEventHandler(GetEventDispatcherTarget(), { call, event, context in
             OriginalGlobalShortcutMonitor.f_1001ea96c(call, event, context)
         }, 1, &specification, Unmanaged.passUnretained(self).toOpaque(), &handler)
-        if installationStatus != noErr {
-            let failure = OriginalShortcutMonitorError.eventHandler(installationStatus)
-            self.diagnostic(OriginalShortcutDiagnostic(level: .error, topic: nil,
-                message: failure.description, tags: [:], metadata: ["status": Int(installationStatus)], error: failure))
+        if status != noErr {
+            let failure = OriginalShortcutMonitorError.eventHandler(status)
+            emit(OriginalShortcutDiagnostic(level: .error, topic: nil,
+                message: failure.description, tags: [:], metadata: ["status": Int(status)], error: failure))
         }
     }
 
-    private static func writeDiagnostic(_ diagnostic: OriginalShortcutDiagnostic) {
+    private func emit(_ diagnostic: OriginalShortcutDiagnostic) {
+        let write = self.diagnostic.f_1000da768()
+        write(diagnostic)
+    }
+
+    static func writeDiagnostic(_ diagnostic: OriginalShortcutDiagnostic) {
         let message = diagnostic.message
         let metadata = String(describing: diagnostic.metadata)
         switch diagnostic.level {
@@ -120,12 +124,12 @@ public final class OriginalGlobalShortcutMonitor {
             lock.lock()
             f_1001eb1e4(registration, for: shortcut)
             lock.unlock()
-            diagnostic(OriginalShortcutDiagnostic(level: .information, topic: "shortcuts",
+            emit(OriginalShortcutDiagnostic(level: .information, topic: "shortcuts",
                 message: "registered carbonID=\(registration.identifier) keyCode=\(shortcut.keyCode) modifiers=\(modifiers)",
                 tags: [:], metadata: [:], error: nil))
         } else {
             let failure = OriginalShortcutMonitorError.hotKey(registration.status)
-            diagnostic(OriginalShortcutDiagnostic(level: .error, topic: nil, message: failure.description,
+            emit(OriginalShortcutDiagnostic(level: .error, topic: nil, message: failure.description,
                 tags: [:], metadata: ["status": Int(registration.status), "carbon_key_code": Int(shortcut.keyCode),
                                      "carbon_modifiers": Int(modifiers)], error: failure))
         }
@@ -143,7 +147,7 @@ public final class OriginalGlobalShortcutMonitor {
         lock.unlock()
         if let removed {
             let modifiers = OriginalShortcutFunctions.f_1001e7d58(modifierRawValue: shortcut.internalModifiers)
-            diagnostic(OriginalShortcutDiagnostic(level: .information, topic: "shortcuts",
+            emit(OriginalShortcutDiagnostic(level: .information, topic: "shortcuts",
                 message: "unregistered carbonID=\(removed.identifier) keyCode=\(shortcut.keyCode) modifiers=\(modifiers)",
                 tags: [:], metadata: [:], error: nil))
             withExtendedLifetime(removed) {}
@@ -169,12 +173,12 @@ public final class OriginalGlobalShortcutMonitor {
         let action = registrations.values.first { $0.identifier == identifier.id }?.action
         lock.unlock()
         guard let action else {
-            diagnostic(OriginalShortcutDiagnostic(level: .warning, topic: nil,
+            emit(OriginalShortcutDiagnostic(level: .warning, topic: nil,
                 message: "Global shortcut event received with no matching handler",
                 tags: ["source": "GlobalShortcutMonitor"], metadata: ["carbon_id": Int(identifier.id)], error: nil))
             return
         }
-        diagnostic(OriginalShortcutDiagnostic(level: .information, topic: "shortcuts",
+        emit(OriginalShortcutDiagnostic(level: .information, topic: "shortcuts",
             message: "fired carbonID=\(identifier.id)", tags: [:], metadata: [:], error: nil))
         DispatchQueue.main.async(execute: action)
     }
@@ -192,7 +196,6 @@ public final class OriginalGlobalShortcutMonitor {
     private func f_1001ea9b0() {
         if let handler { RemoveEventHandler(handler) }
         handler = nil
-        registrations.removeAll()
     }
 
     deinit { f_1001ea9b0() }

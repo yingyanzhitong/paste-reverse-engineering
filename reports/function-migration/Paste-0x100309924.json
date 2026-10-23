@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100309924",
-  "reviewed_at": "2026-10-23T08:50:59.090244+00:00",
+  "reviewed_at": "2026-10-23T09:13:57.817239+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0251.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "abb65d68910d12a6ff2b5cfb57bb8460ef85c9b02aed9bfda06138e2759ff4e7",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "67aaa38c332b0b01058e167b6d95ceb9d6fb34cd14f4bcf3a28c19d20920cd3f"
+    "replica/Sources/PasteReplicaCore/OriginalPreviewAttributedText.swift": "36b96ffa221ab7e2368c506bd4705a9537af5388c69f9996d78a18d775eb32e4"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
-  "contract": "枚举属性回调：仅当 paragraphStyle 值可转为 NSParagraphStyle 且其 mutableCopy 为 NSMutableParagraphStyle 时，清空复制对象 textBlocks，并在指定范围写回 paragraphStyle；缺失/不兼容类型不修改字符串。",
-  "review": "核对 part-0251.c 0x100309924 动态转换、mutableCopy、空 NSTextBlock 数组以及 addAttribute 分支；实际由 f_10037d33c 的属性枚举调用。 未执行编译或功能回归，等待主智能体统一编译建立静态证据。",
-  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
+  "contract": "仅当attributes非空且paragraphStyle能转换NSParagraphStyle并mutableCopy能转换NSMutableParagraphStyle时，清空textBlocks并在原range重新添加；其他分支无操作。",
+  "review": "原版part-0251.c:1236；富文本加载sanitize复制后原位枚举时调用，其他属性保持。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

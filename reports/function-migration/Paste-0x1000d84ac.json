@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000d84ac",
+  "reviewed_at": "2026-10-23T09:13:58.063672+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0071.c",
+    "line": 1274
+  },
+  "original_pseudocode_sha256": "e49d780bddcd3aee9dc477aa3143c272f1989b3626e62980adb5835a414ae9d9",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalDependencies.swift": "da7c7ab839e15df222f2f6fffec0488f4a052f809ea252fc5923cb1d6d7c5137"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "锁内读取并保留factory，解锁后才执行；缺factory产生Any? nil，统一条件转换至Value，保留成功some(nil)与转换失败的区别。",
+  "review": "已逐地址阅读REA伪代码及关键arm64指令。typedcast源由0x100c2bbf8相对引用至0x100ce3036的ypSg确认是Optional<Any>。DI已由剪贴板logger与快捷键provider真实消费；原版不同容器的通用共享服务缓存和注册后端另行保留缺口，不外推整个DI完成。当前Swift泛型/KeyPath/ARC替代原版私有ABI，不承诺二进制布局相同。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}
