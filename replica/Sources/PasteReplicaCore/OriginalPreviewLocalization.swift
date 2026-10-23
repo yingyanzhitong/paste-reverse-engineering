@@ -29,6 +29,10 @@ public enum OriginalPreviewLocalization {
         resource("general.copied")
     }
 
+    public static func f_1001c4b50() -> LocalizedStringResource {
+        resource("general.enable-direct-paste")
+    }
+
     public static func f_1001bf288() -> LocalizedStringResource {
         resource("edit-item.toolbar.text.bold")
     }
@@ -119,6 +123,16 @@ public enum OriginalPreviewLocalization {
 
     public static func f_1001c6fb0() -> LocalizedStringResource {
         resource("item-type.multiple-files")
+    }
+
+    public static func f_1001c6f44() -> LocalizedStringResource { resource("item-type.color") }
+    public static func f_1001c6f68() -> LocalizedStringResource { resource("item-type.image") }
+    public static func f_1001c6f8c() -> LocalizedStringResource { resource("item-type.link") }
+    public static func f_1001c7130() -> LocalizedStringResource { resource("item-type.text") }
+    public static func f_1001c7154() -> LocalizedStringResource { resource("item-type.unknown") }
+
+    public static func f_1001e6c38(_ count: Int32) -> LocalizedStringResource {
+        countResource(count, key: "item-type.file-count")
     }
 
     public static func f_1001dac54() -> LocalizedStringResource {

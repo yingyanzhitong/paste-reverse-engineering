@@ -42,3 +42,9 @@
 "general.paused" = "已暂停";
 
 "general.action.pause-paste" = "暂停 Paste";
+"item-type.color" = "颜色";
+"item-type.image" = "图片";
+"item-type.link" = "链接";
+"item-type.text" = "文本";
+"item-type.unknown" = "未知";
+"general.enable-direct-paste" = "启用直接粘贴 {icon:chevron.right}";

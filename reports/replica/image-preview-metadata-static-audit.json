@@ -1,0 +1,30 @@
+{
+  "kind": "image_metadata_real_pipeline_static_review",
+  "version": "0.8.0-dev.18",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "2c08314bd0e63ada540371d2a856cd277d814997cd97ae5fbc3f1bfc676893e9",
+    "replica/Sources/PasteReplicaCore/Models.swift": "b3fb43c969c28f1e69055d6d024508f5c4edd40bdbfc5533a5dc5cf2a9093d31",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "87c1f5e184053dd8ea4e47846a241adc5d8a213a5d09bc959c42049f754ffb21",
+    "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "c59ebf5ae5909590684b2002964b7e78868b6616d6a078661330fab27bc6471c"
+  },
+  "compiled_app_sha256": "7a5f5d3e990210fc9985e313603622fc457ffe1163364244cb355483e88b4f6d",
+  "connected_calls": [
+    "add/capture/import/deduplicate -> original ordered item decode -> f313548",
+    "image update -> new payload and new metadata in same mutate",
+    "field merge -> payload and metadata kept paired",
+    "preview preferredSize -> persisted optional logical size or zero"
+  ],
+  "restored_contract": [
+    "280x230 bestRepresentation aspect-fit, FRINTA",
+    "32x32 alpha<250 sampling ratio>=0.05 -> PNG, otherwise JPEG0.6",
+    "encoding success gates metadata, dimensions are original unscaled NSImage.size",
+    "existing JPEG body shared with edit-save compression0.5"
+  ],
+  "remaining": [
+    "typed Codable storage is not original rawPreview byte format",
+    "legacy nil records are not forcibly regenerated",
+    "full VM actor/background/DI and functional regression unverified"
+  ],
+  "functional_tests_executed": false,
+  "products_started": false
+}

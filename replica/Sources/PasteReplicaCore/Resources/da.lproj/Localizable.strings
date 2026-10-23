@@ -42,3 +42,9 @@
 "general.paused" = "Pauseret";
 
 "general.action.pause-paste" = "Pause Paste";
+"item-type.color" = "Farve";
+"item-type.image" = "Billede";
+"item-type.link" = "Link";
+"item-type.text" = "Tekst";
+"item-type.unknown" = "Ukendt";
+"general.enable-direct-paste" = "Aktiver direkte indsættelse {icon:chevron.right}";

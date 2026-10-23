@@ -42,3 +42,9 @@
 "general.paused" = "Pozastaveno";
 
 "general.action.pause-paste" = "Pozastavit Paste";
+"item-type.color" = "Barva";
+"item-type.image" = "Obrázek";
+"item-type.link" = "Odkaz";
+"item-type.text" = "Text";
+"item-type.unknown" = "Neznámé";
+"general.enable-direct-paste" = "Povolit přímé vkládání {icon:chevron.right}";

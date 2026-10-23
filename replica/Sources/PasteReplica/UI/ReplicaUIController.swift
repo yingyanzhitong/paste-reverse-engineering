@@ -270,6 +270,9 @@ final class ReplicaUIController {
     }
     private let sharingPolicy: WindowSharingPolicy
     private var settingsWindow: NSWindow?
+    private var closedSearchTimer: Timer?
+    private var closedCreateObserver: NSObjectProtocol?
+    private var closedRestoreObservation: AnyCancellable?
     private var stackWindow: NSWindow?
     private var itemWindows: [UUID: NSWindow] = [:]
     private let previewRegistry = OriginalPreviewWindowRegistry()
@@ -306,12 +309,13 @@ final class ReplicaUIController {
         applyAppearance()
     }
 
+    deinit {
+        MainActor.assumeIsolated { cancelClosedState() }
+    }
+
     func showPanel() {
-        if !panel.isVisible {
-            state.query = ""
-            state.searchVisible = false
-            panel.makeFirstResponder(nil)
-        }
+        cancelClosedState()
+        if !panel.isVisible { panel.makeFirstResponder(nil) }
         state.normalizeSelection()
         positionPanel()
         panel.makeKeyAndOrderFront(nil)
@@ -319,8 +323,42 @@ final class ReplicaUIController {
     }
 
     func hidePanel() {
+        guard panel.isVisible else { return }
+        panel.makeFirstResponder(nil)
         NotificationCenter.default.post(name: OriginalPreviewPopover.mainWindowWillCloseNotification, object: nil)
         panel.orderOut(nil)
+        cancelClosedState()
+        closedCreateObserver = NotificationCenter.default.addObserver(
+            forName: ClipboardMonitor.didCreateItemNotification, object: nil, queue: .main) { [weak self] _ in
+                MainActor.assumeIsolated {
+                    guard let self else { return }
+                    self.state.chooseBoard(nil)
+                    self.closedSearchTimer?.invalidate()
+                    self.closedSearchTimer = nil
+                }
+            }
+        closedRestoreObservation = store.didRestoreItem.sink { [weak self] in
+            guard let self, self.state.isSearchQueryEmpty, self.state.pinboardID == nil else { return }
+            self.state.chooseBoard(nil)
+            self.closedSearchTimer?.invalidate()
+            self.closedSearchTimer = nil
+        }
+        closedSearchTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { [weak self] _ in
+            MainActor.assumeIsolated {
+                guard let self, !self.state.isSearchQueryEmpty else { return }
+                self.state.applySearchInput(nodes: [], text: "", filters: [])
+                self.state.searchVisible = false
+            }
+        }
+    }
+
+    private func cancelClosedState() {
+        closedSearchTimer?.invalidate()
+        closedSearchTimer = nil
+        if let closedCreateObserver { NotificationCenter.default.removeObserver(closedCreateObserver) }
+        closedCreateObserver = nil
+        closedRestoreObservation?.cancel()
+        closedRestoreObservation = nil
     }
     func togglePanel() { panel.isVisible ? hidePanel() : showPanel() }
     func focusSearch() { showPanel(); state.searchVisible = true; state.searchFocus = UUID() }
@@ -378,8 +416,8 @@ final class ReplicaUIController {
 
     func consumeStackHead() {
         guard let first = state.stackItems.first else { return }
-        state.stackIDs.removeAll { $0 == first.id }
-        if state.stackItems.isEmpty { hideStack() }
+        guard let index = state.stackIDs.firstIndex(of: first.id) else { return }
+        state.stackIDs.remove(at: index)
     }
 
     func newTextItem() { showEditor(item: nil) }

@@ -1,4 +1,5 @@
 import AppKit
+import Combine
 import Foundation
 
 private let multiItemPayloadKey = "com.pastereplica.internal.items+json"
@@ -287,6 +288,7 @@ extension ClipboardStore {
         }
         try recordRestoredItems(ids: ids)
         Self.restoreUndoManager.f_1000da768().removeAllActions()
+        didRestoreItem.send()
     }
 }
 

@@ -28,6 +28,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
     public var sourceDevice: String
     public var isInHistory: Bool
     public var payloads: [String: Data]
+    public var imagePreviewMetadata: OriginalImagePreviewMetadata?
     public var pinboardIDs: Set<UUID>
     public var isDeleted: Bool
 
@@ -35,7 +36,8 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
                 title: String = "", kind: ClipboardKind = .text, plainText: String? = nil,
                 sourceName: String = "Paste Replica", sourceBundleID: String? = nil,
                 payloads: [String: Data] = [:], pinboardIDs: Set<UUID> = [], isDeleted: Bool = false,
-                sourceDevice: String = "此Mac", isInHistory: Bool = true) {
+                sourceDevice: String = "此Mac", isInHistory: Bool = true,
+                imagePreviewMetadata: OriginalImagePreviewMetadata? = nil) {
         self.id = id
         self.createdAt = createdAt
         self.updatedAt = updatedAt ?? createdAt
@@ -45,6 +47,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
         self.sourceName = sourceName
         self.sourceBundleID = sourceBundleID
         self.payloads = payloads
+        self.imagePreviewMetadata = imagePreviewMetadata
         self.pinboardIDs = pinboardIDs
         self.isDeleted = isDeleted
         self.sourceDevice = sourceDevice

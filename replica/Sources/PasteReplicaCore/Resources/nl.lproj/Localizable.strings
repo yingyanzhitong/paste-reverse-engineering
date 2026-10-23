@@ -42,3 +42,9 @@
 "general.paused" = "Gepauzeerd";
 
 "general.action.pause-paste" = "Paste pauzeren";
+"item-type.color" = "Kleur";
+"item-type.image" = "Afbeelding";
+"item-type.link" = "Link";
+"item-type.text" = "Tekst";
+"item-type.unknown" = "Naamloos";
+"general.enable-direct-paste" = "Direct plakken inschakelen {icon:chevron.right}";

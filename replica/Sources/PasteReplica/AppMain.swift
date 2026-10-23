@@ -150,7 +150,9 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
                 }
                 guard let first = self.ui.state.stackItems.first else { return }
                 self.targetApplication = NSWorkspace.shared.frontmostApplication
-                if self.paste(ids: [first.id], plain: false, forceDirect: true) { self.ui.consumeStackHead() }
+                self.ui.consumeStackHead()
+                _ = self.paste(ids: [first.id], plain: false, forceDirect: true)
+                if self.ui.state.stackItems.isEmpty { self.ui.hideStack() }
             }
             configureGlobalHotKeys(force: true)
             refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
@@ -408,9 +410,19 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
         catch { ui.presentError(error); return false }
         // Named pasteboards support isolated acceptance runs and never generate system keystrokes.
         guard pasteboard.name == NSPasteboard.general.name else { return true }
+        guard forceDirect || store.preferences.pasteToActiveApp else {
+            ReplicaCopiedOSD.showCopied(enableDirectPaste: { [weak self] in
+                guard let self else { return }
+                self.ui.state.perform {
+                    self.store.preferences.pasteToActiveApp = true
+                    try self.store.save()
+                }
+            })
+            NSApp.deactivate()
+            return true
+        }
         guard let target = targetApplication, !target.isTerminated,
               target.processIdentifier != ProcessInfo.processInfo.processIdentifier else { return false }
-        guard forceDirect || store.preferences.pasteToActiveApp else { target.activate(options: []); return true }
         guard AXIsProcessTrusted() else {
             let alert = NSAlert()
             alert.messageText = "已拷贝到剪贴板"

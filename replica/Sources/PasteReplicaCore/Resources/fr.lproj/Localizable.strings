@@ -42,3 +42,9 @@
 "general.paused" = "En pause";
 
 "general.action.pause-paste" = "Mettre Paste en pause";
+"item-type.color" = "Couleur";
+"item-type.image" = "Image";
+"item-type.link" = "Lien";
+"item-type.text" = "Texte";
+"item-type.unknown" = "Inconnu";
+"general.enable-direct-paste" = "Activer le collage direct {icon:chevron.right}";

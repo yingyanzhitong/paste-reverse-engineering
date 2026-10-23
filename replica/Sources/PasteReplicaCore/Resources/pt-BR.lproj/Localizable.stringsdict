@@ -50,5 +50,21 @@
 			<string>%d palavras</string>
 		</dict>
 	</dict>
+	<key>item-type.file-count</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@value@</string>
+		<key>value</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Arquivo</string>
+			<key>other</key>
+			<string>%d arquivos</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

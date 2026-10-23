@@ -3,13 +3,15 @@ import PasteReplicaCore
 import QuartzCore
 import SwiftUI
 
-/// Recovered local OSD presentation. The original optional action remains a separate contract.
+/// Recovered local OSD presentation, including the copy-only enable-direct-paste action.
 @MainActor
 enum ReplicaCopiedOSD {
     // The original published pause flag is the inverse of the actual monitor's poll timer state.
     static var pauseStatus: (() -> Bool?)?
-    static func showCopied() {
-        show(symbolName: "checkmark", title: String(localized: OriginalPreviewLocalization.f_1001c482c()))
+    static func showCopied(enableDirectPaste: (() -> Void)? = nil) {
+        show(symbolName: "checkmark", title: String(localized: OriginalPreviewLocalization.f_1001c482c()),
+             subtitle: enableDirectPaste == nil ? nil : String(localized: OriginalPreviewLocalization.f_1001c4b50()),
+             action: enableDirectPaste)
     }
 
     static func showPaused(resumeDate: Date?) {
@@ -30,10 +32,11 @@ enum ReplicaCopiedOSD {
         show(symbolName: "arrow.clockwise", title: String(localized: OriginalPreviewLocalization.f_1001c59b8()))
     }
 
-    private static func show(symbolName: String, title: String?, subtitle: String? = nil) {
+    private static func show(symbolName: String, title: String?, subtitle: String? = nil,
+                             action: (() -> Void)? = nil) {
         // The original controller enqueues its presenter on MainActor rather than presenting inline.
         Task { @MainActor in
-            let content = NSHostingView(rootView: Content(symbolName: symbolName, title: title, subtitle: subtitle))
+            let content = NSHostingView(rootView: Content(symbolName: symbolName, title: title, subtitle: subtitle, action: action))
             let effect = NSVisualEffectView()
             effect.wantsLayer = true
             effect.layer?.cornerRadius = 20
@@ -80,6 +83,7 @@ enum ReplicaCopiedOSD {
         let symbolName: String
         let title: String?
         let subtitle: String?
+        let action: (() -> Void)?
 
         var body: some View {
             VStack(spacing: 16) {
@@ -92,6 +96,9 @@ enum ReplicaCopiedOSD {
                 }
             }
             .foregroundStyle(.secondary)
+            .onTapGesture {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { action?() }
+            }
         }
     }
 }

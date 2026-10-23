@@ -42,3 +42,9 @@
 "general.paused" = "Приостановлено";
 
 "general.action.pause-paste" = "Приостановить Paste";
+"item-type.color" = "Цвет";
+"item-type.image" = "Изображение";
+"item-type.link" = "Ссылка";
+"item-type.text" = "Текст";
+"item-type.unknown" = "Неизвестно";
+"general.enable-direct-paste" = "Включить прямую вставку {icon:chevron.right}";

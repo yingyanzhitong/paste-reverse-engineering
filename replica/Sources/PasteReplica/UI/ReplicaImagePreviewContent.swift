@@ -13,6 +13,7 @@ final class ReplicaImagePreviewContent: NSView, OriginalPreviewEditableContent, 
     private let editingUndoManager = UndoManager()
     private var itemObservation: AnyCancellable?
     private var sourcePayloads: [String: Data] = [:]
+    private var imageMetadataSize: NSSize = .zero
     private var quarterTurns = 0
     private var isEditing = false
     private(set) var canCommit = false
@@ -79,7 +80,7 @@ final class ReplicaImagePreviewContent: NSView, OriginalPreviewEditableContent, 
     override var undoManager: UndoManager? { editingUndoManager }
 
     var preferredPreviewSize: NSSize {
-        let imageSize = zoomView.f_100240a18()?.size ?? .zero
+        let imageSize = imageMetadataSize
         let screen = NSScreen.main!.frame.size
         let halfWidth = screen.width * 0.5
         let halfHeight = screen.height * 0.5
@@ -125,6 +126,7 @@ final class ReplicaImagePreviewContent: NSView, OriginalPreviewEditableContent, 
     }
 
     private func replaceDisplayedItem(_ item: ClipboardItem, force: Bool = false) {
+        imageMetadataSize = item.imagePreviewMetadata?.size ?? .zero
         let payloads = item.payloads.filter { !$0.key.hasPrefix("com.pastereplica.internal.recognized-") }
         guard force || payloads != sourcePayloads else { return }
         sourcePayloads = payloads
@@ -214,17 +216,12 @@ final class ReplicaImagePreviewContent: NSView, OriginalPreviewEditableContent, 
         if let data = OriginalPasteboardImageEncoding.f_1003c89c8(image) {
             return [NSPasteboard.PasteboardType.png.rawValue: data]
         }
-        if let data = f_1003c8b58(image, compressionFactor: 0.5) {
+        if let data = OriginalImagePreviewMetadataGenerator.f_1003c8b58(image, compression: 0.5) {
             return ["public.jpeg": data]
         }
         throw OriginalPasteboardItemCreationError.unsupportedContent
     }
 
-    private static func f_1003c8b58(_ image: NSImage, compressionFactor: CGFloat) -> Data? {
-        guard let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else { return nil }
-        let jpeg = NSBitmapImageRep(cgImage: cgImage)
-        return jpeg.representation(using: .jpeg, properties: [.compressionFactor: compressionFactor])
-    }
 }
 
 @MainActor

@@ -42,3 +42,9 @@
 "general.paused" = "מושהה";
 
 "general.action.pause-paste" = "השהה את Paste";
+"item-type.color" = "צבע";
+"item-type.image" = "תמונה";
+"item-type.link" = "קישור";
+"item-type.text" = "מלל";
+"item-type.unknown" = "לא ידוע";
+"general.enable-direct-paste" = "אפשר הדבקה ישירה {icon:chevron.right}";

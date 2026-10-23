@@ -42,3 +42,9 @@
 "general.paused" = "已暫停";
 
 "general.action.pause-paste" = "暫停Paste";
+"item-type.color" = "顏色";
+"item-type.image" = "圖像";
+"item-type.link" = "連結";
+"item-type.text" = "文本";
+"item-type.unknown" = "不詳";
+"general.enable-direct-paste" = "啟用直接粘貼 {icon:chevron.right}";

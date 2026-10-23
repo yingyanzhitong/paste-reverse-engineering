@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037df18",
-  "reviewed_at": "2026-10-23T13:00:10.569979+00:00",
+  "reviewed_at": "2026-10-23T13:15:30.209753+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "20f4454a7041c7dcf2ef95d5bb5ba1400bb0a1660bb1babda72d478a6bfd75c9",
+  "compiled_app_binary_sha256": "7a5f5d3e990210fc9985e313603622fc457ffe1163364244cb355483e88b4f6d",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "CodingKeys的description协议入口使用本类型CodingKey witness并转发Swift.CodingKey默认description。",
-  "review": "最终build36完整description witness108ecc..108ef4：同一CodingKey accessor后尾调stub16d99c；description conformance174fd4+24绑定108ecc。",
+  "review": "最终build37完整description witness10c3f0..10c418：同一CodingKey accessor后尾调stub170f98；description conformance178804+24绑定10c3f0。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x100108ecc",
-    "end_exclusive": "0x100108ef4",
+    "start": "0x10010c3f0",
+    "end_exclusive": "0x10010c418",
     "size": 40,
-    "sha256": "55c04244022a8826360c59f8baa568105ed47e30ea1b614eea507a2124335a78",
-    "binary_sha256": "20f4454a7041c7dcf2ef95d5bb5ba1400bb0a1660bb1babda72d478a6bfd75c9",
+    "sha256": "99b862a44dace727150b1343e87184f9599a2912fb19574dc0047300600b027c",
+    "binary_sha256": "7a5f5d3e990210fc9985e313603622fc457ffe1163364244cb355483e88b4f6d",
     "lc_function_starts_verified": true
   }
 }

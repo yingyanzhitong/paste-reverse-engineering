@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100313548",
+  "reviewed_at": "2026-10-23T13:15:30.717248+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0254.c",
+    "line": 1579
+  },
+  "original_pseudocode_sha256": "de776751e0bf032d9daa0a96aa04016ba3dac4225abbfa92d4d6ddc39a2a2dd9",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "2c08314bd0e63ada540371d2a856cd277d814997cd97ae5fbc3f1bfc676893e9"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "7a5f5d3e990210fc9985e313603622fc457ffe1163364244cb355483e88b4f6d",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "Build optional image metadata only after successful exact thumbnail and selected preview encoding; source unresized NSImage logical size.",
+  "review": "Complete original REA and full arm64 recovered with exact selector decoding; actual add/capture/import/update-image writer consumes generator and preview consumes persisted optional logical size. Root final build37 compiled; no runtime equivalence claim.",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

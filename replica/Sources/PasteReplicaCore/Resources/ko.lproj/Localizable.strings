@@ -42,3 +42,9 @@
 "general.paused" = "일시 중지됨";
 
 "general.action.pause-paste" = "Paste 일시 정지";
+"item-type.color" = "색상";
+"item-type.image" = "이미지";
+"item-type.link" = "링크";
+"item-type.text" = "텍스트";
+"item-type.unknown" = "알 수 없음";
+"general.enable-direct-paste" = "직접 붙여넣기 사용 {icon:chevron.right}";

@@ -42,3 +42,9 @@
 "general.paused" = "一時停止中";
 
 "general.action.pause-paste" = "Pasteを一時停止";
+"item-type.color" = "色";
+"item-type.image" = "画像";
+"item-type.link" = "リンク";
+"item-type.text" = "文字";
+"item-type.unknown" = "不明";
+"general.enable-direct-paste" = "ダイレクト・ペーストを有効にする {icon:chevron.right}";

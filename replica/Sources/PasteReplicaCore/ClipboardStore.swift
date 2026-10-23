@@ -20,6 +20,7 @@ private struct DiskRevision: Equatable {
 public final class ClipboardStore: ObservableObject {
     @Published public var items: [ClipboardItem] = []
     @Published public var pinboards: [Pinboard] = []
+    public let didRestoreItem = PassthroughSubject<Void, Never>()
     public let preferenceChanges = PassthroughSubject<(old: AppPreferences, new: AppPreferences), Never>()
     @Published public var preferences = AppPreferences() {
         didSet { preferenceChanges.send((oldValue, preferences)) }
@@ -143,7 +144,12 @@ public final class ClipboardStore: ObservableObject {
             if local.sourceBundleID != base.sourceBundleID { value.sourceBundleID = local.sourceBundleID }
             if local.sourceDevice != base.sourceDevice { value.sourceDevice = local.sourceDevice }
             if local.isInHistory != base.isInHistory { value.isInHistory = local.isInHistory }
-            if local.payloads != base.payloads { value.payloads = local.payloads }
+            if local.payloads != base.payloads {
+                value.payloads = local.payloads
+                value.imagePreviewMetadata = local.imagePreviewMetadata
+            } else if local.imagePreviewMetadata != base.imagePreviewMetadata, remote.payloads == base.payloads {
+                value.imagePreviewMetadata = local.imagePreviewMetadata
+            }
             value.pinboardIDs.formUnion(local.pinboardIDs.subtracting(base.pinboardIDs))
             value.pinboardIDs.subtract(base.pinboardIDs.subtracting(local.pinboardIDs))
             if local.isDeleted != base.isDeleted { value.isDeleted = local.isDeleted }
@@ -260,8 +266,19 @@ public final class ClipboardStore: ObservableObject {
         }
     }
 
+    private static func withImagePreviewMetadata(_ item: ClipboardItem) -> ClipboardItem {
+        var item = item
+        if item.kind != .image { item.imagePreviewMetadata = nil }
+        else if item.imagePreviewMetadata == nil {
+            item.imagePreviewMetadata = (try? originalPasteboardItems(from: item.payloads))
+                .flatMap(OriginalImagePreviewMetadataGenerator.f_100313548)
+        }
+        return item
+    }
+
     @discardableResult
     public func add(_ item: ClipboardItem) throws -> UUID {
+        let item = Self.withImagePreviewMetadata(item)
         let checksum = try? Self.knownPasteboardChecksum(from: item.payloads)
         return try mutate { state in
             if let i = state.items.firstIndex(where: { previous in
@@ -277,6 +294,7 @@ public final class ClipboardStore: ObservableObject {
                 state.items[i].kind = item.kind
                 state.items[i].plainText = item.plainText
                 state.items[i].payloads = item.payloads
+                state.items[i].imagePreviewMetadata = item.imagePreviewMetadata
                 for (type, data) in analysis where state.items[i].payloads[type] == nil {
                     state.items[i].payloads[type] = data
                 }
@@ -320,6 +338,7 @@ public final class ClipboardStore: ObservableObject {
             if let text {
                 state.items[i].plainText = text
                 state.items[i].payloads = [NSPasteboard.PasteboardType.string.rawValue: Data(text.utf8)]
+                state.items[i].imagePreviewMetadata = nil
                 state.items[i].kind = Self.isLink(text) ? .link : (Self.isColor(text) ? .color : .text)
                 if state.items[i].kind == .link,
                    let url = OriginalPasteboardItem.f_10037c6d4(text).f_10037ce0c() {
@@ -345,6 +364,7 @@ public final class ClipboardStore: ObservableObject {
             state.items[i].payloads = [NSPasteboard.PasteboardType.rtf.rawValue: rtf,
                                        NSPasteboard.PasteboardType.string.rawValue: Data(text.utf8)]
             state.items[i].kind = .richText
+            state.items[i].imagePreviewMetadata = nil
             state.items[i].updatedAt = Date()
         }
     }
@@ -355,11 +375,14 @@ public final class ClipboardStore: ObservableObject {
         guard !types.isEmpty else { throw OriginalPasteboardItemCreationError.unsupportedContent }
         var replacement = payloads.filter { imageTypes.contains($0.key) }
         replacement[Self.orderedPasteboardTypesPayloadKey] = try JSONEncoder().encode(types)
+        let metadata = (try? Self.originalPasteboardItems(from: replacement))
+            .flatMap(OriginalImagePreviewMetadataGenerator.f_100313548)
         try mutate { state in
             guard let i = state.items.firstIndex(where: { $0.id == id && !$0.isDeleted && $0.kind == .image }) else {
                 throw ClipboardStoreError.itemNotFound
             }
             state.items[i].payloads = replacement
+            state.items[i].imagePreviewMetadata = metadata
             state.items[i].plainText = nil
             state.items[i].kind = .image
             state.items[i].updatedAt = Date()
@@ -379,6 +402,7 @@ public final class ClipboardStore: ObservableObject {
             state.items[i].payloads = payloads
             state.items[i].plainText = url.absoluteString
             state.items[i].kind = .link
+            state.items[i].imagePreviewMetadata = nil
             state.items[i].updatedAt = Date()
         }
     }
@@ -391,6 +415,7 @@ public final class ClipboardStore: ObservableObject {
             state.items[i].payloads = [NSPasteboard.PasteboardType.string.rawValue: Data(text.utf8)]
             state.items[i].plainText = text
             state.items[i].kind = .color
+            state.items[i].imagePreviewMetadata = nil
             state.items[i].updatedAt = Date()
         }
     }
@@ -516,12 +541,13 @@ public final class ClipboardStore: ObservableObject {
             throw error
         }
         try validate(archive)
+        let importedItems = archive.items.map(Self.withImagePreviewMetadata)
         try mutate { state in
             var boards = Dictionary(uniqueKeysWithValues: state.pinboards.map { ($0.id, $0) })
             for board in archive.pinboards { boards[board.id] = board }
             state.pinboards = Array(boards.values)
             var items = Dictionary(uniqueKeysWithValues: state.items.map { ($0.id, $0) })
-            for item in archive.items where items[item.id] == nil || items[item.id]!.updatedAt <= item.updatedAt { items[item.id] = item }
+            for item in importedItems where items[item.id] == nil || items[item.id]!.updatedAt <= item.updatedAt { items[item.id] = item }
             state.items = Array(items.values)
             state.preferences = archive.preferences
         }

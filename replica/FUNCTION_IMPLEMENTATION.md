@@ -58,13 +58,13 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 ## 并行迁移与现有实现复用
 
-2026-10-23 当前 0.8.0-dev.17 快照为 1,421 / 81,134：源码实现或复用 564 个、实际系统转发 857 个；另有5个已逐地址核定的范围排除，范围内剩余 79,708 个，其中 177 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
+2026-10-23 当前 0.8.0-dev.18 快照为 1,438 / 81,134：源码实现或复用 575 个、实际系统转发 863 个；另有5个已逐地址核定的范围排除，范围内剩余 79,691 个，其中 186 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
 
 按用户最新要求，四智能体改为先集中核对已有功能和完整调用链：已有实现满足契约就直接复用，只补确认缺失或行为不同的部分。系统转发、薄包装、编译器生成代码按证据成组核对，不再以逐个重写地址推进。功能存在、源码契约迁移、功能回归和一比一验收分别记录；不能把一次静态检查说成全部函数已通过。整体目标保持 active，尚未执行本轮新的功能、UI 或 MCP 测试。
 
 此前 0.8.0-dev.4 补共享依赖缓存、一次性配置、剪贴板 MD5 校验及去重接入、日志输出/诊断启动偏好、搜索筛选原符号、快捷键共享服务与错误类型、原生预览按钮和异步文本格式状态。17 个语言资源按已恢复词条接入，并补资源打包。稳定构建前后 88 份源码、配置和资源摘要一致，生成的 bundle accessor 也绑定构建。完整仓库事务、Sentry 本地副作用、actor 析构和部分父级 UI 工厂继续保留 partial。
 
-本轮一页结论见 [concentrated-review.md](../reports/replica/concentrated-review.md)，集中快审明细见 [fast-coverage-audit.md](../reports/replica/fast-coverage-audit.md)：72 个行为单元绑定 83 份源码，32 项列明行为已有代码、37 项有差异或缺证据、1 项缺实现、2 项未核对。这不是原版完整产品的功能百分比，也不提升逐地址台账状态。
+本轮一页结论见 [concentrated-review.md](../reports/replica/concentrated-review.md)，集中快审明细见 [fast-coverage-audit.md](../reports/replica/fast-coverage-audit.md)：72 个行为单元绑定 84 份源码，32 项列明行为已有代码、37 项有差异或缺证据、1 项缺实现、2 项未核对。这不是原版完整产品的功能百分比，也不提升逐地址台账状态。
 
 0.8.0-dev.5 先补确认缺口：真实筛选 Popover、多选同组 OR/跨组 AND、三列分组与胶囊条目、键盘和焦点返回；VisionKit 图片文字拖选与原生滚动缩放/居中；预览 Pin/分享和三项复数计数；原 ItemData 编解码与压缩导入。另修三个偏好保存丢失及多项后续图片不能进入 OCR。26 个偏好字段静态核对均有合并分支。稳定编译前后 112 份输入（78 份 Swift/配置、17 份 strings、17 份 stringsdict）摘要一致。
 
@@ -96,6 +96,8 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 范围排除单列于 [cloud-network-scope-exclusions.json](../reports/function-migration/cloud-network-scope-exclusions.json)，只包含明确逐地址审阅的五个CloudKit网络调用跳板；不由模块/类名前缀推定其他函数排除。`python3 scripts/scope_exclusions.py --check` 重新解析原版完整12字节、真实dyld绑定与原片段摘要，台账检查同步验证。排除项不是实现或等价通过，总分母仍81,134，不删除本地类型/metadata/取消任务/仓库事务/日志或任意调用方。
 
+0.8.0-dev.18 将Stack热键消费顺序、关闭后10秒保留搜索及实际创建/恢复事件消费者接回原证据；不再用发送Bool决定消费或重开立即清空查询。类型默认标题及空title初值使用原资源，17语言119值静态相同。复制模式OSD点击延迟0.1秒真实写入direct paste偏好，完整Accessibility/gesture/错误状态仍partial。图片元数据恢复280×230缩略、alpha采样/PNG或JPEG0.6成功门槛及原图逻辑尺寸，真实生成/配对写入在add/capture/去重/导入/update-image，非image writer清空；consumer读取已存optional。旧数据缺失不强制迁移、nil返回零，typed Codable值不等同原rawPreview PropertyList格式；原父VM/持久化ABI仍partial。JPEG0.5编辑保存复用既有同helper，不重复计数。最终build37的140输入摘要一致，日志18.17秒/包装19.84秒；新增源码完整11=7资源helper+4图片生成helper，SDK6，合并33记录不当新增33。当前完整体证据 [compiled-reuse-build37.json](../reports/function-migration/compiled-reuse-build37.json) 与 [objc-exception-build37.json](../reports/function-migration/objc-exception-build37.json)。未启动产品或回归测试。
+
 原搜索建议/自动 token 化、完整 query 序列化和反解析、Indexable provider、后台 actor/schema/批量恢复、原图片 ViewModel/优选尺寸/错误传播、原复制时文件大小及完整文件布局/VM、仓库事务、混合格式恢复及 token/repository/undo/DidRestore 副作用仍有差异。独立 CLI 的 ClipboardStore.search 保持原接口，不代表完整原 SearchService。既有 NSImage 跨 MainActor 异步分析警告仍保留在 partial 范围。四个 OCR 算法方法体未改，但外围图片数据读取使整文件摘要改变，旧验证转为历史；不以重新写摘要冒称当前功能通过。没有运行新的功能、单测、原版动态、UI 或 MCP 测试，尚未一比一验收。
 
 - 搜索输入接入原生 TextKit 2、占位标签、输入属性刷新、选区/布局/聚焦策略及动态颜色/字体访问器。明确区分颜色存储槽地址与颜色值；外层聚焦环坐标传播、附件状态和筛选界面仍有未迁移函数。
@@ -107,7 +109,7 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 ## 纯 SDK 转发复用
 
-857 个当前地址没有生成同名空函数，也没有伪造源码引用；映射采用独立 `sdk_implementation`，逐项指向 `reports/function-migration/sdk-import-reuse.json`。校验器要求原版完整函数体为真实 arm64 `ADRP/LDR/BR x16` 导入跳板，并核对指针槽、间接符号表和实际 `LC_DYLD_CHAINED_FIXUPS` 页链、bind ordinal、零 addend、原始符号、完整 dylib 路径、weak、load-kind 和 ABI。复刻产物必须存在唯一对应的真实导入跳板。
+863 个当前地址没有生成同名空函数，也没有伪造源码引用；映射采用独立 `sdk_implementation`，逐项指向 `reports/function-migration/sdk-import-reuse.json`。校验器要求原版完整函数体为真实 arm64 `ADRP/LDR/BR x16` 导入跳板，并核对指针槽、间接符号表和实际 `LC_DYLD_CHAINED_FIXUPS` 页链、bind ordinal、零 addend、原始符号、完整 dylib 路径、weak、load-kind 和 ABI。复刻产物必须存在唯一对应的真实导入跳板。
 
 `scripts/macho_imports.py` 重新读取本机原版和当前 release 产物，核对原版容器/arm64 摘要、所有相关 Swift 源文件、本地化资源及 `Package.swift`、逐地址伪代码和真实导入绑定。`function_ledger.py --check` 每次运行会重新核对 SDK 报告，并分别输出 `source_functions` 与 `sdk_forwarders_reused`，不会把系统内部函数也计入已迁移数。复刻源码或二进制变化后，旧静态记录不能继续直接使用。
 

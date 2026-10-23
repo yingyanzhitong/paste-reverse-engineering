@@ -376,8 +376,19 @@ private final class ReplicaInlinePreviewHeader: NSView {
             MainActor.assumeIsolated {
                 guard let self, let current = items.first(where: { $0.id == item.id }) else { return }
                 let field = self.titleLabel.f_100013084()
-                field.f_10023b600(current.kind.displayName)
-                field.f_10023b214(current.title)
+                let rawType: Int
+                switch current.kind {
+                case .unknown: rawType = 0
+                case .image: rawType = 1
+                case .color: rawType = 2
+                case .files: rawType = 3
+                case .link: rawType = 4
+                case .text, .richText: rawType = 5
+                }
+                let defaultTitle = OriginalPreviewTitles.f_100309008(rawType: rawType,
+                    fileCount: current.kind == .files ? itemFileURLs(current).count : nil)
+                field.f_10023b600(defaultTitle)
+                field.f_10023b214(OriginalPreviewTitles.f_100308f88(current.title, defaultTitle: defaultTitle))
                 share?.isEnabled = (try? Self.sharingContent(current))
                     .map { OriginalPreviewSharing.f_100320cc0($0) } ?? false
                 self.refreshPinAppearance(current)
