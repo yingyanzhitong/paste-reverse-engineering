@@ -251,7 +251,8 @@ struct ReplicaClipboardCard: View {
         .contentShape(RoundedRectangle(cornerRadius: cardCornerRadius, style: cardCornerStyle))
         .onTapGesture(count: 2) {
             state.select(item)
-            state.controller?.paste(item: item, plainTextOnly: NSEvent.modifierFlags.contains(.shift))
+            let plainModifiers = NSEvent.ModifierFlags(rawValue: state.store.preferences.plainTextModifierRawValue)
+            state.controller?.paste(item: item, plainTextOnly: NSEvent.modifierFlags.isSuperset(of: plainModifiers))
         }
         .onTapGesture { state.select(item, modifiers: NSEvent.modifierFlags) }
         .background(ReplicaCardContextSelection(onContextMenu: {

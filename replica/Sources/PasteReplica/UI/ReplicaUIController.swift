@@ -19,7 +19,9 @@ final class ReplicaUIState: ObservableObject {
     } }
     @Published var pinboardID: UUID?
     @Published var showDeleted = false
-    @Published var selection: Set<UUID> = []
+    @Published var selection: Set<UUID> = [] {
+        didSet { if !isApplyingSelection { reconcileExternalSelection() } }
+    }
     @Published var primaryID: UUID?
     @Published var searchFocus = UUID()
     @Published var searchVisible = false
@@ -38,6 +40,9 @@ final class ReplicaUIState: ObservableObject {
     let itemDragSessionID = UUID()
     private var searchInputProjection: [OriginalSearchQueryNode]?
     private var isApplyingSearchInput = false
+    private var orderedSelectionIDs: [UUID] = []
+    private var rangeAnchorID: UUID?
+    private var isApplyingSelection = false
 
     init(store: ClipboardStore) {
         self.store = store
@@ -96,7 +101,10 @@ final class ReplicaUIState: ObservableObject {
                 && searchIndex.identifiers.contains(item.id)
         }.sorted { $0.updatedAt > $1.updatedAt }
     }
-    var selectedItems: [ClipboardItem] { visibleItems.filter { selection.contains($0.id) } }
+    var selectedItems: [ClipboardItem] {
+        let byID = Dictionary(uniqueKeysWithValues: visibleItems.map { ($0.id, $0) })
+        return orderedSelectionIDs.compactMap { selection.contains($0) ? byID[$0] : nil }
+    }
     var primaryItem: ClipboardItem? {
         visibleItems.first { $0.id == primaryID } ?? selectedItems.first ?? visibleItems.first
     }
@@ -111,45 +119,71 @@ final class ReplicaUIState: ObservableObject {
         }
     }
 
-    func normalizeSelection() {
-        let ids = Set(visibleItems.map(\.id))
-        selection.formIntersection(ids)
-        if selection.isEmpty, !allowsEmptySelection, let first = visibleItems.first { selection = [first.id] }
-        if primaryID == nil || !ids.contains(primaryID!) || !selection.contains(primaryID!) {
-            primaryID = visibleItems.first { selection.contains($0.id) }?.id
+    private func applyOrderedSelection(_ ids: [UUID], anchor: UUID?, primary: UUID?) {
+        isApplyingSelection = true
+        orderedSelectionIDs = ids
+        rangeAnchorID = anchor
+        selection = Set(ids)
+        primaryID = primary
+        isApplyingSelection = false
+    }
+
+    private func reconcileExternalSelection() {
+        let visibleIDs = visibleItems.map(\.id)
+        let visible = Set(visibleIDs)
+        orderedSelectionIDs = orderedSelectionIDs.filter { selection.contains($0) && visible.contains($0) }
+        let retained = Set(orderedSelectionIDs)
+        orderedSelectionIDs += visibleIDs.filter { selection.contains($0) && !retained.contains($0) }
+        if rangeAnchorID.map({ !selection.contains($0) || !visible.contains($0) }) ?? true {
+            rangeAnchorID = orderedSelectionIDs.last
         }
+        if primaryID.map({ !selection.contains($0) || !visible.contains($0) }) ?? true {
+            isApplyingSelection = true
+            primaryID = orderedSelectionIDs.last
+            isApplyingSelection = false
+        }
+    }
+
+    func normalizeSelection() {
+        let items = visibleItems
+        let visible = Set(items.map(\.id))
+        var ids = orderedSelectionIDs.filter { selection.contains($0) && visible.contains($0) }
+        let retained = Set(ids)
+        ids += items.map(\.id).filter { selection.contains($0) && !retained.contains($0) }
+        if ids.isEmpty, !allowsEmptySelection, let first = items.first { ids = [first.id] }
+        let anchor = rangeAnchorID.flatMap { visible.contains($0) ? $0 : nil } ?? ids.last
+        let primary = primaryID.flatMap { ids.contains($0) ? $0 : nil } ?? ids.last
+        applyOrderedSelection(ids, anchor: anchor, primary: primary)
         if let pinboardID, !store.pinboards.contains(where: { $0.id == pinboardID }) {
             self.pinboardID = nil
         }
     }
 
+    private func selectIndex(_ index: Int, mode: UInt8, items: [ClipboardItem]) {
+        let positions = Dictionary(uniqueKeysWithValues: items.enumerated().map { ($0.element.id, $0.offset) })
+        var value = OriginalOrderedSelection(selectedIndexes: orderedSelectionIDs.compactMap { positions[$0] },
+            itemCount: items.count, anchor: rangeAnchorID.flatMap { positions[$0] })
+        value.select(index, mode: mode)
+        let ids = value.selectedIndexes.map { items[$0].id }
+        if !ids.isEmpty { allowsEmptySelection = false }
+        applyOrderedSelection(ids, anchor: value.anchor.map { items[$0].id }, primary: ids.last)
+    }
+
     func select(_ item: ClipboardItem, modifiers: NSEvent.ModifierFlags = []) {
-        allowsEmptySelection = false
         controller?.panel.makeFirstResponder(nil)
-        if modifiers.contains(.shift), let anchor = primaryID,
-           let start = visibleItems.firstIndex(where: { $0.id == anchor }),
-           let end = visibleItems.firstIndex(where: { $0.id == item.id }) {
-            selection.formUnion(visibleItems[min(start, end)...max(start, end)].map(\.id))
-        } else if modifiers.contains(.command) {
-            if selection.contains(item.id) {
-                guard selection.count > 1 else { return }
-                selection.remove(item.id)
-            } else { selection.insert(item.id) }
-            primaryID = item.id
-        } else {
-            selection = [item.id]
-            primaryID = item.id
-        }
+        let items = visibleItems
+        guard let index = items.firstIndex(where: { $0.id == item.id }) else { return }
+        selectIndex(index, mode: OriginalOrderedSelection.mode(modifierFlags: modifiers.rawValue), items: items)
     }
 
     func moveSelection(_ offset: Int, extending: Bool = false) {
-        allowsEmptySelection = false
         let items = visibleItems
         guard !items.isEmpty else { return }
-        let current = items.firstIndex { $0.id == primaryID } ?? 0
-        let next = max(0, min(items.count - 1, current + offset))
-        if extending { selection.insert(items[next].id) } else { selection = [items[next].id] }
-        primaryID = items[next].id
+        guard let endpoint = orderedSelectionIDs.last,
+              let current = items.firstIndex(where: { $0.id == endpoint }) else { return }
+        let next = current + offset
+        guard items.indices.contains(next) else { return }
+        selectIndex(next, mode: extending ? 2 : 0, items: items)
     }
 
     func chooseBoard(_ id: UUID?) {
@@ -182,7 +216,8 @@ final class ReplicaUIState: ObservableObject {
     }
 
     func assignSelection(to id: UUID?) {
-        let ids = selection.isEmpty ? primaryItem.map { [$0.id] } ?? [] : selectedItems.map(\.id)
+        let ids = selection.isEmpty ? primaryItem.map { [$0.id] } ?? []
+            : visibleItems.filter { selection.contains($0.id) }.map(\.id)
         perform { try store.assign(orderedIDs: ids, to: id) }
     }
 
@@ -196,8 +231,15 @@ final class ReplicaUIState: ObservableObject {
         perform { try store.save() }
     }
 
-    func selectAll() { allowsEmptySelection = false; selection = Set(visibleItems.map(\.id)) }
-    func deselectAll() { allowsEmptySelection = true; selection = []; primaryID = nil }
+    func selectAll() {
+        allowsEmptySelection = false
+        let ids = visibleItems.map(\.id)
+        applyOrderedSelection(ids, anchor: rangeAnchorID, primary: primaryID)
+    }
+    func deselectAll() {
+        allowsEmptySelection = true
+        applyOrderedSelection([], anchor: nil, primary: nil)
+    }
 
     func pauseMonitoring(minutes: Int? = nil) {
         store.preferences.isMonitoringPaused = true
@@ -659,7 +701,7 @@ final class ReplicaUIController {
 
     func createPinboard(assignSelection: Bool = false) {
         guard let name = prompt(title: "新建 Pinboard", message: "为这个分组输入名称。", initial: "") else { return }
-        let ids = state.selectedItems.map(\.id)
+        let ids = state.visibleItems.filter { state.selection.contains($0.id) }.map(\.id)
         state.perform {
             let board = try store.createPinboard(name: name, colorHex: "5575D9")
             if assignSelection { try store.assign(orderedIDs: ids, to: board.id) }
@@ -850,7 +892,7 @@ final class ReplicaUIController {
         if store.preferences.previousPinboardShortcut?.matches(event) == true { state.switchBoard(-1); return true }
         if store.preferences.nextPinboardShortcut?.matches(event) == true { state.switchBoard(1); return true }
         let plainModifiers = NSEvent.ModifierFlags(rawValue: store.preferences.plainTextModifierRawValue)
-        let plain = !plainModifiers.isEmpty && modifiers.isSuperset(of: plainModifiers)
+        let plain = event.modifierFlags.isSuperset(of: plainModifiers)
         let quickModifiers = NSEvent.ModifierFlags(rawValue: store.preferences.quickPasteModifierRawValue)
         let numericKeys: [UInt16: Int] = [18: 1, 19: 2, 20: 3, 21: 4, 23: 5, 22: 6, 26: 7, 28: 8, 25: 9]
         if !quickModifiers.isEmpty, modifiers.isSuperset(of: quickModifiers),
@@ -875,7 +917,7 @@ final class ReplicaUIController {
                 onEnter: nil, onCancel: { [self] in cancelSearchOrPanel() })
         case 36, 76:
             return OriginalSearchCommands.f_10004867c(selector: NSSelectorFromString("insertNewline:"),
-                onEnter: { [self] in pasteSelection(plainTextOnly: command || plain) }, onCancel: nil)
+                onEnter: { [self] in pasteSelection(plainTextOnly: plain) }, onCancel: nil)
         case 123 where !isEditing: state.moveSelection(-1, extending: shift); return true
         case 124 where !isEditing: state.moveSelection(1, extending: shift); return true
         case 49 where !isEditing:

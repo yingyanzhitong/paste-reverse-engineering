@@ -27679,7 +27679,7 @@
     },
     "Paste:0x100066068": {
       "state": "partial",
-      "contract": "普通恢复只有direct偏好或forceDirect且AXfalse才询问三态；raw2在writer前进入Enable后结束当次；raw0/1后续copy-only，raw1先写directfalse。",
+      "contract": "普通恢复只有direct偏好或forceDirect且AXfalse才询问三态；raw2在writer前进入Enable后结束当次；raw0/1后续copy-only，raw1先写directfalse。 全局plain开关只OR位2，显式plain位1|2；复用Store options真实入口。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
@@ -27688,6 +27688,10 @@
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalAccessibilityModals.swift",
           "symbol": "enum OriginalPasteToOtherAppsModal"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "if store.preferences.alwaysPastePlainText { restoreOptions.insert(.plainTextAndLinks) }"
         }
       ],
       "implementation_origin": "existing_consumer_corrected",
@@ -29278,17 +29282,23 @@
       "migration_evidence": "reports/function-migration/Paste-0x100bfaef0.json"
     },
     "Paste:0x10022df78": {
-      "state": "partial",
-      "contract": "选择Cmd分支：已选目标且总数为1时不移除，其余Cmd添加/移除按已有路径。",
-      "implementation_origin": "existing_corrected_consumer",
+      "state": "migrated",
+      "contract": "有序selectedIndexes、只读itemCount、可空anchor：越界clicked不变；mode0单选并更新anchor；mode1保最后1项、删除后anchor=剩余最后项或追加clicked；其它mode在anchor非nil时按原数组相邻绝对差1分组，保与闭区间不相交的整组，再追加anchor朝clicked定向连续range，不改变anchor。",
+      "implementation_origin": "recovered_complete_value_algorithm_and_actual_consumer",
       "implementations": [
         {
+          "path": "replica/Sources/PasteReplicaCore/OriginalOrderedSelection.swift",
+          "symbol": "public mutating func select(_ index: Int, mode: UInt8)"
+        },
+        {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
-          "symbol": "guard selection.count > 1 else { return }"
+          "symbol": "value.select(index, mode: mode)"
         }
       ],
       "compiled_review": "reports/replica/card-interaction-static-audit.json",
-      "remaining": "完整Shift分组/anchor/order等分支尚未完全恢复。"
+      "remaining": "按全部迁移完成后统一回归；原生CollectionView事件、数据集重映射与未证下游顺序分别保留partial，不属于本纯值函数已覆盖合同的运行验收。",
+      "migration_evidence": "reports/function-migration/Paste-0x10022df78.json",
+      "review": "完整原有限体、实际分组/disjoint/reverse/append辅助链及独立peer均静态核对；当前helper覆盖完整值合同并由真实鼠标/键盘入口消费。build51通过且161输入摘要一致；不冒原整个CollectionView、原生事件或运行ABI等价。"
     },
     "Paste:0x100227cd4": {
       "state": "partial",
@@ -29315,6 +29325,58 @@
       ],
       "compiled_review": "reports/replica/card-interaction-static-audit.json",
       "remaining": "SwiftUI菜单/keyboard与accessibility入口、原精确hit-test及事件生命周期尚未运行验收。"
+    },
+    "Paste:0x100075a6c": {
+      "state": "partial",
+      "contract": "double clicked单项恢复，读取真实plainTextModifierFlags完整raw子集，零mask匹配。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "let plainModifiers = NSEvent.ModifierFlags(rawValue: state.store.preferences.plainTextModifierRawValue)"
+        }
+      ],
+      "compiled_review": "reports/replica/ordered-selection-and-modifier-static-audit.json",
+      "remaining": "原VM/DI/actor包装及完整事件父仍partial。"
+    },
+    "Paste:0x100227b54": {
+      "state": "partial",
+      "contract": "左右移动从ordered.last取±1，空或越界不变，普通/Shift进入同纯选择算法。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "func moveSelection(_ offset: Int, extending: Bool = false)"
+        }
+      ],
+      "compiled_review": "reports/replica/ordered-selection-and-modifier-static-audit.json",
+      "remaining": "Cmd-only原super分支、完整native事件与数据集重映射仍partial。"
+    },
+    "Paste:0x1003ce1f4": {
+      "state": "partial",
+      "contract": "files原生NSImageView配置bottom对齐、proportionallyUpOrDown，单预览与多文件共用。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaFileCardImage.swift",
+          "symbol": "view.imageAlignment = .alignBottom"
+        }
+      ],
+      "compiled_review": "reports/replica/ordered-selection-and-modifier-static-audit.json",
+      "remaining": "完整原factory/DI/actor及外围几何仍partial。"
+    },
+    "Paste:0x1003ce3e0": {
+      "state": "partial",
+      "contract": "file label.bottom=shortcut.bottom-2，shared shortcut.bottom=body.bottom-8，合并底留10。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaCanonicalCardContent.swift",
+          "symbol": ".padding(.bottom, 10)"
+        }
+      ],
+      "compiled_review": "reports/replica/ordered-selection-and-modifier-static-audit.json",
+      "remaining": "完整原AutoLayout和SwiftUI host尺寸分配尚未运行验收。"
     }
   }
 }

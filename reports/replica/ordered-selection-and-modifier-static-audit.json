@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "kind": "ordered_selection_modifier_and_file_geometry_static_review",
+  "version": "0.8.0-dev.28",
+  "generated_at": "2026-10-23T15:51:05.988647+00:00",
+  "original_references": [
+    {
+      "function_id": "Paste:0x10022df78",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0190.c",
+        "line": 1434
+      }
+    },
+    {
+      "function_id": "Paste:0x100227b54",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0188.c",
+        "line": 1157
+      }
+    },
+    {
+      "function_id": "Paste:0x100069778",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0035.c",
+        "line": 3405
+      }
+    },
+    {
+      "function_id": "Paste:0x100075a6c",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0037.c",
+        "line": 3442
+      }
+    },
+    {
+      "function_id": "Paste:0x100066068",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0035.c",
+        "line": 1107
+      }
+    },
+    {
+      "function_id": "Paste:0x1003ce1f4",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0302.c",
+        "line": 910
+      }
+    },
+    {
+      "function_id": "Paste:0x1003ce3e0",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0302.c",
+        "line": 977
+      }
+    },
+    {
+      "function_id": "Paste:0x1003ce7c4",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0302.c",
+        "line": 1091
+      }
+    }
+  ],
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalOrderedSelection.swift": "b3631aed0222167f88c16329c76483f807d20af3baaf3a90ab4d214e8d9cb9f8",
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "009cdd6c883d9a1eee452c447cc96c7f290993ab81a6f85e49ed830b291ce89d",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "7c404a24c932f69261dd812c3cc84c7bc60d0e5b28b32779e00e9f5d85d0f229",
+    "replica/Sources/PasteReplica/AppMain.swift": "b308daaf3a16487a70df8f99c94786b0cbff2260675e2080f20896a2f7db3b18",
+    "replica/Sources/PasteReplica/UI/ReplicaFileCardImage.swift": "92b5d106ab7f48bb8d9dddaa29fdc279ef09b4a02e34448879d34738f440bbd4",
+    "replica/Sources/PasteReplica/UI/ReplicaCanonicalCardContent.swift": "ae15319786af4a6becda29a55e849ddda42fe38e5a9de525900b57e182f0e24d"
+  },
+  "compiled_sha256": {
+    "replica/.build/release/PasteReplica": "cffddfcf7bb53d8bb29eaf4af782ebc6047acf2491cc030525e565483950abd9",
+    "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+    "replica/.build/release/paste-replica-mcp": "826c44173aae61406ea299dd0c67e442590cd08416d16a39b6ff8a50f351119c"
+  },
+  "compilation": {
+    "build": 51,
+    "passed": true,
+    "inputs": 161,
+    "inputs_unchanged": true,
+    "seconds": 11.12
+  },
+  "changes": [
+    "有序选择分组替换和定向范围；Shift保持独立anchor；Cmd移除后anchor=剩余ordered.last",
+    "点击和已证左右键消费同纯值算法；滚动端取ordered.last，和anchor分离",
+    "paste按原selectedIndexes顺序投影；assign/createboard上游顺序未证，保既有visible序；DND最终按当前板IndexSet顺序移动",
+    "double/Enter读取实际plainTextModifierFlags并按完整rawflags子集判断，0mask匹配；Enter无额外Command强制plain",
+    "global alwaysPlain只OR位2，explicitplain仍两bits；copy/Stack其他入口未无证改写",
+    "files原NSImageView底对齐/upOrDown，flex frame；底10来自原两约束组合；原具名multipleDocuments设置逻辑size128，非固定显示128，保原共享图像对象副作用"
+  ],
+  "pure_value_review": {
+    "verdict": "Bounded original f22df78 pure-value behavior is fully covered by current Source static contract; no runtime or executable behavioral equivalence claimed. No ledger state/count promotion requested.",
+    "four_fields": {
+      "selected_indexes": "Ordered [Int] retained, not set/sorted; normal/Cmd/range branches write exactly the corresponding projected sequence.",
+      "item_count": "Used only for lower/upper index guard; not mutated in any branch, matching original +8.",
+      "anchor": "Mode0/new Cmd sets clicked; removal Cmd sets remaining.last; singleton-removal returns before anchor mutation; range preserves anchor.",
+      "optional_anchor_tag": "Swift Int? models original valid optional discriminator (tag1=nil); nil range returns unchanged. Invalid raw ABI discriminator bytes are outside valid Swift-value contract."
+    },
+    "all_modes_and_valid_value_boundaries": [
+      "Negative clicked or clicked>=itemCount leaves all fields unchanged, including negative/zero total count.",
+      "Raw mode0 singleton replacement; raw mode1 toggle/append with last-item guard; every other UInt8 mode uses original range branch.",
+      "Shift mapper raw0x20000 wins over Cmd0x100000; other flag bits ignored by selection mode, matching native mouse mapper.",
+      "Nil anchor range is no-op, including empty selection; equal anchor/click replaces overlapping groups with singleton.",
+      "Left range preserves descending order; right range ascending; unrelated disjoint groups retain their original order and entire overlapping groups are removed.",
+      "Group split uses absolute checked adjacent subtraction==1 without sorting. Swift signed subtraction/abs traps preserve the original valid-Int checked arithmetic shape; exact trap site/allocator identity not claimed."
+    ],
+    "side_effects": "Only the struct value selectedIndexes/itemCount/anchor is accessed; no UI, callbacks, I/O, preferences, global state or original entities. Original ARC/allocation and ABI identity are not reproduced as semantic value fields.",
+    "source_contract_complete_for_this_bounded_value_algorithm": true,
+    "compiled_body_review": "Not performed by this peer; parent unified build50 pending at time of review.",
+    "native_parent_status": "Still partial: real event timing, 0.45s press/drag, actor/witness/Undo/publication, dataset remapping and native view identity remain outside this helper."
+  },
+  "static_examples_not_executed": [
+    {
+      "input": "normal2 -> Shift5 -> Shift3",
+      "original": "[2,3,4,5] then [2,3], anchor2 throughout Shift",
+      "current": "{2,3,4,5} remains after Shift3"
+    },
+    {
+      "input": "normal5 -> Shift2",
+      "original": "ordered [5,4,3,2], anchor5",
+      "current": "Set{2,3,4,5}, selectedItems visible [2,3,4,5]"
+    },
+    {
+      "input": "normal3 -> Cmd5 -> Cmd5 -> Shift7",
+      "original": "After Cmd removal [3],anchor3; Shift7 [3,4,5,6,7]",
+      "current": "After removal {3},primaryID5; Shift7 union gives {3,5,6,7},missing4"
+    },
+    {
+      "input": "selected ordered [0,1,4,5,6],anchor4; Shift5",
+      "original": "Keep disjoint run[0,1], drop entire overlapping[4,5,6], append[4,5] -> [0,1,4,5]",
+      "current": "Union retains6"
+    },
+    {
+      "input": "empty selection,nil anchor -> Shift click4 (with or without Cmd)",
+      "original": "No-op (mode2,nil anchor)",
+      "current": "Falls through and selects4"
+    }
+  ],
+  "remaining": [
+    "CollectionView原生0.45秒按压/3pt拖阈及Cmd-only super事件",
+    "数据集变动后的完整索引重映射/原Undo/actor身份",
+    "Pinboard assign上游数组顺序尚未闭合",
+    "SwiftUI host与原AutoLayout完整尺寸分配及像素",
+    "最终运行功能回归尚未开始"
+  ],
+  "functional_tests_executed": false,
+  "unit_tests_executed": false,
+  "product_executed": false,
+  "mcp_tests_executed": false,
+  "full_equivalence_verified": false,
+  "source_function_migration_added": 1,
+  "new_partial_parents": 4,
+  "sdk_migration_added": 0
+}

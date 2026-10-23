@@ -41,25 +41,19 @@ struct ReplicaCanonicalCardContent: View {
                 if let metadata = item.decodedFilePreviewMetadata {
                     VStack(spacing: 12) {
                         if metadata.paths.count == 1 {
-                            if let data = metadata.previewData, let image = NSImage(data: data) {
-                                Image(nsImage: image).resizable().scaledToFit()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            } else {
-                                Color.clear.frame(maxWidth: .infinity, maxHeight: .infinity)
-                            }
+                            ReplicaFileCardImage(image: metadata.previewData.flatMap(NSImage.init(data:)))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
                             ReplicaHeadTruncatedPath(path: metadata.paths[0])
                         } else {
-                            if let image = NSImage(named: NSImage.multipleDocumentsName) {
-                                Image(nsImage: image).resizable().scaledToFit()
-                                    .frame(width: 128, height: 128)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            }
+                            ReplicaFileCardImage(image: ReplicaFileCardImage.multipleDocumentsImage())
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
                             Text(String(localized: OriginalPreviewLocalization.f_1001c6fb0()))
                         }
                     }
                     .font(Font(NSFont.preferredFont(forTextStyle: .callout, options: [:])))
                     .padding(.horizontal, 12)
                     .padding(.top, 10)
+                    .padding(.bottom, 10)
                 }
             default:
                 EmptyView()

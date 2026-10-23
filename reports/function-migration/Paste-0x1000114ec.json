@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000114ec",
-  "reviewed_at": "2026-10-23T15:38:34.818332+00:00",
+  "reviewed_at": "2026-10-23T15:50:32.772744+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0007.c",
@@ -11,18 +11,18 @@
   "original_pseudocode_sha256": "bfcb356b5754e26f3ce872042c2078f3c3d49db5f2b47cf90d7a558666ef25f4",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "e408e508e9bc0bf2b7477ab142e29e4b1c1087daa63cd402c312f145e6cf16a4",
-    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "e2f27547c5deeb035e1b3ee729cd9911bdbfb815910a8699a324f58a46c31f36"
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "009cdd6c883d9a1eee452c447cc96c7f290993ab81a6f85e49ed830b291ce89d"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "4fc74f9ed1e5f7f3b113f2c6cb348c5aa3ebb250c64b27304915e0526b57eb35",
+  "compiled_app_binary_sha256": "cffddfcf7bb53d8bb29eaf4af782ebc6047acf2491cc030525e565483950abd9",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "canBecomeMainWindow 在主执行器上委托 0x1000114fc 返回 false，已接入实际 Stack 窗口覆盖方法。",
   "review": "逐地址对照REA伪代码；文本修改路径另核对arm64分支、回调返回及UTF-16长度相加。已接入实际原生编辑器调用链并编译，编译成功不构成运行时等价证据。Swift公共类型/ARC代替原版私有对象布局和桥接ABI。",
-  "source_review": "build49集中审阅：原恢复helper实现保留；关联UI仅修卡片选择和菜单入口，剪贴板适配仅修空输入和writer返回值策略，不替换原格式/属性/异常/搜索helper。真实调用继续存在，稳定编译后刷新当前源码摘要；未运行等价或功能测试。",
+  "source_review": "build51集中审阅：既有搜索、权限、焦点与几何helper保留；仅已证选择算法、modifier消费者与files图像布局修正。真实调用继续存在，稳定编译后刷新关联源码绑定，未运行产品或等价测试。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "unchanged_declarations": [
     {

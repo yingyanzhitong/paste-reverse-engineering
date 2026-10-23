@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100047d8c",
-  "reviewed_at": "2026-10-23T15:38:34.820440+00:00",
+  "reviewed_at": "2026-10-23T15:50:32.775033+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0026.c",
@@ -11,20 +11,20 @@
   "original_pseudocode_sha256": "3bfef88d54c710bce61aea197dd675963835cace23ab7ba5bfcf1f42f0cf180c",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchEditing.swift": "de4dbf21b72826fed9c0e9418c842eb8b0f1146a7d7aa9bfe22985af5d7ac73e",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "fa228b3dad19b22520f9f4e97f6bb1e62baa692b8a9de63c86fca7ed5bcd80b0",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "7c404a24c932f69261dd812c3cc84c7bc60d0e5b28b32779e00e9f5d85d0f229",
     "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "6a56456d5b45a28cacd291891380b97414e71c1eaf68bd1d9ee15c3ec1596600",
     "replica/Sources/PasteReplica/UI/SearchEditor.swift": "13ce2f341f2e7aad16ac8083f46575b20b060086cc5a66ebe6399d8740915107"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "4fc74f9ed1e5f7f3b113f2c6cb348c5aa3ebb250c64b27304915e0526b57eb35",
+  "compiled_app_binary_sha256": "cffddfcf7bb53d8bb29eaf4af782ebc6047acf2491cc030525e565483950abd9",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "SearchField的Objective-C shouldChangeTextInRange选择器入口；主执行器隔离，保留可空replacementString及NSRange，以原参数委托0x10004795c并返回其布尔结果。Swift负责NSString桥接和ARC，不保留原版优化ABI。",
   "review": "逐项复审：OriginalSearchEditing的恢复函数体不变；委托在OriginalSearchField创建并保持，Coordinator从field.editingDelegate获取同一对象绑定回调，取代原先桥内构造。构建证据待统一登记；未重跑功能测试。",
-  "source_review": "build49集中审阅：原恢复helper实现保留；关联UI仅修卡片选择和菜单入口，剪贴板适配仅修空输入和writer返回值策略，不替换原格式/属性/异常/搜索helper。真实调用继续存在，稳定编译后刷新当前源码摘要；未运行等价或功能测试。",
+  "source_review": "build51集中审阅：既有搜索、权限、焦点与几何helper保留；仅已证选择算法、modifier消费者与files图像布局修正。真实调用继续存在，稳定编译后刷新关联源码绑定，未运行产品或等价测试。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "caller_review_refs": [
     {

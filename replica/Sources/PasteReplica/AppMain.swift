@@ -429,8 +429,9 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
             }
             copyInsteadOfPaste = true
         }
-        do { try store.writeToPasteboard(ids: ids, pasteboard: pasteboard,
-                                        plainTextOnly: plain || store.preferences.alwaysPastePlainText) }
+        var restoreOptions: OriginalPasteboardRestore.Options = plain ? .plainText : []
+        if store.preferences.alwaysPastePlainText { restoreOptions.insert(.plainTextAndLinks) }
+        do { try store.writeToPasteboard(ids: ids, pasteboard: pasteboard, options: restoreOptions) }
         catch { ui.presentError(error); return false }
         // Named pasteboards support isolated acceptance runs and never generate system keystrokes.
         guard pasteboard.name == NSPasteboard.general.name else { return true }

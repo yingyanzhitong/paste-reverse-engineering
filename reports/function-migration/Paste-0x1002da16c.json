@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002da16c",
-  "reviewed_at": "2026-10-23T15:38:34.833275+00:00",
+  "reviewed_at": "2026-10-23T15:50:32.780600+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0236.c",
@@ -11,19 +11,19 @@
   "original_pseudocode_sha256": "2d60c3b531024ec7109c46f8686e0dc8799befd6e33162d6a3f138287116f739",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchQueryNormalization.swift": "fc2414e1395bb916246c9ef38509730c394e3d0feebbf0ca6dc9438f86409eb9",
-    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "e2f27547c5deeb035e1b3ee729cd9911bdbfb815910a8699a324f58a46c31f36",
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "009cdd6c883d9a1eee452c447cc96c7f290993ab81a6f85e49ed830b291ce89d",
     "replica/Sources/PasteReplica/UI/SearchEditor.swift": "13ce2f341f2e7aad16ac8083f46575b20b060086cc5a66ebe6399d8740915107"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "4fc74f9ed1e5f7f3b113f2c6cb348c5aa3ebb250c64b27304915e0526b57eb35",
+  "compiled_app_binary_sha256": "cffddfcf7bb53d8bb29eaf4af782ebc6047acf2491cc030525e565483950abd9",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "filter value以.whitespaces trim仅判空，保留raw值；按(tag,raw String)去重保首项顺序。以原始输入最后filter（包含空/重复）为分界，text按前/后保序分组。flag bit0=1丢trim为空text、否则保留，均不改raw、不合并、不去重。最终返回filters + afterLastFilterText + beforeOrNoFilterText。",
   "review": "完整REA与arm64核实，尾部不能从伪代码未传参猜序：x29-b0=before→x21，x29-c0=after→x19；da56c index>last跳da634写-c0；da570写-b0；da71c base filters slot-b8→output slot-78；da724以x19首append，da734以x21次append，x20固定指output slot。原Set比较tag与原String，不trim后去重。 Root实际接UIController.searchQueryNodes fallback及SearchEditor.contents attributes runs；applySearchInput保存规范节点边界，不先拼串丢失前后分组。",
-  "source_review": "build49集中审阅：原恢复helper实现保留；关联UI仅修卡片选择和菜单入口，剪贴板适配仅修空输入和writer返回值策略，不替换原格式/属性/异常/搜索helper。真实调用继续存在，稳定编译后刷新当前源码摘要；未运行等价或功能测试。",
+  "source_review": "build51集中审阅：既有搜索、权限、焦点与几何helper保留；仅已证选择算法、modifier消费者与files图像布局修正。真实调用继续存在，稳定编译后刷新关联源码绑定，未运行产品或等价测试。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "unchanged_declarations": [
     {
