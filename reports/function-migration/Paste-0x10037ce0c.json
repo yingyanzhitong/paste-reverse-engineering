@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037ce0c",
-  "reviewed_at": "2026-10-23T17:29:44.967260+00:00",
+  "reviewed_at": "2026-10-23T17:56:14.493534+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -11,18 +11,18 @@
   "original_pseudocode_sha256": "6794c7f1aaf46868d9946c48a4a88699bdf5e4775a3c8a4e6d4d11a81a063a5d",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
-    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "00a4fe03327bb6a3360a952a647eb944fda0a92f64ae5819337fbc0effa438bb"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "eded1911f847df42266556f63ce4a3ed187b0999efe59f919d54367e9f145597",
+  "compiled_app_binary_sha256": "c4c0c17ea15c1ab66766e010e5f0e7d0f91004b1c4c4a12f609a5ae2204b3b6c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "优先public.url严格UTF8→URL(string:)直接返回；失败再取普通文本，按#、urlQueryAllowed、urlFragmentAllowed并集百分号编码；只有URL初始化成功且scheme/host均非nil返回，否则nil。",
   "review": "完整伪码与arm64核对初始字符#(0x23)、显式URL分支不校验scheme/host、fallback双nil检查；已从capture链接分类实际调用，不联网。",
-  "source_review": "dev36原合同逐项复审：优先public.url严格UTF8→URL(string:)直接返回；失败再取普通文本，按#、urlQueryAllowed、urlFragmentAllowed并集百分号编码；只有URL初始化成功且scheme/host均非nil返回，否则nil。 本轮仅恢复消费者三行来源关系查找；上述有限原语及monitor/DI/编码/字符串/清理方法体和调用接口均保持，PB与Image独立反向还原整文件证明其余字节未改。绑定build61，不新增完整实现或运行验收。",
+  "source_review": "dev37/build62：本轮仅新增dragPasteboardGroups方法；独立PB peer逐字移除该连续新增block后整文件SHA精确还原dev36 cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c。因此本条既有f_10037ce0c, capture实现与消费者原契约逐字保留；不将新增drag准备器或native父算本条完整。当前stable源码/生成码/编译产物重新绑定，未运行。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "caller_review_refs": [
     {

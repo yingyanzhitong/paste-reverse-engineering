@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100381fdc",
-  "reviewed_at": "2026-10-23T17:29:44.967260+00:00",
+  "reviewed_at": "2026-10-23T17:56:14.493534+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0283.c",
@@ -11,18 +11,18 @@
   "original_pseudocode_sha256": "b4c010ec7f4f3b56a66c78931a4a06874c902bc928ce8607d91eeb237e175fc0",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalPasteboardRestore.swift": "bf309c94b15bb4db46acedc6ba535d1f060aa3a8d74257053a773cf7200dd2c6",
-    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "00a4fe03327bb6a3360a952a647eb944fda0a92f64ae5819337fbc0effa438bb"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "eded1911f847df42266556f63ce4a3ed187b0999efe59f919d54367e9f145597",
+  "compiled_app_binary_sha256": "c4c0c17ea15c1ab66766e010e5f0e7d0f91004b1c4c4a12f609a5ae2204b3b6c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "NSAttributedString全UTF16范围data(from:documentAttributes:)：documentType为RTF，characterEncoding为Foundation.String.Encoding.utf8；NSError/Swift error路径吞错误返回nil，成功返回桥接Data。",
   "review": "part-0283.c:1559及arm64 100381fdc..1003821e8完整核对；原100382074先Encoding metadata accessor并写Any type slot，1003820a4 utf8 getter写boxed值，因此按原typed String.Encoding.utf8作为Any；range为0,length。实际普通文本/富文本/link多选合成项优先RTF，nil时UTF8回退。",
-  "source_review": "dev36原合同逐项复审：NSAttributedString全UTF16范围data(from:documentAttributes:)：documentType为RTF，characterEncoding为Foundation.String.Encoding.utf8；NSError/Swift error路径吞错误返回nil，成功返回桥接Data。 本轮仅恢复消费者三行来源关系查找；上述有限原语及monitor/DI/编码/字符串/清理方法体和调用接口均保持，PB与Image独立反向还原整文件证明其余字节未改。绑定build61，不新增完整实现或运行验收。",
+  "source_review": "dev37/build62：本轮仅新增dragPasteboardGroups方法；独立PB peer逐字移除该连续新增block后整文件SHA精确还原dev36 cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c。因此本条既有f_100381fdc, writeToPasteboard(ids:实现与消费者原契约逐字保留；不将新增drag准备器或native父算本条完整。当前stable源码/生成码/编译产物重新绑定，未运行。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "caller_review_refs": [
     {

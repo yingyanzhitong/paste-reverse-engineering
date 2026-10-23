@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100bf603c",
-  "reviewed_at": "2026-10-23T17:29:44.967260+00:00",
+  "reviewed_at": "2026-10-23T17:56:14.493534+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-1177.c",
@@ -15,11 +15,11 @@
     "entry_key": "Paste:0x100bf603c",
     "symbol": "_$s7SwiftUI17EnvironmentValuesV23menuIndicatorVisibilityAA0G0Ovs"
   },
-  "sdk_reuse_report_sha256": "89fd60359d3193061ae4c9b07e8125a696566978133b582b08ffd152d4ea97d5",
+  "sdk_reuse_report_sha256": "d2dad0642308ad1cd66e12a54ae79eb21a4d4701cd5c41dfef392921b159f6e8",
   "implementation_origin": "existing_sdk_reused",
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "eded1911f847df42266556f63ce4a3ed187b0999efe59f919d54367e9f145597",
+  "compiled_app_binary_sha256": "c4c0c17ea15c1ab66766e010e5f0e7d0f91004b1c4c4a12f609a5ae2204b3b6c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,

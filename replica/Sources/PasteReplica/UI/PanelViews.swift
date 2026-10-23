@@ -27,21 +27,7 @@ struct ReplicaPanelView: View {
                     .frame(maxWidth: .infinity, minHeight: collectionHeight, maxHeight: collectionHeight)
                     .accessibilityLabel(state.searchFailed ? "本地搜索暂不可用" : "无结果")
                 } else {
-                    ScrollViewReader { reader in
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            LazyHStack(spacing: 24) {
-                                ForEach(state.visibleItems) { item in
-                                    ReplicaClipboardCard(state: state, item: item, sideLength: cardSide)
-                                        .id(item.id)
-                                }
-                            }
-                            .padding(.horizontal, 24)
-                            .padding(.top, 8).padding(.bottom, 24)
-                        }
-                        .onChange(of: state.primaryID) { _, id in
-                            if let id { reader.scrollTo(id) }
-                        }
-                    }
+                    ReplicaNativeCollection(state: state, cardSide: cardSide)
                     .frame(height: collectionHeight)
                 }
             }
@@ -236,7 +222,10 @@ struct ReplicaClipboardCard: View {
     @ObservedObject var state: ReplicaUIState
     let item: ClipboardItem
     let sideLength: CGFloat
+    var selectionOverride: Bool? = nil
+    var nativeInteractions = false
     private var selected: Bool { state.selection.contains(item.id) }
+    private var renderedSelected: Bool { selectionOverride ?? selected }
     @Environment(\.controlActiveState) private var activeState
 
     var body: some View {
@@ -262,7 +251,7 @@ struct ReplicaClipboardCard: View {
         .background(cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: cardCornerRadius, style: cardCornerStyle))
         .background {
-            if selected {
+            if renderedSelected {
                 RoundedRectangle(cornerRadius: selectionCornerRadius, style: cardCornerStyle)
                     .fill(activeState == .key ? Color.accentColor : .gray)
                     .padding(-4)
@@ -270,20 +259,22 @@ struct ReplicaClipboardCard: View {
         }
         .shadow(color: .black.opacity(0.10), radius: 3, y: 2)
         .contentShape(RoundedRectangle(cornerRadius: cardCornerRadius, style: cardCornerStyle))
-        .onTapGesture(count: 2) {
-            state.select(item)
-            let plainModifiers = NSEvent.ModifierFlags(rawValue: state.store.preferences.plainTextModifierRawValue)
-            state.controller?.paste(item: item, plainTextOnly: NSEvent.modifierFlags.isSuperset(of: plainModifiers))
-        }
-        .onTapGesture { state.select(item, modifiers: NSEvent.modifierFlags) }
+        .modifier(ReplicaCardTapHandlers(enabled: !nativeInteractions,
+            single: { state.select(item, modifiers: NSEvent.modifierFlags) },
+            double: {
+                state.select(item)
+                let plainModifiers = NSEvent.ModifierFlags(rawValue: state.store.preferences.plainTextModifierRawValue)
+                state.controller?.paste(item: item, plainTextOnly: NSEvent.modifierFlags.isSuperset(of: plainModifiers))
+            }))
         .background(ReplicaCardContextSelection(onContextMenu: {
             if !selected { state.select(item) }
         }))
         .contextMenu { contextMenu }
-        .onDrag { cardDragProvider() }
-        .onDrop(of: [ReplicaLocalItemDrag.typeIdentifier], isTargeted: nil) { providers, location in
-            receiveItemDrop(providers, after: location.x >= sideLength / 2)
-        }
+        .modifier(ReplicaCardDragHandlers(enabled: !nativeInteractions,
+            provider: cardDragProvider,
+            drop: { providers, location in
+                receiveItemDrop(providers, after: location.x >= sideLength / 2)
+            }))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(item.kind.displayName)，\(item.sourceName)，\(item.title)，\(item.plainText.map { String($0.prefix(160)) } ?? "")")
         .accessibilityAddTraits(selected ? [.isSelected, .isButton] : .isButton)
@@ -564,6 +555,37 @@ struct ReplicaClipboardCard: View {
 }
 
 @MainActor
+private struct ReplicaCardTapHandlers: ViewModifier {
+    let enabled: Bool
+    let single: () -> Void
+    let double: () -> Void
+
+    @ViewBuilder func body(content: Content) -> some View {
+        if enabled {
+            content.onTapGesture(count: 2, perform: double).onTapGesture(perform: single)
+        } else {
+            content
+        }
+    }
+}
+
+@MainActor
+private struct ReplicaCardDragHandlers: ViewModifier {
+    let enabled: Bool
+    let provider: () -> NSItemProvider
+    let drop: ([NSItemProvider], CGPoint) -> Bool
+
+    @ViewBuilder func body(content: Content) -> some View {
+        if enabled {
+            content.onDrag(provider).onDrop(of: [ReplicaLocalItemDrag.typeIdentifier],
+                                           isTargeted: nil, perform: drop)
+        } else {
+            content
+        }
+    }
+}
+
+@MainActor
 struct SourceAppIcon: View {
     let item: ClipboardItem
     @ObservedObject var store: ClipboardStore
@@ -661,7 +683,7 @@ func itemFileURLs(_ item: ClipboardItem) -> [URL] {
     return urls.filter { unique.insert($0).inserted }
 }
 
-private struct ReplicaLocalItemDrag: Codable {
+struct ReplicaLocalItemDrag: Codable {
     static let typeIdentifier = "com.pastereplica.internal.pinboard-item-drag"
     let sessionID: UUID
     let boardID: UUID

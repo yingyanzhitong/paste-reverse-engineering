@@ -28125,7 +28125,7 @@
       "implementations": [
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "if selected {"
+          "symbol": "if renderedSelected {"
         }
       ],
       "implementation_origin": "existing_real_card_geometry_corrected",
@@ -28135,7 +28135,7 @@
         "fragment_sha256": "6a7e409a8340a543a2f233021f8e7645be18fc64ef1c0470f65006ac98e5b21e"
       },
       "review": "已核REA/有限完整arm64及实际Source消费者；最终build42通过，148输入SHA一致。只做静态编译，不运行产品/功能/单测/UI/MCP，六父保持partial。",
-      "remaining": "原完整动态sizeclass/原生约束工厂/状态与内容模型等仍partial；不以可见几何子组声称父完整。"
+      "remaining": "dev37复用原renderer，native snapshot局部selectionOverride只控制绘制而不清model选区；完整原对象/布局和实际像素回归仍partial。"
     },
     "Paste:0x1003d3484": {
       "state": "partial",
@@ -29310,12 +29310,12 @@
       "implementation_origin": "existing_corrected_consumer",
       "implementations": [
         {
-          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": ".onTapGesture(count: 2)"
+          "path": "replica/Sources/PasteReplica/UI/ReplicaNativeCardCollection.swift",
+          "symbol": "if event.clickCount == 2 {"
         }
       ],
-      "compiled_review": "reports/replica/card-interaction-static-audit.json",
-      "remaining": "普通按压0.45秒折叠/3pt拖阈及完整modifier偏好仍未恢复。"
+      "compiled_review": "reports/replica/native-collection-static-audit.json",
+      "remaining": "dev37已接真实双击单选clicked、actual event modifier子集及单item粘贴入口；0.45秒按压与严格3pt拖阈亦已接。完整原delegate/applier/实体/事件时序与运行回归仍未验收。"
     },
     "Paste:0x100228128": {
       "state": "partial",

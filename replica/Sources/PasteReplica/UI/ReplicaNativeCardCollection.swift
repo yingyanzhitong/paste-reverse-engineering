@@ -1,0 +1,457 @@
+import AppKit
+import SwiftUI
+import PasteReplicaCore
+
+/// The viewport owns input and the dragging session; the document only supplies layout.
+@MainActor
+struct ReplicaNativeCollection: NSViewRepresentable {
+    @ObservedObject var state: ReplicaUIState
+    let cardSide: CGFloat
+
+    func makeNSView(context: Context) -> ReplicaNativeCollectionHost {
+        let view = ReplicaNativeCollectionHost(frame: .zero)
+        view.update(state: state, cardSide: cardSide)
+        return view
+    }
+
+    func updateNSView(_ nsView: ReplicaNativeCollectionHost, context: Context) {
+        nsView.update(state: state, cardSide: cardSide)
+    }
+
+    static func dismantleNSView(_ nsView: ReplicaNativeCollectionHost, coordinator: ()) {
+        nsView.detachObservers()
+    }
+}
+
+@MainActor
+final class ReplicaNativeCollectionHost: NSView, NSDraggingSource {
+    private let scrollView = NSScrollView(frame: .zero)
+    private let document = ReplicaNativeCardDocument(frame: .zero)
+    private weak var state: ReplicaUIState?
+    private var items: [ClipboardItem] = []
+    private var cardSide: CGFloat = 0
+    private var cells: [Int: ReplicaNativeCardCell] = [:]
+    private var lastPrimaryID: UUID?
+    private var needsPrimaryReveal = false
+    private var boundsObserver: NSObjectProtocol?
+    private var windowObservers: [NSObjectProtocol] = []
+    private var initialDragLocation: NSPoint?
+    private var dragWaitTimer: Timer?
+    private weak var draggingSession: NSDraggingSession?
+    private var draggingWriters: [any NSPasteboardWriting] = []
+    private var localMarker: ReplicaLocalItemDrag?
+    private static let markerType = NSPasteboard.PasteboardType(ReplicaLocalItemDrag.typeIdentifier)
+
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        document.owner = self
+        scrollView.borderType = .noBorder
+        scrollView.drawsBackground = false
+        scrollView.contentView.drawsBackground = false
+        scrollView.hasHorizontalScroller = false
+        scrollView.hasVerticalScroller = false
+        scrollView.documentView = document
+        addSubview(scrollView)
+        scrollView.contentView.postsBoundsChangedNotifications = true
+        boundsObserver = NotificationCenter.default.addObserver(
+            forName: NSView.boundsDidChangeNotification, object: scrollView.contentView, queue: .main
+        ) { [weak self] _ in MainActor.assumeIsolated { self?.tileCells() } }
+        registerForDraggedTypes([Self.markerType])
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    func update(state: ReplicaUIState, cardSide: CGFloat) {
+        self.state = state
+        items = state.visibleItems
+        self.cardSide = cardSide
+        let primary = state.primaryID
+        if primary != lastPrimaryID { needsPrimaryReveal = primary != nil }
+        lastPrimaryID = primary
+        layoutCollection()
+    }
+
+    override func layout() {
+        super.layout()
+        layoutCollection()
+    }
+
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        for observer in windowObservers { NotificationCenter.default.removeObserver(observer) }
+        windowObservers.removeAll()
+        if let window {
+            for name in [NSWindow.didBecomeKeyNotification, NSWindow.didResignKeyNotification] {
+                windowObservers.append(NotificationCenter.default.addObserver(
+                    forName: name, object: window, queue: .main
+                ) { [weak self] _ in MainActor.assumeIsolated { self?.refreshCellRoots() } })
+            }
+            for name in [NSApplication.didBecomeActiveNotification, NSApplication.didResignActiveNotification] {
+                windowObservers.append(NotificationCenter.default.addObserver(
+                    forName: name, object: NSApp, queue: .main
+                ) { [weak self] _ in MainActor.assumeIsolated { self?.refreshCellRoots() } })
+            }
+        }
+        refreshCellRoots()
+    }
+
+    func detachObservers() {
+        if let boundsObserver { NotificationCenter.default.removeObserver(boundsObserver) }
+        boundsObserver = nil
+        for observer in windowObservers { NotificationCenter.default.removeObserver(observer) }
+        windowObservers.removeAll()
+        // Original timer destruction releases its reference; it does not invalidate on detach.
+    }
+
+    private func layoutCollection() {
+        scrollView.frame = bounds
+        let contentWidth = items.isEmpty ? bounds.width
+            : 48 + CGFloat(items.count) * cardSide + CGFloat(items.count - 1) * 24
+        document.frame = NSRect(x: 0, y: 0, width: max(bounds.width, contentWidth), height: bounds.height)
+        tileCells()
+        if needsPrimaryReveal, !bounds.isEmpty,
+           let index = items.firstIndex(where: { $0.id == lastPrimaryID }) {
+            needsPrimaryReveal = false
+            document.scrollToVisible(cardFrame(index))
+            tileCells()
+        }
+    }
+
+    private func cardFrame(_ index: Int) -> NSRect {
+        NSRect(x: 24 + CGFloat(index) * (cardSide + 24), y: 24, width: cardSide, height: cardSide)
+    }
+
+    /// f233494 floors both endpoints and clamps an inclusive index interval.
+    private func visibleIndexes() -> ClosedRange<Int>? {
+        let viewport = scrollView.contentView.bounds
+        guard !items.isEmpty, !viewport.isEmpty else { return nil }
+        let step = cardSide + 24
+        let first = Int(floor((viewport.minX - 24) / step))
+        let last = Int(floor((viewport.maxX - 24) / step))
+        precondition(last >= first)
+        return max(0, min(items.count - 1, first))...max(0, min(items.count - 1, last))
+    }
+
+    private func tileCells() {
+        guard let state else { return }
+        let desired = visibleIndexes().map { Set($0) } ?? []
+        for index in Array(cells.keys) where !desired.contains(index) {
+            cells.removeValue(forKey: index)?.removeFromSuperview()
+        }
+        for index in desired.sorted() {
+            let item = items[index]
+            let cell: ReplicaNativeCardCell
+            if let existing = cells[index], existing.itemID == item.id {
+                cell = existing
+            } else {
+                cells.removeValue(forKey: index)?.removeFromSuperview()
+                cell = ReplicaNativeCardCell(owner: self, state: state, item: item, side: cardSide)
+                cells[index] = cell
+                document.addSubview(cell)
+            }
+            cell.frame = cardFrame(index)
+            cell.update(state: state, item: item, side: cardSide)
+        }
+    }
+
+    private func refreshCellRoots() {
+        guard let state else { return }
+        for (index, cell) in cells where items.indices.contains(index) && cell.itemID == items[index].id {
+            cell.update(state: state, item: items[index], side: cardSide)
+        }
+    }
+
+    private func index(at point: NSPoint) -> Int? {
+        let position = document.convert(point, from: self)
+        let candidate = Int(floor((position.x - 24) / (cardSide + 24)))
+        guard items.indices.contains(candidate), cardFrame(candidate).contains(position) else { return nil }
+        return candidate
+    }
+
+    private func select(_ index: Int, modifiers: NSEvent.ModifierFlags = []) {
+        guard let state else { return }
+        let current = state.visibleItems
+        guard current.indices.contains(index) else { return }
+        state.select(current[index], modifiers: modifiers)
+    }
+
+    override func mouseDown(with event: NSEvent) {
+        guard let state else { super.mouseDown(with: event); return }
+        if event.modifierFlags.contains(.control) {
+            super.rightMouseDown(with: event)
+            return
+        }
+        let point = convert(event.locationInWindow, from: nil)
+        guard let index = index(at: point), event.clickCount <= 2 else {
+            state.deselectAll()
+            super.mouseDown(with: event)
+            return
+        }
+        if event.clickCount == 2 {
+            dragWaitTimer?.invalidate()
+            select(index)
+            let current = state.visibleItems
+            if current.indices.contains(index) {
+                let plain = NSEvent.ModifierFlags(rawValue: state.store.preferences.plainTextModifierRawValue)
+                state.controller?.paste(item: current[index], plainTextOnly: event.modifierFlags.isSuperset(of: plain))
+            }
+            return
+        }
+        initialDragLocation = point
+        let mode = OriginalOrderedSelection.mode(modifierFlags: event.modifierFlags.rawValue)
+        if !state.selection.contains(items[index].id) || mode != 0 {
+            select(index, modifiers: event.modifierFlags)
+        } else {
+            // A new press replaces the stored reference, without inventing an old-timer debounce.
+            dragWaitTimer = Timer.scheduledTimer(withTimeInterval: 0.45, repeats: false) { [weak self] _ in
+                MainActor.assumeIsolated { self?.select(index) }
+            }
+        }
+    }
+
+    override func mouseDragged(with event: NSEvent) {
+        guard let initialDragLocation else { return }
+        dragWaitTimer?.invalidate()
+        let point = convert(event.locationInWindow, from: nil)
+        guard hypot(point.x - initialDragLocation.x, point.y - initialDragLocation.y) > 3,
+              let state, !state.selectedItems.isEmpty else { return }
+        beginNativeDrag(event, state: state)
+    }
+
+    private func beginNativeDrag(_ event: NSEvent, state: ReplicaUIState) {
+        items = state.visibleItems
+        tileCells()
+        let positions = Dictionary(uniqueKeysWithValues: items.enumerated().map { ($0.element.id, $0.offset) })
+        let selected = state.selectedItems
+        let indexes = selected.compactMap { positions[$0.id] }
+        let plain = NSEvent.ModifierFlags(rawValue: state.store.preferences.plainTextModifierRawValue)
+        let options: OriginalPasteboardRestore.Options = NSEvent.modifierFlags.isSuperset(of: plain) ? .plainText : []
+        do {
+            let groups = try state.store.dragPasteboardGroups(for: selected, options: options)
+            let sources: [any OriginalDragItemIdentifierSource] = selected.map { ReplicaNativeDragItemReference($0) }
+            let writers = OriginalNativeDragPasteboardWriter.writers(sources: sources, groups: groups)
+            localMarker = nil
+            var markerData: Data?
+            if let boardID = state.pinboardID, state.isSearchQueryEmpty, !state.showDeleted {
+                let marker = ReplicaLocalItemDrag(sessionID: state.itemDragSessionID, boardID: boardID,
+                                                  ids: selected.map(\.id))
+                markerData = try JSONEncoder().encode(marker)
+                localMarker = marker
+            }
+            draggingWriters = writers.map { writer -> any NSPasteboardWriting in
+                if let markerData { return ReplicaNativeLocalDragWriter(writer: writer, marker: markerData) }
+                return writer
+            }
+            let dragItems = zip(indexes, draggingWriters).map { index, writer in
+                let frame = convert(cardFrame(index), from: document)
+                let cell = cells[index].flatMap { $0.itemID == items[index].id ? $0 : nil }
+                return ReplicaNativeDragPreview.makeItem(writer: writer, draggingFrame: frame,
+                    visibleCell: cell, singleWriter: writers.count == 1)
+            }
+            let session = beginDraggingSession(with: dragItems, event: event, source: self)
+            session.draggingFormation = event.modifierFlags.contains(.control) ? .stack : .pile
+            draggingSession = session
+            self.initialDragLocation = nil
+        } catch {
+            localMarker = nil
+            draggingWriters.removeAll()
+            state.controller?.presentError(error)
+        }
+    }
+
+    func draggingSession(_ session: NSDraggingSession,
+                         sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
+        context == .outsideApplication ? .copy : .move
+    }
+
+    func draggingSession(_ session: NSDraggingSession, willBeginAt screenPoint: NSPoint) {
+        draggingSession = session
+    }
+
+    func draggingSession(_ session: NSDraggingSession, movedTo screenPoint: NSPoint) {
+        guard let window, !window.frame.contains(screenPoint) else { return }
+        draggingSession?.animatesToStartingPositionsOnCancelOrFail = false
+        NSApp.deactivate()
+    }
+
+    func draggingSession(_ session: NSDraggingSession, endedAt screenPoint: NSPoint,
+                         operation: NSDragOperation) {
+        // Original concrete business delegate is the separately excluded Paywall route.
+        if let window, window.frame.contains(screenPoint) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                NSApp.activate(ignoringOtherApps: true)
+            }
+        }
+        draggingSession = nil
+        draggingWriters.removeAll()
+        localMarker = nil
+    }
+
+    private func validatedDrop(_ sender: NSDraggingInfo) -> (ReplicaLocalItemDrag, Int)? {
+        guard let state, let marker = localMarker, let session = draggingSession,
+              (sender.draggingSource as? ReplicaNativeCollectionHost) === self,
+              sender.draggingSequenceNumber == session.draggingSequenceNumber,
+              state.pinboardID == marker.boardID, state.isSearchQueryEmpty, !state.showDeleted,
+              let data = sender.draggingPasteboard.data(forType: Self.markerType),
+              let decoded = try? JSONDecoder().decode(ReplicaLocalItemDrag.self, from: data),
+              decoded.sessionID == marker.sessionID, decoded.boardID == marker.boardID,
+              decoded.ids == marker.ids,
+              let target = index(at: convert(sender.draggingLocation, from: nil)),
+              items.indices.contains(target) else { return nil }
+        let point = document.convert(sender.draggingLocation, from: nil)
+        let frame = cardFrame(target)
+        guard let current = state.store.items(in: marker.boardID).firstIndex(where: { $0.id == items[target].id }) else { return nil }
+        return (marker, current + (point.x - frame.minX >= cardSide / 2 ? 1 : 0))
+    }
+
+    override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+        validatedDrop(sender) == nil ? [] : .move
+    }
+
+    override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
+        validatedDrop(sender) == nil ? [] : .move
+    }
+
+    override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        validatedDrop(sender) != nil
+    }
+
+    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        guard let state, let (marker, offset) = validatedDrop(sender) else { return false }
+        do {
+            try state.store.reorderItems(ids: marker.ids, in: marker.boardID, toOffset: offset)
+            return true
+        } catch {
+            state.controller?.presentError(error)
+            return false
+        }
+    }
+
+    deinit {
+        if let boundsObserver { NotificationCenter.default.removeObserver(boundsObserver) }
+        for observer in windowObservers { NotificationCenter.default.removeObserver(observer) }
+    }
+}
+
+@MainActor
+private final class ReplicaNativeCardDocument: NSView {
+    weak var owner: ReplicaNativeCollectionHost?
+
+    override func hitTest(_ point: NSPoint) -> NSView? {
+        let result = super.hitTest(point)
+        if result === self, let event = NSApp.currentEvent,
+           event.type == .leftMouseDown, !event.modifierFlags.contains(.control) {
+            if let owner { return owner }
+            return result
+        }
+        return result
+    }
+}
+
+@MainActor
+private final class ReplicaNativeCardCell: NSView, ReplicaNativeDragPreviewCell {
+    weak var owner: ReplicaNativeCollectionHost?
+    private weak var state: ReplicaUIState?
+    private var item: ClipboardItem
+    private var side: CGFloat
+    private let hosting = NSHostingView<AnyView>(rootView: AnyView(EmptyView()))
+    private var renderedSelection: Bool
+    var itemID: UUID { item.id }
+    var snapshotView: NSView { self }
+    var isSelected: Bool {
+        get { renderedSelection }
+        set { renderedSelection = newValue; updateRoot() }
+    }
+
+    init(owner: ReplicaNativeCollectionHost, state: ReplicaUIState, item: ClipboardItem, side: CGFloat) {
+        self.owner = owner
+        self.state = state
+        self.item = item
+        self.side = side
+        renderedSelection = state.selection.contains(item.id)
+        super.init(frame: .zero)
+        wantsLayer = true
+        addSubview(hosting)
+        updateRoot()
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    func update(state: ReplicaUIState, item: ClipboardItem, side: CGFloat) {
+        self.state = state
+        self.item = item
+        self.side = side
+        renderedSelection = state.selection.contains(item.id)
+        hosting.frame = bounds
+        updateRoot()
+    }
+
+    private func updateRoot() {
+        guard let state else { return }
+        let active: ControlActiveState = !NSApp.isActive ? .inactive : (window?.isKeyWindow == true ? .key : .active)
+        hosting.rootView = AnyView(ReplicaClipboardCard(state: state, item: item, sideLength: side,
+            selectionOverride: renderedSelection, nativeInteractions: true)
+            .preferredColorScheme(state.preferredScheme)
+            .environment(\.controlActiveState, active))
+    }
+
+    override func layout() {
+        super.layout()
+        hosting.frame = bounds
+    }
+
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        updateRoot()
+    }
+
+    func flushPreviewRendering() {
+        layoutSubtreeIfNeeded()
+        hosting.layoutSubtreeIfNeeded()
+        hosting.displayIfNeeded()
+        displayIfNeeded()
+    }
+
+    override func hitTest(_ point: NSPoint) -> NSView? {
+        guard let result = super.hitTest(point) else { return nil }
+        guard let event = NSApp.currentEvent, event.type == .leftMouseDown,
+              !event.modifierFlags.contains(.control) else { return result }
+        var responder: NSView? = result
+        while let view = responder, view !== self {
+            if let text = view as? NSTextView, text.isEditable { return result }
+            if let field = view as? NSTextField, field.isEditable { return result }
+            if view is NSButton { return result }
+            responder = view.superview
+        }
+        if let owner { return owner }
+        return result
+    }
+}
+
+private final class ReplicaNativeDragItemReference: OriginalDragItemIdentifierSource {
+    private let item: ClipboardItem
+    init(_ item: ClipboardItem) { self.item = item }
+    var pasteboardIdentifier: String { item.id.uuidString }
+}
+
+/// Only the replica's local reorder marker is added; original grouped payload stays intact.
+private final class ReplicaNativeLocalDragWriter: NSObject, NSPasteboardWriting {
+    private let writer: OriginalNativeDragPasteboardWriter
+    private let marker: Data
+    private static let markerType = NSPasteboard.PasteboardType(ReplicaLocalItemDrag.typeIdentifier)
+
+    init(writer: OriginalNativeDragPasteboardWriter, marker: Data) {
+        self.writer = writer
+        self.marker = marker
+        super.init()
+    }
+
+    func writableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
+        writer.writableTypes(for: pasteboard) + [Self.markerType]
+    }
+
+    func pasteboardPropertyList(forType type: NSPasteboard.PasteboardType) -> Any? {
+        if type == Self.markerType { return marker }
+        return writer.pasteboardPropertyList(forType: type)
+    }
+}

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste-Helper:0x100005814",
-  "reviewed_at": "2026-10-23T17:29:44.967260+00:00",
+  "reviewed_at": "2026-10-23T17:56:14.493534+00:00",
   "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
   "original_pseudocode": {
     "path": "decompiled/Paste-Helper/part-0002.c",
@@ -15,7 +15,7 @@
     "entry_key": "Paste-Helper:0x100005814",
     "symbol": "_objc_allocWithZone"
   },
-  "sdk_reuse_report_sha256": "89fd60359d3193061ae4c9b07e8125a696566978133b582b08ffd152d4ea97d5",
+  "sdk_reuse_report_sha256": "d2dad0642308ad1cd66e12a54ae79eb21a4d4701cd5c41dfef392921b159f6e8",
   "implementation_origin": "existing_sdk_reused",
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",

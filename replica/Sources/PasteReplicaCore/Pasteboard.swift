@@ -222,6 +222,31 @@ extension ClipboardStore {
         return true
     }
 
+    /// Prepares native drag groups without writing a pasteboard or performing restore bookkeeping.
+    public func dragPasteboardGroups(for selected: [ClipboardItem],
+                                     options: OriginalPasteboardRestore.Options) throws -> [[OriginalPasteboardItem]] {
+        let selections = try selected.map { item -> OriginalPasteboardRestore.Selection in
+            let application = sourceApplication(for: item)
+            let kind: OriginalPasteboardContentKind
+            switch item.kind {
+            case .text, .richText: kind = .text
+            case .link: kind = .link
+            case .image: kind = .image
+            case .files: kind = .files
+            case .color: kind = .color
+            case .unknown: kind = .unknown
+            }
+            var representations = try Self.originalPasteboardItems(from: item.payloads)
+            if !OriginalPasteboardRestore.usesPlainProjection(kind: kind, options: options), kind == .image {
+                representations = Self.imageRestore.prepare(representations, sourceName: application?.name,
+                                                            timestamp: item.createdAt)
+            }
+            return .init(kind: kind, items: representations, sourceBundleID: application?.bundleIdentifier)
+        }
+        return OriginalPasteboardRestore.f_10038222c(selections, options: options,
+                                                     removingTypesContaining: ["com.microsoft.ole.source"])
+    }
+
     public func writeToPasteboard(id: UUID, pasteboard: NSPasteboard, plainTextOnly: Bool = false) throws {
         try writeToPasteboard(ids: [id], pasteboard: pasteboard, plainTextOnly: plainTextOnly)
     }

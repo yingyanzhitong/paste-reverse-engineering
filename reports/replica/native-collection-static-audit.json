@@ -1,0 +1,78 @@
+{
+  "kind": "native_collection_static_integration_review",
+  "version": "0.8.0-dev.37",
+  "reviewed_at": "2026-10-23T17:56:54.667487+00:00",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "bf62f6fec502f0896c5b91223f6231a421cd302f26c5366a287229e5e8c11584",
+    "replica/Sources/PasteReplica/UI/ReplicaNativeCardCollection.swift": "875d529339eee5d49162f7eab0199bf57d15828e51d29649e46266e2b2617d31",
+    "replica/Sources/PasteReplica/UI/ReplicaNativeDragPreview.swift": "0e5adbd506e11dee134c1e059adf4f3c7b27fd7e3cd7379be3c87bdc1fb391b7",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "00a4fe03327bb6a3360a952a647eb944fda0a92f64ae5819337fbc0effa438bb",
+    "replica/Sources/PasteReplicaCore/OriginalNativeDragPasteboardWriter.swift": "db793abd1e9b2c3c6ddf5fbe94dcb55af21122e5c9751751d5032a5156a3c908"
+  },
+  "build_log": ".local/gap-build-62.log",
+  "compiled_sha256": {
+    "replica/.build/release/PasteReplica": "c4c0c17ea15c1ab66766e010e5f0e7d0f91004b1c4c4a12f609a5ae2204b3b6c",
+    "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+    "replica/.build/release/paste-replica-mcp": "5bda7c5ad42cb807bc99e12d9e65af30b9705bbba4aa69c0b265d8e640b18244"
+  },
+  "new_complete_functions": 0,
+  "functional_tests_executed": false,
+  "mcp_tests_executed": false,
+  "product_executed": false,
+  "status": "partial",
+  "original_evidence_functions": [
+    "Paste:0x100227ea8",
+    "Paste:0x100227cd4",
+    "Paste:0x10022756c",
+    "Paste:0x100227360",
+    "Paste:0x100233494",
+    "Paste:0x100075718",
+    "Paste:0x100075a6c"
+  ],
+  "checks": [
+    {
+      "chain": "列表与可见卡片",
+      "result": "用viewport native owner/NSScrollView/document和可见index到真实NSHostingView字典替换LazyHStack；两端floor闭区间、原有间距及side布局，未一次性创建全部历史卡片。"
+    },
+    {
+      "chain": "选择与输入",
+      "result": "复用UIState/OriginalOrderedSelection；0.45秒捕获旧index按当前dataset重解、任意drag先取消timer、hypot严格大于3、双击强制single后按actualeventflags粘clicked；未添加mouseUp取消或新timerdebounce。"
+    },
+    {
+      "chain": "多项目写入",
+      "result": "Store准备器调用既有processor/image helper并保二维group；writer按有序sources/groups zip(min)、types保重复及首个有Data，ownidentifier强持有动态source。dragoptions读取静态NSEventflags，formation读实际event。"
+    },
+    {
+      "chain": "快照与坐标",
+      "result": "同一卡片真实view临时局部isSelected=false、单writer opacity0.8或多1，cacheDisplay后defer恢复；不清模型selection。viewport source只convert一次，missingvisiblecell传nil，不造空图。"
+    },
+    {
+      "chain": "拖放与既有交互",
+      "result": "native source外copy/内move，Control stack否则pile；窗口外移动deactivate，结束窗口内延迟1s activate。自身Pinboard重排严格核source/sequence/session/board/orderedIDs/上下文后复用Store；context菜单/a11y/anchor保留，native路径关闭竞争SwiftUItap/onDrag/onDrop。"
+    },
+    {
+      "chain": "既有实现保持",
+      "result": "剪贴板仅移除新增drag方法后整文件SHA精确还原dev36；Panel search/geometry/内容renderer仍原实现。44条旧Source证据复审刷新，不增加完整计数。"
+    }
+  ],
+  "corrected_during_peer": [
+    "共享ReplicaLocalItemDrag由fileprivate范围改internal，schema不变。",
+    "drag选项改读原staticNSEventflags，double保实际eventflags。",
+    "独立hosting root显式传appearance/controlActiveState并响应window/appactive变化。"
+  ],
+  "remaining": [
+    "真实SwiftUI hosting即时像素刷新、原生hitTest/menu/responder/拖动事件路由与跨应用接收尚未运行。",
+    "完整原collection applier/差分更新/动画/autoscroll、CoreData实体身份/Undo/错误与生命周期保持partial。",
+    "仅精确付费专用委托按已发布范围省略；通用原生session保留，未改原版授权。"
+  ],
+  "validation": "Release build62 successful, 23.39 seconds; 172 source inputs unchanged before/after. Compilation and static cross-review only, no equivalence acceptance.",
+  "compiled_static_cross_review": {
+    "binary_sha256": "c4c0c17ea15c1ab66766e010e5f0e7d0f91004b1c4c4a12f609a5ae2204b3b6c",
+    "native_prepare_call": "0x100096338 -> 0x1001acaac",
+    "native_writer_factory_call": "0x100096650 -> 0x10014d594",
+    "prepare_processor_call": "0x1001acaac -> existing processor at 0x10015d930",
+    "preview_helper_boundary": "[0x10009bd78,0x10009bfbc)",
+    "preview_consumer_call": "0x100096fac -> 0x10009bd78",
+    "review": "Three independent domain peers checked current symbols and bounded ARM machine code plus all 172 Source inputs; makeItem optimization inlines its body. This proves compiled presence and calls, not runtime behavior or one-to-one equivalence."
+  }
+}
