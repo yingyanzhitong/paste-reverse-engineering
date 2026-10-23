@@ -28555,7 +28555,7 @@
       "implementations": [
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
-          "symbol": "if let image, image.size.width != image.size.height",
+          "symbol": "let hasMainImage = image.map { $0.size.width != $0.size.height } ?? false",
           "line": 14
         },
         {
@@ -28568,8 +28568,8 @@
         "path": "decompiled/Paste/part-0306.c",
         "line": 1487
       },
-      "review": "Finite original full function/arm64 and actual card/readOnly Source consumer. Bound to final unified build44. dev24真实调用新增持久化linkPreviewsEnabled参数，图像优先级与fallback实现复用；更新实际消费者引用，父仍partial。 dev34实际cardSizeClass透传并复用既有AdaptiveView，class3阈值0/其它0.7；独立预览nil保留既有fit。",
-      "remaining": "完整Link原生层次/viewport裁剪/fadingView与转场位置、错误及运行回归仍partial；不能以复用绘制器宣称整个LinkCell完成。",
+      "review": "Finite original full function/arm64 and actual card/readOnly Source consumer. Bound to final unified build44. dev24真实调用新增持久化linkPreviewsEnabled参数，图像优先级与fallback实现复用；更新实际消费者引用，父仍partial。 dev34实际cardSizeClass透传并复用既有AdaptiveView，class3阈值0/其它0.7；独立预览nil保留既有fit。 dev35真实card分支使用native viewport，先配置两可选图像无额外isHidden，复用既有Adaptive draw；背景/图标/底栏真实接链。",
+      "remaining": "原转场progress/复用生命周期、完整Footer原生文本布局与外层Hosting事件/裁剪组合仍partial；已证PreviewView→LayerBackedView→NSView且当前已真实复用父，不再把该继承列未证。",
       "implementation_origin": "newly_migrated"
     },
     "Paste:0x1003db7cc": {
@@ -29696,15 +29696,19 @@
       "contract": "Link卡片目标sizeClass3用scaleToFillRatio0，其它用0.7；转场progress不插值ratio。",
       "implementations": [
         {
-          "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
-          "symbol": "scaleToFillRatio: cardSizeClass == 3 ? 0 : 0.7"
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "symbol": "imageView.scaleToFillRatio = sizeClass == 3 ? 0 : 0.7"
         },
         {
-          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "cardSizeClass: UInt8(sizeClass)"
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "symbol": "iconCenterY.constant = 5"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+          "symbol": "sizeClass: cardSizeClass)"
         }
       ],
-      "review": "dev34集中功能链/实际arm64及当前Source交叉核查，详见reports/replica/link-and-header-image-static-audit.json。",
+      "review": "dev34集中功能链/实际arm64及当前Source交叉核查，详见reports/replica/link-and-header-image-static-audit.json。 dev35目标icon中心偏移已接5/7或0，原progress插值driver仍未宣称完整。",
       "remaining": "目标阈值已真实消费；原iconY插值、fadingView与完整原配置方法仍partial。"
     },
     "Paste:0x1001f32fc": {
@@ -29718,6 +29722,66 @@
       ],
       "review": "dev34集中功能链/实际arm64及当前Source交叉核查，详见reports/replica/link-and-header-image-static-audit.json。",
       "remaining": "既有完整绘制代码直接复用，未为地址计数扩展实际编译函数体证明；原动态property wrapper/类层次、裁剪与运行绘制未验收。"
+    },
+    "Paste:0x1003da594": {
+      "state": "partial",
+      "contract": "构建渐变背景、Adaptive主图及42点原角图标，按原兄弟顺序接入LayerBacked容器。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "symbol": "final class OriginalLinkPreviewViewportView: OriginalLayerBackedView"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "symbol": "for view in [fadingView, imageView, iconView]"
+        }
+      ],
+      "review": "dev35原完整体/机器码/真实ObjC继承表及独立交叉审阅；详见reports/replica/link-native-surface-static-audit.json。",
+      "remaining": "原frame/coder/对象身份/ABI与完整原配置生命周期未宣称恢复，当前是实际Link卡片消费者。"
+    },
+    "Paste:0x1003da848": {
+      "state": "partial",
+      "contract": "背景与主图各四边零约束，icon42方形居中及独立中心Y目标约束。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "symbol": "NSLayoutConstraint.activate(constraints)"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "symbol": "private lazy var iconCenterY"
+        }
+      ],
+      "review": "dev35原完整体/机器码/真实ObjC继承表及独立交叉审阅；详见reports/replica/link-native-surface-static-audit.json。",
+      "remaining": "静态约束已接；原lazy builder/协议封装与转场driver、外Hosting组合未整体验收。"
+    },
+    "Paste:0x100209214": {
+      "state": "partial",
+      "contract": "Link角度0投影：wantsLayer、独立CAGradientLayer、gradient自身clip、默认端点及颜色/变换更新。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "symbol": "private final class OriginalLinkPreviewGradientView"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "symbol": "gradientLayer.transform = CATransform3DMakeRotation(0, 0, 0, 1)"
+        }
+      ],
+      "review": "dev35原完整体/机器码/真实ObjC继承表及独立交叉审阅；详见reports/replica/link-native-surface-static-audit.json。",
+      "remaining": "仅原Link实际angle0输入投影，不把原任意angle/color可变接口或完整GradientEffectView计完整函数。"
+    },
+    "Paste:0x1003db0dc": {
+      "state": "partial",
+      "contract": "Link Footer独立动态白/窗口背景色，保既有标题/URL字体、间距和10/12内边距。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+          "symbol": "if cardSizeClass != nil { Color(nsColor: OriginalLinkPreviewSurface.startingColor) }"
+        }
+      ],
+      "review": "dev35原完整体/机器码/真实ObjC继承表及独立交叉审阅；详见reports/replica/link-native-surface-static-audit.json。",
+      "remaining": "原NSStackView/NSTextField intrinsic压缩、对象身份和完整原文本配置仍partial，当前为既有SwiftUI正文实际背景消费者。"
     }
   }
 }

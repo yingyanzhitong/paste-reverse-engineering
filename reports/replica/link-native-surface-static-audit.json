@@ -1,0 +1,917 @@
+{
+  "version": "0.8.0-dev.35",
+  "kind": "static_call_chain_review",
+  "reviewed_at": "2026-10-23T17:23:38.423401+00:00",
+  "build": 60,
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift": "3f6bb0c25400a4a18a8b0ea0b484c3587f9b7d85fcb0707ae6364cdd943e9642",
+    "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "813a7d310752cf453c34aede27c56dc44f1d8cbccd611128277cfc2f96084784"
+  },
+  "original_functions": [
+    {
+      "function_id": "Paste:0x1003da594",
+      "path": "decompiled/Paste/part-0306.c",
+      "line": 1653,
+      "sha256": "7fb3f1e71912e4bdb9aa3bf720217a55568e27071dd4d7feb0ed9a42dd533385"
+    },
+    {
+      "function_id": "Paste:0x1003da848",
+      "path": "decompiled/Paste/part-0306.c",
+      "line": 1739,
+      "sha256": "d46e24c2359048703dec2a092065a723378447d0023cb4446b7d5d27c9a3ff2d"
+    },
+    {
+      "function_id": "Paste:0x100209214",
+      "path": "decompiled/Paste/part-0172.c",
+      "line": 305,
+      "sha256": "3cc43810719965c36d33426e7a96d274c681d8a941e27fa600d5df6cd4dae7bf"
+    },
+    {
+      "function_id": "Paste:0x1003db0dc",
+      "path": "decompiled/Paste/part-0306.c",
+      "line": 2104,
+      "sha256": "37c6799911c227bc54f6f836fe9c23b6df74fc4b70f63b1de912fba71f2cd68f"
+    },
+    {
+      "function_id": "Paste:0x1003da1fc",
+      "path": "decompiled/Paste/part-0306.c",
+      "line": 1489,
+      "sha256": "6288ae07424f7fce2d5b1e180836a438b7b426d0050248e3e0fa94e8eb38054d"
+    },
+    {
+      "function_id": "Paste:0x1003db698",
+      "path": "decompiled/Paste/part-0307.c",
+      "line": 181,
+      "sha256": "509ff741d4d183b8a4320dccc2d5f15e45a56725dd39bf8d04ec0138bd6b8030"
+    },
+    {
+      "function_id": "Paste:0x100209564",
+      "path": "decompiled/Paste/part-0172.c",
+      "line": 424,
+      "sha256": "dd78276064df410f70132363c24b02beaead2894d450107c93c1b395ff290c36"
+    },
+    {
+      "function_id": "Paste:0x1002096f8",
+      "path": "decompiled/Paste/part-0172.c",
+      "line": 493,
+      "sha256": "663bd22f825d0e4acb461bfc7dcd262fdd01ab24103a5aa3f39a29aa63890e91"
+    },
+    {
+      "function_id": "Paste:0x100209838",
+      "path": "decompiled/Paste/part-0172.c",
+      "line": 551,
+      "sha256": "592038e177564b8c745b6c654ab6f9e97adc7ca3d5844aaae78ed983b3c71695"
+    },
+    {
+      "function_id": "Paste:0x100209984",
+      "path": "decompiled/Paste/part-0172.c",
+      "line": 616,
+      "sha256": "a90bb06162f218a897aeb1866cca7c3e26290970c7a799676f7b77153645f1ab"
+    }
+  ],
+  "source_complete_added": 0,
+  "sdk_complete_added": 0,
+  "implementation": "真实卡片Link native渐变背景、已存在Adaptive主图、原角42图标及5/7紧凑偏移、独立动态Footer底色；颜色逐位匹配，LayerBacked父实际复用。",
+  "remaining": [
+    "原任意angle/color可变GradientEffectView接口未作为完整函数恢复，此处仅Link实际angle0投影。",
+    "原progress转场/reuse driver、Footer原生文本布局与外层Hosting事件/裁剪组合仍partial。",
+    "原nativepress/drag的完整session结束业务和preview/inputhandoff尚未补齐；未测试的SwiftUI默认阈值不能当实测错误。"
+  ],
+  "validation": {
+    "release_compile": true,
+    "source_snapshot_unchanged": true,
+    "product_executed": false,
+    "functional_tests_executed": false,
+    "equivalence_verified": false
+  },
+  "reviews": {
+    "image-link-viewport-implementation-review": {
+      "stage": "Link card native viewport Source frozen with Root recovered LayerBacked parent correction; pending final unified build60",
+      "created_at": "2026-10-23T17:17:32.766724+00:00",
+      "source_frozen": true,
+      "compiled_or_executed": false,
+      "tests_run": false,
+      "source_scope": [
+        "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+        "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift"
+      ],
+      "new_completed_addresses": 0,
+      "new_features": 0,
+      "color_static_binary64_proof": [
+        {
+          "channel": 242,
+          "expression": "242.0 / 255",
+          "original_binary64": "3fee5e5e5e5e5e5e",
+          "expression_binary64": "3fee5e5e5e5e5e5e",
+          "same": true
+        },
+        {
+          "channel": 247,
+          "expression": "247.0 / 255",
+          "original_binary64": "3feefefefefefeff",
+          "expression_binary64": "3feefefefefefeff",
+          "same": true
+        },
+        {
+          "channel": 28,
+          "expression": "28.0 / 255",
+          "original_binary64": "3fbc1c1c1c1c1c1c",
+          "expression_binary64": "3fbc1c1c1c1c1c1c",
+          "same": true
+        },
+        {
+          "channel": 30,
+          "expression": "30.0 / 255",
+          "original_binary64": "3fbe1e1e1e1e1e1e",
+          "expression_binary64": "3fbe1e1e1e1e1e1e",
+          "same": true
+        }
+      ],
+      "implemented": [
+        "OriginalLinkPreviewViewport creates native [gradient background,existing AdaptiveScalingImageView,NSImageView icon] siblings in original order. Gradient and mainimage independently pinnedfourzeroedges; icon42 width/height,centerX/cachedcenterY. No new explicitclipflag onviewport oradaptive.",
+        "Gradientnativeview isFlipped=true,usesnativeCAGradientLayer defaults without guessingSwiftUIorientation,clips onlyitself per original. Colorsandidentityangletransform updatedwithCAdisableActions;layer.frame=bounds inlayoutwithdisabledactions. Effectiveappearancecallback refreshesdynamicCGColors.",
+        "Exactstartingdynamiccolor white/windowBackgroundColor andending242/242/247 versus28/28/30,allalpha1;existingOriginalSearchAppearance.f1ff49c reused.",
+        "IconusesNSImageAlignment.alignCenter andscaleProportionallyUpOrDown;existingCorecornerhelper applies12continuous macOS26+/10circularolder. Configureclass3centerY5modern/7old,otherclass0;currenttargetstateonly,noinventedprogressdriver.",
+        "ActualReplicaLinkMetadataContent cardSizeClassnonnull nativeconsumer selects nonsquaremain imageorsquareimage/iconData/fallbackicon; nilnoncard retainspreviousSwiftUIfitand42icon. Footerbackgroundstartcolor appliesonlynonnullcardSizeClass,includingpreviewdisabledcards.",
+        "ExistingAdaptive source untouched. Existingmetadata,formatter,font,linecount,footerinsets/preference unchanged. PanelViews/Core/Store unchanged bythisagent."
+      ],
+      "remaining_partial": [
+        "OriginalPreviewView superclass now independently closed and restored as OriginalLayerBackedView; NSHosting/native clipping equivalence still partial; nativecontainer/Adaptive not explicitly clipped.",
+        "Originalclass-transitionprogress/animationdrivernotguessed:onlyknownconfiguretargetstateimplemented.",
+        "OriginalFooterNSTextFieldcell intrinsiccompression/wrapping versusSwiftUIText remainsparentpartial.",
+        "Nonnativefullpreview paths remainpriorcompatibilityadapter;nouser-snapshot/product/UIregressionexecuted.",
+        "FullparentDI/ABI/cellreuseandallLinkViewnotclaimedcomplete."
+      ],
+      "source_sha256": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "sha256": "3f6bb0c25400a4a18a8b0ea0b484c3587f9b7d85fcb0707ae6364cdd943e9642"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+          "sha256": "813a7d310752cf453c34aede27c56dc44f1d8cbccd611128277cfc2f96084784"
+        }
+      ],
+      "reused_source": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAdaptiveScalingImageView.swift",
+          "sha256": "0002845178a53c2617885f40fcfad92f679c1123a095340aa1037450914730d6"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalLayerBackedView.swift",
+          "sha256": "87acffa7790cb38e5715cf6ce3d4474fffb3633d3deb15635743526f6342303c"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchAppearance.swift",
+          "sha256": "0cfd7e194ce6f6b1f4118897810e35d0eafab317a68e6104e4bfbd11dbaeb5c4"
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".local/image-link-viewport-closure-review.json",
+          "sha256": "7f561cf6212451e79452379ea8826a3260b3e7f800577628a8b7ed8a949659d1"
+        },
+        {
+          "path": ".local/image-link-viewport-preview-arm64.txt",
+          "sha256": "60f1d2f8299bb68cbdcaa86c0eaa115321ba5440bb302426f64873cb93227964"
+        },
+        {
+          "path": ".local/image-link-viewport-gradient-arm64.txt",
+          "sha256": "a210e9dcfc9846de71f53d486253b4324a0afb3a862863efa6b01bb11ab761ea"
+        },
+        {
+          "path": ".local/image-link-viewport-colors-arm64.txt",
+          "sha256": "aef1e60b23f524c7f648ce5492360fc4b26c0216bbe1b07a3fb21de0bde035fa"
+        },
+        {
+          "path": ".local/image-link-viewport-color-wrapper-arm64.txt",
+          "sha256": "029451d5039d1f8002e7029463d89726137beb8f7feeb5feaf0ccbdf9d8bd976"
+        },
+        {
+          "path": ".local/image-link-adaptive-threshold-producer-arm64.txt",
+          "sha256": "9007dda42a7109d3df0f41ad8d29c86391a900e67f87048dc1a31fafa95c1917"
+        }
+      ],
+      "validation": "StaticSource/REA/fullboundedarm64/SDK/API/header review andbinary64constantcomparisononly. NoSourcecompilation,productexecution,tests,public/maporGitpublication.",
+      "root_parent_correction": {
+        "source": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+        "sha256": "3f6bb0c25400a4a18a8b0ea0b484c3587f9b7d85fcb0707ae6364cdd943e9642",
+        "evidence": ".local/image-link-preview-inheritance-review.json",
+        "contract": "NativeparentnowOriginalLayerBackedView; originalrawinheritanceclosed; hostclip/event/nativeouterparentregressionstillpartial."
+      }
+    },
+    "window-link-viewport-peer": {
+      "stage": "independent bounded static peer of native Link viewport integration",
+      "created_at": "2026-10-23T17:20:57.825699+00:00",
+      "result": "No confirmed blocking integration defect in audited finite scope; retain full viewport/cell parent partial.",
+      "source_changed": false,
+      "compiled": false,
+      "product_executed": false,
+      "tests_run": false,
+      "public_or_map_changed": false,
+      "new_completed_addresses": 0,
+      "checks": [
+        {
+          "id": "native-consumer",
+          "status": "pass",
+          "evidence_and_conclusion": "PanelViews cardContent passes UInt8(sizeClass) to ReplicaItemContent.cardSizeClass and then LinkContent unchanged. Only nonnil cardSizeClass selects native viewport; compact does not substitute for sizeclass. Nil non-card keeps previous fit path."
+        },
+        {
+          "id": "sibling-order",
+          "status": "pass",
+          "evidence_and_conclusion": "Original f3da594 builds [fadingView,imageView,iconView] in that order and f1fa150 adds in order. Current same native sibling order places gradient behind main image, not a foreground fade/mask."
+        },
+        {
+          "id": "gradient-endpoints",
+          "status": "pass",
+          "evidence_and_conclusion": "Original finite constructor/update/layout bodies set no startPoint/endPoint/locations. Native CAGradientLayer retains SDK defaults (.5,0)/(.5,1), nil uniformly-spaced locations. Current isFlipped gradient view preserves native route rather than guessing SwiftUI orientation."
+        },
+        {
+          "id": "appearance-callback-super",
+          "status": "pass",
+          "evidence_and_conclusion": "Original complete f2098e8 performs actor diagnostic then f2096f8 and release; no super appearance call. Current callback calling updateColors without super is supported, not a missing-super bug. Original layout f209564 DOES call super.layout; current does too."
+        },
+        {
+          "id": "gradient-frame-colors",
+          "status": "pass",
+          "evidence_and_conclusion": "Current disable-actions transactions set gradient.frame=bounds in layout and starting/ending CGColors plus identity zrotation under effectiveAppearance in updates. Original f209564/f2096f8/f209838/f209984 support these operations."
+        },
+        {
+          "id": "icon-alignment-scaling",
+          "status": "pass",
+          "evidence_and_conclusion": "Original f3da594 explicitly sends setImageAlignment:0 and setImageScaling:3 (arm64 0x1003da680/68c); SDK maps these to alignCenter and scaleProportionallyUpOrDown. Current explicit values are correct; NSImageView defaults are irrelevant."
+        },
+        {
+          "id": "icon-size-corner-availability",
+          "status": "pass",
+          "evidence_and_conclusion": "Original f3da848 gives icon42x42/centerX; f3da594 OS check major0x1a selects12 continuous vs10 circular. Current macOS26 availability and constraints match these values."
+        },
+        {
+          "id": "icon-centerY-direction",
+          "status": "pass-with-parent-partial",
+          "evidence_and_conclusion": "Original complete f3da4d4 creates icon.centerY.constraint(equalTo:parent.centerY); current same direction. Original f3db698 class3 target +5(macOS26)/+7(older), otherwise0, is reflected without sign inversion. Original superclass LayerBackedView->NSView was subsequently closed by Image/Root and current inherits the existing matching helper; full hosting coordinate composition and progress driver remain partial, without runtime pixel displacement claims."
+        },
+        {
+          "id": "main-icon-nil-reset",
+          "status": "pass",
+          "evidence_and_conclusion": "Nonnull card path uses nonsquare stored image as main with nil icon; square image is preferred icon; nil image then iconData then safari fallback. Configure assigns BOTH native images every time, including nil, so source has no stale counterpart image retention. Existing canonical metadata priority is reused."
+        },
+        {
+          "id": "footer-surface",
+          "status": "pass",
+          "evidence_and_conclusion": "Original f3dafd4/f3db0dc/f3db2d8 sets footer background to same starting dynamic color white/light,windowBackgroundColor/dark. Current nonnil-card footer background applies independently of previewenabled; nil non-card remains compatibility scope. Gradient ending RGB light242/242/247 and dark28/28/30 retains alpha1."
+        },
+        {
+          "id": "adaptive-ratio-and-draw",
+          "status": "pass-with-parent-partial",
+          "evidence_and_conclusion": "Native viewport reuses OriginalAdaptiveScalingImageView unchanged; configure sets exact target0 forclass3,0.7 otherwise. Original progress interpolates iconY only, not ratio. Full original animation scheduling is not implemented by this static target configure."
+        },
+        {
+          "id": "viewport-superclass-reuse",
+          "status": "pass-with-host-partial",
+          "evidence_and_conclusion": "Root/Image independently decoded original PreviewView -> PasteUI.LayerBackedView -> NSView, complete method lists of both classes contain no isFlipped/clip/hitTest override. Current final class inherits existing OriginalLayerBackedView. Source current SHA3f6bb0c2 is bound; no guessed clip flag added. This reduces native parent uncertainty but does not prove whole NSHosting hierarchy or transition equivalence."
+        }
+      ],
+      "remaining_partial": [
+        "Original native superclass is now closed to LayerBackedView->NSView and reused. Full NSHosting composition/native clipping equivalence remains partial; no explicit image clip flag is added, and lack of runtime observation is not evidence of a spill bug.",
+        "Original transition progress driver, native reuse timing, Footer NSTextField intrinsic sizing/compression versus SwiftUI Text remain unverified parent contracts.",
+        "No runtime visual or functional regression claim; no build was run by this agent."
+      ],
+      "source_sha256": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "sha256": "3f6bb0c25400a4a18a8b0ea0b484c3587f9b7d85fcb0707ae6364cdd943e9642"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+          "sha256": "813a7d310752cf453c34aede27c56dc44f1d8cbccd611128277cfc2f96084784"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAdaptiveScalingImageView.swift",
+          "sha256": "0002845178a53c2617885f40fcfad92f679c1123a095340aa1037450914730d6"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "sha256": "c598495dc66d4cdbc087b1b86ce192ddf64997ecb1b677cf956928052ba10cb4"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalLayerBackedView.swift",
+          "sha256": "87acffa7790cb38e5715cf6ce3d4474fffb3633d3deb15635743526f6342303c"
+        }
+      ],
+      "input_reports": [
+        {
+          "path": ".local/image-link-viewport-closure-review.json",
+          "sha256": "7f561cf6212451e79452379ea8826a3260b3e7f800577628a8b7ed8a949659d1"
+        },
+        {
+          "path": ".local/image-link-viewport-implementation-review.json",
+          "sha256": "8ebdf4f8b1b832109f4c3aad62ebec78e88f6120ac8a29f85e6fd3b34c5c9c59"
+        }
+      ],
+      "original_complete_fragments": [
+        {
+          "path": "decompiled/Paste/part-0172.c",
+          "address": "0x100209564",
+          "sha256": "ffdaa3a4efefd8cf3ad64d8edba34163ff9b5b1324a75d82410b61afb01a6a94"
+        },
+        {
+          "path": "decompiled/Paste/part-0172.c",
+          "address": "0x1002096f8",
+          "sha256": "7e5e6638faaa0df05e8f0c4307edf0c1880b509284542890586d7a40f2e678b8"
+        },
+        {
+          "path": "decompiled/Paste/part-0172.c",
+          "address": "0x100209838",
+          "sha256": "284f1aa0816e1f988d053d25c1fd22b3019d918a1ce22747f4086aeed8272f46"
+        },
+        {
+          "path": "decompiled/Paste/part-0172.c",
+          "address": "0x1002098e8",
+          "sha256": "b25ee06201592bd6a9dcc206273729b40e857b24e8079b90c0dbeec8a7784363"
+        },
+        {
+          "path": "decompiled/Paste/part-0172.c",
+          "address": "0x100209984",
+          "sha256": "d14c46cb210b2f098faebd06ce800981b97da9aeb9509209abbdd2cfade2692d"
+        },
+        {
+          "path": "decompiled/Paste/part-0306.c",
+          "address": "0x1003da4d4",
+          "sha256": "28244dee6237ff6d1301dd43334ef1acde625abf7f4572f3cae9ff12f8109c10"
+        },
+        {
+          "path": "decompiled/Paste/part-0306.c",
+          "address": "0x1003da594",
+          "sha256": "7f0b5aac9bcc0cc8069f8b2dfe01b06428313bf830a220829181cbae0cb02e55"
+        },
+        {
+          "path": "decompiled/Paste/part-0306.c",
+          "address": "0x1003da848",
+          "sha256": "2b8c868e2ff936227966d700d9807938e129b1d9e4aa1ef27f9228aa1ced6081"
+        }
+      ],
+      "saved_machine_code": [
+        {
+          "path": ".local/image-link-viewport-preview-arm64.txt",
+          "sha256": "60f1d2f8299bb68cbdcaa86c0eaa115321ba5440bb302426f64873cb93227964"
+        },
+        {
+          "path": ".local/image-link-viewport-gradient-arm64.txt",
+          "sha256": "a210e9dcfc9846de71f53d486253b4324a0afb3a862863efa6b01bb11ab761ea"
+        },
+        {
+          "path": ".local/image-link-adaptive-threshold-producer-arm64.txt",
+          "sha256": "9007dda42a7109d3df0f41ad8d29c86391a900e67f87048dc1a31fafa95c1917"
+        },
+        {
+          "path": ".local/image-link-viewport-colors-arm64.txt",
+          "sha256": "aef1e60b23f524c7f648ce5492360fc4b26c0216bbe1b07a3fb21de0bde035fa"
+        },
+        {
+          "path": ".local/image-link-viewport-color-wrapper-arm64.txt",
+          "sha256": "029451d5039d1f8002e7029463d89726137beb8f7feeb5feaf0ccbdf9d8bd976"
+        },
+        {
+          "path": ".local/image-dev24-footer-layout-arm64.txt",
+          "sha256": "6799b6fa2bb5856143271512a81684ae73341e1f4370effd3bca86c2be340497"
+        }
+      ],
+      "sdk_evidence": [
+        "QuartzCore/CAGradientLayer.h lines22-45: defaults/endpoints/locations",
+        "AppKit/NSImageCell.h NSImageAlignCenter=0",
+        "AppKit/NSCell.h NSImageScaleProportionallyUpOrDown raw3"
+      ],
+      "native_press_followup": "Previous .local/window-native-press-drag-closure-review.json still records unclosed full session-ended business delegate gates, native drag-image/event handoff. Default SwiftUI timing not measured is not itself a confirmed bug; this Link peer does not add native press implementation.",
+      "latest_parent_update": "Root authorized one-line superclass correction to OriginalLayerBackedView; read current declaration and rebound actual SHA, no Source modification by peer."
+    },
+    "pasteboard-link-surface-peer": {
+      "scope": "Independent static peer current Link native viewport/surface; finite matches separated from parent UI/input/hosting gaps",
+      "source_sha256": {
+        "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift": "3f6bb0c25400a4a18a8b0ea0b484c3587f9b7d85fcb0707ae6364cdd943e9642",
+        "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "813a7d310752cf453c34aede27c56dc44f1d8cbccd611128277cfc2f96084784",
+        "replica/Sources/PasteReplica/UI/OriginalAdaptiveScalingImageView.swift": "0002845178a53c2617885f40fcfad92f679c1123a095340aa1037450914730d6",
+        "replica/Sources/PasteReplicaCore/OriginalSearchAppearance.swift": "0cfd7e194ce6f6b1f4118897810e35d0eafab317a68e6104e4bfbd11dbaeb5c4",
+        "replica/Sources/PasteReplicaCore/OriginalLayerBackedView.swift": "87acffa7790cb38e5715cf6ce3d4474fffb3633d3deb15635743526f6342303c"
+      },
+      "original_full_bodies": {
+        "0x1003da1fc": {
+          "start": "0x1003da1fc",
+          "end_exclusive": "0x1003da2e0",
+          "size": 228,
+          "sha256": "f4a5f4b4ca1b8e2668f72b7f83308a71c4f617649963686e32608b4fb0184c38",
+          "full_machine_code_hex": "e923bb6df85f01a9f65702a9f44f03a9fd7b04a9fd030191f30314aaf70300aa00106e1ee00301aa1d050094485f00b0087d43f9966a68f8000080d2f40316aa5d60f897485f00b0088143f9756a68f8e00315aa020080d2c3c72094f40317aaadf9fc97000200b4f30300aaded22094081ca04ee00313aadbd220940021611ee0010054e00313aa3b872094f50300aae00313aaf40316aa4760f897f30315aa0a000014f40317aa73f9fc97f30300aa600000b547050094f30300aae00315aae20313aaa8c72094e00313aafd7b44a9f44f43a9f65742a9f85f41a9e923c56c22872014"
+        },
+        "0x1001f23b0": {
+          "start": "0x1001f23b0",
+          "end_exclusive": "0x1001f241c",
+          "size": 108,
+          "sha256": "c11ea806ae6a00918230b62f12f1f3041abf3794626936ba679452e0e6fb243f",
+          "full_machine_code_hex": "ff0301d1f65701a9f44f02a9fd7b03a9fdc30091f30300aa005200d00020029104292894f50300aa005200d000c0029100292894f60300aaf30700f9e00314aae0262894e10300aae0230091e20315aae30316aab41a2894fd7b43a9f44f42a9f65741a9ff030191c0035fd6"
+        },
+        "0x1003da594": {
+          "start": "0x1003da594",
+          "end_exclusive": "0x1003da848",
+          "size": 692,
+          "sha256": "1c4c8fa9ca9b8ea825c5242450b40567e804f84c08b7f4026645fa8093d6c324",
+          "full_machine_code_hex": "ff8303d1ed33066deb2b076de923086dfa6709a9f85f0aa9f6570ba9f44f0ca9fd7b0da9fd430391f30314aa681ca34e491ca24e2a1ca14e0b1ca04ee00314aa8f882094f50300aa585f00b0197b43f9485f00b008bd43f91f0500b141110054485f00b000c143f9485f00b016c543f95b862094f40300aadf0600b101110054485f00b016c943f9000080d282bdf8970e862094f70300aae00316aa50862094e10300aa00e4006fe00314aaf40317aaf4baf897606a39f8575f00b0f47e43f9000080d25265f89767882094ff852094bfa42094606a34f8885d00f0005143f9fa852094baa42094f40300aa020080d2c7c62094e00314aa62008052dcc6209440038052010080d2020080d2447f20941f0000720090641e0110651e2c1c601e8856009008d141f98956009029cd41f90811899a000140f929862094f60300aa595f00b03a8343f9e00314aa801dac4ee20316aa9ec22094e00316aa1d862094746a3af8485f00b0088543f97f6a28f8f35705a9685d00b0015546f9e0430191601dab4e411daa4e221da94e031da84e07862094f30300aa405f00b000003a91414300f0214035912da4f097e16300916f882094f50300aa484200b00025c23d0004803d087b43f9746a68f8f60300aad40e02f8e87e43f9776a68f8171400f9288343f9786a68f8181800f9f30b00f9e00313aafa852094f30300aae00314aaf7852094e00317aaf5852094e00318aaf3852094010000b021f01e91e2030091e00315aaf40313aa657ef89775872094e00313aae7852094e00315aa8b882094a10a40f9a8560090085d40f902210091e00316aa53872094e00313aafd7b4da9f44f4ca9f6574ba9f85f4aa9fa6749a9e923486deb2b476ded33466dff830391c0035fd6405f00b000e01d9101000090213034915d88209472ffff17405f00b000201e9101000090218034915788209474ffff17"
+        },
+        "0x1003da848": {
+          "start": "0x1003da848",
+          "end_exclusive": "0x1003dab24",
+          "size": 732,
+          "sha256": "c333c90f27a937c5ac083bc5d8de6f57ea6eb7b81f3b097ec27f8356635298ac",
+          "full_machine_code_hex": "ff4306d1eb2b116de923126dfc6f13a9fa6714a9f85f15a9f65716a9f44f17a9fd7b18a9fd030691f30300aae7872094f80300aa485f00b0147943f9365700d0d6a20391a05b38a9b38316f8e00313aab6852094f70300aab57bf897fa0300aa0824406d0a2c416d000080d2ddbcf897e10300aaa06302d17402148b001da84e211da94e421daa4ee20316aa631dab4eb77bf897f30300aaa06302d12ca7f097485f00b0198143f9415f00b021200b91825d00f042801a91000080d2cad0f097a808e8d20001679ef402198b011ca04ee10316aa487df897f50300aae06a79f816922094fd031daa99852094f40300aae00317aa11922094fd031daa94852094f90300aae00314aae20319aa53942094fd031daa8e852094fb0300aae00314aa7f852094e00319aa7d852094e0031baa7e852094f90300aaf40317aad4feff97f40300aa485f00b01b7d43f9b85b38a9b78316f84827406d4a2f416d000080d27e64f897fa0300aae00317aa6f852094e00314aa6d852094f80300aaa06302d1f4021b8b001da84e211da94e421daa4ee1031aaae20316aa631dab4e747bf897f70300aaa06302d1e9a6f097405f00b000002c91414300f0214016917ba3f097e1030091bd872094f40300aa484200b00035c23d0004803d405f00b000c03991414300f02180359170a3f097fa0300aa3b5700d07be3029180ee03a9f60314aad30e02f8806e06a9952600f9415f00b021400b91825d00f042801991000080d271d0f097285700d008a1029180a208a9993a00f980220ba9984e00f99aee0da9976200f9e00313aac7862094e00315aac5862094e00314aab078f897f70300aae00313aaba862094e00315aab8862094e00319aa2a852094e00318aa28852094e00314aacc872094930a40f9405f00b000402c91414300f02180169143a3f097e20300aae00316aae10313aa90862094e00317aafd7b58a9f44f57a9f65756a9f85f55a9fa6754a9fc6f53a9e923526deb2b516dff430691c0035fd6"
+        },
+        "0x1003dad34": {
+          "start": "0x1003dad34",
+          "end_exclusive": "0x1003dadb0",
+          "size": 124,
+          "sha256": "b212597ff9c0d388e76d83d9e40172c03ea28912c7ee4ed8055dcfc52f5b1361",
+          "full_machine_code_hex": "f657bda9f44f01a9fd7b02a9fd830091f30302aaf40301aa415f00b021401591825d00f042001a91000080d2b3cff097f50300aa80023fd6000040f9808420947f842094f60300aae10300aaf40315aa56aef897f40300aae00316aa75842094e00316aa73842094740200f9fd7b42a9f44f41a9f657c3a8c0035fd6"
+        },
+        "0x1002066dc": {
+          "start": "0x1002066dc",
+          "end_exclusive": "0x1002067b8",
+          "size": 220,
+          "sha256": "697057a2d87a78002a2065d93db90ab15b6b547d67558f06dc5f8540bd08effc",
+          "full_machine_code_hex": "ff8301d1f65703a9f44f04a9fd7b05a9fd430191f30301aaf40300aac06500d000a0319101048052e200805282d72794135001a90800009008513a91e80302a9086500d0085141f9e80300f9e85000b0006941fde00700fd88f2fff008513091c96500d029013291e82701a9e0030091b5d22794f50300aa286c00f0004143f9ffd52794f60300aae00313aa02d62794e00314aa00d62794e00316aa020080d2e30315aaf0e32794fd031daa03d62794f30300aae00315aaacd22794e01740f989d82794e00313aafd7b45a9f44f44a9f65743a9ff830191c0035fd6"
+        },
+        "0x100206e94": {
+          "start": "0x100206e94",
+          "end_exclusive": "0x100206eb0",
+          "size": 28,
+          "sha256": "a17b8690c7efc3406f9708a75c345ac5366bbdaec540949f15e04c3c9d5b5a2d",
+          "full_machine_code_hex": "fd7bbfa9fd030091810a41a924000094fd031daafd7bc1a83ad42714"
+        },
+        "0x100206f30": {
+          "start": "0x100206f30",
+          "end_exclusive": "0x100207054",
+          "size": 292,
+          "sha256": "824b2af820986e4338d9b23c735ddc136f3d154c8554ef4a84089e0339eccc7e",
+          "full_machine_code_hex": "fc6fbaa9fa6701a9f85f02a9f65703a9f44f04a9fd7b05a9fd430191f40302aaf30301aaf50300aa806d009000001991615100f021401d9122f2f79701088052e200805267d52794f60300aae85000b000a1c13d0004803d086500d008e147f9096500d029e547f9170140f9380140f9176002a9086500d008d547f9190140f9086500d008d947f91a0140f9196803a9000080d23cb4ff97fb0300aae00317aae8d32794e00318aae6d32794e00319aae4d32794e0031aaae2d32794e00316aae1031baa4fc42794f70300aae00316aa70d62794e00315aae20317aa6ddd2794fd031daae0d32794f50300aae00317aad1d32794950000b4e00315aaced32794f40313aae00314aafd7b45a9f44f44a9f65743a9f85f42a9fa6741a9fc6fc6a8c0035fd6"
+        },
+        "0x100218e4c": {
+          "start": "0x100218e4c",
+          "end_exclusive": "0x100218f60",
+          "size": 276,
+          "sha256": "de1323f5d96a5efcc09e4273c64d7d58e316f5117e80b70bd50aa4d122d174ca",
+          "full_machine_code_hex": "ff8301d1f65703a9f44f04a9fd7b05a9fd430191a86b00b0004143f93c8c2794f30300aa7ce12794fd031daa478c2794f40300aae00313aaa7e12794fd031daa428c2794f50300aa406500d000c0039101048052e20080529b8d2794155001a928fffff008511491e80302a988640090085141f9e80300f9485000f0006941fde00700fd08f2ffb008513091496500d029210491e82701a9e0030091ce882794f60300aae00315aa1f8c2794f50300aae00314aa1c8c2794f40300aae00313aa020080d2e30316aa0b9a2794fd031daa1e8c2794f30300aae00314aa0f8c2794e00315aa0d8c2794e00316aac3882794e01740f9a08e2794e87100f0133904f9fd7b45a9f44f44a9f65743a9ff830191c0035fd6"
+        },
+        "0x100218fbc": {
+          "start": "0x100218fbc",
+          "end_exclusive": "0x10021911c",
+          "size": 352,
+          "sha256": "483cdf0a7f0af10fc9b67400734b74312d1f16c7f763d3eb32e555ffdab0defb",
+          "full_machine_code_hex": "ff8301d1f65703a9f44f04a9fd7b05a9fd430191a86b00b0004143f9e08b2794f30300aac8cb8bd2c8cbabf2c8cbcbf2c8fde7f20001679ee8db07b2e8df9ff2c8fde7f20201679e03106e1e011ca04edd992794fd031daae08b2794f40300aae8cb06b288f7e7f20001679ee8cf07b2c8f7e7f20201679e03106e1ee00313aa011ca04ed0992794fd031daad38b2794f50300aa406500b00080029101048052e20080522c8d2794155001a928ffffd008511491e80302a9686400f0085141f9e80300f9485000d0006941fde00700fd08f2ff9008513091496500b029e10291e82701a9e00300915f882794f60300aae00315aab08b2794f50300aae00314aaad8b2794f40300aae00313aa020080d2e30316aa9c992794fd031daaaf8b2794f30300aae00315aaa08b2794e00314aa9e8b2794e00316aa54882794e01740f9318e2794e87100d0133d04f9fd7b45a9f44f44a9f65743a9ff830191c0035fd6"
+        },
+        "0x100209214": {
+          "start": "0x100209214",
+          "end_exclusive": "0x100209434",
+          "size": 544,
+          "sha256": "7eb7d52b0d51958568e7b22e997badaa0e6375861b9c1c596a8a8dd685acbcc4",
+          "full_machine_code_hex": "ff4303d1e923066dfc6f07a9fa6708a9f85f09a9f6570aa9f44f0ba9fd7b0ca9fd030391081ca04ef30301aaf50300aae00314aa72cd2794f60300aa7a6d00b0582f43f9286c0090004143f93ecb2794f70300aa7e202894fd031daa49cb2794806a38f8796d00b0383343f9e00317aa1fd52794fd031daa42cb2794806a38f8786d00b0083743f99f6a28f8776d00b0fb3a43f9286c009000b943f9ebca2794abe92794806a3bf8f45b05a9e86b00d0015546f9e043019100e4006f01e4006f02e4006f03e4006f19cb2794f40300aa5a2f43f900001a8be1e3009122008052030080d2a4cc2794966a7af8956a3af8e00314aa1acb279419cb2794f40300aae00315aa16cb2794f50300aae00316aa10cb2794393343f98002198be183009122008052030080d293cc2794966a79f8936a39f8e00313aa09cb2794f30300aae00316aa03cb2794163743f98002168be123009122008052030080d286cc2794886a36fce00314aa2200805288152894e00314aa5ef32794fd031daa01cb2794e00000b4e83a43f9826a68f8f60300aa4fd12794e00316aaeeca2794e00314aa22008052a2062894e00314aae9ca2794286c0090001d45f9e3ca2794f60300aa43d42794e00316aa2200805268082894e00314aa67010094e00316aafcd82794e00314aadbca2794e00315aad9ca2794e00313aad7ca2794e00314aafd7b4ca9f44f4ba9f6574aa9f85f49a9fa6748a9fc6f47a9e923466dff430391c0035fd6"
+        },
+        "0x100209564": {
+          "start": "0x100209564",
+          "end_exclusive": "0x1002095ec",
+          "size": 136,
+          "sha256": "6a1ccc92817ede04ac06372ffb6ffd7cd542dbd452593d1d783c488680d6d040",
+          "full_machine_code_hex": "ff0301d1f65701a9f44f02a9fd7b03a9fdc30091e00314aaa5cc2794f40300a9e86b0090018143f9e00300916cca2794286c0090001d45f96fca2794f30300aacfd32794e00313aa22008052f4072894686d00b0083943f9956a68f8e00314aaafd42794e00315aafd092894e00313aa83d82794fd7b43a9f44f42a9f65741a9ff030191c0035fd6"
+        },
+        "0x1002096f8": {
+          "start": "0x1002096f8",
+          "end_exclusive": "0x100209838",
+          "size": 320,
+          "sha256": "04f5a4cd80bcb6170515145d73b93e73a53fb206edad96468e82d8714f57422d",
+          "full_machine_code_hex": "ffc301d1f85f03a9f65704a9f44f05a9fd7b06a9fd830191f60314aae00314aa22e02794fd031daa1dca2794f40300aac065009000c0009101038052e200805276cb2794f30300aa160800f9c06500900060019101048052e20080526fcb2794f50300aa0800009008712c91084c01a90800009008d12c91e80302a9e86400f0085141f9e80300f9c85000d0006941fde00700fd68f6ff9008610891c965009029c10191e82701a9e00300919fc62794f70300aaf81740f9e00316aaefc92794e00315aa87cc2794e00318aa7fcc2794e00314aae20317aae4f82794e00317aa9bc62794e00314aae1c92794215c00b021802e91e00315aa820f8052e30a8052e4078052250080524ccc2794f40300aae00313aa6dcc2794e00315aa6bcc2794f4000037fd7b46a9f44f45a9f65744a9f85f43a9ffc30191c0035fd6200020d4"
+        },
+        "0x100209838": {
+          "start": "0x100209838",
+          "end_exclusive": "0x1002098e8",
+          "size": 176,
+          "sha256": "10d209dba5d8b45f6d0f9b3c0f8dbb4232ae51aa839373eb9e8599f48111ec91",
+          "full_machine_code_hex": "f657bda9f44f01a9fd7b02a9fd830091f30300aa000080d2d4ba2794f50300aaf40300aaceba2794f40300aa8bb6ff97e10300aae00315aa90ba2794f50300aaf60301aa96cc279420010037a05c00b0008000910104805222008052e30a8052e40315aae50316aa99cc2794286c0090001d45f9abc92794f50300aa0bd32794e00315aa2200805230072894e00313aa2f000094e00315aac4d72794e00314aafd7b42a9f44f41a9f657c3a837cc2714"
+        },
+        "0x100209984": {
+          "start": "0x100209984",
+          "end_exclusive": "0x100209af8",
+          "size": 372,
+          "sha256": "d98c1e5fc73d8f33e4396de4d419fe24906414b5c68d3e88e8743607882b8148",
+          "full_machine_code_hex": "ff4304d1f85f0da9f6570ea9f44f0fa9fd7b10a9fd030491f40300aa686d00b0083943f9136868f8606d00b0004013916151009021e016918de7f797010c8052e2008052d2ca2794f50300aac85000d000b1c13d0004803d686d00b0162d43f98002168ba12301d1020080d2030080d2e5ca2794806a76f809cd2794fd031daa64c92794f60300aa000080d2aea9ff97f70300aaa01e00f9b61200f9686d00b0163143f98002168ba18301d1020080d2030080d2d4ca2794806a76f8f8cc2794fd031daa53c92794b72e00f9a02200f9286500b0086140f901210091e00315aab3b92794f60300aae00315aad4cb2794e00313aae20316aa31052894e00316aa38c92794686d00b0153543f98002158ba1e301d1020080d2030080d2baca2794806a75fc28a793d2484ab4f2c8e8dbf228f2e7f20101679e0008611ee823009101e4006f02e4006f03106e1e36c42794e2230091e00313aa91122894fd7b50a9f44f4fa9f6574ea9f85f4da9ff430491c0035fd6"
+        },
+        "0x100235cec": {
+          "start": "0x100235cec",
+          "end_exclusive": "0x100235ddc",
+          "size": 240,
+          "sha256": "e1e2de381d438689cace6c7729577f4bc4b2f5b550e06597c259ed702cc0a381",
+          "full_machine_code_hex": "ff8301d1eb2b016de923026df65703a9f44f04a9fd7b05a9fd430191681ca34e491ca24e2a1ca14e0b1ca04ef30300aa000080d2a0092794f50300aaf40300aa9a092794f40300aa5705ff97e10300aae00315aa5c092794f50300aaf60301aa621b279420010037405b00b000802b91a103805222008052a3018052e40315aae50316aa651b2794086c00d0083144f97f6a28f879010094f30300a9886a00d0015546f9e0030091601dab4e411daa4e221da94e031da84e67182794f30300aa22008052fc622794e00314aa021b2794e00313aafd7b45a9f44f44a9f65743a9e923426deb2b416dff830191c0035fd6"
+        },
+        "0x100235f6c": {
+          "start": "0x100235f6c",
+          "end_exclusive": "0x1002360c0",
+          "size": 340,
+          "sha256": "d678b896c69cc93f93b1c08e718fa800604f33f4f666ef4ce659f620fd9d9ba6",
+          "full_machine_code_hex": "ff0302d1f85f04a9f65705a9f44f06a9fd7b07a9fdc30191f8000094f40303a9886a0090015544f9e0c30091ea172794e00314aa002e2794fd031daafb172794f50300aa606400d000a0079101038052e200805254192794f30300aa140800f9606400d00040089101048052e20080524d192794f60300aa080000b008710f91084c01a9080000b008b10f91e80302a9886300f0085141f9e80300f9684f00b0006941fde00700fde8f4fff008610891696400b029a10891e82701a9e00300917d142794f70300aaf81740f9e00314aacd172794e00316aa651a2794e00318aa5d1a2794e00315aae20317aac2462794e00317aa79142794e00315aabf172794c15a009021802e91e00316aac20f805223048052e4078052250080522a1a2794f40300aae00313aa4b1a2794e00316aa491a2794f4000037fd7b47a9f44f46a9f65745a9f85f44a9ff030291c0035fd6200020d4"
+        },
+        "0x1002360c0": {
+          "start": "0x1002360c0",
+          "end_exclusive": "0x100236188",
+          "size": 200,
+          "sha256": "097035e3b2db18bc4306da9a5844da612a63a4fdde186d5e7ede438f745c9af4",
+          "full_machine_code_hex": "ff0301d1f65701a9f44f02a9fd7b03a9fdc30091f50300aa000080d2b1082794f60300aaf40300aaab082794f30300aa6804ff97e10300aaf40313aae00316aa6c082794f40300aaf60301aa721a279420010037405b009000802b91a10380522200805243038052e40314aae50316aa751a27948c000094f50300a9686a00f0145544f9e00315aa8a172794f50300aae0030091e10314aa7a172794f40315aa25feff97e00313aa161a2794e00315aa7d172794fd7b43a9f44f42a9f65741a9ff030191c0035fd6"
+        }
+      },
+      "dynamic_surface": {
+        "starting": "Original f218e4c dynamic provider stores white light/windowBackgroundColor dark, resolver f1ff49c. Current Surface.startingColor uses same semantic NSColors and existing f1ff49c. No fabricated fixed dark RGB.",
+        "ending": "Original f218fbc exact light242/242/247 anddark28/28/30 divided255 alpha1. Current identical binary64 values.",
+        "wrapper": "f3dad34 retains same underlying dynamic color twice and passes same object in both arguments to f2066dc; f2066dc provider->f206e94->f206f30 selects either identical reference by appearance. Therefore additional outer wrapper has no distinct finite color branch; current direct dynamic provider resolves equivalent color under effectiveAppearance.performAsCurrentDrawingAppearance. No claim NSColor pointer/DI/ARC identity.",
+        "appearance": "Current native gradient view refreshes colors on viewDidChangeEffectiveAppearance; effectiveAppearance.performAsCurrentDrawingAppearance encloses cgColor extraction. Existing resolver checks original four dark appearance names. SwiftUI footer uses dynamic startingColor directly.",
+        "color_bits": {
+          "242": "3fee5e5e5e5e5e5e",
+          "247": "3feefefefefefeff",
+          "28": "3fbc1c1c1c1c1c1c",
+          "30": "3fbe1e1e1e1e1e1e"
+        }
+      },
+      "layer_finite_matches": [
+        "Native CAGradientLayer retained with defaults; no invented gradient start/end/locations. Source isFlipped=true as original gradient view.",
+        "Gradient view alone explicitly clipsToBounds=true; original gradient constructor does the same, not a global preview clip.",
+        "layout calls super then CATransaction disableActions and layer.frame=bounds; color/transform updates also disableActions.",
+        "colors=[starting.cgColor,ending.cgColor], transform CATransform3DMakeRotation(0,0,0,1) equals original angle0*pi/180, no guessed opacity mask.",
+        "Sibling order fading/main/icon, fading and main four-edge constraints, icon42x42 centerX/centerY; target centerY0 or compact5/7 and corner12continuous/10circular already match bounded current configure.",
+        "Footer background uses separate startingColor even if previews disabled; no gradient/transparent inherited footer substitution."
+      ],
+      "main_icon_visibility_correction": {
+        "original": "Full f3da1fc does NOT hide main/icon. 3da234..23c sends nil through f1f23b0 to Adaptive image Invalidating setter; 3da24c..254 sends nil setImage to icon. Non-square metadata image assigns main through same setter; square image or iconData/fallback assigns icon. f1f23b0 full body sets Invalidating image via keypaths, not isHidden.",
+        "current": "configure assigns optional image and icon to separate always-present subviews; image selection main if width!=height, otherwise icon priority. No extra isHidden should be added for alleged original hiding.",
+        "finite_equivalence": "Normal decoded stored-image/square/icon input subdomain equivalent final image assignment. Initial clear then assign vs current direct configure can change invalidation count, not established visible output.",
+        "partial": "Original fallback asset vs independent SF fallback, missing metadata adapter behavior, native cell configure/animation/reuse lifetimes remain partial. No nil output is promoted to hide proof."
+      },
+      "native_input_and_clip_boundaries": {
+        "input": "Original PreviewView->LayerBackedView->NSView full methodlists and current same hierarchy have no custom input/hitTest/flip overrides. Native inherited boundary matched structurally. SwiftUI parent selection/drag/context-menu propagation remains not dynamically verified.",
+        "clip": "No original PreviewView/LayerBackedView clip override exists in complete methodlists; current uses same recovered base with no new clip write. Native OS-dependent NSView default applies on both. Gradient clips itself, icon corner helper clips icon. Outer NSHosting/SwiftUI card clip composition remains separate partial.",
+        "parent": "Parent cardContent clipped and rounded outer card still bound overall. Zero-edge constraints alone do not establish per-preview clipping. Do not insert an unproved preview NSClipView/clip true.",
+        "current_decision": "No newly confirmed Source defect in finite surface/color/layer configuration. Keep input/hosting/transition parents partial; runtime behavior not verified."
+      },
+      "supporting_evidence": [
+        ".local/image-link-viewport-implementation-review.json",
+        ".local/image-link-viewport-color-wrapper-arm64.txt",
+        ".local/image-link-viewport-gradient-arm64.txt",
+        ".local/image-link-viewport-closure-review.json"
+      ],
+      "validation": {
+        "source_or_public_or_map_change": false,
+        "build_or_product_run": false,
+        "tests_or_ui_mcp": false,
+        "spawn": false,
+        "new_complete_counts": 0
+      },
+      "inheritance_followup": {
+        "evidence": ".local/image-link-preview-inheritance-raw.json",
+        "evidence_sha256": "7e6f4efa73daa0e84da483fd96459991b8fe79f004b8a876d5969111ea797d20",
+        "independent_peer": "Fresh raw superclass words and complete relative method lists decoded directly from original MachO: Preview class100f99ff0 superslot100f99ff8 raw10000000f96e28 ->100f96e28; parent superslot100f96e30 raw8010000000001460, recorded chained bind import5216 _OBJC_CLASS_$_NSView.",
+        "preview_methods": [
+          "initWithFrame:1003dab24",
+          "init1003dac30",
+          ".cxx_destruct1003dac90"
+        ],
+        "layerbacked_methods": [
+          "init100235b98",
+          "initWithFrame:100235cec",
+          "initWithCoder:100235e60",
+          "viewDidChangeEffectiveAppearance1002360c0",
+          ".cxx_destruct1002363b4"
+        ],
+        "absence": "Both complete class lists contain no isFlipped/hitTest/clipsToBounds/mouse input override. Original Adaptive separately NSView, gradient separatelyNSView and owns isFlipped. No parent custom flip/clip override remains alleged.",
+        "actual_reuse": "Viewport now subclasses existing OriginalLayerBackedView, whose super.init sets wantsLayer=true, storedBackgroundColor defaultsnil, appearance override calls super then effectiveAppearance layer background/border refresh. Matches original finite f235cec/f235f6c/f2360c0. Viewport does not override appearance, flip orhitTest and does not setclip.",
+        "remaining": "Native NSView inherited input/clip behavior is now structurally matched; outer SwiftUI NSHosting/card clipping composition, end-to-end selection/drag/context-menu propagation and transition lifecycle remain static-only parentpartial. No blanket runtime1:1 claim."
+      }
+    },
+    "image-link-preview-inheritance-review": {
+      "stage": "post Root one-line native parent correction; Source frozen pending final build60",
+      "created_at": "2026-10-23T17:21:26.936245+00:00",
+      "source_changed_by_this_agent": false,
+      "compiled_or_executed": false,
+      "tests_run": false,
+      "new_completed_addresses": 0,
+      "conclusion": "Original PreviewView -> PasteUI.LayerBackedView -> AppKit.NSView verified from raw super pointers/full own-method lists and reached dyld chain import. Current viewport now has same recovered LayerBacked parent. No own isFlipped/hitTest/clip override on original PreviewView/LayerBacked; positive icon Y is same native local-coordinate direction. Actual NSHosting event/render behavior remains distinct and untested.",
+      "raw_class_evidence": [
+        {
+          "name": "PreviewView",
+          "class_address": "0x100f99ff0",
+          "superclass_slot": "0x100f99ff8",
+          "superclass_raw": "0x10000000f96e28",
+          "superclass": "0x100f96e28",
+          "method_list": {
+            "address": "0x100c13110",
+            "flags": "0x8000000c",
+            "count": 3,
+            "methods": [
+              {
+                "selector": "initWithFrame:",
+                "imp": "0x1003dab24",
+                "entry": "0x100c13118",
+                "selector_slot": "0x100f87ca8"
+              },
+              {
+                "selector": "init",
+                "imp": "0x1003dac30",
+                "entry": "0x100c13124",
+                "selector_slot": "0x100f87a60"
+              },
+              {
+                "selector": ".cxx_destruct",
+                "imp": "0x1003dac90",
+                "entry": "0x100c13130",
+                "selector_slot": "0x100f8b1c8"
+              }
+            ]
+          }
+        },
+        {
+          "name": "LayerBackedView",
+          "class_address": "0x100f96e28",
+          "superclass_slot": "0x100f96e30",
+          "superclass_raw": "0x8010000000001460",
+          "superclass": {
+            "bind_slot": "0x100f96e30",
+            "binding": {
+              "import_index": 5216,
+              "import_table_slice_file_offset": 17109688,
+              "symbol": "_OBJC_CLASS_$_NSView",
+              "dylib_ordinal": 8,
+              "dylib": {
+                "install_name": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit"
+              },
+              "weak_import": false,
+              "import_addend": 0,
+              "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+              "fixups_header_slice_file_offset": 17088512,
+              "pointer_format": 6,
+              "imports_format": 1,
+              "segment_index": 3,
+              "page_index": 19,
+              "page_start": 8,
+              "pointer_slice_file_offset": 16346672,
+              "pointer_raw_value": "0x8010000000001460",
+              "pointer_addend": 0,
+              "effective_addend": 0
+            }
+          },
+          "method_list": {
+            "address": "0x100c16608",
+            "flags": "0x8000000c",
+            "count": 5,
+            "methods": [
+              {
+                "selector": "init",
+                "imp": "0x100235b98",
+                "entry": "0x100c16610",
+                "selector_slot": "0x100f87a60"
+              },
+              {
+                "selector": "initWithFrame:",
+                "imp": "0x100235cec",
+                "entry": "0x100c1661c",
+                "selector_slot": "0x100f87ca8"
+              },
+              {
+                "selector": "initWithCoder:",
+                "imp": "0x100235e60",
+                "entry": "0x100c16628",
+                "selector_slot": "0x100f87b48"
+              },
+              {
+                "selector": "viewDidChangeEffectiveAppearance",
+                "imp": "0x1002360c0",
+                "entry": "0x100c16634",
+                "selector_slot": "0x100f858a8"
+              },
+              {
+                "selector": ".cxx_destruct",
+                "imp": "0x1002363b4",
+                "entry": "0x100c16640",
+                "selector_slot": "0x100f8b1c8"
+              }
+            ]
+          }
+        },
+        {
+          "name": "AdaptiveScalingImageView",
+          "class_address": "0x100f95f38",
+          "superclass_slot": "0x100f95f40",
+          "superclass_raw": "0x8010000000001460",
+          "superclass": {
+            "bind_slot": "0x100f95f40",
+            "binding": {
+              "import_index": 5216,
+              "import_table_slice_file_offset": 17109688,
+              "symbol": "_OBJC_CLASS_$_NSView",
+              "dylib_ordinal": 8,
+              "dylib": {
+                "install_name": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit"
+              },
+              "weak_import": false,
+              "import_addend": 0,
+              "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+              "fixups_header_slice_file_offset": 17088512,
+              "pointer_format": 6,
+              "imports_format": 1,
+              "segment_index": 3,
+              "page_index": 19,
+              "page_start": 8,
+              "pointer_slice_file_offset": 16342848,
+              "pointer_raw_value": "0x8010000000001460",
+              "pointer_addend": 0,
+              "effective_addend": 0
+            }
+          },
+          "method_list": {
+            "address": "0x100c16868",
+            "flags": "0x8000000c",
+            "count": 4,
+            "methods": [
+              {
+                "selector": "initWithFrame:",
+                "imp": "0x1001f282c",
+                "entry": "0x100c16870",
+                "selector_slot": "0x100f87ca8"
+              },
+              {
+                "selector": "initWithCoder:",
+                "imp": "0x1001f2918",
+                "entry": "0x100c1687c",
+                "selector_slot": "0x100f87b48"
+              },
+              {
+                "selector": "drawRect:",
+                "imp": "0x1001f29e4",
+                "entry": "0x100c16888",
+                "selector_slot": "0x100f85720"
+              },
+              {
+                "selector": ".cxx_destruct",
+                "imp": "0x1001f2aa4",
+                "entry": "0x100c16894",
+                "selector_slot": "0x100f8b1c8"
+              }
+            ]
+          }
+        },
+        {
+          "name": "GradientEffectView",
+          "class_address": "0x100f960d0",
+          "superclass_slot": "0x100f960d8",
+          "superclass_raw": "0x8010000000001460",
+          "superclass": {
+            "bind_slot": "0x100f960d8",
+            "binding": {
+              "import_index": 5216,
+              "import_table_slice_file_offset": 17109688,
+              "symbol": "_OBJC_CLASS_$_NSView",
+              "dylib_ordinal": 8,
+              "dylib": {
+                "install_name": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit"
+              },
+              "weak_import": false,
+              "import_addend": 0,
+              "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+              "fixups_header_slice_file_offset": 17088512,
+              "pointer_format": 6,
+              "imports_format": 1,
+              "segment_index": 3,
+              "page_index": 19,
+              "page_start": 8,
+              "pointer_slice_file_offset": 16343256,
+              "pointer_raw_value": "0x8010000000001460",
+              "pointer_addend": 0,
+              "effective_addend": 0
+            }
+          },
+          "method_list": {
+            "address": "0x100c16750",
+            "flags": "0x8000000c",
+            "count": 6,
+            "methods": [
+              {
+                "selector": "initWithCoder:",
+                "imp": "0x100209434",
+                "entry": "0x100c16758",
+                "selector_slot": "0x100f87b48"
+              },
+              {
+                "selector": "isFlipped",
+                "imp": "0x1002094e0",
+                "entry": "0x100c16764",
+                "selector_slot": "0x100f88240"
+              },
+              {
+                "selector": "layout",
+                "imp": "0x1002095ec",
+                "entry": "0x100c16770",
+                "selector_slot": "0x100f85700"
+              },
+              {
+                "selector": "viewDidChangeEffectiveAppearance",
+                "imp": "0x1002098e8",
+                "entry": "0x100c1677c",
+                "selector_slot": "0x100f858a8"
+              },
+              {
+                "selector": "initWithFrame:",
+                "imp": "0x100209b58",
+                "entry": "0x100c16788",
+                "selector_slot": "0x100f87ca8"
+              },
+              {
+                "selector": ".cxx_destruct",
+                "imp": "0x100209be0",
+                "entry": "0x100c16794",
+                "selector_slot": "0x100f8b1c8"
+              }
+            ]
+          }
+        }
+      ],
+      "resolved_parent_difference": {
+        "old_review": "Initial native container directly inherited NSView, whereas original derives LayerBackedView.",
+        "root_fix": "OriginalLinkPreviewViewportView: OriginalLayerBackedView atline59; verified finalSHA3f6bb0c25400a4a18a8b0ea0b484c3587f9b7d85fcb0707ae6364cdd943e9642.",
+        "actual_contract": "Original LayerBacked initWithFrame f235cec initializes backgroundnil, calls superclass initWithFrame, setWantsLayer(true). Current Core OriginalLayerBackedView(frame:) super.init thenwantsLayer=true; its own appearance callback updatesbackground/bordercolors. This is now actually reused, not an outstanding missing parent."
+      },
+      "coordinate_direction": {
+        "original": "PreviewView own methods only initWithFrame/init/destruct; LayerBacked only init/initWithFrame/initWithCoder/viewDidChangeEffectiveAppearance/destruct. Neither overrides isFlipped. GradientEffectView alone has isFlipped=true. Gradient local flip does not flip its siblingicon orparentcenterY.",
+        "current": "ViewportinheritsOriginalLayerBackedView -> NSView withnoisFlippedoverride,matchingoriginalnativeparentorientation. Gradient aloneisFlippedtrue. iconCenterY usesicon.centerY==parent.centerY+constant.",
+        "interpretation": "Class3 +5/+7 is positive localNSViewY (standard unflippednativeupwards); do not reverse due to an outerSwiftUI host orgradientflip. Parent conversions remainAppKit responsibility.",
+        "scope": "Only originalconfiguretargetconstants areimplemented. Transitionprogressschedule not restored orclaimed."
+      },
+      "clip_contract": {
+        "original": "CompletePreview/LayerBacked/Adaptive ownmethodlists containno clipsToBounds/wantsDefaultClipping overrides orcustomhitTest. Auditedconstructors setcliponlygradient andiconcornerhelper; LayerBacked enableslayerbutdoesnot setclip.",
+        "current": "NativeviewportnowLayerBacked andAdaptiveunchanged. Noexplicitclip inserted ontheseviews. Existingcardcontentclip/wholecardroundedclip areoutside.",
+        "sdk": "NSView.h clipsToBounds defaultsNO macOS14+ andYESolder,withsubclass-specificdefaultspossible. EnablingwantsLayeralone isnotproof ofextra clippingflag.",
+        "closed": "Ownoriginalparentchain andabsenceofownclip/isFlipped/hitTest overrides areclosed byrawclassmetadata.",
+        "still_partial": "AnyAppKit internal layer/host clipping effects andouterNSHostingViewcomposition are notproven bymethodlists orstaticSource."
+      },
+      "native_hit_and_host_boundary": {
+        "original": "PreviewView/LayerBacked/Adaptive/Gradient completeownlists have nohitTest/mouseDown/mouseDragged/acceptsFirstMouse override. Thus nativeNSView/NSImageView standarddispatch inherited withinthissubtree; originalcollectionItemCell handlesselectioneventsoutside.",
+        "current": "Newviewport andchildren likewise do notoverridehitTest/mouseDown/acceptsFirstMouse. OriginalCardContextSelection passiveview returnsnil fromhitTest anduseslocalmonitor forcontextselection; thisindependent adapterwasnotchanged. CardSwiftUI .onTapGesture/.onDrag/contextMenu areoutside nativeviewport.",
+        "sdk_host": "SwiftUI SDK NSHostingView declares finalisFlippedoverride, openhitTest/acceptsFirstMouse/mouseDown/mouseDragged overrides. Interface doesnotexposeimplementation orruntimevalues. The rootcurrentlycreatesNSHostingView(rootView:ReplicaPanelView) andnativeviewportisSwiftUIrepresentable withinthat tree.",
+        "decision": "Do notaddhitTest->nil ordisablehit-testing to nativeviewport merelybecauseitcontainsnativechildren: originalsubtreewasnativelyhittabletoo. ConverselydonotclaimSwiftUIgesturepropagationorDND/runtimeequivalence withoutregression. Noobservedclickbuginthisstaticreview."
+      },
+      "source_binding": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "sha256": "3f6bb0c25400a4a18a8b0ea0b484c3587f9b7d85fcb0707ae6364cdd943e9642"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalLayerBackedView.swift",
+          "sha256": "87acffa7790cb38e5715cf6ce3d4474fffb3633d3deb15635743526f6342303c"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAdaptiveScalingImageView.swift",
+          "sha256": "0002845178a53c2617885f40fcfad92f679c1123a095340aa1037450914730d6"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+          "sha256": "813a7d310752cf453c34aede27c56dc44f1d8cbccd611128277cfc2f96084784"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaCardContextSelection.swift",
+          "sha256": "2a5b9aac7f579d6466a8f0c6feff24095609873c348ef99444f95f23aeb7615f"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "sha256": "c598495dc66d4cdbc087b1b86ce192ddf64997ecb1b677cf956928052ba10cb4"
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".local/image-link-preview-inheritance-raw.json",
+          "sha256": "4671e66a33e1f0a6b9ea65c7573e16f2c8c1843bc746f4b3ebb1e391713e2351"
+        },
+        {
+          "path": ".local/image-link-preview-layer-parent-arm64.txt",
+          "sha256": "1307e5dc50befb7c8f846906f979bbf393c2551fd658eb18357c758df6de8ed5"
+        },
+        {
+          "path": ".local/window-dev23-original-objc-metadata.txt",
+          "sha256": "4e7d2877eb26e97812a189d4db7b164d5d7c456d8b1850714c914be1ccaf7728"
+        },
+        {
+          "path": ".local/image-link-adaptive-threshold-producer-arm64.txt",
+          "sha256": "9007dda42a7109d3df0f41ad8d29c86391a900e67f87048dc1a31fafa95c1917"
+        }
+      ],
+      "sdk_refs": [
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AppKit.framework/Headers/NSView.h",
+          "lines": "141 isFlipped;220 hitTest;225 acceptsFirstMouse;282-285 clipdefault"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/SwiftUI.framework/Modules/SwiftUI.swiftmodule/arm64e-apple-macos.swiftinterface",
+          "lines": "8286 class;8326isFlipped;8372+hit/eventoverrides"
+        }
+      ]
+    }
+  }
+}

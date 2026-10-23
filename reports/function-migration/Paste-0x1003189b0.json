@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1003189b0",
-  "reviewed_at": "2026-10-23T17:11:56.698806+00:00",
+  "reviewed_at": "2026-10-23T17:23:15.695259+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0256.c",
@@ -11,17 +11,17 @@
   "original_pseudocode_sha256": "96cfc906dca958e01f704d68b1647ef3953aadaff200e46a9463cda9404ae391",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalLinkDisplay.swift": "22ddf146e091d4b1f9fb0315e95a8bfb527542b1e1f945c9c80a776e47302b20",
-    "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "265cb37883c42488ca63076b9c8ebfa5dfd1a57462730f992cf97ad657721f52"
+    "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "813a7d310752cf453c34aede27c56dc44f1d8cbccd611128277cfc2f96084784"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "c84dfbf972fdc5e84d1ef09f50ec173f73535129fd3c1b173e10d50fce95a369",
+  "compiled_app_binary_sha256": "18f6662ef2e1e930010590028c2b86b39c48dd3751adf023bd3c33c6227847a3",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "Complete local URLdisplay purevalue, nil/prefix/querysuppression/trim contracts recovered with fullarm64+SDK+constantbindings. Actual View enabledpath consumes.",
   "review": "Bound to final45 actual153 inputsnapshot; finite completeformatterbody+SDKproof; UI/providerparentsremainpartial.",
-  "source_review": "dev34逐项静态复审：现有图像元数据/缩略图/重采样/JPEG/透明采样函数体保持，只有重采样访问级公开；搜索委托/查询空值/卡片纯值几何方法与调用段保持。真实Header重采样复用既有函数，非新增实现，绑定build58。",
+  "source_review": "dev35逐项静态复审：Link显示URL格式化算法与实际Footer调用段保持，本轮只接原生预览容器和底栏背景；真实来源引用绑定最终build60，不新增函数完成或运行验收。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

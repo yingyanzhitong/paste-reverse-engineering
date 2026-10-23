@@ -15,13 +15,13 @@ struct ReplicaLinkMetadataContent: View {
         VStack(alignment: .leading, spacing: 0) {
             if linkPreviewsEnabled {
                 Group {
-                    if let image, image.size.width != image.size.height {
-                        if let cardSizeClass {
-                            ReplicaAdaptiveScalingImage(image: image,
-                                scaleToFillRatio: cardSizeClass == 3 ? 0 : 0.7)
-                        } else {
-                            Image(nsImage: image).resizable().scaledToFit()
-                        }
+                    if let cardSizeClass {
+                        let hasMainImage = image.map { $0.size.width != $0.size.height } ?? false
+                        OriginalLinkPreviewViewport(image: hasMainImage ? image : nil,
+                            icon: hasMainImage ? nil : image ?? metadata.iconData.flatMap(NSImage.init(data:)) ?? fallbackIcon(),
+                            sizeClass: cardSizeClass)
+                    } else if let image, image.size.width != image.size.height {
+                        Image(nsImage: image).resizable().scaledToFit()
                     } else if let icon = image ?? metadata.iconData.flatMap(NSImage.init(data:)) ?? fallbackIcon() {
                         Image(nsImage: icon).resizable().scaledToFit()
                             .frame(width: 42, height: 42)
@@ -45,6 +45,9 @@ struct ReplicaLinkMetadataContent: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 10)
             .padding(.horizontal, 12)
+            .background {
+                if cardSizeClass != nil { Color(nsColor: OriginalLinkPreviewSurface.startingColor) }
+            }
         }
         .help(metadata.url.absoluteString)
     }

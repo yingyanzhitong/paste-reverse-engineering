@@ -1,7 +1,7 @@
 {
   "kind": "static_existing_feature_audit",
   "schema_version": 1,
-  "generated_at": "2026-10-23T17:12:42.788816+00:00",
+  "generated_at": "2026-10-23T17:23:55.692308+00:00",
   "policy": "按已有功能和调用链集中复核，只补真实缺口；本报告不修改逐地址台账，不将模块存在或候选匹配记为等价通过。",
   "functional_tests_executed": false,
   "mcp_tests_executed": false,
@@ -16,8 +16,8 @@
       "excluded_by_scope": 6,
       "implemented": 0,
       "migrated": 1497,
-      "partial": 288,
-      "pending": 79341,
+      "partial": 292,
+      "pending": 79337,
       "verified": 2
     },
     "migration": {
@@ -229,7 +229,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "pinboard",
@@ -382,7 +382,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "multiselect",
@@ -531,7 +531,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "stack",
@@ -649,7 +649,7 @@
           "ledger_state": "verified"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "ocr",
@@ -799,7 +799,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "history-actions",
@@ -878,7 +878,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "main-card-layout",
@@ -1058,6 +1058,11 @@
           "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift",
           "symbol": "public static func f_1003ca024",
           "line": 50
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift",
+          "symbol": "final class OriginalLinkPreviewViewportView: OriginalLayerBackedView",
+          "line": 58
         }
       ],
       "original_functions": [
@@ -1083,7 +1088,11 @@
         "Paste:0x1003ed004",
         "Paste:0x1003ed158",
         "Paste:0x1003db698",
-        "Paste:0x1001f32fc"
+        "Paste:0x1001f32fc",
+        "Paste:0x1003da594",
+        "Paste:0x1003da848",
+        "Paste:0x100209214",
+        "Paste:0x1003db0dc"
       ],
       "covered_behavior": [
         "主面板搜索/Pinboard页签、横向卡片、选择和菜单均已有真实UI入口，复用现有实现。",
@@ -1110,14 +1119,15 @@
         "dev31：来源应用按bundleID共享持久记录，采集验证name/bundleID/icon后128逻辑尺寸单次PNG编码，同锁保存项目显式关系；后续同应用捕获更新共享icon不改旧item日期。Header、独立预览和Stack均消费持久rawIcon，有实体但nil/坏显示空图。",
         "dev32：共享记录持久rawColor，真实采集复用47原覆盖值及精确全像素NSCountedSet取色，完整ARGB编码；Header读取持久值，按原完整ARGB查两项palette，不擅掩alpha；无来源用已证light/dark动态灰。",
         "dev33显式owner/rawType/rawAttributes保存与消费闭环；原八色精确映射/动态provider/新建随机色，Header专色、12点自绘圆形图标及独立app隐藏gate已接。",
-        "dev34卡片Link主图复用原生AdaptiveView，真实sizeClass3阈值0/其它0.7；原绘制体直接复用。普通来源Header按84/80/76/20复用现有f3ca024重采样，stored空图与nilraster分离。"
+        "dev34卡片Link主图复用原生AdaptiveView，真实sizeClass3阈值0/其它0.7；原绘制体直接复用。普通来源Header按84/80/76/20复用现有f3ca024重采样，stored空图与nilraster分离。",
+        "dev35真实Link卡片接native渐变背景兄弟/Adaptive主图/原角42图标，紧凑中心Y5/7；Footer独立动态底色。原Preview→LayerBacked→NSView完整方法表已核，当前复用已存在LayerBacked父。"
       ],
       "gaps": [
         "原AppKit绘制/gradient/材质、锁图标及完整CompactHeader/native对象与SwiftUI差异仍未回归。",
         "本轮仅完整证据JSON；未改自动hide，sheets/modal和一次suppression、generation动画仍待完整接链。",
         "旧image raw缺失仍允许已存typed metadata兼容，不声称原raw-only VM完全一致。",
         "共享图色链已接，普通Header app色/palette已恢复；legacy owner/attrs兼容、unknown-app像素、CoreData/KVO/事务及提前取色时序仍partial，旧缺字段为明确兼容。未运行功能回归。",
-        "Link完整裁剪/fade/转场、Header原对象生命周期与unknownasset、nativepress完整delegate仍partial；未运行功能回归。"
+        "Link外层Hosting组合/原progress转场、Header原对象生命周期与unknownasset、nativepress完整delegate仍partial；未运行功能回归。"
       ],
       "reuse_candidates": [],
       "source_sha256": {
@@ -1125,7 +1135,7 @@
         "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "83f115e2f1f7ba8f057de253dfb60e548a2ec16d035d55f8688e6a5f06c106e8",
         "replica/Sources/PasteReplicaCore/OriginalTextPreviewMetadata.swift": "7c09e2e2297ef070a792bf8a50e51ab162146d27b516d7e92ac3bd53df36b676",
         "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "1620a024a011c19294f16680ae2a8d6e92afac426d4ebbe1dd4e1fac1e364ca0",
-        "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "265cb37883c42488ca63076b9c8ebfa5dfd1a57462730f992cf97ad657721f52",
+        "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "813a7d310752cf453c34aede27c56dc44f1d8cbccd611128277cfc2f96084784",
         "replica/Sources/PasteReplica/UI/ReplicaPanelResizeHandle.swift": "f0461fe70bbcb486c89ef24d7d2d119b051cd5bbfb34279df06f72636f6bcbbe",
         "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift": "acb4df601c1f35cf1e8767bc8a66140c99ec082c8c82f79acd49fc316a5d09cf",
         "replica/Sources/PasteReplica/UI/ReplicaCanonicalCardContent.swift": "ae15319786af4a6becda29a55e849ddda42fe38e5a9de525900b57e182f0e24d",
@@ -1142,7 +1152,8 @@
         "replica/Sources/PasteReplicaCore/OriginalPinboardColor.swift": "cfc44a744f2d3769d70582fea50da409435cfd9dcfa7f9ba104719093dcaef8e",
         "replica/Sources/PasteReplicaCore/OriginalPinboardAttributes.swift": "d2a1be64643be5b1b6380b92b8787e09dcf9021b6d61b7a3c3f406f5d2293424",
         "replica/Sources/PasteReplica/UI/OriginalPinboardHeaderIcon.swift": "c5aad86b7285c39fd31757919e9cf8d3cc5a29fae201a150132735c193a0c2db",
-        "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "90bfbfd6d413e25d446b47346935f15c53d80dc44028d6630d19331b06908ffa"
+        "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "90bfbfd6d413e25d446b47346935f15c53d80dc44028d6630d19331b06908ffa",
+        "replica/Sources/PasteReplica/UI/OriginalLinkPreviewViewport.swift": "3f6bb0c25400a4a18a8b0ea0b484c3587f9b7d85fcb0707ae6364cdd943e9642"
       },
       "original_reference_status": [
         {
@@ -1305,9 +1316,37 @@
           "line": 424,
           "pseudocode_sha256": "98e682b3b81432b5d424c807070d6dcdcafe1b4fc158735e961833cc6964c1e0",
           "ledger_state": "partial"
+        },
+        {
+          "function_id": "Paste:0x1003da594",
+          "file": "decompiled/Paste/part-0306.c",
+          "line": 1653,
+          "pseudocode_sha256": "7fb3f1e71912e4bdb9aa3bf720217a55568e27071dd4d7feb0ed9a42dd533385",
+          "ledger_state": "partial"
+        },
+        {
+          "function_id": "Paste:0x1003da848",
+          "file": "decompiled/Paste/part-0306.c",
+          "line": 1739,
+          "pseudocode_sha256": "d46e24c2359048703dec2a092065a723378447d0023cb4446b7d5d27c9a3ff2d",
+          "ledger_state": "partial"
+        },
+        {
+          "function_id": "Paste:0x100209214",
+          "file": "decompiled/Paste/part-0172.c",
+          "line": 305,
+          "pseudocode_sha256": "3cc43810719965c36d33426e7a96d274c681d8a941e27fa600d5df6cd4dae7bf",
+          "ledger_state": "partial"
+        },
+        {
+          "function_id": "Paste:0x1003db0dc",
+          "file": "decompiled/Paste/part-0306.c",
+          "line": 2104,
+          "pseudocode_sha256": "37c6799911c227bc54f6f836fe9c23b6df74fc4b70f63b1de912fba71f2cd68f",
+          "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "native-preview-window",
@@ -1370,7 +1409,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "preview-registry",
@@ -1489,7 +1528,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "card-anchor-popover",
@@ -1631,7 +1670,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "preview-title-rename",
@@ -1762,7 +1801,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "preview-header-actions",
@@ -1880,7 +1919,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "preview-mode-transitions",
@@ -1983,7 +2022,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "text-content-persistence",
@@ -2062,7 +2101,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "text-attributed-normalization",
@@ -2212,7 +2251,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "text-formatting-traits",
@@ -2344,7 +2383,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "text-event-owner",
@@ -2441,7 +2480,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "native-toolbar-factories",
@@ -2569,7 +2608,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "text-footer",
@@ -2704,7 +2743,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "preview-other-content",
@@ -2852,13 +2891,13 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
           "symbol": "if let image, image.size.width != image.size.height",
-          "line": 18,
+          "line": 23,
           "sha256": "62b27bad20c21046ac63100c3c7776f360ad3e06c8ec66d3570c1c089f6636be"
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
           "symbol": "private func fallbackIcon() -> NSImage?",
-          "line": 52,
+          "line": 55,
           "sha256": "62b27bad20c21046ac63100c3c7776f360ad3e06c8ec66d3570c1c089f6636be"
         },
         {
@@ -3012,7 +3051,7 @@
         "replica/Sources/PasteReplicaCore/OriginalLinkPreviewMetadata.swift": "cf30ef0714e8f3bfa31c11765ce3a0493b3228013c3d4096cc5c32e851c2be00",
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
         "replica/Sources/PasteReplica/UI/PanelViews.swift": "c598495dc66d4cdbc087b1b86ce192ddf64997ecb1b677cf956928052ba10cb4",
-        "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "265cb37883c42488ca63076b9c8ebfa5dfd1a57462730f992cf97ad657721f52",
+        "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "813a7d310752cf453c34aede27c56dc44f1d8cbccd611128277cfc2f96084784",
         "replica/Sources/PasteReplicaCore/OriginalLinkDisplay.swift": "22ddf146e091d4b1f9fb0315e95a8bfb527542b1e1f945c9c80a776e47302b20"
       },
       "original_reference_status": [
@@ -3073,7 +3112,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "preview-localization",
@@ -3234,7 +3273,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "screen-sharing-policy",
@@ -3369,7 +3408,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "helper-watchdog",
@@ -3578,7 +3617,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "helper-bootstrap",
@@ -3645,7 +3684,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "background-setting",
@@ -3698,7 +3737,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "settings-overall",
@@ -3836,7 +3875,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "capture.items",
@@ -3939,7 +3978,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "capture.content",
@@ -4123,7 +4162,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "capture.timers",
@@ -4209,7 +4248,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "capture.state",
@@ -4288,7 +4327,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "capture.policy",
@@ -4433,7 +4472,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "capture.read_sync",
@@ -4509,7 +4548,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "serialization.item_codable",
@@ -4690,7 +4729,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "serialization.keyed",
@@ -4764,7 +4803,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "serialization.internal_codec",
@@ -4891,7 +4930,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "checksum.md5",
@@ -4952,7 +4991,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "checksum.strategy",
@@ -5025,7 +5064,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "repo.dedup",
@@ -5092,7 +5131,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "repo.metadata",
@@ -5192,7 +5231,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "repo.transaction",
@@ -5325,7 +5364,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "repo.objc_exception",
@@ -5396,7 +5435,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "repo.capture_actions",
@@ -5502,7 +5541,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "logging.named",
@@ -5612,7 +5651,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "logging.dispatch",
@@ -5800,7 +5839,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "diagnostics.controls",
@@ -5864,7 +5903,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "diagnostics.queries",
@@ -5921,7 +5960,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "diagnostics.menu",
@@ -6023,7 +6062,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "diagnostics.restart",
@@ -6066,7 +6105,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "restore.writer",
@@ -6119,7 +6158,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "restore.processor",
@@ -6261,7 +6300,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "restore.history",
@@ -6379,7 +6418,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "value-coding",
@@ -6464,7 +6503,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "key-translation",
@@ -6636,7 +6675,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "conflict-check",
@@ -6702,7 +6741,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "recorder-state",
@@ -6851,7 +6890,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "recorder-ui",
@@ -7013,7 +7052,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "error-localization",
@@ -7072,7 +7111,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "carbon-register",
@@ -7211,7 +7250,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "monitor-lifetime",
@@ -7293,7 +7332,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "validator-provider",
@@ -7367,7 +7406,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "dependency-cache",
@@ -7538,7 +7577,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "initialized-config",
@@ -7629,7 +7668,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "telemetry-construction",
@@ -7698,7 +7737,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "sentry-local-scope",
@@ -7809,7 +7848,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "actor-destruction",
@@ -7862,7 +7901,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "thin-wrapper-reuse",
@@ -8006,7 +8045,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "coding-description",
@@ -8050,7 +8089,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "native-dictionary-reuse",
@@ -8164,7 +8203,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "unreviewed-generated",
@@ -9608,7 +9647,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "native-image-text-selection",
@@ -9676,7 +9715,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "image-exif-analysis",
@@ -9761,7 +9800,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "ocr-cache-responsibility",
@@ -9828,7 +9867,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     },
     {
       "id": "native-image-zoom-centering",
@@ -10143,7 +10182,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev34"
+      "reviewer": "root_concentrated_integration_dev35"
     }
   ],
   "findings": [
