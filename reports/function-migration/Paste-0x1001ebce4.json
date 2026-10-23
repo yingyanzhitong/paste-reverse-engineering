@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001ebce4",
-  "reviewed_at": "2026-10-23T07:33:40.947254+00:00",
+  "reviewed_at": "2026-10-23T08:50:59.038591+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0158.c",
@@ -10,19 +10,20 @@
   },
   "original_pseudocode_sha256": "92b3127cab244cbc3720bf29f76539149b09464ac56e212c4f25cbaa2e5de60e",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalShortcutValidation.swift": "891737a050f2d99d6b28f4fd2deec4e8ea24fc9b1ea9717fb5bf942b223d6e45",
-    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "58e93b238b02e891f22f3211a7e53a1f82e052e15a8d35405ad38a06a5f0d964",
-    "replica/Sources/PasteReplicaCore/OriginalShortcutMessages.swift": "c665555bf15bc5d6c9f0b89ce6a17bd0c39df44272115b15e17a8495c95cc8c6",
-    "replica/Sources/PasteReplica/UI/ShortcutRecorder.swift": "3afbb014d16f71376af7d6d8e8f09bef4c5e0746dff4bfa0b5cc9b2fede24ebc"
+    "replica/Sources/PasteReplicaCore/OriginalShortcutValidation.swift": "603461a3f5f5fbafd3e3b52efbfd04ba388076e18da96136b4e25edb14d43dfa",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "324d72f9ea320945540033f076ad08350f3bdc2578fc71bbc28a5117200678a7",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutMessages.swift": "664d1b73124d83a1e5619475da1230679e797b2622852b9c563194792a064322",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "ffbad26b5a510378e501ccfbc0d6991eb9b49143321503595d8b7da809a2b3c3"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
-  "implementation_origin": "newly_migrated",
-  "review": "part-0158.c:695…779；核对 CopySymbolicHotKeys 的 OSStatus==0/NSArray/条件桥接/提前结束路径，实际主线程录制入口传入 NSApp.mainMenu；独立 Swift API 把原版 Result/Error 容器还原为同等成功/错误 String?，不依赖原版二进制。",
+  "implementation_origin": "existing_reused",
   "contract": "首先 CopySymbolicHotKeys 并条件转换数组，逐字典匹配已启用系统快捷键；首次命中返回系统冲突本地化说明；读取失败、无数组、空或全部不匹配时继续检查 NSApp.mainMenu，返回菜单冲突说明或 nil。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+  "review": "part-0158.c:695…779；核对 CopySymbolicHotKeys 的 OSStatus==0/NSArray/条件桥接/提前结束路径，实际主线程录制入口传入 NSApp.mainMenu；独立 Swift API 把原版 Result/Error 容器还原为同等成功/错误 String?，不依赖原版二进制。 本轮逐项复审：Core 原始契约不变；录制入口已改接三态 OriginalShortcutRecorder.f_1001f132c，Carbon 转换通过新注册对象真实使用；旧 ShortcutRecorderButton.record 引用已删除。isValidGlobal 现在严格复用原版谓词，不再额外排除 Escape/大于127键码/其他修饰位。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

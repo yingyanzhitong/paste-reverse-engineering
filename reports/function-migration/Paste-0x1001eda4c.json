@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001eda4c",
+  "reviewed_at": "2026-10-23T08:50:59.436627+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0158.c",
+    "line": 1944
+  },
+  "original_pseudocode_sha256": "057419388e248a4b4c23c26e087f84312d157374532c1f71b6297d63c5f11b69",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutControls.swift": "c45d93cb73b06171557e754465c9c06b3711acae7fb0dbfd0925a4b4fc4baecd"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "读取显示三元组；样式位true时返回修饰符SF Text(footnote)与键名Text(body)两项；false只返回状态Text(body)。",
+  "review": "逐个原版条件分支、字体get_footnote/get_body及Text构造核对；由NSHostingView真实承载的HStack(spacing:1)调用。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

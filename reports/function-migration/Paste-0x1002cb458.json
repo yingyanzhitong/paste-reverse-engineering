@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002cb458",
+  "reviewed_at": "2026-10-23T08:50:59.452913+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0231.c",
+    "line": 506
+  },
+  "original_pseudocode_sha256": "1c499e86d78212ee53432ea3d70d92118cc5bb7cf731e5c2b459219718633178",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalConfigurationFunctions.swift": "d777c6848066ec198ca41739d0a785ece4df2000977cda19b230e3d4530fcb54"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "独立解码配置观察的 old/new 两个原始值，按 old、new 的顺序返回 tuple，两者分别使用相同的解码和惰性默认值策略。",
+  "review": "decompiled/Paste/part-0231.c:503 起先后两次调用 0x1002ca920。复刻不缓存共享 fallback 结果，保留两边失败时分别调用的行为；WindowSharingPolicy.preferenceChanges 实际调用。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000d4624",
+  "reviewed_at": "2026-10-23T08:50:59.348210+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0069.c",
+    "line": 1435
+  },
+  "original_pseudocode_sha256": "9657441f88fc8967aa393db045a52b7e36e34bd8f3f2b86ea9da4ed07f8caa83",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift": "ca1254f51703d799594388a6ebf0f1694f767f8c9d783cb6fb9ed6482617f938"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "命名诊断logger构造：新建锁，保存名称字符串，可选logger协议缓存初始nil，不调用factory或输出日志。",
+  "review": "重新核对part-0069.c，+0x28..+0x48是可选logger existential五字存储；复刻用原生可选协议值保存，不伪造五类无用事件字段。CaptureState初始化实际建立名为Pasteboard的该对象。默认本地sink为替换provider，未宣称完整原版输出实现已迁移。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

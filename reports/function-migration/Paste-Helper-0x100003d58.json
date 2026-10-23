@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste-Helper:0x100003d58",
-  "reviewed_at": "2026-10-23T07:33:40.900900+00:00",
+  "reviewed_at": "2026-10-23T08:50:58.993949+00:00",
   "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
   "original_pseudocode": {
     "path": "decompiled/Paste-Helper/part-0000.c",
@@ -10,17 +10,18 @@
   },
   "original_pseudocode_sha256": "8fba76860f9b3a8d481764b3f4543fd5f742054ba9413bee0a7dce085b06b7bd",
   "source_sha256": {
-    "replica/Sources/PasteReplicaHelper/HelperMain.swift": "9d3d2472a2b9905aabd408f9da7e0b148976ff057f935a18a3a75d8407cab2fe"
+    "replica/Sources/PasteReplicaHelper/HelperMain.swift": "8d1b91412cf7fa0fd44b466266a894eca087f626cb91b0fca4f93d60ded63f45"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "74117fae21a9eec4161c179c43a554ba830853c065fb35217b5b9a7116ea6dd9",
+  "compiled_app_binary_sha256": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
   "compiled_product": "PasteReplicaHelper",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
-  "review": "decompiled/Paste-Helper/part-0000.c:1721 起。复刻 catch 分支记录 Logger.error，返回 false，由 completeLaunchAttempt 递增重试计数。 最终复审日志文字恢复 Failed to launch Paste:，error 等级、localizedDescription 和默认 string privacy 均保持原版；未增加重抛或异常默认成功路径。",
   "contract": "NSWorkspace 启动错误时记录 localizedDescription 并向上游返回 false；错误不继续抛给重试调度器。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。",
+  "review": "decompiled/Paste-Helper/part-0000.c:1721 起。复刻 catch 分支记录 Logger.error，返回 false，由 completeLaunchAttempt 递增重试计数。 最终复审日志文字恢复 Failed to launch Paste:，error 等级、localizedDescription 和默认 string privacy 均保持原版；未增加重抛或异常默认成功路径。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "static_review_risk": "localizedDescription 仅在 error 日志启用时求值，与原版日志判断匹配；返回 false，错误对象由 ARC。"
 }

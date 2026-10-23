@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001ee748",
+  "reviewed_at": "2026-10-23T08:50:59.442808+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0158.c",
+    "line": 2542
+  },
+  "original_pseudocode_sha256": "8c17da640b55b581de6077762ed0aa36a909e8159c18eb0ab5c412421b78907d",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutControls.swift": "c45d93cb73b06171557e754465c9c06b3711acae7fb0dbfd0925a4b4fc4baecd"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "主录制按钮style：label设body字体，frame120×24中心；controlColor背景忽略全部safeArea边，continuous圆角6裁剪，continuous圆角6 separator stroke宽1中心overlay；不按pressed改变样式。",
+  "review": "原版frame寄存器x0=120/x2=24，cornerRadius双值6、continuous、FillStyle0x100、StrokeStyle(lineWidth1,miterLimit10,空dash)以及overlay center逐项核对；真实主按钮接此ButtonStyle。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

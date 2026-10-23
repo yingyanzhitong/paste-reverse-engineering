@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001eb110",
+  "reviewed_at": "2026-10-23T08:50:59.385501+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0157.c",
+    "line": 1781
+  },
+  "original_pseudocode_sha256": "db15662e9ef412c476fccf9878c3303d16ba3359a4d5154f1b9d7ae7b4d4517e",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift": "1ac9905dbea68bb2ae3681177014696b71dbb15b84738e3a33718198401f7b82"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "销毁注册对象时如Carbon handle非nil则注销，释放动作及对象。",
+  "review": "可选handle判断与UnregisterEventHotKey一致；Swift deinit调用，动作/对象生命周期交Swift ARC，不宣称原版布局/ABI。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001e7d58",
-  "reviewed_at": "2026-10-23T07:33:40.914449+00:00",
+  "reviewed_at": "2026-10-23T08:50:58.999764+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0156.c",
@@ -10,17 +10,18 @@
   },
   "original_pseudocode_sha256": "8db97b0fc6a2f9a0b4dc3a080dece99d40bee1d08317121d3a1ae4c398449a0b",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "58e93b238b02e891f22f3211a7e53a1f82e052e15a8d35405ad38a06a5f0d964",
-    "replica/Sources/PasteReplica/GlobalHotKey.swift": "325a36c35d3719ba551ff116495f9d4c4da27d28740ca29c85889c535812e332"
+    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "324d72f9ea320945540033f076ad08350f3bdc2578fc71bbc28a5117200678a7",
+    "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift": "1ac9905dbea68bb2ae3681177014696b71dbb15b84738e3a33718198401f7b82"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
-  "review": "part-0156.c:1301；从薄切片静态读取 0x100fb4fc0 表：100000→100，80000→800，40000→1000，20000→200。复用既有注册代码等价四分支，提取具名函数供 RegisterEventHotKey 调用。",
   "contract": "遍历原版四项 AppKit→Carbon 修饰键映射，输入含该位则 OR 对应 UInt32 值，其余位忽略。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+  "review": "part-0156.c:1301；从薄切片静态读取 0x100fb4fc0 表：100000→100，80000→800，40000→1000，20000→200。复用既有注册代码等价四分支，提取具名函数供 RegisterEventHotKey 调用。 本轮逐项复审：Core 原始契约不变；录制入口已改接三态 OriginalShortcutRecorder.f_1001f132c，Carbon 转换通过新注册对象真实使用；旧 ShortcutRecorderButton.record 引用已删除。isValidGlobal 现在严格复用原版谓词，不再额外排除 Escape/大于127键码/其他修饰位。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

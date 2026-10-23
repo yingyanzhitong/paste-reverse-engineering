@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10021d7a4",
+  "reviewed_at": "2026-10-23T08:50:59.455728+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0185.c",
+    "line": 83
+  },
+  "original_pseudocode_sha256": "aa51981ce36eceef2c1f24930d670fe847b403b51e76de9b2f20daa7da13808a",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPreviewWindows.swift": "4cc1f30d0de962162c6231a6207cc7623fc82e20f126f3ebc3edb326d5592c2d"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "取window.contentView的父视图，收集其直接子视图中的NSVisualEffectView并返回首个；无contentView、父视图或符合对象则nil。",
+  "review": "原版part-0185.c逐分支核实；不递归、不返回任意后代。OriginalPreviewWindow初始化实际两次调用。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

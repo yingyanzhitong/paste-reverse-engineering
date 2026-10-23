@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100378ac0",
-  "reviewed_at": "2026-10-23T07:33:40.983801+00:00",
+  "reviewed_at": "2026-10-23T08:50:59.079192+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0281.c",
@@ -10,16 +10,17 @@
   },
   "original_pseudocode_sha256": "fb5e3f8cf5ecee1a282744638732b3b9d4e90aed135bc53c114dae757860ece7",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "015353f4b248580f0d62ed23006ed85c2a4233073a815172b64c0a8f0d0282c3"
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "3c39002db1b565165fe2475e752a2882323fabf7aa24ed5839261f915ebef47d"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
-  "review": "原版 part-0281.c 0x100378ac0；机器码常量 0x3fd0000000000000 和 0x3f9999999999999a；二进制大字符串恢复 category=pasteboard.monitoring、日志 Start monitoring pasteboard。start 真实转入该函数；替换旧 0.4 秒/common runloop block timer，按原版原生 selector 触发已有 poll。poll/sync 算法本身尚未映射为完整迁移。 未执行编译或功能回归，等待主智能体统一编译建立静态证据。",
   "contract": "每次调用先记录 Start monitoring pasteboard 日志；若 poll timer 已存在直接返回；否则刷新当前 changeCount，创建默认 runloop 的 target/selector 重复 timer，interval=0.25、userInfo=nil、tolerance=0.025。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+  "review": "原版 part-0281.c 0x100378ac0；机器码常量 0x3fd0000000000000 和 0x3f9999999999999a；二进制大字符串恢复 category=pasteboard.monitoring、日志 Start monitoring pasteboard。start 真实转入该函数；替换旧 0.4 秒/common runloop block timer，按原版原生 selector 触发已有 poll。poll/sync 算法本身尚未映射为完整迁移。 未执行编译或功能回归，等待主智能体统一编译建立静态证据。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

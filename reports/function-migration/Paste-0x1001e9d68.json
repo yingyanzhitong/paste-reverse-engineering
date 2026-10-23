@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001e9d68",
+  "reviewed_at": "2026-10-23T08:50:59.426635+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0157.c",
+    "line": 876
+  },
+  "original_pseudocode_sha256": "ca90053a29ae06b281364f3c32854ec7d09a6c6dfb54088a99607d16af5a3161",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutCoding.swift": "c55c3649e56566bab3b41e8f4ba2e6ef542e50e202ab87357219b62236883047"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "从keyed容器先decode Int keyCode，再decode UInt internalModifiers，保留全部Int/UInt范围，任一步错误传播。",
+  "review": "原版stub 0x100bf9f60=decode(Int)，0x100bf9f6c=decode(UInt)，类型及顺序确认；现有偏好解码路径调用完整OriginalShortcutValue，再在复刻facade边界检查UInt32。旧modifierRawValue读取作为单独兼容分支，不宣称属于原版解码函数。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

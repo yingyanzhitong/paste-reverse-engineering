@@ -4,11 +4,40 @@ import AppKit
 /// current typing attributes and translated placeholder; initializer/theme and
 /// localization functions are tracked separately from these method contracts.
 @MainActor
-open class OriginalSearchTextView: NSTextView {
+open class OriginalSearchTextView: NSTextView, NSMenuDelegate {
     public var canAcceptFocus = true
-    public var preferredTypingAttributes: [NSAttributedString.Key: Any] = [:]
-    public var placeholderText = OriginalSearchAppearance.searchPlaceholder()
+    public var preferredTypingAttributes: [NSAttributedString.Key: Any] = [
+        .foregroundColor: OriginalSearchAppearance.f_1001fec18()!,
+        .font: OriginalSearchAppearance.f_1001ff928()
+    ]
+    private var storedPlaceholderText: String?
+    public var placeholderText: String {
+        get { storedPlaceholderText ?? OriginalSearchAppearance.searchPlaceholder() }
+        set { storedPlaceholderText = newValue }
+    }
     private var storedPlaceholder: NSTextField?
+
+    public override init(frame frameRect: NSRect, textContainer container: NSTextContainer?) {
+        super.init(frame: frameRect, textContainer: container)
+    }
+
+    public override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+    }
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    public func f_1000440e4(for event: NSEvent) -> NSMenu? {
+        let menu = super.menu(for: event)
+        menu?.delegate = self
+        return menu
+    }
+    open override func menu(for event: NSEvent) -> NSMenu? { f_1000440e4(for: event) }
+
+    public func f_10004487c(_ menu: NSMenu) { OriginalSearchMenu.f_10021b56c(menu) }
+    public func menuWillOpen(_ menu: NSMenu) { f_10004487c(menu) }
 
     public func f_1000436a0() -> NSTextField {
         if let storedPlaceholder { return storedPlaceholder }

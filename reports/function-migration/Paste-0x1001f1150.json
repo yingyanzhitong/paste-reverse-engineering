@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001f1150",
+  "reviewed_at": "2026-10-23T08:50:59.404077+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0160.c",
+    "line": 237
+  },
+  "original_pseudocode_sha256": "7990172b305606048c46719d736e84a298eb59dd4e3fc421edcb61419851fc04",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "ffbad26b5a510378e501ccfbc0d6991eb9b49143321503595d8b7da809a2b3c3"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "可选新状态非nil时发布状态；nil维持当前值；如存在事件monitor则移除并清空持有。",
+  "review": "原版可选enum额外sentinel用Swift Optional表达；原始赋状态先于removeMonitor，调用链toggle/clear/成功/窗口清理实际接入。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

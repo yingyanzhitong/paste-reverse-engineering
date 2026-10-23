@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000d468c",
+  "reviewed_at": "2026-10-23T08:50:59.350653+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0069.c",
+    "line": 1460
+  },
+  "original_pseudocode_sha256": "76eafec307411ca34fdcc12cc9a205708de495b12a109678731a04967ad8cd55",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift": "ca1254f51703d799594388a6ebf0f1694f767f8c9d783cb6fb9ed6482617f938"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "命名logger getter全程互斥；已有缓存返回其值；无缓存则调用factory(name)，缓存非nil结果并返回；离开前解锁。",
+  "review": "对照part-0069.c缓存访问与锁区间；factory只在首次get时调用，在锁内，值语义/ARC由Swift协议容器保持。现实际用于app/type忽略、nil items与超限分支。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

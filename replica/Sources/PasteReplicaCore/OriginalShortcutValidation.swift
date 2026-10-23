@@ -6,6 +6,11 @@ import Foundation
 public enum OriginalShortcutValidation {
     /// The original checks system shortcuts before walking the application's menu.
     public static func f_1001ebce4(shortcut: KeyboardShortcut, menu: NSMenu?) -> String? {
+        f_1001ebce4(shortcut: OriginalShortcutValue(keyCode: Int(shortcut.keyCode),
+            internalModifiers: shortcut.modifierRawValue), menu: menu)
+    }
+
+    public static func f_1001ebce4(shortcut: OriginalShortcutValue, menu: NSMenu?) -> String? {
         var copiedKeys: Unmanaged<CFArray>?
         if CopySymbolicHotKeys(&copiedKeys) == noErr,
            let keys = copiedKeys?.takeRetainedValue() as? [[String: Any]],
@@ -17,6 +22,11 @@ public enum OriginalShortcutValidation {
 
     /// Depth-first submenu traversal, including Shift implicit in uppercase equivalents.
     public static func f_1001ec200(shortcut: KeyboardShortcut, menu: NSMenu?) -> String? {
+        f_1001ec200(shortcut: OriginalShortcutValue(keyCode: Int(shortcut.keyCode),
+            internalModifiers: shortcut.modifierRawValue), menu: menu)
+    }
+
+    public static func f_1001ec200(shortcut: OriginalShortcutValue, menu: NSMenu?) -> String? {
         for item in menu?.items ?? [] {
             if let failure = f_1001ec200(shortcut: shortcut, menu: item.submenu) { return failure }
             let candidate = OriginalShortcutFunctions.f_1001e8098(keyCode: shortcut.keyCode)
@@ -24,7 +34,7 @@ public enum OriginalShortcutValidation {
             let rawModifiers = item.keyEquivalentModifierMask.rawValue
             let modifiers = item.keyEquivalent == candidate
                 ? rawModifiers & 0x1e0000 : (rawModifiers & 0x1c0000) | 0x20000
-            if modifiers == shortcut.modifierRawValue {
+            if modifiers == shortcut.internalModifiers {
                 return String(format: OriginalShortcutMessages.value("shortcut-recorder.error.used-in-menu"),
                               locale: Locale.current, item.title)
             }

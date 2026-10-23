@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001e9774",
-  "reviewed_at": "2026-10-23T07:33:40.938380+00:00",
+  "reviewed_at": "2026-10-23T08:50:59.030762+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0157.c",
@@ -10,18 +10,19 @@
   },
   "original_pseudocode_sha256": "28392f2df0aa32d95e9942d4ae2d63e5ed3d41586f3b5cb1b50f256078e1d825",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "58e93b238b02e891f22f3211a7e53a1f82e052e15a8d35405ad38a06a5f0d964",
-    "replica/Sources/PasteReplicaCore/KeyboardShortcut.swift": "35d4d5f9aa2e750ad539ddf5a0f0b328132384f0df0a417dea90843a12a3b0fc",
-    "replica/Sources/PasteReplica/UI/ShortcutRecorder.swift": "3afbb014d16f71376af7d6d8e8f09bef4c5e0746dff4bfa0b5cc9b2fede24ebc"
+    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "324d72f9ea320945540033f076ad08350f3bdc2578fc71bbc28a5117200678a7",
+    "replica/Sources/PasteReplicaCore/KeyboardShortcut.swift": "b75d32ac942c969d2ab245ec31c9a3041ca752bea22527879753be29be0eb99f",
+    "replica/Sources/PasteReplica/UI/ShortcutRecorder.swift": "bd62fceaa74c1c52ff4d74cd42d7c3a26502f6f0e48c0f6ff94af2861409269a"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
-  "review": "part-0157.c:444 伪代码末尾返回值失真，汇编 0x1001e9774…0x1001e98e8 确认栈上累积 String 通过 x0/x1 返回，初始空串、四分支顺序及英文名之间无额外分隔符。displayName 复用原有相同符号逻辑；录制 accessibilityValue 使用 verbose 分支。",
   "contract": "按 Control、Option、Shift、Command 次序拼接已置位修饰键；verbose=false 用符号，true 用 ⌃ Control、⌥ Option、⇧ Shift、⌘ Command；其余位忽略，空组合返回空串。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+  "review": "part-0157.c:444 伪代码末尾返回值失真，汇编 0x1001e9774…0x1001e98e8 确认栈上累积 String 通过 x0/x1 返回，初始空串、四分支顺序及英文名之间无额外分隔符。displayName 复用原有相同符号逻辑；录制 accessibilityValue 使用 verbose 分支。 本轮逐项复审：Core 原始契约不变；录制入口已改接三态 OriginalShortcutRecorder.f_1001f132c，Carbon 转换通过新注册对象真实使用；旧 ShortcutRecorderButton.record 引用已删除。isValidGlobal 现在严格复用原版谓词，不再额外排除 Escape/大于127键码/其他修饰位。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

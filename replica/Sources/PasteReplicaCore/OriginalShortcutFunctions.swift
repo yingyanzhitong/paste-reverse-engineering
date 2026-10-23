@@ -28,7 +28,12 @@ public enum OriginalShortcutFunctions {
 
     /// Function keys need no modifiers; other keys require Command, Control or Option.
     public static func f_1001ebc2c(keyCode: UInt32, modifierRawValue: UInt) -> Bool {
-        functionKeyCodes.contains(keyCode) || keyCode == 90 || modifierRawValue & 0x1c0000 != 0
+        f_1001ebc2c(keyCode: Int(keyCode), modifierRawValue: modifierRawValue)
+    }
+
+    public static func f_1001ebc2c(keyCode: Int, modifierRawValue: UInt) -> Bool {
+        (UInt32(exactly: keyCode).map(functionKeyCodes.contains) ?? false)
+            || keyCode == 90 || modifierRawValue & 0x1c0000 != 0
     }
 
     /// The verbose variant intentionally uses the original English modifier names.
@@ -46,16 +51,41 @@ public enum OriginalShortcutFunctions {
 
     /// Compare one Carbon symbolic-shortcut dictionary, including its enabled flag.
     public static func f_1001ebf04(_ entry: [String: Any], shortcut: KeyboardShortcut) -> Bool {
+        f_1001ebf04(entry, shortcut: OriginalShortcutValue(keyCode: Int(shortcut.keyCode),
+            internalModifiers: shortcut.modifierRawValue))
+    }
+
+    public static func f_1001ebf04(_ entry: [String: Any], shortcut: OriginalShortcutValue) -> Bool {
         guard let code = entry["kHISymbolicHotKeyCode"] as? NSNumber,
-              code.intValue == Int(shortcut.keyCode),
+              code.intValue == shortcut.keyCode,
               let modifiers = entry["kHISymbolicHotKeyModifiers"] as? NSNumber,
-              modifiers.uintValue == UInt(f_1001e7d58(modifierRawValue: shortcut.modifierRawValue)),
+              modifiers.uintValue == UInt(f_1001e7d58(modifierRawValue: shortcut.internalModifiers)),
               let enabled = entry["kHISymbolicHotKeyEnabled"] as? NSNumber else { return false }
         return enabled.boolValue
     }
 
     private static let displayLabels = f_1001e822c()
     private static let menuLabels = f_1001e8a98()
+    private static let keyCodes = f_1001e9654()
+
+    /// The original literal-key initializer uses a fixed ANSI map, independently
+    /// of the current keyboard layout used to display an already chosen key.
+    public static func f_1001e9654() -> [String: UInt32] {
+        ["a": 0, "b": 11, "c": 8, "d": 2, "e": 14, "f": 3, "g": 5,
+         "h": 4, "i": 34, "j": 38, "k": 40, "l": 37, "m": 46, "n": 45,
+         "o": 31, "p": 35, "q": 12, "r": 15, "s": 1, "t": 17, "u": 32,
+         "v": 9, "w": 13, "x": 7, "y": 16, "z": 6, "0": 29, "1": 18,
+         "2": 19, "3": 20, "4": 21, "5": 23, "6": 22, "7": 26, "8": 28,
+         "9": 25, "=": 24, "-": 27, "]": 30, "[": 33, "\"": 39,
+         ";": 41, "\\": 42, ",": 43, "/": 44, ".": 47]
+    }
+
+    public static func f_1001e94d4(_ key: String) -> UInt32 {
+        guard let keyCode = keyCodes[key.lowercased()] else {
+            preconditionFailure("Unsupported shortcut key: \(key)")
+        }
+        return keyCode
+    }
 
     /// The original 52-entry display table; F20 deliberately uses layout translation.
     public static func f_1001e822c() -> [UInt32: String] {
@@ -74,12 +104,16 @@ public enum OriginalShortcutFunctions {
 
     /// Resolve special labels first, then translate the current ASCII-capable layout.
     public static func f_1001e7e50(keyCode: UInt32) -> String {
-        if let label = displayLabels[keyCode] { return label }
+        f_1001e7e50(keyCode: Int(keyCode))
+    }
+
+    public static func f_1001e7e50(keyCode: Int) -> String {
+        if let code = UInt32(exactly: keyCode), let label = displayLabels[code] { return label }
         guard let source = TISCopyCurrentASCIICapableKeyboardLayoutInputSource()?.takeRetainedValue(),
               let property = TISGetInputSourceProperty(source, kTISPropertyUnicodeKeyLayoutData) else { return "" }
         let data = Unmanaged<CFData>.fromOpaque(property).takeUnretainedValue()
         guard let bytes = CFDataGetBytePtr(data) else { return "" }
-        precondition(keyCode <= UInt16.max)
+        precondition(keyCode >= 0 && keyCode <= Int(UInt16.max))
         let layout = UnsafeRawPointer(bytes).assumingMemoryBound(to: UCKeyboardLayout.self)
         var deadKeyState: UInt32 = 0
         var length = 0
@@ -103,10 +137,14 @@ public enum OriginalShortcutFunctions {
     }
 
     public static func f_1001e8098(keyCode: UInt32) -> String {
+        f_1001e8098(keyCode: Int(keyCode))
+    }
+
+    public static func f_1001e8098(keyCode: Int) -> String {
         let label = f_1001e7e50(keyCode: keyCode)
         if label == "↩" { return "\r" }
         if label.count < 2 { return label.lowercased() }
-        return menuLabels[keyCode] ?? ""
+        return UInt32(exactly: keyCode).flatMap { menuLabels[$0] } ?? ""
     }
 
     private static let functionKeyCodes: [UInt32] = [

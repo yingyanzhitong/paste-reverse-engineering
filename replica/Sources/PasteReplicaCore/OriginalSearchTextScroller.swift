@@ -20,6 +20,10 @@ public final class OriginalSearchTextScroller: NSScrollView {
         fatalError("init(coder:) is unavailable for OriginalSearchTextScroller")
     }
 
+    public override init(frame frameRect: NSRect) {
+        fatalError("init(frame:) is unavailable for OriginalSearchTextScroller")
+    }
+
     public func f_100043344() -> NSRect { focusRingBounds }
     public override var focusRingMaskBounds: NSRect { f_100043344() }
 

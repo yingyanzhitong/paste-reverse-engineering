@@ -2,6 +2,21 @@ import AppKit
 import SwiftUI
 import PasteReplicaCore
 
+@MainActor
+final class ReplicaSearchMenuAction: NSObject {
+    private let action: () -> Void
+    private init(action: @escaping () -> Void) { self.action = action }
+    @objc private func perform(_ sender: NSMenuItem) { action() }
+
+    static func item(title: String, action: @escaping () -> Void) -> NSMenuItem {
+        let target = ReplicaSearchMenuAction(action: action)
+        let item = NSMenuItem(title: title, action: #selector(perform(_:)), keyEquivalent: "")
+        item.target = target
+        item.representedObject = target
+        return item
+    }
+}
+
 /// Bridge the recovered NSTextView delegate into the existing panel. This does
 /// not claim migration of SearchField's remaining layout and filter functions.
 @MainActor
@@ -10,32 +25,37 @@ struct ReplicaSearchEditor: NSViewRepresentable {
     @Binding var focused: Bool
     var onEnter: () -> Void
     var onCancel: () -> Void
+    var onShowFilters: (NSButton) -> Void
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
 
-    func makeNSView(context: Context) -> NSScrollView {
-        let editor = SearchTextView(usingTextLayoutManager: true)
-        editor.preferredTypingAttributes = [.font: OriginalSearchAppearance.f_1001ff928(),
-            .foregroundColor: OriginalSearchAppearance.f_1001fec18()!]
-        let scroll = OriginalSearchTextScroller(textView: editor)
+    func makeNSView(context: Context) -> SearchField {
+        let field = SearchField(frame: .zero)
+        let input = field.f_100045c2c()
+        let editor = input.f_100041f9c() as! SearchTextView
+        let scroll = input.f_10004200c()
         editor.frame = NSRect(x: 0, y: 0, width: scroll.contentSize.width, height: 22)
         editor.allowsUndo = true
         editor.autoresizingMask = [.width]
-        editor.textContainerInset = NSSize(width: 0, height: 2)
         editor.setAccessibilityLabel("搜索剪贴板")
         editor.setAccessibilityIdentifier("clipboard-search")
         editor.string = text
-        editor.f_1000436a0().isHidden = !text.isEmpty
-        context.coordinator.attach(editor)
-        return scroll
+        input.f_1000449e8()
+        context.coordinator.attach(field, editor: editor)
+        field.onClear = { [weak coordinator = context.coordinator] _ in coordinator?.parent.text = "" }
+        field.onShowFilters = { [weak coordinator = context.coordinator] button in coordinator?.parent.onShowFilters(button) }
+        input.f_100042090().setAccessibilityLabel("清空搜索")
+        field.f_100045730().setAccessibilityLabel("筛选")
+        return field
     }
 
-    func updateNSView(_ scroll: NSScrollView, context: Context) {
+    func updateNSView(_ field: SearchField, context: Context) {
         context.coordinator.parent = self
-        guard let editor = scroll.documentView as? SearchTextView else { return }
+        let input = field.f_100045c2c()
+        guard let editor = input.f_100041f9c() as? SearchTextView else { return }
         if editor.string != text, !editor.hasMarkedText() {
             editor.string = text
-            editor.f_1000436a0().isHidden = !text.isEmpty
+            input.f_1000449e8()
             editor.setSelectedRange(NSRange(location: (text as NSString).length, length: 0))
         }
         editor.requestedFocus = focused
@@ -44,14 +64,22 @@ struct ReplicaSearchEditor: NSViewRepresentable {
         }
     }
 
+    final class SearchField: OriginalSearchField {
+        override func makeInputView() -> OriginalSearchInputView { InputView(frame: .zero) }
+    }
+
+    final class InputView: OriginalSearchInputView {
+        override func makeTextView() -> OriginalSearchTextView {
+            SearchTextView(usingTextLayoutManager: true)
+        }
+    }
+
     @MainActor final class Coordinator {
         var parent: ReplicaSearchEditor
-        private var editing: OriginalSearchEditing?
         init(_ parent: ReplicaSearchEditor) { self.parent = parent }
 
-        func attach(_ editor: SearchTextView) {
-            let editing = OriginalSearchEditing(textView: editor)
-            self.editing = editing
+        func attach(_ field: SearchField, editor: SearchTextView) {
+            let editing = field.editingDelegate!
             // The plain-text panel has no attachment proposal consumer yet.
             // Keep the recovered optional callback nil so AppKit applies edits,
             // preserving its undo registration and input-method composition.
@@ -61,6 +89,16 @@ struct ReplicaSearchEditor: NSViewRepresentable {
             editing.onEnter = { [weak self] in self?.parent.onEnter() }
             editing.onCancel = { [weak self] in self?.parent.onCancel() }
             editor.delegate = editing
+            field.onUndo = { [weak editor] in
+                guard let manager = editor?.undoManager, manager.canUndo else { return false }
+                manager.undo()
+                return true
+            }
+            field.onRedo = { [weak editor] in
+                guard let manager = editor?.undoManager, manager.canRedo else { return false }
+                manager.redo()
+                return true
+            }
             editor.didFocus = { [weak self] in
                 if self?.parent.focused == false { self?.parent.focused = true }
             }

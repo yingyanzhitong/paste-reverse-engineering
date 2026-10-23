@@ -436,14 +436,7 @@ struct ReplicaSettingsView: View {
                 state.controller?.hotKeyConfigurationChanged?()
             }), label: title, error: { shortcutError = $0 }, recordingChanged: {
                 state.controller?.hotKeyRecordingChanged?($0)
-            }).frame(width: 120, height: 26)
-            Button {
-                state.store.preferences[keyPath: path] = nil
-                state.perform { try state.store.save() }
-                state.controller?.hotKeyConfigurationChanged?()
-            } label: { Image(systemName: "xmark.circle") }
-            .buttonStyle(.plain).disabled(state.store.preferences[keyPath: path] == nil)
-            .accessibilityLabel("清除\(title)快捷键")
+            }).frame(width: 120, height: 24)
         }
     }
 

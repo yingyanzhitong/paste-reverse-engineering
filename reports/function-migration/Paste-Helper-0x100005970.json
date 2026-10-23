@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste-Helper:0x100005970",
-  "reviewed_at": "2026-10-23T07:34:54.747055+00:00",
+  "reviewed_at": "2026-10-23T08:44:50.493572+00:00",
   "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
   "original_pseudocode": {
     "path": "decompiled/Paste-Helper/part-0002.c",
@@ -15,11 +15,11 @@
     "entry_key": "Paste-Helper:0x100005970",
     "symbol": "_swift_release"
   },
-  "sdk_reuse_report_sha256": "457cd5a2634da39a84b381acd2fbd15b3d72d3cae596c619d33ded3ebb6b1b37",
+  "sdk_reuse_report_sha256": "67f8a107f9ecc7375f03596aca2d09afb41f93fada5a1a621c95c5153ff31560",
   "implementation_origin": "existing_sdk_reused",
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "74117fae21a9eec4161c179c43a554ba830853c065fb35217b5b9a7116ea6dd9",
+  "compiled_app_binary_sha256": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
   "compiled_product": "PasteReplicaHelper",
   "functional_regression_executed": false,
   "equivalence_verified": false,

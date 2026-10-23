@@ -4,45 +4,26 @@ import PasteReplicaCore
 
 @MainActor
 final class GlobalHotKey {
-    private var reference: EventHotKeyRef?
-    private var handler: EventHandlerRef?
-    private var identifier: UInt32 = 1
+    private var registeredShortcut: PasteReplicaCore.KeyboardShortcut?
+    private var monitor: OriginalGlobalShortcutMonitor?
     var action: (() -> Void)?
 
     func register(keyCode: UInt32 = UInt32(kVK_ANSI_V), modifiers: NSEvent.ModifierFlags = [.command, .shift],
                   identifier: UInt32 = 1) -> OSStatus {
         unregister()
-        guard keyCode < 128, modifiers.subtracting([.command, .shift, .option, .control]).isEmpty else { return OSStatus(paramErr) }
-        self.identifier = identifier
-        var specification = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: UInt32(kEventHotKeyPressed))
-        let context = Unmanaged.passUnretained(self).toOpaque()
-        let install = InstallEventHandler(GetApplicationEventTarget(), { _, event, context in
-            guard let context, let event else { return OSStatus(eventNotHandledErr) }
-            var key = EventHotKeyID()
-            guard GetEventParameter(event, EventParamName(kEventParamDirectObject), EventParamType(typeEventHotKeyID),
-                                    nil, MemoryLayout<EventHotKeyID>.size, nil, &key) == noErr else {
-                return OSStatus(eventNotHandledErr)
-            }
-            return MainActor.assumeIsolated {
-                let owner = Unmanaged<GlobalHotKey>.fromOpaque(context).takeUnretainedValue()
-                guard key.signature == 0x5052504c, key.id == owner.identifier else { return OSStatus(eventNotHandledErr) }
-                owner.action?()
-                return noErr
-            }
-        }, 1, &specification, context, &handler)
-        guard install == noErr else { return install }
-        let identifier = EventHotKeyID(signature: 0x5052504c, id: identifier)
-        let carbonModifiers = OriginalShortcutFunctions.f_1001e7d58(modifierRawValue: modifiers.rawValue)
-        let status = RegisterEventHotKey(keyCode, carbonModifiers, identifier,
-                                        GetApplicationEventTarget(), 0, &reference)
-        if status != noErr { unregister() }
+        // The external identifier belongs to the replica facade. The reference
+        // allocates a process-wide Carbon ID for every registration attempt.
+        _ = identifier
+        let shortcut = PasteReplicaCore.KeyboardShortcut(keyCode: keyCode, modifierRawValue: modifiers.rawValue)
+        let monitor = OriginalGlobalShortcutMonitor.shared
+        self.monitor = monitor
+        let status = monitor.f_1001eaa64(shortcut: shortcut) { [weak self] in self?.action?() }
+        if status == noErr { registeredShortcut = shortcut }
         return status
     }
 
     func unregister() {
-        if let reference { UnregisterEventHotKey(reference) }
-        if let handler { RemoveEventHandler(handler) }
-        reference = nil
-        handler = nil
+        if let registeredShortcut { monitor?.f_1001eae90(shortcut: registeredShortcut) }
+        registeredShortcut = nil
     }
 }

@@ -5,10 +5,10 @@
   "states": {
     "excluded_by_scope": 0,
     "implemented": 0,
-    "migrated": 720,
-    "partial": 7,
-    "pending": 80397,
-    "verified": 10
+    "migrated": 896,
+    "partial": 30,
+    "pending": 80202,
+    "verified": 6
   },
   "targets": [
     {
@@ -19,10 +19,10 @@
       "states": {
         "excluded_by_scope": 0,
         "implemented": 0,
-        "migrated": 616,
-        "partial": 7,
-        "pending": 80072,
-        "verified": 10
+        "migrated": 792,
+        "partial": 30,
+        "pending": 79877,
+        "verified": 6
       },
       "pages": [
         {
@@ -547,10 +547,10 @@
     }
   ],
   "migration": {
-    "code_complete": 730,
-    "source_functions": 98,
-    "sdk_forwarders_reused": 632,
-    "remaining": 80404,
+    "code_complete": 902,
+    "source_functions": 233,
+    "sdk_forwarders_reused": 669,
+    "remaining": 80232,
     "regression_ready": false,
     "policy": "Finish all in-scope code migration before functional regression; retain explicit per-address scope exclusions."
   },

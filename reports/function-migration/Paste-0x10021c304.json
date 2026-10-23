@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10021c304",
+  "reviewed_at": "2026-10-23T08:50:59.242753+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0184.c",
+    "line": 1551
+  },
+  "original_pseudocode_sha256": "767c172bb9c61b8c2c5141699f723d290e715d992252b3d8747202555124df7d",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchMenu.swift": "af3962d55bbfae4c40a67d43872d7f30d8e0e9c34c049527f28f94cc5a62f5e9",
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "7ccf867a3c2d7ca18ee876dfa03a54954c0675e3b3b691f599216afe6d2aaa95"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "以首个不保留项为写入位置，逐项swap压缩后续应保留项，返回有效前缀长度；本函数不删除尾部，保留数组尾部置换行为供调用方处理。",
+  "review": "逐地址对照既有REA伪代码及所需arm64指令，接入实际原生SearchField路径。ObjC/Swift执行器诊断、编译器私有对象布局采用当前Swift运行库，不承诺私有二进制ABI或诊断文本相同。候选等待稳定统一编译和主智能体登记；未运行功能测试。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

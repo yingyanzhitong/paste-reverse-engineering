@@ -34,7 +34,7 @@ final class HelperDelegate: NSObject, NSApplicationDelegate {
     private func startMonitoring() {
         logger.info("Paste Helper started at \(Bundle.main.bundleURL)")
         let url = applicationURL()
-        let markedRunning = defaults?.bool(forKey: "isRunning") ?? false
+        let markedRunning = defaults?.bool(forKey: "pasteIsRunning") ?? false
         let running = isMainApplicationRunning()
         logger.info("Paste located at: \(url)")
         logger.info("Paste is marked as running: \(markedRunning)")
@@ -79,7 +79,7 @@ final class HelperDelegate: NSObject, NSApplicationDelegate {
             logger.info("Launch already in progress")
             return
         }
-        guard defaults?.bool(forKey: "isRunning") == true else {
+        guard defaults?.bool(forKey: "pasteIsRunning") == true else {
             logger.info("Paste is not marked as running")
             return
         }

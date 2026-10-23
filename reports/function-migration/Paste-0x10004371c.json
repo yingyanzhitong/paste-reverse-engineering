@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10004371c",
-  "reviewed_at": "2026-10-23T07:33:40.729922+00:00",
+  "reviewed_at": "2026-10-23T08:50:58.930120+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0025.c",
@@ -10,18 +10,19 @@
   },
   "original_pseudocode_sha256": "8c86ad93c3d54fb36db104545486d57f0fc21c6fe72e41dccd3c7cba7d050538",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalSearchTextView.swift": "988baf1c939498881ffcb0ee315789b6a594e7eb102e00b3d10547bf6b6ef60b",
-    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "8d8171716407137209292fbecc8a77593a8f4b7fbead3695891f97b2ad054e9b",
+    "replica/Sources/PasteReplicaCore/OriginalSearchTextView.swift": "516f59d8ed37513fbcac4ab13bdbc79526d58469d8c4478a28ecffa27efa9015",
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "7ccf867a3c2d7ca18ee876dfa03a54954c0675e3b3b691f599216afe6d2aaa95",
     "replica/Sources/PasteReplicaCore/OriginalSearchAppearance.swift": "0cfd7e194ce6f6b1f4118897810e35d0eafab317a68e6104e4bfbd11dbaeb5c4"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
-  "review": "逐地址核对REA伪代码、调用链及所需arm64指令；已接入原生搜索编辑器。标签本地化使用原版17种短标签值，独立解析当前Locale；通用本地化资源构造和SearchField其余初始化/布局/筛选UI仍未计入迁移。编译不是运行时等价证明。",
   "contract": "配置占位标签：透明背景、不可选、不可编辑、无边框、placeholderTextColor，字体从当前preferredTypingAttributes的font键条件转换为NSFont，缺失或类型错误为nil，再设置已解析的general.search文本。复刻将本地化字符串解析结果存于显式上下文placeholderText；通用LocalizedStringResource构造函数不计入本项。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+  "review": "逐地址核对REA伪代码、调用链及所需arm64指令；已接入原生搜索编辑器。标签本地化使用原版17种短标签值，独立解析当前Locale；通用本地化资源构造和SearchField其余初始化/布局/筛选UI仍未计入迁移。编译不是运行时等价证明。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

@@ -80,46 +80,39 @@ struct ReplicaPanelView: View {
     }
 
     private var searchField: some View {
-        HStack(spacing: 7) {
-            Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
-            ReplicaSearchEditor(text: $state.query, focused: $searchFocused,
-                onEnter: { state.controller?.pasteSelection(plainTextOnly: false) },
-                onCancel: { state.controller?.cancelSearchOrPanel() })
-                .frame(height: 22)
-            if !state.query.isEmpty {
-                Button { state.query = "" } label: { Image(systemName: "xmark.circle.fill") }
-                    .buttonStyle(.plain).foregroundStyle(.secondary).accessibilityLabel("清空搜索")
-            }
-            Menu {
-                Button("清除筛选") { state.kind = nil; state.sourceFilter = nil; state.dateFilterDays = nil; state.deviceFilter = nil }
-                Section("类型") {
-                    ForEach(ClipboardKind.allCases, id: \.self) { kind in Button(kind.displayName) { state.kind = kind } }
-                }
-                Section("应用") {
-                    ForEach(Array(Set(state.store.items.map(\.sourceName))).sorted(), id: \.self) { name in
-                        Button(name) { state.sourceFilter = name }
-                    }
-                }
-                Section("日期") {
-                    Button("今天") { state.dateFilterDays = 1 }
-                    Button("过去一周") { state.dateFilterDays = 7 }
-                    Button("过去一个月") { state.dateFilterDays = 30 }
-                }
-                Section("设备") {
-                    ForEach(Array(Set(state.store.items.map(\.sourceDevice))).sorted(), id: \.self) { name in
-                        Button(name) { state.deviceFilter = name }
-                    }
-                }
-                Section("Pinboard") {
-                    ForEach(state.store.pinboards) { board in Button(board.name) { state.chooseBoard(board.id) } }
-                }
-            } label: { Image(systemName: "line.3.horizontal.decrease").foregroundStyle(.secondary) }
-            .menuStyle(.borderlessButton).menuIndicator(.hidden).fixedSize()
-            .accessibilityLabel("筛选").help("筛选 (⌘F)")
+        ReplicaSearchEditor(text: $state.query, focused: $searchFocused,
+            onEnter: { state.controller?.pasteSelection(plainTextOnly: false) },
+            onCancel: { state.controller?.cancelSearchOrPanel() },
+            onShowFilters: { button in
+                makeSearchFilterMenu().popUp(positioning: nil,
+                    at: NSPoint(x: button.bounds.minX, y: button.bounds.minY - 4), in: button)
+            })
+            .frame(width: 400, height: 32)
+    }
+
+    private func makeSearchFilterMenu() -> NSMenu {
+        let menu = NSMenu()
+        func action(_ title: String, _ body: @escaping () -> Void) {
+            menu.addItem(ReplicaSearchMenuAction.item(title: title, action: body))
         }
-        .padding(.horizontal, 12).frame(width: 400, height: 32)
-        .background(.primary.opacity(0.07), in: Capsule())
-        .overlay(Capsule().strokeBorder(searchFocused ? Color.accentColor.opacity(0.55) : .clear, lineWidth: 3))
+        func section(_ title: String) {
+            menu.addItem(.separator())
+            menu.addItem(.sectionHeader(title: title))
+        }
+        action("清除筛选") { state.kind = nil; state.sourceFilter = nil; state.dateFilterDays = nil; state.deviceFilter = nil }
+        section("类型")
+        for kind in ClipboardKind.allCases { action(kind.displayName) { state.kind = kind } }
+        section("应用")
+        for name in Set(state.store.items.map(\.sourceName)).sorted() { action(name) { state.sourceFilter = name } }
+        section("日期")
+        action("今天") { state.dateFilterDays = 1 }
+        action("过去一周") { state.dateFilterDays = 7 }
+        action("过去一个月") { state.dateFilterDays = 30 }
+        section("设备")
+        for name in Set(state.store.items.map(\.sourceDevice)).sorted() { action(name) { state.deviceFilter = name } }
+        section("Pinboard")
+        for board in state.store.pinboards { action(board.name) { state.chooseBoard(board.id) } }
+        return menu
     }
 
     private var boardTabs: some View {
@@ -251,6 +244,7 @@ struct ReplicaClipboardCard: View {
             .padding(.horizontal, 12).padding(.bottom, 11).padding(.top, 7)
         }
         .frame(width: 232, height: 232)
+        .background(ReplicaItemPreviewAnchor(itemID: item.id, controller: state.controller))
         .background(Color(nsColor: .textBackgroundColor))
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .overlay(RoundedRectangle(cornerRadius: 16).stroke(selected ? (activeState == .key ? Color.accentColor : .gray) : .black.opacity(0.08), lineWidth: selected ? 4 : 1).padding(selected ? -2 : 0))
@@ -421,13 +415,7 @@ func itemImage(_ item: ClipboardItem) -> NSImage? {
 }
 
 func itemFileURLs(_ item: ClipboardItem) -> [URL] {
-    let representations: [[String: Data]]
-    if let data = item.payloads["com.pastereplica.internal.items+json"],
-       let multiple = try? JSONDecoder().decode([[String: Data]].self, from: data) {
-        representations = multiple
-    } else {
-        representations = [item.payloads]
-    }
+    let representations = ClipboardStore.normalizedPasteboardPayloads(item.payloads)
     var urls: [URL] = []
     for representation in representations {
         if let data = representation[NSPasteboard.PasteboardType.fileURL.rawValue],

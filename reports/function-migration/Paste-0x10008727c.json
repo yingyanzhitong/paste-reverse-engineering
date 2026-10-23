@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10008727c",
+  "reviewed_at": "2026-10-23T08:50:59.474136+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0045.c",
+    "line": 275
+  },
+  "original_pseudocode_sha256": "d9ded2c48ba51ad9abd1a151d5351945833be9a7a655c2a60f1a85f48769cc6f",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPreviewWindows.swift": "4cc1f30d0de962162c6231a6207cc7623fc82e20f126f3ebc3edb326d5592c2d"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "反向查找最后一个同String identifier的entry，更新其编辑状态；仅该项为entries最后项时发布topmost。",
+  "review": "part-0045.c:273，搜索方向和发布条件已恢复；尚无真实inline editor调用。 当前实际UI路径已由主智能体接入，原版复杂内容renderer依赖单独保持partial。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

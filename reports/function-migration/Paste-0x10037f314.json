@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10037f314",
+  "reviewed_at": "2026-10-23T08:50:59.364496+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0282.c",
+    "line": 2057
+  },
+  "original_pseudocode_sha256": "330d5639d0094ab5d058ec3cef0a7048bdd21f51511c4675666a8b4bf2114408",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "67aaa38c332b0b01058e167b6d95ceb9d6fb34cd14f4bcf3a28c19d20920cd3f"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "在实现完整NSSecureCoding的PasteboardItem类上，supportsSecureCoding类方法返回true。",
+  "review": "与此前同码审计不同，本项已在正确PasteboardItem类真实声明NSSecureCoding并实现严格typed coder；不是拿窗口canBecomeKey=true当实现。Store.importArchive已由主智能体接入，Foundation secure decoder会使用该类方法。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

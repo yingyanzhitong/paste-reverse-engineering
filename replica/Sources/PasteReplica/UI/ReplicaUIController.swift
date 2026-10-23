@@ -219,6 +219,9 @@ final class ReplicaUIController {
     private var settingsWindow: NSWindow?
     private var stackWindow: NSWindow?
     private var itemWindows: [UUID: NSWindow] = [:]
+    private let previewRegistry = OriginalPreviewWindowRegistry()
+    private var previewAnchors: [UUID: WeakReplicaPreviewAnchor] = [:]
+    private lazy var previewPopover = makePreviewPopover()
     private var preferenceObservation: AnyCancellable?
 
     init(store: ClipboardStore) {
@@ -261,7 +264,10 @@ final class ReplicaUIController {
         NSApp.activate(ignoringOtherApps: true)
     }
 
-    func hidePanel() { panel.orderOut(nil) }
+    func hidePanel() {
+        NotificationCenter.default.post(name: OriginalPreviewPopover.mainWindowWillCloseNotification, object: nil)
+        panel.orderOut(nil)
+    }
     func togglePanel() { panel.isVisible ? hidePanel() : showPanel() }
     func focusSearch() { showPanel(); state.searchVisible = true; state.searchFocus = UUID() }
     func showError(message: String) {
@@ -389,12 +395,60 @@ final class ReplicaUIController {
     }
 
     func showPreview(item: ClipboardItem) {
-        if let existing = itemWindows[item.id] { show(existing); return }
-        let window = makeWindow(title: item.title.isEmpty ? item.kind.displayName : item.title,
-                                size: .init(width: 620, height: 480),
-                                view: ReplicaPreviewView(state: state, itemID: item.id))
-        itemWindows[item.id] = window
+        if let existing = previewRegistry.f_10008747c(itemIdentity: AnyHashable(item.id)) {
+            show(existing)
+            return
+        }
+        if let anchor = previewAnchors[item.id]?.view, anchor.window != nil {
+            previewPopover.show(itemIdentity: AnyHashable(item.id), itemIdentifier: item.id.uuidString,
+                contentView: makePreviewContent(for: item), relativeTo: anchor)
+            return
+        }
+        let window = OriginalPreviewWindow()
+        window.title = item.title.isEmpty ? item.kind.displayName : item.title
+        let content = makePreviewContent(for: item)
+        if let preview = content as? OriginalItemPreviewView {
+            preview.onEditingStateChanged = { [weak self] editing in
+                self?.previewRegistry.f_10008727c(isEditing: editing, itemIdentifier: item.id.uuidString)
+            }
+        }
+        window.contentView = content
+        window.setContentSize(content.frame.size)
+        sharingPolicy.apply(to: window)
+        window.center()
+        previewRegistry.f_100086c10(window: window, itemIdentity: AnyHashable(item.id),
+            itemIdentifier: item.id.uuidString, isEditing: false)
         show(window)
+    }
+
+    func registerPreviewAnchor(for itemID: UUID, view: NSView) {
+        previewAnchors[itemID] = WeakReplicaPreviewAnchor(view)
+    }
+
+    func removePreviewAnchor(for itemID: UUID, view: NSView) {
+        if previewAnchors[itemID]?.view === view { previewAnchors.removeValue(forKey: itemID) }
+    }
+
+    private func makePreviewContent(for item: ClipboardItem) -> NSView {
+        if let view = makeOriginalReplicaTextPreview(state: state, item: item) { return view }
+        let view = NSHostingView(rootView: ReplicaPreviewView(state: state, itemID: item.id))
+        view.frame.size = .init(width: 620, height: 480)
+        return view
+    }
+
+    private func makePreviewPopover() -> OriginalPreviewPopover {
+        let preferenceStore = store
+        let changes = preferenceStore.preferenceChanges
+            .filter { $0.old.showDuringScreenSharing != $0.new.showDuringScreenSharing }
+            .map { $0.new.showDuringScreenSharing }.eraseToAnyPublisher()
+        let popover = OriginalPreviewPopover(registry: previewRegistry,
+            isScreenSharingContentVisible: { preferenceStore.preferences.showDuringScreenSharing },
+            visibilityChanges: changes)
+        popover.makeContentView = { [weak self] _, identifier in
+            guard let self, let item = self.store.items.first(where: { $0.id.uuidString == identifier }) else { return nil }
+            return makeOriginalReplicaTextPreview(state: self.state, item: item)
+        }
+        return popover
     }
 
     func showEditor(item: ClipboardItem?) {
@@ -508,10 +562,12 @@ final class ReplicaUIController {
         case "dark": appearance = NSAppearance(named: .darkAqua)
         default: appearance = nil
         }
+        NSApp.appearance = appearance
         panel.appearance = appearance
         settingsWindow?.appearance = appearance
         stackWindow?.appearance = appearance
         itemWindows.values.forEach { $0.appearance = appearance }
+        previewRegistry.windows.forEach { $0.appearance = appearance }
         if panel.isVisible { positionPanel() }
     }
 

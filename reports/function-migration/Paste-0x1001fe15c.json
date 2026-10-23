@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001fe15c",
-  "reviewed_at": "2026-10-23T07:33:40.765204+00:00",
+  "reviewed_at": "2026-10-23T08:50:58.957193+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0167.c",
@@ -11,16 +11,17 @@
   "original_pseudocode_sha256": "c267d59c9eaadb1c2b4a6f8a9a6340e3969094524c4243dcb1b68a6d3827162b",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchAppearance.swift": "0cfd7e194ce6f6b1f4118897810e35d0eafab317a68e6104e4bfbd11dbaeb5c4",
-    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "8d8171716407137209292fbecc8a77593a8f4b7fbead3695891f97b2ad054e9b"
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "7ccf867a3c2d7ca18ee876dfa03a54954c0675e3b3b691f599216afe6d2aaa95"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_app_binary_sha256": "c881018eb38e211f474350aac23e584debb3a7413fc63b46caadb3b6e1de98af",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
-  "review": "逐地址核对REA伪代码、调用链及所需arm64指令；已接入原生搜索编辑器。标签本地化使用原版17种短标签值，独立解析当前Locale；通用本地化资源构造和SearchField其余初始化/布局/筛选UI仍未计入迁移。编译不是运行时等价证明。",
   "contract": "确保前景颜色的once初始化完成，然后返回稳定的颜色强引用存储槽地址，而不是读取槽中的颜色值；后续访问返回同一槽。复刻以进程寿命UnsafeMutablePointer和Swift静态once存储替代原版全局地址，保留显式间接层。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+  "review": "逐地址核对REA伪代码、调用链及所需arm64指令；已接入原生搜索编辑器。标签本地化使用原版17种短标签值，独立解析当前Locale；通用本地化资源构造和SearchField其余初始化/布局/筛选UI仍未计入迁移。编译不是运行时等价证明。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

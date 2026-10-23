@@ -71,6 +71,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
     public var isMonitoringPaused: Bool
     public var pauseUntil: Date?
     public var excludedBundleIDs: [String]
+    public var ignoredPasteboardTypes: [String]
     public var ignoreConcealedContent: Bool
     public var playSounds: Bool
     public var appearance: String
@@ -92,7 +93,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
     public var stackReversed: Bool
 
     public init(historyLimit: Int = 1000, isMonitoringPaused: Bool = false, pauseUntil: Date? = nil,
-                excludedBundleIDs: [String] = [], ignoreConcealedContent: Bool = true,
+                excludedBundleIDs: [String] = [], ignoredPasteboardTypes: [String] = [], ignoreConcealedContent: Bool = true,
                 playSounds: Bool = false, appearance: String = "system", panelHeight: Double = 332,
                 launchAtLogin: Bool = false, pasteToActiveApp: Bool = true, alwaysPastePlainText: Bool = false,
                 historyRetentionDays: Int = 0,
@@ -107,6 +108,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         self.isMonitoringPaused = isMonitoringPaused
         self.pauseUntil = pauseUntil
         self.excludedBundleIDs = excludedBundleIDs
+        self.ignoredPasteboardTypes = ignoredPasteboardTypes
         self.ignoreConcealedContent = ignoreConcealedContent
         self.playSounds = playSounds
         self.appearance = appearance
@@ -129,7 +131,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case historyLimit, isMonitoringPaused, pauseUntil, excludedBundleIDs, ignoreConcealedContent
+        case historyLimit, isMonitoringPaused, pauseUntil, excludedBundleIDs, ignoredPasteboardTypes, ignoreConcealedContent
         case playSounds, appearance, panelHeight, launchAtLogin, pasteToActiveApp, alwaysPastePlainText, historyRetentionDays
         case historyShortcut, stackShortcut, previousPinboardShortcut, nextPinboardShortcut
         case quickPasteModifierRawValue, plainTextModifierRawValue, showDuringScreenSharing, ignoreTransientContent
@@ -142,6 +144,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
                   isMonitoringPaused: try values.decodeIfPresent(Bool.self, forKey: .isMonitoringPaused) ?? false,
                   pauseUntil: try values.decodeIfPresent(Date.self, forKey: .pauseUntil),
                   excludedBundleIDs: try values.decodeIfPresent([String].self, forKey: .excludedBundleIDs) ?? [],
+                  ignoredPasteboardTypes: try values.decodeIfPresent([String].self, forKey: .ignoredPasteboardTypes) ?? [],
                   ignoreConcealedContent: try values.decodeIfPresent(Bool.self, forKey: .ignoreConcealedContent) ?? true,
                   playSounds: try values.decodeIfPresent(Bool.self, forKey: .playSounds) ?? false,
                   appearance: try values.decodeIfPresent(String.self, forKey: .appearance) ?? "system",
@@ -169,6 +172,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         try values.encode(isMonitoringPaused, forKey: .isMonitoringPaused)
         try values.encodeIfPresent(pauseUntil, forKey: .pauseUntil)
         try values.encode(excludedBundleIDs, forKey: .excludedBundleIDs)
+        try values.encode(ignoredPasteboardTypes, forKey: .ignoredPasteboardTypes)
         try values.encode(ignoreConcealedContent, forKey: .ignoreConcealedContent)
         try values.encode(playSounds, forKey: .playSounds)
         try values.encode(appearance, forKey: .appearance)

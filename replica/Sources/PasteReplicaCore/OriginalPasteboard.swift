@@ -4,11 +4,51 @@ import UniformTypeIdentifiers
 
 /// The original item stores an ordered type list separately from its data map.
 /// In particular, repeated writes append a type even when replacing its data.
-public final class OriginalPasteboardItem: NSObject {
+public final class OriginalPasteboardItem: NSObject, Codable, NSSecureCoding {
     private var orderedTypes: [String] = []
     private var dataByType: [String: Data] = [:]
 
     public override init() { super.init() }
+
+    public static var supportsSecureCoding: Bool { f_10037f314() }
+    public static func f_10037f314() -> Bool { true }
+
+    public required init?(coder: NSCoder) {
+        super.init()
+        guard let types = coder.decodeArrayOfObjects(ofClass: NSString.self, forKey: "types") as? [String],
+              let values = coder.decodeDictionary(withKeyClass: NSString.self, objectClass: NSData.self,
+                                                 forKey: "dataByType") as? [String: Data] else { return nil }
+        orderedTypes = types
+        dataByType = values
+    }
+
+    public func f_10037f520(with coder: NSCoder) {
+        coder.encode(orderedTypes as NSArray, forKey: "types")
+        coder.encode(dataByType as NSDictionary, forKey: "dataByType")
+    }
+
+    public func encode(with coder: NSCoder) {
+        f_10037f520(with: coder)
+    }
+
+    private enum CodingKeys: String, CodingKey { case types, dataByType }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        orderedTypes = try container.decode([String].self, forKey: .types)
+        dataByType = try container.decode([String: Data].self, forKey: .dataByType)
+        super.init()
+    }
+
+    public func f_10037df78(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(orderedTypes, forKey: .types)
+        try container.encode(dataByType, forKey: .dataByType)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        try f_10037df78(to: encoder)
+    }
 
     public static func f_10037c6d4(_ string: String) -> OriginalPasteboardItem {
         let item = OriginalPasteboardItem()
@@ -98,6 +138,7 @@ public final class OriginalPasteboardItem: NSObject {
 
 /// Source function 0x10037875c has no filtering, empty-input guard, generated
 /// marker, or write-failure branch. Those policies belong to its callers.
+@MainActor
 public final class OriginalPasteboardWriter {
     public let pasteboard: NSPasteboard
     public private(set) var lastChangeCount: Int
@@ -121,5 +162,6 @@ public final class OriginalPasteboardWriter {
         pasteboard.clearContents()
         lastWriteSucceeded = pasteboard.writeObjects(objects)
         lastChangeCount = pasteboard.changeCount
+        OriginalPasteboardCaptureState.current(for: pasteboard)?.lastChangeCount = lastChangeCount
     }
 }

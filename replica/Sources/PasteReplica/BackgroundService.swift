@@ -13,7 +13,7 @@ enum BackgroundService {
     }
 
     static func markRunning(_ running: Bool) {
-        sessionDefaults.set(running, forKey: "isRunning")
+        sessionDefaults.set(running, forKey: "pasteIsRunning")
         sessionDefaults.synchronize()
     }
 }

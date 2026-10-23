@@ -20,7 +20,10 @@ private struct DiskRevision: Equatable {
 public final class ClipboardStore: ObservableObject {
     @Published public var items: [ClipboardItem] = []
     @Published public var pinboards: [Pinboard] = []
-    @Published public var preferences = AppPreferences()
+    public let preferenceChanges = PassthroughSubject<(old: AppPreferences, new: AppPreferences), Never>()
+    @Published public var preferences = AppPreferences() {
+        didSet { preferenceChanges.send((oldValue, preferences)) }
+    }
     public let directoryURL: URL
     private var baseline = StoreState()
     private var diskRevision: DiskRevision?
@@ -243,8 +246,8 @@ public final class ClipboardStore: ObservableObject {
         try mutate { state in
             if let i = state.items.firstIndex(where: {
                 $0.kind == item.kind && $0.plainText == item.plainText
-                    && $0.payloads.filter { !Self.analysisPayloadKeys.contains($0.key) }
-                    == item.payloads.filter { !Self.analysisPayloadKeys.contains($0.key) }
+                    && Self.normalizedPasteboardPayloads($0.payloads)
+                    == Self.normalizedPasteboardPayloads(item.payloads)
             }) {
                 state.items[i].updatedAt = max(Date(), item.updatedAt)
                 state.items[i].sourceName = item.sourceName
@@ -411,7 +414,20 @@ public final class ClipboardStore: ObservableObject {
         try writeAtomically(encoder.encode(current), to: url)
     }
     public func importArchive(from url: URL) throws {
-        let archive = try JSONDecoder().decode(StoreState.self, from: Data(contentsOf: url))
+        let data = try Data(contentsOf: url)
+        let archive: StoreState
+        do {
+            archive = try JSONDecoder().decode(StoreState.self, from: data)
+        } catch {
+            let textPrefix = data.starts(with: [0xef, 0xbb, 0xbf]) ? data.dropFirst(3) : data[...]
+            let trimmedPrefix = textPrefix.drop(while: { [9, 10, 13, 32].contains($0) })
+            if data.starts(with: Data("bplist00".utf8)) || trimmedPrefix.starts(with: Data("<?xml".utf8)) ||
+                trimmedPrefix.first == UInt8(ascii: "[") {
+                _ = try importOriginalPasteboardItems(data, sourceName: "导入的剪贴板")
+                return
+            }
+            throw error
+        }
         try validate(archive)
         try mutate { state in
             var boards = Dictionary(uniqueKeysWithValues: state.pinboards.map { ($0.id, $0) })
