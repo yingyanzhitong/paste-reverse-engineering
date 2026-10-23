@@ -24,3 +24,7 @@
 "search.filters.section.device" = "מכשיר";
 "general.more" = "עוד";
 "general.less" = "פחות";
+"edit-item.toolbar.image.rotate-left" = "סובב לשמאל";
+"edit-item.toolbar.image.rotate-right" = "סובב לימין";
+"general.browser" = "דפדפן";
+"general.action.open-in" = "פתח ב- %@";

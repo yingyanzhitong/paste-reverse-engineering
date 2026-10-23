@@ -16,28 +16,6 @@ extension ReplicaSearchFilterChip.Selection {
 
 @MainActor
 enum ReplicaFilterMatching {
-    private static func equal(_ left: String, _ right: String) -> Bool {
-        left.compare(right, options: [.caseInsensitive, .diacriticInsensitive]) == .orderedSame
-    }
-
-    static func matches(_ item: ClipboardItem, selections: [ReplicaSearchFilterChip.Selection]) -> Bool {
-        // Original 0x1002f45b0: predicates within one tag use OR; tags use AND.
-        Dictionary(grouping: selections, by: \.group).values.allSatisfy { group in
-            group.contains { selection in
-                switch selection {
-                case let .kind(kind):
-                    return item.kind == kind || (kind == .text && item.kind == .richText)
-                case let .source(source):
-                    return equal(item.sourceBundleID ?? item.sourceName, source)
-                case let .device(device):
-                    return item.sourceDevice.range(of: device, options: [.caseInsensitive, .diacriticInsensitive]) != nil
-                case let .date(filter): return filter.range.contains(item.updatedAt)
-                case let .pinboard(id): return item.pinboardIDs.contains(id)
-                }
-            }
-        }
-    }
-
     static func chip(_ selection: ReplicaSearchFilterChip.Selection, store: ClipboardStore) -> ReplicaSearchFilterChip {
         let title: String
         var image: NSImage?

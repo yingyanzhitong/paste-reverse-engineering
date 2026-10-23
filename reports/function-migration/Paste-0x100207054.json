@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100207054",
+  "reviewed_at": "2026-10-23T11:09:50.167180+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0171.c",
+    "line": 6
+  },
+  "original_pseudocode_sha256": "e13004cc54475a65795748e9926ec55192bc05ab1c8fb69c629096066e05ee79",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "babed19b45fe4b542b7677500d14d96c85cad21fbe83fc8865b14e566532a576"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "角度×pi/180；读取原size作为draw源rect；创建始终width=原height、height=原width的NSImage，lockFocus；可选current context插值raw3；以新画布中心平移、旋转、原size负中心平移的CTM绘制原图，copy/fraction1；unlockFocus返回新图。",
+  "review": "part0171及207054..20729c汇编逐支核清，原代码没有角度条件。2070d4/0d8传入height,width；207240..260 fromRect原size，op1=.copy；复用AppKit绘图真实由rotateDisplayedImage调用。 本机CoreGraphics.swiftinterface725-726证明init(translationX:y:)调用MakeTranslation；741-742证明translatedBy调用CGAffineTransformTranslate。已改identity.translatedBy，严格复用原Translate(identity,newCenter)→Rotate→Translate primitive顺序，保留signed-zero/非有限分支。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

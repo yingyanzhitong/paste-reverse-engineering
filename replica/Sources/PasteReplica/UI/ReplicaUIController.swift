@@ -8,8 +8,8 @@ import PasteReplicaCore
 final class ReplicaUIState: ObservableObject {
     let store: ClipboardStore
     weak var controller: ReplicaUIController?
-    @Published var query = ""
-    @Published var searchFilters: [ReplicaSearchFilterChip.Selection] = []
+    @Published var query = "" { didSet { refreshSearch() } }
+    @Published var searchFilters: [ReplicaSearchFilterChip.Selection] = [] { didSet { refreshSearch() } }
     @Published var pinboardID: UUID?
     @Published var showDeleted = false
     @Published var selection: Set<UUID> = []
@@ -27,20 +27,56 @@ final class ReplicaUIState: ObservableObject {
     @Published var hotKeyStatusMessage = ""
     @Published var allowsEmptySelection = false
     private var observation: AnyCancellable?
+    private let searchIndex: ReplicaSearchIndex
 
     init(store: ClipboardStore) {
         self.store = store
+        searchIndex = ReplicaSearchIndex(directoryURL: store.directoryURL)
         stackIDs = store.preferences.stackItemIDs
+        searchIndex.onUpdate = { [weak self] in
+            self?.objectWillChange.send()
+            self?.normalizeSelection()
+        }
+        refreshSearch()
         observation = store.objectWillChange.sink { [weak self] _ in
             self?.objectWillChange.send()
-            DispatchQueue.main.async { [weak self] in self?.normalizeSelection() }
+            DispatchQueue.main.async { [weak self] in
+                self?.refreshSearch()
+                self?.normalizeSelection()
+            }
         }
     }
 
+    private func refreshSearch() {
+        var nodes: [OriginalSearchQueryNode] = [.text(query)]
+        nodes += searchFilters.map { selection in
+            let value: String
+            switch selection {
+            case let .kind(kind): value = kind == .files ? "file" : kind == .richText ? "text" : kind.rawValue
+            case let .source(source): value = source
+            case let .device(device): value = device
+            case let .date(filter):
+                value = "\(Int(filter.range.lowerBound.timeIntervalSince1970)) \(Int(filter.range.upperBound.timeIntervalSince1970))"
+            case let .pinboard(id): value = id.uuidString
+            }
+            return .filter(selection.group, value)
+        }
+        searchIndex.update(items: store.items, nodes: nodes)
+    }
+
+    var searchFailed: Bool { !searchIndex.queryString.isEmpty && searchIndex.error != nil }
+    func retrySearch() { searchIndex.retry() }
+
     var visibleItems: [ClipboardItem] {
-        store.search(query: query, pinboardID: pinboardID, includeDeleted: showDeleted)
-            .filter { !showDeleted || $0.isDeleted }
-            .filter { item in ReplicaFilterMatching.matches(item, selections: searchFilters) }
+        if searchIndex.queryString.isEmpty {
+            return store.search(query: "", pinboardID: pinboardID, includeDeleted: showDeleted)
+                .filter { !showDeleted || $0.isDeleted }
+        }
+        return store.items.filter { item in
+            (showDeleted ? item.isDeleted : !item.isDeleted)
+                && (pinboardID == nil || item.pinboardIDs.contains(pinboardID!))
+                && searchIndex.identifiers.contains(item.id)
+        }.sorted { $0.updatedAt > $1.updatedAt }
     }
     var selectedItems: [ClipboardItem] { visibleItems.filter { selection.contains($0.id) } }
     var primaryItem: ClipboardItem? {

@@ -90,6 +90,24 @@ public enum OriginalPreviewLocalization {
         resource("general.action.unpin")
     }
 
+    public static func f_1001bee08() -> LocalizedStringResource {
+        resource("edit-item.toolbar.image.rotate-left")
+    }
+
+    public static func f_1001bef88() -> LocalizedStringResource {
+        resource("edit-item.toolbar.image.rotate-right")
+    }
+
+    public static func f_1001c4388() -> LocalizedStringResource {
+        resource("general.browser")
+    }
+
+    public static func f_1001e6b98(_ applicationName: String) -> LocalizedStringResource {
+        LocalizedStringResource("general.action.open-in", defaultValue: "\(applicationName)",
+                                table: "Localizable", locale: .current,
+                                bundle: .atURL(resourceBundle.bundleURL))
+    }
+
     private static func countResource(_ count: Int32, key: StaticString) -> LocalizedStringResource {
         LocalizedStringResource(key, defaultValue: "\(count)", table: "Localizable",
                                 locale: .current, bundle: .atURL(resourceBundle.bundleURL))

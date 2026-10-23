@@ -24,3 +24,7 @@
 "search.filters.section.device" = "Устройство";
 "general.more" = "Ещё";
 "general.less" = "Меньше";
+"edit-item.toolbar.image.rotate-left" = "Повернуть влево";
+"edit-item.toolbar.image.rotate-right" = "Повернуть вправо";
+"general.browser" = "Браузер";
+"general.action.open-in" = "Открыть в %@";

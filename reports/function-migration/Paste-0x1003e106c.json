@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1003e106c",
+  "reviewed_at": "2026-10-23T11:09:50.140692+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0308.c",
+    "line": 1644
+  },
+  "original_pseudocode_sha256": "2f1f0897ec3219ebbe20e7897b824cdc3a67794617b68082f2a31f92c6d42dc6",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/ReplicaColorPreviewContent.swift": "97ffeb6dce875c99529983201f210328667f17e171385d64d1dd39bfe8dbed96"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "共享panel禁用zoom/close，showsAlpha=false/hidesOnDeactivate=false，level=owner.level+1(无owner默认3+1)，animationBehavior raw2(.none)。",
+  "review": "原REA伪码、指定处arm64汇编/selector静态核对；实际接入共用factory。最终build24统一release通过10.15秒，120输入SHA前后一致；本批绑定当前冻结源码摘要，未运行产品或功能回归，完整父缺口仍保留partial。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

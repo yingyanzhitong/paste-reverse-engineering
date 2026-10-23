@@ -16,12 +16,14 @@ struct ReplicaPanelView: View {
             if state.visibleItems.isEmpty {
                 VStack {
                     Spacer()
-                    Text("无结果").font(.system(size: 26, weight: .medium))
+                    Text(state.searchFailed ? "本地搜索暂不可用" : "无结果")
+                        .font(.system(size: 26, weight: .medium))
                         .foregroundStyle(Color(red: 185 / 255, green: 185 / 255, blue: 185 / 255))
+                    if state.searchFailed { Button("重试") { state.retrySearch() } }
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .accessibilityLabel("无结果")
+                .accessibilityLabel(state.searchFailed ? "本地搜索暂不可用" : "无结果")
             } else {
                 ScrollViewReader { reader in
                     ScrollView(.horizontal, showsIndicators: false) {

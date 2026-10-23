@@ -1,0 +1,23 @@
+{
+  "kind": "retired_sdk_reuse",
+  "previous_source_commit": "d279499b5f31294bc234db84e8b5e64db23ac6d6",
+  "final_build": ".local/gap-build-24.log",
+  "sdk_reuse_report": "reports/function-migration/sdk-import-reuse.json",
+  "sdk_reuse_report_sha256": "386c981e9aa0c0edb8324c85ed532e3bfc06be2ba555d465885e4c9676fa7a99",
+  "reason": "最终稳定源码与实际产物已没有这些唯一完整匹配的SDK转发，返回pending；不使用旧产物维持完成数。",
+  "functions": {
+    "Paste:0x100bf93cc": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf93cc",
+        "symbol": "_$sSy10FoundationE7compare_7options5range6localeSo18NSComparisonResultVqd___So22NSStringCompareOptionsVSnySS5IndexVGSgAA6LocaleVSgtSyRd__lF"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf93cc.json"
+    }
+  }
+}

@@ -24,3 +24,7 @@
 "search.filters.section.device" = "设备";
 "general.more" = "更多";
 "general.less" = "收起";
+"edit-item.toolbar.image.rotate-left" = "向左旋转";
+"edit-item.toolbar.image.rotate-right" = "向右旋转";
+"general.browser" = "浏览器";
+"general.action.open-in" = "在 %@ 中打开";

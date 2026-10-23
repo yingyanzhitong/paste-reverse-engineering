@@ -24,3 +24,7 @@
 "search.filters.section.device" = "기기";
 "general.more" = "더 보기";
 "general.less" = "간략히";
+"edit-item.toolbar.image.rotate-left" = "왼쪽으로 회전";
+"edit-item.toolbar.image.rotate-right" = "오른쪽으로 회전";
+"general.browser" = "브라우저";
+"general.action.open-in" = "%@에서 열기";

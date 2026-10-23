@@ -333,6 +333,52 @@ public final class ClipboardStore: ObservableObject {
         }
     }
 
+    public func updateImageItem(id: UUID, payloads: [String: Data]) throws {
+        let imageTypes = ["public.png", "public.jpeg", "public.heic", "public.tiff", "com.apple.icns", "com.compuserve.gif"]
+        let types = imageTypes.filter { payloads[$0] != nil }
+        guard !types.isEmpty else { throw OriginalPasteboardItemCreationError.unsupportedContent }
+        var replacement = payloads.filter { imageTypes.contains($0.key) }
+        replacement[Self.orderedPasteboardTypesPayloadKey] = try JSONEncoder().encode(types)
+        try mutate { state in
+            guard let i = state.items.firstIndex(where: { $0.id == id && !$0.isDeleted && $0.kind == .image }) else {
+                throw ClipboardStoreError.itemNotFound
+            }
+            state.items[i].payloads = replacement
+            state.items[i].plainText = nil
+            state.items[i].kind = .image
+            state.items[i].updatedAt = Date()
+        }
+        startBackgroundTextRecognition(id: id)
+    }
+
+    public func updateLinkItem(id: UUID, url: URL) throws {
+        try mutate { state in
+            guard let i = state.items.firstIndex(where: { $0.id == id && !$0.isDeleted && $0.kind == .link }) else {
+                throw ClipboardStoreError.itemNotFound
+            }
+            let representation = OriginalPasteboardItem.f_10037c7bc(url, title: state.items[i].title)
+            var payloads: [String: Data] = [:]
+            for type in representation.f_10037da6c() { payloads[type] = representation.f_10037d810(forType: type) }
+            payloads[Self.orderedPasteboardTypesPayloadKey] = try JSONEncoder().encode(representation.f_10037da6c())
+            state.items[i].payloads = payloads
+            state.items[i].plainText = url.absoluteString
+            state.items[i].kind = .link
+            state.items[i].updatedAt = Date()
+        }
+    }
+
+    public func updateColorItem(id: UUID, text: String) throws {
+        try mutate { state in
+            guard let i = state.items.firstIndex(where: { $0.id == id && !$0.isDeleted && $0.kind == .color }) else {
+                throw ClipboardStoreError.itemNotFound
+            }
+            state.items[i].payloads = [NSPasteboard.PasteboardType.string.rawValue: Data(text.utf8)]
+            state.items[i].plainText = text
+            state.items[i].kind = .color
+            state.items[i].updatedAt = Date()
+        }
+    }
+
     public func delete(ids: Set<UUID>) throws { try setDeleted(ids: ids, deleted: true) }
     public func restore(ids: Set<UUID>) throws { try setDeleted(ids: ids, deleted: false) }
     private func setDeleted(ids: Set<UUID>, deleted: Bool) throws {

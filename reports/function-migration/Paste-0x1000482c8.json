@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000482c8",
-  "reviewed_at": "2026-10-23T10:38:36.842182+00:00",
+  "reviewed_at": "2026-10-23T11:09:48.512228+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0026.c",
@@ -11,13 +11,13 @@
   "original_pseudocode_sha256": "e2e06b7c433fba402f364a4f8b3ca62c6bece12db0ebb48f4814448cae9a4c18",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchEditing.swift": "de4dbf21b72826fed9c0e9418c842eb8b0f1146a7d7aa9bfe22985af5d7ac73e",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "1902ea5a7c2f288115bc03c89ce89d53e8e485a21adb64a00bbf1daaac9d45f9",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "aea6c45d45df804bb8987da96a44726c4e77a66d0635c51baa8f21d98a475231",
     "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "6a56456d5b45a28cacd291891380b97414e71c1eaf68bd1d9ee15c3ec1596600",
-    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "7731f3c7bd7eb0cda52da892d1b55a4c4049c63f8ba34239f4cc7d0f7d44fbe7"
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "10f037f905f54c148ea611189f7d21d7b9c938487e040d533581777b412aaa69"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "4ab837ffc64e31c3d5bcaae9809e73fbd6828cee6cf109ed2addb27b8d69b746",
+  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,

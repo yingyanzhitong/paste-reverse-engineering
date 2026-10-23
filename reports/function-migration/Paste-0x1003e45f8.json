@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1003e45f8",
+  "reviewed_at": "2026-10-23T11:09:50.175282+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0310.c",
+    "line": 54
+  },
+  "original_pseudocode_sha256": "30b8bf5ee06c7d2aaeca37d44703f34d707465d6671902d4f9cd245ee64ae32a",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "babed19b45fe4b542b7677500d14d96c85cad21fbe83fc8865b14e566532a576"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "NSStackView初始化frame零；读image.size一次，Int向零截断宽高并以“ × ”连接（非有限/越Int域trap）；label使用原body字体、原黑0.5/白0.55动态前景，关闭editable/selectable/bordered/background；添加label及horizontal hugging/compression均250的空spacer。",
+  "review": "part0310 f3e45f8与汇编：size一次、两Int检查、UTF8 20c39720；f3e2ca0仅NSFont metadata，不是新字体style；f1fe19c→fec34正好复用OriginalToolbarAppearance.secondaryForeground。父f201b9c只有addArrangedSubview循环。真实每次metadata更新构造。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

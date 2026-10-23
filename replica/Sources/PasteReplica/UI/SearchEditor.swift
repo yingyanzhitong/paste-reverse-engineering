@@ -85,9 +85,20 @@ struct ReplicaSearchEditor: NSViewRepresentable {
                     ranges.append(range)
                 }
             }
-            let plain = NSMutableString(string: editor.f_1000f7254())
-            for range in ranges.reversed() { plain.deleteCharacters(in: range) }
-            return (plain as String, selections)
+            let plain = editor.f_1000f7254()
+            guard !ranges.isEmpty else { return (plain, selections) }
+            // Each attachment separates original free-text query nodes.
+            let string = plain as NSString
+            var pieces: [String] = []
+            var offset = 0
+            for range in ranges {
+                pieces.append(string.substring(with: NSRange(location: offset, length: range.location - offset)))
+                offset = NSMaxRange(range)
+            }
+            pieces.append(string.substring(from: offset))
+            let text = pieces.map { $0.trimmingCharacters(in: .whitespaces) }
+                .filter { !$0.isEmpty }.joined(separator: " ")
+            return (text, selections)
         }
 
         func updateContents(_ field: SearchField, editor: SearchTextView) {

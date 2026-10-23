@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100383a0c",
+  "reviewed_at": "2026-10-23T11:09:50.131871+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0283.c",
+    "line": 2640
+  },
+  "original_pseudocode_sha256": "2cd92feb8843e09a28a87625caa470b164a04510f7706687cf21cbd307464666",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardRestore.swift": "41b8bb0aac032eb1f2dfa4ecc56de555acb8e87f82076aa1291f98bb73b6d004",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "a3452198f656bcbf43bd4124fe6d4264c3537a395ef4feca976d4feda996926f"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "创建空NSMutableAttributedString；顺序遍历输入attributed strings，仅当当前result.string非空时先追加separator的无属性NSAttributedString，然后追加当前content；保留源attributes，最终返回同一mutable result。",
+  "review": "原part-0283.c:2640完整体；不是简单joined：前导空内容不会制造前导separator，已非空后遇空内容会追加separator。实际puretext多选和默认text/link/richText多选聚合均调用。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

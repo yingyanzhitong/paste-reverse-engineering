@@ -24,3 +24,7 @@
 "search.filters.section.device" = "デバイス";
 "general.more" = "もっと見る";
 "general.less" = "少なく";
+"edit-item.toolbar.image.rotate-left" = "左に回転";
+"edit-item.toolbar.image.rotate-right" = "右に回転";
+"general.browser" = "ブラウザ";
+"general.action.open-in" = "%@を開く";

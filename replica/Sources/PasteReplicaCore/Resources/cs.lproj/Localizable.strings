@@ -24,3 +24,7 @@
 "search.filters.section.device" = "Zařízení";
 "general.more" = "Více";
 "general.less" = "Méně";
+"edit-item.toolbar.image.rotate-left" = "Otočit doleva";
+"edit-item.toolbar.image.rotate-right" = "Otočit doprava";
+"general.browser" = "Prohlížeč";
+"general.action.open-in" = "Otevřít v %@";

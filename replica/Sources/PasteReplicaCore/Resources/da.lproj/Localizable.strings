@@ -24,3 +24,7 @@
 "search.filters.section.device" = "Enhed";
 "general.more" = "Mere";
 "general.less" = "Mindre";
+"edit-item.toolbar.image.rotate-left" = "Roter til venstre";
+"edit-item.toolbar.image.rotate-right" = "Roter til højre";
+"general.browser" = "Browser";
+"general.action.open-in" = "Åbn i %@";

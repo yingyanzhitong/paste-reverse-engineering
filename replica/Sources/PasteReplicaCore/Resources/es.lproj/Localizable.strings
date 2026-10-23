@@ -24,3 +24,7 @@
 "search.filters.section.device" = "Dispositivo";
 "general.more" = "Más";
 "general.less" = "Menos";
+"edit-item.toolbar.image.rotate-left" = "Girar a la izquierda";
+"edit-item.toolbar.image.rotate-right" = "Girar a la derecha";
+"general.browser" = "Navegador";
+"general.action.open-in" = "Abrir en %@";

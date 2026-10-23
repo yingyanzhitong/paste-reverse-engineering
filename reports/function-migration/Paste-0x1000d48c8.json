@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d48c8",
-  "reviewed_at": "2026-10-23T10:38:38.641335+00:00",
+  "reviewed_at": "2026-10-23T11:09:49.664696+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,19 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "4ab837ffc64e31c3d5bcaae9809e73fbd6828cee6cf109ed2addb27b8d69b746",
+  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "按 lock→name→optional logger 顺序释放字段，再释放类实例。",
-  "review": "build19完整deallocating-deinit d0fa0..d0fd4按同样顺序释放后swift_deallocClassInstance(self,0x50,7)；当前metadata185da0前destroy slot185d90实际target d0fa0。当前字段常量130338/130340/130348为0x10/0x18/0x28。",
+  "review": "最终build24完整deallocating-deinit e9d8c..e9dc0：同样顺序释放lock/name/cached，再swift_deallocClassInstance(self,0x50,7)；当前metadata1a7490前destroy slot1a7480实际绑定e9d8c。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000d0fa0",
-    "end_exclusive": "0x1000d0fd4",
+    "start": "0x1000e9d8c",
+    "end_exclusive": "0x1000e9dc0",
     "size": 52,
-    "sha256": "d7792cdb285fdccc7fdcc0e83ca15675f78b774814858b8dcd1bf208245fd799"
+    "sha256": "940426573edc272868f330c87f5cfc081507aa5a717b4d96815d6cf8f9c78fef",
+    "binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
+    "lc_function_starts_verified": true
   }
 }

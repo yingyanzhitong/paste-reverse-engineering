@@ -24,3 +24,7 @@
 "search.filters.section.device" = "裝置";
 "general.more" = "更多";
 "general.less" = "收起";
+"edit-item.toolbar.image.rotate-left" = "向左旋轉";
+"edit-item.toolbar.image.rotate-right" = "向右旋轉";
+"general.browser" = "瀏覽器";
+"general.action.open-in" = "在%@中打開";

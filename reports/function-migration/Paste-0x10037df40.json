@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037df40",
-  "reviewed_at": "2026-10-23T10:38:38.595126+00:00",
+  "reviewed_at": "2026-10-23T11:09:49.625982+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,19 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "4ab837ffc64e31c3d5bcaae9809e73fbd6828cee6cf109ed2addb27b8d69b746",
+  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "ObjC ivar析构：释放types数组与dataByType字典的Swift桥接对象，无其他状态写入。",
-  "review": "build19完整.cxx_destruct d46c0..d46f8：按当前185e28/185e20两个ivar-offset仅释放两个桥接字段；当前method entry12a904的.cxx_destruct实际指向d46c0。",
+  "review": "最终build24完整.cxx_destruct ed4ac..ed4e4：按当前1a7518/1a7510两个ivar-offset释放orderedTypes和dataByType桥接字段；当前method entry147884实际指向ed4ac。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000d46c0",
-    "end_exclusive": "0x1000d46f8",
+    "start": "0x1000ed4ac",
+    "end_exclusive": "0x1000ed4e4",
     "size": 56,
-    "sha256": "7f520c8b10a88d93112f99839d885306949e9f32df431d8d71fe08093df1d317"
+    "sha256": "34fe777f07127cbac83556f90c6bf90bdc3e4f1b78e5de26c212b9480eebaef0",
+    "binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
+    "lc_function_starts_verified": true
   }
 }

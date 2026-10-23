@@ -24,3 +24,7 @@
 "search.filters.section.device" = "Apparaat";
 "general.more" = "Meer";
 "general.less" = "Minder";
+"edit-item.toolbar.image.rotate-left" = "Draai naar links";
+"edit-item.toolbar.image.rotate-right" = "Draai naar rechts";
+"general.browser" = "Browser";
+"general.action.open-in" = "Open in %@";

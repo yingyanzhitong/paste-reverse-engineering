@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001e6b58",
-  "reviewed_at": "2026-10-23T10:38:39.406721+00:00",
+  "reviewed_at": "2026-10-23T11:09:50.048009+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0155.c",
@@ -10,7 +10,7 @@
   },
   "original_pseudocode_sha256": "e18197f5f6970990dbf53ced531553fd1393f57b930f5ec8123813b2ae87af23",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift": "cc29598eed44756591834cb998e739f0c43a94ec854ad6048eb2299884aefebf",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift": "d10e5ef7271addda3fe1edf64e7518713f54ebdde6400857781c2183c2e814b3",
     "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.stringsdict": "c377921228b222f1fc08533c40a736677dae6ea5f28174615fd12f719eaf7368",
     "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.stringsdict": "9aeeac092a54c8479d3a2f91d6136b6c07e8e1e5a299bca776ffe73768e053df",
     "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.stringsdict": "cb34c5fe923222e9a486a39a2a50bea60979e668992101cf45ab475f7a491b2c",
@@ -31,7 +31,7 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "4ab837ffc64e31c3d5bcaae9809e73fbd6828cee6cf109ed2addb27b8d69b746",
+  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002f3d94",
+  "reviewed_at": "2026-10-23T11:09:50.128492+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0244.c",
+    "line": 86
+  },
+  "original_pseudocode_sha256": "e582d5e315bd4afa2367b2d26405d9c8e0ba5a222a07c1e6aaba709601fa7c8c",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchQuery.swift": "141311d80f9854e61c9f7d97f0eea7679ddee794809dffcacaf68224601b75a9",
+    "replica/Sources/PasteReplica/UI/ReplicaSearchIndex.swift": "02a461225f1ea46fba923a76b6a6e54cb8805a9d98a1bdbc3b7d4dba0f19c899",
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "683e5566d14f6f8b5a92165a5ffd5840c2f23d140e08aa255add15088338e9ea"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "trim(.whitespaces)为空返回nil；tag0/1为app/type等值cd、2/4为title/device两侧通配cd、3两空格分隔Double epoch经NSISO8601DateFormatter形成>=start/<end，解析失败nil；其他tag为pinboard等值cd；字符串依序转义反斜杠、双引号、星号、问号。",
+  "review": "完整part0244两函数静态复核：不是旧contains或多词unordered AND；保留原末尾*及cwdt而不臆解词元标志。String escaping顺序、单项/多项括号、原OS门控与ISO formatter直接对照。实际CSSearchQuery(queryString:queryContext:)及.results异步消费本构造结果。字典组迭代同原未定义排序，不人为按字母排序。未执行原版/复刻查询。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

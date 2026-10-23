@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002d8ce0",
-  "reviewed_at": "2026-10-23T10:38:39.944730+00:00",
+  "reviewed_at": "2026-10-23T11:09:50.124935+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0236.c",
@@ -11,17 +11,17 @@
   "original_pseudocode_sha256": "d5ec814dc05d3f79f1111f0b8bae97a93e3708ff321d33ed3f2c276afb95e507",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchDateRanges.swift": "dff8c099cdc52948c2e4d8d11404d892622e877a77fbdb3226446c2bbdfa9020",
-    "replica/Sources/PasteReplica/UI/FilterBrowser.swift": "31ead38ca8b40c8cced3d4af8e1d73837ce6a0189bb194a89082c29d94bf881a"
+    "replica/Sources/PasteReplica/UI/FilterBrowser.swift": "443927744c082cbbbe560f99e8b216e67b5843b8825466f0d2130407dc169002"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "4ab837ffc64e31c3d5bcaae9809e73fbd6828cee6cf109ed2addb27b8d69b746",
+  "compiled_app_binary_sha256": "13b85d8f31d5355c973913301153e7d8eafb63ee5408d2ded7a327481529eaeb",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "依序构造五个(title,range)值：Today、Yesterday、This week、Last week、Last 30 days，各调用对应原恢复范围函数；非滚动7天/30天近似。",
   "review": "REA part0236全函数、原arm64同日历组件/偏移/strict less与forced optional分支核；last30原8ab0/8b4c两次x2均x22，确认上下界同一startOfDay基准。原五英文title由8ce0小String常量直接恢复；原本地化资源无对应key，不自行替换标签。搜索chip保存实际范围，匹配item.updatedAt的上下界，不在每次渲染时重算相对天数。原完整索引/query父仍partial。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

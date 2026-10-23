@@ -2,27 +2,59 @@ import AppKit
 import Combine
 import PasteReplicaCore
 
-/// Shares the recovered preview chrome without claiming the nontext editing protocols.
+/// Shares preview chrome and editing transitions; per-kind content retains its own contract.
 @MainActor
 func makeOriginalReplicaPreview(state: ReplicaUIState, item: ClipboardItem) -> OriginalItemPreviewView {
     if let textPreview = makeOriginalReplicaTextPreview(state: state, item: item) { return textPreview }
-    let content = makeReplicaReadOnlyPreviewContent(store: state.store, item: item)
-    let header = ReplicaInlinePreviewHeader(state: state, item: item, canEdit: false)
-    let footer = OriginalPreviewFooterView()
-    let emptyMetadata = NSView()
-    emptyMetadata.heightAnchor.constraint(equalToConstant: 0).isActive = true
-    footer.f_1003df0b0(emptyMetadata)
+    let content: NSView
+    let contentSize: NSSize
+    let metadata: NSView?
     let screenSize = NSScreen.main?.frame.size ?? NSSize(width: 1520, height: 960)
-    let view = ReplicaInlinePreviewContainer(previewHeader: header, editorHeader: NSView(),
+    switch item.kind {
+    case .image:
+        let image = ReplicaImagePreviewContent(state: state, item: item)
+        content = image
+        contentSize = image.preferredPreviewSize
+        metadata = image.previewMetadataView
+    case .color:
+        let color = ReplicaColorPreviewContent(state: state, item: item)
+        content = color
+        contentSize = color.preferredPreviewSize
+        metadata = color.previewMetadataView
+    case .link:
+        let link = ReplicaLinkPreviewContent(state: state, item: item)
+        content = link
+        contentSize = link.preferredPreviewSize
+        metadata = link.previewMetadataView
+    default:
+        content = makeReplicaReadOnlyPreviewContent(store: state.store, item: item)
+        contentSize = .init(width: max(380, screenSize.width * 0.25),
+                            height: max(240, screenSize.height * 0.25))
+        metadata = nil
+    }
+    let header = ReplicaInlinePreviewHeader(state: state, item: item,
+                                           canEdit: content is OriginalPreviewEditableContent)
+    let editorHeader = ReplicaInlinePreviewEditorHeader()
+    let footer = OriginalPreviewFooterView()
+    if let metadata { footer.f_1003df0b0(metadata) }
+    else {
+        let emptyMetadata = NSView()
+        emptyMetadata.heightAnchor.constraint(equalToConstant: 0).isActive = true
+        footer.f_1003df0b0(emptyMetadata)
+    }
+    let view = ReplicaInlinePreviewContainer(previewHeader: header, editorHeader: editorHeader,
                                             contentView: content, footer: footer,
-                                            contentSize: NSSize(width: max(380, screenSize.width * 0.25),
-                                                                height: max(240, screenSize.height * 0.25)))
+                                            contentSize: contentSize)
     connectReplicaPreviewHeader(header, view: view, state: state, item: item)
+    editorHeader.onCancel = { [weak view] in view?.f_10007c1fc() }
+    editorHeader.onSave = { [weak view] in view?.f_10007c080() }
+    view.setCanCommitEditing = { [weak editorHeader] enabled in editorHeader?.setCanCommit(enabled) }
+    if let image = content as? ReplicaImagePreviewContent { editorHeader.setCanCommit(image.canCommit) }
     return view
 }
 
 /// Connects recovered preview mode transitions to the replica's local text model.
-/// Color, image, and link editing require their separate recovered content adapters.
+/// Other kinds use their own content adapters in the shared factory above.
 @MainActor
 func makeOriginalReplicaTextPreview(state: ReplicaUIState, item: ClipboardItem) -> OriginalItemPreviewView? {
     guard item.kind == .text || item.kind == .richText else { return nil }
@@ -444,23 +476,29 @@ private final class ReplicaInlinePreviewEditorHeader: NSView {
     var onCancel: (() -> Void)?
     var onSave: (() -> Void)?
     private var saveButton: NSButton?
-    init(document: ReplicaRichTextDocument) {
+    init(document: ReplicaRichTextDocument? = nil) {
         super.init(frame: .zero)
         let cancel = OriginalToolbarButton(title: String(localized: OriginalPreviewLocalization.f_1001c0788()), shortcut: .init(keyCode: OriginalShortcutFunctions.f_1001e95fc(), internalModifiers: 0), toolTip: String(localized: OriginalPreviewLocalization.f_1001be988())) { [weak self] _ in self?.onCancel?() }
         let save = OriginalToolbarButton(title: String(localized: OriginalPreviewLocalization.f_1001c3908()), shortcut: .init(keyCode: Int(OriginalShortcutFunctions.f_1001e94d4("s")), internalModifiers: NSEvent.ModifierFlags.command.rawValue), toolTip: String(localized: OriginalPreviewLocalization.f_1001bf108())) { [weak self] _ in self?.onSave?() }
         save.isPrimary = true
         save.isEnabled = false
         saveButton = save
-        let toolbar = ReplicaInlinePreviewFormatting(document: document)
-        for view in [cancel, save, toolbar] { view.translatesAutoresizingMaskIntoConstraints = false; addSubview(view) }
+        for view in [cancel, save] { view.translatesAutoresizingMaskIntoConstraints = false; addSubview(view) }
         NSLayoutConstraint.activate([
             cancel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             cancel.centerYAnchor.constraint(equalTo: centerYAnchor),
             save.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            save.centerYAnchor.constraint(equalTo: centerYAnchor),
-            toolbar.centerXAnchor.constraint(equalTo: centerXAnchor),
-            toolbar.centerYAnchor.constraint(equalTo: centerYAnchor)
+            save.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+        if let document {
+            let toolbar = ReplicaInlinePreviewFormatting(document: document)
+            toolbar.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(toolbar)
+            NSLayoutConstraint.activate([
+                toolbar.centerXAnchor.constraint(equalTo: centerXAnchor),
+                toolbar.centerYAnchor.constraint(equalTo: centerYAnchor)
+            ])
+        }
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     func setCanCommit(_ enabled: Bool) { saveButton?.isEnabled = enabled }
