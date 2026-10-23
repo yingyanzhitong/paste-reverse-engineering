@@ -30,6 +30,10 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
     private var targetApplication: NSRunningApplication?
     private var activationObserver: NSObjectProtocol?
     private var refreshTimer: Timer?
+    private var pausePreferencesObservation: AnyCancellable?
+    private var pauseResumeTimer: Timer?
+    private var scheduledResumeDate: Date?
+    private var lastPauseFlag: Bool?
     private var hotKeyStatus: OSStatus = noErr
     private var stackHotKeyStatus: OSStatus = noErr
     private var hotKeyObservation: AnyCancellable?
@@ -115,7 +119,16 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
             if !arguments.contains("--no-monitor") {
                 monitor = ClipboardMonitor(store: store, pasteboard: pasteboard)
                 monitor?.onCapture = { [weak self] id in self?.ui.captureIntoStack(id: id) }
-                monitor?.start()
+            }
+            ReplicaCopiedOSD.pauseStatus = { [weak self] in
+                guard let self, self.monitor != nil,
+                      let capture = OriginalPasteboardCaptureState.current(for: self.pasteboard) else { return nil }
+                return capture.pollTimer == nil
+            }
+            configurePauseMonitoring()
+            pausePreferencesObservation = store.$preferences.sink { [weak self] _ in
+                // @Published fires before the two pause fields finish changing.
+                DispatchQueue.main.async { self?.configurePauseMonitoring() }
             }
             hotKey.action = { [weak self] in self?.togglePanel(nil) }
             stackHotKey.action = { [weak self] in
@@ -338,6 +351,44 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
                                                      .applicationVersion: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "开发版本",
                                                      .credits: NSAttributedString(string: "原生剪贴板历史与 Pinboard 工具")])
     }
+    private func configurePauseMonitoring() {
+        let paused = store.preferences.isMonitoringPaused
+        let date = store.preferences.pauseUntil
+        guard lastPauseFlag != paused || scheduledResumeDate != date else { return }
+        pauseResumeTimer?.invalidate()
+        pauseResumeTimer = nil
+        lastPauseFlag = paused
+        scheduledResumeDate = date
+        guard paused || date != nil else {
+            monitor?.start()
+            return
+        }
+        monitor?.stop()
+        if let date {
+            // Original f_100004b40 schedules one NSTimer for resumeDate - Date().
+            pauseResumeTimer = Timer.scheduledTimer(withTimeInterval: date.timeIntervalSinceNow,
+                                                   repeats: false) { [weak self] _ in
+                MainActor.assumeIsolated { self?.resumeTimedPause(expectedDate: date) }
+            }
+        }
+    }
+
+    private func resumeTimedPause(expectedDate: Date) {
+        guard store.preferences.pauseUntil == expectedDate else {
+            configurePauseMonitoring()
+            return
+        }
+        pauseResumeTimer?.invalidate()
+        pauseResumeTimer = nil
+        store.preferences.pauseUntil = nil
+        store.preferences.isMonitoringPaused = false
+        do {
+            try store.save()
+            ReplicaCopiedOSD.showResumed()
+        } catch { ui.presentError(error) }
+        configurePauseMonitoring()
+    }
+
     @objc private func pause(_ sender: Any?) {
         if store.preferences.isMonitoringPaused { ui.state.resumeMonitoring() }
         else { ui.state.pauseMonitoring() }
@@ -412,6 +463,10 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
         pasteGeneration = UUID()
         hotKeyObservation?.cancel()
         diagnosticsObservation?.cancel()
+        pausePreferencesObservation?.cancel()
+        pauseResumeTimer?.invalidate()
+        pauseResumeTimer = nil
+        ReplicaCopiedOSD.pauseStatus = nil
         monitor?.stop(); hotKey.unregister(); stackHotKey.unregister(); stackPasteHotKey.unregister(); refreshTimer?.invalidate()
         if let activationObserver { NSWorkspace.shared.notificationCenter.removeObserver(activationObserver) }
     }

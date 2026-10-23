@@ -38,3 +38,7 @@
 "general.paste-resumed" = "Paste 再開しました";
 
 "general.until" = "まで %@";
+
+"general.paused" = "一時停止中";
+
+"general.action.pause-paste" = "Pasteを一時停止";

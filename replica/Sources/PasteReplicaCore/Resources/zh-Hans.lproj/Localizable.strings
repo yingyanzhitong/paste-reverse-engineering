@@ -38,3 +38,7 @@
 "general.paste-resumed" = "Paste 恢复";
 
 "general.until" = "直到 %@";
+
+"general.paused" = "已暂停";
+
+"general.action.pause-paste" = "暂停 Paste";

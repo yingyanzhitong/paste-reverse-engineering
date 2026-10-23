@@ -1,0 +1,547 @@
+{
+  "binary_path": "replica/.build/release/PasteReplica",
+  "binary_sha256": "82560709ba6afa4f79a633a0d3a63e6911e854ee3e47b6544112df5b33354ee1",
+  "original_path": ".local/targets/Paste.arm64",
+  "original_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "functions": {
+    "Paste:0x10037dd6c": {
+      "start": "0x1000f6a94",
+      "end_exclusive": "0x1000f6b20",
+      "size": 140,
+      "sha256": "da12e211c33c2ef3f7d787e222fffdf7b1ca3d29f47d660ec9435afb200ee3de",
+      "full_machine_code_hex": "ff4301d1f85f01a9f65702a9f44f03a9fd7b04a9fd030191f30300aa7c870194f40300aa280600d0088541f955050090b58644f9756a28f8280600d0178141f9e00313aaf1860194f60300aae00315aa2706fe97606a37f8e00316aae8860194f65300a9c8050090010545f9e0030091dd860194fd7b44a9f44f43a9f65742a9f85f41a9ff430191c0035fd6",
+      "symbol": "_$s16PasteReplicaCore22OriginalPasteboardItemCACycfcTo",
+      "original": {
+        "start": "0x10037dd6c",
+        "end_exclusive": "0x10037ddd8",
+        "size": 108,
+        "sha256": "ad6509473d17aee718ff0165fec85b35cef151e6c02766e5d38d4155391fce87",
+        "full_machine_code_hex": "ff0301d1f65701a9f44f02a9fd7b03a9fdc30091f30300aaa3fa2194f40300aa28620090081545f9805900b0006c40f9606a28f828620090151945f99a2f0194606a35f8f35300a9486000d0013145f9e003009160f82194fd7b43a9f44f42a9f65741a9ff030191c0035fd6"
+      },
+      "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000f6a94 <_$s16PasteReplicaCore22OriginalPasteboardItemCACycfcTo>:\n1000f6a94:     \tsub\tsp, sp, #0x50\n1000f6a98:     \tstp\tx24, x23, [sp, #0x10]\n1000f6a9c:     \tstp\tx22, x21, [sp, #0x20]\n1000f6aa0:     \tstp\tx20, x19, [sp, #0x30]\n1000f6aa4:     \tstp\tx29, x30, [sp, #0x40]\n1000f6aa8:     \tadd\tx29, sp, #0x40\n1000f6aac:     \tmov\tx19, x0\n1000f6ab0:     \tbl\t0x1001588a0 <_swift_willThrowTypedImpl+0x1001588a0>\n1000f6ab4:     \tmov\tx20, x0\n1000f6ab8:     \tadrp\tx8, 0x1001bc000 <_$s16PasteReplicaCore28OriginalShortcutRegistrationCN+0x50>\n1000f6abc:     \tldr\tx8, [x8, #0x308]\n1000f6ac0:     \tadrp\tx21, 0x10019e000 <_swift_willThrowTypedImpl+0x10019e000>\n1000f6ac4:     \tldr\tx21, [x21, #0x908]\n1000f6ac8:     \tstr\tx21, [x19, x8]\n1000f6acc:     \tadrp\tx8, 0x1001bc000 <_$s16PasteReplicaCore28OriginalShortcutRegistrationCN+0x50>\n1000f6ad0:     \tldr\tx23, [x8, #0x300]\n1000f6ad4:     \tmov\tx0, x19\n1000f6ad8:     \tbl\t0x10015869c <_swift_willThrowTypedImpl+0x10015869c>\n1000f6adc:     \tmov\tx22, x0\n1000f6ae0:     \tmov\tx0, x21\n1000f6ae4:     \tbl\t0x100078380 <_$sSD17dictionaryLiteralSDyxq_Gx_q_td_tcfCSS_10Foundation4DataVTgm5Tf4g_n>\n1000f6ae8:     \tstr\tx0, [x19, x23]\n1000f6aec:     \tmov\tx0, x22\n1000f6af0:     \tbl\t0x100158690 <_swift_willThrowTypedImpl+0x100158690>\n1000f6af4:     \tstp\tx22, x20, [sp]\n1000f6af8:     \tadrp\tx8, 0x1001ae000 <__OBJC_$_PROTOCOL_INSTANCE_METHODS_OPT_NSTableViewDataSource+0xb0>\n1000f6afc:     \tldr\tx1, [x8, #0xa08]\n1000f6b00:     \tmov\tx0, sp\n1000f6b04:     \tbl\t0x100158678 <_swift_willThrowTypedImpl+0x100158678>\n1000f6b08:     \tldp\tx29, x30, [sp, #0x40]\n1000f6b0c:     \tldp\tx20, x19, [sp, #0x30]\n1000f6b10:     \tldp\tx22, x21, [sp, #0x20]\n1000f6b14:     \tldp\tx24, x23, [sp, #0x10]\n1000f6b18:     \tadd\tsp, sp, #0x50\n1000f6b1c:     \tret\n",
+      "decision": "keep_migrated",
+      "state": "candidate",
+      "review": "最终build29完整ObjC init f6a94..f6b20：当前ivar-offset槽1bc308/1bc300分别写orderedTypes空数组与dataByType空字典；调用当前dictionaryLiteral<String,Data>78380，随后objc_msgSendSuper2；当前method表159390的init entry159398绑定f6a94。",
+      "original_index": {
+        "address": "0x10037dd6c",
+        "procedure": {
+          "status": "resolved",
+          "address": "0x10037dd6c",
+          "name": "_TtC9PasteCore14PasteboardItem::init"
+        },
+        "file": "decompiled/Paste/part-0282.c",
+        "line": 1192
+      },
+      "imported_calls": {
+        "0x1001588a0": "_swift_getObjectType",
+        "0x10015869c": "_objc_retain",
+        "0x100158690": "_objc_release",
+        "0x100158678": "_objc_msgSendSuper2"
+      }
+    },
+    "Paste:0x10037df40": {
+      "start": "0x1000f974c",
+      "end_exclusive": "0x1000f9784",
+      "size": 56,
+      "sha256": "733ba66712f3fb5236fcba89a0f785289051ffd8bdd8e7f8d94d62e52082f003",
+      "full_machine_code_hex": "f44fbea9fd7b01a9fd430091f30300aa080600f0088541f9006868f8fd7b0194080600f0088141f9606a68f8fd7b41a9f44fc2a8f77b0114",
+      "symbol": "_$s16PasteReplicaCore22OriginalPasteboardItemCfETo",
+      "original": {
+        "start": "0x10037df40",
+        "end_exclusive": "0x10037df78",
+        "size": 56,
+        "sha256": "37aa5518f2f405687e09c31bb45a47eb4bf9a38c3f1a86a9adb5f3648a70970a",
+        "full_machine_code_hex": "f44fbea9fd7b01a9fd430091f30300aa28620090081545f9006868f88ef9219428620090081945f9606a68f8fd7b41a9f44fc2a888f92114"
+      },
+      "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000f974c <_$s16PasteReplicaCore22OriginalPasteboardItemCfETo>:\n1000f974c:     \tstp\tx20, x19, [sp, #-0x20]!\n1000f9750:     \tstp\tx29, x30, [sp, #0x10]\n1000f9754:     \tadd\tx29, sp, #0x10\n1000f9758:     \tmov\tx19, x0\n1000f975c:     \tadrp\tx8, 0x1001bc000 <_$s16PasteReplicaCore28OriginalShortcutRegistrationCN+0x50>\n1000f9760:     \tldr\tx8, [x8, #0x308]\n1000f9764:     \tldr\tx0, [x0, x8]\n1000f9768:     \tbl\t0x10015875c <_swift_willThrowTypedImpl+0x10015875c>\n1000f976c:     \tadrp\tx8, 0x1001bc000 <_$s16PasteReplicaCore28OriginalShortcutRegistrationCN+0x50>\n1000f9770:     \tldr\tx8, [x8, #0x300]\n1000f9774:     \tldr\tx0, [x19, x8]\n1000f9778:     \tldp\tx29, x30, [sp, #0x10]\n1000f977c:     \tldp\tx20, x19, [sp], #0x20\n1000f9780:     \tb\t0x10015875c <_swift_willThrowTypedImpl+0x10015875c>\n",
+      "decision": "keep_migrated",
+      "state": "candidate",
+      "review": "最终build29完整.cxx_destruct f974c..f9784：按当前1bc308/1bc300两ivar-offset依次swift_bridgeObjectRelease；当前method entry1593bc绑定f974c。",
+      "original_index": {
+        "address": "0x10037df40",
+        "procedure": {
+          "status": "resolved",
+          "address": "0x10037df40",
+          "name": "_TtC9PasteCore14PasteboardItem::.cxx_destruct"
+        },
+        "file": "decompiled/Paste/part-0282.c",
+        "line": 1312
+      },
+      "imported_calls": {
+        "0x10015875c": "_swift_bridgeObjectRelease"
+      }
+    },
+    "Paste:0x10037e158": {
+      "start": "0x1000f73f8",
+      "end_exclusive": "0x1000f7438",
+      "size": 64,
+      "sha256": "5857058a1955fdc83863a5f1f5338619a005a9c7349402ac36735988bdddfdea",
+      "full_machine_code_hex": "f60f1df8f44f01a9fd7b02a9fd830091f30315aaf60300aae00314aa8a840194f40300aae00316aaf50313aa05000094fd7b42a9f44f41a9f60743f8c0035fd6",
+      "symbol": "_$s16PasteReplicaCore22OriginalPasteboardItemC4fromACs7Decoder_p_tKcfC",
+      "original": {
+        "start": "0x10037e158",
+        "end_exclusive": "0x10037e198",
+        "size": 64,
+        "sha256": "4eba47f7a260c1b0c67dcf723b4e7efd5d22456d18b9949cf02817f51d15cedd",
+        "full_machine_code_hex": "f60f1df8f44f01a9fd7b02a9fd830091f30315aaf60300aae00314aa3af72194f40300aae00316aaf50313aa05000094fd7b42a9f44f41a9f60743f8c0035fd6"
+      },
+      "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000f73f8 <_$s16PasteReplicaCore22OriginalPasteboardItemC4fromACs7Decoder_p_tKcfC>:\n1000f73f8:     \tstr\tx22, [sp, #-0x30]!\n1000f73fc:     \tstp\tx20, x19, [sp, #0x10]\n1000f7400:     \tstp\tx29, x30, [sp, #0x20]\n1000f7404:     \tadd\tx29, sp, #0x20\n1000f7408:     \tmov\tx19, x21\n1000f740c:     \tmov\tx22, x0\n1000f7410:     \tmov\tx0, x20\n1000f7414:     \tbl\t0x10015863c <_swift_willThrowTypedImpl+0x10015863c>\n1000f7418:     \tmov\tx20, x0\n1000f741c:     \tmov\tx0, x22\n1000f7420:     \tmov\tx21, x19\n1000f7424:     \tbl\t0x1000f7438 <_$s16PasteReplicaCore22OriginalPasteboardItemC4fromACs7Decoder_p_tKcfc>\n1000f7428:     \tldp\tx29, x30, [sp, #0x20]\n1000f742c:     \tldp\tx20, x19, [sp, #0x10]\n1000f7430:     \tldr\tx22, [sp], #0x30\n1000f7434:     \tret\n",
+      "decision": "keep_migrated",
+      "state": "candidate",
+      "review": "最终build29完整Decoder allocating-init f73f8..f7438：objc_allocWithZone后调用当前严格Decoder init f7438，保留x21错误寄存器；64字节完整边界来自重新解析LC_FUNCTION_STARTS。",
+      "original_index": {
+        "address": "0x10037e158",
+        "procedure": {
+          "status": "resolved",
+          "address": "0x10037e158",
+          "name": "FUN_10037e158"
+        },
+        "file": "decompiled/Paste/part-0282.c",
+        "line": 1382
+      },
+      "imported_calls": {
+        "0x10015863c": "_objc_allocWithZone"
+      }
+    },
+    "Paste:0x10037e44c": {
+      "start": "0x1000f9784",
+      "end_exclusive": "0x1000f97d0",
+      "size": 76,
+      "sha256": "99e33b9bca74c3e5f2764ce37da1f516d73f90c0c5c65e68d7cec2a00cfa6ea9",
+      "full_machine_code_hex": "f75bbda9f44f01a9fd7b02a9fd830091f60315aaf70300aaf30308aae00314aaa67b0194f40300aae00317aaf50316aa21f7ff97550000b5600200f9fd7b42a9f44f41a9f75bc3a8c0035fd6",
+      "symbol": "_$s16PasteReplicaCore22OriginalPasteboardItemCSeAASe4fromxs7Decoder_p_tKcfCTW",
+      "original": {
+        "start": "0x10037e44c",
+        "end_exclusive": "0x10037e498",
+        "size": 76,
+        "sha256": "c3624cbfb7bcd6a8c272a98e2772c308a027cfdf1ccdf0a1ab4d245b3c7faded",
+        "full_machine_code_hex": "f75bbda9f44f01a9fd7b02a9fd830091f60315aaf70300aaf30308aae00314aa7cf62194f40300aae00317aaf50316aa47ffff97550000b5600200f9fd7b42a9f44f41a9f75bc3a8c0035fd6"
+      },
+      "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000f9784 <_$s16PasteReplicaCore22OriginalPasteboardItemCSeAASe4fromxs7Decoder_p_tKcfCTW>:\n1000f9784:     \tstp\tx23, x22, [sp, #-0x30]!\n1000f9788:     \tstp\tx20, x19, [sp, #0x10]\n1000f978c:     \tstp\tx29, x30, [sp, #0x20]\n1000f9790:     \tadd\tx29, sp, #0x20\n1000f9794:     \tmov\tx22, x21\n1000f9798:     \tmov\tx23, x0\n1000f979c:     \tmov\tx19, x8\n1000f97a0:     \tmov\tx0, x20\n1000f97a4:     \tbl\t0x10015863c <_swift_willThrowTypedImpl+0x10015863c>\n1000f97a8:     \tmov\tx20, x0\n1000f97ac:     \tmov\tx0, x23\n1000f97b0:     \tmov\tx21, x22\n1000f97b4:     \tbl\t0x1000f7438 <_$s16PasteReplicaCore22OriginalPasteboardItemC4fromACs7Decoder_p_tKcfc>\n1000f97b8:     \tcbnz\tx21, 0x1000f97c0 <_$s16PasteReplicaCore22OriginalPasteboardItemCSeAASe4fromxs7Decoder_p_tKcfCTW+0x3c>\n1000f97bc:     \tstr\tx0, [x19]\n1000f97c0:     \tldp\tx29, x30, [sp, #0x20]\n1000f97c4:     \tldp\tx20, x19, [sp, #0x10]\n1000f97c8:     \tldp\tx23, x22, [sp], #0x30\n1000f97cc:     \tret\n",
+      "decision": "keep_migrated",
+      "state": "candidate",
+      "review": "最终build29完整Decodable witness f9784..f97d0：当前conformance15f5ec+24相对指针绑定f9784；f97b8在x21错误非零时跳f97c0，跳过f97bc输出写入。",
+      "original_index": {
+        "address": "0x10037e44c",
+        "procedure": {
+          "status": "resolved",
+          "address": "0x10037e44c",
+          "name": "FUN_10037e44c"
+        },
+        "file": "decompiled/Paste/part-0282.c",
+        "line": 1478
+      },
+      "imported_calls": {
+        "0x10015863c": "_objc_allocWithZone"
+      }
+    },
+    "Paste:0x10037def0": {
+      "start": "0x1000f73a8",
+      "end_exclusive": "0x1000f73d0",
+      "size": 40,
+      "sha256": "3d6715442fd02b3331ab68ece7b89226dfd440208a09dd881991f9b73c720faf",
+      "full_machine_code_hex": "f44fbea9fd7b01a9fd430091f30300aa3c0b0094e10300aae00313aafd7b41a9f44fc2a8d3830114",
+      "symbol": "_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOs28CustomDebugStringConvertibleAAsAGP16debugDescriptionSSvgTW",
+      "original": {
+        "start": "0x10037def0",
+        "end_exclusive": "0x10037df18",
+        "size": 40,
+        "sha256": "4df48e59299035b99953721bd8dea1f8a72103cbb2de8f93b1dcb8f962d7675a",
+        "full_machine_code_hex": "f44fbea9fd7b01a9fd430091f30300aa5b0d0094e10300aae00313aafd7b41a9f44fc2a8e9f22114"
+      },
+      "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000f73a8 <_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOs28CustomDebugStringConvertibleAAsAGP16debugDescriptionSSvgTW>:\n1000f73a8:     \tstp\tx20, x19, [sp, #-0x20]!\n1000f73ac:     \tstp\tx29, x30, [sp, #0x10]\n1000f73b0:     \tadd\tx29, sp, #0x10\n1000f73b4:     \tmov\tx19, x0\n1000f73b8:     \tbl\t0x1000fa0a8 <_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOAFs0G3KeyAAWl>\n1000f73bc:     \tmov\tx1, x0\n1000f73c0:     \tmov\tx0, x19\n1000f73c4:     \tldp\tx29, x30, [sp, #0x10]\n1000f73c8:     \tldp\tx20, x19, [sp], #0x20\n1000f73cc:     \tb\t0x100158318 <_swift_willThrowTypedImpl+0x100158318>\n",
+      "decision": "keep_migrated",
+      "state": "candidate",
+      "review": "最终build29完整CodingKeys debugDescription witness f73a8..f73d0：通过当前fa0a8..fa0ec CodingKey witness accessor调用Swift CodingKey debugDescription默认实现；当前debug conformance15f6bc+24绑定f73a8。",
+      "original_index": {
+        "address": "0x10037def0",
+        "procedure": {
+          "status": "resolved",
+          "address": "0x10037def0",
+          "name": "FUN_10037def0"
+        },
+        "file": "decompiled/Paste/part-0282.c",
+        "line": 1284
+      },
+      "imported_calls": {
+        "0x100158318": "_$ss9CodingKeyPsE16debugDescriptionSSvg"
+      }
+    },
+    "Paste:0x10037df18": {
+      "start": "0x1000f73d0",
+      "end_exclusive": "0x1000f73f8",
+      "size": 40,
+      "sha256": "ee6a4969a7a0047d4ce62995571a5e14bf1e518406bc8f03834402fab352646e",
+      "full_machine_code_hex": "f44fbea9fd7b01a9fd430091f30300aa320b0094e10300aae00313aafd7b41a9f44fc2a8c6830114",
+      "symbol": "_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOs23CustomStringConvertibleAAsAGP11descriptionSSvgTW",
+      "original": {
+        "start": "0x10037df18",
+        "end_exclusive": "0x10037df40",
+        "size": 40,
+        "sha256": "4a88a830432a9b08b669db02d078e8e2c593cec1ed2ea3ec856cc9dbb073c95a",
+        "full_machine_code_hex": "f44fbea9fd7b01a9fd430091f30300aa510d0094e10300aae00313aafd7b41a9f44fc2a8dcf22114"
+      },
+      "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000f73d0 <_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOs23CustomStringConvertibleAAsAGP11descriptionSSvgTW>:\n1000f73d0:     \tstp\tx20, x19, [sp, #-0x20]!\n1000f73d4:     \tstp\tx29, x30, [sp, #0x10]\n1000f73d8:     \tadd\tx29, sp, #0x10\n1000f73dc:     \tmov\tx19, x0\n1000f73e0:     \tbl\t0x1000fa0a8 <_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOAFs0G3KeyAAWl>\n1000f73e4:     \tmov\tx1, x0\n1000f73e8:     \tmov\tx0, x19\n1000f73ec:     \tldp\tx29, x30, [sp, #0x10]\n1000f73f0:     \tldp\tx20, x19, [sp], #0x20\n1000f73f4:     \tb\t0x10015830c <_swift_willThrowTypedImpl+0x10015830c>\n",
+      "decision": "keep_migrated",
+      "state": "candidate",
+      "review": "最终build29完整CodingKeys description witness f73d0..f73f8：通过当前fa0a8..fa0ec CodingKey witness accessor调用Swift CodingKey description默认实现；当前description conformance15f694+24绑定f73d0。",
+      "original_index": {
+        "address": "0x10037df18",
+        "procedure": {
+          "status": "resolved",
+          "address": "0x10037df18",
+          "name": "FUN_10037df18"
+        },
+        "file": "decompiled/Paste/part-0282.c",
+        "line": 1298
+      },
+      "imported_calls": {
+        "0x10015830c": "_$ss9CodingKeyPsE11descriptionSSvg"
+      }
+    },
+    "Paste:0x1000d489c": {
+      "start": "0x1000f5634",
+      "end_exclusive": "0x1000f5660",
+      "size": 44,
+      "sha256": "34c24969c433a098cda3ab462e415de5fc861cd2b3607c996456822ea26fec13",
+      "full_machine_code_hex": "fd7bbfa9fd030091800a40f9c88c0194801240f9458c019480a2009104000094e00314aafd7bc1a8c0035fd6",
+      "symbol": "_$s16PasteReplicaCore23OriginalNamedDiagnosticCfd",
+      "original": {
+        "start": "0x1000d489c",
+        "end_exclusive": "0x1000d48c8",
+        "size": 44,
+        "sha256": "5af091e649812bb3f38ebd3239821fd688e0d59a1eaadf8f5f8b6f7a77b8d6d3",
+        "full_machine_code_hex": "fd7bbfa9fd030091800a40f946a02c94801240f9399f2c9480a20091d3ffff97e00314aafd7bc1a8c0035fd6"
+      },
+      "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000f5634 <_$s16PasteReplicaCore23OriginalNamedDiagnosticCfd>:\n1000f5634:     \tstp\tx29, x30, [sp, #-0x10]!\n1000f5638:     \tmov\tx29, sp\n1000f563c:     \tldr\tx0, [x20, #0x10]\n1000f5640:     \tbl\t0x100158960 <_swift_willThrowTypedImpl+0x100158960>\n1000f5644:     \tldr\tx0, [x20, #0x20]\n1000f5648:     \tbl\t0x10015875c <_swift_willThrowTypedImpl+0x10015875c>\n1000f564c:     \tadd\tx0, x20, #0x28\n1000f5650:     \tbl\t0x1000f5660 <_$s16PasteReplicaCore22OriginalDiagnosticSink_pSgWOh>\n1000f5654:     \tmov\tx0, x20\n1000f5658:     \tldp\tx29, x30, [sp], #0x10\n1000f565c:     \tret\n",
+      "decision": "keep_migrated",
+      "state": "candidate",
+      "review": "最终build29完整nondeallocating-deinit f5634..f5660：依lock→name→cached调用swift_release、bridgeObjectRelease、Optional existential value-witness destroy(f5660..f56a0)，返回self不dealloc；字段常量15f4e8/15f4f0/15f4f8分别0x10/0x18/0x28。",
+      "original_index": {
+        "address": "0x1000d489c",
+        "procedure": {
+          "status": "resolved",
+          "address": "0x1000d489c",
+          "name": "FUN_1000d489c"
+        },
+        "file": "decompiled/Paste/part-0069.c",
+        "line": 1552
+      },
+      "imported_calls": {
+        "0x100158960": "_swift_release",
+        "0x10015875c": "_swift_bridgeObjectRelease"
+      }
+    },
+    "Paste:0x1000d48c8": {
+      "start": "0x1000f56a0",
+      "end_exclusive": "0x1000f56d4",
+      "size": 52,
+      "sha256": "a6a66a40ade5bc6b6e8341a5b1ec0de34c9b0fdb7fdaf5bdd3d3380278cbee44",
+      "full_machine_code_hex": "fd7bbfa9fd030091800a40f9ad8c0194801240f92a8c019480a20091e9ffff97e00314aa010a8052e2008052fd7bc1a8388c0114",
+      "symbol": "_$s16PasteReplicaCore23OriginalNamedDiagnosticCfD",
+      "original": {
+        "start": "0x1000d48c8",
+        "end_exclusive": "0x1000d48fc",
+        "size": 52,
+        "sha256": "b14d039f511c908701c032214b66fd211878d04e312fa857b1ecb7c52f27c046",
+        "full_machine_code_hex": "fd7bbfa9fd030091800a40f93ba02c94801240f92e9f2c9480a20091c8ffff97e00314aa010a8052e2008052fd7bc1a8519f2c14"
+      },
+      "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000f56a0 <_$s16PasteReplicaCore23OriginalNamedDiagnosticCfD>:\n1000f56a0:     \tstp\tx29, x30, [sp, #-0x10]!\n1000f56a4:     \tmov\tx29, sp\n1000f56a8:     \tldr\tx0, [x20, #0x10]\n1000f56ac:     \tbl\t0x100158960 <_swift_willThrowTypedImpl+0x100158960>\n1000f56b0:     \tldr\tx0, [x20, #0x20]\n1000f56b4:     \tbl\t0x10015875c <_swift_willThrowTypedImpl+0x10015875c>\n1000f56b8:     \tadd\tx0, x20, #0x28\n1000f56bc:     \tbl\t0x1000f5660 <_$s16PasteReplicaCore22OriginalDiagnosticSink_pSgWOh>\n1000f56c0:     \tmov\tx0, x20\n1000f56c4:     \tmov\tw1, #0x50               ; =80\n1000f56c8:     \tmov\tw2, #0x7                ; =7\n1000f56cc:     \tldp\tx29, x30, [sp], #0x10\n1000f56d0:     \tb\t0x1001587b0 <_swift_willThrowTypedImpl+0x1001587b0>\n",
+      "decision": "keep_migrated",
+      "state": "candidate",
+      "review": "最终build29完整deallocating-deinit f56a0..f56d4：相同顺序释放lock/name/cached，再swift_deallocClassInstance(self,0x50,7)；metadata1bc280前destroy slot1bc270绑定f56a0。",
+      "original_index": {
+        "address": "0x1000d48c8",
+        "procedure": {
+          "status": "resolved",
+          "address": "0x1000d48c8",
+          "name": "FUN_1000d48c8"
+        },
+        "file": "decompiled/Paste/part-0069.c",
+        "line": 1567
+      },
+      "imported_calls": {
+        "0x100158960": "_swift_release",
+        "0x10015875c": "_swift_bridgeObjectRelease",
+        "0x1001587b0": "_swift_deallocClassInstance"
+      }
+    }
+  },
+  "metadata": {
+    "objc_methods": {
+      "table": "0x100159390",
+      "flags": "0x8000000c",
+      "stride": 12,
+      "count": 4,
+      "methods": [
+        {
+          "entry": "0x100159398",
+          "name": "init",
+          "imp": "0x1000f6a94"
+        },
+        {
+          "entry": "0x1001593a4",
+          "name": "initWithCoder:",
+          "imp": "0x1000f6db4"
+        },
+        {
+          "entry": "0x1001593b0",
+          "name": "encodeWithCoder:",
+          "imp": "0x1000f707c"
+        },
+        {
+          "entry": "0x1001593bc",
+          "name": ".cxx_destruct",
+          "imp": "0x1000f974c"
+        }
+      ]
+    },
+    "_$s16PasteReplicaCore22OriginalPasteboardItemCSeAAMc": {
+      "address": "0x10015f5ec",
+      "words": [
+        "0x44d1d",
+        "0x10dc8",
+        "0x0",
+        "0x30000",
+        "0x1",
+        "0x44d11",
+        "0xfff9a180",
+        "0x10000"
+      ],
+      "witness_relative_at_plus24": "0x1000f9784"
+    },
+    "_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOs23CustomStringConvertibleAAMc": {
+      "address": "0x10015f694",
+      "words": [
+        "0x44c95",
+        "0x10da8",
+        "0x0",
+        "0x30000",
+        "0x1",
+        "0x44c89",
+        "0xfff97d24",
+        "0x10000"
+      ],
+      "witness_relative_at_plus24": "0x1000f73d0"
+    },
+    "_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOs28CustomDebugStringConvertibleAAMc": {
+      "address": "0x10015f6bc",
+      "words": [
+        "0x44c7d",
+        "0x10d80",
+        "0x0",
+        "0x30000",
+        "0x1",
+        "0x44c71",
+        "0xfff97cd4",
+        "0x10000"
+      ],
+      "witness_relative_at_plus24": "0x1000f73a8"
+    },
+    "namedlogger_destroy_slot": {
+      "slot": "0x1001bc270",
+      "raw": "0x100000000f56a0",
+      "target": "0x1000f56a0"
+    },
+    "_$s16PasteReplicaCore23OriginalNamedDiagnosticC4lock33_5392303E022CCC7623D8FAE84EAC2440LL2os21OSAllocatedUnfairLockVyytGvpWvd": {
+      "address": "0x10015f4e8",
+      "value": "0x10"
+    },
+    "_$s16PasteReplicaCore23OriginalNamedDiagnosticC6cached33_5392303E022CCC7623D8FAE84EAC2440LLAA0dF4Sink_pSgvpWvd": {
+      "address": "0x10015f4f8",
+      "value": "0x28"
+    },
+    "_$s16PasteReplicaCore16ClipboardMonitorC18historyDiagnostics33_65D26224C7A9B28BF4BFDD74DD0570EBLLAA23OriginalNamedDiagnosticCvpWvd": {
+      "address": "0x1001bda18",
+      "value": "0x28"
+    },
+    "_$s16PasteReplicaCore23OriginalNamedDiagnosticC4nameSSvpWvd": {
+      "address": "0x10015f4f0",
+      "value": "0x18"
+    },
+    "_$s16PasteReplicaCore22OriginalPasteboardItemC10dataByType33_0A513DDF9381F3E8C5642EC8D044EB8BLLSDySS10Foundation4DataVGvpWvd": {
+      "address": "0x1001bc300",
+      "value": "0x10"
+    },
+    "_$s16PasteReplicaCore22OriginalPasteboardItemC12orderedTypes33_0A513DDF9381F3E8C5642EC8D044EB8BLLSaySSGvpWvd": {
+      "address": "0x1001bc308",
+      "value": "0x8"
+    }
+  },
+  "supporting_functions": {
+    "_$s16PasteReplicaCore22OriginalDiagnosticSink_pSgWOh": {
+      "start": "0x1000f5660",
+      "end_exclusive": "0x1000f56a0",
+      "size": 64,
+      "sha256": "7b77f30cf64d8da4949482e502742d0d66dec82e99a8dfb9978316c06334d30b",
+      "full_machine_code_hex": "f44fbea9fd7b01a9fd430091f30300aa200600b000c034913b6ffc97e10300aa08805ff8080540f9e00313aa00013fd6e00313aafd7b41a9f44fc2a8c0035fd6",
+      "symbol": "_$s16PasteReplicaCore22OriginalDiagnosticSink_pSgWOh",
+      "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000f5660 <_$s16PasteReplicaCore22OriginalDiagnosticSink_pSgWOh>:\n1000f5660:     \tstp\tx20, x19, [sp, #-0x20]!\n1000f5664:     \tstp\tx29, x30, [sp, #0x10]\n1000f5668:     \tadd\tx29, sp, #0x10\n1000f566c:     \tmov\tx19, x0\n1000f5670:     \tadrp\tx0, 0x1001ba000 <_$s16PasteReplicaCore24OriginalShortcutMessagesO8messages33_25E61716E4161BACC69AF4D1D3A315AELL_WZTv6_+0x88>\n1000f5674:     \tadd\tx0, x0, #0xd30\n1000f5678:     \tbl\t0x100011364 <___swift_instantiateConcreteTypeFromMangledName>\n1000f567c:     \tmov\tx1, x0\n1000f5680:     \tldur\tx8, [x0, #-0x8]\n1000f5684:     \tldr\tx8, [x8, #0x8]\n1000f5688:     \tmov\tx0, x19\n1000f568c:     \tblr\tx8\n1000f5690:     \tmov\tx0, x19\n1000f5694:     \tldp\tx29, x30, [sp, #0x10]\n1000f5698:     \tldp\tx20, x19, [sp], #0x20\n1000f569c:     \tret\n"
+    },
+    "_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOAFs0G3KeyAAWl": {
+      "start": "0x1000fa0a8",
+      "end_exclusive": "0x1000fa0ec",
+      "size": 68,
+      "sha256": "d2cd8ca805289fb9cf1bc631071e3c49f37a8fa2428b492cf56d63e187044907",
+      "full_machine_code_hex": "fd7bbfa9fd030091080600d000a541f9600000b4fd7bc1a8c0035fd6200300b000101e91410500d021e00b91027a0194080600d008210d9100fd9fc8fd7bc1a8c0035fd6",
+      "symbol": "_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOAFs0G3KeyAAWl",
+      "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000fa0a8 <_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOAFs0G3KeyAAWl>:\n1000fa0a8:     \tstp\tx29, x30, [sp, #-0x10]!\n1000fa0ac:     \tmov\tx29, sp\n1000fa0b0:     \tadrp\tx8, 0x1001bc000 <_$s16PasteReplicaCore28OriginalShortcutRegistrationCN+0x50>\n1000fa0b4:     \tldr\tx0, [x8, #0x348]\n1000fa0b8:     \tcbz\tx0, 0x1000fa0c4 <_$s16PasteReplicaCore22OriginalPasteboardItemC10CodingKeys33_0A513DDF9381F3E8C5642EC8D044EB8BLLOAFs0G3KeyAAWl+0x1c>\n1000fa0bc:     \tldp\tx29, x30, [sp], #0x10\n1000fa0c0:     \tret\n1000fa0c4:     \tadrp\tx0, 0x10015f000 <_$s16PasteReplicaCore31OriginalConsoleLogConfigurationC5levels5UInt8VvpWvd+0x8>\n1000fa0c8:     \tadd\tx0, x0, #0x784\n1000fa0cc:     \tadrp\tx1, 0x1001a4000 <_$s16PasteReplicaCore24OriginalInitializedValueCMP+0x98>\n1000fa0d0:     \tadd\tx1, x1, #0x2f8\n1000fa0d4:     \tbl\t0x1001588dc <_swift_willThrowTypedImpl+0x1001588dc>\n1000fa0d8:     \tadrp\tx8, 0x1001bc000 <_$s16PasteReplicaCore28OriginalShortcutRegistrationCN+0x50>\n1000fa0dc:     \tadd\tx8, x8, #0x348\n1000fa0e0:     \tstlr\tx0, [x8]\n1000fa0e4:     \tldp\tx29, x30, [sp], #0x10\n1000fa0e8:     \tret\n"
+    }
+  },
+  "kind": "current_build29_complete_compiler_and_lifecycle_reuse_review",
+  "reviewed_at": "2026-10-23T11:59:33.932927+00:00",
+  "method": "fresh LC_FUNCTION_STARTS endpoints + complete current arm64 bodies + current ObjC/protocol/destroy metadata; no earlier build addresses reused",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
+    "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift": "95baca2d0ee25cb9ca5a7bcbc111a820bbe70d29feecf46e5d8cd0c1f6d5c911"
+  },
+  "functional_tests_executed": false,
+  "products_started": false,
+  "source_modified_during_review": false,
+  "fresh_build29_validation": {
+    "all_8_bodies_and_2_supporting_bodies_reparsed": true,
+    "all_body_hashes_differ_due_to_current_link_relocations": true,
+    "current_import_stubs_resolved_via_indirect_symbol_table": true,
+    "current_metadata_pointers_resolved": true,
+    "init_dictionary_callee": "0x100078380 typed dictionaryLiteral<String,Data> current symbol",
+    "optional_sink_type_instantiation": "0x100011364 current __swift_instantiateConcreteTypeFromMangledName; then optional metadata VWT destroy+8",
+    "codingkey_witness_accessor": "0x1000fa0a8..0x1000fa0ec current protocol descriptor 0x10015f784/type0x1001a42f8 to swift_getWitnessTable then stlr cache",
+    "scan": ".local/interaction-build29-boundary-scan.json"
+  },
+  "build_inputs_sha256": {
+    "replica/Package.swift": "07c6cd7f731a90d99ae677029f4f3f0069a946848bc9b5054f91b43c2391b2fa",
+    "replica/Sources/PasteReplica/AppMain.swift": "6f05ceeadb567571c7276508dec8e54272ee491977418847d91ce3a3a2a19857",
+    "replica/Sources/PasteReplica/BackgroundService.swift": "a117f0cd7e8742e0bedd7c3cf52935bc343db072d8beae4f4ee7437e58ed63e7",
+    "replica/Sources/PasteReplica/GlobalHotKey.swift": "e77cd9617f7a93b41f4c87c25f347f66e356583ea02530b2970d2c2f7b1314fc",
+    "replica/Sources/PasteReplica/SourceAppColor.swift": "6ca637969f49aa48516eda187214dc9d9b062d0ef023858cfa3b0eb9236046a8",
+    "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "dbdc7d438aedafbff96ee69a7da1dcfd4581095110776b5fbd4249481f844c3b",
+    "replica/Sources/PasteReplica/UI/FilterBrowser.swift": "ea6d5ff4fd30c7e59a0f08999323edc6da42a4e1803da2b59cb675be736b92cf",
+    "replica/Sources/PasteReplica/UI/OriginalImageCheckerboardView.swift": "33688d7bc85daf8236ba92017cee0828157202fc46f7c8be8e7f2663588bc51d",
+    "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift": "0a85e22ff3ccde5a6601fad92286b616c399a88263b14af587eca0d2e3dcc74e",
+    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "e68b8a925aba4bc888d3751f8eb9d006d84392f6253ab96e2ee6f5c01fde66ad",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "6552fa63584aa26fa167f5831edf5d48e8204066c2efa2011c219861908fce1a",
+    "replica/Sources/PasteReplica/UI/PreviewAnchor.swift": "aa621221c95e877131ce3f53723be87730091482eeac479ec109daf66adaf923",
+    "replica/Sources/PasteReplica/UI/ReplicaColorPreviewContent.swift": "d51f27ca2fac5cc2211fd3d195a11dd8fa7271d284b04beaf48675c3afb8cfcb",
+    "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift": "2ebcebd7c63bd527760a639f7a831508d6d6dbb00ac51acef012c35e29874a66",
+    "replica/Sources/PasteReplica/UI/ReplicaFilePreviewContent.swift": "e472096c4c5b87f9c6dd16e9ef3472c5df928612e4d358b2b76e147cda0d9d19",
+    "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "8acfe38f5a5be0dddaacbac6c6a15048c977e32f4cad96962e4c05b5ec9b5eb5",
+    "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift": "9cec78b9ca3c27a49dfa9bd4d16de598b4472e264ec2ba3bf651f48a39e4207c",
+    "replica/Sources/PasteReplica/UI/ReplicaReadOnlyPreviewContent.swift": "d08809731445c58173519a0a5a0c053e8b8f9544c236d3bad74867522e823a87",
+    "replica/Sources/PasteReplica/UI/ReplicaSearchIndex.swift": "02a461225f1ea46fba923a76b6a6e54cb8805a9d98a1bdbc3b7d4dba0f19c899",
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "05087761a0373532fecbdbee351ce11e83ff0a87be852f5cb72c68f2591aa2ae",
+    "replica/Sources/PasteReplica/UI/RichTextEditor.swift": "75b46eaf2b06289118b91e7fb300ad4518fa66f45f0b4858223311e41b2ac89c",
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "88f9bce056d3f58d9666dfe7921b21f7b2a856eaa20261e1139ab5cf987bde8c",
+    "replica/Sources/PasteReplica/UI/ShortcutRecorder.swift": "b4a45eb62c0deb1c81d77c1d86b965262220d7d0b575fcacf659c7e40bd48016",
+    "replica/Sources/PasteReplica/WindowSharingPolicy.swift": "072433ef383fb8a58b6be171d3096af92cec573da60b0790de0f65db114571ce",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "9c8d1165201c29399f349dec53209bc69ebf9808c817b30b03cd12918754979e",
+    "replica/Sources/PasteReplicaCore/KeyboardShortcut.swift": "eba51741928fc95619585980567b617d39f3c749564cddb5dff4bbd04bf189d6",
+    "replica/Sources/PasteReplicaCore/Models.swift": "b5c73a7b9d7dc571bc5540ef7d8942e696b6a9c99233e544db9eff8d9dbc7c48",
+    "replica/Sources/PasteReplicaCore/OCR.swift": "862d26c538ee33b527297b973197d609136755e66ab887f5f8eea9d3fad08739",
+    "replica/Sources/PasteReplicaCore/OriginalConfigurationFunctions.swift": "d777c6848066ec198ca41739d0a785ece4df2000977cda19b230e3d4530fcb54",
+    "replica/Sources/PasteReplicaCore/OriginalDependencies.swift": "6cccb9750822fd36e8e769bbaf820fc92232446bbde723089032b94a862619a8",
+    "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift": "7f7ca246acae9248a654db1af4973e8d48c272651a147fffc06cafaf2a103e9f",
+    "replica/Sources/PasteReplicaCore/OriginalDiagnosticsAppActions.swift": "51b66a38645a00f634efdb623f74940f503c8c2c36862badc56b1267d2132cac",
+    "replica/Sources/PasteReplicaCore/OriginalDiagnosticsHistory.swift": "7551155957a7e0821fd955efd19ccc127d742c26ce7aae60f904757a4a02e464",
+    "replica/Sources/PasteReplicaCore/OriginalDiagnosticsManager.swift": "afb071a98b036e3023f254c039ca1d85c4a975e79307aa3f3075b1caf21513ed",
+    "replica/Sources/PasteReplicaCore/OriginalFilterBrowserPopover.swift": "f0476a5457e4326cfa241adc063afb2e0031627cb49fe8bdf226634f9731ae7f",
+    "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift": "0ae87812c59edb65d973f77446ff78971c2c465d990df5b0c110dad76a8e0cae",
+    "replica/Sources/PasteReplicaCore/OriginalInitializedValue.swift": "bde8f2a1c9e4b6c74e9bb332ebff29dcbd3569d2459783a451661ff106d0e1c4",
+    "replica/Sources/PasteReplicaCore/OriginalItemPreviewView.swift": "09a402b919b028db132cec32108d3f36eca4106fb3c4ae8d641b6f65d5905c4d",
+    "replica/Sources/PasteReplicaCore/OriginalLayerBackedView.swift": "87acffa7790cb38e5715cf6ce3d4474fffb3633d3deb15635743526f6342303c",
+    "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift": "95baca2d0ee25cb9ca5a7bcbc111a820bbe70d29feecf46e5d8cd0c1f6d5c911",
+    "replica/Sources/PasteReplicaCore/OriginalObjCExceptionBridge.swift": "83c6a0735223b544a2d156b9ea26f9aff8896ca6f16c4d8a6c39ae550ac39c88",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardArchive.swift": "52c2053221184f1fc32aa997c78a3ef90657610590f0aecf760e13b9e9139e12",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardCaptureState.swift": "610987ed5613f845cb2fabadbd85ad0aaec1c405f7226eeb4080b3d59f567149",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardChecksums.swift": "91b10577b3103f2b5e4ad0879dce27b6ed53648531a0265d93d7d9f636fc611f",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardClassification.swift": "120318efac6b9e47b12a415427c830d051338fcbe0257f6f6c6d5bbab6f30614",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardDataCodec.swift": "3994f19683c261c6137c9a97f66f89d69b111e8731cc09acb42f6727980a786c",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardImageEncoding.swift": "2e4430ee0d8c7d8f88561457d37e8d50c0c756d83471facda099b7518a6a2dfe",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardImageRestore.swift": "4c2d234efaf5a3a2d64ce78515fb05e2683e47adfb2aa6b31920428b4cffa1b9",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardPolicies.swift": "b85860e5fdc4be03afd7f4f69651f3ed1fc15c2c48d4a765fdcae5fdc8787dc7",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardRestore.swift": "bf309c94b15bb4db46acedc6ba535d1f060aa3a8d74257053a773cf7200dd2c6",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewAttributedText.swift": "f670c5a9d4120859b7c75cb646ae574472ce51bdb320143fb929b48ac6e586ed",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewFooter.swift": "97d14915cc4fa873a0d526a42f168ea5487864d0b8327e825bee18e28bd2e25c",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift": "043ce653a34346bc6aa060208f507a2f56a55a8232a158767281ea1b569fbd48",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewPopover.swift": "352554008c692f89091bf3cb700b0cfee1b55768b5a709c3b4320951a154a46e",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewSharing.swift": "57b3febd14e33f9f1ae5a0df4d41612d1536fdf8cb78c375f66185b2015f14e1",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift": "06134570276933fc2be82f00033d2ba9c70aaf04d5e1e134e23fcfb830b3a881",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift": "819f073d5a5a633a4c7794fc0107e7bf3f015b68e74a1543d6edac7b29e31324",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewTitleLabel.swift": "84e3a33dbd575ad595cded72928d3d9b917ec1ece7eb258ba42ef3cf457bb0e2",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewWindows.swift": "4cc1f30d0de962162c6231a6207cc7623fc82e20f126f3ebc3edb326d5592c2d",
+    "replica/Sources/PasteReplicaCore/OriginalSearchAppearance.swift": "0cfd7e194ce6f6b1f4118897810e35d0eafab317a68e6104e4bfbd11dbaeb5c4",
+    "replica/Sources/PasteReplicaCore/OriginalSearchCommands.swift": "cf7409e5f4bf47f0e1052ac3ae42c5af43812c37407bfc77eca62ba864ca1bf8",
+    "replica/Sources/PasteReplicaCore/OriginalSearchDateEncoding.swift": "b46fe7fca447d1089bfc7c36676ecaf13a2d77c6d665eb5f42cb37ab5d00c5c6",
+    "replica/Sources/PasteReplicaCore/OriginalSearchDateRanges.swift": "dff8c099cdc52948c2e4d8d11404d892622e877a77fbdb3226446c2bbdfa9020",
+    "replica/Sources/PasteReplicaCore/OriginalSearchEditing.swift": "de4dbf21b72826fed9c0e9418c842eb8b0f1146a7d7aa9bfe22985af5d7ac73e",
+    "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "6a56456d5b45a28cacd291891380b97414e71c1eaf68bd1d9ee15c3ec1596600",
+    "replica/Sources/PasteReplicaCore/OriginalSearchFieldAnimation.swift": "5c415996232f8f009d56ca0e07976ac31bb502f2295b7401cda2c62b4f51cc49",
+    "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift": "73a9ca9cb90529d7c46665ac1af0241f0310505e56704d441df4e94c816698ef",
+    "replica/Sources/PasteReplicaCore/OriginalSearchFilterView.swift": "4628dc1edfd81fa48b4442c4b7f05ec5eea3a6f8598038d3a1f9f9480c62f6aa",
+    "replica/Sources/PasteReplicaCore/OriginalSearchInputView.swift": "bacd69180e56aaac3eebae4eca50daa594cd09a6a146da89654f37f04b860b28",
+    "replica/Sources/PasteReplicaCore/OriginalSearchLocalization.swift": "679276f5a75ded17e592018993ce39b0867a9856a6c6e32ee0efce1a23a8de2d",
+    "replica/Sources/PasteReplicaCore/OriginalSearchMenu.swift": "af3962d55bbfae4c40a67d43872d7f30d8e0e9c34c049527f28f94cc5a62f5e9",
+    "replica/Sources/PasteReplicaCore/OriginalSearchQuery.swift": "4c828b16c6342387d375e6b5a3f24d28b37bbffa1c377e4cdb064ad27b5d1b28",
+    "replica/Sources/PasteReplicaCore/OriginalSearchQueryNormalization.swift": "fc2414e1395bb916246c9ef38509730c394e3d0feebbf0ca6dc9438f86409eb9",
+    "replica/Sources/PasteReplicaCore/OriginalSearchTextScroller.swift": "69a73891f67209030ad401a2f64241a544c06c9c429522552d88e3e68a48b970",
+    "replica/Sources/PasteReplicaCore/OriginalSearchTextTokens.swift": "ea0bef0b75186bf558f512cd15f5343e1251fb47a9e39791d320fd23248b143f",
+    "replica/Sources/PasteReplicaCore/OriginalSearchTextValue.swift": "4edef55597ad4d0a131adee7674cb682ec8c34f422fdef61f8e83dc62e8a2d9b",
+    "replica/Sources/PasteReplicaCore/OriginalSearchTextView.swift": "516f59d8ed37513fbcac4ab13bdbc79526d58469d8c4478a28ecffa27efa9015",
+    "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift": "d83f199826f661090cdd74b9d05e185e295bf3570ba2f8e8dc868f9dac219cbf",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutCoding.swift": "c55c3649e56566bab3b41e8f4ba2e6ef542e50e202ab87357219b62236883047",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutControls.swift": "55ecfa91d843f2305044a1558079a89d6da119edc25f5a3d1f4e5b4ffe4d82a8",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift": "73908ddfedcd38cb4f1f64a7a21d1499879bed195dfb13d70f1ebbbeb6ce5b51",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "82c57689dfb20e2c4c02cd3c4ca72cf40ee7a3fd650b5fa832d79589761a9058",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutMessages.swift": "a359a587810f77d3306db57a0f8b17150dc6d075f1e698be9a1772b9eafa027a",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "ba907c942f91fe336506e9a47576051f285bfce47ccd43315cb111aedbd237f2",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorderView.swift": "881691562e6378fbadd64502b3ec893c821a1e0a463f8b0c6a5ddbdef7dd6330",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutTelemetry.swift": "8873cf835f1611b85b91736a796b4335d3364b9bc9278ace5bc89b2bd43ef14c",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutValidation.swift": "094cb536243bcfa19d37564a409c032728c4c5756e98b21b375858394ad2d5cc",
+    "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "e408e508e9bc0bf2b7477ab142e29e4b1c1087daa63cd402c312f145e6cf16a4",
+    "replica/Sources/PasteReplicaCore/OriginalStackTableController.swift": "bbd3276b4c9772cf92fcf68a59a3083c0f0f5569915cb56d83ce2b421419a717",
+    "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift": "f4c3920e5f5cd9f515bbe0cce530f4f8f6335b14450f75e471f0272e19412165",
+    "replica/Sources/PasteReplicaCore/OriginalViewAnimation.swift": "bafbd46ac9d4212f4d35dfc156c0d6958f8a185bce5985d23a4634e68fa081c5",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "bb6af5d6d9bc73a9967aa7676128d27b4cf88324c147be99f53eba6b8c198dce",
+    "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings": "709fa5d911acbfdfcb5c113687818cc34434cd6254ec81b5c4ae21891fde1b29",
+    "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.stringsdict": "c377921228b222f1fc08533c40a736677dae6ea5f28174615fd12f719eaf7368",
+    "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings": "60877d5dd4052724018982cf515892acc9346220d86e5cd60a333bd608b76ab8",
+    "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.stringsdict": "9aeeac092a54c8479d3a2f91d6136b6c07e8e1e5a299bca776ffe73768e053df",
+    "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings": "8292798e34cd98abec28fd62ad9d0a571b1d91cfb41cfcabf2b901fda49c0a71",
+    "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.stringsdict": "cb34c5fe923222e9a486a39a2a50bea60979e668992101cf45ab475f7a491b2c",
+    "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings": "48f2d2547369f6396ed65f297cec7b9974d7019238a5e303d021cfe2ae54c2e7",
+    "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.stringsdict": "692f24b15c80202e19d0fd5c61ce47f7dd2c15ef3ed2933e4dca4831e5b8349f",
+    "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings": "2001521e3e94be12f1316f8ab5e38f34ecf88778382c3d3fb986b6b24dec2d8d",
+    "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.stringsdict": "49503f106e5e9a7dafa1064c8334ba44c8d78b4e600c5fea96057cda8eadd304",
+    "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings": "ec33bfcf59e10e5c52fcad4594d738acf768dc6a4520c80496b713197db51beb",
+    "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.stringsdict": "b8c044ba87fac4b28dfbf87d4ac184dc49286ac8875cfd706d91d53e0ba365ac",
+    "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings": "f37884c87ee794fe343d73039232e3863c1787976053946c647aaa312be849f8",
+    "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.stringsdict": "8fac3dff9a640d4be38a9b17359882911438d08b574714396a5c83584396a978",
+    "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings": "5076fd927c1a10123863811c725813f6e372e2bcf9976c1a082f1ed82b47bc87",
+    "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.stringsdict": "20bca214cfe36a1553e011603bd0da2518dbed919953cac5fdd8b16dca7605f1",
+    "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings": "6fa3420a35a40f3cb8c2aa83115808224fbd01f98fc58cf7779117b376375329",
+    "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.stringsdict": "e142f7d1a80dd06553124c42b2607031082d2d134b1e15cbee4ea502d4ad692e",
+    "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings": "8c3174aadf108550967848d0799547fc3b43833dc3ef7b84a723a7239911fa34",
+    "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.stringsdict": "1a11b730d955611ab6ab704ad1cd8021b0602c43b513037f4bf96a3a37b468e1",
+    "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings": "46eddd135ff4f6df9496e3b879f3f7bf2d5ad7aad84cad6c8060a92fb0b2a4b1",
+    "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.stringsdict": "580307669952fa9bfdd3d33b12a116f3cae649e4fb1feadd308b9ab046d18e38",
+    "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings": "74d751be6ce400cfffd23a3e76d1e7df63c851ca3f51717b8558055d5d664461",
+    "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.stringsdict": "be69615feb738520b5bcab3023f48ecfdea7beaeb9e1b10e34f542d2ace3bb0c",
+    "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings": "965dcd07c549c9ec609a5827e9439f35e79204de57e1f25aa8396f15a775e975",
+    "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.stringsdict": "2242f432bdf3445282159b3ff948313d32f004c6a49e9b2d256f32eeb73b1497",
+    "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings": "a9995eb3942364372a0a5197e24ae9dc39bcddf9e9f2756658d67092708149a0",
+    "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.stringsdict": "f1defe302c3eb3e411745a0d3ae05fc31d92d2632ee0f590c8cb89e9dfa71c7c",
+    "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings": "a271de2332a62ec2c889d7144cccda9176befce2e4e37d6672697fb7a0319814",
+    "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.stringsdict": "24a50bf0d24d24084319d7912082ad737b30fc20dc700221fbadc63c676cec60",
+    "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings": "a91b03e2655183bfbdcadd86422140a37e73d88d7b85cd580d73e6483f137c31",
+    "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.stringsdict": "d0e736aefb1718a720a2f0f276bd3575bf3cddf13c3f7efff91c9ddc0980a4d4",
+    "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings": "2bb670d9c3cfa905f593fba3d7f312b85c8f83b0d8f96811eaa3c807dc13d34b",
+    "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.stringsdict": "3c0e2db1d254010dbbdb6e52f90a9a35c51295d9f6d75f7374d318a7f217dea7",
+    "replica/Sources/PasteReplicaHelper/HelperMain.swift": "8d1b91412cf7fa0fd44b466266a894eca087f626cb91b0fca4f93d60ded63f45",
+    "replica/Sources/PasteReplicaMCP/PasteReplicaMCP.swift": "1e91ac90ddd2b1d637807c926d72170628e4cca9536abf72d31104ccf4d8941f",
+    "replica/Sources/PasteReplicaObjC/PRObjCExceptionCatcher.m": "99b8ce9f229954f427517a16c4a976b6b1ad776873c0eb5a6856b6a82943af6e",
+    "replica/Sources/PasteReplicaObjC/include/PRObjCExceptionCatcher.h": "04b59d8c6afe6efa1496969e34c823ea16752e7c924d9f123a767acfe804a384"
+  },
+  "generated_source_sha256": {
+    "replica/.build/arm64-apple-macosx/release/PasteReplicaCore.build/DerivedSources/resource_bundle_accessor.swift": "559a99db118c7a915e8df476b9001917cf66096a50ef6f9135e9021231391302"
+  }
+}

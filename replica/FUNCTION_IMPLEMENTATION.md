@@ -58,7 +58,7 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 ## 并行迁移与现有实现复用
 
-2026-10-23 当前 0.8.0-dev.11 快照为 1,396 / 81,134：源码实现或复用 550 个、实际系统转发 846 个；剩余 79,738 个，其中 145 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
+2026-10-23 当前 0.8.0-dev.12 快照为 1,399 / 81,134：源码实现或复用 552 个、实际系统转发 847 个；剩余 79,735 个，其中 150 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
 
 按用户最新要求，四智能体改为先集中核对已有功能和完整调用链：已有实现满足契约就直接复用，只补确认缺失或行为不同的部分。系统转发、薄包装、编译器生成代码按证据成组核对，不再以逐个重写地址推进。功能存在、源码契约迁移、功能回归和一比一验收分别记录；不能把一次静态检查说成全部函数已通过。整体目标保持 active，尚未执行本轮新的功能、UI 或 MCP 测试。
 
@@ -79,6 +79,8 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 0.8.0-dev.10 补原 Character.isWhitespace 连续文本片段和空查询判断，接实际主界面查询、显示与 Escape/resign。恢复混合多选包含文本/链接时的 compactMap 聚合分支和纯文本来源元表示；普通复制及停止诊断的真实成功分支共用 copied-only 原生 OSD。快速旋转没有找到完整实际触发链，仍保留缺口，不增添推测 Header 按钮。最终构建 130 份输入摘要一致，日志 16.63 秒、包装 18.30 秒；最新编译器及异常捕获证明分别见 [compiled-reuse-build27.json](../reports/function-migration/compiled-reuse-build27.json) 与 [objc-exception-build27.json](../reports/function-migration/objc-exception-build27.json)。没有执行真实剪贴板、OSD、动画或功能回归。
 
 0.8.0-dev.11 继续集中核查已有实现。真实属性片段和 U+FFFC 筛选附件接入原 `f_1002da16c`，按 raw 值去重、保留文本节点边界和原前后分组顺序，一次发布查询输入。日期投影原样移至共用 Selection，已有两条日期记录只更新真实引用、不重复计数。恢复链接原双位 options、空结果 clear/write 与多项分组；默认过滤列表已有原静态数组证据。OSD 复用现有窗口补手动暂停/恢复及已保存暂停时间字幕，完整 timer/action 链仍缺。最终构建 131 份输入摘要一致，日志 16.85 秒、包装 18.61 秒；当前完整编译与异常桥证据见 [compiled-reuse-build28.json](../reports/function-migration/compiled-reuse-build28.json) 和 [objc-exception-build28.json](../reports/function-migration/objc-exception-build28.json)。未执行产品或任何新功能测试，未打包或安装。
+
+0.8.0-dev.12 修正独立暂停到期恢复：真实单次 Timer 到期即恢复监控，不再等待新剪贴板输入；取消重排、弱 owner、终止清理与实际 monitor.stop/start 已接。无日期字幕读取实际采集计时器状态，17 种语言补两个原词条。恢复后 ClosedState/提示音/rateApp 三消费者及共用原音效开关、声音素材差异已静态定位，事务/Undo/音效仍有缺口。搜索已定位编辑提案和选区→描述→异步建议任务链，当前无完整消费者，保留 partial；图片对象传递满足已核部分，未重复改写。最终构建 131 份输入摘要一致，日志 15.97 秒、包装 17.81 秒；当前完整体证据见 [compiled-reuse-build29.json](../reports/function-migration/compiled-reuse-build29.json) 和 [objc-exception-build29.json](../reports/function-migration/objc-exception-build29.json)。本轮没有运行产品或功能回归，尚未验证真实计时器/音效/粘贴交互。
 
 原搜索建议/自动 token 化、完整 query 序列化和反解析、Indexable provider、后台 actor/schema/批量恢复、原图片 ViewModel/优选尺寸/错误传播、原复制时文件大小及完整文件布局/VM、仓库事务、混合格式恢复及 token/repository/undo/DidRestore 副作用仍有差异。独立 CLI 的 ClipboardStore.search 保持原接口，不代表完整原 SearchService。既有 NSImage 跨 MainActor 异步分析警告仍保留在 partial 范围。四个 OCR 算法方法体未改，但外围图片数据读取使整文件摘要改变，旧验证转为历史；不以重新写摘要冒称当前功能通过。没有运行新的功能、单测、原版动态、UI 或 MCP 测试，尚未一比一验收。
 

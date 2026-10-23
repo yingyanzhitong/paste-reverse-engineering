@@ -38,3 +38,7 @@
 "general.paste-resumed" = "Paste genoptaget";
 
 "general.until" = "Indtil %@";
+
+"general.paused" = "Pauseret";
+
+"general.action.pause-paste" = "Pause Paste";

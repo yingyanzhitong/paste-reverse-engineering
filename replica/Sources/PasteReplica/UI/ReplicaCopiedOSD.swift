@@ -6,6 +6,8 @@ import SwiftUI
 /// Recovered local OSD presentation. The original optional action remains a separate contract.
 @MainActor
 enum ReplicaCopiedOSD {
+    // The original published pause flag is the inverse of the actual monitor's poll timer state.
+    static var pauseStatus: (() -> Bool?)?
     static func showCopied() {
         show(symbolName: "checkmark", title: String(localized: OriginalPreviewLocalization.f_1001c482c()))
     }
@@ -16,6 +18,9 @@ enum ReplicaCopiedOSD {
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm"
             subtitle = String(localized: OriginalPreviewLocalization.f_1001e6c18(formatter.string(from: resumeDate)))
+        } else if let paused = pauseStatus?() {
+            subtitle = String(localized: paused
+                ? OriginalPreviewLocalization.f_1001c5b38() : OriginalPreviewLocalization.f_1001c2888())
         } else { subtitle = nil }
         show(symbolName: "pause", title: String(localized: OriginalPreviewLocalization.f_1001c5838()),
              subtitle: subtitle)

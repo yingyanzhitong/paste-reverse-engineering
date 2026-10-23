@@ -38,3 +38,7 @@
 "general.paste-resumed" = "Paste התחדש";
 
 "general.until" = "עד %@";
+
+"general.paused" = "מושהה";
+
+"general.action.pause-paste" = "השהה את Paste";

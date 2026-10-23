@@ -1,7 +1,7 @@
 {
   "kind": "static_existing_feature_audit",
   "schema_version": 1,
-  "generated_at": "2026-10-23T11:53:04.783743+00:00",
+  "generated_at": "2026-10-23T12:00:11.947861+00:00",
   "policy": "按已有功能和调用链集中复核，只补真实缺口；本报告不修改逐地址台账，不将模块存在或候选匹配记为等价通过。",
   "functional_tests_executed": false,
   "mcp_tests_executed": false,
@@ -15,16 +15,16 @@
     "states": {
       "excluded_by_scope": 0,
       "implemented": 0,
-      "migrated": 1394,
-      "partial": 145,
-      "pending": 79593,
+      "migrated": 1397,
+      "partial": 150,
+      "pending": 79585,
       "verified": 2
     },
     "migration": {
-      "code_complete": 1396,
-      "source_functions": 550,
-      "sdk_forwarders_reused": 846,
-      "remaining": 79738,
+      "code_complete": 1399,
+      "source_functions": 552,
+      "sdk_forwarders_reused": 847,
+      "remaining": 79735,
       "regression_ready": false,
       "policy": "Finish all in-scope code migration before functional regression; retain explicit per-address scope exclusions."
     }
@@ -115,14 +115,15 @@
         "筛选附件分隔的自由词保持原独立节点trim后以单空格合并，不把foo[filter]bar变成foobar；取消旧查询只发布最新输入结果，失败显示重试",
         "日期范围编码按完整原arm64的FRINTM/FRINTP分别向下/向上取整后转Int，保留整数转换trap；主UI直接消费",
         "日期chip按固定范围重新匹配当前五个相对预设，跨日不沿用旧Today标签；未匹配则原medium日期格式start to end，未擅改排他上界",
-        "自由词先按原Character.isWhitespace分为连续空白/非空白run，无metadata U+FFFC投影为空格；原builder再trim/drop，多个连续空格不再被整段当作查询正文",
+        "自由词先按原Character.isWhitespace分为连续空白/非空白run；编辑器属性投影的无metadata U+FFFC只flush文本边界，独立字符串fallback才由原helper替换为空格；原builder再trim/drop",
         "查询空状态按全部节点value trim(.whitespaces)短路，搜索可见性与Esc/resign使用同一判断；原属性文本完整归一化和建议仍有缺口",
         "按真实属性run逐Character投影：U+FFFC携带metadata才生成filter；非附件文本跨样式run累积/flush；f2da16c按raw值去重filter并保留原末filter前后text排序，不把节点先压成freeString",
         "编辑事件一次保存归一化nodes与显示text，外部query/filter变化才清节点投影；归一化触发内容重建时把caret放末尾。原完整selection描述和suggestion provider仍partial"
       ],
       "gaps": [
         "完整原输入建议/自动token化、query模型编码和原实体Indexable提供者仍未全部恢复；独立CLI ClipboardStore.search保留既有API行为，不是原Spotlight完整接口",
-        "副本使用JSON provider及多board索引投影，与原actor/schema/batch索引恢复/错误生命周期存在差异；全部键盘/焦点/异步边界未运行验收"
+        "副本使用JSON provider及多board索引投影，与原actor/schema/batch索引恢复/错误生命周期存在差异；全部键盘/焦点/异步边界未运行验收",
+        "原SearchBar经f40990→f2f7370处理编辑提案、经f40a24→f2f7dd8→f2f78f8处理UTF-16选区，再由f403f4取消旧task并异步请求f2df190候选；当前onTextShouldChange/onSelectionChange尚无协调器消费者。普通didChange只覆盖已编辑内容投影，不代表此提案/建议链已恢复。"
       ],
       "reuse_candidates": [],
       "source_sha256": {
@@ -237,12 +238,12 @@
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
           "symbol": "private func paste(ids:",
-          "line": 351
+          "line": 402
         },
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
           "symbol": "private func waitForTarget(",
-          "line": 381
+          "line": 432
         }
       ],
       "original_functions": [],
@@ -258,7 +259,7 @@
       "reuse_candidates": [],
       "source_sha256": {
         "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "05087761a0373532fecbdbee351ce11e83ff0a87be852f5cb72c68f2591aa2ae",
-        "replica/Sources/PasteReplica/AppMain.swift": "b772c0ca11b529ceb542cf1b116b81b6935bf3fabdf42236a97bf01267438165"
+        "replica/Sources/PasteReplica/AppMain.swift": "6f05ceeadb567571c7276508dec8e54272ee491977418847d91ce3a3a2a19857"
       },
       "original_reference_status": [],
       "reviewer": "root"
@@ -986,7 +987,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift",
           "symbol": "showPaused",
-          "line": 13
+          "line": 15
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
@@ -996,7 +997,22 @@
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
           "symbol": "@objc private func pause(",
-          "line": 341
+          "line": 392
+        },
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "configurePauseMonitoring",
+          "line": 128
+        },
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "resumeTimedPause",
+          "line": 371
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift",
+          "symbol": "pauseStatus",
+          "line": 10
         }
       ],
       "original_functions": [
@@ -1008,11 +1024,12 @@
         "前台app缺失拒绝；FirefoxDeveloperEdition精确排除，其他bundle substring排除；ignoredTypes双向substring。",
         "Excel仅UTF16/UTF8；fileURL+PNG精确集合排fileURL；固定Microsoft三类标识过滤。",
         "macOS15.4+读取同accessBehavior getter，背景读取需raw2；老系统允许。",
-        "build28：原暂停/恢复反馈接入真实UIState.pauseMonitoring/resumeMonitoring及AppMain菜单，保存成功后复用通用原OSD容器；pause/arrow.clockwise与原标题、可选subtitle字体恢复。定时暂停subtitle取实际已保存pauseUntil绝对时间，按原HH:mm及general.until插值；51个本地化值逐项与原资源相同。"
+        "build28：原暂停/恢复反馈接入真实UIState.pauseMonitoring/resumeMonitoring及AppMain菜单，保存成功后复用通用原OSD容器；pause/arrow.clockwise与原标题、可选subtitle字体恢复。定时暂停subtitle取实际已保存pauseUntil绝对时间，按原HH:mm及general.until插值；51个本地化值逐项与原资源相同。",
+        "build29：主App启动/暂停偏好变化会停止实际poll/sync monitor并取消旧timer，按保存的pauseUntil-Date()安排repeats=false单次NSTimer；无新剪贴板活动也到期恢复/保存/原Resumed OSD/start monitor。weak owner、expectedDate校验防旧回调清新暂停；手动恢复/换日期/终止取消。nil-date OSD现以实际capture.pollTimer状态选择原general.paused/general.action.pause-paste，未用偏好Bool冒充原Published。"
       ],
       "gaps": [
         "外围新增保密/临时/暂停偏好属于产品额外政策，未把整个捕获入口判定为原版同函数。",
-        "暂停OSD只证列明手动动作/定时字幕；原PausePasteManager timer/publisher/service、自动到期反馈和nil resumeDate时原_isPaused关联字幕仍未完整，原OSD可选action也未接，不把此反馈宣称全部暂停合同完成。"
+        "原PausePasteManager timer wrapper/DI/status通知map到Published的完整身份，以及精确OSD→清date→start顺序/副本偏好持久化边界仍partial；当前主App单次到期/真实monitor启停/可用monitor的nil字幕已接。--no-monitor或owner缺失保持未知而非假false；原OSD可选action仍未接。"
       ],
       "reuse_candidates": [],
       "latest_pause_osd_review": {
@@ -1035,11 +1052,31 @@
         },
         "parent_partial_status_preserved": true
       },
+      "latest_pause_lifecycle_review": {
+        "parent_build": "gap-build29",
+        "result": "passed",
+        "elapsed_seconds": 17.81,
+        "compiler_log_elapsed_seconds": 15.97,
+        "stable_input_count": 131,
+        "input_sha_before_after_equal": true,
+        "kind": "static_compilation_only",
+        "functional_regression_executed": false,
+        "product_executed": false,
+        "build_log": ".local/gap-build-29.log",
+        "build_log_sha256": "ecdcc1992f4a5231e46a8961b54f5cf08f14f11c5bf326579b70ec0063e71c71",
+        "source_manifest_file": ".local/gap-build-complete.json",
+        "compiled_sha256": {
+          "replica/.build/release/PasteReplica": "82560709ba6afa4f79a633a0d3a63e6911e854ee3e47b6544112df5b33354ee1",
+          "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+          "replica/.build/release/paste-replica-mcp": "bb4c1c5c2e3c8c37dadf50154d91cc7986d4ee17619c5f10f97f6204f143aa6b"
+        },
+        "parent_partial_status_preserved": true
+      },
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboardPolicies.swift": "b85860e5fdc4be03afd7f4f69651f3ed1fc15c2c48d4a765fdcae5fdc8787dc7",
-        "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift": "c851822ca29c0a352dcf0c50b79e14dcadd5508817c7e941a62b9d4b9c4fc8d0",
+        "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift": "2ebcebd7c63bd527760a639f7a831508d6d6dbb00ac51acef012c35e29874a66",
         "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "05087761a0373532fecbdbee351ce11e83ff0a87be852f5cb72c68f2591aa2ae",
-        "replica/Sources/PasteReplica/AppMain.swift": "b772c0ca11b529ceb542cf1b116b81b6935bf3fabdf42236a97bf01267438165"
+        "replica/Sources/PasteReplica/AppMain.swift": "6f05ceeadb567571c7276508dec8e54272ee491977418847d91ce3a3a2a19857"
       },
       "original_reference_status": [
         {
@@ -1873,7 +1910,7 @@
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
           "symbol": "diagnosticsObservation = store.$preferences",
-          "line": 80
+          "line": 84
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
@@ -1909,7 +1946,7 @@
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "9c8d1165201c29399f349dec53209bc69ebf9808c817b30b03cd12918754979e",
         "replica/Sources/PasteReplicaCore/Pasteboard.swift": "bb6af5d6d9bc73a9967aa7676128d27b4cf88324c147be99f53eba6b8c198dce",
         "replica/Sources/PasteReplicaCore/Models.swift": "b5c73a7b9d7dc571bc5540ef7d8942e696b6a9c99233e544db9eff8d9dbc7c48",
-        "replica/Sources/PasteReplica/AppMain.swift": "b772c0ca11b529ceb542cf1b116b81b6935bf3fabdf42236a97bf01267438165",
+        "replica/Sources/PasteReplica/AppMain.swift": "6f05ceeadb567571c7276508dec8e54272ee491977418847d91ce3a3a2a19857",
         "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "05087761a0373532fecbdbee351ce11e83ff0a87be852f5cb72c68f2591aa2ae"
       },
       "original_reference_status": [
@@ -2451,7 +2488,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalDiagnosticsManager.swift": "afb071a98b036e3023f254c039ca1d85c4a975e79307aa3f3075b1caf21513ed",
         "replica/Sources/PasteReplicaCore/Models.swift": "b5c73a7b9d7dc571bc5540ef7d8942e696b6a9c99233e544db9eff8d9dbc7c48",
-        "replica/Sources/PasteReplica/AppMain.swift": "b772c0ca11b529ceb542cf1b116b81b6935bf3fabdf42236a97bf01267438165"
+        "replica/Sources/PasteReplica/AppMain.swift": "6f05ceeadb567571c7276508dec8e54272ee491977418847d91ce3a3a2a19857"
       },
       "original_reference_status": [
         {
@@ -2536,7 +2573,7 @@
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
           "symbol": "private func f_10004e064()",
-          "line": 293
+          "line": 306
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticsHistory.swift",
@@ -2551,7 +2588,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift",
           "symbol": "showCopied",
-          "line": 9
+          "line": 11
         }
       ],
       "original_functions": [
@@ -2593,10 +2630,10 @@
         "parent_partial_status_preserved": true
       },
       "source_sha256": {
-        "replica/Sources/PasteReplica/AppMain.swift": "b772c0ca11b529ceb542cf1b116b81b6935bf3fabdf42236a97bf01267438165",
+        "replica/Sources/PasteReplica/AppMain.swift": "6f05ceeadb567571c7276508dec8e54272ee491977418847d91ce3a3a2a19857",
         "replica/Sources/PasteReplicaCore/OriginalDiagnosticsHistory.swift": "7551155957a7e0821fd955efd19ccc127d742c26ce7aae60f904757a4a02e464",
         "replica/Sources/PasteReplicaCore/OriginalDiagnosticsAppActions.swift": "51b66a38645a00f634efdb623f74940f503c8c2c36862badc56b1267d2132cac",
-        "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift": "c851822ca29c0a352dcf0c50b79e14dcadd5508817c7e941a62b9d4b9c4fc8d0"
+        "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift": "2ebcebd7c63bd527760a639f7a831508d6d6dbb00ac51acef012c35e29874a66"
       },
       "original_reference_status": [
         {
@@ -2886,11 +2923,14 @@
         "Paste:0x10037b620"
       ],
       "covered_behavior": [
-        "实际writer会同步当前registry capture baseline，避免自己写入后重复capture；UndoManager provider和捕获通知已存在。"
+        "实际writer会同步当前registry capture baseline，避免自己写入后重复capture；UndoManager provider和捕获通知已存在。",
+        "dev12集中检查保留已接入双bits processor/原writer及baseline；Stack有显式队列消费与持久化，无须猜造DidRestore来重写它。"
       ],
       "gaps": [
         "原37a144在processor flatten→writer后立即写defaults token，执行repo capture-actions事务，清undo并发DidRestore通知；当前write入口未覆盖这些后续。",
-        "没有真实f37a144完整方法，不可用底层writer+其他捕获方法间接存在作全链等价。"
+        "没有真实f37a144完整方法，不可用底层writer+其他捕获方法间接存在作全链等价。",
+        "DidRestore原3消费者已定位：ClosedState清状态、原Paste.aiff系统声、rateApp检查；当前capture Pop与原Copy.aiff不同，声音开关默认false也不同于原true。原音效资源未证实公开复用许可，未用假替代或nil资源调用灌完成。",
+        "Stack context-menu Void handler/异步CGEvent提前返回true不能证明真正粘贴成功；相关UI协调需单独补，不能用底层writer成功替代。"
       ],
       "reuse_candidates": [],
       "source_sha256": {
@@ -3647,7 +3687,7 @@
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
           "symbol": "ui.hotKeyRecordingChanged =",
-          "line": 99,
+          "line": 103,
           "sha256": "497effc01dba02153f298dc4d668a77315e5bfd98752c4a821d5a1ae600299f6"
         }
       ],
@@ -3678,7 +3718,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift": "0ae87812c59edb65d973f77446ff78971c2c465d990df5b0c110dad76a8e0cae",
         "replica/Sources/PasteReplica/GlobalHotKey.swift": "e77cd9617f7a93b41f4c87c25f347f66e356583ea02530b2970d2c2f7b1314fc",
-        "replica/Sources/PasteReplica/AppMain.swift": "b772c0ca11b529ceb542cf1b116b81b6935bf3fabdf42236a97bf01267438165"
+        "replica/Sources/PasteReplica/AppMain.swift": "6f05ceeadb567571c7276508dec8e54272ee491977418847d91ce3a3a2a19857"
       },
       "original_reference_status": [
         {
@@ -7783,7 +7823,7 @@
         "build_log_sha256": "c1cd9d4048ee5e58ffb8bc3d4feb0d50696a90c1c9e09c594de86df22f581247"
       },
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift": "b6e9d0451968ca5939d78db9a6deda6853ad23a70a487077b3a695940aa0a5bf",
+        "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift": "043ce653a34346bc6aa060208f507a2f56a55a8232a158767281ea1b569fbd48",
         "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "e68b8a925aba4bc888d3751f8eb9d006d84392f6253ab96e2ee6f5c01fde66ad"
       },
       "original_reference_status": [
@@ -8055,7 +8095,7 @@
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
           "symbol": "applicationWillTerminate",
-          "line": 410
+          "line": 461
         }
       ],
       "original_functions": [
@@ -8108,7 +8148,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaHelper/HelperMain.swift": "8d1b91412cf7fa0fd44b466266a894eca087f626cb91b0fca4f93d60ded63f45",
         "replica/Sources/PasteReplica/BackgroundService.swift": "a117f0cd7e8742e0bedd7c3cf52935bc343db072d8beae4f4ee7437e58ed63e7",
-        "replica/Sources/PasteReplica/AppMain.swift": "b772c0ca11b529ceb542cf1b116b81b6935bf3fabdf42236a97bf01267438165"
+        "replica/Sources/PasteReplica/AppMain.swift": "6f05ceeadb567571c7276508dec8e54272ee491977418847d91ce3a3a2a19857"
       },
       "original_reference_status": [
         {
@@ -8716,7 +8756,8 @@
       "gaps": [
         "仅静态存在和编译通过，未运行滚动/双指缩放/拖选/复制或截图验收。",
         "4个原ObjC actor包装入口的ABI/执行器报告尚未与当前编译器逐机器码核对，保留partial。",
-        "EXIF非法UInt32回退up、asyncABI/NSImage Sendable警告仍partial；尺寸算法已恢复，原VM typed metadata尺寸provider尚不同。原Header只有Pin/Share/Edit，未证实quickrotate实际入口；400ms只属外部quickrotate，未误接显式Save/Cancel编辑模式。VM缓存处理图/任务、事务/空item失败合同、flush/Undo来源继续缺失；静态引用无命中不证明不可达、不做排除。"
+        "EXIF非法UInt32回退up、asyncABI/NSImage Sendable警告仍partial；尺寸算法已恢复，原VM typed metadata尺寸provider尚不同。原Header只有Pin/Share/Edit，未证实quickrotate实际入口；400ms只属外部quickrotate，未误接显式Save/Cancel编辑模式。VM缓存处理图/任务、事务/空item失败合同、flush/Undo来源继续缺失；静态引用无命中不证明不可达、不做排除。",
+        "dev12额外核原薄片69,612条真实dyld format6 rebase，quickrotate两入口和操作均无指针命中；仍未证明menu/keyboard/context触发。仅作为静态缺口定位，不据此排除或标完成，不增加猜测UI。"
       ],
       "reuse_candidates": [],
       "source_sha256": {
