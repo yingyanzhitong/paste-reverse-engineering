@@ -89,3 +89,7 @@
 "settings.privacy.link-preview.subtitle" = "可能会影响一次性和分析敏感链接。";
 "replica.settings.privacy.saved-link-preview.title" = "链接预览";
 "replica.settings.privacy.saved-link-preview.subtitle" = "显示已保存的链接预览。";
+
+
+"preview.unavailable.title" = "预览不可用";
+"preview.unavailable.subtitle" = "预览无法显示，但内容已保存，您可以进行粘贴";

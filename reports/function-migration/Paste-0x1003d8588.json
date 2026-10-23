@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1003d8588",
-  "reviewed_at": "2026-10-23T18:15:46.167570+00:00",
+  "reviewed_at": "2026-10-23T18:26:11.272029+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0306.c",
@@ -11,18 +11,18 @@
   "original_pseudocode_sha256": "f3a94f212c10e31c12f3ce8a49f18b534c6c358d00f726d4b62dacbd0bfa5737",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift": "acb4df601c1f35cf1e8767bc8a66140c99ec082c8c82f79acd49fc316a5d09cf",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "5f9157f43a157c71222c5377ebefc0b337d74a5c22443b70f7da4d9a3c95cb9b"
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "9337255fa2e91a7fa62cf9fce09b81ffbfcaed182ade908630b86d5d789c4081"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "f347d652f6fab2a7e98ed28a3d6dc577ba8f3b052e1bd86520ac2299198476fd",
+  "compiled_app_binary_sha256": "1f3ce0f8e02a759ee2772e16ad080d9aedb89fe8737230638c1638ca43b92594",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "Completepure3constraintvalues forrawUInt8sizeclass,fullsize andOSbool; actualbodyTop/HeaderHeightconsumer. Lockvalueexactreturned,nativeLockViewparentpartial.",
   "review": "Bound to final46 actual155inputs; finitecompletegeometrybody/table andactualcanonical/privacyconsumers. WholeUI/Config/ABIparentsnotpromoted.",
-  "source_review": "dev39/build65明确复审public func geometry(sizeClass: UInt8, modernOS: Bool) -> Geometry, .padding(.top, cardGeometry?.bodyTop ?? headerHeight)有限既有契约：Panel只移除text/rich通用摘要并以原生overlayFooter替代、增加metadata背景及短Header主题颜色；SearchEditor/fielddelegate/query逻辑、既有cardGeometry.bodyTop/headerHeight/class/普通颜色分支nil回退仍原消费者。拖动native仅context鉴权与target分离及原edge补齐；不以新footer或edge冒本条之外全父恢复。当前源码/生成码/二进制静态绑定，未运行。",
+  "source_review": "dev40/build66明确复审public func geometry(sizeClass: UInt8, modernOS: Bool) -> Geometry, .padding(.top, cardGeometry?.bodyTop ?? headerHeight)：Panel仅kindunknown卡片改独立原生view、去unknown通用summary，另unknown&&!compact用完整previewwrapper；原SearchEditor/editingDelegate/query判断、cardGeometry.bodyTop/headerHeight/class与已实现颜色/text背景路径及消费者均保持。新helper无双padding且不改变这些旧有限合同；未运行。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "caller_review_refs": [
     {

@@ -89,3 +89,7 @@
 "settings.privacy.link-preview.subtitle" = "Kan van invloed zijn op eenmalige en analysegevoelige links.";
 "replica.settings.privacy.saved-link-preview.title" = "Link Previews";
 "replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";
+
+
+"preview.unavailable.title" = "Voorbeeld niet beschikbaar";
+"preview.unavailable.subtitle" = "Voorbeeld kan niet worden getoond, maar de inhoud is opgeslagen en je kunt het plakken";

@@ -29908,6 +29908,221 @@
       ],
       "compiled_review": "reports/replica/text-footer-and-edge-static-audit.json",
       "remaining": "有限实际消费者已接；完整原父/对象/动画/全部输入及运行回归仍partial，不按模块或本次编译记完整。"
+    },
+    "Paste:0x1001daf54": {
+      "state": "migrated",
+      "contract": "有限本地化资源访问器：精确键preview.unavailable.title、表Localizable、Locale.current、BundleDescription.atURL及nil comment；复用同一Foundation初始化ABI并供真实Unknown UI消费。独立app使用自有部署资源URL和17locale原值，不声称原Bundle加载器或URL对象身份恢复。",
+      "implementation_origin": "newly_migrated",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalUnavailablePreviewLocalization.swift",
+          "symbol": "public static func f_1001daf54()"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalUnavailablePreviewContent.swift",
+          "symbol": "OriginalUnavailablePreviewLocalization.f_1001daf54()"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.title\""
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalUnavailableCompactContent.swift",
+          "symbol": "OriginalUnavailablePreviewLocalization.f_1001daf54()"
+        }
+      ],
+      "migration_evidence": "reports/function-migration/Paste-0x1001daf54.json",
+      "review": "原完整机器/伪码、当前28字节入口与共享完整factory、实际UI BL、17编译bundle源文件逐字一致均由独立PB静态peer复核。有限值合同使用既有Localization静态迁移规则；不把bundleloader/wholeUnknown父一并计入。",
+      "remaining": "未运行资源解析矩阵；静态migrated不等于runtimeverified，原bundleloader及Unknown父仍单独待恢复。"
+    },
+    "Paste:0x1001dadd4": {
+      "state": "migrated",
+      "contract": "有限本地化资源访问器：精确键preview.unavailable.subtitle、表Localizable、Locale.current、BundleDescription.atURL及nil comment；复用同一Foundation初始化ABI并供真实Unknown UI消费。独立app使用自有部署资源URL和17locale原值，不声称原Bundle加载器或URL对象身份恢复。",
+      "implementation_origin": "newly_migrated",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalUnavailablePreviewLocalization.swift",
+          "symbol": "public static func f_1001dadd4()"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalUnavailablePreviewContent.swift",
+          "symbol": "OriginalUnavailablePreviewLocalization.f_1001dadd4()"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "\"preview.unavailable.subtitle\""
+        }
+      ],
+      "migration_evidence": "reports/function-migration/Paste-0x1001dadd4.json",
+      "review": "原完整机器/伪码、当前28字节入口与共享完整factory、实际UI BL、17编译bundle源文件逐字一致均由独立PB静态peer复核。有限值合同使用既有Localization静态迁移规则；不把bundleloader/wholeUnknown父一并计入。",
+      "remaining": "未运行资源解析矩阵；静态migrated不等于runtimeverified，原bundleloader及Unknown父仍单独待恢复。"
+    },
+    "Paste:0x1003ddca4": {
+      "state": "partial",
+      "contract": "Unknown紧凑图标OS分支与symbol配置。",
+      "implementation_origin": "newly_integrated_finite_behavior",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalUnavailableCompactContent.swift",
+          "symbol": "let configuration = NSImage.SymbolConfiguration"
+        }
+      ],
+      "compiled_review": "reports/replica/unavailable-content-static-audit.json",
+      "remaining": "有限原生视图已接，原整个factory/对象/DI/actor/动画、实际shortcut功能及运行像素仍partial，不以本次编译扩大完成范围。"
+    },
+    "Paste:0x1003de12c": {
+      "state": "partial",
+      "contract": "Unknown紧凑图像/提示文字及shortcut垂直布局锚点。",
+      "implementation_origin": "newly_integrated_finite_behavior",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalUnavailableCompactContent.swift",
+          "symbol": "let shortcutAlignment = NSLayoutGuide()"
+        }
+      ],
+      "compiled_review": "reports/replica/unavailable-content-static-audit.json",
+      "remaining": "有限原生视图已接，原整个factory/对象/DI/actor/动画、实际shortcut功能及运行像素仍partial，不以本次编译扩大完成范围。"
+    },
+    "Paste:0x1003eca34": {
+      "state": "partial",
+      "contract": "Unknown完整预览独立图标/双label/stack原生内容树。",
+      "implementation_origin": "newly_integrated_finite_behavior",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalUnavailablePreviewContent.swift",
+          "symbol": "final class OriginalUnavailablePreviewContentView"
+        }
+      ],
+      "compiled_review": "reports/replica/unavailable-content-static-audit.json",
+      "remaining": "有限原生视图已接，原整个factory/对象/DI/actor/动画、实际shortcut功能及运行像素仍partial，不以本次编译扩大完成范围。"
     }
   }
 }

@@ -89,3 +89,7 @@
 "settings.privacy.link-preview.subtitle" = "Může ovlivnit jednorázové odkazy a odkazy citlivé na analýzu.";
 "replica.settings.privacy.saved-link-preview.title" = "Link Previews";
 "replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";
+
+
+"preview.unavailable.title" = "Náhled není k dispozici";
+"preview.unavailable.subtitle" = "Náhled nelze zobrazit, ale obsah je uložen a můžete jej vložit";

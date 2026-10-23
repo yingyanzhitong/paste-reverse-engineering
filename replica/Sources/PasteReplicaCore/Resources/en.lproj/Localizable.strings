@@ -89,3 +89,7 @@
 "settings.privacy.link-preview.subtitle" = "Download web content for previews; may activate one-time or analytics-sensitive links.";
 "replica.settings.privacy.saved-link-preview.title" = "Link Previews";
 "replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";
+
+
+"preview.unavailable.title" = "Preview unavailable";
+"preview.unavailable.subtitle" = "Preview can’t be shown, but the content is saved, and you’re able to paste it";

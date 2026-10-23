@@ -1,7 +1,7 @@
 {
   "kind": "static_existing_feature_audit",
   "schema_version": 1,
-  "generated_at": "2026-10-23T18:15:53.243464+00:00",
+  "generated_at": "2026-10-23T18:26:18.702412+00:00",
   "policy": "按已有功能和调用链集中复核，只补真实缺口；本报告不修改逐地址台账，不将模块存在或候选匹配记为等价通过。",
   "functional_tests_executed": false,
   "mcp_tests_executed": false,
@@ -15,16 +15,16 @@
     "states": {
       "excluded_by_scope": 9,
       "implemented": 0,
-      "migrated": 1497,
-      "partial": 299,
-      "pending": 79327,
+      "migrated": 1499,
+      "partial": 302,
+      "pending": 79322,
       "verified": 2
     },
     "migration": {
-      "code_complete": 1499,
-      "source_functions": 586,
+      "code_complete": 1501,
+      "source_functions": 588,
       "sdk_forwarders_reused": 913,
-      "remaining": 79626,
+      "remaining": 79624,
       "regression_ready": false,
       "policy": "Finish all in-scope code migration before functional regression; retain explicit per-address scope exclusions."
     }
@@ -229,7 +229,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "pinboard",
@@ -274,7 +274,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "private func receiveItemDrop(",
-          "line": 309
+          "line": 301
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPinboardColor.swift",
@@ -340,7 +340,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
         "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "83f115e2f1f7ba8f057de253dfb60e548a2ec16d035d55f8688e6a5f06c106e8",
-        "replica/Sources/PasteReplica/UI/PanelViews.swift": "5f9157f43a157c71222c5377ebefc0b337d74a5c22443b70f7da4d9a3c95cb9b",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "9337255fa2e91a7fa62cf9fce09b81ffbfcaed182ade908630b86d5d789c4081",
         "replica/Sources/PasteReplicaCore/OriginalPinboardColor.swift": "cfc44a744f2d3769d70582fea50da409435cfd9dcfa7f9ba104719093dcaef8e",
         "replica/Sources/PasteReplicaCore/OriginalPinboardAttributes.swift": "d2a1be64643be5b1b6380b92b8787e09dcf9021b6d61b7a3c3f406f5d2293424",
         "replica/Sources/PasteReplica/UI/OriginalPinboardHeaderIcon.swift": "c5aad86b7285c39fd31757919e9cf8d3cc5a29fae201a150132735c193a0c2db",
@@ -407,7 +407,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "multiselect",
@@ -582,7 +582,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "stack",
@@ -700,7 +700,7 @@
           "ledger_state": "verified"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "ocr",
@@ -720,12 +720,12 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "复制图中文字",
-          "line": 536
+          "line": 530
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "struct ReplicaItemContent",
-          "line": 638
+          "line": 632
         },
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift",
@@ -811,9 +811,9 @@
       "reuse_candidates": [],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OCR.swift": "862d26c538ee33b527297b973197d609136755e66ab887f5f8eea9d3fad08739",
-        "replica/Sources/PasteReplica/UI/PanelViews.swift": "5f9157f43a157c71222c5377ebefc0b337d74a5c22443b70f7da4d9a3c95cb9b",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "9337255fa2e91a7fa62cf9fce09b81ffbfcaed182ade908630b86d5d789c4081",
         "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift": "0a85e22ff3ccde5a6601fad92286b616c399a88263b14af587eca0d2e3dcc74e",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d",
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7",
         "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2",
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
         "replica/Sources/PasteReplica/UI/ReplicaSearchIndex.swift": "e78958178276341efacbc2a1d240fbef049827fa836337e0ef1584cfa9dc5695",
@@ -850,7 +850,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "history-actions",
@@ -880,7 +880,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "private var contextMenu:",
-          "line": 520
+          "line": 514
         }
       ],
       "original_functions": [
@@ -904,7 +904,7 @@
       "reuse_candidates": [],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
-        "replica/Sources/PasteReplica/UI/PanelViews.swift": "5f9157f43a157c71222c5377ebefc0b337d74a5c22443b70f7da4d9a3c95cb9b"
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "9337255fa2e91a7fa62cf9fce09b81ffbfcaed182ade908630b86d5d789c4081"
       },
       "original_reference_status": [
         {
@@ -929,7 +929,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "main-card-layout",
@@ -949,7 +949,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "private var cardTitle:",
-          "line": 505
+          "line": 499
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
@@ -1008,31 +1008,31 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "OriginalCardPresentation.resolve(item, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)",
-          "line": 325,
+          "line": 317,
           "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "ReplicaCanonicalCardContent(item: item, sizeClass: UInt8(sizeClass))",
-          "line": 357,
+          "line": 349,
           "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": ".padding(.top, cardGeometry?.bodyTop ?? headerHeight)",
-          "line": 253,
+          "line": 245,
           "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "resolvedCardHeaderColor(OriginalSearchAppearance.f_1001fec18() ?? .labelColor)",
-          "line": 445,
+          "line": 439,
           "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "if item.kind == .unknown {",
-          "line": 237,
+          "symbol": "OriginalUnavailableCompactContent(sizeClass: UInt8(sizeClass))",
+          "line": 351,
           "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
         },
         {
@@ -1139,6 +1139,21 @@
           "path": "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift",
           "symbol": "struct OriginalCompactTextFooter",
           "line": 119
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalUnavailableCompactContent.swift",
+          "symbol": "struct OriginalUnavailableCompactContent",
+          "line": 58
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalUnavailablePreviewContent.swift",
+          "symbol": "final class OriginalUnavailablePreviewContentView",
+          "line": 7
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalUnavailablePreviewLocalization.swift",
+          "symbol": "enum OriginalUnavailablePreviewLocalization",
+          "line": 4
         }
       ],
       "original_functions": [
@@ -1199,7 +1214,8 @@
         "dev35真实Link卡片接native渐变背景兄弟/Adaptive主图/原角42图标，紧凑中心Y5/7；Footer独立动态底色。原Preview→LayerBacked→NSView完整方法表已核，当前复用已存在LayerBacked父。",
         "dev37：外层native viewport+scroll/document仅按floor闭区间创建可见卡片NSHostingView，保既有renderer/sizeclass；滚动端消费primaryID，拖拽坐标只转换一次。",
         "dev38紧凑text/rich改原生NSTextField(labelWithAttributedString:)：无限行、natural对齐、现有bodyfont/primarycolor，保原段落属性与500UTF16样本；顶padding类3为0否则10，无新增7行上限。原生横向scroll补竖向整数wheel轴转发和两方向elasticity。",
-        "dev39真实文本Footer底部overlay：gradient32+opaque18/类3为0，总50/32；原callout/secondary/countInt32资源，类3隐藏，去text通用pin/count横排。canonical样本复用原plain/dominant背景算法及alpha<1动态回退，field/footer/background/Header主题颜色实际消费。"
+        "dev39真实文本Footer底部overlay：gradient32+opaque18/类3为0，总50/32；原callout/secondary/countInt32资源，类3隐藏，去text通用pin/count横排。canonical样本复用原plain/dominant背景算法及alpha<1动态回退，field/footer/background/Header主题颜色实际消费。",
+        "dev40 Unknown紧凑卡片/完整preview两独立native树：公开SFtriangle原fallback，compact原OS32/48symbol、callout、0/10与shortcut19高guide锚点；full60图/双label/stack4和16/左右48/centerY；17locale追加两原文案，原值逐字保。只kindunknown调用，不将其他typedmetadata损坏自动变unknown。"
       ],
       "gaps": [
         "原AppKit绘制/gradient/材质、锁图标及完整CompactHeader/native对象与SwiftUI差异仍未回归。",
@@ -1211,7 +1227,7 @@
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplica/UI/PanelViews.swift": "5f9157f43a157c71222c5377ebefc0b337d74a5c22443b70f7da4d9a3c95cb9b",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "9337255fa2e91a7fa62cf9fce09b81ffbfcaed182ade908630b86d5d789c4081",
         "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "83f115e2f1f7ba8f057de253dfb60e548a2ec16d035d55f8688e6a5f06c106e8",
         "replica/Sources/PasteReplicaCore/OriginalTextPreviewMetadata.swift": "7c09e2e2297ef070a792bf8a50e51ab162146d27b516d7e92ac3bd53df36b676",
         "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "1620a024a011c19294f16680ae2a8d6e92afac426d4ebbe1dd4e1fac1e364ca0",
@@ -1238,7 +1254,10 @@
         "replica/Sources/PasteReplica/UI/ReplicaNativeDragPreview.swift": "0e5adbd506e11dee134c1e059adf4f3c7b27fd7e3cd7379be3c87bdc1fb391b7",
         "replica/Sources/PasteReplicaCore/OriginalNativeDragPasteboardWriter.swift": "db793abd1e9b2c3c6ddf5fbe94dcb55af21122e5c9751751d5032a5156a3c908",
         "replica/Sources/PasteReplica/UI/OriginalCompactTextContent.swift": "d3a103d45be2baeb86b650e9f821282f0b9df5719adc3bbdd64f8cd059695d19",
-        "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift": "354bb3da875cf760e956b2251271b4f634f47e8a25b597caae501ca83172bc33"
+        "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift": "354bb3da875cf760e956b2251271b4f634f47e8a25b597caae501ca83172bc33",
+        "replica/Sources/PasteReplica/UI/OriginalUnavailableCompactContent.swift": "d8eaf61ff4a66f3d00ba2a345eca565d48aa290708cf313c855ffe7ea1080610",
+        "replica/Sources/PasteReplica/UI/OriginalUnavailablePreviewContent.swift": "21a00de6c6215d5a37836483c9a673822ec835f20f7eb6c081bc91ae6fc402a5",
+        "replica/Sources/PasteReplicaCore/OriginalUnavailablePreviewLocalization.swift": "5257cf10ab8d3def45091fff0ec2776130cc428e84ffbce54657ee0a4c2d4c93"
       },
       "original_reference_status": [
         {
@@ -1431,7 +1450,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "native-preview-window",
@@ -1494,7 +1513,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "preview-registry",
@@ -1613,7 +1632,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "card-anchor-popover",
@@ -1695,7 +1714,7 @@
         "replica/Sources/PasteReplica/UI/PreviewAnchor.swift": "aa621221c95e877131ce3f53723be87730091482eeac479ec109daf66adaf923",
         "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "83f115e2f1f7ba8f057de253dfb60e548a2ec16d035d55f8688e6a5f06c106e8",
         "replica/Sources/PasteReplicaCore/OriginalPreviewPopover.swift": "352554008c692f89091bf3cb700b0cfee1b55768b5a709c3b4320951a154a46e",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d"
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7"
       },
       "original_reference_status": [
         {
@@ -1755,7 +1774,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "preview-title-rename",
@@ -1775,7 +1794,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
           "symbol": "ReplicaInlinePreviewHeader",
-          "line": 40
+          "line": 45
         }
       ],
       "original_functions": [
@@ -1812,7 +1831,7 @@
       },
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPreviewTitleLabel.swift": "84e3a33dbd575ad595cded72928d3d9b917ec1ece7eb258ba42ef3cf457bb0e2",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d"
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7"
       },
       "original_reference_status": [
         {
@@ -1886,7 +1905,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "preview-header-actions",
@@ -1896,7 +1915,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
           "symbol": "ReplicaInlinePreviewHeader",
-          "line": 40
+          "line": 45
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPreviewSharing.swift",
@@ -1950,7 +1969,7 @@
         "build_log_sha256": "c1cd9d4048ee5e58ffb8bc3d4feb0d50696a90c1c9e09c594de86df22f581247"
       },
       "source_sha256": {
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d",
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7",
         "replica/Sources/PasteReplicaCore/OriginalPreviewSharing.swift": "64b2623f15994676d6798fbc4702a7046826279c56249ade36f9361eef46393c"
       },
       "original_reference_status": [
@@ -2004,7 +2023,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "preview-mode-transitions",
@@ -2075,7 +2094,7 @@
       },
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalItemPreviewView.swift": "09a402b919b028db132cec32108d3f36eca4106fb3c4ae8d641b6f65d5905c4d",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d"
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7"
       },
       "original_reference_status": [
         {
@@ -2107,7 +2126,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "text-content-persistence",
@@ -2117,7 +2136,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
           "symbol": "ReplicaInlineTextPreviewContent",
-          "line": 66
+          "line": 71
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
@@ -2152,7 +2171,7 @@
         "Paste:0x10007c1fc": "partial"
       },
       "source_sha256": {
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d",
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7",
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
         "replica/Sources/PasteReplica/UI/RichTextEditor.swift": "75b46eaf2b06289118b91e7fb300ad4518fa66f45f0b4858223311e41b2ac89c"
       },
@@ -2186,7 +2205,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "text-attributed-normalization",
@@ -2206,7 +2225,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
           "symbol": "replaceModelAndDisplay",
-          "line": 241
+          "line": 246
         }
       ],
       "original_functions": [
@@ -2248,7 +2267,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPreviewAttributedText.swift": "f670c5a9d4120859b7c75cb646ae574472ce51bdb320143fb929b48ac6e586ed",
         "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift": "06134570276933fc2be82f00033d2ba9c70aaf04d5e1e134e23fcfb830b3a881",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d"
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7"
       },
       "original_reference_status": [
         {
@@ -2336,7 +2355,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "text-formatting-traits",
@@ -2356,7 +2375,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
           "symbol": "ReplicaInlinePreviewFormatting",
-          "line": 529
+          "line": 534
         }
       ],
       "original_functions": [
@@ -2394,7 +2413,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift": "819f073d5a5a633a4c7794fc0107e7bf3f015b68e74a1543d6edac7b29e31324",
         "replica/Sources/PasteReplica/UI/RichTextEditor.swift": "75b46eaf2b06289118b91e7fb300ad4518fa66f45f0b4858223311e41b2ac89c",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d"
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7"
       },
       "original_reference_status": [
         {
@@ -2468,7 +2487,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "text-event-owner",
@@ -2488,7 +2507,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
           "symbol": "storageBridge",
-          "line": 178
+          "line": 183
         }
       ],
       "original_functions": [
@@ -2519,7 +2538,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift": "819f073d5a5a633a4c7794fc0107e7bf3f015b68e74a1543d6edac7b29e31324",
         "replica/Sources/PasteReplica/UI/RichTextEditor.swift": "75b46eaf2b06289118b91e7fb300ad4518fa66f45f0b4858223311e41b2ac89c",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d"
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7"
       },
       "original_reference_status": [
         {
@@ -2565,7 +2584,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "native-toolbar-factories",
@@ -2580,12 +2599,12 @@
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
           "symbol": "ReplicaInlinePreviewEditorHeader",
-          "line": 41
+          "line": 46
         },
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
           "symbol": "ReplicaInlinePreviewFormatting",
-          "line": 529
+          "line": 534
         }
       ],
       "original_functions": [
@@ -2633,7 +2652,7 @@
       },
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift": "f4c3920e5f5cd9f515bbe0cce530f4f8f6335b14450f75e471f0272e19412165",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d"
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7"
       },
       "original_reference_status": [
         {
@@ -2693,7 +2712,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "text-footer",
@@ -2703,7 +2722,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
           "symbol": "ReplicaInlinePreviewFooter",
-          "line": 69
+          "line": 74
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPreviewFooter.swift",
@@ -2760,7 +2779,7 @@
         "build_log_sha256": "c1cd9d4048ee5e58ffb8bc3d4feb0d50696a90c1c9e09c594de86df22f581247"
       },
       "source_sha256": {
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d",
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7",
         "replica/Sources/PasteReplicaCore/OriginalPreviewFooter.swift": "97d14915cc4fa873a0d526a42f168ea5487864d0b8327e825bee18e28bd2e25c"
       },
       "original_reference_status": [
@@ -2828,7 +2847,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "preview-other-content",
@@ -2964,7 +2983,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact,",
-          "line": 660,
+          "line": 656,
           "sha256": "4bcf7d00baa7a8d907c4ee14cc22a5af62ba71eee6b580ec4b9cd8a3147ea3df"
         },
         {
@@ -3018,13 +3037,13 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact,",
-          "line": 660,
+          "line": 656,
           "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "ReplicaItemContent(item: item, compact: true, linkPreviewsEnabled:",
-          "line": 359,
+          "line": 353,
           "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
         },
         {
@@ -3047,8 +3066,8 @@
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "if item.kind == .unknown {",
-          "line": 237
+          "symbol": "OriginalUnavailableCompactContent(sizeClass: UInt8(sizeClass))",
+          "line": 351
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalLinkDisplay.swift",
@@ -3059,6 +3078,21 @@
           "path": "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift",
           "symbol": "struct OriginalCompactTextFooter",
           "line": 119
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalUnavailableCompactContent.swift",
+          "symbol": "struct OriginalUnavailableCompactContent",
+          "line": 58
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalUnavailablePreviewContent.swift",
+          "symbol": "final class OriginalUnavailablePreviewContentView",
+          "line": 7
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalUnavailablePreviewLocalization.swift",
+          "symbol": "enum OriginalUnavailablePreviewLocalization",
+          "line": 4
         }
       ],
       "original_functions": [
@@ -3085,7 +3119,8 @@
         "LinkformattedURLcompletepurevalue actualUIused; fullnil/Characterprefix/querysuppression/trim contracts boundfinitebody+6SDKpairs.",
         "isLinkPreviewsEnabled defaulttrue exactkeypath/provider/vtablebit0 proved; ownPreferencecoding/merge plus card/readOnly/Auxiliary realconsumers.",
         "Enabledimagearea hiddenwhenfalse;title1/3lines/bodysemibold,URL1/2/unlimited/callout;footer3spacing+10vertical12horizontal;duplicateouterpadding/extraHostsummaryremoved.",
-        "dev27文件有限caller补证：路径富文只有callout与共享secondaryForeground两属性，无分组件样式；原HeadTruncatedLabel实际dyld父类为NSTextField，无自有intrinsic/sizeThatFits覆盖，已有实现直接复用。外围布局适配仍partial。"
+        "dev27文件有限caller补证：路径富文只有callout与共享secondaryForeground两属性，无分组件样式；原HeadTruncatedLabel实际dyld父类为NSTextField，无自有intrinsic/sizeThatFits覆盖，已有实现直接复用。外围布局适配仍partial。",
+        "dev40 Unknown紧凑卡片/完整preview两独立native树：公开SFtriangle原fallback，compact原OS32/48symbol、callout、0/10与shortcut19高guide锚点；full60图/双label/stack4和16/左右48/centerY；17locale追加两原文案，原值逐字保。只kindunknown调用，不将其他typedmetadata损坏自动变unknown。"
       ],
       "gaps": [
         "原CoreData/DI完整VM、lazy工厂、协议身份、完整动态布局仍有差异；files/link原半屏、color原默认四分之一屏与共用边框/圆角已恢复，不将当前kind分派算原父函数全部恢复。",
@@ -3093,7 +3128,7 @@
         "文件copy-time paths/size及生成/持久wire已接，不从预览时filesystem回填；archive-import缺raw保持nil，旧记录不推断版本。完整VM/DI/lazy/class/actor/其他动态布局与未确认card消费仍partial；原fileview固定MultipleDocuments图未替换为存储预览图。",
         "color wire生成/编码/解码与真实预览来源已接；原内部owner、CoreData/DI/actor/ABI、原色对象归档及全布局仍partial，不能据此宣称整个ColorView/VM完成。",
         "link非编辑展示采用离线已有视图，原完整本地footer/class/layout及CoreData/error路径仍有差异；网络加载单独排除，不能连带排除URL本地逻辑。",
-        "原父提交本来无条件结束编辑；Color提交已移除原路径不存在的无条件旧色重载，显式Cancel和model observer仍保留。typed持久化的原VM/context错误副作用仍未恢复；unknown显示未证明等同原Unsupported视图。",
+        "原父提交本来无条件结束编辑；Color提交已移除原路径不存在的无条件旧色重载，显式Cancel和model observer仍保留。typed持久化的原VM/context错误副作用仍未恢复；unknown独立compact/full有限native树已接；完整factory/对象/DI/shortcut功能/动画及像素未验收。",
         "Original LinkVM niltrap is optionalUIadaptation; style/outerlayout/OS-dependentcorner/provider/DI/ABI stillpartial; no functional regression.",
         "OriginalAppKittextwrapping/priorities/drawing/fading/compactheaderstyle/OSiconcorner andDI/VM/ABIparentsstillpartial; no functionalregression."
       ],
@@ -3126,7 +3161,7 @@
       },
       "source_sha256": {
         "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "83f115e2f1f7ba8f057de253dfb60e548a2ec16d035d55f8688e6a5f06c106e8",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d",
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7",
         "replica/Sources/PasteReplica/UI/ReplicaReadOnlyPreviewContent.swift": "75c71b7c823ac6dfe3e59a033db183419afd55dca88b37941f4a35eb9021d36b",
         "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "a65ed038204e1a37e21ad041a81e9de8218ac0790dce6e4a5ed695d5cce669a6",
         "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift": "0a85e22ff3ccde5a6601fad92286b616c399a88263b14af587eca0d2e3dcc74e",
@@ -3140,10 +3175,13 @@
         "replica/Sources/PasteReplicaCore/OriginalColorPreviewMetadata.swift": "b78c20f7a126322c3be604b7a26fc7d630384f31265969e4d17c5cf0887f60b2",
         "replica/Sources/PasteReplicaCore/OriginalLinkPreviewMetadata.swift": "cf30ef0714e8f3bfa31c11765ce3a0493b3228013c3d4096cc5c32e851c2be00",
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
-        "replica/Sources/PasteReplica/UI/PanelViews.swift": "5f9157f43a157c71222c5377ebefc0b337d74a5c22443b70f7da4d9a3c95cb9b",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "9337255fa2e91a7fa62cf9fce09b81ffbfcaed182ade908630b86d5d789c4081",
         "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "813a7d310752cf453c34aede27c56dc44f1d8cbccd611128277cfc2f96084784",
         "replica/Sources/PasteReplicaCore/OriginalLinkDisplay.swift": "22ddf146e091d4b1f9fb0315e95a8bfb527542b1e1f945c9c80a776e47302b20",
-        "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift": "354bb3da875cf760e956b2251271b4f634f47e8a25b597caae501ca83172bc33"
+        "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift": "354bb3da875cf760e956b2251271b4f634f47e8a25b597caae501ca83172bc33",
+        "replica/Sources/PasteReplica/UI/OriginalUnavailableCompactContent.swift": "d8eaf61ff4a66f3d00ba2a345eca565d48aa290708cf313c855ffe7ea1080610",
+        "replica/Sources/PasteReplica/UI/OriginalUnavailablePreviewContent.swift": "21a00de6c6215d5a37836483c9a673822ec835f20f7eb6c081bc91ae6fc402a5",
+        "replica/Sources/PasteReplicaCore/OriginalUnavailablePreviewLocalization.swift": "5257cf10ab8d3def45091fff0ec2776130cc428e84ffbce54657ee0a4c2d4c93"
       },
       "original_reference_status": [
         {
@@ -3203,7 +3241,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "preview-localization",
@@ -3218,7 +3256,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
           "symbol": "ReplicaInlinePreviewEditorHeader",
-          "line": 41
+          "line": 46
         }
       ],
       "original_functions": [
@@ -3269,7 +3307,7 @@
       },
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift": "244b50defd5c3333575ca20076b697079dd5d4bbc03ab8fe93ec9bedf92ce543",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d"
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7"
       },
       "original_reference_status": [
         {
@@ -3364,7 +3402,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "screen-sharing-policy",
@@ -3499,7 +3537,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "helper-watchdog",
@@ -3708,7 +3746,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "helper-bootstrap",
@@ -3775,7 +3813,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "background-setting",
@@ -3828,7 +3866,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "settings-overall",
@@ -3966,7 +4004,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "capture.items",
@@ -4069,7 +4107,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "capture.content",
@@ -4253,7 +4291,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "capture.timers",
@@ -4340,7 +4378,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "capture.state",
@@ -4418,7 +4456,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "capture.policy",
@@ -4563,7 +4601,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "capture.read_sync",
@@ -4639,7 +4677,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "serialization.item_codable",
@@ -4820,7 +4858,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "serialization.keyed",
@@ -4894,7 +4932,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "serialization.internal_codec",
@@ -5021,7 +5059,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "checksum.md5",
@@ -5082,7 +5120,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "checksum.strategy",
@@ -5155,7 +5193,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "repo.dedup",
@@ -5222,7 +5260,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "repo.metadata",
@@ -5322,7 +5360,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "repo.transaction",
@@ -5455,7 +5493,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "repo.objc_exception",
@@ -5526,7 +5564,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "repo.capture_actions",
@@ -5632,7 +5670,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "logging.named",
@@ -5742,7 +5780,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "logging.dispatch",
@@ -5930,7 +5968,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "diagnostics.controls",
@@ -5994,7 +6032,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "diagnostics.queries",
@@ -6051,7 +6089,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "diagnostics.menu",
@@ -6153,7 +6191,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "diagnostics.restart",
@@ -6196,7 +6234,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "restore.writer",
@@ -6249,7 +6287,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "restore.processor",
@@ -6392,7 +6430,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "restore.history",
@@ -6510,7 +6548,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "value-coding",
@@ -6595,7 +6633,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "key-translation",
@@ -6767,7 +6805,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "conflict-check",
@@ -6833,7 +6871,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "recorder-state",
@@ -6982,7 +7020,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "recorder-ui",
@@ -7144,7 +7182,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "error-localization",
@@ -7203,7 +7241,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "carbon-register",
@@ -7342,7 +7380,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "monitor-lifetime",
@@ -7424,7 +7462,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "validator-provider",
@@ -7498,7 +7536,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "dependency-cache",
@@ -7669,7 +7707,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "initialized-config",
@@ -7760,7 +7798,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "telemetry-construction",
@@ -7829,7 +7867,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "sentry-local-scope",
@@ -7940,7 +7978,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "actor-destruction",
@@ -7993,7 +8031,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "thin-wrapper-reuse",
@@ -8137,7 +8175,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "coding-description",
@@ -8181,7 +8219,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "native-dictionary-reuse",
@@ -8295,7 +8333,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "unreviewed-generated",
@@ -9739,7 +9777,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "native-image-text-selection",
@@ -9788,7 +9826,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift": "0a85e22ff3ccde5a6601fad92286b616c399a88263b14af587eca0d2e3dcc74e",
         "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "a65ed038204e1a37e21ad041a81e9de8218ac0790dce6e4a5ed695d5cce669a6",
-        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d",
+        "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7",
         "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2"
       },
       "original_reference_status": [
@@ -9807,7 +9845,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "image-exif-analysis",
@@ -9892,7 +9930,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "ocr-cache-responsibility",
@@ -9959,7 +9997,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     },
     {
       "id": "native-image-zoom-centering",
@@ -10274,7 +10312,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev39"
+      "reviewer": "root_concentrated_integration_dev40"
     }
   ],
   "findings": [

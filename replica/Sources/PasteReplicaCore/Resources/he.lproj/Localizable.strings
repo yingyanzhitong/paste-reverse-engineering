@@ -89,3 +89,7 @@
 "settings.privacy.link-preview.subtitle" = "עשוי להשפיע על קישורים חד פעמיים ורגישים לניתוח.";
 "replica.settings.privacy.saved-link-preview.title" = "Link Previews";
 "replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";
+
+
+"preview.unavailable.title" = "תצוגה מקדימה לא זמינה";
+"preview.unavailable.subtitle" = "לא ניתן להראות תצוגה מקדימה, אך התוכן נשמר, ואתה יכול להדביק אותו";

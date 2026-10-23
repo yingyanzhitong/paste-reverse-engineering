@@ -1,0 +1,290 @@
+{
+  "kind": "independent_unavailable_content_static_integration",
+  "version": "0.8.0-dev.40",
+  "reviewed_at": "2026-10-23T18:26:10.391556+00:00",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "9337255fa2e91a7fa62cf9fce09b81ffbfcaed182ade908630b86d5d789c4081",
+    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7",
+    "replica/Sources/PasteReplica/UI/OriginalUnavailableCompactContent.swift": "d8eaf61ff4a66f3d00ba2a345eca565d48aa290708cf313c855ffe7ea1080610",
+    "replica/Sources/PasteReplica/UI/OriginalUnavailablePreviewContent.swift": "21a00de6c6215d5a37836483c9a673822ec835f20f7eb6c081bc91ae6fc402a5",
+    "replica/Sources/PasteReplicaCore/OriginalUnavailablePreviewLocalization.swift": "5257cf10ab8d3def45091fff0ec2776130cc428e84ffbce54657ee0a4c2d4c93"
+  },
+  "build_log": ".local/gap-build-66.log",
+  "compiled_sha256": {
+    "replica/.build/release/PasteReplica": "1f3ce0f8e02a759ee2772e16ad080d9aedb89fe8737230638c1638ca43b92594",
+    "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+    "replica/.build/release/paste-replica-mcp": "0de950176e694c5e3381512d2957bbc73d8515496d2db7f9c0563e98ae5b0da4"
+  },
+  "new_static_migrated_accessors": [
+    "Paste:0x1001daf54",
+    "Paste:0x1001dadd4"
+  ],
+  "new_partial_native_contracts": [
+    "Paste:0x1003ddca4",
+    "Paste:0x1003de12c",
+    "Paste:0x1003eca34"
+  ],
+  "product_executed": false,
+  "functional_tests_executed": false,
+  "mcp_tests_executed": false,
+  "source_of_symbol": "原f0f653c调用公开imageWithSystemSymbolName API。静态descriptor/typedgetter完整字节确定exclamationmark.triangle，nil时questionmark.square。撤销此前私有图像素材假设；无需复制原素材。",
+  "compact": {
+    "actual_consumer": "Panel .unknown -> OriginalUnavailableCompactContent；Header/卡片几何复用，不把其他typedmetadata解码失败混为unknown。",
+    "native_contract": "默认NSImageView alignment/scaling；symbol OS26+32点、旧48点、regular+secondary palette，不误设图像view固定32/48大小。提示用原title键/callout/center/secondary，图像左右12，顶class3=0否则10，图像底=label顶-10；label左右0、centerY与19高/bottom8的shortcut垂直guide共锚。",
+    "scope": "guide只投影原shortcut约束，未假装恢复真实快捷键显示/监听功能。旧unknown通用摘要/Pin横排移除，无额外12/11外padding。"
+  },
+  "full_preview": {
+    "actual_consumer": "完整previewfactory kindunknown直接创建OriginalUnavailablePreviewContentView；SwiftUI非compactunknown wrapper另供既有辅助视图。",
+    "native_contract": "独立NSView：60图+两label，title原title2点数medium，subtitle body/secondary/center/无限行/水平压缩250；info stack spacing4、outer16；两侧48、居中Y。图像primary首次存在再请求primary，缺失转fallback，保持原niltrap/tint/scaling3。",
+    "scope": "完整/compact两棵树明确分开；原quarter尺寸/sharedheaderfooter/nilmetadata保持。"
+  },
+  "localization": {
+    "keys": [
+      "preview.unavailable.title",
+      "preview.unavailable.subtitle"
+    ],
+    "locale_count": 17,
+    "source_resource_files": [
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+        "before_sha256": "e16859c80dd751db1cd683683a15e09eb70df3d4476b348cc029ebf66e08339e",
+        "after_sha256": "b4273c4ce8ac7424b6cc1d95e24b7df45ed0372c46764b600eb08606d0be8387",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+        "before_sha256": "72cc33b24bfbcac65bf877266281efe32f15516ea37b239dd23a55458ace144b",
+        "after_sha256": "10a9a064484369aad6438383e3fa495332ae1e6232a121cf5292c009ef0855b9",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+        "before_sha256": "cadf354fcf2b24c6dce9a7b52589e96999b2cf580733809dbcf89148997ae769",
+        "after_sha256": "0ddcb353c81a7781ad6fa262334d9438af6b1c57626de85f8d5b63cfe0946a60",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+        "before_sha256": "eb981ea6be4e2072ce232a9dc6dd49a3112ae56c9bc9a0360771f1f948b0fcb2",
+        "after_sha256": "429c3ebeef0c261a9743f0948290237b10a17910163290b22e6580cdff71d367",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+        "before_sha256": "09f981ef1e809ba3caeec3d7a94594c5650b63eb0db0db23f2ee35cb68b1db6c",
+        "after_sha256": "ff3d2f835b28d0e1215b48a3bc90539ea75593c48f5509fe9b1882c32d7c11f3",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+        "before_sha256": "f525ef9b5e2f379ecd7eb971ef4dc6b49168c0d96b2ce58efa400b105ef645b8",
+        "after_sha256": "4148d8e4a1b7b9a55fcaa58f79cec2f5142cbe35766cf24f6b2409e9fededf14",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+        "before_sha256": "4af9693ae63acc3c6fd4021eddaa370bb5db59bdf0dd4eadbb5afe73e4adb334",
+        "after_sha256": "1f5328a00da6cdc6335b5f74b180ebe91d8c85a01f14b6f8a21efd089e96393a",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+        "before_sha256": "b77cfbc6b10d58ca0b8b4b7bad249b00c217c164956e0584dd297dcaba2c1da5",
+        "after_sha256": "10d1c0d8a288c12b9963312f07c055f847e5c5c27bba13a5487e746d17b8fb8d",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+        "before_sha256": "9330aa8949cbfa9693d10733cae504bfc015ecd642b92ed799d5ec1b33905205",
+        "after_sha256": "875b2d25a1a7b52e1224d929bd3cf07d42b80ada29ba540aa5aab0e5f32e897d",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+        "before_sha256": "1a8faa8b43a4d760506bcae609b81582b085ef59f4db24e266cd599345c8efa7",
+        "after_sha256": "c4bb2cdba9d130fbc2443cdc5ac84485f444494c56526c4ee66c108e4510e7f7",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+        "before_sha256": "c1ca2d281c9974f1e70b9dff232e712d4fa6a774eb1bc8fad39da5f547d2c261",
+        "after_sha256": "da08ffe70b07807eaa94a10ca20e17a50126bf20450c7f00e6748ed882c16335",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+        "before_sha256": "3b755077199757e5bcffddd08171a913567a6920352d9f4ca3a1bc7c33315c13",
+        "after_sha256": "3b19a629622629e789d0c74359e3a7a0205286b05d93f4abc0a3fea0fa9918f8",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+        "before_sha256": "af7ec04fd2951188e4645e0a4b47c82af07feaa55ae3035a527c38f9be9c1b44",
+        "after_sha256": "2cecee1c131b62980022bec13481d9edf17da4be7649ccf955a18dd4b86d28c2",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+        "before_sha256": "5160b764203c4548192f73f61ea7af0ca839c542cbda6b1f1f6b2334eab821b1",
+        "after_sha256": "cd025cb2cc56b16c83a9b86076bd57ba0882968171c81b74da3fe3f280a3036c",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+        "before_sha256": "d02cf482da39624cc09f2ee4100fd4cd2ee98f4e1814d14725514e9180b69a25",
+        "after_sha256": "d0303fd246f5bf119adef3989ebf0381dbba175bc3ef5398b0254badc85e3c59",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+        "before_sha256": "5b121d40d546527c4189e5ca79a936d84b14dddf089713a4fef81d4781942790",
+        "after_sha256": "e46dc399e751c47d19cfa4e2e740ccca1b878ead848fb531aba98f8ee329af4b",
+        "append_only_reverse_confirmed": true
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+        "before_sha256": "41eaba70f75142999ea8b6849e77cdb3c0a4d0d573e722b22c57dd737db3877c",
+        "after_sha256": "a1079aed539ca812205d2f3c81dc17cdf5367a80ec933b15ff3342904f60511b",
+        "append_only_reverse_confirmed": true
+      }
+    ],
+    "compiled_resources": [
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/cs.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "b4273c4ce8ac7424b6cc1d95e24b7df45ed0372c46764b600eb08606d0be8387"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/da.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "10a9a064484369aad6438383e3fa495332ae1e6232a121cf5292c009ef0855b9"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/de.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "0ddcb353c81a7781ad6fa262334d9438af6b1c57626de85f8d5b63cfe0946a60"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/en.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "429c3ebeef0c261a9743f0948290237b10a17910163290b22e6580cdff71d367"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/es.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "ff3d2f835b28d0e1215b48a3bc90539ea75593c48f5509fe9b1882c32d7c11f3"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/fr.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "4148d8e4a1b7b9a55fcaa58f79cec2f5142cbe35766cf24f6b2409e9fededf14"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/he.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "1f5328a00da6cdc6335b5f74b180ebe91d8c85a01f14b6f8a21efd089e96393a"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/it.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "10d1c0d8a288c12b9963312f07c055f847e5c5c27bba13a5487e746d17b8fb8d"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/ja.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "875b2d25a1a7b52e1224d929bd3cf07d42b80ada29ba540aa5aab0e5f32e897d"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/ko.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "c4bb2cdba9d130fbc2443cdc5ac84485f444494c56526c4ee66c108e4510e7f7"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/nl.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "da08ffe70b07807eaa94a10ca20e17a50126bf20450c7f00e6748ed882c16335"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/pl.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "3b19a629622629e789d0c74359e3a7a0205286b05d93f4abc0a3fea0fa9918f8"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/pt-br.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "2cecee1c131b62980022bec13481d9edf17da4be7649ccf955a18dd4b86d28c2"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/pt-pt.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "cd025cb2cc56b16c83a9b86076bd57ba0882968171c81b74da3fe3f280a3036c"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/ru.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "d0303fd246f5bf119adef3989ebf0381dbba175bc3ef5398b0254badc85e3c59"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/zh-hans.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "e46dc399e751c47d19cfa4e2e740ccca1b878ead848fb531aba98f8ee329af4b"
+      },
+      {
+        "source": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+        "compiled_resource": "replica/.build/arm64-apple-macosx/release/PasteReplica_PasteReplicaCore.bundle/zh-hant.lproj/Localizable.strings",
+        "compiled_equals_source": true,
+        "compiled_sha256": "a1079aed539ca812205d2f3c81dc17cdf5367a80ec933b15ff3342904f60511b"
+      }
+    ],
+    "accessor_contract": {
+      "same_mangled_import_original_and_current": "_$s10Foundation23LocalizedStringResourceV_5table6locale6bundle7commentACSSAAE17LocalizationValueV_SSSgAA6LocaleVAC17BundleDescriptionOs06StaticC0VSgtcfC",
+      "value_arguments": "Both pass LocalizationValue(stringLiteral:exactkey), tableLocalizable SwiftString words, currentLocale, bundleDescription.atURL(bundle.bundleURL), commentnil (x5=0,x6=0,w7=0x100). Indirectreturnx8 remainsResource metadata ABI. Currentgettersforwardoriginalreturnbuffer unchanged tosharedfactory.",
+      "keys": "Currenttitle literal1001da020 length25, subtitle1001da040 length28; original100d9c090 length25/100d9c070 length28 matchfullUTF8key."
+    },
+    "bundle_adapter": {
+      "original": "Originalf1e73e4 getsoriginalmodulebundleURL thenconstructsBundleDescription.atURL. Itsentirebundleloaderf1ba118 is not migrated/recertifiedbythisreport.",
+      "current": "Same atURLdescriptionvaluekind; ownmainresource/PasteReplica_PasteReplicaCore.bundle elseBundle.module. Ownbundlecontains17exactmatchinglocale2keyvalues. IndependentapplicationdeploymentURL necessarilydifferent; thisadapter explicitlydocumented, notclaimedbitwiseoriginalBundle/URLidentity.",
+      "qualification": "WithinexistinglocalizationaccessorfiniteSourcevalue migration convention, replacementresourcebundleappropriateandABIclosed. If ledgerdefinitionrequiresoriginalBundleURLobjectidentityratherthanfunctionalindependentreplicabundle, retainpartialinstead; do notexpandcriteriaforcount."
+    },
+    "scope": "仅两有限Resourcegetter记静态migrated，独立app部署URL是明确适配；不把原Bundle加载器、URL对象身份或整个Unknown父算完成。"
+  },
+  "compiled_static_cross_review": {
+    "app_sha256": "1f3ce0f8e02a759ee2772e16ad080d9aedb89fe8737230638c1638ca43b92594",
+    "full_native_factory": "0x10004b538 -> real native class",
+    "full_constructor": "0x100056624 complete body checked, three SF request callsites/two niltraps/font/stack/layout constraints",
+    "full_swiftui_consumers": [
+      "0x100072c2c body closure",
+      "0x1000570f4 make witness"
+    ],
+    "compact_constructor": "[0x1000556a8,0x10005616c)",
+    "compact_configuration": "0x1000557e0 OS32/48 select;guide centerY0x100055f4c,height19@0x100055f94,bottom-8@0x100055fec",
+    "compact_consumer": "Panel0x100067530 actual call0x100067984 -> witness0x100056590",
+    "title_subtitle_calls": [
+      "full0x100056884 title",
+      "full0x1000569f0 subtitle",
+      "compact0x100055aa0 title"
+    ]
+  },
+  "remaining": [
+    "原factory/typedDI/模型对象/actor析构与完整shortcut显示/原动画仍partial。",
+    "SwiftUI宿主提议尺寸、原生像素、RTL/语言切换/真实跨应用行为未运行验收。",
+    "两个有限访问器的静态迁移不是运行verified，也不扩张为原模块整体完成。"
+  ],
+  "validation": "Release build66 successful27.53s,177Source inputs unchanged before/after;independent three-domain compiled/static peer only."
+}

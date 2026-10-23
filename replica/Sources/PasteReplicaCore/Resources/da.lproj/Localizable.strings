@@ -89,3 +89,7 @@
 "settings.privacy.link-preview.subtitle" = "Kan påvirke engangs- og analysefølsomme links.";
 "replica.settings.privacy.saved-link-preview.title" = "Link Previews";
 "replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";
+
+
+"preview.unavailable.title" = "Forhåndsvisning ikke tilgængelig";
+"preview.unavailable.subtitle" = "Forhåndsvisning kan ikke vises, men indholdet er gemt, og du er i stand til at indsætte det";

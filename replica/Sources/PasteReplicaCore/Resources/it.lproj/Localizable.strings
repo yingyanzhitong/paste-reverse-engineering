@@ -89,3 +89,7 @@
 "settings.privacy.link-preview.subtitle" = "Può influenzare link monouso e sensibili all'analisi.";
 "replica.settings.privacy.saved-link-preview.title" = "Link Previews";
 "replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";
+
+
+"preview.unavailable.title" = "Anteprima non disponibile";
+"preview.unavailable.subtitle" = "L'anteprima non può essere mostrata, ma il contenuto è salvato e sei in grado di incollarlo";

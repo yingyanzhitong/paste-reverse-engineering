@@ -89,3 +89,7 @@
 "settings.privacy.link-preview.subtitle" = "Może mieć wpływ na jednorazowe i wrażliwe na analizy linki.";
 "replica.settings.privacy.saved-link-preview.title" = "Link Previews";
 "replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";
+
+
+"preview.unavailable.title" = "Podgląd niedostępny";
+"preview.unavailable.subtitle" = "Podgląd nie może być pokazany, ale zawartość jest zapisana i możesz ją wkleić";

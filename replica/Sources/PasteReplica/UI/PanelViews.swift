@@ -234,14 +234,6 @@ struct ReplicaClipboardCard: View {
                 cardContent
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .clipped()
-                if item.kind == .unknown {
-                    HStack(spacing: 4) {
-                        if !item.pinboardIDs.isEmpty { Image(systemName: "pin.fill").font(.system(size: 10)) }
-                        Text(itemSummary(item)).lineLimit(2).frame(maxWidth: .infinity, alignment: .center)
-                    }
-                    .font(.system(size: 13)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
-                    .padding(.horizontal, 12).padding(.bottom, 11).padding(.top, 7)
-                }
             }
             .overlay(alignment: .bottom) {
                 if let metadata = compactTextMetadata, let background = compactTextBackground {
@@ -355,6 +347,8 @@ struct ReplicaClipboardCard: View {
         switch item.kind {
         case .image, .color, .files:
             ReplicaCanonicalCardContent(item: item, sizeClass: UInt8(sizeClass))
+        case .unknown:
+            OriginalUnavailableCompactContent(sizeClass: UInt8(sizeClass))
         default:
             ReplicaItemContent(item: item, compact: true, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled,
                                cardSizeClass: UInt8(sizeClass))
@@ -642,7 +636,9 @@ struct ReplicaItemContent: View {
     var cardSizeClass: UInt8? = nil
     var body: some View {
         Group {
-            if item.kind == .image, let image = itemImage(item) {
+            if item.kind == .unknown, !compact {
+                OriginalUnavailablePreviewContent()
+            } else if item.kind == .image, let image = itemImage(item) {
                 Image(nsImage: image).resizable().scaledToFit()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else if item.kind == .color, let color = parseColor(item.plainText ?? item.title) {

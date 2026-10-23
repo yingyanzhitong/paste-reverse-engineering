@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000123d4",
-  "reviewed_at": "2026-10-23T15:16:51.354812+00:00",
+  "reviewed_at": "2026-10-23T18:26:11.272029+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0007.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "e2e98c396757ff43e9060107e9c4b45359571ee7b97450c935164f3af5550030",
   "source_sha256": {
-    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d"
+    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "7001263f00b2e981c1b93f3c9598b742a1279366d4ae7130237603feee3dd0f7"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
+  "compiled_app_binary_sha256": "1f3ce0f8e02a759ee2772e16ad080d9aedb89fe8737230638c1638ca43b92594",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "先尝试xmark.circle.fill，首次nil则用questionmark.square且nil不可继续；首次成功时再查原symbol且nil不可继续；设置imageOnly、共享foreground色、border=false、alpha0.6、close action及target。",
   "review": "part-0007.c:1514；原版固定symbol槽0x100ec1640指向xmark.circle.fill；fallback字符串0x100d8de20+32的19字节静态精确解为questionmark.square。保留重复原symbol调用与两条nil失败条件。",
-  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
+  "source_review": "dev40/build66明确复审f_1000123d4：完整previewfactory只新增kindunknown专用nativecontent分支，原quarter size/nilmetadata/sharedchrome保；text/rich提前分流、既有textedit/traits/share/header/footer构造与本条有限消费者未改。不把新unknowncontent当整个factory/DI/actor等价；未运行。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }
