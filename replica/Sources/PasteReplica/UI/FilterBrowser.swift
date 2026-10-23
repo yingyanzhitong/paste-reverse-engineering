@@ -45,7 +45,7 @@ enum ReplicaFilterMatching {
             title = kind.displayName
             value = kind == .files ? "file" : kind == .richText ? "text" : kind.rawValue
         case let .source(source):
-            let item = store.items.first { ($0.sourceBundleID ?? $0.sourceName) == source }
+            let item = store.items.first { $0.sourceName == source }
             title = item?.sourceName ?? source
             image = item?.sourceBundleID.flatMap { NSWorkspace.shared.urlForApplication(withBundleIdentifier: $0) }
                 .map { NSWorkspace.shared.icon(forFile: $0.path) }
@@ -270,7 +270,8 @@ extension ReplicaUIController {
             }
             field?.f_1000457cc()
         }
-        let sources = Set(store.items.map { $0.sourceBundleID ?? $0.sourceName }).sorted()
+        let sources = Set(store.items.map(\.sourceName)).filter { !$0.isEmpty }
+            .sorted { $0.compare($1) == .orderedAscending }
         let devices = Set(store.items.map(\.sourceDevice)).sorted()
         let sections: [ReplicaFilterBrowser.Section] = [
             .init(id: 1, title: OriginalSearchLocalization.text("search.filters.section.type"),

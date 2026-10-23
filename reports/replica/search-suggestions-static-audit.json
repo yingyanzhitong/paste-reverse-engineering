@@ -1,16 +1,17 @@
 {
   "kind": "partial_search_suggestions_pipeline_static_audit",
-  "version": "0.8.0-dev.14",
+  "version": "0.8.0-dev.15",
   "source_sha256": {
-    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "138dd0d9a207af289ca506aea2dd4f5d9b02b16c0b81d8b87fc34ce69c6c4f25",
-    "replica/Sources/PasteReplica/UI/ReplicaSearchSuggestionSource.swift": "51bdd7602b9b7b8eba2ced50e6066f6fc0057934077aad267e053835b75d9c6e",
-    "replica/Sources/PasteReplica/UI/ReplicaSearchSuggestionsMenu.swift": "ddece31d23744c9f03ce0e961fdffde0d54240943c90fe034181c5a8a9bc260b",
-    "replica/Sources/PasteReplica/UI/FilterBrowser.swift": "65533b4843bcbb4266a0948118d7e6724dce516cb7a6c3e1dbefa4978263a241",
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "13ce2f341f2e7aad16ac8083f46575b20b060086cc5a66ebe6399d8740915107",
+    "replica/Sources/PasteReplica/UI/ReplicaSearchSuggestionSource.swift": "3b8891d82227ab85f16852880b76bdb392be1f223e846d6fdbd06ded25dab24b",
+    "replica/Sources/PasteReplica/UI/ReplicaSearchSuggestionsMenu.swift": "2b46083f6752861703127b267caa380ee9abe901df87fe0bc859a700f02db23a",
+    "replica/Sources/PasteReplica/UI/FilterBrowser.swift": "5b2f8cfbb48eb59e4be7a04a90b8d57809c2de9a316d77e76a6c41e44f500af2",
     "replica/Sources/PasteReplicaCore/OriginalSearchInputContext.swift": "073c80079e979d5cddc549c105aab901fdf8c9482d7b56cb535e098d9d942867",
     "replica/Sources/PasteReplicaCore/OriginalSearchSuggestionAnchor.swift": "2af28e89780d0e373331ea15588909cea7d99e1008e396717bb57b10b21436a7",
-    "replica/Sources/PasteReplicaCore/OriginalSearchSuggestions.swift": "d64f3d8306a0f563a0711de06af87ea375d609d0e6c640b4a7fb29965eeb6381"
+    "replica/Sources/PasteReplicaCore/OriginalSearchSuggestions.swift": "d64f3d8306a0f563a0711de06af87ea375d609d0e6c640b4a7fb29965eeb6381",
+    "replica/Sources/PasteReplica/UI/ReplicaSearchIndex.swift": "297733ff3edf90a372c261fd46bb54ff7ebca802d8bcd0d87db0eb38bc8f8bc3"
   },
-  "compiled_app_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
+  "compiled_app_sha256": "d4e0931e33e51c979595768d7d46661d5b355e02e0e01e5ed6e9c32ff5ab7c1d",
   "original_function_chain": [
     "Paste:0x100040a24",
     "Paste:0x1002f7dd8",
@@ -29,22 +30,22 @@
     "真实选区通知生成原节点上下文，取消旧候选task后查询；保留有效零矩形，经TextKit2布局及原几何转换到child窗口。",
     "候选分组顺序app/type/device/pinboard，各组排除已应用值后prefix30，throw仅跳本组，末尾匹配英文五日期；类型原TitleCase保持。",
     "候选接受使用生成时context节点/index，原位替整个节点，不补尾空格；重复或越界保留captured节点后进入统一set；normalize0、末尾选区、即时历史及nil建议上下文。",
-    "真实borderless/clear/shadow/level101 child窗口呈现候选，编辑器保持firstResponder；键盘/鼠标接受和Escape/失焦/销毁关闭路径已接。"
+    "真实borderless/clear/shadow/level101 child窗口呈现候选，编辑器保持firstResponder；键盘/鼠标接受和Escape/失焦/销毁关闭路径已接。",
+    "应用普通筛选/建议值与Spotlight pasteApp按原name链统一sourceName；bundleID仅元数据/现有排除策略和临时图标查询，不再作为app筛选值。",
+    "建议local keyDown先于Panel；初始nil、端点clamp、Home/End/PageUp/PageDown，Enter/Tab/Right有选中才接受，原不查modifier；weak DispatchWorkItem100ms冷却，刷新rows不提前解除。",
+    "复用原字体、动态主色、原词匹配range；单title tail/18图标/7间距/3×8内距/7圆角/5列表边距及首行标题minX对齐；仅真变接受完成后关菜单，display选区不提前关闭。"
   ],
   "remaining_gaps": [
-    "JSON应用bundleID/首条sourceName不同于CoreData ApplicationEntity.name distinct；device关系/排序及Pinboard rawType2身份/相同名称tie未证明等价。",
-    "原完整列表行视觉/词匹配高亮、标题minX对齐与完整Scroller布局/hover尚有差异。",
-    "通用建议case0整query与addMode1未实现；本provider原仅生成filter case1，不能据此将通用父函数记完成。",
-    "原DI、完整actor/闭包生命周期及全部键盘/焦点/异步边界仍待完整迁移和功能回归。"
+    "原CoreData实体持久name/缺metadata返回nil/stored rawIcon、关系与fetch排序、case0整query/addMode1、完整Scroller与DI生命周期仍未全部对齐；未运行功能回归。"
   ],
   "build": {
     "succeeded": true,
-    "build_number": 32,
+    "build_number": 34,
     "source_inputs_unchanged": 137,
-    "compiler_seconds": 10.02,
-    "wrapper_seconds": 11.2,
-    "failed_previous_build": 31,
-    "failure_fixed": "使用Swift AppKit名self.parent；monitor内部Void外返event避免NSEvent泛型Sendable结果警告",
+    "compiler_seconds": 9.56,
+    "wrapper_seconds": 10.57,
+    "intermediate_successful_build": 33,
+    "intermediate_review_fix": "将uptime近似冷却改为原DispatchWorkItem生命周期，刷新列表不清冷却。",
     "known_warning": "OriginalImageTextSelection.swift:209 NSImage跨MainActor异步边界，未压制。"
   },
   "functional_tests_executed": false,

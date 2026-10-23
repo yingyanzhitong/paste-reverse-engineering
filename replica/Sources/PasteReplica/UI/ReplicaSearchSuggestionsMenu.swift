@@ -1,4 +1,5 @@
 import AppKit
+import PasteReplicaCore
 
 /// Native child window for search suggestions. The editor supplies real rows and keeps first responder.
 @MainActor
@@ -8,21 +9,25 @@ final class ReplicaSearchSuggestionsMenu: NSWindow {
         let subtitle: String?
         let image: NSImage?
         let isEnabled: Bool
+        let matchQuery: String?
 
-        init(title: String, subtitle: String? = nil, image: NSImage? = nil, isEnabled: Bool = true) {
+        init(title: String, subtitle: String? = nil, image: NSImage? = nil, isEnabled: Bool = true, matchQuery: String? = nil) {
             self.title = title
             self.subtitle = subtitle
             self.image = image
             self.isEnabled = isEnabled
+            self.matchQuery = matchQuery
         }
     }
 
     private let scroller = SuggestionsScroller()
     private var rows: [Row] = []
     private var selectedIndex: Int?
+    private var mouseSelectionCooldown: DispatchWorkItem?
     private var accept: ((Int) -> Void)?
     private var escape: (() -> Void)?
     private weak var anchorView: NSView?
+    private var keyboardMonitor: Any?
     private var mouseMonitor: Any?
     private var lostFocusObserver: NSObjectProtocol?
 
@@ -37,7 +42,15 @@ final class ReplicaSearchSuggestionsMenu: NSWindow {
         level = .init(rawValue: 101)
         isReleasedWhenClosed = false
         contentView = scroller
-        scroller.onHover = { [weak self] index in self?.select(index, reveal: false) }
+        scroller.onHover = { [weak self] index in
+            guard let self, self.mouseSelectionCooldown == nil else { return }
+            self.select(index, reveal: false)
+        }
+        scroller.onExit = { [weak self] in
+            guard let self, self.mouseSelectionCooldown == nil else { return }
+            self.selectedIndex = nil
+            self.scroller.select(nil)
+        }
         scroller.onAccept = { [weak self] index in self?.acceptRow(index) }
     }
 
@@ -57,7 +70,7 @@ final class ReplicaSearchSuggestionsMenu: NSWindow {
         escape = onEscape
         guard !rows.isEmpty else { dismiss(); return }
         scroller.setRows(rows)
-        selectedIndex = rows.indices.first { rows[$0].isEnabled }
+        selectedIndex = nil
         scroller.select(selectedIndex)
         let screenRect = parent.convertToScreen(anchorView.convert(anchorRect, to: nil))
         guard let screen = NSScreen.screens.first(where: { $0.frame.contains(screenRect.origin) }) else {
@@ -72,6 +85,9 @@ final class ReplicaSearchSuggestionsMenu: NSWindow {
         guard height > 0 else { cancel(); return }
         setFrame(.init(x: screenRect.minX, y: screenRect.minY - height, width: width, height: height), display: true)
         scroller.layoutSubtreeIfNeeded()
+        if let titleRect = scroller.firstTitleRectInWindow {
+            setFrameOrigin(.init(x: frame.minX - titleRect.minX - 2, y: frame.minY))
+        }
         if self.parent !== parent {
             self.parent?.removeChildWindow(self)
             parent.addChildWindow(self, ordered: .above)
@@ -90,14 +106,18 @@ final class ReplicaSearchSuggestionsMenu: NSWindow {
         anchorView = nil
     }
 
-    /// Only suggestion navigation keys are handled; ordinary editor input remains untouched.
+    /// Original suggestion navigation leaves unsupported keys with the editor.
     @discardableResult
     func handleKeyDown(_ event: NSEvent) -> Bool {
         guard isVisible else { return false }
         switch event.keyCode {
         case 125: moveSelection(by: 1)
         case 126: moveSelection(by: -1)
-        case 36, 76:
+        case 115: moveSelection(by: -rows.count)
+        case 116: moveSelection(by: -5)
+        case 119: moveSelection(by: rows.count)
+        case 121: moveSelection(by: 5)
+        case 36, 48, 124:
             guard let selectedIndex else { return false }
             acceptRow(selectedIndex)
         case 53: cancel()
@@ -107,12 +127,16 @@ final class ReplicaSearchSuggestionsMenu: NSWindow {
     }
 
     private func moveSelection(by offset: Int) {
-        let enabled = rows.indices.filter { rows[$0].isEnabled }
-        guard !enabled.isEmpty else { return }
-        let current = selectedIndex.flatMap { enabled.firstIndex(of: $0) }
-        let position = current.map { ($0 + offset + enabled.count) % enabled.count }
-            ?? (offset > 0 ? 0 : enabled.count - 1)
-        select(enabled[position], reveal: true)
+        guard !rows.isEmpty else { return }
+        mouseSelectionCooldown?.cancel()
+        let index = selectedIndex.map { max(0, min(rows.count - 1, $0 + offset)) }
+            ?? (offset > 0 ? 0 : rows.count - 1)
+        select(index, reveal: true)
+        let cooldown = DispatchWorkItem { [weak self] in
+            MainActor.assumeIsolated { self?.mouseSelectionCooldown = nil }
+        }
+        mouseSelectionCooldown = cooldown
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: cooldown)
     }
 
     private func select(_ index: Int, reveal: Bool) {
@@ -124,9 +148,7 @@ final class ReplicaSearchSuggestionsMenu: NSWindow {
 
     private func acceptRow(_ index: Int) {
         guard rows.indices.contains(index), rows[index].isEnabled else { return }
-        let callback = accept
-        dismiss()
-        callback?(index)
+        accept?(index)
     }
 
     private func cancel() {
@@ -137,6 +159,10 @@ final class ReplicaSearchSuggestionsMenu: NSWindow {
 
     private func installMonitors(parent: NSWindow) {
         removeMonitors()
+        keyboardMonitor = NSEvent.addLocalMonitorForEvents(matching: .init(rawValue: 0x400)) { [weak self] event in
+            let handled = MainActor.assumeIsolated { self?.handleKeyDown(event) ?? false }
+            return handled ? nil : event
+        }
         mouseMonitor = NSEvent.addLocalMonitorForEvents(matching: .init(rawValue: 0x200000a)) { [weak self] event in
             MainActor.assumeIsolated {
                 guard let self, self.isVisible else { return }
@@ -154,6 +180,7 @@ final class ReplicaSearchSuggestionsMenu: NSWindow {
     }
 
     private func removeMonitors() {
+        if let keyboardMonitor { NSEvent.removeMonitor(keyboardMonitor); self.keyboardMonitor = nil }
         if let mouseMonitor { NSEvent.removeMonitor(mouseMonitor); self.mouseMonitor = nil }
         if let lostFocusObserver { NotificationCenter.default.removeObserver(lostFocusObserver); self.lostFocusObserver = nil }
     }
@@ -169,6 +196,7 @@ private final class SuggestionsScroller: NSView {
     private var boundsObserver: NSObjectProtocol?
     var onHover: ((Int) -> Void)?
     var onAccept: ((Int) -> Void)?
+    var onExit: (() -> Void)?
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -193,6 +221,7 @@ private final class SuggestionsScroller: NSView {
         addSubview(down)
         list.onHover = { [weak self] in self?.onHover?($0) }
         list.onAccept = { [weak self] in self?.onAccept?($0) }
+        list.onExit = { [weak self] in self?.onExit?() }
         up.hoverChanged = { [weak self] in self?.hover(direction: -1, active: $0) }
         down.hoverChanged = { [weak self] in self?.hover(direction: 1, active: $0) }
         boundsObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification,
@@ -204,6 +233,7 @@ private final class SuggestionsScroller: NSView {
     required init?(coder: NSCoder) { return nil }
 
     override var fittingSize: NSSize { list.fittingSize }
+    var firstTitleRectInWindow: NSRect? { list.firstTitleRectInWindow }
 
     func setRows(_ rows: [ReplicaSearchSuggestionsMenu.Row]) { list.setRows(rows); needsLayout = true }
     func select(_ index: Int?) { list.select(index) }
@@ -252,11 +282,13 @@ private final class SuggestionsList: NSView {
     var selectedRowHeight: CGFloat { selectedIndex.flatMap { rows.indices.contains($0) ? rows[$0].bounds.height : nil } ?? 0 }
     var onHover: ((Int) -> Void)?
     var onAccept: ((Int) -> Void)?
+    var onExit: (() -> Void)?
+    var firstTitleRectInWindow: NSRect? { rows.first?.titleRectInWindow }
     override var isFlipped: Bool { true }
 
     override var fittingSize: NSSize {
-        .init(width: rows.map { $0.fittingSize.width }.max() ?? 0,
-              height: rows.reduce(8) { $0 + $1.fittingSize.height })
+        .init(width: (rows.map { $0.fittingSize.width }.max() ?? 0) + 10,
+              height: rows.reduce(10) { $0 + $1.fittingSize.height })
     }
 
     func setRows(_ items: [ReplicaSearchSuggestionsMenu.Row]) {
@@ -265,6 +297,7 @@ private final class SuggestionsList: NSView {
             let row = SuggestionRowView(item: item)
             row.onHover = { [weak self] in self?.onHover?(index) }
             row.onAccept = { [weak self] in self?.onAccept?(index) }
+            row.onExit = { [weak self] in self?.onExit?() }
             addSubview(row)
             return row
         }
@@ -273,9 +306,9 @@ private final class SuggestionsList: NSView {
 
     override func layout() {
         super.layout()
-        var y: CGFloat = 4
+        var y: CGFloat = 5
         for row in rows {
-            row.frame = .init(x: 4, y: y, width: max(0, bounds.width - 8), height: row.fittingSize.height)
+            row.frame = .init(x: 5, y: y, width: max(0, bounds.width - 10), height: row.fittingSize.height)
             y += row.fittingSize.height
         }
     }
@@ -290,63 +323,77 @@ private final class SuggestionsList: NSView {
 @MainActor
 private final class SuggestionRowView: NSView {
     private let title: NSTextField
-    private let subtitle: NSTextField
     private let image: NSImageView
-    private let enabled: Bool
+    private let stack = NSStackView()
+    private let item: ReplicaSearchSuggestionsMenu.Row
     private var hoverArea: NSTrackingArea?
     var onHover: (() -> Void)?
+    var onExit: (() -> Void)?
     var onAccept: (() -> Void)?
+    var titleRectInWindow: NSRect { title.convert(title.bounds, to: nil) }
 
     init(item: ReplicaSearchSuggestionsMenu.Row) {
+        self.item = item
         title = NSTextField(labelWithString: item.title)
-        subtitle = NSTextField(labelWithString: item.subtitle ?? "")
         image = NSImageView()
-        image.image = item.image
-        enabled = item.isEnabled
         super.init(frame: .zero)
-        title.font = .menuFont(ofSize: 0)
-        subtitle.font = .menuFont(ofSize: 0)
-        subtitle.textColor = .secondaryLabelColor
-        for view in [image, title, subtitle] { view.translatesAutoresizingMaskIntoConstraints = false; addSubview(view) }
+        title.font = OriginalSearchAppearance.f_1001ff928()
+        title.lineBreakMode = .byTruncatingTail
+        title.maximumNumberOfLines = 1
+        image.image = item.image
         image.imageScaling = .scaleProportionallyDown
         image.isHidden = item.image == nil
-        title.lineBreakMode = .byTruncatingTail
-        subtitle.lineBreakMode = .byTruncatingTail
-        subtitle.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        stack.orientation = .horizontal
+        stack.alignment = .centerY
+        stack.spacing = 7
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        image.translatesAutoresizingMaskIntoConstraints = false
+        stack.addArrangedSubview(image)
+        stack.addArrangedSubview(title)
+        addSubview(stack)
         NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            image.centerYAnchor.constraint(equalTo: centerYAnchor), image.widthAnchor.constraint(equalToConstant: 16),
-            image.heightAnchor.constraint(equalToConstant: 16),
-            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: item.image == nil ? 8 : 30),
-            title.centerYAnchor.constraint(equalTo: centerYAnchor),
-            subtitle.leadingAnchor.constraint(greaterThanOrEqualTo: title.trailingAnchor, constant: 12),
-            subtitle.centerYAnchor.constraint(equalTo: centerYAnchor),
-            subtitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            stack.topAnchor.constraint(equalTo: topAnchor, constant: 3),
+            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3),
+            image.widthAnchor.constraint(equalToConstant: 18),
+            image.heightAnchor.constraint(equalToConstant: 18)
         ])
-        alphaValue = enabled ? 1 : 0.5
         wantsLayer = true
-        layer?.cornerRadius = 4
+        layer?.cornerRadius = 7
+        layer?.cornerCurve = .continuous
+        setSelected(false)
     }
 
     required init?(coder: NSCoder) { return nil }
     override var fittingSize: NSSize {
-        .init(width: title.fittingSize.width + subtitle.fittingSize.width + (image.isHidden ? 28 : 50), height: 28)
+        let iconWidth: CGFloat = image.isHidden ? 0 : 25
+        return .init(width: title.fittingSize.width + iconWidth + 16,
+                     height: max(title.fittingSize.height, image.isHidden ? 0 : 18) + 6)
     }
     func setSelected(_ value: Bool) {
-        let selected = enabled && value
-        layer?.backgroundColor = selected ? NSColor.selectedContentBackgroundColor.cgColor : NSColor.clear.cgColor
-        title.textColor = selected ? .alternateSelectedControlTextColor : .labelColor
-        subtitle.textColor = selected ? .alternateSelectedControlTextColor : .secondaryLabelColor
+        let selected = item.isEnabled && value
+        layer?.backgroundColor = selected ? NSColor.controlAccentColor.cgColor : NSColor.clear.cgColor
+        let primary = selected ? NSColor.white : OriginalSearchAppearance.f_1001fec18()!
+        let secondary = selected ? NSColor.white.withAlphaComponent(0.6) : NSColor.secondaryLabelColor
+        image.contentTintColor = primary
+        let matches = item.matchQuery.map { OriginalSearchSuggestions.f_1002f5748($0, in: item.title) } ?? []
+        let attributed = NSMutableAttributedString(string: item.title, attributes: [.foregroundColor: matches.isEmpty ? primary : secondary])
+        for match in matches {
+            attributed.addAttribute(.foregroundColor, value: primary, range: NSRange(match, in: item.title))
+        }
+        title.attributedStringValue = attributed
     }
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
         if let hoverArea { removeTrackingArea(hoverArea) }
-        let area = NSTrackingArea(rect: .zero, options: [.mouseEnteredAndExited, .activeAlways, .inVisibleRect], owner: self, userInfo: nil)
+        let area = NSTrackingArea(rect: bounds, options: .init(rawValue: 0x81), owner: self, userInfo: nil)
         addTrackingArea(area)
         hoverArea = area
     }
-    override func mouseEntered(with event: NSEvent) { if enabled { onHover?() } }
-    override func mouseDown(with event: NSEvent) { if enabled { onAccept?() } }
+    override func mouseEntered(with event: NSEvent) { if item.isEnabled { onHover?() } }
+    override func mouseExited(with event: NSEvent) { if item.isEnabled { onExit?() } }
+    override func mouseDown(with event: NSEvent) { if item.isEnabled { onAccept?() } }
 }
 
 @MainActor

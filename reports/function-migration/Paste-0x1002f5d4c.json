@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002f5d4c",
-  "reviewed_at": "2026-10-23T12:26:42.884918+00:00",
+  "reviewed_at": "2026-10-23T12:41:18.780800+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0244.c",
@@ -11,11 +11,11 @@
   "original_pseudocode_sha256": "2c30d721b691bbcec31eddf74032db0c2e09c8b0b720b349bc78a56eb1c68c70",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchFilterView.swift": "4628dc1edfd81fa48b4442c4b7f05ec5eea3a6f8598038d3a1f9f9480c62f6aa",
-    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "138dd0d9a207af289ca506aea2dd4f5d9b02b16c0b81d8b87fc34ce69c6c4f25"
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "13ce2f341f2e7aad16ac8083f46575b20b060086cc5a66ebe6399d8740915107"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
+  "compiled_app_binary_sha256": "d4e0931e33e51c979595768d7d46661d5b355e02e0e01e5ed6e9c32ff5ab7c1d",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,

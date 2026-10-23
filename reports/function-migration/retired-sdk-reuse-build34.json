@@ -1,0 +1,20 @@
+{
+  "kind": "retired_sdk_reuse",
+  "previous_source_commit": "e9a3ff63cccef2a73e9b7f9f61e6ed3cda70ab24",
+  "reason": "新源码实际构建产物已不再有对应导入，这些项回到pending；不以旧构建存在为由保留迁移完成数。",
+  "functions": {
+    "Paste:0x100bfb094": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bfb094",
+        "symbol": "_NSStringFromSelector"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bfb094.json"
+    }
+  }
+}

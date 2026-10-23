@@ -201,7 +201,7 @@ struct ReplicaSearchEditor: NSViewRepresentable {
                 let anchorRect = editor.convert(textRect, to: field)
                 let menu = self.suggestionMenu ?? ReplicaSearchSuggestionsMenu()
                 self.suggestionMenu = menu
-                menu.show(rows: entries.map { .init(title: $0.1.title, image: $0.1.image) },
+                menu.show(rows: entries.map { .init(title: $0.1.title, image: $0.1.image, matchQuery: context.text) },
                           anchorRect: anchorRect, in: field,
                           onAccept: { [weak self, weak field, weak editor] index in
                     guard let self, let field, let editor, entries.indices.contains(index) else { return }
@@ -212,7 +212,6 @@ struct ReplicaSearchEditor: NSViewRepresentable {
 
         private func accept(_ node: OriginalSearchQueryNode, context: OriginalSearchInputContext.Context,
                             field: SearchField, editor: SearchTextView) {
-            dismissSuggestions()
             var nodes = context.nodes
             if !nodes.contains(node), nodes.indices.contains(context.nodeIndex) {
                 nodes[context.nodeIndex] = node
@@ -227,6 +226,7 @@ struct ReplicaSearchEditor: NSViewRepresentable {
             currentNodes = nodes
             renderedFilters = value.filters
             parent.onInputChange(value.text, value.filters, nodes)
+            dismissSuggestions()
         }
 
         private func attributedString(_ nodes: [OriginalSearchQueryNode], field: SearchField,
@@ -351,7 +351,7 @@ struct ReplicaSearchEditor: NSViewRepresentable {
                 return self.propose(proposed, selection: selection, field: field, editor: editor)
             }
             editing.onSelectionChange = { [weak self, weak field, weak editor] _ in
-                guard let self, let field, let editor else { return }
+                guard let self, let field, let editor, !self.applyingContents else { return }
                 self.updateSuggestions(field, editor: editor)
             }
             editing.onEndEditing = { [weak self] in
@@ -361,12 +361,6 @@ struct ReplicaSearchEditor: NSViewRepresentable {
             editing.onEnter = { [weak self] in self?.parent.onEnter() }
             editing.onCancel = { [weak self] in self?.parent.onCancel() }
             editor.delegate = editing
-            editor.onCommand = { [weak self] selector in
-                guard let self, self.suggestionMenu?.isVisible == true,
-                      ["moveUp:", "moveDown:", "insertNewline:", "cancelOperation:"].contains(NSStringFromSelector(selector)),
-                      let event = NSApp.currentEvent else { return false }
-                return self.suggestionMenu?.handleKeyDown(event) ?? false
-            }
             field.onUndo = { [weak self, weak field, weak editor] in
                 guard let self, let field, let editor else { return false }
                 return self.restore(self.history.f_1002f61f0(), field: field, editor: editor)
@@ -396,12 +390,6 @@ struct ReplicaSearchEditor: NSViewRepresentable {
         var requestedFocus = false
         var didFocus: (() -> Void)?
         var didChange: (() -> Void)?
-        var onCommand: ((Selector) -> Bool)?
-
-        override func doCommand(by selector: Selector) {
-            if onCommand?(selector) == true { return }
-            super.doCommand(by: selector)
-        }
 
         override func viewDidMoveToWindow() {
             super.viewDidMoveToWindow()

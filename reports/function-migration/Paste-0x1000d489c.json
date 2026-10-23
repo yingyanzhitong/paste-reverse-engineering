@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d489c",
-  "reviewed_at": "2026-10-23T12:26:43.192449+00:00",
+  "reviewed_at": "2026-10-23T12:41:19.021223+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
+  "compiled_app_binary_sha256": "d4e0931e33e51c979595768d7d46661d5b355e02e0e01e5ed6e9c32ff5ab7c1d",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "非释放实例的析构核心：按顺序释放 lock、name 和 optional logger 字段。",
-  "review": "最终build32完整nondeallocating-deinit107aa4..107ad0：lock/name/cached顺序释放，Optional destroy107ad0..107b10，返回self；字段174fe8/174ff0/174ff8为10/18/28。",
+  "review": "最终build34完整nondeallocating-deinit103afc..103b28：lock/name/cached顺序释放，Optional destroy103b28..103b68，返回self；字段170fe8/170ff0/170ff8为10/18/28。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x100107aa4",
-    "end_exclusive": "0x100107ad0",
+    "start": "0x100103afc",
+    "end_exclusive": "0x100103b28",
     "size": 44,
-    "sha256": "f965b58d8c4dcbd8a37adf93d0f5532cecdfd1d4e7246ec14bda93a4437a5be2",
-    "binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
+    "sha256": "66265c06027bf1588c0dc823a16406074f5a7d7a5bb9b8f7ccb2011bb982ade5",
+    "binary_sha256": "d4e0931e33e51c979595768d7d46661d5b355e02e0e01e5ed6e9c32ff5ab7c1d",
     "lc_function_starts_verified": true
   }
 }

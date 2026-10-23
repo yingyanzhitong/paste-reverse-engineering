@@ -23,7 +23,7 @@ final class ReplicaSearchIndex: NSObject, CSSearchableIndexDelegate {
             title = item.title
             text = String([item.plainText, item.recognizedText].compactMap { $0 }.joined(separator: "\n").prefix(5000))
             modified = item.updatedAt
-            app = item.sourceBundleID ?? item.sourceName
+            app = item.sourceName
             type = item.kind == .files ? "file" : item.kind == .richText ? "text" : item.kind.rawValue
             device = item.sourceDevice
             pinboards = item.pinboardIDs.map(\.uuidString).sorted()

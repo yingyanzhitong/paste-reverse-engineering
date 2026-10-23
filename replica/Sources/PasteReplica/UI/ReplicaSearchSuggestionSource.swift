@@ -1,8 +1,7 @@
 import Foundation
 import PasteReplicaCore
 
-/// Adapts the replica's JSON relationships to the recovered provider interface.
-/// Application filter values retain the existing bundle-ID projection used by its index.
+/// Adapts the replica's JSON relationships to the recovered name-based provider interface.
 @MainActor
 enum ReplicaSearchSuggestionSource {
     private static func matches(_ value: String, query: String) -> Bool {
@@ -12,14 +11,8 @@ enum ReplicaSearchSuggestionSource {
     }
 
     static func applications(_ query: String, store: ClipboardStore) -> [String] {
-        var values: [String: String] = [:]
-        for item in store.items {
-            let identifier = item.sourceBundleID ?? item.sourceName
-            guard !identifier.isEmpty, !item.sourceName.isEmpty else { continue }
-            if values[identifier] == nil { values[identifier] = item.sourceName }
-        }
-        return values.filter { matches($0.value, query: query) }
-            .sorted { $0.value.compare($1.value) == .orderedAscending }.map(\.key)
+        Set(store.items.map(\.sourceName)).filter { !$0.isEmpty && matches($0, query: query) }
+            .sorted { $0.compare($1) == .orderedAscending }
     }
 
     static func devices(_ query: String, store: ClipboardStore) -> [String] {
