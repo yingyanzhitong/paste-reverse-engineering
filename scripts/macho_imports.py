@@ -22,7 +22,7 @@ ARM64 = 0x0100000C
 APPLICATION_ROOT = Path('/Applications/Paste.app')
 TARGET_PRODUCTS = {'Paste': 'PasteReplica', 'Paste-Helper': 'PasteReplicaHelper'}
 PRODUCT_SOURCE_TARGETS = {
-    'PasteReplica': ('PasteReplica', 'PasteReplicaCore'),
+    'PasteReplica': ('PasteReplica', 'PasteReplicaCore', 'PasteReplicaObjC'),
     'PasteReplicaHelper': ('PasteReplicaHelper',),
 }
 REPORT_PATH = 'reports/function-migration/sdk-import-reuse.json'
@@ -396,7 +396,8 @@ def _source_manifest(root, product):
     paths = [root / 'replica/Package.swift']
     for target in PRODUCT_SOURCE_TARGETS[product]:
         directory = root / 'replica/Sources' / target
-        paths.extend(sorted(directory.rglob('*.swift')))
+        paths.extend(sorted(path for path in directory.rglob('*')
+                            if path.is_file() and path.suffix in {'.swift', '.m', '.h'}))
         resources = directory / 'Resources'
         if resources.is_dir():
             paths.extend(sorted(path for path in resources.rglob('*') if path.is_file()))

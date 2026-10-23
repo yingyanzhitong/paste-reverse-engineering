@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d489c",
-  "reviewed_at": "2026-10-23T11:22:58.352692+00:00",
+  "reviewed_at": "2026-10-23T11:32:08.555040+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "97cb8df62eb115348aa16a6a1ba9c792df63cadf12424fe14b10deb3263432ef",
+  "compiled_app_binary_sha256": "079de8ff8313e7fbe6e5db4de92e1cdd390b799f45504e27c3b675eec0f89b00",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "非释放实例的析构核心：按顺序释放 lock、name 和 optional logger 字段。",
-  "review": "最终build25完整nondeallocating-deinit ecea8..eced4：依lock→name→cached调用swift_release、bridgeObjectRelease、Optional existential value-witness destroy(eced4..ecf14)，返回self不dealloc；字段常量1549f8/154a00/154a08分别0x10/0x18/0x28。",
+  "review": "最终build26完整nondeallocating-deinit efe10..efe3c：依lock→name→cached调用swift_release、bridgeObjectRelease、Optional existential value-witness destroy(efe3c..efe7c)，返回self不dealloc；字段常量1582d8/1582e0/1582e8分别0x10/0x18/0x28。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000ecea8",
-    "end_exclusive": "0x1000eced4",
+    "start": "0x1000efe10",
+    "end_exclusive": "0x1000efe3c",
     "size": 44,
-    "sha256": "1e52ba1d1c08561dfac391bbccf2f4737eeb2cba4973f96f4c54fae435fbd851",
-    "binary_sha256": "97cb8df62eb115348aa16a6a1ba9c792df63cadf12424fe14b10deb3263432ef",
+    "sha256": "208a88eb149a2ab6cd7a76ffdb06c2f53a29f838ba3af71ee2752dcd355805f8",
+    "binary_sha256": "079de8ff8313e7fbe6e5db4de92e1cdd390b799f45504e27c3b675eec0f89b00",
     "lc_function_starts_verified": true
   }
 }

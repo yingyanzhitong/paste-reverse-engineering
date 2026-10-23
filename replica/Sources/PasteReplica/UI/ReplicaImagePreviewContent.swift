@@ -80,11 +80,16 @@ final class ReplicaImagePreviewContent: NSView, OriginalPreviewEditableContent, 
 
     var preferredPreviewSize: NSSize {
         let imageSize = zoomView.f_100240a18()?.size ?? .zero
-        let screen = NSScreen.main?.frame.size ?? NSSize(width: 2000, height: 2000)
-        let scale = min(1, min(screen.width * 0.5 / max(1, imageSize.width),
-                               screen.height * 0.5 / max(1, imageSize.height)))
-        return NSSize(width: max(380, imageSize.width * scale),
-                      height: max(240, imageSize.height * scale))
+        let screen = NSScreen.main!.frame.size
+        let halfWidth = screen.width * 0.5
+        let halfHeight = screen.height * 0.5
+        // Original 0x1003e6afc returns the source dimensions when both comparisons
+        // are nonnegative or unordered; it does not impose a minimum canvas size.
+        if !(halfWidth < imageSize.width), !(halfHeight < imageSize.height) { return imageSize }
+        let widthScale = halfWidth / imageSize.width
+        let heightScale = halfHeight / imageSize.height
+        let scale = heightScale < widthScale ? heightScale : widthScale
+        return NSSize(width: imageSize.width * scale, height: imageSize.height * scale)
     }
 
     func beginPreviewEditing() {

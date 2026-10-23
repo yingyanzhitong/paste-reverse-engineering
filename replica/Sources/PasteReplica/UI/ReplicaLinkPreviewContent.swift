@@ -9,8 +9,9 @@ final class ReplicaLinkPreviewContent: NSView, OriginalPreviewEditableContent, N
     var previewEditingToolbar: NSView? { nil }
     var previewMetadataView: NSView? { metadata }
     var preferredPreviewSize: NSSize {
-        let size = NSScreen.main?.frame.size ?? .init(width: 1520, height: 960)
-        return .init(width: max(380, size.width * 0.25), height: max(240, size.height * 0.25))
+        // Both original PreferredSizeProviding witnesses use f_1003e3eec: half screen or zero.
+        guard let size = NSScreen.main?.frame.size else { return .zero }
+        return .init(width: size.width * 0.5, height: size.height * 0.5)
     }
 
     private weak var state: ReplicaUIState?

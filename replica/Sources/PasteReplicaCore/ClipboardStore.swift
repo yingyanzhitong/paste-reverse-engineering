@@ -58,7 +58,8 @@ public final class ClipboardStore: ObservableObject {
         defer { Darwin.close(descriptor) }
         guard flock(descriptor, LOCK_EX) == 0 else { throw POSIXError(POSIXErrorCode(rawValue: errno) ?? .EIO) }
         defer { flock(descriptor, LOCK_UN) }
-        return try operation()
+        // Catch inside the flock scope so the converted Swift Error executes both defers.
+        return try OriginalObjCExceptionBridge.withResult(operation)
     }
 
     private func validate(_ state: StoreState) throws {
@@ -477,10 +478,12 @@ public final class ClipboardStore: ObservableObject {
     }
 
     public func exportArchive(to url: URL) throws {
-        try save()
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.sortedKeys]
-        try writeAtomically(encoder.encode(current), to: url)
+        try OriginalObjCExceptionBridge.f_1002ff9c8 {
+            try save()
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.sortedKeys]
+            try writeAtomically(encoder.encode(current), to: url)
+        }
     }
     public func importArchive(from url: URL) throws {
         let data = try Data(contentsOf: url)

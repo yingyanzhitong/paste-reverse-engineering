@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002ffc68",
+  "reviewed_at": "2026-10-23T11:32:09.034655+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0249.c",
+    "line": 1034
+  },
+  "original_pseudocode_sha256": "185af55380bfbbd3fb2bead27e3a7f2768f443bc136e8f0087fc2d48075b0bb1",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalObjCExceptionBridge.swift": "83c6a0735223b544a2d156b9ea26f9aff8896ca6f16c4d8a6c39ae550ac39c88",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardArchive.swift": "52c2053221184f1fc32aa997c78a3ef90657610590f0aecf760e13b9e9139e12"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "079de8ff8313e7fbe6e5db4de92e1cdd390b799f45504e27c3b675eec0f89b00",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "同步执行throws Data操作；保留成功Data完整值或原Swift Error；ObjC异常转name/reason Error；无异常且Result未写则trap。",
+  "review": "part-0249.c:1032..1153完整Data两word返回包装。原消费者f31b218→闭包f31bc34→f31b1bc读取rawPasteboardItems并bridge Foundation.Data，确认该地址是Data特化而非任意T地址。新Data包装实际用于NSKeyedArchiver编码返回Data；原始实体getter仍未恢复，不能把泛型所有特化一并登记。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

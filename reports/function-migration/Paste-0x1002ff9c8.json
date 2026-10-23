@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002ff9c8",
+  "reviewed_at": "2026-10-23T11:32:09.031951+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0249.c",
+    "line": 929
+  },
+  "original_pseudocode_sha256": "a4a24d74878bc0d2b3702e504770dc329f2471783a133cdace88c700def24729",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalObjCExceptionBridge.swift": "83c6a0735223b544a2d156b9ea26f9aff8896ca6f16c4d8a6c39ae550ac39c88",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "9c8d1165201c29399f349dec53209bc69ebf9808c817b30b03cd12918754979e"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "079de8ff8313e7fbe6e5db4de92e1cdd390b799f45504e27c3b675eec0f89b00",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "同步执行throws Void操作，Result?初值nil，正常写.success(())，Swift Error写.failure且最终原样throw；优先把ObjC异常转换为保存name:String/reason:String?的独立Swift Error；无异常且Result未写则trap；operation不逃逸。",
+  "review": "part-0249.c:927..1031完整体区分local_58=-1未写/1 failure/0 success，异常name/reason优先；新Void包装实际覆盖已有archive导出保存+JSON编码+写盘路径，非无人调用壳。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

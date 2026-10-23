@@ -16,7 +16,7 @@ enum PasteReplicaMain {
 }
 
 @MainActor
-final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
+final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
     private var store: ClipboardStore!
     private var ui: ReplicaUIController!
     private var monitor: ClipboardMonitor?
@@ -176,6 +176,7 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
         let appMenu = NSMenu(title: "Paste Replica")
         appMenu.addItem(menuItem("关于 Paste Replica", #selector(about(_:))))
         appMenu.addItem(menuItem("设置…", #selector(settings(_:)), key: ","))
+        appMenu.addItem(menuItem(diagnosticsMenuTitle, #selector(toggleDiagnostics(_:))))
         appMenu.addItem(.separator())
         appMenu.addItem(menuItem("退出 Paste Replica", #selector(quit(_:)), key: "q"))
         let app = NSMenuItem(); app.submenu = appMenu; main.addItem(app)
@@ -253,6 +254,7 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
             menu.addItem(menuItem("打开剪贴板", #selector(togglePanel(_:))))
             menu.addItem(menuItem("新建文本…", #selector(newText(_:))))
             menu.addItem(menuItem("设置…", #selector(settings(_:))))
+            menu.addItem(menuItem(diagnosticsMenuTitle, #selector(toggleDiagnostics(_:))))
             menu.addItem(menuItem(store.preferences.isMonitoringPaused ? "继续采集" : "暂停采集", #selector(pause(_:))))
             if hotKeyStatus != noErr {
                 let notice = NSMenuItem(title: "历史快捷键无法注册", action: nil, keyEquivalent: "")
@@ -267,6 +269,44 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
             statusItem.button?.performClick(nil)
             statusItem.menu = nil
         } else { togglePanel(sender) }
+    }
+
+    private var diagnosticsMenuTitle: String {
+        String(localized: diagnostics?.enabled == true
+            ? OriginalPreviewLocalization.f_1001be088() : OriginalPreviewLocalization.f_1001bdd88())
+    }
+
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(toggleDiagnostics(_:)) {
+            menuItem.title = diagnosticsMenuTitle
+            return diagnostics != nil
+        }
+        return true
+    }
+
+    @objc private func toggleDiagnostics(_ sender: Any?) { f_10004e064() }
+
+    private func f_10004e064() {
+        guard let diagnostics else { return }
+        let wasEnabled = diagnostics.enabled
+        let alert = NSAlert()
+        alert.messageText = String(localized: wasEnabled
+            ? OriginalPreviewLocalization.f_1001be088() : OriginalPreviewLocalization.f_1001bdd88())
+        alert.informativeText = String(localized: wasEnabled
+            ? OriginalPreviewLocalization.f_1001bdf08() : OriginalPreviewLocalization.f_1001bdc08())
+        alert.addButton(withTitle: String(localized: wasEnabled
+            ? OriginalPreviewLocalization.f_1001bda88() : OriginalPreviewLocalization.f_1001c3188()))
+        alert.addButton(withTitle: String(localized: OriginalPreviewLocalization.f_1001c0788()))
+        NSApp.activate(ignoringOtherApps: true)
+        guard alert.runModal() == .alertFirstButtonReturn else { return }
+        if wasEnabled {
+            diagnostics.f_1002fe72c(false)
+            do { _ = try diagnostics.f_1002fef28(store: store, pasteboard: pasteboard) }
+            catch { ui.presentError(error) }
+        } else {
+            diagnostics.f_1002fe72c(true)
+            OriginalDiagnosticsAppActions.f_10004e8ec()
+        }
     }
 
     @objc private func togglePanel(_ sender: Any?) {

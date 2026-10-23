@@ -9,8 +9,9 @@ final class ReplicaColorPreviewContent: OriginalLayerBackedView, OriginalPreview
     var previewEditingToolbar: NSView? { nil }
     var previewMetadataView: NSView? { metadata }
     var preferredPreviewSize: NSSize {
-        let size = NSScreen.main?.frame.size ?? .init(width: 1520, height: 960)
-        return .init(width: max(380, size.width * 0.25), height: max(240, size.height * 0.25))
+        // Without a PreferredSize provider, f_10007c994 uses a quarter screen or zero.
+        guard let size = NSScreen.main?.frame.size else { return .zero }
+        return .init(width: size.width * 0.25, height: size.height * 0.25)
     }
 
     private weak var state: ReplicaUIState?

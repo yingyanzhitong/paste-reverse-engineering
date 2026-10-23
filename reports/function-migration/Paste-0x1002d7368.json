@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002d7368",
-  "reviewed_at": "2026-10-23T11:22:58.743307+00:00",
+  "reviewed_at": "2026-10-23T11:32:08.970436+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0236.c",
@@ -15,13 +15,13 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "97cb8df62eb115348aa16a6a1ba9c792df63cadf12424fe14b10deb3263432ef",
+  "compiled_app_binary_sha256": "079de8ff8313e7fbe6e5db4de92e1cdd390b799f45504e27c3b675eec0f89b00",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_source_reused",
   "contract": "日期Range下界epoch秒rounded(.down)、上界rounded(.up)，再分别Int转换保留非有限/越界trap；Int十进制以单ASCII空格拼接，返回tag3日期filter。本地址为4字节无条件直接分支至0x1002d9d2c，复用同一实际执行实现。",
   "review": "REA part0236伪代码将frintm/frintp丢成普通long cast；完整arm64 0x1002d9d2c..<0x1002d9e84明确lower FRINTM@9d4c、upper FRINTP@9da8，后FCVTZS与6个trap路径、tag3及ASCII空格。已核实际UI日期调用；不新增同名空壳。原日期反解析/展示和完整query模型仍另有缺口。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

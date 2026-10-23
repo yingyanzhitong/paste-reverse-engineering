@@ -13,7 +13,8 @@ let package = Package(
         .executable(name: "paste-replica-core-tests", targets: ["PasteReplicaCoreTests"])
     ],
     targets: [
-        .target(name: "PasteReplicaCore", resources: [.process("Resources")]),
+        .target(name: "PasteReplicaObjC", publicHeadersPath: "include"),
+        .target(name: "PasteReplicaCore", dependencies: ["PasteReplicaObjC"], resources: [.process("Resources")]),
         .executableTarget(name: "PasteReplica", dependencies: ["PasteReplicaCore"]),
         .executableTarget(name: "PasteReplicaHelper"),
         .executableTarget(name: "PasteReplicaMCP", dependencies: ["PasteReplicaCore"]),

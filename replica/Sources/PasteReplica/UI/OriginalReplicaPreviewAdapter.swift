@@ -9,7 +9,7 @@ func makeOriginalReplicaPreview(state: ReplicaUIState, item: ClipboardItem) -> O
     let content: NSView
     let contentSize: NSSize
     let metadata: NSView?
-    let screenSize = NSScreen.main?.frame.size ?? NSSize(width: 1520, height: 960)
+    let screenSize = NSScreen.main?.frame.size ?? .zero
     switch item.kind {
     case .image:
         let image = ReplicaImagePreviewContent(state: state, item: item)
@@ -33,8 +33,8 @@ func makeOriginalReplicaPreview(state: ReplicaUIState, item: ClipboardItem) -> O
         metadata = files.previewMetadataView
     default:
         content = makeReplicaReadOnlyPreviewContent(store: state.store, item: item)
-        contentSize = .init(width: max(380, screenSize.width * 0.25),
-                            height: max(240, screenSize.height * 0.25))
+        contentSize = .init(width: screenSize.width * 0.25,
+                            height: screenSize.height * 0.25)
         metadata = nil
     }
     let header = ReplicaInlinePreviewHeader(state: state, item: item,
@@ -50,6 +50,7 @@ func makeOriginalReplicaPreview(state: ReplicaUIState, item: ClipboardItem) -> O
     let view = ReplicaInlinePreviewContainer(previewHeader: header, editorHeader: editorHeader,
                                             contentView: content, footer: footer,
                                             contentSize: contentSize)
+    view.applyContentAppearance()
     connectReplicaPreviewHeader(header, view: view, state: state, item: item)
     editorHeader.onCancel = { [weak view] in view?.f_10007c1fc() }
     editorHeader.onSave = { [weak view] in view?.f_10007c080() }
@@ -70,6 +71,7 @@ func makeOriginalReplicaTextPreview(state: ReplicaUIState, item: ClipboardItem) 
     let view = ReplicaInlinePreviewContainer(previewHeader: header, editorHeader: editorHeader,
                                             contentView: content, footer: footer,
                                             contentSize: content.preferredPreviewSize)
+    view.applyContentAppearance()
     connectReplicaPreviewHeader(header, view: view, state: state, item: item)
     editorHeader.onCancel = { [weak view] in view?.f_10007c1fc() }
     editorHeader.onSave = { [weak view] in view?.f_10007c080() }
@@ -99,6 +101,21 @@ private func connectReplicaPreviewHeader(_ header: ReplicaInlinePreviewHeader,
 
 @MainActor
 private final class ReplicaInlinePreviewContainer: OriginalItemPreviewView {
+    /// f_10007acd8 decorates the actual content; text keeps the reference's zero border.
+    func applyContentAppearance() {
+        itemContentView.effectiveAppearance.performAsCurrentDrawingAppearance {
+            OriginalViewLayerFunctions.f_10021d1cc(
+                OriginalSearchSurfaceAppearance.f_1001ff0d0().pointee, view: itemContentView)
+            itemContentView.layer?.borderWidth = itemContentView is ReplicaInlineTextPreviewContent ? 0 : 0.5
+            OriginalViewLayerFunctions.f_10021d49c(5, curve: .circular, view: itemContentView)
+        }
+    }
+
+    override func viewDidChangeEffectiveAppearance() {
+        super.viewDidChangeEffectiveAppearance()
+        applyContentAppearance()
+    }
+
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
         let modifiers = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
         if modifiers == .command, event.charactersIgnoringModifiers == "e", editorHeader.isHidden {
