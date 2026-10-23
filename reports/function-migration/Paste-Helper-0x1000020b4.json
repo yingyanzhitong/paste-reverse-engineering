@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste-Helper:0x1000020b4",
+  "reviewed_at": "2026-10-23T07:33:40.904438+00:00",
+  "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
+  "original_pseudocode": {
+    "path": "decompiled/Paste-Helper/part-0000.c",
+    "line": 436
+  },
+  "original_pseudocode_sha256": "d49a4d9a119d3b7c7700eace792d9aa8cb990413424567df2b146e00b7b6af73",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaHelper/HelperMain.swift": "9d3d2472a2b9905aabd408f9da7e0b148976ff057f935a18a3a75d8407cab2fe"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "74117fae21a9eec4161c179c43a554ba830853c065fb35217b5b9a7116ea6dd9",
+  "compiled_product": "PasteReplicaHelper",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "decompiled/Paste-Helper/part-0000.c:434 起。复刻 Swift 实例属性初始化与隐式 NSObject.init 提供相同状态和 ARC 生命周期，新增的产品身份/defaults 属性仅承担原版函数内服务定位。Logger subsystem 使用独立产品 ID；不是把类元数据或 SDK 桩算作迁移。",
+  "contract": "在 MainActor 初始化 Helper Delegate：建立 general 分类 Logger，isLaunching=false、retryCount=0、cancellables 为空集合，再执行 NSObject 初始化。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。",
+  "static_review_risk": "isLaunching=false、retryCount=0、空集合、general Logger 与 NSObject 初始化相同；额外身份常量不进行外部查询。Logger subsystem 使用复刻身份。"
+}

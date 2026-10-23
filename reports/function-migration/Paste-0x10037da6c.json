@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10037da6c",
+  "reviewed_at": "2026-10-23T07:33:40.974158+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0282.c",
+    "line": 1027
+  },
+  "original_pseudocode_sha256": "7274d0eb4d4ffa37f2fff3127d4fa8ed21e5cd75690741b71b5f73f68234f02b",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "657758410b2bdacaa4f2e17003f457143dc5d05a9c92a70187072bc95e08d681",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "015353f4b248580f0d62ed23006ed85c2a4233073a815172b64c0a8f0d0282c3"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "核对 decompiled/Paste/part-0281.c 的 0x10037875c 或 part-0282.c 对应地址；文本循环另核对 arm64 0x10037c9a8–0x10037cc6c，确认四项优先级以及解码失败继续。低层已接入 capture/writeToPasteboard；外层内部载荷过滤、生成标记、错误处理保留为调用方策略，未将这些外层 API 整体映射为原版等价。没有执行编译或任何功能回归，等待主智能体统一编译后建立静态迁移证据。",
+  "contract": "返回有序 types 的 Swift 数组值，保留顺序及重复，调用者修改结果不改变对象内部列表。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+}

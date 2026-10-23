@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001ebf04",
+  "reviewed_at": "2026-10-23T07:33:40.941312+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0158.c",
+    "line": 791
+  },
+  "original_pseudocode_sha256": "f2e90f08f1709e81dcb86b44214632e5c0d7215674d2cd6b6fcd505753e920c6",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "58e93b238b02e891f22f3211a7e53a1f82e052e15a8d35405ad38a06a5f0d964",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutValidation.swift": "891737a050f2d99d6b28f4fd2deec4e8ea24fc9b1ea9717fb5bf942b223d6e45"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "part-0158.c:781；三个 key 从当前 SDK CarbonEvents.h 静态核对，NSNumber 有符号键码/无符号修饰和 enabled 分支逐项实现；f_1001ebce4 实际逐条调用。",
+  "contract": "匹配单个系统符号快捷键字典：kHISymbolicHotKeyCode 必须可转 NSNumber 且 integerValue 等于键码，kHISymbolicHotKeyModifiers 必须为 NSNumber 且 unsignedIntegerValue 等于 Carbon 修饰，最后返回 NSNumber enabled.boolValue；缺键/类型失败/不匹配返回 false。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10037d33c",
+  "reviewed_at": "2026-10-23T07:33:40.990712+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0282.c",
+    "line": 724
+  },
+  "original_pseudocode_sha256": "e6c647662aa3d6d9d6eb32df20a7adfff3e94e03f20de5a240344e08a9b1f93e",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "657758410b2bdacaa4f2e17003f457143dc5d05a9c92a70187072bc95e08d681"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "核对 part-0282.c 0x10037d33c，回调恢复至 0x100309924；已接 capture 的 plainText 缺失时 fallback，保留原始 payload。 未执行编译或功能回归，等待主智能体统一编译建立静态证据。",
+  "contract": "先按 flatRTFD、rtfd、rtf 优先级恢复富文本；成功则构造 NSMutableAttributedString，枚举整个 UTF-16 范围的属性，将每个 paragraphStyle 的 textBlocks 清空；富文本均失败则取原版文本优先级结果构造 NSAttributedString，无文本返回 nil。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+}

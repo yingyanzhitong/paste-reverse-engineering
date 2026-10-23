@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001e7e50",
+  "reviewed_at": "2026-10-23T07:33:40.922314+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0156.c",
+    "line": 1369
+  },
+  "original_pseudocode_sha256": "7a6f660d780d255393f19d0a400773613bba9b960c3ff288b430436e83aeb85b",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "58e93b238b02e891f22f3211a7e53a1f82e052e15a8d35405ad38a06a5f0d964",
+    "replica/Sources/PasteReplicaCore/KeyboardShortcut.swift": "35d4d5f9aa2e750ad539ddf5a0f0b328132384f0df0a417dea90843a12a3b0fc"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "part-0156.c:1366；汇编 0x1001e7ef0…0x1001e7ff8 核对 256 缓冲、action=3、空修饰、真实 UTF16 长度；未保留原先美式字母硬编码，已供真实 displayName 调用。",
+  "contract": "优先特殊键显示表；其余键从当前 ASCII-capable 输入源读取 Unicode 布局，以 LMGetKbdType、action=display、modifierState=0、options=0、deadState=0 翻译最多 256 UTF16 单元，成功返回 uppercase 文本，取源/布局失败或 OSStatus 非零返回空串；布局存在时键码须可精确转换 UInt16。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+}

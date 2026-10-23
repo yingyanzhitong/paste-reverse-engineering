@@ -6,7 +6,7 @@ import PasteReplicaCore
 @MainActor
 struct ReplicaPanelView: View {
     @ObservedObject var state: ReplicaUIState
-    @FocusState private var searchFocused: Bool
+    @State private var searchFocused = false
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
@@ -82,9 +82,10 @@ struct ReplicaPanelView: View {
     private var searchField: some View {
         HStack(spacing: 7) {
             Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
-            TextField("搜索", text: $state.query)
-                .textFieldStyle(.plain).focused($searchFocused).font(.system(size: 14))
-                .accessibilityLabel("搜索剪贴板").accessibilityIdentifier("clipboard-search")
+            ReplicaSearchEditor(text: $state.query, focused: $searchFocused,
+                onEnter: { state.controller?.pasteSelection(plainTextOnly: false) },
+                onCancel: { state.controller?.cancelSearchOrPanel() })
+                .frame(height: 22)
             if !state.query.isEmpty {
                 Button { state.query = "" } label: { Image(systemName: "xmark.circle.fill") }
                     .buttonStyle(.plain).foregroundStyle(.secondary).accessibilityLabel("清空搜索")

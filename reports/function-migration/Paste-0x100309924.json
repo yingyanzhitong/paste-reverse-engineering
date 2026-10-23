@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100309924",
+  "reviewed_at": "2026-10-23T07:33:40.993395+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0251.c",
+    "line": 1238
+  },
+  "original_pseudocode_sha256": "abb65d68910d12a6ff2b5cfb57bb8460ef85c9b02aed9bfda06138e2759ff4e7",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "657758410b2bdacaa4f2e17003f457143dc5d05a9c92a70187072bc95e08d681"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "核对 part-0251.c 0x100309924 动态转换、mutableCopy、空 NSTextBlock 数组以及 addAttribute 分支；实际由 f_10037d33c 的属性枚举调用。 未执行编译或功能回归，等待主智能体统一编译建立静态证据。",
+  "contract": "枚举属性回调：仅当 paragraphStyle 值可转为 NSParagraphStyle 且其 mutableCopy 为 NSMutableParagraphStyle 时，清空复制对象 textBlocks，并在指定范围写回 paragraphStyle；缺失/不兼容类型不修改字符串。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+}

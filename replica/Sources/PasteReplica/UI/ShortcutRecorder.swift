@@ -23,6 +23,10 @@ struct ReplicaShortcutRecorder: NSViewRepresentable {
         button.error = error
         button.recordingChanged = recordingChanged
         button.setAccessibilityLabel("\(label)快捷键")
+        button.setAccessibilityValue(shortcut.map {
+            OriginalShortcutFunctions.f_1001e9774(verbose: true, modifierRawValue: $0.modifierRawValue)
+                + OriginalShortcutFunctions.f_1001e7e50(keyCode: $0.keyCode)
+        })
         if !button.recording { button.title = shortcut?.displayName ?? "录制快捷键" }
     }
 
@@ -58,10 +62,9 @@ final class ShortcutRecorderButton: NSButton {
         title = "按下快捷键…"
         error?("")
         recordingChanged?(true)
-        eventMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+        eventMonitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .flagsChanged]) { [weak self] event in
             guard let self, self.recording, self.window?.isKeyWindow == true else { return event }
-            self.record(event)
-            return nil
+            return self.record(event) ? nil : event
         }
         for name in [NSWindow.willCloseNotification, NSWindow.didResignKeyNotification] {
             observations.append(NotificationCenter.default.addObserver(forName: name, object: window, queue: .main) { [weak self] _ in
@@ -70,37 +73,45 @@ final class ShortcutRecorderButton: NSButton {
         }
     }
 
-    private func record(_ event: NSEvent) {
-        if event.keyCode == 53 { finish(); return }
-        if [51, 117].contains(event.keyCode), event.modifierFlags.intersection([.command, .option, .control, .shift]).isEmpty {
-            finish()
+    /// Return false only for the original Command-W / Command-Q pass-through branch.
+    private func record(_ event: NSEvent) -> Bool {
+        let value = OriginalShortcutFunctions.f_1001e7d18(event)
+        let flags = value.modifiers
+        if [51, 117].contains(event.keyCode), value.modifierRawValue == 0 {
             changed?(nil)
+            finish()
             title = "录制快捷键"
-            return
+            return true
         }
-        let flags = event.modifierFlags.intersection([.command, .option, .control, .shift])
-        let value = PasteReplicaCore.KeyboardShortcut(keyCode: UInt32(event.keyCode), modifierRawValue: flags.rawValue)
-        guard value.isValidGlobal else {
-            error?("请使用包含 ⌘、⌥ 或 ⌃ 的组合键。")
-            return
+        if event.keyCode == 53, value.modifierRawValue == 0 { finish(); return true }
+        let keyLabel = OriginalShortcutFunctions.f_1001e7e50(keyCode: value.keyCode)
+        if value.modifierRawValue == NSEvent.ModifierFlags.command.rawValue,
+           ["w", "q"].contains(keyLabel.lowercased()) {
+            finish()
+            return false
         }
-        if let menuTitle = menuConflict(NSApp.mainMenu, event: event, flags: flags) {
-            error?("由于菜单项“\(menuTitle)”已使用该快捷键，因此无法使用。")
-            return
+        if keyLabel.isEmpty {
+            title = OriginalShortcutFunctions.f_1001e9774(verbose: false, modifierRawValue: value.modifierRawValue)
+            return true
         }
-        finish()
+        guard OriginalShortcutFunctions.f_1001ebc2c(keyCode: value.keyCode,
+                                                  modifierRawValue: value.modifierRawValue) else {
+            NSSound.beep()
+            return true
+        }
+        if let failure = OriginalShortcutValidation.f_1001ebce4(shortcut: value, menu: NSApp.mainMenu) {
+            finish()
+            error?(failure)
+            return true
+        }
         changed?(value)
+        finish()
         title = value.displayName
-    }
-
-    private func menuConflict(_ menu: NSMenu?, event: NSEvent, flags: NSEvent.ModifierFlags) -> String? {
-        for item in menu?.items ?? [] {
-            if let found = menuConflict(item.submenu, event: event, flags: flags) { return found }
-            if !item.keyEquivalent.isEmpty,
-               item.keyEquivalent.lowercased() == event.charactersIgnoringModifiers?.lowercased(),
-               item.keyEquivalentModifierMask.intersection([.command, .option, .control, .shift]) == flags { return item.title }
+        if let warning = OriginalShortcutValidation.optionCompatibilityWarning(
+            modifierRawValue: flags.rawValue, version: ProcessInfo.processInfo.operatingSystemVersion) {
+            error?(warning)
         }
-        return nil
+        return true
     }
 
     func finish() {

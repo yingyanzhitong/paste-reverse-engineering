@@ -1,5 +1,6 @@
 import AppKit
 import Carbon
+import PasteReplicaCore
 
 @MainActor
 final class GlobalHotKey {
@@ -31,11 +32,7 @@ final class GlobalHotKey {
         }, 1, &specification, context, &handler)
         guard install == noErr else { return install }
         let identifier = EventHotKeyID(signature: 0x5052504c, id: identifier)
-        var carbonModifiers: UInt32 = 0
-        if modifiers.contains(.command) { carbonModifiers |= UInt32(cmdKey) }
-        if modifiers.contains(.shift) { carbonModifiers |= UInt32(shiftKey) }
-        if modifiers.contains(.option) { carbonModifiers |= UInt32(optionKey) }
-        if modifiers.contains(.control) { carbonModifiers |= UInt32(controlKey) }
+        let carbonModifiers = OriginalShortcutFunctions.f_1001e7d58(modifierRawValue: modifiers.rawValue)
         let status = RegisterEventHotKey(keyCode, carbonModifiers, identifier,
                                         GetApplicationEventTarget(), 0, &reference)
         if status != noErr { unregister() }

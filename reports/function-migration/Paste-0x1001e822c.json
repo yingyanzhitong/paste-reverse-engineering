@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001e822c",
+  "reviewed_at": "2026-10-23T07:33:40.918739+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0156.c",
+    "line": 1606
+  },
+  "original_pseudocode_sha256": "706a6b95bc0c0549ef05e2cc7d298fcee4a5ca3e4f6b55dd737ac7a02007769c",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "58e93b238b02e891f22f3211a7e53a1f82e052e15a8d35405ad38a06a5f0d964",
+    "replica/Sources/PasteReplicaCore/KeyboardShortcut.swift": "35d4d5f9aa2e750ad539ddf5a0f0b328132384f0df0a417dea90843a12a3b0fc"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "part-0156.c:1593 起完整逐项核对字典构建，原版函数没有 F20；符号 U+2327、U+2305、U+2198、U+2196 保留，不再用 Clear/Home/End 代称。唯一语言值 shortcut.space 由原版安装包只读静态核对，复刻只定义常用按键短语。displayLabels 懒加载供显示路径使用。",
+  "contract": "构造 52 项特殊键显示字典：F1…F19、空格、Escape、删除、方向/翻页/首尾、Tab/Return 及数字小键盘；空格标签按原版 17 个本地化区域选择。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+}

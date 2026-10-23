@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10004f7d4",
+  "reviewed_at": "2026-10-23T07:33:40.890616+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0028.c",
+    "line": 876
+  },
+  "original_pseudocode_sha256": "3c24f231e114aa605d70d689d479641d8c78cf3bce8f8e0c4d3ed33f36e778e7",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/WindowSharingPolicy.swift": "6f3257a2ba0ec9e7311c5faab3e972261293536d691adeb27289d1be5e3a33fe"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "decompiled/Paste/part-0028.c:880 起。回调链 0x10004fd44 → 0x10004fce4 → 0x1000582d0 为 MainActor 同步隔离断言，不是异步 Task；已改用 MainActor.assumeIsolated，避免下一轮 keyWindow 变化。现有 expose/update 兼容观察者保留。",
+  "contract": "向默认通知中心注册 NSWindow.didBecomeKeyNotification 观察者，object 为 nil、队列为主队列，弱捕获隐私管理器，同步进入 MainActor 后应用 keyWindow 共享策略；保留观察令牌。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。",
+  "static_review_risk": "无新增已知函数内差异；实际非 MainActor 通知交付将触发隔离检查。原版与复刻均由主 OperationQueue 交付。"
+}

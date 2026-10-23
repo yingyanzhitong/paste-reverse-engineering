@@ -3,13 +3,14 @@
 import argparse
 from collections import Counter
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGE_SIZE = 1024
-STATES = {"pending", "partial", "implemented", "verified", "excluded_by_scope"}
+STATES = {"pending", "partial", "migrated", "implemented", "verified", "excluded_by_scope"}
 HEADER = re.compile(r"^/\* Address: (0x[0-9a-f]+) \| .*? \*/$", re.MULTILINE)
 
 
@@ -23,17 +24,82 @@ def relative_file(root, value):
     return result
 
 
-def validate_review(root, key, review):
+def validate_sdk_review(root, key, review, result, cache):
+    sdk = review["sdk_implementation"]
+    if review["state"] != "migrated" or review.get("implementations") or review.get("tests"):
+        raise ValueError("SDK reuse is migration-only binary evidence, not source or test evidence: " + key)
+    path = relative_file(root, sdk["report"])
+    cache_key = (str(root.resolve()), sdk["report"])
+    if cache_key not in cache:
+        spec = importlib.util.spec_from_file_location("macho_imports", root / "scripts/macho_imports.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        cache[cache_key] = (module.verify_reuse_report(root, path), hashlib.sha256(path.read_bytes()).hexdigest())
+    entries, report_digest = cache[cache_key]
+    entry = entries.get(key)
+    if (not entry or sdk.get("entry_key") != key
+            or sdk.get("symbol") != entry["original_stub"]["symbol"]
+            or result.get("sdk_implementation") != sdk
+            or result.get("compiled_app_binary_sha256") != entry["replica_binary_sha256"]
+            or result.get("original_binary_sha256") != entry["original_binary_sha256"]
+            or result.get("original_pseudocode_sha256") != entry["original_pseudocode_sha256"]
+            or result.get("sdk_reuse_report_sha256") != report_digest
+            or review.get("contract") != entry["contract"]):
+        raise ValueError("Address-specific original/compiled SDK stub binding is invalid: " + key)
+
+
+def validate_review(root, key, review, sdk_cache=None):
+    cache = sdk_cache if sdk_cache is not None else {}
     if not isinstance(review, dict) or review.get("state") not in STATES - {"pending"}:
         raise ValueError("Invalid explicit review state: " + key)
     if not review.get("contract"):
         raise ValueError("A reviewed function needs an individual contract: " + key)
+    if review.get("sdk_implementation") and review["state"] != "migrated":
+        raise ValueError("Static SDK reuse cannot claim tested function equivalence: " + key)
     for reference in review.get("implementations", []) + review.get("tests", []):
         source = relative_file(root, reference["path"]).read_text()
         if not reference.get("symbol") or reference["symbol"] not in source:
             raise ValueError("Evidence symbol is missing: " + key)
     if review["state"] in {"implemented", "verified"} and not review.get("implementations"):
         raise ValueError("Implementation required: " + key)
+    if review["state"] == "migrated":
+        if (not review.get("implementations") and not review.get("sdk_implementation")) or not review.get("migration_evidence"):
+            raise ValueError("Migrated code needs implementation and static build evidence: " + key)
+        result = json.loads(relative_file(root, review["migration_evidence"]).read_text())
+        if result.get("function_id") != key or result.get("kind") != "static_code_migration":
+            raise ValueError("Address-specific static migration evidence required: " + key)
+        if result.get("build_succeeded") is not True or result.get("functional_regression_executed") is not False:
+            raise ValueError("Migration-only evidence must separate compilation from regression: " + key)
+        if "manifest" not in cache:
+            cache["manifest"] = json.loads((root / "reports/target-manifest.json").read_text())
+        manifest = cache["manifest"]
+        target = key.split(":")[0]
+        binary = next((row for row in manifest["binaries"] if row["name"].replace(" ", "-") == target), None)
+        if not binary or result.get("original_binary_sha256") != binary["arm64_sha256"]:
+            raise ValueError("Static migration must bind the analyzed original binary: " + key)
+        index_key = ("index", target)
+        if index_key not in cache:
+            cache[index_key] = {row["address"]: row for row in json.loads((root / "reports" / target / "function-index.json").read_text())}
+        entry = cache[index_key].get(key.split(":")[1])
+        if entry:
+            fragment_key = ("fragment", entry["file"])
+            if fragment_key not in cache:
+                cache[fragment_key] = source_fragments(relative_file(root, entry["file"]))
+            fragment = cache[fragment_key][entry["address"]]
+            if result.get("original_pseudocode_sha256") != fragment["sha256"]:
+                raise ValueError("Static migration must bind the reviewed original function: " + key)
+        else:
+            fallback_file = root / "reports" / target / "assembly-fallbacks.json"
+            fallbacks = json.loads(fallback_file.read_text()) if fallback_file.exists() else []
+            fallback = next((row for row in fallbacks if row["address"] == key.split(":")[1]), None)
+            if not fallback or result.get("original_assembly_sha256") != hashlib.sha256(relative_file(root, fallback["file"]).read_bytes()).hexdigest():
+                raise ValueError("Failed decompilation needs reviewed assembly migration evidence: " + key)
+        for reference in review.get("implementations", []):
+            digest = hashlib.sha256(relative_file(root, reference["path"]).read_bytes()).hexdigest()
+            if result.get("source_sha256", {}).get(reference["path"]) != digest:
+                raise ValueError("Source changed since static migration build: " + key)
+        if review.get("sdk_implementation"):
+            validate_sdk_review(root, key, review, result, cache)
     contract_test = review.get("contract_test")
     if contract_test:
         report = json.loads(relative_file(root, contract_test["report"]).read_text())
@@ -95,7 +161,7 @@ def source_fragments(path):
     return result
 
 
-def target_records(root, target, reviews):
+def target_records(root, target, reviews, sdk_cache=None):
     folder = root / "reports" / target
     coverage = json.loads((folder / "coverage.json").read_text())
     procedures = json.loads((folder / "procedures.json").read_text())
@@ -134,7 +200,7 @@ def target_records(root, target, reviews):
                                 limitation="Assembly slice; not a recovered complete semantic body")
         review = reviews.get(key)
         if review:
-            validate_review(root, key, review)
+            validate_review(root, key, review, sdk_cache)
         rows.append({"id": key, "symbol": procedure["value"],
                      "kind": "local_thunk" if procedure["procedure"]["thunk"] else "native_function",
                      "thunk_target": procedure["procedure"].get("thunk_target"),
@@ -148,10 +214,11 @@ def render(root):
     mapping = json.loads((root / "replica/function-map.json").read_text())
     reviews = mapping["functions"]
     outputs, all_ids, targets = {}, set(), []
+    sdk_cache = {}
     total_states = Counter()
     for binary in manifest["binaries"]:
         target = binary["name"].replace(" ", "-")
-        records = target_records(root, target, reviews)
+        records = target_records(root, target, reviews, sdk_cache)
         all_ids.update(r["id"] for r in records)
         states = Counter(r["review"]["state"] for r in records)
         total_states.update(states)
@@ -166,8 +233,15 @@ def render(root):
                         "states": {state: states[state] for state in sorted(STATES)}, "pages": pages})
     if set(reviews) - all_ids:
         raise ValueError("Reviews reference nonexistent function IDs: " + ", ".join(sorted(set(reviews) - all_ids)))
+    migration_remaining = total_states["pending"] + total_states["partial"]
     summary = {"schema_version": 1, "scope": mapping["scope"], "total_functions": len(all_ids),
                "states": {state: total_states[state] for state in sorted(STATES)}, "targets": targets,
+               "migration": {"code_complete": sum(total_states[state] for state in ("migrated", "implemented", "verified")),
+                             "source_functions": sum(r["state"] in {"migrated", "implemented", "verified"} and not r.get("sdk_implementation") for r in reviews.values()),
+                             "sdk_forwarders_reused": sum(r["state"] == "migrated" and bool(r.get("sdk_implementation")) for r in reviews.values()),
+                             "remaining": migration_remaining,
+                             "regression_ready": migration_remaining == 0,
+                             "policy": "Finish all in-scope code migration before functional regression; retain explicit per-address scope exclusions."},
                "full_function_equivalence": False,
                "counting_rule": "Exported pseudocode, partial implementation, contract tests, SDK delegation and scope exclusions are not verified function equivalence."}
     outputs["summary.json"] = json.dumps(summary, ensure_ascii=False, indent=2) + "\n"
@@ -178,6 +252,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--lookup", metavar="TARGET:ADDRESS")
+    parser.add_argument("--require-migration-complete", action="store_true",
+                        help="Read-only gate: refuse functional regression while code migration is incomplete")
     parser.add_argument("--record-contracts", type=Path, metavar="CORE_REPORT")
     args = parser.parse_args()
     if args.record_contracts:
@@ -203,6 +279,11 @@ def main():
         (ROOT / "reports/replica/function-contracts.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     output = ROOT / "reports/function-implementation"
     generated, summary = render(ROOT)
+    if args.require_migration_complete:
+        print(json.dumps(summary["migration"], ensure_ascii=False, indent=2))
+        if not summary["migration"]["regression_ready"]:
+            raise SystemExit(2)
+        return
     if args.lookup:
         for name, content in generated.items():
             if name.endswith(".jsonl"):

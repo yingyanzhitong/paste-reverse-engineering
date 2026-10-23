@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste-Helper:0x10000307c",
+  "reviewed_at": "2026-10-23T07:33:40.898445+00:00",
+  "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
+  "original_pseudocode": {
+    "path": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1144
+  },
+  "original_pseudocode_sha256": "09274d2cbac5ed4d23c089d12f6279b76fb1a60192f87fe1d549527ae11cfda4",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaHelper/HelperMain.swift": "9d3d2472a2b9905aabd408f9da7e0b148976ff057f935a18a3a75d8407cab2fe"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "74117fae21a9eec4161c179c43a554ba830853c065fb35217b5b9a7116ea6dd9",
+  "compiled_product": "PasteReplicaHelper",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "decompiled/Paste-Helper/part-0000.c:1142 起，3e18 attoseconds 即 3 秒。实际 Task 中使用 try? await ContinuousClock().sleep(for:.seconds(3))；紧邻 continuation 0x100003100 在有无错误时分别到 0x100003170 / 0x100003314，二者同样执行后续检查。",
+  "contract": "主 actor 的首次启动 Task 使用 ContinuousClock 等待三秒，然后进入启动后续；睡眠错误交由恢复分支继续处理。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。",
+  "static_review_risk": "ContinuousClock 三秒且取消错误继续；未保留 Task 句柄，不新增主动取消路径。"
+}

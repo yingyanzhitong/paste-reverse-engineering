@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000482c8",
+  "reviewed_at": "2026-10-23T07:33:40.723691+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0026.c",
+    "line": 1124
+  },
+  "original_pseudocode_sha256": "e2e06b7c433fba402f364a4f8b3ca62c6bece12db0ebb48f4814448cae9a4c18",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchEditing.swift": "de4dbf21b72826fed9c0e9418c842eb8b0f1146a7d7aa9bfe22985af5d7ac73e",
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "8d8171716407137209292fbecc8a77593a8f4b7fbead3695891f97b2ad054e9b",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "4676d2b2d589bb5fb7956e701863742d38b4a74b918cfbc4c5869228a293f828"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "逐地址对照REA伪代码；文本修改路径另核对arm64分支、回调返回及UTF-16长度相加。已接入实际原生编辑器调用链并编译，编译成功不构成运行时等价证据。Swift公共类型/ARC代替原版私有对象布局和桥接ABI。",
+  "contract": "读取Swift字符串的首Unicode标量；空字符串返回nil，包含补充平面字符时返回完整码点。原版用低32位码点及第32位空值标记打包Optional，复刻采用Unicode.Scalar?并交给Swift处理本地/桥接字符串表示；在0x10004795c逐Character换行判定路径实际调用，不承诺Swift私有字符串ABI相同。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+}

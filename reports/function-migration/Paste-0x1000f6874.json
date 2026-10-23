@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000f6874",
+  "reviewed_at": "2026-10-23T07:38:52.887733+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0083.c",
+    "line": 1587
+  },
+  "original_pseudocode_sha256": "37b3f2436f20246124c9ba7d2783855c3ea85a9d28ca099bf7ca3a626a17671a",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "364d687b5aa1ccf62628cc307a42b46459d9a45a59b0a489087182dc084d1e2f"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "existing_reused",
+  "contract": "Swift NSTextField.text getter：读接收者 stringValue 并桥接返回 Swift String，没有条件分支。",
+  "review": "input.stringValue 是相同原生 AppKit getter 的完整委托，返回任意文本包括空串；prompt 后续 trim 不属于该表达式，不把完整 prompt 映射为 getter。",
+  "limitations": [
+    "当前映射按独立 Swift 高层业务契约审计，不声明机器 ABI、原 ObjC 别名 selector、错误执行器诊断一致。",
+    "如仅引用外层业务方法中的完整属性委托表达式，则不能把该外层业务方法整体视为原版这个薄适配函数。"
+  ],
+  "reuse_review": "reports/function-migration/existing-source-reuse-review.json",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批未改产品源码或执行测试。"
+}

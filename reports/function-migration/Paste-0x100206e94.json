@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100206e94",
+  "reviewed_at": "2026-10-23T07:38:52.905608+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0170.c",
+    "line": 3397
+  },
+  "original_pseudocode_sha256": "cf29521b093c533e94f2cc765c753632d332962f306c22ed68a49c217f6df48d",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchAppearance.swift": "0cfd7e194ce6f6b1f4118897810e35d0eafab317a68e6104e4bfbd11dbaeb5c4"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "existing_reused",
+  "contract": "动态色闭包适配：appearance 参数 + context 中 dark/light 两对象，原样调用 0x100206f30，返回同一选色结果。",
+  "review": "part-0170.c 参数恢复确认 context+0x10/+0x18；现有 dynamicProvider 强引用捕获 dark/light，经 f_1001ff49c→f_100206e50→f_100206f30 原样转发，无额外分支；实际用于动态前景色。",
+  "limitations": [
+    "当前映射按独立 Swift 高层业务契约审计，不声明机器 ABI、原 ObjC 别名 selector、错误执行器诊断一致。",
+    "如仅引用外层业务方法中的完整属性委托表达式，则不能把该外层业务方法整体视为原版这个薄适配函数。",
+    "捕获上下文用独立 Swift closure 表达，不声明 raw context 内存布局/ABI 相同。"
+  ],
+  "reuse_review": "reports/function-migration/existing-source-reuse-review.json",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批未改产品源码或执行测试。"
+}

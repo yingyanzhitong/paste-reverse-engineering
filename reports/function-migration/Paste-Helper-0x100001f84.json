@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste-Helper:0x100001f84",
+  "reviewed_at": "2026-10-23T07:33:40.904814+00:00",
+  "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
+  "original_pseudocode": {
+    "path": "decompiled/Paste-Helper/part-0000.c",
+    "line": 392
+  },
+  "original_pseudocode_sha256": "ee61893f1c4edfb35bc34e3e7fb8bce7d765f5df7bde0b776938b89cbcebe96e",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaHelper/HelperMain.swift": "9d3d2472a2b9905aabd408f9da7e0b148976ff057f935a18a3a75d8407cab2fe"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "74117fae21a9eec4161c179c43a554ba830853c065fb35217b5b9a7116ea6dd9",
+  "compiled_product": "PasteReplicaHelper",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "existing_reused",
+  "review": "decompiled/Paste-Helper/part-0000.c:390 起。现有原生 NSApplicationDelegate 入口与 @MainActor 类隔离已满足原版桥接/actor 契约，复用其通知方法并将入口接到恢复后的 startMonitoring（0x100001488），没有额外新增空壳函数。",
+  "contract": "NSApplicationDelegate.applicationDidFinishLaunching 在 MainActor 接收桥接后的 Notification，并调用 Helper 启动流程。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。",
+  "static_review_risk": "原生协议桥接与 MainActor 注解提供入口；桥接底层实现由 Swift 编译器生成，不把其 ABI 字节一致当作目标。"
+}

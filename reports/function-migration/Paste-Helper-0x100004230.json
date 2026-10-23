@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste-Helper:0x100004230",
+  "reviewed_at": "2026-10-23T07:33:40.902635+00:00",
+  "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
+  "original_pseudocode": {
+    "path": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1963
+  },
+  "original_pseudocode_sha256": "c9b80b73478ea016318f797b511ca45d1c6defeaa8fc6b719368c3b37ae818c2",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaHelper/HelperMain.swift": "9d3d2472a2b9905aabd408f9da7e0b148976ff057f935a18a3a75d8407cab2fe"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "74117fae21a9eec4161c179c43a554ba830853c065fb35217b5b9a7116ea6dd9",
+  "compiled_product": "PasteReplicaHelper",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "decompiled/Paste-Helper/part-0000.c:1961 起。原版 nil/nil 触发 SoftwareBreakpoint；复刻 preconditionFailure 保留同样的不接受无结果回调契约。没有把 nil/nil 当作成功或默认 false。",
+  "contract": "NSWorkspace completion 的 error 非空时优先 resume throwing；无 error 时 application 必须非空，否则 trap；正常 application 则 resume returning，一次完成 checked continuation。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。",
+  "static_review_risk": "error 与 app 同时非空时错误优先；nil/nil 仍 trap；未增加超时/自动重试/假成功。checked continuation 仍防重复 resume。"
+}

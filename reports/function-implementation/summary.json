@@ -5,9 +5,10 @@
   "states": {
     "excluded_by_scope": 0,
     "implemented": 0,
-    "partial": 0,
-    "pending": 81121,
-    "verified": 13
+    "migrated": 720,
+    "partial": 7,
+    "pending": 80397,
+    "verified": 10
   },
   "targets": [
     {
@@ -18,9 +19,10 @@
       "states": {
         "excluded_by_scope": 0,
         "implemented": 0,
-        "partial": 0,
-        "pending": 80692,
-        "verified": 13
+        "migrated": 616,
+        "partial": 7,
+        "pending": 80072,
+        "verified": 10
       },
       "pages": [
         {
@@ -507,6 +509,7 @@
       "states": {
         "excluded_by_scope": 0,
         "implemented": 0,
+        "migrated": 0,
         "partial": 0,
         "pending": 221,
         "verified": 0
@@ -528,8 +531,9 @@
       "states": {
         "excluded_by_scope": 0,
         "implemented": 0,
+        "migrated": 104,
         "partial": 0,
-        "pending": 208,
+        "pending": 104,
         "verified": 0
       },
       "pages": [
@@ -542,6 +546,14 @@
       ]
     }
   ],
+  "migration": {
+    "code_complete": 730,
+    "source_functions": 98,
+    "sdk_forwarders_reused": 632,
+    "remaining": 80404,
+    "regression_ready": false,
+    "policy": "Finish all in-scope code migration before functional regression; retain explicit per-address scope exclusions."
+  },
   "full_function_equivalence": false,
   "counting_rule": "Exported pseudocode, partial implementation, contract tests, SDK delegation and scope exclusions are not verified function equivalence."
 }

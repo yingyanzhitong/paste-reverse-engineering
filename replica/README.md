@@ -43,7 +43,7 @@ open -n 'replica/dist/Paste Replica.app' --args \
 
 ## 验证与差异
 
-按原版地址逐函数登记，见 [FUNCTION_IMPLEMENTATION.md](FUNCTION_IMPLEMENTATION.md)。十三个函数已通过 336 个原版机器码直接差分用例；其余地址继续保留未完成状态。OCR 已保存词级置信度和位置框，但尚未完成原版图片文字选择交互及全部字符串索引分支对照。兼容识别入口保留原图尺寸；地址级入口可传显式最大尺寸，原版调用方的默认参数仍待确认。
+按原版地址逐函数登记，见 [FUNCTION_IMPLEMENTATION.md](FUNCTION_IMPLEMENTATION.md)。0.7.0 曾有十三个函数通过 336 个原版机器码直接差分用例，这是历史快照；迁移期间相关源码变化后会降为 migrated，当前数量以台账为准，不重跑回归来维持旧标签。OCR 已保存词级置信度和位置框，但尚未完成原版图片文字选择交互及全部字符串索引分支对照。兼容识别入口保留原图尺寸；地址级入口可传显式最大尺寸，原版调用方的默认参数仍待确认。
 
 0.3.0 增加离线 Vision OCR、多选原始表示写回、快捷键录制及 Stack 队列持久化。通用设置中的“后台运行”使用独立 LoginItems 辅助进程，默认不自动注册；系统服务注册及崩溃恢复尚未动态验收。本轮证据与未验范围见 [local-evidence.json](../reports/replica/local-evidence.json)。
 
@@ -53,13 +53,18 @@ open -n 'replica/dist/Paste Replica.app' --args \
 
 从 0.7.0 起按用户要求不运行 MCP 测试；验证集中于原版机器码/复刻代码对照、核心功能和原生界面行为。已有 MCP 实现保留，历史 MCP 结果与当前测试分开记录。
 
+用户最新调整为先完成全部函数代码迁移，再统一功能回归。迁移阶段只编译及静态检查；`validate.sh` 会先检查完整迁移状态，存在待迁移或部分迁移地址时直接退出，不启动功能测试。
+
+已满足恢复契约的现有源码直接复用。纯 SDK 转发必须逐地址核对完整指令和真实 dyld 绑定，单独记录为复用；同名、同码片段或一个大功能已经存在均不足以直接跳过。最新台账分别记录源码函数与 SDK 转发数量，不将其当作界面验收比例。
+
 ```sh
-swift run --package-path replica paste-replica-core-tests
-python3 replica/scripts/test-mcp.py
-bash replica/scripts/test-hotkey.sh
-python3 replica/scripts/test-app-monitor.py
+swift build --package-path replica -c release
+python3 scripts/function_ledger.py --check
+python3 scripts/function_ledger.py --require-migration-complete
 python3 scripts/verify.py
 ```
+
+当前迁移未完成，前置检查预期退出 2。SDK 静态记录校验需要本机匹配版本的原版安装、当前 release 产物及源码快照；源码或二进制变化会使旧证据失效。全部迁移完成后使用 `validate.sh` 统一进行功能回归，MCP 测试继续排除。
 
 本机只有 Command Line Tools，缺少 XCTest；核心测试使用独立原生可执行 runner，仍执行真实持久化、AppKit 具名剪贴板和多个操作系统进程。详细覆盖见 [TESTING.md](TESTING.md)。
 

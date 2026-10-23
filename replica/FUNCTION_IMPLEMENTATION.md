@@ -15,7 +15,7 @@ python3 scripts/function_ledger.py --lookup Paste:0x1002d576c
 python3 -m unittest discover -s scripts/tests
 ```
 
-人工审核与映射写入 `replica/function-map.json`；分页清单由脚本生成。更新后先执行契约测试，再重新生成并校验。不能通过生成同名空函数、默认返回值或批量排除来增加完成数。
+人工审核与映射写入 `replica/function-map.json`；分页清单由脚本生成。按用户最新要求，先完成范围内全部代码迁移，迁移期间只编译及静态检查，之后统一功能回归。不能通过生成同名空函数、默认返回值或批量排除来增加完成数。
 
 ## 状态含义
 
@@ -23,9 +23,14 @@ python3 -m unittest discover -s scripts/tests
 | --- | --- |
 | pending | 未完成逐地址审核和映射；即使所属功能已有实现，也不能自动算作该函数完成 |
 | partial | 已定位实现，但仍有原版分支、错误类型、参数来源或测试缺口 |
+| migrated | 源码迁移或复用已审核、接入实际调用路径并编译；纯 SDK 跳板另须通过真实二进制绑定校验。功能回归延后，不能当作已测试或等价通过 |
 | implemented | 根据已恢复契约存在实际执行的实现；仍不等于原版与复刻逐函数等价通过 |
 | verified | 有绑定该地址的原版机器码/复刻输入及逐用例比较结果，并绑定原版与当前源码摘要；只代表已列明契约及场景，一般功能测试不能使用此状态 |
 | excluded_by_scope | 经逐地址审核确认属于用户排除的范围，并记录具体理由；不计入已实现 |
+
+`migrated` 必须有逐地址静态迁移记录，绑定原版二进制、原版函数片段及当前实现源码摘要。现有验证文件继续保留为历史证据；相关文件修改后，不重跑功能测试来维持旧的 verified 标记，而是回到已迁移待回归状态。
+
+`python3 scripts/function_ledger.py --require-migration-complete` 是功能回归前置检查。`validate.sh` 在构建、原版执行或任何功能测试之前调用它；存在 pending/partial 就退出，不会开始回归。MCP 测试继续排除。
 
 Swift 运行库、系统 SDK、编译器生成的元数据函数与调用跳板可以委托对应系统实现，但必须保留逐地址映射和验证依据，不能将“系统提供”自动记为完成。原版机器码地址与复刻进程地址不相同；优化后的 Swift ABI 与 C 风格伪代码参数也可能不同，恢复依据及未确定项必须记录。
 
@@ -43,8 +48,35 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 - `OriginalStackTableController` 的 `f_100082b90`、`f_100083a20`、`f_100085230`、`f_100085670`：原生表格的高度约束缓存、延后动画提交、真实项目数与拒绝行选择。已接入 Stack 表格，保留既有项目右键操作。
 
+## 先迁移后回归的搜索批次
+
+`OriginalSearchCommands.f_10004867c` 保留 Enter/Escape 的可选回调及返回值。`OriginalSearchEditing` 新增六个地址：`0x10004795c` 文本修改提案、`0x100047d8c` 编辑选择器入口、`0x100047ea4` 选区通知、`0x100048058` 命令选择器入口、`0x100048128` 结束编辑通知、`0x1000482c8` 首 Unicode 标量读取。已由 `SearchEditor.swift` 中的原生 `NSTextView` 接入主面板；外层布局和筛选菜单仍有尚未迁移的函数，不能将本批视为完整 SearchField 迁移。
+
+文本修改函数保留单字符附件先选中再删除的分支，光标位置按 UTF-16 长度计算；检测到换行后仅在提案中替换 CR/LF，其余换行标量保留。回调为空时允许 AppKit 原编辑，不擅自应用归一化提案。主面板当前使用普通文本，尚无附件筛选提案消费者；不额外模拟尚未恢复的调用方行为。
+
+搜索首批记录时为 20/81,134。此后继续并行迁移，最新数量以 `reports/function-implementation/summary.json` 为准。静态迁移证据保存在 `reports/function-migration/`，当前安装仍是此前已发布的 0.7.0。
+
+## 并行迁移与现有实现复用
+
+2026-10-23 的四智能体批次完成后，台账记录 730 个已迁移或复用地址：98 个有源码实现/复用依据，632 个为实际构建产物中已存在的纯 SDK 转发。剩余 80,404 个地址，其中 7 个为 partial。十个地址保留有效历史差分记录，其余均未进行新功能回归。这些是逐函数代码记录，不是界面完成度或整机一比一通过率。
+
+- 搜索输入接入原生 TextKit 2、占位标签、输入属性刷新、选区/布局/聚焦策略及动态颜色/字体访问器。明确区分颜色存储槽地址与颜色值；外层聚焦环坐标传播、附件状态和筛选界面仍有未迁移函数。
+- 剪贴板恢复有序类型列表、Data/UTF-8 读写、文本及图片表示优先级、富文本解码、段落 textBlocks 清理、clear/write/changeCount，以及 0.25 秒监控计时器与停止清理。完整 poll/sync、归档类型顺序与预览调用链未因此算作完成。
+- 快捷键恢复当前键盘布局文字翻译、特殊键表、修饰键及 Carbon 映射、系统/菜单冲突遍历。完整录制状态机及全局注册生命周期仍保留 partial。
+- Helper 恢复运行应用 KVO、路径后备、启动状态、三秒等待、持久重试计数、冷却重查、非激活启动和 completion 分支。窗口配置解码及部分订阅时序缺口没有计为迁移完成。
+
+允许直接复用已经满足恢复契约的函数，但必须逐地址审阅。六个薄适配器的现有源码复用审核见 `reports/function-migration/existing-source-reuse-review.json`；报告同时保留了因 nil 分支、接收者类型或动态入口缺失而拒绝复用的项。一个外层方法中的属性读取不代表该外层方法整体与原版等价。
+
+## 纯 SDK 转发复用
+
+632 个地址没有生成同名空函数，也没有伪造源码引用；映射采用独立 `sdk_implementation`，逐项指向 `reports/function-migration/sdk-import-reuse.json`。校验器要求原版完整函数体为真实 arm64 `ADRP/LDR/BR x16` 导入跳板，并核对指针槽、间接符号表和实际 `LC_DYLD_CHAINED_FIXUPS` 页链、bind ordinal、零 addend、原始符号、完整 dylib 路径、weak、load-kind 和 ABI。复刻产物必须存在唯一对应的真实导入跳板。
+
+`scripts/macho_imports.py` 重新读取本机原版和当前 release 产物，核对原版容器/arm64 摘要、所有相关 Swift 源文件及 `Package.swift`、逐地址伪代码和真实导入绑定。`function_ledger.py --check` 每次运行会重新核对 SDK 报告，并分别输出 `source_functions` 与 `sdk_forwarders_reused`，不会把系统内部函数也计入已迁移数。复刻源码或二进制变化后，旧静态记录不能继续直接使用。
+
+原版链接 SDK 26.5、复刻链接 SDK 15.2；匹配转发体不证明系统函数在所有进程兼容模式、SDK 版本和调用上下文中运行等价。因此这些项只标记 migrated，未标记 verified。另有 36 个纯寄存器同码区间因完整 Ghidra 函数体范围和逻辑入口证据不足，没有计入完成数。
+
 ## 原版直接差分
 
-可复跑入口与 ABI 说明见 [Tests/Original/README.md](Tests/Original/README.md)，逐地址结果位于 `reports/function-equivalence/`。当前十三个函数共 336 个用例通过，仍有 81,121 个地址 pending。验证包括原版加载副本代码段不变、两端真实执行、空/坏数据、十像素边界、EXIF 方向、零/负/极值尺寸上限、数组身份/别名和隐藏窗口属性。
+可复跑入口与 ABI 说明见 [Tests/Original/README.md](Tests/Original/README.md)，逐地址历史结果位于 `reports/function-equivalence/`。0.7.0 曾有十三个函数共 336 个用例通过；这是此前快照。现在按用户要求暂停回归，修改相关文件后会将记录调整为 migrated 并保留历史结果，最新数量以台账 summary.json 为准。验证历史包括原版加载副本代码段不变、两端真实执行、空/坏数据、十像素边界、EXIF 方向、零/负/极值尺寸上限、数组身份/别名和隐藏窗口属性。
 
 修复了原契约测试未发现的差异：预处理尺寸上限为零时原版并不返回 nil；复刻现在同样交给 ImageIO，输出与原版逐字节比较。报告绑定当前实现、测试程序和原版二进制 SHA-256；源码变化或任一用例失败时，台账拒绝保留 verified 状态。不能将这十三个函数的有限测试结果外推为整个应用完成。

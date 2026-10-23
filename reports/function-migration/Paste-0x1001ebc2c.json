@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001ebc2c",
+  "reviewed_at": "2026-10-23T07:33:40.933900+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0158.c",
+    "line": 649
+  },
+  "original_pseudocode_sha256": "1ef8045e3c97385a0e57c2a2e4826aa4a0f5cac4fe8496f9812aa4188de1bddf",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "58e93b238b02e891f22f3211a7e53a1f82e052e15a8d35405ad38a06a5f0d964",
+    "replica/Sources/PasteReplicaCore/KeyboardShortcut.swift": "35d4d5f9aa2e750ad539ddf5a0f0b328132384f0df0a417dea90843a12a3b0fc",
+    "replica/Sources/PasteReplica/UI/ShortcutRecorder.swift": "3afbb014d16f71376af7d6d8e8f09bef4c5e0746dff4bfa0b5cc9b2fede24ebc"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d29cfb9762b9e2a94f2a1e82ebf03244f1c0644eb40842b5cfcd09bec6cb4573",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "existing_reused",
+  "review": "part-0158.c:654；只读薄切片 0x100fb5788…0x100fb5820 的 20 项 UInt64 确认 F1…F20（含 90）；与 NEON 合并比较及 0x140000/0x80000 分支完全核对，实际录制和 isValidGlobal 均调用该谓词。",
+  "contract": "返回快捷键修饰合法性：F1…F20 无需修饰即合法；其余键须包含 Command、Control 或 Option 至少一位，Shift 和其他位不满足条件。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。"
+}

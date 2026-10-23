@@ -1,0 +1,969 @@
+{
+  "schema_version": 1,
+  "kind": "existing_source_reuse_audit",
+  "reviewed_at": "2026-10-23T07:35:07.840644+00:00",
+  "scope": "每地址确认 index、分支/副作用及实际调用位置；仅审计，无产品源码/台账变更。原生 Swift 直接委托可列候选，ObjC 别名入口/nullable 分支不足的项保守拒绝。",
+  "total_examined": 43,
+  "migrated_candidates": 6,
+  "candidate_ids": [
+    "Paste:0x1000f6874",
+    "Paste:0x1000f7138",
+    "Paste:0x1000f7254",
+    "Paste:0x1000f733c",
+    "Paste:0x100206e94",
+    "Paste:0x100ae5e74"
+  ],
+  "not_complete": 35,
+  "functions": [
+    {
+      "function_id": "Paste:0x1000f6794",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1548,
+        "name": "FUN_1000f6794"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC NSTextField.text getter：MainActor 校验，stringValue→Swift String→NSString 返回。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "prompt",
+          "line": 490,
+          "expression": "input.stringValue.trimmingCharacters",
+          "source_sha256": "364d687b5aa1ccf62628cc307a42b46459d9a45a59b0a489087182dc084d1e2f"
+        }
+      ],
+      "review": "值读取已存在，但缺少原版 ObjC text selector 入口与显式 executor 诊断；不因一个等价属性表达式就把 ObjC 动态入口记完整。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6874",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1587,
+        "name": "FUN_1000f6874"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": true,
+      "contract": "Swift NSTextField.text getter：读接收者 stringValue 并桥接返回 Swift String，没有条件分支。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "prompt",
+          "line": 490,
+          "expression": "input.stringValue.trimmingCharacters",
+          "source_sha256": "364d687b5aa1ccf62628cc307a42b46459d9a45a59b0a489087182dc084d1e2f"
+        }
+      ],
+      "review": "input.stringValue 是相同原生 AppKit getter 的完整委托，返回任意文本包括空串；prompt 后续 trim 不属于该表达式，不把完整 prompt 映射为 getter。",
+      "limitations": [
+        "当前映射按独立 Swift 高层业务契约审计，不声明机器 ABI、原 ObjC 别名 selector、错误执行器诊断一致。",
+        "如仅引用外层业务方法中的完整属性委托表达式，则不能把该外层业务方法整体视为原版这个薄适配函数。"
+      ],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f68c4",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1606,
+        "name": "FUN_1000f68c4"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC NSTextField.setText:：MainActor 校验；输入 nil 则空串，非 nil 保持原文，setStringValue。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchTextView.swift",
+          "symbol": "f_10004371c",
+          "line": 28,
+          "expression": "label.stringValue = placeholderText",
+          "source_sha256": "988baf1c939498881ffcb0ee315789b6a594e7eb102e00b3d10547bf6b6ef60b"
+        }
+      ],
+      "review": "当前 placeholderText 为非可选 String，仅有非 nil 写入，缺 nullable setter nil→空串路径和别名入口。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f69b0",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1649,
+        "name": "FUN_1000f69b0"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "Swift NSTextField.text setter：Optional<String> nil→空串，否则原文，桥接并 setStringValue。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchTextView.swift",
+          "symbol": "f_10004371c",
+          "line": 28,
+          "expression": "label.stringValue = placeholderText",
+          "source_sha256": "988baf1c939498881ffcb0ee315789b6a594e7eb102e00b3d10547bf6b6ef60b"
+        }
+      ],
+      "review": "不存在可复用的 Optional<String>→stringValue 入口，只有非可选 placeholderText 写入，不能跳过 nil 分支。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6a04",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1672,
+        "name": "FUN_1000f6a04"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC MainActor NSTextField.attributedText getter：返回 attributedStringValue。",
+      "implementations": [],
+      "review": "产品没有实际 NSTextField.attributedStringValue getter，NSTextView.attributedString() 不是同一接收者/契约。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6aa0",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1705,
+        "name": "FUN_1000f6aa0"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "Swift NSTextField.attributedText getter：返回 attributedStringValue。",
+      "implementations": [],
+      "review": "产品没有实际 NSTextField.attributedStringValue getter，NSTextView.attributedString() 不是同一接收者/契约。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6abc",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1722,
+        "name": "FUN_1000f6abc"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC MainActor NSTextField.attributedText setter：nil 时新建空 NSAttributedString，再设置 attributedStringValue。",
+      "implementations": [],
+      "review": "产品既没有 NSTextField 对应 setter，也没有 nil→新空 attributed string 的适配；NSTextStorage 写入不是该函数。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6bc0",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1761,
+        "name": "FUN_1000f6bc0"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "Swift NSTextField.attributedText setter：nil 时新建空 NSAttributedString，再设置 attributedStringValue。",
+      "implementations": [],
+      "review": "产品既没有 NSTextField 对应 setter，也没有 nil→新空 attributed string 的适配；NSTextStorage 写入不是该函数。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6c34",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1784,
+        "name": "FUN_1000f6c34"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "NSTextField.alignment ObjC getter：原样读写枚举，ObjC wrapper 包含 MainActor 检查。",
+      "implementations": [],
+      "review": "未找到原生 NSTextField.alignment 的真实调用，SwiftUI 对齐不等价。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6cc8",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1813,
+        "name": "FUN_1000f6cc8"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "NSTextField.alignment Swift getter：原样读写枚举，ObjC wrapper 包含 MainActor 检查。",
+      "implementations": [],
+      "review": "未找到原生 NSTextField.alignment 的真实调用，SwiftUI 对齐不等价。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6cd0",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1826,
+        "name": "FUN_1000f6cd0"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "NSTextField.alignment ObjC setter：原样读写枚举，ObjC wrapper 包含 MainActor 检查。",
+      "implementations": [],
+      "review": "未找到原生 NSTextField.alignment 的真实调用，SwiftUI 对齐不等价。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6d68",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1854,
+        "name": "FUN_1000f6d68"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "NSTextField.alignment Swift setter：原样读写枚举，ObjC wrapper 包含 MainActor 检查。",
+      "implementations": [],
+      "review": "未找到原生 NSTextField.alignment 的真实调用，SwiftUI 对齐不等价。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6d74",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1867,
+        "name": "FUN_1000f6d74"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "NSTextField.maximumNumberOfLines ObjC getter；ObjC wrapper 含 MainActor 检查。",
+      "implementations": [],
+      "review": "当前 maximumNumberOfLines=1 接收者是 NSTextContainer，不能给不同类型的同名属性计复用。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6e08",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1896,
+        "name": "FUN_1000f6e08"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "NSTextField.maximumNumberOfLines Swift getter；ObjC wrapper 含 MainActor 检查。",
+      "implementations": [],
+      "review": "当前 maximumNumberOfLines=1 接收者是 NSTextContainer，不能给不同类型的同名属性计复用。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6e10",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1909,
+        "name": "FUN_1000f6e10"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "NSTextField.maximumNumberOfLines ObjC setter；ObjC wrapper 含 MainActor 检查。",
+      "implementations": [],
+      "review": "当前 maximumNumberOfLines=1 接收者是 NSTextContainer，不能给不同类型的同名属性计复用。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6ea8",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1937,
+        "name": "FUN_1000f6ea8"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "NSTextField.maximumNumberOfLines Swift setter；ObjC wrapper 含 MainActor 检查。",
+      "implementations": [],
+      "review": "当前 maximumNumberOfLines=1 接收者是 NSTextContainer，不能给不同类型的同名属性计复用。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6ef8",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 6,
+        "name": "FUN_1000f6ef8"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC MainActor NSTextView.attributedText getter：textStorage 非 nil 返回原对象，nil 则新建空 NSTextStorage 返回。",
+      "implementations": [],
+      "review": "当前读取没有 nil→新建并返回 NSTextStorage 分支；attributedString() 返回类型/对象身份不同。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6fec",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 52,
+        "name": "FUN_1000f6fec"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "Swift NSTextView.attributedText getter：textStorage 非 nil 返回原对象，nil 则新建空 NSTextStorage 返回。",
+      "implementations": [],
+      "review": "当前读取没有 nil→新建并返回 NSTextStorage 分支；attributedString() 返回类型/对象身份不同。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f7054",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 78,
+        "name": "FUN_1000f7054"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC attributedText setter：MainActor 检查；读 NSTextView.textStorage，存在则 setAttributedString(input)，nil 无操作。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/RichTextEditor.swift",
+          "symbol": "makeNSView",
+          "line": 140,
+          "expression": "text.textStorage?.setAttributedString(document.content)",
+          "source_sha256": "5edc63aeb905465c0431755c4a0251aa69f85ee9b8a61e3e08b60ff781b68f3d"
+        }
+      ],
+      "review": "正常值与分支已由原生可选链实现，但未注册原版 ObjC attributedText setter/显式诊断；对应 Swift body 单独可复用。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f7138",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 118,
+        "name": "FUN_1000f7138"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": true,
+      "contract": "Swift NSTextView.attributedText setter：NSAttributedString 输入，textStorage 存在时 setAttributedString 原对象，否则无操作。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/RichTextEditor.swift",
+          "symbol": "makeNSView",
+          "line": 140,
+          "expression": "text.textStorage?.setAttributedString(document.content)",
+          "source_sha256": "5edc63aeb905465c0431755c4a0251aa69f85ee9b8a61e3e08b60ff781b68f3d"
+        }
+      ],
+      "review": "当前富文本编辑器 text.textStorage?.setAttributedString(document.content) 完整涵盖 storage 有/无分支与同一原生写入副作用；不额外调用 didChangeText，符合原版。",
+      "limitations": [
+        "当前映射按独立 Swift 高层业务契约审计，不声明机器 ABI、原 ObjC 别名 selector、错误执行器诊断一致。",
+        "如仅引用外层业务方法中的完整属性委托表达式，则不能把该外层业务方法整体视为原版这个薄适配函数。"
+      ],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f7180",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 139,
+        "name": "FUN_1000f7180"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC NSTextView.text getter：MainActor 检查后读 string；原 NSString 非 nil 直接返回，nil 分支桥接处理。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/SearchEditor.swift",
+          "symbol": "attach",
+          "line": 69,
+          "expression": "self?.parent.text = editor.string",
+          "source_sha256": "8d8171716407137209292fbecc8a77593a8f4b7fbead3695891f97b2ad054e9b"
+        }
+      ],
+      "review": "当前 Swift .string 只能证明正常非可选值读取，无法证明 nil 返回 ObjC 子类边界/对象身份/selector 入口。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f7254",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 183,
+        "name": "FUN_1000f7254"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": true,
+      "contract": "Swift NSTextView.text getter：读原生 string 并桥接为 Swift String，无显式业务条件。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/SearchEditor.swift",
+          "symbol": "attach",
+          "line": 69,
+          "expression": "self?.parent.text = editor.string",
+          "source_sha256": "8d8171716407137209292fbecc8a77593a8f4b7fbead3695891f97b2ad054e9b"
+        }
+      ],
+      "review": "Coordinator.attach 实际从 SearchTextView 读取 editor.string；相同原生 API 支持所有 Swift String 文本值。绑定更新在读取之后，不当作 getter 内逻辑。",
+      "limitations": [
+        "当前映射按独立 Swift 高层业务契约审计，不声明机器 ABI、原 ObjC 别名 selector、错误执行器诊断一致。",
+        "如仅引用外层业务方法中的完整属性委托表达式，则不能把该外层业务方法整体视为原版这个薄适配函数。"
+      ],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f72a4",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 202,
+        "name": "FUN_1000f72a4"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC NSTextView.setText:：MainActor 检查，将输入 NSString 直接传给 setString。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/SearchEditor.swift",
+          "symbol": "makeNSView",
+          "line": 27,
+          "expression": "editor.string = text",
+          "source_sha256": "8d8171716407137209292fbecc8a77593a8f4b7fbead3695891f97b2ad054e9b"
+        }
+      ],
+      "review": "正常值写入吻合，但没有 ObjC setText: 动态入口与相同诊断，保守只列 Swift body。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f733c",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 230,
+        "name": "FUN_1000f733c"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": true,
+      "contract": "Swift NSTextView.text setter：输入 Swift String 桥接 NSString，setString 写入；无清空/手动 didChangeText/格式分支。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/SearchEditor.swift",
+          "symbol": "makeNSView",
+          "line": 27,
+          "expression": "editor.string = text",
+          "source_sha256": "8d8171716407137209292fbecc8a77593a8f4b7fbead3695891f97b2ad054e9b"
+        }
+      ],
+      "review": "makeNSView 中 editor.string=text 完整委托同一 AppKit setter，接受任意 Swift String；首次赋值无 markedText 业务门禁。updateNSView 外部 IME 分支不属于 setter 本体。",
+      "limitations": [
+        "当前映射按独立 Swift 高层业务契约审计，不声明机器 ABI、原 ObjC 别名 selector、错误执行器诊断一致。",
+        "如仅引用外层业务方法中的完整属性委托表达式，则不能把该外层业务方法整体视为原版这个薄适配函数。"
+      ],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f7380",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 248,
+        "name": "FUN_1000f7380"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "Swift NSView adapter：接收者执行 needsLayout=true，没有业务分支。",
+      "implementations": [],
+      "review": "产品没有此原生调用表达式；AppKit 自动布局/SwiftUI 刷新不能算作明确系统委托实现。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f738c",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 261,
+        "name": "FUN_1000f738c"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC MainActor NSView adapter：接收者执行 needsLayout=true，没有业务分支。",
+      "implementations": [],
+      "review": "产品没有此原生调用表达式；AppKit 自动布局/SwiftUI 刷新不能算作明确系统委托实现。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f7418",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 289,
+        "name": "FUN_1000f7418"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "Swift NSView adapter：接收者执行 needsDisplay=true，没有业务分支。",
+      "implementations": [],
+      "review": "产品没有此原生调用表达式；AppKit 自动布局/SwiftUI 刷新不能算作明确系统委托实现。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f7424",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 302,
+        "name": "FUN_1000f7424"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC MainActor NSView adapter：接收者执行 needsDisplay=true，没有业务分支。",
+      "implementations": [],
+      "review": "产品没有此原生调用表达式；AppKit 自动布局/SwiftUI 刷新不能算作明确系统委托实现。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f74b0",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 330,
+        "name": "FUN_1000f74b0"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "Swift NSView adapter：接收者执行 layoutSubtreeIfNeeded()，没有业务分支。",
+      "implementations": [],
+      "review": "产品没有此原生调用表达式；AppKit 自动布局/SwiftUI 刷新不能算作明确系统委托实现。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f74b8",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 343,
+        "name": "FUN_1000f74b8"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "ObjC MainActor NSView adapter：接收者执行 layoutSubtreeIfNeeded()，没有业务分支。",
+      "implementations": [],
+      "review": "产品没有此原生调用表达式；AppKit 自动布局/SwiftUI 刷新不能算作明确系统委托实现。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f6684",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1449,
+        "name": "FUN_1000f6684"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "NSStackView.orientation getter：原样读写方向枚举。",
+      "implementations": [],
+      "review": "没有实际 NSStackView 接收者，SwiftUI VStack/HStack 不满足对象属性契约。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f668c",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1462,
+        "name": "FUN_1000f668c"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "NSStackView.orientation setter：原样读写方向枚举。",
+      "implementations": [],
+      "review": "没有实际 NSStackView 接收者，SwiftUI VStack/HStack 不满足对象属性契约。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f66dc",
+      "original": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1505,
+        "name": "FUN_1000f66dc"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "将输入 views Swift 数组桥接 NSArray，调用 NSStackView.stackViewWithViews 返回实例。",
+      "implementations": [],
+      "review": "没有原生 NSStackView(views:) 初始化调用，不能以 SwiftUI 容器代替。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1001fec18",
+      "original": {
+        "path": "decompiled/Paste/part-0167.c",
+        "line": 655,
+        "name": "FUN_1001fec18"
+      },
+      "index_confirmed": true,
+      "already_mapped": true,
+      "can_migrated": false,
+      "contract": "foreground 值 getter：以固定 once-token、存储槽、init 回调尾调 0x100126a6c，初始化后读取该槽对象。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchAppearance.swift",
+          "symbol": "f_1001fec18",
+          "line": 20,
+          "expression": "func f_1001fec18",
+          "source_sha256": "0cfd7e194ce6f6b1f4118897810e35d0eafab317a68e6104e4bfbd11dbaeb5c4"
+        }
+      ],
+      "review": "汇编确认 0x1001fec18 固定三参数尾调；0x100126a6c token==-1 时读槽，否则 swift_once 后读槽。审计期间主智能体已新增专用 f_1001fec18 与稳定槽，此为当前已存在实现；不要重复作为本审计的新代码增量计数。 主智能体明确已纠正并映射；从本只读复用候选增量中移除，以免双计。",
+      "limitations": [
+        "当前映射按独立 Swift 高层业务契约审计，不声明机器 ABI、原 ObjC 别名 selector、错误执行器诊断一致。",
+        "如仅引用外层业务方法中的完整属性委托表达式，则不能把该外层业务方法整体视为原版这个薄适配函数。",
+        "此函数由主智能体在审计期间新增，审核者未修改；函数尚未写入所读台账时可映射，但不能与该新增批次双计。"
+      ],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false,
+      "handled_in_root_batch": true
+    },
+    {
+      "function_id": "Paste:0x100206e94",
+      "original": {
+        "path": "decompiled/Paste/part-0170.c",
+        "line": 3397,
+        "name": "FUN_100206e94"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": true,
+      "contract": "动态色闭包适配：appearance 参数 + context 中 dark/light 两对象，原样调用 0x100206f30，返回同一选色结果。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchAppearance.swift",
+          "symbol": "f_1001ff49c",
+          "line": 26,
+          "expression": "f_1001ff49c(appearance: appearance",
+          "source_sha256": "0cfd7e194ce6f6b1f4118897810e35d0eafab317a68e6104e4bfbd11dbaeb5c4"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchAppearance.swift",
+          "symbol": "f_1001ff49c",
+          "line": 30,
+          "expression": "func f_1001ff49c",
+          "source_sha256": "0cfd7e194ce6f6b1f4118897810e35d0eafab317a68e6104e4bfbd11dbaeb5c4"
+        }
+      ],
+      "review": "part-0170.c 参数恢复确认 context+0x10/+0x18；现有 dynamicProvider 强引用捕获 dark/light，经 f_1001ff49c→f_100206e50→f_100206f30 原样转发，无额外分支；实际用于动态前景色。",
+      "limitations": [
+        "当前映射按独立 Swift 高层业务契约审计，不声明机器 ABI、原 ObjC 别名 selector、错误执行器诊断一致。",
+        "如仅引用外层业务方法中的完整属性委托表达式，则不能把该外层业务方法整体视为原版这个薄适配函数。",
+        "捕获上下文用独立 Swift closure 表达，不声明 raw context 内存布局/ABI 相同。"
+      ],
+      "confidence": "medium",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x100126a6c",
+      "original": {
+        "path": "decompiled/Paste/part-0101.c",
+        "line": 100,
+        "name": "FUN_100126a6c"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "通用 once getter：任意 token、slot、initializer 三参数，必要时 swift_once，然后返回 slot 对象值。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchAppearance.swift",
+          "symbol": "f_1001fec18",
+          "line": 20,
+          "expression": "func f_1001fec18",
+          "source_sha256": "0cfd7e194ce6f6b1f4118897810e35d0eafab317a68e6104e4bfbd11dbaeb5c4"
+        }
+      ],
+      "review": "现有 foreground 专用静态初始化没有可传任意三参数的通用适配入口；不能把特例映射为通用函数满足。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1000f76c8",
+      "original": {
+        "path": "decompiled/Paste/part-0084.c",
+        "line": 480,
+        "name": "FUN_1000f76c8"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "给定 NSAnimationContext 和任意动作闭包，MainActor 检查后 duration=0，再同步执行输入闭包。",
+      "implementations": [],
+      "review": "现有 Stack 内联动画只执行固定高度更新，未提供接受任意动作的相同适配入口；仅出现 duration=0 不足以映射通用闭包函数。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1001ff91c",
+      "original": {
+        "path": "decompiled/Paste/part-0169.c",
+        "line": 6,
+        "name": "FUN_1001ff91c"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "固定 Subheadline 风格调用 preferredFont 空 options helper，返回 NSFont。",
+      "implementations": [],
+      "review": "没有该原生 NSFont getter 的实际调用，SwiftUI 同名字体样式不是返回 NSFont 的同契约委托。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x1001ff934",
+      "original": {
+        "path": "decompiled/Paste/part-0169.c",
+        "line": 28,
+        "name": "FUN_1001ff934"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "固定 Callout 风格调用 preferredFont 空 options helper，返回 NSFont。",
+      "implementations": [],
+      "review": "没有该原生 NSFont getter 的实际调用，SwiftUI 同名字体样式不是返回 NSFont 的同契约委托。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x100ae5e74",
+      "original": {
+        "path": "decompiled/Paste/part-1008.c",
+        "line": 90,
+        "name": "FUN_100ae5e74"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": true,
+      "contract": "无输入的权限只读 getter：调用 AXIsProcessTrusted，将系统返回值按非零转换为 Bool 返回。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "paste",
+          "line": 297,
+          "expression": "guard AXIsProcessTrusted() else",
+          "source_sha256": "729ec371deaddc5c096778b0727f0ed00ce91b356e3d0b0ddd48767c62bdedc8"
+        }
+      ],
+      "review": "Ghidra 将输入 w0 与调用返回混淆为 int param_1，汇编 0x100ae5e74…0x100ae5e90 明确无参数使用：bl 0x100bfab78；cmp w0,0；cset w0,ne；ret。产品 guard AXIsProcessTrusted() 使用同一系统 API 的 Swift Bool 返回，覆盖 true/false，无弹窗/无请求参数。",
+      "limitations": [
+        "当前映射按独立 Swift 高层业务契约审计，不声明机器 ABI、原 ObjC 别名 selector、错误执行器诊断一致。",
+        "如仅引用外层业务方法中的完整属性委托表达式，则不能把该外层业务方法整体视为原版这个薄适配函数。"
+      ],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x100bfab78",
+      "original": {
+        "path": "decompiled/Paste/part-1202.c",
+        "line": 756,
+        "name": "_AXIsProcessTrusted"
+      },
+      "index_confirmed": true,
+      "already_mapped": true,
+      "can_migrated": false,
+      "contract": "本地导入跳板：经 0x100ea9168 的 AXIsProcessTrusted 导入槽直接 br，保持 API 参数/返回值。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "paste",
+          "line": 297,
+          "expression": "guard AXIsProcessTrusted() else",
+          "source_sha256": "729ec371deaddc5c096778b0727f0ed00ce91b356e3d0b0ddd48767c62bdedc8"
+        }
+      ],
+      "review": "真实 index 地址 0x100bfab78（part-1202.c:754），汇编三条 adrp/ldr/br；导入名为 _AXIsProcessTrusted。现有产品实际链接并调用该同名 ApplicationServices API，不是从 SDK 构造新地址或凭名字映射业务模块。只此已逐条核对的本地跳板列候选，不批量推及其他 SDK 地址。",
+      "limitations": [
+        "当前映射按独立 Swift 高层业务契约审计，不声明机器 ABI、原 ObjC 别名 selector、错误执行器诊断一致。",
+        "如仅引用外层业务方法中的完整属性委托表达式，则不能把该外层业务方法整体视为原版这个薄适配函数。",
+        "这是已存在真实导入跳板的系统委托替代，仅可记 migrated；没有原版调用差分，不能记 verified。"
+      ],
+      "confidence": "medium",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x100ae5e90",
+      "original": {
+        "path": "decompiled/Paste/part-1008.c",
+        "line": 101,
+        "name": "FUN_100ae5e90"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "创建权限变化 publisher：初始 AXIsProcessTrusted 的 Just 与主线程 common-modes 每秒 Timer autoconnect/map 流合并并继续去重等处理。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "paste",
+          "line": 297,
+          "expression": "guard AXIsProcessTrusted() else",
+          "source_sha256": "729ec371deaddc5c096778b0727f0ed00ce91b356e3d0b0ddd48767c62bdedc8"
+        }
+      ],
+      "review": "现有 AppMain 在业务动作内读取权限，没有原版每秒计时、弱所有者 map 与 publisher 合并/去重生命周期。单次 getter 满足不能带动整条权限监控算完成。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    },
+    {
+      "function_id": "Paste:0x100ae63d0",
+      "original": {
+        "path": "decompiled/Paste/part-1008.c",
+        "line": 292,
+        "name": "FUN_100ae63d0"
+      },
+      "index_confirmed": true,
+      "already_mapped": false,
+      "can_migrated": false,
+      "contract": "权限 timer 的弱捕获 map：加载弱 owner，已销毁则输出 false，否则重新查询 AXIsProcessTrusted 并写入 Bool 输出。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "paste",
+          "line": 297,
+          "expression": "guard AXIsProcessTrusted() else",
+          "source_sha256": "729ec371deaddc5c096778b0727f0ed00ce91b356e3d0b0ddd48767c62bdedc8"
+        }
+      ],
+      "review": "当前业务读取没有该 weak-owner 存活/销毁两分支和输出位置，不能以单次 AXIsProcessTrusted 委托取代。",
+      "limitations": [],
+      "confidence": "high",
+      "implementation_origin": "existing_reused",
+      "functional_regression_executed": false
+    }
+  ],
+  "no_source_changes": true,
+  "no_build": true,
+  "no_functional_regression": true,
+  "no_ledger_changes": true,
+  "already_handled": 2
+}

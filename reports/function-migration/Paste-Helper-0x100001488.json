@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste-Helper:0x100001488",
+  "reviewed_at": "2026-10-23T07:33:40.896186+00:00",
+  "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
+  "original_pseudocode": {
+    "path": "decompiled/Paste-Helper/part-0000.c",
+    "line": 36
+  },
+  "original_pseudocode_sha256": "81eac5668399904419b81808cc24b841438b5343190762cbb6399aeee9ce8542",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaHelper/HelperMain.swift": "9d3d2472a2b9905aabd408f9da7e0b148976ff057f935a18a3a75d8407cab2fe"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "74117fae21a9eec4161c179c43a554ba830853c065fb35217b5b9a7116ea6dd9",
+  "compiled_product": "PasteReplicaHelper",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "decompiled/Paste-Helper/part-0000.c:34 起；最终静态汇编确认 applicationURL、defaults 标志和进程状态应在相应日志判断之外求值，现均先求值后记录，避免 Logger lazy 插值在日志关闭时跳过查询。日志正文已恢复原版文字；Bool 默认 .truth 与原版 %{bool}d 对齐。URL 使用 CustomStringConvertible.description。仅产品 bundle/suite/subsystem 身份按独立复刻替换。",
+  "contract": "启动时依次记录 Helper 自身路径、定位主 App 路径、共享运行标志及当前主进程状态，再注册运行程序观察。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。",
+  "static_review_risk": "仅 bundle/suite/subsystem 身份替换；日志求值顺序、正文、等级和 Bool 格式已核对。原版 suite 首次失败不永久缓存。"
+}

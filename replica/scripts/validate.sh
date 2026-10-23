@@ -3,6 +3,7 @@ set -euo pipefail
 replica_root="$(cd "$(dirname "$0")/.." && pwd)"
 repository_root="$(cd "$replica_root/.." && pwd)"
 report_root="${1:-$repository_root/.local/replica-validation}"
+python3 "$repository_root/scripts/function_ledger.py" --require-migration-complete
 mkdir -p "$report_root"
 bash "$replica_root/scripts/build-app.sh" > "$report_root/build.log" 2>&1
 original_binary="${PASTE_ORIGINAL_BINARY:-/Applications/Paste.app/Contents/MacOS/Paste}"

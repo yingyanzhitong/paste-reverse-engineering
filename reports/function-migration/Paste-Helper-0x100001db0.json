@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste-Helper:0x100001db0",
+  "reviewed_at": "2026-10-23T07:33:40.897671+00:00",
+  "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
+  "original_pseudocode": {
+    "path": "decompiled/Paste-Helper/part-0000.c",
+    "line": 327
+  },
+  "original_pseudocode_sha256": "ac5571eb37bf6f6da03eab117e0868c8bfa280f79d7855b50e6e1acc69a79430",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaHelper/HelperMain.swift": "9d3d2472a2b9905aabd408f9da7e0b148976ff057f935a18a3a75d8407cab2fe"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "74117fae21a9eec4161c179c43a554ba830853c065fb35217b5b9a7116ea6dd9",
+  "compiled_product": "PasteReplicaHelper",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "decompiled/Paste-Helper/part-0000.c:325 起。静态汇编 0x100001ebc 的 options=5 已明确写成 [.initial,.new]；sink 先 MainActor.assumeIsolated 再创建弱捕获 MainActor Task，保持 0x10000239c 的同步 actor 检查和异步复查。Logger 固定正文与原版相同；cancellable 集合 ARC 生命周期由 Swift 管理。",
+  "contract": "订阅 NSWorkspace.runningApplications 的 KVO publisher，包含初始发布；每次发布弱捕获 Delegate 并排入 MainActor Task，AnyCancellable 存入集合。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。",
+  "static_review_risk": "显式 KVO options=5；MainActor 隔离与 Task 弱捕获已核对。仍待未来功能回归确认系统发布时序。"
+}

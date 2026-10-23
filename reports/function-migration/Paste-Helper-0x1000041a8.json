@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste-Helper:0x1000041a8",
+  "reviewed_at": "2026-10-23T07:33:40.902281+00:00",
+  "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
+  "original_pseudocode": {
+    "path": "decompiled/Paste-Helper/part-0000.c",
+    "line": 1930
+  },
+  "original_pseudocode_sha256": "e6788ced2fb0ecd48f96f6d76c9ed649ea2417254bac2022bd35061f4142a047",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaHelper/HelperMain.swift": "9d3d2472a2b9905aabd408f9da7e0b148976ff057f935a18a3a75d8407cab2fe"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "74117fae21a9eec4161c179c43a554ba830853c065fb35217b5b9a7116ea6dd9",
+  "compiled_product": "PasteReplicaHelper",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "review": "decompiled/Paste-Helper/part-0000.c:1901 / 1928 起。使用 try? await sleep 后 self?.checkRunning() 覆盖两个恢复分支；没有取消错误直接 return 的旧差异。",
+  "contract": "重试冷却完成后释放等待上下文；弱捕获 Delegate 非空时调用 checkRunning，已释放则无操作。sleep 成功和错误均执行同样重新检查。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批仅编译和静态核对。",
+  "static_review_risk": "睡眠失败后同样弱 self 检查；与 try? 共用恢复分支。"
+}

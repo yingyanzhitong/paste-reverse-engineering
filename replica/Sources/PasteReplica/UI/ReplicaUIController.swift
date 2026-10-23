@@ -563,17 +563,11 @@ final class ReplicaUIController {
         }
         switch event.keyCode {
         case 53:
-            if !state.query.isEmpty {
-                state.query = ""
-                state.searchVisible = true
-                state.searchFocus = UUID()
-                state.normalizeSelection()
-            } else if state.searchVisible || isEditing {
-                state.searchVisible = false
-                panel.makeFirstResponder(nil)
-            } else { hidePanel() }
-            return true
-        case 36, 76: pasteSelection(plainTextOnly: command || plain); return true
+            return OriginalSearchCommands.f_10004867c(selector: NSSelectorFromString("cancelOperation:"),
+                onEnter: nil, onCancel: { [self] in cancelSearchOrPanel() })
+        case 36, 76:
+            return OriginalSearchCommands.f_10004867c(selector: NSSelectorFromString("insertNewline:"),
+                onEnter: { [self] in pasteSelection(plainTextOnly: command || plain) }, onCancel: nil)
         case 123 where !isEditing: state.moveSelection(-1, extending: shift); return true
         case 124 where !isEditing: state.moveSelection(1, extending: shift); return true
         case 49 where !isEditing:
@@ -584,5 +578,17 @@ final class ReplicaUIController {
             state.deleteSelection(); return true
         default: return false
         }
+    }
+
+    func cancelSearchOrPanel() {
+        if !state.query.isEmpty {
+            state.query = ""
+            state.searchVisible = true
+            state.searchFocus = UUID()
+            state.normalizeSelection()
+        } else if state.searchVisible || panel.firstResponder is NSTextView {
+            state.searchVisible = false
+            panel.makeFirstResponder(nil)
+        } else { hidePanel() }
     }
 }
