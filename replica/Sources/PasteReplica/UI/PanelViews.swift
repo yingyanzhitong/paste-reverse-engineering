@@ -242,13 +242,18 @@ struct ReplicaClipboardCard: View {
     }
 
     private var cardHeader: some View {
-        HStack(alignment: .top, spacing: 0) {
-            VStack(alignment: .leading, spacing: 1) {
-                Text(item.kind.displayName).font(.system(size: 16, weight: .semibold)).lineLimit(1)
-                Text(relativeTime(item.createdAt)).font(.system(size: 12)).opacity(0.8)
+        HStack(alignment: .center, spacing: 0) {
+            // ItemCell.HeaderView's noncompact styles share the same label configuration.
+            VStack(alignment: .leading, spacing: -1) {
+                Text(cardTitle)
+                    .font(Font(NSFont.systemFont(ofSize: NSFont.preferredFont(forTextStyle: .title3, options: [:]).pointSize, weight: .medium)))
+                    .lineLimit(1)
+                Text(relativeTime(item.createdAt))
+                    .font(Font(NSFont.preferredFont(forTextStyle: .callout, options: [:])))
+                    .opacity(0.8)
             }
             .foregroundStyle(.white)
-            .padding(.leading, 12).padding(.top, 8)
+            .padding(.leading, 12)
             Spacer(minLength: 0)
             SourceAppIcon(item: item)
                 .frame(width: 48, height: 48)
@@ -259,6 +264,21 @@ struct ReplicaClipboardCard: View {
         }
         .frame(height: 48, alignment: .top)
         .background(sourceColor(item))
+    }
+
+    private var cardTitle: String {
+        let rawType: Int
+        switch item.kind {
+        case .unknown: rawType = 0
+        case .image: rawType = 1
+        case .color: rawType = 2
+        case .files: rawType = 3
+        case .link: rawType = 4
+        case .text, .richText: rawType = 5
+        }
+        let defaultTitle = OriginalPreviewTitles.f_100309008(rawType: rawType,
+            fileCount: item.kind == .files ? item.decodedFilePreviewMetadata?.paths.count : nil)
+        return OriginalPreviewTitles.f_100308f88(item.originalTitle, defaultTitle: defaultTitle)
     }
 
     @ViewBuilder private var contextMenu: some View {

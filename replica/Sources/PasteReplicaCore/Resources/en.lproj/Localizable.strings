@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "Are you sure you want to reset all shortcuts to their default values?";
 "general.action.reset" = "Reset";
 "settings.paste-items.accessibility-access-request" = "Enable accessibility access";
+"accessibility-access.paste-to-other-apps.title" = "Do you want to paste directly to %@?";
+"accessibility-access.paste-to-other-apps.description" = "Paste needs accessibility access to paste directly to other apps.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "Enable Accessibility Access";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "Not Now, Copy to Clipboard";
+"general.current-app" = "current app";
+"general.do-not-ask-again" = "Do not ask again";
+"accessibility-access.enable-accessibility-access.title" = "Paste to Any App";
+"accessibility-access.enable-accessibility-access.subtitle" = "To have the best experience and paste directly to other applications, allow Paste to access the accessibility features of your Mac in System Settings.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "Open System Settings";
+"accessibility-access.enable-accessibility-access.allow-access" = "Allow Access";

@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "Czy na pewno chcesz zresetować wszystkie skróty do ich domyślnych wartości?";
 "general.action.reset" = "Zresetuj";
 "settings.paste-items.accessibility-access-request" = "Włącz dostęp do ułatwień dostępu";
+"accessibility-access.paste-to-other-apps.title" = "Czy chcesz wkleić bezpośrednio do %@?";
+"accessibility-access.paste-to-other-apps.description" = "Paste potrzebuje dostępu do funkcji dostępności, aby wklejać bezpośrednio do innych aplikacji.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "Włącz dostęp z ułatwieniami dostępu";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "Nie teraz, skopiuj do schowka";
+"general.current-app" = "aktualna aplikacja";
+"general.do-not-ask-again" = "Nie pytaj ponownie";
+"accessibility-access.enable-accessibility-access.title" = "Wklej do Dowolnej Aplikacji";
+"accessibility-access.enable-accessibility-access.subtitle" = "Aby mieć najlepsze doświadczenie i wklejać bezpośrednio do innych aplikacji, zezwól aplikacji Paste na dostęp do funkcji dostępności Twojego Maca w Ustawieniach systemowych.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "Otwórz ustawienia systemowe";
+"accessibility-access.enable-accessibility-access.allow-access" = "Zezwól na dostęp";

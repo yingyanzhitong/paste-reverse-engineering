@@ -110,14 +110,8 @@ final class ReplicaColorPreviewContent: OriginalLayerBackedView, OriginalPreview
     }
 
     private static func modelColor(_ item: ClipboardItem) -> NSColor {
-        let text = item.plainText ?? item.title
-        let hex = text.hasPrefix("#") ? String(text.dropFirst()) : text
-        guard let value = UInt32(hex, radix: 16) else { return .black }
-        // The recovered packed-color decoder uses ARGB; absent/zero high byte is opaque.
-        let alpha = value >> 24 == 0 ? 1 : CGFloat((value >> 24) & 255) / 255
-        return NSColor(deviceRed: CGFloat((value >> 16) & 255) / 255,
-                       green: CGFloat((value >> 8) & 255) / 255,
-                       blue: CGFloat(value & 255) / 255, alpha: alpha)
+        guard let metadata = item.decodedColorPreviewMetadata else { return .black }
+        return OriginalColorPreviewMetadataGenerator.color(metadata.code)
     }
 
     private static func hexString(_ color: NSColor) -> String {

@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "Вы уверены, что хотите сбросить все ярлыки до их значений по умолчанию?";
 "general.action.reset" = "Сброс";
 "settings.paste-items.accessibility-access-request" = "Включить доступ к специальным возможностям";
+"accessibility-access.paste-to-other-apps.title" = "Хотите вставить в %@?";
+"accessibility-access.paste-to-other-apps.description" = "Paste требуется доступ к специальным возможностям для вставки в другие приложения.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "Включить доступ к специальным возможностям";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "Не сейчас, скопировать в буфер обмена";
+"general.current-app" = "текущее приложение";
+"general.do-not-ask-again" = "Больше не спрашивать";
+"accessibility-access.enable-accessibility-access.title" = "Вставка в любое приложение";
+"accessibility-access.enable-accessibility-access.subtitle" = "Чтобы получить наилучшие впечатления и вставлять непосредственно в другие приложения, разрешите Paste доступ к специальным возможностям вашего Mac в Системных настройках.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "Открыть Системные настройки";
+"accessibility-access.enable-accessibility-access.allow-access" = "Разрешить доступ";

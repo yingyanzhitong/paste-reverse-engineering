@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "¿Estás seguro de que quieres restablecer todos los atajos a sus valores predeterminados?";
 "general.action.reset" = "Reiniciar";
 "settings.paste-items.accessibility-access-request" = "Habilitar acceso a accesibilidad";
+"accessibility-access.paste-to-other-apps.title" = "¿Quieres pegar directamente en %@?";
+"accessibility-access.paste-to-other-apps.description" = "Paste necesita acceso de accesibilidad para pegar directamente en otras aplicaciones.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "Habilitar acceso de accesibilidad";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "No ahora, copiar al Portapapeles";
+"general.current-app" = "app actual";
+"general.do-not-ask-again" = "No volver a preguntar";
+"accessibility-access.enable-accessibility-access.title" = "Pegar en cualquier app";
+"accessibility-access.enable-accessibility-access.subtitle" = "Para tener la mejor experiencia y pegar directamente en otras aplicaciones, permite que Paste acceda a las funciones de accesibilidad de tu Mac en Configuración del Sistema.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "Abrir Ajustes del Sistema";
+"accessibility-access.enable-accessibility-access.allow-access" = "Permitir acceso";

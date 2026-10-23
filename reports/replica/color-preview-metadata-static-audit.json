@@ -1,0 +1,79 @@
+{
+  "kind": "color_metadata_real_pipeline_static_review",
+  "version": "0.8.0-dev.21",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalColorPreviewMetadata.swift": "b78c20f7a126322c3be604b7a26fc7d630384f31265969e4d17c5cf0887f60b2",
+    "replica/Sources/PasteReplica/UI/ReplicaColorPreviewContent.swift": "2d6bd2d25ed3d56897ba22d14ffbcda84f37348cdc15e06a2508fd09dabb7662",
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "545187069b21fe4872ee55b1e5b882aa391e09b1b0d9fe5be276b62c6f8adb6b",
+    "replica/Sources/PasteReplicaCore/Models.swift": "9576eb05901e1ed71a6cff60212920c22d3205c8c5830186a4f688770d2df9df",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "77520ab60118fed0cc139c219159ddd08ade2748515dd0db603edbfb120d6b32"
+  },
+  "unified_build": {
+    "name": "gap-build41",
+    "manifest": ".local/gap-build-complete.json",
+    "manifest_sha256": "6660a3f1f092bb1fcd143c7b923ef6641a4595e8aca390d584176527db584dc2",
+    "log": ".local/gap-build-41.log",
+    "seconds": 19.78,
+    "compiler_log_seconds": 17.93,
+    "inputs": 147,
+    "sha_before_after_equal": true,
+    "result": "compiled",
+    "functional_execution": false,
+    "app_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c"
+  },
+  "compiled_app_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
+  "generator_contract": "f100322504 color branch (rawkind2) reads first original item f10037c9a8 optional string, globally removes #, scans NSScanner.scanHexLongLong into zero-initialized UInt64; scanner true produces color enum, nil/string missing/scanner false produces nil. It does not require scan to consume entire remaining string.",
+  "wire_contract": "Original Stored.type literal color; optional UInt64 colorCode; decode projection missing code defaults0; encoder present color case writes code. Root owns codec extension and persisted raw writer.",
+  "packed_contract": "f100308ea0 uses UInt64 code>>24 for absent-alpha test, but alpha value comes from code bits24...31. RGB channels bits16...23/8...15/0...7. All converted to Double and divided by255; absent-alpha gives1, including code0. UInt64 bits above31 may force explicit alpha0, so do not mask whole code down toUInt32 before test.",
+  "constructor": "Exact decoded ObjC selector colorWithRed:green:blue:alpha:; new color helper uses NSColor(red:green:blue:alpha:), preserving original constructor rather than deviceRed variant.",
+  "getter_contract": "f1003bbc20 -> f10031ebc8 canonical preview -> enum case3 only -> packed color constructor. Nil/decode failure/noncolor -> NSColor.black. Getter never reparses payload/plainText/title.",
+  "actual_consumer_peer": {
+    "result": "No concrete color integration defect in reviewed actual chain.",
+    "codec": "strict color type, missing code0, encode UInt64; complete13-field Stored decode reused; canonical bad/noncolor raw never falls back to text/title.",
+    "writer": "add/capture generates missing raw only; existing raw untouched. updateColorItem and text update reclassified color persist generator+encode raw in same mutation as new payload; use merged state preferences.useBinaryPlist.",
+    "archive": "generateMissingContentPreview:false preserves missing color raw; preview does not infer old version or recreate it.",
+    "merge": "Existing payload/raw pair merge remains applied; metadata-only remote-data guard retained.",
+    "source_literal_refs": "Every implementation.symbol now validated as a literal substring in its current source before saving."
+  },
+  "compiled_color_proof": {
+    "range": [
+      "0x100103574",
+      "0x100103618"
+    ],
+    "selector_slot": "0x1001dcb50",
+    "selector": "colorWithRed:green:blue:alpha:",
+    "calls": {
+      "0x10017e2f4": "_objc_opt_self",
+      "0x10017e2dc": "_objc_msgSend",
+      "0x10017e324": "_objc_retainAutoreleasedReturnValue"
+    },
+    "value_branches": "UInt64 >>24 tested before selectingalpha1; bits24...31 extracted8; RGB8 extracts; each Double/255, direct argumentsd0...d3 to objc_msgSend.",
+    "original_selector_same": true,
+    "product_executed": false
+  },
+  "source_functions_complete_candidate": [
+    "0x100308ea0"
+  ],
+  "parent_partial": [
+    "0x100322504",
+    "0x1003bbc20",
+    "0x100315a38",
+    "0x100316004"
+  ],
+  "remaining": [
+    "Full ItemPreview enum remaining text/link projections",
+    "Original CoreData/VM/actor/DI/ABI parent machinery",
+    "Original encoding config lookup and runtime override",
+    "No original execution or function regression equivalence proof"
+  ],
+  "original_references": [
+    "decompiled/Paste/part-0258.c:851 f100322504 color generation branch",
+    "decompiled/Paste/part-0255.c:946 f100315a38 color projection",
+    "decompiled/Paste/part-0255.c:1197 f100316004 color inverse projection",
+    "decompiled/Paste/part-0251.c:722 f100308ea0 packed color",
+    "decompiled/Paste/part-0295.c:635 f1003bbc20 color VM getter"
+  ],
+  "functional_tests_executed": false,
+  "products_started": false,
+  "equivalence_verified": false
+}

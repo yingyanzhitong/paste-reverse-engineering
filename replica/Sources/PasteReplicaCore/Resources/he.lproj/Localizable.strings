@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "האם אתה בטוח שאתה רוצה לאפס את כל הקיצורים לערכיהם המקוריים?";
 "general.action.reset" = "איפוס";
 "settings.paste-items.accessibility-access-request" = "אפשר גישה לנגישות";
+"accessibility-access.paste-to-other-apps.title" = "האם אתה רוצה להדביק ישירות ל%@ ?";
+"accessibility-access.paste-to-other-apps.description" = "ל-Paste צריך גישת נגישות כדי להדביק ישירות לאפליקציות אחרות.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "אפשר גישה לנגישות";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "לא עכשיו, העתק ללוח";
+"general.current-app" = "יישום נוכחי";
+"general.do-not-ask-again" = "אל תשאלי שוב";
+"accessibility-access.enable-accessibility-access.title" = "הדבק לכל אפליקציה";
+"accessibility-access.enable-accessibility-access.subtitle" = "כדי לקבל את החוויה הטובה ביותר ולהדביק ישירות לאפליקציות אחרות, אפשר ל-Paste לגשת לתכונות הנגישות של המק שלך בהגדרות המערכת.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "פתח את הגדרות מערכת";
+"accessibility-access.enable-accessibility-access.allow-access" = "אפשר גישה";

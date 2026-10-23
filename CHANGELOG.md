@@ -1,5 +1,16 @@
 # 更新日志
 
+## 0.8.0-dev.21 - 2026-10-23
+
+- 权限决策移到真实writer之前：direct偏好/forceDirect且AX未授权才显示原三态询问；raw0/1后续仅复制，raw1持久关闭直接粘贴，raw2进入Enable常规模态后结束当次，不先写剪贴板。Stack forceDirect使用同一分支，保留先消费及返回后empty-close；独立命名pasteboard适配不弹系统权限窗口。
+- 新增两个实际SwiftUI权限模态并接AppMain与设置明确权限按钮：首模态初始2/default授权2/cancel拷贝checkbox0或1；Enable初始1、regular无假skip按钮，窗口关闭1，真实AX观察成功后1秒0。请求按钮才执行原IOHID系统动作，requested在main任务立即置位；原3秒另属联网help状态，未错当requested延迟。未证Settings Picker setter gate不擅加，原图像/私有host/完整VM仍partial。
+- 卡片Header按原非compact共用合同修title3字号/system medium、date callout、spacing=-1及来源icon垂直居中，并使用真实改名/默认标题。卡片与独立预览标题的文件计数都来自Stored.files.paths.count：空数组0、metadata缺失/非files原fallback1。不猜未证style对应的232/radius16/icon48等几何值，整卡片仍未像素验收。
+- 颜色预览改读canonical color UInt64 raw metadata，缺失/坏/非color为黑色；生成按首item字符串全局去#、Scanner.scanHexInt64成功条件，不要求到尾。原NSColor构造用完整UInt64高位判断缺alpha，低32位alpha/RGB通道Double除255，使用colorWithRed:green:blue:alpha:，非deviceRGB构造。
+- color wire投影/Models/add-capture/文字转color/updateColorItem真实配对接入同一raw与payload，旧归档缺raw不强制回填。image/files已恢复分支继续复用；完整多类型工厂、CoreData/DI及剩余投影不冒完整。
+- 最终build41 release编译通过，147输入前后SHA一致，日志17.93秒/包装19.78秒；纯颜色完整体及真实selector、8既有编译器/析构与2辅助体、异常桥、缓存、权限getter/map和新modal有限完整当前体均已静态复审。未运行产品、单测、功能、原版动态、UI/MCP、重启或异常注入。
+- 当前逐地址证据1,478 / 81,134（源码579、SDK899），范围排除5，范围内剩余79,651，其中211部分实现。本轮Source新增完整1，SDK新增16/撤回1（当前产物不再导入VerticalAlignment.top），净增16；30合并记录不是30新增完整。新增独立主面板/卡片样式检查项，集中清单73项、91源码绑定，状态32已有列明行为/38差异或缺证据/1缺失/2未审，不作产品完成率。
+- 公开源码及静态对照报告同步；未打包安装，安装仍0.7.0，整体一比一验收尚未完成。
+
 ## 0.8.0-dev.20 - 2026-10-23
 
 - 按已有功能集中核对设置页：28个精确原资源键、17语言476值一次复用到现有标签，覆盖通用/隐私/声音/登录/后台/粘贴/历史/快捷键及重置确认。只恢复3个已完整对照的资源helper，不为每个替换标签生成地址包装；完整设置布局和未知单位刻度仍partial。

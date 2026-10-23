@@ -384,7 +384,7 @@ private final class ReplicaInlinePreviewHeader: NSView {
                 case .text, .richText: rawType = 5
                 }
                 let defaultTitle = OriginalPreviewTitles.f_100309008(rawType: rawType,
-                    fileCount: current.kind == .files ? itemFileURLs(current).count : nil)
+                    fileCount: current.kind == .files ? current.decodedFilePreviewMetadata?.paths.count : nil)
                 field.f_10023b600(defaultTitle)
                 field.f_10023b214(OriginalPreviewTitles.f_100308f88(current.title, defaultTitle: defaultTitle))
                 share?.isEnabled = (try? Self.sharingContent(current))

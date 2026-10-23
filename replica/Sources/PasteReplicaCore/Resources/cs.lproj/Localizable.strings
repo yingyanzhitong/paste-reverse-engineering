@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "Jste si jisti, že chcete obnovit všechny zkratky na jejich výchozí hodnoty?";
 "general.action.reset" = "Obnovit";
 "settings.paste-items.accessibility-access-request" = "Povolit přístupnost Přístup";
+"accessibility-access.paste-to-other-apps.title" = "Chcete vložit přímo do %@?";
+"accessibility-access.paste-to-other-apps.description" = "Paste potřebuje přístup k usnadnění, aby bylo možné vložit přímo do jiných aplikací.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "Povolit přístup k funkcím přístupnosti";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "Teď ne, zkopírovat do schránky";
+"general.current-app" = "současný program";
+"general.do-not-ask-again" = "Neptej se znovu";
+"accessibility-access.enable-accessibility-access.title" = "Vložit do jakékoli aplikace";
+"accessibility-access.enable-accessibility-access.subtitle" = "Chcete-li mít nejlepší zážitek a vkládat přímo do jiných aplikací, povolte aplikaci Paste přístup k funkcím usnadnění vašeho Macu v Nastavení systému.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "Otevřete Nastavení systému";
+"accessibility-access.enable-accessibility-access.allow-access" = "Povolit přístup";

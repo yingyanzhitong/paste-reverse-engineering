@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "Êtes-vous sûr de vouloir réinitialiser tous les raccourcis à leurs valeurs par défaut ?";
 "general.action.reset" = "Réinitialiser";
 "settings.paste-items.accessibility-access-request" = "Activer l'accès d'accessibilité";
+"accessibility-access.paste-to-other-apps.title" = "Veux-tu coller directement à %@ ?";
+"accessibility-access.paste-to-other-apps.description" = "Paste nécessite un accès d'accessibilité pour pouvoir coller directement dans d'autres applications.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "Activer l'accès d'accessibilité";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "Pas maintenant, Copier dans le presse-papiers";
+"general.current-app" = "application actuelle";
+"general.do-not-ask-again" = "Ne demandez pas à nouveau";
+"accessibility-access.enable-accessibility-access.title" = "Coller dans n'importe quelle app";
+"accessibility-access.enable-accessibility-access.subtitle" = "Pour avoir la meilleure expérience et coller directement dans d'autres applications, autorisez Paste à accéder aux fonctionnalités d'accessibilité de votre Mac dans les Réglages Système.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "Ouvre les paramètres du système";
+"accessibility-access.enable-accessibility-access.allow-access" = "Autoriser l'accès";

@@ -273,14 +273,19 @@ public final class ClipboardStore: ObservableObject {
         }
     }
 
-    private static func withPreviewMetadata(_ item: ClipboardItem, binaryPropertyList: Bool, preferQuickLookThumbnails: Bool, generateFilePreview: Bool) -> ClipboardItem {
+    private static func withPreviewMetadata(_ item: ClipboardItem, binaryPropertyList: Bool, preferQuickLookThumbnails: Bool, generateMissingContentPreview: Bool) -> ClipboardItem {
         var item = item
         guard item.kind == .image else {
             item.imagePreviewMetadata = nil
-            if generateFilePreview, item.kind == .files, item.rawPreview == nil,
+            if generateMissingContentPreview, item.kind == .files || item.kind == .color, item.rawPreview == nil,
                let items = try? originalPasteboardItems(from: item.payloads) {
-                let metadata = OriginalFilePreviewMetadataGenerator.generate(items, preferQuickLookThumbnails: preferQuickLookThumbnails)
-                item.rawPreview = OriginalImagePreviewMetadataCodec.encodeFiles(metadata, binaryPropertyList: binaryPropertyList)
+                if item.kind == .files {
+                    let metadata = OriginalFilePreviewMetadataGenerator.generate(items, preferQuickLookThumbnails: preferQuickLookThumbnails)
+                    item.rawPreview = OriginalImagePreviewMetadataCodec.encodeFiles(metadata, binaryPropertyList: binaryPropertyList)
+                } else if item.kind == .color {
+                    item.rawPreview = OriginalImagePreviewMetadataCodec.encodeColor(
+                        OriginalColorPreviewMetadataGenerator.generate(items), binaryPropertyList: binaryPropertyList)
+                }
             }
             return item
         }
@@ -301,7 +306,7 @@ public final class ClipboardStore: ObservableObject {
 
     @discardableResult
     public func add(_ item: ClipboardItem) throws -> UUID {
-        let item = Self.withPreviewMetadata(item, binaryPropertyList: preferences.useBinaryPlist, preferQuickLookThumbnails: preferences.fileQuickLookThumbnailsEnabled, generateFilePreview: true)
+        let item = Self.withPreviewMetadata(item, binaryPropertyList: preferences.useBinaryPlist, preferQuickLookThumbnails: preferences.fileQuickLookThumbnailsEnabled, generateMissingContentPreview: true)
         let checksum = try? Self.knownPasteboardChecksum(from: item.payloads)
         return try mutate { state in
             if let i = state.items.firstIndex(where: { previous in
@@ -366,6 +371,11 @@ public final class ClipboardStore: ObservableObject {
                 state.items[i].imagePreviewMetadata = nil
                 state.items[i].rawPreview = nil
                 state.items[i].kind = Self.isLink(text) ? .link : (Self.isColor(text) ? .color : .text)
+                if state.items[i].kind == .color {
+                    state.items[i].rawPreview = OriginalImagePreviewMetadataCodec.encodeColor(
+                        OriginalColorPreviewMetadataGenerator.generate([OriginalPasteboardItem.f_10037c6d4(text)]),
+                        binaryPropertyList: state.preferences.useBinaryPlist)
+                }
                 if state.items[i].kind == .link,
                    let url = OriginalPasteboardItem.f_10037c6d4(text).f_10037ce0c() {
                     let representation = OriginalPasteboardItem.f_10037c7bc(url, title: state.items[i].title)
@@ -448,7 +458,9 @@ public final class ClipboardStore: ObservableObject {
             state.items[i].plainText = text
             state.items[i].kind = .color
             state.items[i].imagePreviewMetadata = nil
-            state.items[i].rawPreview = nil
+            state.items[i].rawPreview = OriginalImagePreviewMetadataCodec.encodeColor(
+                OriginalColorPreviewMetadataGenerator.generate([OriginalPasteboardItem.f_10037c6d4(text)]),
+                binaryPropertyList: state.preferences.useBinaryPlist)
             state.items[i].updatedAt = Date()
         }
     }
@@ -574,7 +586,7 @@ public final class ClipboardStore: ObservableObject {
             throw error
         }
         try validate(archive)
-        let importedItems = archive.items.map { Self.withPreviewMetadata($0, binaryPropertyList: archive.preferences.useBinaryPlist, preferQuickLookThumbnails: archive.preferences.fileQuickLookThumbnailsEnabled, generateFilePreview: false) }
+        let importedItems = archive.items.map { Self.withPreviewMetadata($0, binaryPropertyList: archive.preferences.useBinaryPlist, preferQuickLookThumbnails: archive.preferences.fileQuickLookThumbnailsEnabled, generateMissingContentPreview: false) }
         try mutate { state in
             var boards = Dictionary(uniqueKeysWithValues: state.pinboards.map { ($0.id, $0) })
             for board in archive.pinboards { boards[board.id] = board }

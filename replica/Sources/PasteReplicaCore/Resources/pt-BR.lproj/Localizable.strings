@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "Você tem certeza de que deseja redefinir todos os atalhos para seus valores padrão?";
 "general.action.reset" = "Redefinir";
 "settings.paste-items.accessibility-access-request" = "Ativar Acesso de Acessibilidade";
+"accessibility-access.paste-to-other-apps.title" = "Deseja colar diretamente em %@?";
+"accessibility-access.paste-to-other-apps.description" = "O Paste precisa de acesso de acessibilidade para colar diretamente em outros aplicativos.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "Ativar Acesso de Acessibilidade";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "Agora não, copiar para a área de transferência";
+"general.current-app" = "aplicativo atual";
+"general.do-not-ask-again" = "Não Perguntar Novamente";
+"accessibility-access.enable-accessibility-access.title" = "Colar em Qualquer App";
+"accessibility-access.enable-accessibility-access.subtitle" = "Para ter a melhor experiência e colar diretamente em outros aplicativos, permita que o Paste acesse os recursos de acessibilidade do seu Mac nas Configurações do Sistema.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "Abrir Configurações do Sistema";
+"accessibility-access.enable-accessibility-access.allow-access" = "Permitir Acesso";

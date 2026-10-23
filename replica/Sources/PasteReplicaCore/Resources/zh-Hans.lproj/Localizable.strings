@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "您确定要将所有快捷方式重置为默认值吗？";
 "general.action.reset" = "重置";
 "settings.paste-items.accessibility-access-request" = "启用无障碍访问";
+"accessibility-access.paste-to-other-apps.title" = "你想直接粘贴到 %@ 吗？";
+"accessibility-access.paste-to-other-apps.description" = "Paste 需要访问辅助功能权限才能直接粘贴到其他应用。";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "启用无障碍访问";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "不是现在，复制到剪贴板";
+"general.current-app" = "当前应用";
+"general.do-not-ask-again" = "不要再问了";
+"accessibility-access.enable-accessibility-access.title" = "粘贴到任何应用";
+"accessibility-access.enable-accessibility-access.subtitle" = "为了获得最佳体验并直接粘贴到其他应用程序，请在系统设置中允许 Paste 访问您的 Mac 的辅助功能。";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "打开系统设置";
+"accessibility-access.enable-accessibility-access.allow-access" = "允许访问";

@@ -409,12 +409,30 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
     private func paste(ids: [UUID], plain: Bool, forceDirect: Bool = false) -> Bool {
         let generation = UUID()
         pasteGeneration = generation
+        var copyInsteadOfPaste = !(forceDirect || store.preferences.pasteToActiveApp)
+        if pasteboard.name == NSPasteboard.general.name, !copyInsteadOfPaste,
+           !accessibilityService.f_100ae5e74() {
+            NSApp.activate(ignoringOtherApps: true)
+            let result = OriginalPasteToOtherAppsModal.run()
+            if result == 2 {
+                NSApp.deactivate()
+                _ = OriginalEnableAccessibilityModal.run()
+                return false
+            }
+            if result & 1 != 0 {
+                do {
+                    store.preferences.pasteToActiveApp = false
+                    try store.save()
+                } catch { ui.presentError(error); return false }
+            }
+            copyInsteadOfPaste = true
+        }
         do { try store.writeToPasteboard(ids: ids, pasteboard: pasteboard,
                                         plainTextOnly: plain || store.preferences.alwaysPastePlainText) }
         catch { ui.presentError(error); return false }
         // Named pasteboards support isolated acceptance runs and never generate system keystrokes.
         guard pasteboard.name == NSPasteboard.general.name else { return true }
-        guard forceDirect || store.preferences.pasteToActiveApp else {
+        guard !copyInsteadOfPaste else {
             ReplicaCopiedOSD.showCopied(enableDirectPaste: { [weak self] in
                 guard let self else { return }
                 self.ui.state.perform {
@@ -427,17 +445,6 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
         }
         guard let target = targetApplication, !target.isTerminated,
               target.processIdentifier != ProcessInfo.processInfo.processIdentifier else { return false }
-        guard accessibilityService.f_100ae5e74() else {
-            let alert = NSAlert()
-            alert.messageText = "已拷贝到剪贴板"
-            alert.informativeText = "直接粘贴需要辅助功能权限。你可以按 ⌘V 粘贴，或在系统设置中允许 Paste Replica 控制电脑。"
-            alert.addButton(withTitle: "好")
-            alert.addButton(withTitle: "打开辅助功能设置")
-            if alert.runModal() == .alertSecondButtonReturn {
-                OriginalAccessibilityRequestAction.perform()
-            } else { target.activate(options: []) }
-            return false
-        }
         let changeCount = pasteboard.changeCount
         target.activate(options: [])
         let deadline = Date().addingTimeInterval(1)

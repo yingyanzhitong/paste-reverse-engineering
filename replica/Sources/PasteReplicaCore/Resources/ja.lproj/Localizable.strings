@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "すべてのショートカットをデフォルト値にリセットしてもよろしいですか？";
 "general.action.reset" = "リセット";
 "settings.paste-items.accessibility-access-request" = "アクセシビリティへのアクセスを有効にする";
+"accessibility-access.paste-to-other-apps.title" = "%@に直接貼り付けますか？";
+"accessibility-access.paste-to-other-apps.description" = "Pasteは、他のアプリに直接貼り付けるためにアクセシビリティへのアクセスが必要です。";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "アクセシビリティへのアクセスを有効にする";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "今はしない、クリップボードにコピーする";
+"general.current-app" = "現在のアプリ";
+"general.do-not-ask-again" = "今後表示しない";
+"accessibility-access.enable-accessibility-access.title" = "どのアプリにも貼り付け";
+"accessibility-access.enable-accessibility-access.subtitle" = "最高の体験を得て、他のアプリケーションに直接貼り付けるために、システム設定でPasteがあなたのMacのアクセシビリティ機能にアクセスできるようにしてください。";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "システム設定を開く";
+"accessibility-access.enable-accessibility-access.allow-access" = "アクセスを許可する";

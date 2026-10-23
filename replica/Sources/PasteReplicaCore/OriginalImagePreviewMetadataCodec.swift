@@ -1,6 +1,6 @@
 import Foundation
 
-/// Image and file projections of the original ContentMetadata.Stored wire record.
+/// Image, file and color projections of the original ContentMetadata.Stored wire record.
 /// Remaining content projections and the original configuration lookup stay separate.
 public enum OriginalImagePreviewMetadataCodec {
     public static func decode(_ rawPreview: Data?) -> OriginalImagePreviewMetadata? {
@@ -14,6 +14,11 @@ public enum OriginalImagePreviewMetadataCodec {
         guard let stored = decodeStored(rawPreview), stored.type == "files" else { return nil }
         return OriginalFilePreviewMetadata(paths: stored.filePaths ?? [], totalSize: stored.filesTotalSize ?? 0,
                                            previewData: stored.filesImageData ?? Data())
+    }
+
+    public static func decodeColor(_ rawPreview: Data?) -> OriginalColorPreviewMetadata? {
+        guard let stored = decodeStored(rawPreview), stored.type == "color" else { return nil }
+        return OriginalColorPreviewMetadata(code: stored.colorCode ?? 0)
     }
 
     private static func decodeStored(_ rawPreview: Data?) -> Stored? {
@@ -38,6 +43,14 @@ public enum OriginalImagePreviewMetadataCodec {
         stored.filePaths = metadata.paths
         stored.filesTotalSize = metadata.totalSize
         stored.filesImageData = metadata.previewData
+        return encodeStored(stored, binaryPropertyList: binaryPropertyList)
+    }
+
+    public static func encodeColor(_ metadata: OriginalColorPreviewMetadata?, binaryPropertyList: Bool) -> Data? {
+        guard let metadata else { return nil }
+        var stored = Stored()
+        stored.type = "color"
+        stored.colorCode = metadata.code
         return encodeStored(stored, binaryPropertyList: binaryPropertyList)
     }
 

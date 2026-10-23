@@ -372,7 +372,7 @@ struct ReplicaSettingsView: View {
                 Text("直接粘贴需要辅助功能权限。你可以在系统设置中授权或撤销。")
                     .font(.caption).foregroundStyle(.secondary)
                 Button(OriginalSettingsLocalization.text("settings.paste-items.accessibility-access-request")) {
-                    OriginalAccessibilityRequestAction.perform()
+                    _ = OriginalEnableAccessibilityModal.run()
                 }
             }
         }

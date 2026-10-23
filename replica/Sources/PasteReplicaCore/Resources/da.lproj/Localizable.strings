@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "Er du sikker på, at du vil nulstille alle genveje til deres standardværdier?";
 "general.action.reset" = "Nulstil";
 "settings.paste-items.accessibility-access-request" = "Aktiver tilgængelighedsadgang";
+"accessibility-access.paste-to-other-apps.title" = "Vil du indsætte direkte i %@?";
+"accessibility-access.paste-to-other-apps.description" = "Paste kræver tilgængelighedsadgang for at indsætte direkte i andre apps.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "Aktiver tilgængelighedsadgang";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "Ikke nu, kopier til udklipsholder";
+"general.current-app" = "nuværende app";
+"general.do-not-ask-again" = "Spørg ikke igen";
+"accessibility-access.enable-accessibility-access.title" = "Indsæt i enhver app";
+"accessibility-access.enable-accessibility-access.subtitle" = "For at få den bedste oplevelse og indsætte direkte i andre applikationer, skal du tillade Paste at få adgang til tilgængelighedsfunktionerne på din Mac i Systemindstillinger.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "Åbn Systemindstillinger";
+"accessibility-access.enable-accessibility-access.allow-access" = "Tillad adgang";

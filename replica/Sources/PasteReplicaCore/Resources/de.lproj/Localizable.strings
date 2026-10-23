@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "Bist du sicher, dass du alle Verknüpfungen auf ihre Standardwerte zurücksetzen möchtest?";
 "general.action.reset" = "Zurücksetzen";
 "settings.paste-items.accessibility-access-request" = "Barrierefreiheit aktivieren";
+"accessibility-access.paste-to-other-apps.title" = "Möchten Sie direkt in %@ einfügen?";
+"accessibility-access.paste-to-other-apps.description" = "Paste benötigt Barrierefreiheit, um direkt in andere Apps einzufügen.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "Barrierefreiheit aktivieren";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "Nicht jetzt, in die Zwischenablage kopieren";
+"general.current-app" = "aktuelle App";
+"general.do-not-ask-again" = "Nicht mehr fragen";
+"accessibility-access.enable-accessibility-access.title" = "In jede App einfügen";
+"accessibility-access.enable-accessibility-access.subtitle" = "Um die beste Erfahrung zu haben und direkt in andere Anwendungen einzufügen, erlauben Sie Paste den Zugriff auf die Bedienungshilfen Ihres Mac in den Systemeinstellungen.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "Systemeinstellungen öffnen";
+"accessibility-access.enable-accessibility-access.allow-access" = "Zugriff zulassen";

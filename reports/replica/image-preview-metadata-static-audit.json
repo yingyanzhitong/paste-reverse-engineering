@@ -1,17 +1,19 @@
 {
   "kind": "image_metadata_real_pipeline_static_review",
-  "version": "0.8.0-dev.20",
+  "version": "0.8.0-dev.21",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "2c08314bd0e63ada540371d2a856cd277d814997cd97ae5fbc3f1bfc676893e9",
-    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "5e4630eccbc6e093a860e7e6d28ffadbe241221422c0d20f55ccf0fdca752872",
-    "replica/Sources/PasteReplicaCore/Models.swift": "2761f26ca32851bbcc226daf0736f71b6190a8d27dd8e588fe95f43bbf3905c0",
-    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "9f6042833befa700a935624d49960a0ddedf543be8dd2d0d53ddb4dc6730edce",
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "545187069b21fe4872ee55b1e5b882aa391e09b1b0d9fe5be276b62c6f8adb6b",
+    "replica/Sources/PasteReplicaCore/Models.swift": "9576eb05901e1ed71a6cff60212920c22d3205c8c5830186a4f688770d2df9df",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "77520ab60118fed0cc139c219159ddd08ade2748515dd0db603edbfb120d6b32",
     "replica/Sources/PasteReplicaCore/Pasteboard.swift": "5db4a39608e0b52d1355589d3c1187390f0ae1b566f2d989f8e0b51611e01c4c",
     "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2",
     "replica/Sources/PasteReplicaCore/OriginalFilePreviewMetadata.swift": "abf5d495807ef79b7d857eff269f77de1d69c704eafac9130616c7664a6eebe0",
-    "replica/Sources/PasteReplica/UI/ReplicaFilePreviewContent.swift": "e2bd5375e67f5e326d371bf4c07944358d2a47098469a078d8fd086925c2e5ec"
+    "replica/Sources/PasteReplica/UI/ReplicaFilePreviewContent.swift": "e2bd5375e67f5e326d371bf4c07944358d2a47098469a078d8fd086925c2e5ec",
+    "replica/Sources/PasteReplicaCore/OriginalColorPreviewMetadata.swift": "b78c20f7a126322c3be604b7a26fc7d630384f31265969e4d17c5cf0887f60b2",
+    "replica/Sources/PasteReplica/UI/ReplicaColorPreviewContent.swift": "2d6bd2d25ed3d56897ba22d14ffbcda84f37348cdc15e06a2508fd09dabb7662"
   },
-  "compiled_app_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+  "compiled_app_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
   "connected_calls": [
     "add/capture/original-import/deduplicate/image-update -> ordered items -> generator -> selected binary PropertyList/JSON image Stored -> canonical rawPreview",
     "archive add/import preserves existing generic raw wire; nonnil image raw decodes without regeneration",
@@ -38,17 +40,17 @@
   "functional_tests_executed": false,
   "products_started": false,
   "unified_build": {
-    "name": "gap-build40",
+    "name": "gap-build41",
     "manifest": ".local/gap-build-complete.json",
-    "manifest_sha256": "930b16e99a804878a5acf01438b1161a12c2eb52da049354b6d445a6525cbff9",
-    "log": ".local/gap-build-40.log",
-    "seconds": 20.47,
-    "compiler_log_seconds": 18.78,
-    "inputs": 145,
+    "manifest_sha256": "6660a3f1f092bb1fcd143c7b923ef6641a4595e8aca390d584176527db584dc2",
+    "log": ".local/gap-build-41.log",
+    "seconds": 19.78,
+    "compiler_log_seconds": 17.93,
+    "inputs": 147,
     "sha_before_after_equal": true,
     "result": "compiled",
     "functional_execution": false,
-    "app_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb"
+    "app_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c"
   },
   "original_parent_status": {
     "0x100316490": "partial",
@@ -63,5 +65,11 @@
     "report": "reports/replica/file-preview-metadata-static-audit.json",
     "fact": "Shared Stored decoder now supports image and files projections; files uses original copy-time ordered paths, first-file size and optional preview. Existing image generation/codec behavior retained.",
     "remaining": "Remaining content projections, original Config DI, full CoreData/VM/ABI and regression remain partial."
+  },
+  "color_extension": {
+    "report": "reports/replica/color-preview-metadata-static-audit.json",
+    "fact": "Shared original Stored decoder adds strict color UInt64 projection and selected wire encoder; existing image/files contracts retained. Color capture/edit mutation persists canonical raw, preview ignores plainText/title fallback.",
+    "pure_helper": "f308ea0 complete-source candidate additionally checked in build41 finite machine-code body, with actual colorWithRed selector matching original.",
+    "remaining": "Text/link projections and full original multi-case/CoreData/VM/DI/ABI remain partial; no runtime equivalence claim."
   }
 }

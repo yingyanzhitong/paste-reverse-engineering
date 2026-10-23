@@ -4012,19 +4012,6 @@
       "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
       "migration_evidence": "reports/function-migration/Paste-0x100bf60a8.json"
     },
-    "Paste:0x100bf60fc": {
-      "state": "migrated",
-      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
-      "sdk_implementation": {
-        "report": "reports/function-migration/sdk-import-reuse.json",
-        "entry_key": "Paste:0x100bf60fc",
-        "symbol": "_$s7SwiftUI17VerticalAlignmentV3topACvgZ"
-      },
-      "implementation_origin": "existing_sdk_reused",
-      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
-      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
-      "migration_evidence": "reports/function-migration/Paste-0x100bf60fc.json"
-    },
     "Paste:0x100bf6108": {
       "state": "migrated",
       "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
@@ -10222,22 +10209,18 @@
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalAccessibilityService.swift",
-          "symbol": "func f_100ae5e74() -> Bool"
-        },
-        {
-          "path": "replica/Sources/PasteReplica/AppMain.swift",
-          "symbol": "guard accessibilityService.f_100ae5e74() else"
+          "symbol": "public func f_100ae5e74() -> Bool"
         }
       ],
-      "review": "完整原getter AE5E74..AE5E90与当前FB718..FB734均28B，唯一调用同一AXIsProcessTrusted，随后cmp/cset规范化Bool；除bl重定位外完整指令字节相同，无self字段/DI/logger/请求UI读取。保留既有migrated资格，不新增完成数。",
+      "review": "完整原getter AE5E74..AE5E90与当前FB718..FB734均28B，唯一调用同一AXIsProcessTrusted，随后cmp/cset规范化Bool；除bl重定位外完整指令字节相同，无self字段/DI/logger/请求UI读取。保留既有migrated资格，不新增完成数。 dev21调用方改为writer前AX门槛，纯getter完整28B及当前真实AX stub再次静态核实；保留已满足的既有迁移。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
-      "compiled_review": "reports/function-migration/accessibility-getter-build39.json",
+      "compiled_review": "reports/function-migration/accessibility-getter-build41.json",
       "compiled_boundary": {
-        "start": "0x1000fb718",
-        "end_exclusive": "0x1000fb734",
+        "start": "0x100102d60",
+        "end_exclusive": "0x100102d7c",
         "size": 28,
-        "sha256": "d8d32fdef2f966b5f0b9ceaf0460e8aa6c43df92fb60195ec9b7bb5b758c4748",
-        "binary_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced"
+        "sha256": "b59c16edcb0bd650240ea9220fee644c3d88fa3a751435c3d7ea0fcacb1dc1e0",
+        "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c"
       },
       "migration_evidence": "reports/function-migration/Paste-0x100ae5e74.json"
     },
@@ -16139,20 +16122,20 @@
         }
       ],
       "implementation_origin": "existing_compiler_generated_reused",
-      "review": "build40完整44-byte析构及当前objc_release/swift_bridgeObjectRelease/swift_deallocClassInstance真实绑定重审；无新计数。",
+      "review": "build41完整44-byte析构及当前objc_release/swift_bridgeObjectRelease/swift_deallocClassInstance真实绑定重审；无新计数。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "source": {
         "path": "decompiled/Paste/part-0072.c",
         "line": 793
       },
       "compiled_boundary": {
-        "start": "0x1001520e8",
-        "end_exclusive": "0x100152114",
+        "start": "0x100157f00",
+        "end_exclusive": "0x100157f2c",
         "size": 44,
-        "sha256": "aa2d55daa546de52353e4597f9f23e38e8b9720c0ed70e97a9112605e52c9523",
-        "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+        "sha256": "faa211b37415508d7c6d09937f8150871bc9640774f1087d5bbf2424e69a68b8",
+        "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
         "lc_function_starts_verified": true,
-        "source": "build40 current full boundary and real SDK bindings"
+        "source": "build41 current full boundary and real SDK bindings"
       },
       "original_static_body": [
         "ldr x0,[x20,#0x10]",
@@ -16177,14 +16160,14 @@
         }
       ],
       "implementation_origin": "existing_reused",
-      "review": "最终build40完整0x100112ee8..0x100112f74（140B）：orderedTypes槽1e1918=8/dataByType槽1e1910=10；emptyArray1c2b78，typed Dictionary<String,Data> literal7a3a4后super-init；方法表1792d0 entry1792d8绑定112ee8。",
+      "review": "最终build41完整0x100119028..0x1001190b4（140B）：orderedTypes槽1ea638=8/dataByType槽1ea630=10；emptyArray1cac58，typed Dictionary<String,Data> literal7dec0后super-init；方法表17f1e0 entry17f1e8绑定119028。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "compiled_boundary": {
-        "start": "0x100112ee8",
-        "end_exclusive": "0x100112f74",
+        "start": "0x100119028",
+        "end_exclusive": "0x1001190b4",
         "size": 140,
-        "sha256": "8d5e18c13f233415e679eb698135bc3c297c5fe5f51c03d08bb5d17bd52a9cc0",
-        "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+        "sha256": "019a9e23931702cffc33d8eca3b0c046ba096a7359d4ed0f9d2947f77441269d",
+        "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
         "lc_function_starts_verified": true
       },
       "original_source": {
@@ -16192,8 +16175,8 @@
         "function": "0x10037dd6c"
       },
       "revalidation_only": true,
-      "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
-      "compiled_review": "reports/function-migration/compiled-reuse-build40.json",
+      "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
+      "compiled_review": "reports/function-migration/compiled-reuse-build41.json",
       "migration_evidence": "reports/function-migration/Paste-0x10037dd6c.json"
     },
     "Paste:0x10037df40": {
@@ -16207,14 +16190,14 @@
         }
       ],
       "implementation_origin": "existing_reused",
-      "review": "最终build40完整0x1001156f4..0x10011572c（56B）：按orderedTypes/dataByType依次bridgeRelease1784ec；方法entry1792fc绑定1156f4。",
+      "review": "最终build41完整0x10011b520..0x10011b558（56B）：按orderedTypes/dataByType依次bridgeRelease17e3cc；方法entry17f20c绑定11b520。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "compiled_boundary": {
-        "start": "0x1001156f4",
-        "end_exclusive": "0x10011572c",
+        "start": "0x10011b520",
+        "end_exclusive": "0x10011b558",
         "size": 56,
-        "sha256": "e4338aa668432075ce68173cb3a9efb26b3f110d6ab20d870b3aeafb23f669a1",
-        "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+        "sha256": "adef8b6f39606712741926a8810fb6df1f912fc91c48d70f9ba5854469dfa0d6",
+        "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
         "lc_function_starts_verified": true
       },
       "original_source": {
@@ -16222,8 +16205,8 @@
         "function": "0x10037df40"
       },
       "revalidation_only": true,
-      "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
-      "compiled_review": "reports/function-migration/compiled-reuse-build40.json",
+      "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
+      "compiled_review": "reports/function-migration/compiled-reuse-build41.json",
       "migration_evidence": "reports/function-migration/Paste-0x10037df40.json"
     },
     "Paste:0x10037e158": {
@@ -16237,14 +16220,14 @@
         }
       ],
       "implementation_origin": "existing_reused",
-      "review": "最终build40完整0x10011384c..0x10011388c（64B）：objc_allocWithZone1783cc后strict initializing-init11388c，保存恢复x21错误寄存器。",
+      "review": "最终build41完整0x10011998c..0x1001199cc（64B）：objc_allocWithZone17e2ac后strict initializing-init1199cc，保存恢复x21错误寄存器。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "compiled_boundary": {
-        "start": "0x10011384c",
-        "end_exclusive": "0x10011388c",
+        "start": "0x10011998c",
+        "end_exclusive": "0x1001199cc",
         "size": 64,
-        "sha256": "e66dfc4943258aab0cc27b006b21e85f21e4216ab36ba472c283ed971a25001a",
-        "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+        "sha256": "b69b52e987c72be76d53be418e9b247dff5441399ee5cf42cfafa40cfc779e1f",
+        "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
         "lc_function_starts_verified": true
       },
       "original_source": {
@@ -16252,8 +16235,8 @@
         "function": "0x10037e158"
       },
       "revalidation_only": true,
-      "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
-      "compiled_review": "reports/function-migration/compiled-reuse-build40.json",
+      "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
+      "compiled_review": "reports/function-migration/compiled-reuse-build41.json",
       "migration_evidence": "reports/function-migration/Paste-0x10037e158.json"
     },
     "Paste:0x10037e44c": {
@@ -16267,14 +16250,14 @@
         }
       ],
       "implementation_origin": "existing_reused",
-      "review": "最终build40完整0x10011572c..0x100115778（76B）：conformance17fb6c+24绑定11572c；115760 cbnz x21→115768跳过115764输出写入。",
+      "review": "最终build41完整0x10011b558..0x10011b5a4（76B）：conformance185d9c+24绑定11b558；11b58c cbnz x21→11b594跳过11b590输出写入。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "compiled_boundary": {
-        "start": "0x10011572c",
-        "end_exclusive": "0x100115778",
+        "start": "0x10011b558",
+        "end_exclusive": "0x10011b5a4",
         "size": 76,
-        "sha256": "8b9b1aeb8e130a13e84d54488e8bb0ddc9218394d2628c3429aea3aa11a5fbc2",
-        "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+        "sha256": "e86f9e2f0a2bc4841f57673271a7f74e7be8b9e2ef8c4635085402f4557cfb17",
+        "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
         "lc_function_starts_verified": true
       },
       "original_source": {
@@ -16282,8 +16265,8 @@
         "function": "0x10037e44c"
       },
       "revalidation_only": true,
-      "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
-      "compiled_review": "reports/function-migration/compiled-reuse-build40.json",
+      "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
+      "compiled_review": "reports/function-migration/compiled-reuse-build41.json",
       "migration_evidence": "reports/function-migration/Paste-0x10037e44c.json"
     },
     "Paste:0x10037def0": {
@@ -16297,14 +16280,14 @@
         }
       ],
       "implementation_origin": "existing_reused",
-      "review": "最终build40完整0x1001137fc..0x100113824（40B）：CodingKey accessor116050..116094后尾调debugDescription stub178060；debug conformance17fc3c+24绑定1137fc。",
+      "review": "最终build41完整0x10011993c..0x100119964（40B）：CodingKey accessor11be7c..11bec0后尾调debugDescription stub17df40；debug conformance185e6c+24绑定11993c。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "compiled_boundary": {
-        "start": "0x1001137fc",
-        "end_exclusive": "0x100113824",
+        "start": "0x10011993c",
+        "end_exclusive": "0x100119964",
         "size": 40,
-        "sha256": "437d560c4788dd9e7b1f6a1aa644269790d79fdbedf91a78fd0d39601f891661",
-        "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+        "sha256": "fd8b3a804109c71d27076d6ec1b88dcbebaf6d8ea13fd6c7da90d98cafe47b0d",
+        "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
         "lc_function_starts_verified": true
       },
       "original_source": {
@@ -16312,8 +16295,8 @@
         "function": "0x10037def0"
       },
       "revalidation_only": true,
-      "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
-      "compiled_review": "reports/function-migration/compiled-reuse-build40.json",
+      "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
+      "compiled_review": "reports/function-migration/compiled-reuse-build41.json",
       "migration_evidence": "reports/function-migration/Paste-0x10037def0.json"
     },
     "Paste:0x10037df18": {
@@ -16327,14 +16310,14 @@
         }
       ],
       "implementation_origin": "existing_reused",
-      "review": "最终build40完整0x100113824..0x10011384c（40B）：相同CodingKey accessor后尾调description stub178054；description conformance17fc14+24绑定113824。",
+      "review": "最终build41完整0x100119964..0x10011998c（40B）：同一CodingKey accessor后尾调description stub17df34；description conformance185e44+24绑定119964。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "compiled_boundary": {
-        "start": "0x100113824",
-        "end_exclusive": "0x10011384c",
+        "start": "0x100119964",
+        "end_exclusive": "0x10011998c",
         "size": 40,
-        "sha256": "4d9bf663e12f45e63233a0bf211aa0fde553e775376481ee9ae9c5dc1b71b44d",
-        "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+        "sha256": "1cad405e5d618b03c648851e4cc5e3916520630c2542350afb56f44dbdaf5d0d",
+        "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
         "lc_function_starts_verified": true
       },
       "original_source": {
@@ -16342,8 +16325,8 @@
         "function": "0x10037df18"
       },
       "revalidation_only": true,
-      "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
-      "compiled_review": "reports/function-migration/compiled-reuse-build40.json",
+      "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
+      "compiled_review": "reports/function-migration/compiled-reuse-build41.json",
       "migration_evidence": "reports/function-migration/Paste-0x10037df18.json"
     },
     "Paste:0x100323324": {
@@ -16430,19 +16413,19 @@
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "最终build40完整0x100111300..0x10011132c（44B）：lock/name/cached顺序释放，Optional destroy11132c..11136c，返回self；字段17fa48/17fa50/17fa58为10/18/28。",
+      "review": "最终build41完整0x10011712c..0x100117158（44B）：lock/name/cached顺序释放，Optional destroy117158..117198，返回self；字段185c78/185c80/185c88为10/18/28。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "compiled_boundary": {
-        "start": "0x100111300",
-        "end_exclusive": "0x10011132c",
+        "start": "0x10011712c",
+        "end_exclusive": "0x100117158",
         "size": 44,
-        "sha256": "557e3e05e9bfb08f6d18f391be1f5690bb1ee2c65c1ac5392054c0879de5f970",
-        "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+        "sha256": "184c4c7d89b816bdcbecbba8f9543c3fc0e5e1b9b8a9ffdf71b7b880c94052e7",
+        "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
         "lc_function_starts_verified": true
       },
       "revalidation_only": true,
-      "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
-      "compiled_review": "reports/function-migration/compiled-reuse-build40.json",
+      "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
+      "compiled_review": "reports/function-migration/compiled-reuse-build41.json",
       "migration_evidence": "reports/function-migration/Paste-0x1000d489c.json"
     },
     "Paste:0x1000d48c8": {
@@ -16456,19 +16439,19 @@
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "最终build40完整0x10011136c..0x1001113a0（52B）：相同顺序释放，dealloc(self,50,7)stub178540；metadata1e1890前destroy slot1e1880绑定11136c。",
+      "review": "最终build41完整0x100117198..0x1001171cc（52B）：相同顺序释放，dealloc(self,50,7)stub17e420；metadata1ea5b0前destroy slot1ea5a0绑定117198。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "compiled_boundary": {
-        "start": "0x10011136c",
-        "end_exclusive": "0x1001113a0",
+        "start": "0x100117198",
+        "end_exclusive": "0x1001171cc",
         "size": 52,
-        "sha256": "bead65cc3e10c044f1c6a1db2708103858f2d0c103e671c6841bcf4ce1e3d1d0",
-        "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+        "sha256": "d56b696813013a8a893f13ab2442962e0e1c0aaa14e5d5f2820775d0d775501b",
+        "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
         "lc_function_starts_verified": true
       },
       "revalidation_only": true,
-      "binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
-      "compiled_review": "reports/function-migration/compiled-reuse-build40.json",
+      "binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
+      "compiled_review": "reports/function-migration/compiled-reuse-build41.json",
       "migration_evidence": "reports/function-migration/Paste-0x1000d48c8.json"
     },
     "Paste:0x1000d48fc": {
@@ -24279,9 +24262,9 @@
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "原part-0234.c遗漏landing pad；完整arm64 1002d2b54..1002d2ba8及LSDA100e0c530已重解：call+1c length8→landing+40/action1，filter1 type-entry100e0c544经PC相对间接slot100ea9af8真实dyld binding=_OBJC_EHTYPE_$_NSException；landing begin_catch→retain异常→end_catch→release block→autoreleaseReturnValue。新独立ObjC target用@try/@catch(NSException*)，不冒用Swift do/catch。 Final build40 complete body/ARC/metadata/NSException LSDA revalidated; no execution or new count.",
+      "review": "原part-0234.c遗漏landing pad；完整arm64 1002d2b54..1002d2ba8及LSDA100e0c530已重解：call+1c length8→landing+40/action1，filter1 type-entry100e0c544经PC相对间接slot100ea9af8真实dyld binding=_OBJC_EHTYPE_$_NSException；landing begin_catch→retain异常→end_catch→release block→autoreleaseReturnValue。新独立ObjC target用@try/@catch(NSException*)，不冒用Swift do/catch。 Final build41 complete body/ARC/metadata/NSException LSDA revalidated; no execution or new count.",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
-      "compiled_review": "reports/function-migration/objc-exception-build40.json",
+      "compiled_review": "reports/function-migration/objc-exception-build41.json",
       "migration_evidence": "reports/function-migration/Paste-0x1002d2b54.json"
     },
     "Paste:0x1002ff9c8": {
@@ -26681,11 +26664,19 @@
     },
     "Paste:0x100309008": {
       "state": "partial",
-      "contract": "原默认标题值投影/空title回退已接实际Header；文件数输入来源仍为JSON adapter。",
+      "contract": "原默认标题实际Header及卡片读取canonical files paths.count；空数组0，raw缺失/非files传nil保持原fallback1。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTitles.swift",
           "symbol": "f_100309008"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "private var cardTitle:"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "fileCount: current.kind == .files ? current.decodedFilePreviewMetadata?.paths.count : nil"
         }
       ],
       "implementation_origin": "new_value_projection_with_actual_consumer",
@@ -26694,8 +26685,8 @@
         "line": 813,
         "fragment_sha256": "3e3ebdf1ce93900fbbbba9070351d40c0f41eb605c7ddfb63a165fa0fea76435"
       },
-      "review": "原REA/arm64与本地化资源静态对照及实际Header/OSD消费者已核；最终build37成功，140输入SHA一致并绑定产物。未执行产品/功能/单测/UI/MCP；typedmetadata/权限/原偏好与gesture父partial保留。",
-      "remaining": "原Entity getter/typed file metadata与JSON itemFileURLs、完整权限/事件域仍不同，父partial不升级。"
+      "review": "原REA/arm64与本地化资源静态对照及实际Header/OSD消费者已核；最终build37成功，140输入SHA一致并绑定产物。未执行产品/功能/单测/UI/MCP；typedmetadata/权限/原偏好与gesture父partial保留。 dev21原完整309008..3091d0及f31ebc8→f315a38→f317b10文件投影重核；主卡片和独立Header均改canonical optional count，不用payload URL去重/fallback。",
+      "remaining": "JSON kind及原CoreData Entity/DI/完整元数据对象封装和运行回归仍partial；文件count adapter差异已收敛。"
     },
     "Paste:0x100308f88": {
       "state": "partial",
@@ -27179,6 +27170,10 @@
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
           "symbol": "public static func decodeFiles("
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
+          "symbol": "public static func decodeColor("
         }
       ],
       "implementation_origin": "newly_migrated",
@@ -27186,8 +27181,8 @@
         "path": "decompiled/Paste/part-0255.c",
         "line": 1411
       },
-      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。",
-      "remaining": "image/files投影与实际生产链已接；其他ContentMetadata cases、原Config动态DI/CoreData包装及完整运行等价仍partial。"
+      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。 dev21同一13字段Stored新增strict color/UInt64缺0，实际add/更新颜色及VM消费者读取同raw；原multi-case父不升级。",
+      "remaining": "image/files/color三种投影实际接入；text/link等其他cases、原Config/DI/CoreData与运行回归仍partial。"
     },
     "Paste:0x1003168a8": {
       "state": "partial",
@@ -27201,6 +27196,10 @@
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
           "symbol": "public static func encodeFiles("
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
+          "symbol": "public static func encodeColor("
         }
       ],
       "implementation_origin": "newly_migrated",
@@ -27208,13 +27207,18 @@
         "path": "decompiled/Paste/part-0255.c",
         "line": 1517
       },
-      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。",
-      "remaining": "image/files投影与实际生产链已接；其他ContentMetadata cases、原Config动态DI/CoreData包装及完整运行等价仍partial。"
+      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。 dev21同一13字段Stored新增strict color/UInt64缺0，实际add/更新颜色及VM消费者读取同raw；原multi-case父不升级。",
+      "remaining": "image/files/color三种投影实际接入；text/link等其他cases、原Config/DI/CoreData与运行回归仍partial。"
     },
     "Paste:0x100315a38": {
       "state": "partial",
-      "contract": "Image projection type==image; imageSize missing -> zero, imageData missing -> empty Data. Other original content projections remain outside scope.",
+      "contract": "Stored color projection only, strict type color and absent UInt64 colorCode defaults0.",
       "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
+          "symbol": "public static func decodeColor(_ rawPreview: Data?) -> OriginalColorPreviewMetadata?",
+          "line": 19
+        },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
           "symbol": "decode",
@@ -27225,18 +27229,23 @@
           "symbol": "public static func decodeFiles("
         }
       ],
-      "implementation_origin": "newly_migrated",
       "source": {
         "path": "decompiled/Paste/part-0255.c",
         "line": 946
       },
-      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。",
-      "remaining": "image/files投影与实际生产链已接；其他ContentMetadata cases、原Config动态DI/CoreData包装及完整运行等价仍partial。"
+      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。 dev21 color: Shared13-field decoder remains reused; image/files/color projections connected.",
+      "remaining": "image/files/color三种值投影已接，其他cases/原Config/DI/CoreData/全量回归仍partial。",
+      "implementation_origin": "newly_migrated"
     },
     "Paste:0x100316004": {
       "state": "partial",
-      "contract": "Image inverse projection sets type=image, present CGSize/imageData and other fields nil; other enum cases remain partial.",
+      "contract": "Color inverse projection stores type color with present UInt64 code; selected JSON/binary Stored encoder reused.",
       "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
+          "symbol": "public static func encodeColor(_ metadata: OriginalColorPreviewMetadata?, binaryPropertyList: Bool) -> Data?",
+          "line": 49
+        },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
           "symbol": "encode",
@@ -27247,13 +27256,13 @@
           "symbol": "public static func encodeFiles("
         }
       ],
-      "implementation_origin": "newly_migrated",
       "source": {
         "path": "decompiled/Paste/part-0255.c",
         "line": 1197
       },
-      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。",
-      "remaining": "image/files投影与实际生产链已接；其他ContentMetadata cases、原Config动态DI/CoreData包装及完整运行等价仍partial。"
+      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。 dev21 color: Actual color mutation writer persists raw atomically with replacement payload using merged state preference.",
+      "remaining": "image/files/color三种值投影已接，其他cases/原Config/DI/CoreData/全量回归仍partial。",
+      "implementation_origin": "newly_migrated"
     },
     "Paste:0x10031ebc8": {
       "state": "partial",
@@ -27267,6 +27276,10 @@
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
           "symbol": "public static func decodeFiles("
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
+          "symbol": "public static func decodeColor("
         }
       ],
       "implementation_origin": "newly_migrated",
@@ -27274,8 +27287,8 @@
         "path": "decompiled/Paste/part-0257.c",
         "line": 2827
       },
-      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。",
-      "remaining": "image/files投影与实际生产链已接；其他ContentMetadata cases、原Config动态DI/CoreData包装及完整运行等价仍partial。"
+      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。 dev21同一13字段Stored新增strict color/UInt64缺0，实际add/更新颜色及VM消费者读取同raw；原multi-case父不升级。",
+      "remaining": "image/files/color三种投影实际接入；text/link等其他cases、原Config/DI/CoreData与运行回归仍partial。"
     },
     "Paste:0x10031ed94": {
       "state": "partial",
@@ -27289,6 +27302,10 @@
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
           "symbol": "public static func encodeFiles("
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
+          "symbol": "public static func encodeColor("
         }
       ],
       "implementation_origin": "newly_migrated",
@@ -27296,8 +27313,8 @@
         "path": "decompiled/Paste/part-0257.c",
         "line": 2893
       },
-      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。",
-      "remaining": "image/files投影与实际生产链已接；其他ContentMetadata cases、原Config动态DI/CoreData包装及完整运行等价仍partial。"
+      "review": "Real Models.rawPreview/decodedImagePreviewMetadata, Store image writers and preview size consumer connected; complete thirteen-field Stored Codable shape statically recovered. dev20扩同一13字段Stored的files投影和真实Store写入/Models getter/filepreview路径与首项copy-time尺寸consumer，空生成preview nil编码省略，解码缺Data按原emptyData；无旧nil getter重生。 dev21同一13字段Stored新增strict color/UInt64缺0，实际add/更新颜色及VM消费者读取同raw；原multi-case父不升级。",
+      "remaining": "image/files/color三种投影实际接入；text/link等其他cases、原Config/DI/CoreData与运行回归仍partial。"
     },
     "Paste:0x100077164": {
       "state": "partial",
@@ -27348,16 +27365,12 @@
           "symbol": "static func perform()"
         },
         {
-          "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
-          "symbol": "OriginalAccessibilityRequestAction.perform()"
-        },
-        {
-          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "path": "replica/Sources/PasteReplica/UI/OriginalAccessibilityModals.swift",
           "symbol": "OriginalAccessibilityRequestAction.perform()"
         }
       ],
-      "review": "Original complete 0x100aea424..0x100aeaabc arm64 and true indirect stubs checked; SDK PostEvent0/Unknown2 and activateAllWindows1; both explicit Settings and paste permission-alert button consumers statically connected.",
-      "remaining": "Original DI/logger and weak-owner async task setting isAccessRequested after3sec omitted. Original modal and success transition remain partial.",
+      "review": "Original complete 0x100aea424..0x100aeaabc arm64 and true indirect stubs checked; SDK PostEvent0/Unknown2 and activateAllWindows1; both explicit Settings and paste permission-alert button consumers statically connected. dev21显式设置/粘贴入口先显示Enable模态，只有其request按钮调用该系统动作，不在进入窗口时自动请求。",
+      "remaining": "有限系统动作及modal消费者已接；原logger/DI及完整视觉/host/网络help父仍partial。",
       "compiled_boundary": {
         "start": "0x100039e60",
         "end_exclusive": "0x10003a1f0",
@@ -27636,6 +27649,435 @@
       "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
       "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
       "migration_evidence": "reports/function-migration/Paste-0x100bfb0ac.json"
+    },
+    "Paste:0x100066068": {
+      "state": "partial",
+      "contract": "普通恢复只有direct偏好或forceDirect且AXfalse才询问三态；raw2在writer前进入Enable后结束当次；raw0/1后续copy-only，raw1先写directfalse。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "var copyInsteadOfPaste = !(forceDirect || store.preferences.pasteToActiveApp)"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAccessibilityModals.swift",
+          "symbol": "enum OriginalPasteToOtherAppsModal"
+        }
+      ],
+      "implementation_origin": "existing_consumer_corrected",
+      "review": "原caller/按钮真实UInt8分支与PB独立完整arm64审阅；已接实际AppMain/Settings，命名pasteboard保持独立适配。",
+      "remaining": "完整原UI host/图像、实体仓库/DI/错误传播及全量运行回归仍未等同；权限动作不冒全父完整。"
+    },
+    "Paste:0x100085a6c": {
+      "state": "partial",
+      "contract": "Stack forceDirect进入同一权限决策；raw2先授权再结束、不作当次恢复；raw0/1仍复制，raw1关direct偏好。队列先消费/返回后empty关闭保留。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "_ = self.paste(ids: [first.id], plain: false, forceDirect: true)"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "let result = OriginalPasteToOtherAppsModal.run()"
+        }
+      ],
+      "implementation_origin": "existing_consumer_corrected",
+      "review": "原caller/按钮真实UInt8分支与PB独立完整arm64审阅；已接实际AppMain/Settings，命名pasteboard保持独立适配。",
+      "remaining": "完整原UI host/图像、实体仓库/DI/错误传播及全量运行回归仍未等同；权限动作不冒全父完整。"
+    },
+    "Paste:0x1000ad4d8": {
+      "state": "partial",
+      "contract": "明确Settings权限按钮显示Enable常规模态并忽略结果；不凭未证Picker setter增加权限gate。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+          "symbol": "_ = OriginalEnableAccessibilityModal.run()"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAccessibilityModals.swift",
+          "symbol": "enum OriginalEnableAccessibilityModal"
+        }
+      ],
+      "implementation_origin": "existing_consumer_corrected",
+      "review": "原caller/按钮真实UInt8分支与PB独立完整arm64审阅；已接实际AppMain/Settings，命名pasteboard保持独立适配。",
+      "remaining": "完整原UI host/图像、实体仓库/DI/错误传播及全量运行回归仍未等同；权限动作不冒全父完整。"
+    },
+    "Paste:0x100ae4f8c": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "newly_migrated",
+      "contract": "Synchronous first permission modal; default raw2 and initial2; cancel shortcut copy action returns checkbox false0/true1; completion stores byte before close.",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAccessibilityModals.swift",
+          "symbol": "enum OriginalPasteToOtherAppsModal"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAccessibilityModals.swift",
+          "symbol": "private struct PasteToOtherAppsContent: View"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "let result = OriginalPasteToOtherAppsModal.run()"
+        }
+      ],
+      "review": "DefaultAction AF179C→AF1F78→AF208C→2 (request permission); cancelAction→AF1FEC→AF21D0→checkbox Bool0/1 (copy). Raw2 is not cancel/no-op. App name from menuBarOwningApplication.localizedName or original fallback; title2.bold/body/checkbox originalkeys; width280 and observed spacing/padding restored in independent SwiftUI shell.",
+      "remaining": "Original private paste-to-other-apps image, exact hosting visual-effect/OS26 wrapper and remaining geometric identity omitted; no complete visual equivalence claim.",
+      "compiled_review": "reports/function-migration/accessibility-modals-build41.json"
+    },
+    "Paste:0x100ae5248": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "newly_migrated",
+      "contract": "Regular configuration1 modal initial result1, closes with stored byte; request uses original OS action, actual AX observation grants success then1sec completion0; closing beforehand leaves1.",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAccessibilityModals.swift",
+          "symbol": "enum OriginalEnableAccessibilityModal"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAccessibilityModals.swift",
+          "symbol": "private final class EnableAccessibilityModel: ObservableObject"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "_ = OriginalEnableAccessibilityModal.run()"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+          "symbol": "_ = OriginalEnableAccessibilityModal.run()"
+        }
+      ],
+      "review": "AEC53C initializes requested=IOHIDCheckAccess(PostEvent0)!=unknown2. AEA424 OS action then AEACE4→AEAD74 main task level0/requestedtrue; AXtrue AEB730 clears observation then AEB930 activate app/enabledtrue/regular windowlevel8/removeclosable; AEBd24 sleep1sec then completion0. Regular1 has no configuration0 skip button.",
+      "remaining": "Original image/animation, exact VisualEffect/OS26 hosting, KVO frontmost-app window-level coordination, DI/logger/analytics remain partial. Original3sec potentialIssue→network help excluded; not mislabeled requested delay.",
+      "compiled_review": "reports/function-migration/accessibility-modals-build41.json",
+      "compiled_boundary": {
+        "start": "0x10003d9c0",
+        "end_exclusive": "0x10003dc08",
+        "size": 584,
+        "sha256": "419bfd3d2609311e86ce6e85cde96bc9e46eb5e45c070b5b7393e48add085555"
+      }
+    },
+    "Paste:0x1003d47ac": {
+      "state": "partial",
+      "contract": "原非compact Header配置的实际卡片字体/字重/日期字型/间距消费者恢复；完整多style配置仍partial。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "private var cardHeader: some View"
+        }
+      ],
+      "implementation_origin": "existing_real_card_consumer_corrected",
+      "original_evidence": {
+        "path": "decompiled/Paste/part-0304.c",
+        "line": 1583,
+        "fragment_sha256": "1a71164352e76673336477287c5bc5fb4a61f8a97dc9bee18f41fb278b5c2164"
+      },
+      "review": "已核原REA/arm64及实际Source入口；主智能体最终build41通过，147输入SHA一致。未运行产品/功能/单测/UI/MCP；所有父保持partial。",
+      "remaining": "完整多style/原生Header对象/精确总尺寸圆角和模型身份仍partial，不以共享字体子组冒充父完整。"
+    },
+    "Paste:0x1003d3b74": {
+      "state": "partial",
+      "contract": "原标签与来源icon垂直居中/leading12的卡片布局部分恢复；完整原生约束树仍partial。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "private var cardHeader: some View"
+        }
+      ],
+      "implementation_origin": "existing_real_card_consumer_corrected",
+      "original_evidence": {
+        "path": "decompiled/Paste/part-0304.c",
+        "line": 1182,
+        "fragment_sha256": "cf5001ba07d2f7c79a3260deab01dbe462a3c612e7ff6f8690537bc7206bedc4"
+      },
+      "review": "已核原REA/arm64及实际Source入口；主智能体最终build41通过，147输入SHA一致。未运行产品/功能/单测/UI/MCP；所有父保持partial。",
+      "remaining": "完整多style/原生Header对象/精确总尺寸圆角和模型身份仍partial，不以共享字体子组冒充父完整。"
+    },
+    "Paste:0x1003d41b4": {
+      "state": "partial",
+      "contract": "真实卡片标题接原默认及显式标题选择，复用原Core helper；原完整模型/背景/date/icon链仍partial。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "private var cardTitle: String"
+        }
+      ],
+      "implementation_origin": "existing_real_card_consumer_corrected",
+      "original_evidence": {
+        "path": "decompiled/Paste/part-0304.c",
+        "line": 1385,
+        "fragment_sha256": "29f9af765c3aecf2c3a2bab6d344b62eb7dba5b7f5e039710bdf6d1010f74d60"
+      },
+      "review": "已核原REA/arm64及实际Source入口；主智能体最终build41通过，147输入SHA一致。未运行产品/功能/单测/UI/MCP；所有父保持partial。",
+      "remaining": "完整多style/原生Header对象/精确总尺寸圆角和模型身份仍partial，不以共享字体子组冒充父完整。"
+    },
+    "Paste:0x100308ea0": {
+      "state": "migrated",
+      "contract": "Packed UInt64 NSColor: absent-alpha test uses all bits above23; alpha value bits24...31, RGB low24 channels, Double/255; NSColor(red:green:blue:alpha:) exact constructor.",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalColorPreviewMetadata.swift",
+          "symbol": "public static func color(_ code: UInt64) -> NSColor",
+          "line": 20
+        }
+      ],
+      "source": {
+        "path": "decompiled/Paste/part-0251.c",
+        "line": 722
+      },
+      "review": "Full arm64 f308ea0..<f308f38 and exact ObjC selector verified; real ColorContent consumer uses decoded persistent metadata. Static complete-source candidate bound to final unified build41; no runtime equivalence claim.",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "implementation_origin": "newly_migrated",
+      "migration_evidence": "reports/function-migration/Paste-0x100308ea0.json"
+    },
+    "Paste:0x100322504": {
+      "state": "partial",
+      "contract": "Color branch only: first item text, replace all #, Scanner.scanHexInt64 true ->UInt64 metadata; missing/scan false nil.",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalColorPreviewMetadata.swift",
+          "symbol": "public static func generate(_ items: [OriginalPasteboardItem])",
+          "line": 11
+        }
+      ],
+      "source": {
+        "path": "decompiled/Paste/part-0258.c",
+        "line": 851
+      },
+      "review": "Actual add/capture/update color writers consume generator; original multi-type factory parent not declared complete.",
+      "remaining": "Other original factory type branches/config/async/DI remain partial.",
+      "implementation_origin": "newly_migrated"
+    },
+    "Paste:0x1003bbc20": {
+      "state": "partial",
+      "contract": "Color metadata only from raw decoded case color; absent/bad/noncolor returns NSColor.black, never plainText/title parse.",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaColorPreviewContent.swift",
+          "symbol": "private static func modelColor(_ item: ClipboardItem) -> NSColor",
+          "line": 112
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Models.swift",
+          "symbol": "public var decodedColorPreviewMetadata: OriginalColorPreviewMetadata?",
+          "line": 44
+        }
+      ],
+      "source": {
+        "path": "decompiled/Paste/part-0295.c",
+        "line": 635
+      },
+      "review": "Visible preview now uses canonical raw-only projection and full UInt64 helper.",
+      "remaining": "Original complete VM/CoreData owner/executor/ABI remains partial.",
+      "implementation_origin": "newly_migrated"
+    },
+    "Paste:0x100bf5c64": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf5c64",
+        "symbol": "_$s7SwiftUI11ControlSizeOMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf5c64.json"
+    },
+    "Paste:0x100bf5eec": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf5eec",
+        "symbol": "_$s7SwiftUI16KeyboardShortcutV13defaultActionACvgZ"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf5eec.json"
+    },
+    "Paste:0x100bf5fac": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf5fac",
+        "symbol": "_$s7SwiftUI17EnvironmentValuesV11controlSizeAA07ControlF0Ovg"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf5fac.json"
+    },
+    "Paste:0x100bf5fb8": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf5fb8",
+        "symbol": "_$s7SwiftUI17EnvironmentValuesV11controlSizeAA07ControlF0Ovs"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf5fb8.json"
+    },
+    "Paste:0x100bf6018": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf6018",
+        "symbol": "_$s7SwiftUI17EnvironmentValuesV22multilineTextAlignmentAA0fG0Ovg"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf6018.json"
+    },
+    "Paste:0x100bf6024": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf6024",
+        "symbol": "_$s7SwiftUI17EnvironmentValuesV22multilineTextAlignmentAA0fG0Ovs"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf6024.json"
+    },
+    "Paste:0x100bf6198": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf6198",
+        "symbol": "_$s7SwiftUI19BorderedButtonStyleVACycfC"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf6198.json"
+    },
+    "Paste:0x100bf61a4": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf61a4",
+        "symbol": "_$s7SwiftUI19BorderedButtonStyleVMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf61a4.json"
+    },
+    "Paste:0x100bf64ec": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf64ec",
+        "symbol": "_$s7SwiftUI4EdgeO3SetV8rawValueAEs4Int8V_tcfC"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf64ec.json"
+    },
+    "Paste:0x100bf64f8": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf64f8",
+        "symbol": "_$s7SwiftUI4EdgeO3SetV8trailingAEvgZ"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf64f8.json"
+    },
+    "Paste:0x100bf65ac": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf65ac",
+        "symbol": "_$s7SwiftUI4FontV6title2ACvgZ"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf65ac.json"
+    },
+    "Paste:0x100bf9aa4": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf9aa4",
+        "symbol": "_$ss15ContinuousClockV7InstantVMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf9aa4.json"
+    },
+    "Paste:0x100bf9abc": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf9abc",
+        "symbol": "_$ss15ContinuousClockVMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf9abc.json"
+    },
+    "Paste:0x100bf9ac8": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf9ac8",
+        "symbol": "_$ss15InstantProtocolP8advanced2byx8DurationQz_tFTj"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf9ac8.json"
+    },
+    "Paste:0x100bfa770": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bfa770",
+        "symbol": "_$ss5ClockP3now7InstantQzvgTj"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bfa770.json"
+    },
+    "Paste:0x100bfa77c": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bfa77c",
+        "symbol": "_$ss5ClockP5sleep5until9tolerancey7InstantQz_8DurationQzSgtYaKFTj"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bfa77c.json"
     }
   }
 }

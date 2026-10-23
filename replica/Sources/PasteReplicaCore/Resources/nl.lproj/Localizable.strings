@@ -75,3 +75,13 @@
 "settings.shortcuts.action.reset.confirmation" = "Weet je zeker dat je alle snelkoppelingen wilt resetten naar hun standaardwaarden?";
 "general.action.reset" = "Herstellen";
 "settings.paste-items.accessibility-access-request" = "Toegankelijkheid inschakelen";
+"accessibility-access.paste-to-other-apps.title" = "Wil je rechtstreeks naar %@ plakken?";
+"accessibility-access.paste-to-other-apps.description" = "Paste heeft toegankelijkheidstoegang nodig om rechtstreeks in andere apps te kunnen plakken.";
+"accessibility-access.paste-to-other-apps.enable-accessibility-access" = "Toegankelijkheid inschakelen";
+"accessibility-access.paste-to-other-apps.copy-to-clipboard" = "Niet nu, kopiëren naar klembord";
+"general.current-app" = "huidige app";
+"general.do-not-ask-again" = "Niet nogmaals vragen";
+"accessibility-access.enable-accessibility-access.title" = "Plakken in elke App";
+"accessibility-access.enable-accessibility-access.subtitle" = "Voor de beste ervaring en directe plakactie in andere applicaties, geef Paste toegang tot de toegankelijkheidsfuncties van je Mac in Systeeminstellingen.";
+"accessibility-access.enable-accessibility-access.open-system-settings" = "Systeeminstellingen openen";
+"accessibility-access.enable-accessibility-access.allow-access" = "Toegang toestaan";

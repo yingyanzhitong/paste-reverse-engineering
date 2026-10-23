@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001e16d4",
-  "reviewed_at": "2026-10-23T13:50:05.110876+00:00",
+  "reviewed_at": "2026-10-23T14:08:59.905317+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0154.c",
@@ -14,13 +14,13 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+  "compiled_app_binary_sha256": "d762c3867db5eaa51e4cee5b0fda7bd4ff273b683f4dd4623355d83417ddd12c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated_resource",
   "contract": "原Settings Localizable资源helper，Locale.current/独立资源bundle fallback；17locale原值及真实Settings label消费者。",
   "review": "原Localizable key/17locale逐值与真实Settings消费者静态对照；最终build40成功145输入SHA一致并绑定。显式权限/声音默认兼容经peerreview；未运行产品/功能/单测/UI/MCP，不将原整Settings界面/状态/默认值升满。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }
