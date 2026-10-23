@@ -79,7 +79,7 @@ struct ReplicaPanelView: View {
     }
 
     private var searchField: some View {
-        ReplicaSearchEditor(text: $state.query, focused: $searchFocused,
+        ReplicaSearchEditor(text: $state.query, focused: $searchFocused, store: state.store,
             filters: searchFilterChips,
             onInputChange: { text, filters, nodes in state.applySearchInput(nodes: nodes, text: text, filters: filters) },
             onEnter: { state.controller?.pasteSelection(plainTextOnly: false) },

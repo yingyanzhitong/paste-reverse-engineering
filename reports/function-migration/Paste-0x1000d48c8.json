@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d48c8",
-  "reviewed_at": "2026-10-23T12:12:01.967632+00:00",
+  "reviewed_at": "2026-10-23T12:26:43.194500+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
+  "compiled_app_binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "按 lock→name→optional logger 顺序释放字段，再释放类实例。",
-  "review": "最终build30完整deallocating-deinit f750c..f7540：相同顺序释放lock/name/cached，再swift_deallocClassInstance(self,0x50,7)；metadata1c0460前destroy slot1c0450绑定f750c。",
+  "review": "最终build32完整deallocating-deinit107b10..107b44：同顺序释放后deallocClassInstance(self,50,7)；metadata1d53b0前destroy slot1d53a0绑定107b10。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000f750c",
-    "end_exclusive": "0x1000f7540",
+    "start": "0x100107b10",
+    "end_exclusive": "0x100107b44",
     "size": 52,
-    "sha256": "006a7d38bff8408960a20193f05468e51de88bcd3a4dcee8d8fc235343a7e74c",
-    "binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
+    "sha256": "b0dcfcb443ca065268c2d635c38270835c98fa6580a1a48cd5e619bf4fbe2ea8",
+    "binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
     "lc_function_starts_verified": true
   }
 }

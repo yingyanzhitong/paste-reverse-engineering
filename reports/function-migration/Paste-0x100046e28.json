@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100046e28",
+  "reviewed_at": "2026-10-23T12:26:43.799449+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0026.c",
+    "line": 182
+  },
+  "original_pseudocode_sha256": "385e3c301f3281ee75f661c38f13800d834976ecc8a4399a714e26fa9064f455",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchSuggestionAnchor.swift": "2af28e89780d0e373331ea15588909cea7d99e1008e396717bb57b10b21436a7",
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "138dd0d9a207af289ca506aea2dd4f5d9b02b16c0b81d8b87fc34ce69c6c4f25"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "NSTextLayoutManager接NSRange仅用location；从textContentManager.documentRange.location偏移得到location再取fragment，任一级缺失返回CGRect.zero。textLineFragments首个unsigned NSLocationInRange匹配，否则重新取first line；无line返回.zero。signed location-line.characterRange.location保留overflow trap，先max0再min(length)；index<length取locationForCharacter(at:).x，否则typographicBounds.width。rect.x=characterX+glyphOrigin.x；y=layoutFragmentFrame.minY+glyphOrigin.y；width/height=整line typographicBounds。无fragment.minX、无caret固定宽度、无range.length。",
+  "review": "完整arm64 46e28..<471b4；46f8c SUBS+LO/HS为unsigned membership；47070 SUBS/VS为有符号overflow，47078 BIC清负、47084 CSEL LT夹length；4709c B.GE决定character.x或bounds.width；470c0 glyphOrigin.x、470cc CGRectGetMinY、470dc glyphOrigin.y；47120..174返回四Double。SDK NSTextContentManager/NSTextLayoutManager/NSTextLineFragment头对应同系统组件，非自造字符宽度。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

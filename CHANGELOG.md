@@ -1,5 +1,15 @@
 # 更新日志
 
+## 0.8.0-dev.14 - 2026-10-23
+
+- 搜索建议接通真实调用链：选区通知生成原 context、取消旧 task、查询候选、TextKit2 layoutViewport 和原 anchor 几何，转坐标后交独立原生 child NSWindow；编辑器保留 firstResponder，实际键盘/鼠标接受、Escape/失焦/销毁清理已接。
+- 恢复原候选规则：app/type/device/pinboard 顺序，各组先排除精确已应用值再取前 30、单组异常继续，末尾按输入词匹配原英文五日期。类型六项及原 TitleCase 值保留，普通筛选也改相同值，现有索引 cd 匹配仍适用；字符空白分段、词边界转义正则、顺序匹配 helper 直接消费。
+- 接受使用生成候选时捕获的节点与 index，替换整个 node，不按最新 caret 插入，不补尾空格；重复/越界保留 captured 节点后仍走统一 set，normalize0、末尾选区、即时历史和清建议上下文。完整 case0 整 query/addMode1、原 DI 和菜单全部视觉/生命周期仍部分实现。
+- JSON source 适配明确保留差异：应用 bundleID/首条 sourceName、device distinct/排序及 Pinboard rawType/同名 tie 不等同原 CoreData。窗口已接 level101/clear/shadow、原最小宽 120 与屏幕下边界、滚动及关闭监测；完整行高亮、标题 minX 对齐和 Scroller 细节仍缺，未用全部 FilterBrowser choices 冒原建议。
+- build31 编译发现 AppKit Swift 名称 parentWindow 已改 parent；修为 self.parent，并把 monitor 的 NSEvent 返回移到 MainActor.assumeIsolated 外。最终 build32 release 编译通过，日志 10.02 秒、包装 11.20 秒，137 份输入前后摘要一致；仅既有 NSImage 跨 MainActor 警告仍存在。既有 8 项编译器/析构、缓存与异常桥重审无重复计数。
+- 累计迁移或复用 1,416 / 81,134（源码 564、真实 SDK 转发 852），剩余 79,718，其中 166 项部分实现、2 项有效历史验证。快审仍 72 个行为单元，绑定 82 份源码，状态仍 32 项列明行为存在、37 项部分实现或缺证据、1 项缺失、2 项未核对；数量不是产品完成率。
+- 本轮仅编译和静态对照，未执行新的单测、功能、原版动态、UI、MCP、重启或异常注入测试；未打包或安装，当前安装仍 0.7.0，尚未一比一验收。
+
 ## 0.8.0-dev.13 - 2026-10-23
 
 - 搜索编辑提案实际接入属性投影和原归一化。添加原独立搜索历史：节点与 UTF-16 选区同时保存，筛选数量变化立即分组，否则按 0.4 秒单次 Timer 分组；弱 owner 的 MainActor 异步任务再 flush。撤销先 flush，重做不 flush，清空历史不改 current，保留原不对称行为。

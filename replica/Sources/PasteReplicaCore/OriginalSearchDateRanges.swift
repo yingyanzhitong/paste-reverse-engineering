@@ -3,6 +3,11 @@ import Foundation
 public struct OriginalSearchDateFilter: Hashable, Sendable {
     public let title: String
     public let range: Range<Date>
+
+    public init(title: String, range: Range<Date>) {
+        self.title = title
+        self.range = range
+    }
 }
 
 public enum OriginalSearchDateRanges {

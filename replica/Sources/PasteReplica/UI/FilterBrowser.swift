@@ -6,7 +6,15 @@ extension ReplicaSearchFilterChip.Selection {
     var queryNode: OriginalSearchQueryNode {
         let value: String
         switch self {
-        case let .kind(kind): value = kind == .files ? "file" : kind == .richText ? "text" : kind.rawValue
+        case let .kind(kind):
+            switch kind {
+            case .text, .richText: value = "Text"
+            case .link: value = "Link"
+            case .image: value = "Image"
+            case .files: value = "File"
+            case .color: value = "Color"
+            case .unknown: value = "Unknown"
+            }
         case let .source(source): value = source
         case let .device(device): value = device
         case let .date(filter): return OriginalSearchDateEncoding.f_1002d9d2c(filter.range)

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d489c",
-  "reviewed_at": "2026-10-23T12:12:01.965632+00:00",
+  "reviewed_at": "2026-10-23T12:26:43.192449+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
+  "compiled_app_binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "非释放实例的析构核心：按顺序释放 lock、name 和 optional logger 字段。",
-  "review": "最终build30完整nondeallocating-deinit f74a0..f74cc：依lock→name→cached调用swift_release、bridgeObjectRelease、Optional existential value-witness destroy(f74cc..f750c)，返回self不dealloc；字段常量162ca8/162cb0/162cb8分别0x10/0x18/0x28。",
+  "review": "最终build32完整nondeallocating-deinit107aa4..107ad0：lock/name/cached顺序释放，Optional destroy107ad0..107b10，返回self；字段174fe8/174ff0/174ff8为10/18/28。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000f74a0",
-    "end_exclusive": "0x1000f74cc",
+    "start": "0x100107aa4",
+    "end_exclusive": "0x100107ad0",
     "size": 44,
-    "sha256": "89261292133cdea7bb074eee9010b27c709c0e382e8e119a3e5261a1431365bd",
-    "binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
+    "sha256": "f965b58d8c4dcbd8a37adf93d0f5532cecdfd1d4e7246ec14bda93a4437a5be2",
+    "binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
     "lc_function_starts_verified": true
   }
 }

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10030f3e0",
+  "reviewed_at": "2026-10-23T12:26:43.789088+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0253.c",
+    "line": 1783
+  },
+  "original_pseudocode_sha256": "b05214d95be792d5294bd7582e3d28aae0622007fde844f745443aad68e7c776",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchSuggestions.swift": "d64f3d8306a0f563a0711de06af87ea375d609d0e6c640b4a7fb29965eeb6381"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "固定六项 Unknown/Image/Color/File/Link/Text；query空返回原序，非空双方lowercased后candidate.hasPrefix(query)，函数内部不trim。",
+  "review": "REA伪代码与dev13固定arm64证据静态逐分支对照，真实SearchEditor→provider→菜单消费者已核；最终build32成功，137输入前后SHA一致。原CoreData/JSON区别与f2df190 partial保留。未运行产品/功能/单测/UI/MCP。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

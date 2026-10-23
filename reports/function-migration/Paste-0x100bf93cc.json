@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100bf93cc",
-  "reviewed_at": "2026-10-23T10:39:04.136964+00:00",
+  "reviewed_at": "2026-10-23T12:26:44.709142+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-1194.c",
@@ -15,17 +15,15 @@
     "entry_key": "Paste:0x100bf93cc",
     "symbol": "_$sSy10FoundationE7compare_7options5range6localeSo18NSComparisonResultVqd___So22NSStringCompareOptionsVSnySS5IndexVGSgAA6LocaleVSgtSyRd__lF"
   },
-  "sdk_reuse_report_sha256": "3ef6d02f832992ed48a873a05917a18268e17e5f115bef834b705a4ba37eb23e",
+  "sdk_reuse_report_sha256": "c5494091b0acb380a107f2b61285863f6ad55ff4d0838a30d9d62e68bb8add33",
   "implementation_origin": "existing_sdk_reused",
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "4ab837ffc64e31c3d5bcaae9809e73fbd6828cee6cf109ed2addb27b8d69b746",
+  "compiled_app_binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
   "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；系统内部实现及调用方行为不计入纯转发体契约。",
-  "active": false,
-  "retired_reason": "当前稳定编译产物无唯一且完整匹配的真实SDK导入转发，撤回本条完成计数；历史构建证据只代表旧快照。"
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；系统内部实现及调用方行为不计入纯转发体契约。"
 }

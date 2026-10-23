@@ -58,13 +58,13 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 ## 并行迁移与现有实现复用
 
-2026-10-23 当前 0.8.0-dev.13 快照为 1,405 / 81,134：源码实现或复用 558 个、实际系统转发 847 个；剩余 79,729 个，其中 155 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
+2026-10-23 当前 0.8.0-dev.14 快照为 1,416 / 81,134：源码实现或复用 564 个、实际系统转发 852 个；剩余 79,718 个，其中 166 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
 
 按用户最新要求，四智能体改为先集中核对已有功能和完整调用链：已有实现满足契约就直接复用，只补确认缺失或行为不同的部分。系统转发、薄包装、编译器生成代码按证据成组核对，不再以逐个重写地址推进。功能存在、源码契约迁移、功能回归和一比一验收分别记录；不能把一次静态检查说成全部函数已通过。整体目标保持 active，尚未执行本轮新的功能、UI 或 MCP 测试。
 
 此前 0.8.0-dev.4 补共享依赖缓存、一次性配置、剪贴板 MD5 校验及去重接入、日志输出/诊断启动偏好、搜索筛选原符号、快捷键共享服务与错误类型、原生预览按钮和异步文本格式状态。17 个语言资源按已恢复词条接入，并补资源打包。稳定构建前后 88 份源码、配置和资源摘要一致，生成的 bundle accessor 也绑定构建。完整仓库事务、Sentry 本地副作用、actor 析构和部分父级 UI 工厂继续保留 partial。
 
-本轮集中快审报告见 [fast-coverage-audit.md](../reports/replica/fast-coverage-audit.md)：72 个行为单元绑定 77 份源码，32 项列明行为已有代码、37 项有差异或缺证据、1 项缺实现、2 项未核对。这不是原版完整产品的功能百分比，也不提升逐地址台账状态。
+本轮集中快审报告见 [fast-coverage-audit.md](../reports/replica/fast-coverage-audit.md)：72 个行为单元绑定 82 份源码，32 项列明行为已有代码、37 项有差异或缺证据、1 项缺实现、2 项未核对。这不是原版完整产品的功能百分比，也不提升逐地址台账状态。
 
 0.8.0-dev.5 先补确认缺口：真实筛选 Popover、多选同组 OR/跨组 AND、三列分组与胶囊条目、键盘和焦点返回；VisionKit 图片文字拖选与原生滚动缩放/居中；预览 Pin/分享和三项复数计数；原 ItemData 编解码与压缩导入。另修三个偏好保存丢失及多项后续图片不能进入 OCR。26 个偏好字段静态核对均有合并分支。稳定编译前后 112 份输入（78 份 Swift/配置、17 份 strings、17 份 stringsdict）摘要一致。
 
@@ -83,6 +83,8 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 0.8.0-dev.12 修正独立暂停到期恢复：真实单次 Timer 到期即恢复监控，不再等待新剪贴板输入；取消重排、弱 owner、终止清理与实际 monitor.stop/start 已接。无日期字幕读取实际采集计时器状态，17 种语言补两个原词条。恢复后 ClosedState/提示音/rateApp 三消费者及共用原音效开关、声音素材差异已静态定位，事务/Undo/音效仍有缺口。搜索已定位编辑提案和选区→描述→异步建议任务链，当前无完整消费者，保留 partial；图片对象传递满足已核部分，未重复改写。最终构建 131 份输入摘要一致，日志 15.97 秒、包装 17.81 秒；当前完整体证据见 [compiled-reuse-build29.json](../reports/function-migration/compiled-reuse-build29.json) 和 [objc-exception-build29.json](../reports/function-migration/objc-exception-build29.json)。本轮没有运行产品或功能回归，尚未验证真实计时器/音效/粘贴交互。
 
 0.8.0-dev.13 将编辑提案接原归一化，并恢复独立的节点/UTF-16 选区历史。真实 Undo/Redo 回放筛选附件和原节点边界；按筛选数量决定即时分组或 0.4 秒 Timer 分组，保留异步 weak/MainActor flush、redo 不 flush、reset 不改 current 等原边界。历史六个方法静态合同完成，整个输入协调器继续 partial；原 anchor 上下文值已恢复但真实建议消费者未闭合。建议 provider 已定位实际 CoreData 来源与匹配/排序规则，不用 JSON 全候选替代。成功写回后接历史事务、逆序逐项时间更新及共享 Undo 清理，原实体复制/持久 token/通知/ClosedState 仍缺。最终构建 133 份输入摘要一致，日志 17.60 秒、包装 19.65 秒；证据见 [compiled-reuse-build30.json](../reports/function-migration/compiled-reuse-build30.json) 和 [objc-exception-build30.json](../reports/function-migration/objc-exception-build30.json)。没有运行功能回归或实际剪贴板、Undo、计时器交互。
+
+0.8.0-dev.14 已将真实选区 context、分组 provider、原 TextKit2 anchor 几何、独立 child NSWindow 及 captured-context 接受操作连接。原候选顺序/过滤/限额/日期匹配与类型原值已恢复；普通筛选统一 TitleCase，当前索引 cd 匹配兼容。父链仍 partial：JSON 与原 CoreData 的身份/关系不同，通用整 query 建议和菜单完整视觉/高亮/标题对齐/Scroller/DI 尚有缺口。逐项已连行为和限制见 [search-suggestions-static-audit.json](../reports/replica/search-suggestions-static-audit.json)。build31 的 Swift AppKit 改名问题已修正，最终 build32 的 137 份输入摘要一致，日志 10.02 秒、包装 11.20 秒；完整体证据见 [compiled-reuse-build32.json](../reports/function-migration/compiled-reuse-build32.json) 和 [objc-exception-build32.json](../reports/function-migration/objc-exception-build32.json)。未执行菜单、候选、焦点、键盘或其他功能回归。
 
 原搜索建议/自动 token 化、完整 query 序列化和反解析、Indexable provider、后台 actor/schema/批量恢复、原图片 ViewModel/优选尺寸/错误传播、原复制时文件大小及完整文件布局/VM、仓库事务、混合格式恢复及 token/repository/undo/DidRestore 副作用仍有差异。独立 CLI 的 ClipboardStore.search 保持原接口，不代表完整原 SearchService。既有 NSImage 跨 MainActor 异步分析警告仍保留在 partial 范围。四个 OCR 算法方法体未改，但外围图片数据读取使整文件摘要改变，旧验证转为历史；不以重新写摘要冒称当前功能通过。没有运行新的功能、单测、原版动态、UI 或 MCP 测试，尚未一比一验收。
 

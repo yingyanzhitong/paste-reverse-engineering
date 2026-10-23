@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037def0",
-  "reviewed_at": "2026-10-23T12:12:01.954300+00:00",
+  "reviewed_at": "2026-10-23T12:26:43.181759+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
+  "compiled_app_binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "CodingKeys的debugDescription协议入口使用本类型CodingKey witness并转发Swift.CodingKey默认debugDescription。",
-  "review": "最终build30完整CodingKeys debugDescription witness f9214..f923c：通过当前fbf14..fbf58 CodingKey witness accessor调用Swift CodingKey debugDescription默认实现；当前debug conformance162e7c+24绑定f9214。",
+  "review": "最终build32完整debugDescription witness109818..109840：CodingKey accessor10c518..10c55c后尾调stub16db8c；debug conformance1751bc+24绑定109818。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000f9214",
-    "end_exclusive": "0x1000f923c",
+    "start": "0x100109818",
+    "end_exclusive": "0x100109840",
     "size": 40,
-    "sha256": "f8115eceb030b9a66f460de7f0b3927d5049782aac8aeb584e4f22ccdf1790e2",
-    "binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
+    "sha256": "3ff25a1d814d46fe829f961acf2feec8240fb76a60c3c1b1f6b3678a2359c842",
+    "binary_sha256": "8454b4b75ab50bc1bcd051be1da098781ec33eedf081500c6bf10ef76f82208c",
     "lc_function_starts_verified": true
   }
 }
