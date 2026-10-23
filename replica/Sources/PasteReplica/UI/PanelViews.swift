@@ -35,17 +35,13 @@ struct ReplicaPanelView: View {
                         .padding(.vertical, 5)
                     }
                     .onChange(of: state.primaryID) { _, id in
-                        if let id { reader.scrollTo(id, anchor: .center) }
+                        if let id { reader.scrollTo(id) }
                     }
                 }
                 .frame(height: 242).offset(y: 11)
                 Spacer(minLength: 0)
             }
-            if state.visibleItems.isEmpty {
-                Color.clear.frame(height: 24).accessibilityHidden(true)
-            } else {
-                footer.frame(height: 24)
-            }
+            Color.clear.frame(height: 24).accessibilityHidden(true)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(colorScheme == .dark ? Color(red: 0.13, green: 0.13, blue: 0.14)
@@ -230,17 +226,6 @@ struct ReplicaPanelView: View {
         }.foregroundStyle(Color(nsColor: .labelColor)).fixedSize()
     }
 
-    private var footer: some View {
-        HStack(spacing: 12) {
-            Text(state.showDeleted ? "最近删除" : (state.kind?.displayName ?? ""))
-            if state.store.preferences.isMonitoringPaused { Label("已暂停", systemImage: "pause.circle") }
-            Spacer()
-            Text("\(state.visibleItems.count) 个项目")
-            if state.selection.count > 1 { Text("已选择 \(state.selection.count) 项") }
-        }
-        .font(.system(size: 11)).foregroundStyle(.secondary)
-        .padding(.horizontal, 26)
-    }
 }
 
 @MainActor
@@ -255,14 +240,14 @@ struct ReplicaClipboardCard: View {
             cardHeader
             ReplicaItemContent(item: item, compact: true)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.horizontal, 16).padding(.top, 13)
+                .padding(.horizontal, 12).padding(.top, 11)
                 .clipped()
             HStack(spacing: 4) {
                 if !item.pinboardIDs.isEmpty { Image(systemName: "pin.fill").font(.system(size: 10)) }
                 Text(itemSummary(item)).lineLimit(2).frame(maxWidth: .infinity, alignment: item.kind == .link ? .leading : .center)
             }
-            .font(.system(size: 12)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
-            .padding(.horizontal, 16).padding(.bottom, 13).padding(.top, 7)
+            .font(.system(size: 13)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
+            .padding(.horizontal, 12).padding(.bottom, 11).padding(.top, 7)
         }
         .frame(width: 232, height: 232)
         .background(Color(nsColor: .textBackgroundColor))
@@ -291,7 +276,7 @@ struct ReplicaClipboardCard: View {
                 Text(relativeTime(item.createdAt)).font(.system(size: 12)).opacity(0.8)
             }
             .foregroundStyle(.white)
-            .padding(.leading, 16).padding(.top, 8)
+            .padding(.leading, 12).padding(.top, 8)
             Spacer(minLength: 0)
             SourceAppIcon(item: item)
                 .frame(width: 48, height: 48)

@@ -3,7 +3,7 @@
   "kind": "original_machine_code_differential",
   "function_id": "Paste:0x10008468c",
   "passed": true,
-  "tested_at": "2026-10-23T02:48:23.261336+00:00",
+  "tested_at": "2026-10-23T03:31:45.967126+00:00",
   "original_binary_executed": true,
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_text_section": {
@@ -20,27 +20,28 @@
   "original_user_data_access": false,
   "sandbox_network_denied": true,
   "sandbox_profile_sha256": "68bf9843b9108984194aec81f9144e2ffb2051b1bc1f4df3d7eebc67100993a4",
-  "runner_sha256": "0963253b6abcd07a2df08319b62a4b30658b69a53dff62c191d686a97d7f74b4",
+  "runner_sha256": "688ac634af605eddd3f1f3840628ef0c70ba49d7c2b2e31c5f9b2995690f5f6b",
   "replica_object_sha256": {
-    "ClipboardStore.swift.o": "0859d658bb849d27d7f3f13b5df1bdfa5c881e7f3f97a63cee73ca60ba8c8dc3",
+    "ClipboardStore.swift.o": "0edd014eb5020b7af837658a0a56f666cd7de980e7b8a53426b9b1e81ae57350",
     "KeyboardShortcut.swift.o": "a80191286d7fdbe5cf6c7cedbc1a7ce42328eaa84dc9d4fb16a2479d9abc9592",
     "Models.swift.o": "2fab3bcd0948dc206da61cb32b2e21e9806b7846ba69c310647bc0d88ecc5914",
-    "OCR.swift.o": "9d4066ce22c3c026674aae6b8efa0756dae3c1ebec96bb8a0d765bbd187643ae",
+    "OCR.swift.o": "623bb3818a3c10e98aec4bc337ec0aa157f6e71c63e97b8d480a06fa00f656db",
     "OriginalStackFunctions.swift.o": "346c7437b131434c9aecc003061d1f252f7a3bd45833d5cc6bc7ddb7fb506d16",
+    "OriginalStackTableController.swift.o": "83f92bad144fb0ea38f74ba41b4dd0b9457dd3bc9fe8eec4090ed2729a5d7f1f",
     "Pasteboard.swift.o": "72b5b1a2138180585982d2054c43e0264189add70aabdc53f13cad2100f051f5"
   },
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "e408e508e9bc0bf2b7477ab142e29e4b1c1087daa63cd402c312f145e6cf16a4",
-    "replica/Tests/Original/FunctionOracle.swift": "be9ee1bd6e15efe2ede5f915d4435417162721044531c24ebb99790b01760b0c",
-    "replica/Tests/Original/OracleABI.h": "f5e21d67ec585de5a5a9e93c5947c2316c2b7ffb9278d3d801f61dccbbd04a07",
+    "replica/Tests/Original/FunctionOracle.swift": "bb5cb9a1da5e34c7b8cd399a5bddf66f5c6d0254e9a24307c6786945646fd253",
+    "replica/Tests/Original/OracleABI.h": "7f99dcf4ec4b9efdab97b73e01336fcf99868d648869e80542802a7cf93a678c",
     "replica/Tests/Original/OracleABI.s": "b811ac3afdcb9328676b7b65bab601e70e49958d90f64a68676adfa301027e7a",
-    "replica/Tests/Original/OracleObjects.m": "99c27c9ba9ed522becb4fa80bab93467f8a0a96b23fb6e6f313a2645a340e5a7",
-    "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382",
-    "replica/scripts/test-original-functions.py": "406cae7c6b1f71a4c564763e2f38845e5b3befbfb3e90231672e4677500c5fa3"
+    "replica/Tests/Original/OracleObjects.m": "c772fe14a12db1aca540afd9ebf2cd963a5b10fdd3083fc6595b37c84dbaa5d9",
+    "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "22d8b873d55e169dd3985e3cc600a449ddcad779c3cb4a8a500d7982f2c995de",
+    "replica/scripts/test-original-functions.py": "bf69349d6e9986222cf191021cce7d592b4adfb9c13c293f2e69b6282d29c39d"
   },
   "original_inputs": "cases[].input; synthetic images/objects only; same values supplied to original code",
   "replica_inputs": "cases[].input; same synthetic data or same Vision observations",
-  "comparison": "Exact Data bytes, token strings/Float confidence/CGRect?, NSError domain/code/userInfo; array identity/order/COW and boolean value as applicable",
+  "comparison": "Exact Data bytes, token strings/Float confidence/CGRect?, NSError domain/code/userInfo; array identity/order/COW, scalar count/boolean, cached constraint identity/anchor/activation and immediate/settled height as applicable",
   "environment": {
     "macos": "Version 26.2 (Build 25C56)",
     "architecture": "arm64",

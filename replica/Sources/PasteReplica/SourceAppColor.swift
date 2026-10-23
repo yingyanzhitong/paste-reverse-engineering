@@ -7,7 +7,8 @@ enum SourceAppColor {
     static func color(bundleID: String?, name: String) -> NSColor {
         let key = bundleID ?? name
         if let cached = cache[key] { return cached }
-        let observed: [String: UInt32] = ["com.google.Chrome": 0x4285F4, "com.tencent.qq": 0x00A3F5]
+        let observed: [String: UInt32] = ["com.google.Chrome": 0x4285F4, "com.tencent.qq": 0x00A3F5,
+                                           "com.openai.chat": 0x080F34]
         let result: NSColor
         if let value = bundleID.flatMap({ observed[$0] }) {
             result = NSColor(srgbRed: Double((value >> 16) & 255) / 255,

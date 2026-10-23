@@ -102,7 +102,7 @@ def main():
     output.unlink(missing_ok=True)
     run(["/usr/bin/sandbox-exec", "-f", sandbox, runner, bundle, output], log, timeout=240)
     raw = json.loads(output.read_text())
-    if raw.get("passed") is not True or len(raw["functions"]) != 9:
+    if raw.get("passed") is not True or len(raw["functions"]) != 13:
         raise SystemExit("Missing successful native comparison results")
     mappings = json.loads((ROOT / "replica/function-map.json").read_text())["functions"]
     reports = ROOT / "reports/function-equivalence"
@@ -125,7 +125,7 @@ def main():
             "source_sha256": {path: sha((ROOT / path).read_bytes()) for path in paths},
             "original_inputs": "cases[].input; synthetic images/objects only; same values supplied to original code",
             "replica_inputs": "cases[].input; same synthetic data or same Vision observations",
-            "comparison": "Exact Data bytes, token strings/Float confidence/CGRect?, NSError domain/code/userInfo; array identity/order/COW and boolean value as applicable",
+            "comparison": "Exact Data bytes, token strings/Float confidence/CGRect?, NSError domain/code/userInfo; array identity/order/COW, scalar count/boolean, cached constraint identity/anchor/activation and immediate/settled height as applicable",
             "environment": {"macos": raw["macos"], "architecture": platform.machine(), "word_layout": raw["word_layout"]},
             "case_count": len(cases), "cases": cases,
             "limits": ["Only listed cases and recovered source-level contracts; not proof over every possible input",
@@ -133,6 +133,12 @@ def main():
                        "OCR wrapper comparison checks original word-array contract; replica also retains line text",
                        "No original UI entry point or private application state is executed"],
         }
+        if key in {"Paste:0x100082b90", "Paste:0x100083a20", "Paste:0x100085230", "Paste:0x100085670"}:
+            report["limits"].extend([
+                "Original snippets use synthetic NSObject elements; only Array count is read, no original snippet members are accessed",
+                "Replica uses ClipboardItem elements with the same count; this is source-contract comparison, not memory-layout identity",
+                "Height comparison uses a zero-duration animation group and a later run-loop turn; full animation curves and missing-outlet traps are not verified",
+            ])
         (reports / (key.replace(":", "-") + ".json")).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"passed": True, "functions": len(raw["functions"]),
                       "cases": sum(len(cases) for cases in raw["functions"].values()),

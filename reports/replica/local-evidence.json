@@ -62,10 +62,14 @@
         "0x100085670",
         "0x100083a20",
         "0x100083e58",
-        "0x10008413c"
+        "0x10008413c",
+        "0x1000114ec",
+        "0x1000114f4",
+        "0x100082b90",
+        "0x100085230"
       ],
       "observation": "不能成为key/main，level25，全空间与全屏辅助；行44，1至10行夹取；反转、禁止行选择、取队首、空时关闭",
-      "validation": "Nib解析78对象/15连接；隐藏UI验证队列去重、反转持久化及队首消费; direct original differential for controller windowDidLoad properties, main/key selector wrappers and array identity/COW reverse.",
+      "validation": "Nib解析78对象/15连接；隐藏UI验证队列去重、反转持久化及队首消费; direct original differential for controller windowDidLoad properties, main/key selector wrappers and array identity/COW reverse. Native table constraint caching/count/selection and deferred height commits pass direct original comparison.",
       "limitation": "尚未完成辅助功能授权后的跨应用CmdV及全部窗口视觉对照"
     },
     {
@@ -108,10 +112,11 @@
   ],
   "function_implementation_summary": "reports/function-implementation/summary.json",
   "original_function_differential": {
-    "functions": 9,
-    "cases": 168,
+    "functions": 13,
+    "cases": 336,
     "passed": true,
     "reports": "reports/function-equivalence/",
     "all_functions_complete": false
-  }
+  },
+  "mcp_tests_run_in_current_batch": false
 }

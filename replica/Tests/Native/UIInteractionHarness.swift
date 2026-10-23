@@ -1,5 +1,6 @@
 import AppKit
 import Foundation
+import SwiftUI
 import PasteReplicaCore
 
 @main
@@ -68,6 +69,12 @@ struct UIInteractionHarness {
         precondition(store.preferences.isMonitoringPaused && store.preferences.pauseUntil == nil)
         state.resumeMonitoring()
         precondition(!store.preferences.isMonitoringPaused && store.preferences.pauseUntil == nil)
+        state.searchVisible = true
+        state.query = "missing search fixture"
+        key(53, "", [])
+        precondition(state.query.isEmpty && state.searchVisible)
+        key(53, "", [])
+        precondition(!state.searchVisible && !(ui.panel.firstResponder is NSTextView))
         func load(_ provider: NSItemProvider, _ type: String) async throws -> Data {
             try await withCheckedThrowingContinuation { continuation in
                 provider.loadDataRepresentation(forTypeIdentifier: type) { data, error in
@@ -103,7 +110,21 @@ struct UIInteractionHarness {
         let filePaths = try await load(fileProvider, "NSFilenamesPboardType")
         let restoredPaths = try PropertyListSerialization.propertyList(from: filePaths, format: nil) as? [String]
         precondition(restoredPaths == [fileA.path, fileB.path])
+        state.addToStack(visible[1])
+        let stackWindow = NSPanel(contentRect: .init(x: 0, y: 0, width: 264, height: 120),
+                                           styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
+        let stackContent = NSHostingView(rootView: ReplicaStackView(state: state))
+        stackWindow.contentView = stackContent
+        stackContent.layoutSubtreeIfNeeded()
+        try await Task.sleep(nanoseconds: 100_000_000)
+        func tables(in view: NSView) -> [NSTableView] {
+            (view as? NSTableView).map { [$0] } ?? view.subviews.flatMap { tables(in: $0) }
+        }
+        let stackTable = tables(in: stackContent).first!
+        precondition(stackTable.numberOfRows == state.stackItems.count && stackTable.rowHeight == 44)
+        precondition(stackTable.delegate?.tableView?(stackTable, shouldSelectRow: 0) == false)
+        precondition(stackTable.view(atColumn: 0, row: 0, makeIfNecessary: true) != nil)
         precondition(!ui.panel.isVisible && NSApp.windows.allSatisfy { !$0.isVisible })
-        print("{\"passed\":true,\"checks\":[\"panel event routing for select/copy/deselect\",\"multi-selection paste delivery order\",\"custom quick paste and plain text modifiers\",\"custom Pinboard navigation\",\"Stack duplicate prevention, reverse persistence and queue consumption; all pause durations and resume; async NSItemProvider binary/HTML/Unicode loads; multi-file URLs and legacy paths; internal OCR data excluded\"],\"scope\":\"Hidden native panel, synthetic key events, temporary store and private named pasteboard; no global hooks, visible windows or cross-application paste\"}")
+        print("{\"passed\":true,\"checks\":[\"panel event routing for select/copy/deselect\",\"multi-selection paste delivery order\",\"custom quick paste and plain text modifiers\",\"custom Pinboard navigation\",\"Escape clears query and then dismisses search\",\"Stack duplicate prevention, reverse persistence and queue consumption; all pause durations and resume; async NSItemProvider binary/HTML/Unicode loads; multi-file URLs and legacy paths; internal OCR data excluded\",\"hidden SwiftUI Stack hosts native NSTableView with actual rows/cells, rowHeight44 and delegate rejecting selection\"],\"scope\":\"Hidden native panel, synthetic key events, temporary store and private named pasteboard; no global hooks, visible windows or cross-application paste\"}")
     }
 }

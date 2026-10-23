@@ -3,6 +3,7 @@ import CryptoKit
 import Darwin
 import ImageIO
 import MachO
+import ObjectiveC
 import UniformTypeIdentifiers
 import Vision
 import PasteReplicaCore
@@ -110,6 +111,55 @@ private func errorResult(_ error: Error) -> [String: Any] {
                     && (alias == nil || alias!.map(\.value) == fresh().map(\.value))
                 record("Paste:0x10008468c", ["count": count, "shared_storage": shared, "duplicate_values": true],
                        original.map(\.value), replica.map(\.value), equal)
+            }
+        }
+        let numberOfRows = unsafeBitCast(address(0x100085230), to: (@convention(c)(UnsafeRawPointer, UInt64, UnsafeRawPointer) -> Int).self)
+        let shouldSelect = unsafeBitCast(address(0x100085670), to: (@convention(c)(UnsafeRawPointer, UInt64, UnsafeRawPointer, Int) -> UInt64).self)
+        for count in [0, 1, 2, 9, 10, 11, 257] {
+            for rowHeight: CGFloat in [1, 12.5, 44] {
+                let table = NSTableView(frame: .init(x: 0, y: 0, width: 264, height: 100))
+                table.rowHeight = rowHeight
+                let scroll = NSScrollView(frame: table.frame)
+                scroll.documentView = table
+                let tablePointer = Unmanaged.passUnretained(table).toOpaque()
+                let pointer = oracle_create_table_controller(tablePointer)!
+                let original = Unmanaged<NSViewController>.fromOpaque(pointer).takeRetainedValue()
+                let cls: AnyClass = type(of: original)
+                let snippets = class_getInstanceVariable(cls, "snippets")!
+                // This fixture is restricted to functions that read the Array's count.
+                // No original function dereferences these stand-in snippet elements.
+                pointer.advanced(by: ivar_getOffset(snippets)).assumingMemoryBound(to: [Sentinel].self).pointee = (0..<count).map { Sentinel($0) }
+                let replica = OriginalStackTableController()
+                replica.tableView.rowHeight = rowHeight
+                replica.snippets = (0..<count).map { ClipboardItem(plainText: "row \($0)") }
+                let input: [String: Any] = ["count": count, "row_height": rowHeight]
+                let first = oracle_call_context(address(0x100082b90), pointer, 0)
+                let second = oracle_call_context(address(0x100082b90), pointer, 0)
+                let constraint = Unmanaged<NSLayoutConstraint>.fromOpaque(UnsafeRawPointer(bitPattern: UInt(first))!).takeUnretainedValue()
+                let actualConstraint = replica.f_100082b90()
+                let expectedLazy: [String: Any] = ["constant": constraint.constant, "active": constraint.isActive,
+                    "reused": first == second, "scroll_anchor": constraint.firstItem === scroll]
+                let actualLazy: [String: Any] = ["constant": actualConstraint.constant, "active": actualConstraint.isActive,
+                    "reused": actualConstraint === replica.f_100082b90(), "scroll_anchor": actualConstraint.firstItem === replica.scrollView]
+                record("Paste:0x100082b90", input, expectedLazy, actualLazy, NSDictionary(dictionary: expectedLazy).isEqual(to: actualLazy))
+                let expectedCount = numberOfRows(UnsafeRawPointer(pointer), 0, UnsafeRawPointer(tablePointer))
+                record("Paste:0x100085230", input, expectedCount, replica.f_100085230(), expectedCount == replica.f_100085230())
+                for row in [Int.min, -1, 0, count, Int.max] {
+                    let expected = shouldSelect(UnsafeRawPointer(pointer), 0, UnsafeRawPointer(tablePointer), row) != 0
+                    let actual = replica.f_100085670(row: row)
+                    record("Paste:0x100085670", input.merging(["row": row]) { a, _ in a }, expected, actual, expected == actual)
+                }
+                NSAnimationContext.runAnimationGroup { context in
+                    context.duration = 0
+                    _ = oracle_call_context(address(0x100083a20), pointer, 0)
+                    replica.f_100083a20()
+                }
+                let beforeOriginal = constraint.constant, beforeReplica = actualConstraint.constant
+                RunLoop.current.run(until: Date().addingTimeInterval(0.03))
+                let expectedHeight: [String: Any] = ["immediate": beforeOriginal, "settled": constraint.constant, "active": constraint.isActive]
+                let actualHeight: [String: Any] = ["immediate": beforeReplica, "settled": actualConstraint.constant, "active": actualConstraint.isActive]
+                record("Paste:0x100083a20", input, expectedHeight, actualHeight, NSDictionary(dictionary: expectedHeight).isEqual(to: actualHeight))
+                withExtendedLifetime(scroll) {}
             }
         }
         func image(width: Int, height: Int, text: String = "", type: String = UTType.png.identifier,

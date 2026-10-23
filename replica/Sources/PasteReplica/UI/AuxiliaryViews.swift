@@ -212,33 +212,46 @@ struct ReplicaStackView: View {
                 Text("Empty").font(.system(size: 12)).foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity).frame(height: 44)
             } else {
-                ScrollView {
-                    LazyVStack(spacing: 0) {
-                        ForEach(state.stackItems) { item in
-                            HStack(spacing: 8) {
-                                SourceAppIcon(item: item).frame(width: 24, height: 24)
-                                Text(item.plainText ?? item.title).font(.system(size: 12)).lineLimit(2)
-                                Spacer(minLength: 0)
-                            }.padding(.horizontal, 10).frame(height: 44)
-                            .contextMenu {
-                                Button("复制") { state.controller?.copy(item: item, plainTextOnly: false) }
-                                Button("粘贴") {
-                                    if state.controller?.paste(item: item, plainTextOnly: false) == true {
-                                        state.stackIDs.removeAll { $0 == item.id }
-                                        if state.stackItems.isEmpty { state.controller?.hideStack() }
-                                    }
-                                }
-                                Button("预览") { state.controller?.showPreview(item: item) }
-                                Button("移除") { state.stackIDs.removeAll { $0 == item.id } }
-                            }
-                        }
-                    }
-                }.frame(height: CGFloat(min(10, max(1, state.stackItems.count)) * 44))
+                ReplicaStackTable(state: state)
+                    .frame(height: CGFloat(min(10, max(1, state.stackItems.count)) * 44))
             }
         }
         .frame(width: 264)
         .background(.regularMaterial).clipShape(RoundedRectangle(cornerRadius: 10))
         .preferredColorScheme(state.preferredScheme)
+    }
+}
+
+@MainActor
+struct ReplicaStackTable: NSViewRepresentable {
+    @ObservedObject var state: ReplicaUIState
+
+    func makeCoordinator() -> OriginalStackTableController { OriginalStackTableController() }
+    func makeNSView(context: Context) -> NSScrollView { context.coordinator.scrollView }
+    func updateNSView(_ view: NSScrollView, context: Context) {
+        let controller = context.coordinator
+        controller.makeCell = { item in
+            NSHostingView(rootView:
+                HStack(spacing: 8) {
+                    SourceAppIcon(item: item).frame(width: 24, height: 24)
+                    Text(item.plainText ?? item.title).font(.system(size: 12)).lineLimit(2)
+                    Spacer(minLength: 0)
+                }.padding(.horizontal, 10).frame(height: 44)
+                .contextMenu {
+                    Button("复制") { state.controller?.copy(item: item, plainTextOnly: false) }
+                    Button("粘贴") {
+                        if state.controller?.paste(item: item, plainTextOnly: false) == true {
+                            state.stackIDs.removeAll { $0 == item.id }
+                            if state.stackItems.isEmpty { state.controller?.hideStack() }
+                        }
+                    }
+                    Button("预览") { state.controller?.showPreview(item: item) }
+                    Button("移除") { state.stackIDs.removeAll { $0 == item.id } }
+                })
+        }
+        controller.snippets = state.stackItems
+        controller.tableView.reloadData()
+        controller.f_100083a20()
     }
 }
 

@@ -210,6 +210,110 @@
       },
       "equivalence_evidence": "reports/function-equivalence/Paste-0x100011138.json",
       "remaining": "直接对照有窗口与nil窗口的原版控制器路径；隐藏窗口属性一致，不代表实际多屏/全屏/动画像素验收。"
+    },
+    "Paste:0x100082b90": {
+      "state": "verified",
+      "contract": "惰性创建并缓存tableView.enclosingScrollView.heightAnchor等于tableView.rowHeight的约束，首次不激活，后续返回相同实例；表格缺少enclosingScrollView是原版强制解包无效调用。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalStackTableController.swift",
+          "symbol": "f_100082b90"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+          "symbol": "OriginalStackTableController"
+        }
+      ],
+      "tests": [
+        {
+          "path": "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift",
+          "symbol": "testAddressStackTableContracts"
+        }
+      ],
+      "contract_test": {
+        "report": "reports/replica/function-contracts.json",
+        "case": "address-stack-table-contracts"
+      },
+      "equivalence_evidence": "reports/function-equivalence/Paste-0x100082b90.json",
+      "remaining": "有限正常调用差分，原版计数函数使用仅读取count的合成对象数组，复刻使用ClipboardItem数组；未承诺缺失IBOutlet时的崩溃诊断、全屏或像素动画曲线一致。"
+    },
+    "Paste:0x100083a20": {
+      "state": "verified",
+      "contract": "通过惰性高度约束的animator把constant改为rowHeight乘clamp(snippets.count,1,10)，并立即激活约束；即使动画duration为零，constant也在之后的run-loop轮次提交。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalStackTableController.swift",
+          "symbol": "f_100083a20"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+          "symbol": "OriginalStackTableController"
+        }
+      ],
+      "tests": [
+        {
+          "path": "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift",
+          "symbol": "testAddressStackTableContracts"
+        }
+      ],
+      "contract_test": {
+        "report": "reports/replica/function-contracts.json",
+        "case": "address-stack-table-contracts"
+      },
+      "equivalence_evidence": "reports/function-equivalence/Paste-0x100083a20.json",
+      "remaining": "有限正常调用差分，原版计数函数使用仅读取count的合成对象数组，复刻使用ClipboardItem数组；未承诺缺失IBOutlet时的崩溃诊断、全屏或像素动画曲线一致。"
+    },
+    "Paste:0x100085230": {
+      "state": "verified",
+      "contract": "主执行器隔离检查后返回snippets数组count，不以十行高度限制截断数据源项目数。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalStackTableController.swift",
+          "symbol": "f_100085230"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+          "symbol": "OriginalStackTableController"
+        }
+      ],
+      "tests": [
+        {
+          "path": "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift",
+          "symbol": "testAddressStackTableContracts"
+        }
+      ],
+      "contract_test": {
+        "report": "reports/replica/function-contracts.json",
+        "case": "address-stack-table-contracts"
+      },
+      "equivalence_evidence": "reports/function-equivalence/Paste-0x100085230.json",
+      "remaining": "有限正常调用差分，原版计数函数使用仅读取count的合成对象数组，复刻使用ClipboardItem数组；未承诺缺失IBOutlet时的崩溃诊断、全屏或像素动画曲线一致。"
+    },
+    "Paste:0x100085670": {
+      "state": "verified",
+      "contract": "主执行器隔离检查后对所有行返回false，拒绝用户选择；不妨碍右键菜单。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalStackTableController.swift",
+          "symbol": "f_100085670"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+          "symbol": "OriginalStackTableController"
+        }
+      ],
+      "tests": [
+        {
+          "path": "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift",
+          "symbol": "testAddressStackTableContracts"
+        }
+      ],
+      "contract_test": {
+        "report": "reports/replica/function-contracts.json",
+        "case": "address-stack-table-contracts"
+      },
+      "equivalence_evidence": "reports/function-equivalence/Paste-0x100085670.json",
+      "remaining": "有限正常调用差分，原版计数函数使用仅读取count的合成对象数组，复刻使用ClipboardItem数组；未承诺缺失IBOutlet时的崩溃诊断、全屏或像素动画曲线一致。"
     }
   }
 }

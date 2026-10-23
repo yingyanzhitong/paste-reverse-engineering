@@ -2,163 +2,147 @@
   "reference": "Paste 6.6.6 (29766850), macOS arm64",
   "environment": "macOS 26.2, Swift 6.0.3 Command Line Tools",
   "date": "2026-10-23",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "full_one_to_one_acceptance": false,
   "core": {
     "failure_count": 0,
     "passed": true,
     "scope": "Temporary isolated stores and private named pasteboards; two independent worker processes; original app and user clipboard untouched.",
-    "test_count": 21,
+    "test_count": 22,
     "tests": [
       {
-        "duration_seconds": 0.019389986991882324,
+        "duration_seconds": 0.008872032165527344,
         "failures": [],
         "name": "unicode-search-deduplication",
         "passed": true
       },
       {
-        "duration_seconds": 0.010747909545898438,
+        "duration_seconds": 0.010151982307434082,
         "failures": [],
         "name": "pinboards-edit-trash-restore",
         "passed": true
       },
       {
-        "duration_seconds": 0.004163980484008789,
+        "duration_seconds": 0.00356900691986084,
         "failures": [],
         "name": "history-limit-preserves-pins",
         "passed": true
       },
       {
-        "duration_seconds": 0.010709047317504883,
+        "duration_seconds": 0.007070064544677734,
         "failures": [],
         "name": "stale-store-three-way-merge",
         "passed": true
       },
       {
-        "duration_seconds": 0.009180903434753418,
+        "duration_seconds": 0.0052700042724609375,
         "failures": [],
         "name": "archive-corruption-safety",
         "passed": true
       },
       {
-        "duration_seconds": 0.060778021812438965,
+        "duration_seconds": 0.042111992835998535,
         "failures": [],
         "name": "rtf-html-plain-text-write-loop",
         "passed": true
       },
       {
-        "duration_seconds": 0.007031083106994629,
+        "duration_seconds": 0.003942966461181641,
         "failures": [],
         "name": "rich-text-edit-format-reopen",
         "passed": true
       },
       {
-        "duration_seconds": 0.004499077796936035,
+        "duration_seconds": 0.002618074417114258,
         "failures": [],
         "name": "rtf-only-text-extraction",
         "passed": true
       },
       {
-        "duration_seconds": 0.004472970962524414,
+        "duration_seconds": 0.0029829740524291992,
         "failures": [],
         "name": "multiple-file-urls",
         "passed": true
       },
       {
-        "duration_seconds": 0.13036000728607178,
+        "duration_seconds": 0.11073493957519531,
         "failures": [],
         "name": "real-large-png-binary-roundtrip",
         "passed": true
       },
       {
-        "duration_seconds": 0.013350963592529297,
+        "duration_seconds": 0.006099104881286621,
         "failures": [],
         "name": "privacy-pause-exclusion",
         "passed": true
       },
       {
-        "duration_seconds": 0.006070971488952637,
+        "duration_seconds": 0.005417943000793457,
         "failures": [],
         "name": "history-retention-age-boundaries",
         "passed": true
       },
       {
-        "duration_seconds": 0.02630901336669922,
+        "duration_seconds": 0.020254015922546387,
         "failures": [],
         "name": "refresh-pending-edits-no-op-io",
         "passed": true
       },
       {
-        "duration_seconds": 0.10395300388336182,
+        "duration_seconds": 0.07492589950561523,
         "failures": [],
         "name": "two-independent-process-writers",
         "passed": true
       },
       {
-        "duration_seconds": 0.014487981796264648,
+        "duration_seconds": 0.010238051414489746,
         "failures": [],
         "name": "multiple-selection-raw-and-text-order",
         "passed": true
       },
       {
-        "duration_seconds": 0.012207984924316406,
+        "duration_seconds": 0.007893085479736328,
         "failures": [],
         "name": "pinboard-reorder-duplicate-removal",
         "passed": true
       },
       {
-        "duration_seconds": 0.4692620038986206,
+        "duration_seconds": 0.2022719383239746,
         "failures": [],
         "name": "local-vision-ocr-real-pixels",
         "passed": true
       },
       {
-        "duration_seconds": 0.003556966781616211,
+        "duration_seconds": 0.0021300315856933594,
         "failures": [],
         "name": "transient-opt-out-loop-guard",
         "passed": true
       },
       {
-        "duration_seconds": 0.006404995918273926,
+        "duration_seconds": 0.006468057632446289,
         "failures": [],
         "name": "history-erasure-queue-persistence-merge",
         "passed": true
       },
       {
-        "duration_seconds": 0.030218005180358887,
+        "duration_seconds": 0.01892697811126709,
         "failures": [],
         "name": "address-stack-array-window-contracts",
         "passed": true
       },
       {
-        "duration_seconds": 0.09534895420074463,
+        "duration_seconds": 0.11168789863586426,
+        "failures": [],
+        "name": "address-stack-table-contracts",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.10739898681640625,
         "failures": [],
         "name": "address-ocr-preparation-word-geometry",
         "passed": true
       }
     ]
-  },
-  "mcp": {
-    "status": "passed",
-    "checks": [
-      "initialization gate and ping before initialize",
-      "all 11 evidence-backed tool names and schemas; 2 extensions separately named",
-      "notifications produce no response and never execute mutation tools",
-      "Unicode, combining characters, escaped NUL/newlines and exact full-content roundtrip; deduplication",
-      "Pinboard creation/rename/list, pinned-only items, promotion, idempotent pinning, selective unpin",
-      "update title/body and type detection; combined type/title/app/device/date filters and pagination",
-      "two-step deletion preview; confirmed permanent deletion; board removal preserves historical item",
-      "general clipboard denied by default; explicit copy writes only unique private pasteboard",
-      "invalid params/types/UUID/dates, unknown methods/tools, JSON/UTF-8 errors, 1 MiB bound and recovery",
-      "shared persistence across running processes, reload before each call and soft-delete restoration extension",
-      "PNG/file fixture reads and image downscaling, image/file body edit rejection, image title edit and 2 MiB response bound recovery",
-      "6 real concurrent CLI processes, 48 persistent writes without lost updates"
-    ],
-    "check_groups": 12,
-    "scope": "Replica MCP executable end-to-end; fixture-only. Not an original-vs-replica semantic equivalence claim.",
-    "system_clipboard_used": false,
-    "binary_sha256": "9724ee66f351e884c0283846f37bf7c6ec2c1ddf11435ffc0969223558b0741c",
-    "elapsed_seconds": 1.016
   },
   "hotkey": {
     "callbacks": {
@@ -218,7 +202,9 @@
       "multi-selection paste delivery order",
       "custom quick paste and plain text modifiers",
       "custom Pinboard navigation",
-      "Stack duplicate prevention, reverse persistence and queue consumption; all pause durations and resume; async NSItemProvider binary/HTML/Unicode loads; multi-file URLs and legacy paths; internal OCR data excluded"
+      "Escape clears query and then dismisses search",
+      "Stack duplicate prevention, reverse persistence and queue consumption; all pause durations and resume; async NSItemProvider binary/HTML/Unicode loads; multi-file URLs and legacy paths; internal OCR data excluded",
+      "hidden SwiftUI Stack hosts native NSTableView with actual rows/cells, rowHeight44 and delegate rejecting selection"
     ],
     "scope": "Hidden native panel, synthetic key events, temporary store and private named pasteboard; no global hooks, visible windows or cross-application paste"
   },
@@ -235,12 +221,12 @@
   "historical_visual_note": "Measurement predates current UI; not current-version pixel acceptance.",
   "bundle": {
     "identifier": "com.yingyanzhitong.paste-replica",
-    "version": "0.5.0",
+    "version": "0.7.0",
     "signature": "ad-hoc; codesign --verify --deep --strict passed; not notarized",
     "binaries_sha256": {
-      "PasteReplica": "932148085dc0d1cc69cd6e08dc57c0ffb6b49af2880c00ca8f9c3a98855fd1a2",
-      "paste-replica-mcp": "9724ee66f351e884c0283846f37bf7c6ec2c1ddf11435ffc0969223558b0741c",
-      "PasteReplicaHelper": "706271d2d136a20f584a3f5aa3102186e513c3014cd8c12096cc07fbf6c21aa5"
+      "PasteReplica": "f47835a1bc7aa1cde1e4492133d23a11dbc98c7b8029471abba7c6bff4fb1818",
+      "paste-replica-mcp": "7c6f31e1a5ff6047f8805cd0a86061a3f37cbedca568eb420240eac98e4ab691",
+      "PasteReplicaHelper": "ac57449c0de15d79b743599602533cc8ae0438236fb4feafb06996ffa78c224c"
     }
   },
   "unresolved_local": [
@@ -291,15 +277,15 @@
       "未执行跨App粘贴和原版私有历史写入"
     ]
   },
-  "current_gui_scope": "Hidden UI and running capture timer passed; visible synthetic GUI snapshots are historical v0.3.x evidence.",
+  "current_gui_scope": "Hidden real Stack table and keyboard interaction passed; original search cancel observed with CUA. Visible all-state pixel matching remains incomplete.",
   "function_ledger": {
     "total_functions": 81134,
     "states": {
       "excluded_by_scope": 0,
       "implemented": 0,
       "partial": 0,
-      "pending": 81125,
-      "verified": 9
+      "pending": 81121,
+      "verified": 13
     },
     "full_function_equivalence": false,
     "summary": "reports/function-implementation/summary.json",
@@ -308,20 +294,59 @@
   },
   "original_function_differential": {
     "passed": true,
-    "functions": 9,
-    "cases": 168,
+    "functions": 13,
+    "cases": 336,
     "original_text_sha256": "0ab1b64642a68d0829b929d2483e855022c14e7713ea35683e0f898a49db5c12",
-    "scope": "Nine recovered function contracts, finite synthetic cases; exact original machine-code execution. Not all inputs or the whole app."
+    "scope": "Only thirteen recovered source-level contracts and listed synthetic cases; all-functions equivalence remains false."
   },
   "function_ledger_validation": {
     "passed": true,
     "test_count": 14
   },
-  "regression_resolution": {
+  "historical_mcp_v0_5_0": {
+    "status": "passed",
+    "checks": [
+      "initialization gate and ping before initialize",
+      "all 11 evidence-backed tool names and schemas; 2 extensions separately named",
+      "notifications produce no response and never execute mutation tools",
+      "Unicode, combining characters, escaped NUL/newlines and exact full-content roundtrip; deduplication",
+      "Pinboard creation/rename/list, pinned-only items, promotion, idempotent pinning, selective unpin",
+      "update title/body and type detection; combined type/title/app/device/date filters and pagination",
+      "two-step deletion preview; confirmed permanent deletion; board removal preserves historical item",
+      "general clipboard denied by default; explicit copy writes only unique private pasteboard",
+      "invalid params/types/UUID/dates, unknown methods/tools, JSON/UTF-8 errors, 1 MiB bound and recovery",
+      "shared persistence across running processes, reload before each call and soft-delete restoration extension",
+      "PNG/file fixture reads and image downscaling, image/file body edit rejection, image title edit and 2 MiB response bound recovery",
+      "6 real concurrent CLI processes, 48 persistent writes without lost updates"
+    ],
+    "check_groups": 12,
+    "scope": "Replica MCP executable end-to-end; fixture-only. Not an original-vs-replica semantic equivalence claim.",
+    "system_clipboard_used": false,
+    "binary_sha256": "9724ee66f351e884c0283846f37bf7c6ec2c1ddf11435ffc0969223558b0741c",
+    "elapsed_seconds": 1.016
+  },
+  "mcp_testing": {
+    "run": false,
+    "reason": "User requested code and local functional comparison tests only; MCP implementation retained."
+  },
+  "historical_regression_resolution_v0_5_0": {
     "test": "app-monitor",
     "initial_result": "failed",
     "cause": "Test wrote before monitor construction; persisted store creation is earlier than monitor readiness.",
     "fix": "Wait for actual timer capture of changing synthetic warm-up values, then publish the assertion payload.",
     "retest_passed": true
+  },
+  "current_ui_changes": {
+    "reference": "Live Paste 6.6.6 CUA observation, no user-history screenshots published",
+    "escape": "Clear query, then dismiss search, then close panel; native harness directly asserts first two stages",
+    "panel_reopen": "NSApplicationDelegate handles reopen to show the existing main panel",
+    "card_metrics": "Content horizontal inset12; body top inset11; summary font13/bottom inset11; ordinary count footer removed",
+    "selection_scroll": "Use minimum-needed ScrollViewReader scrolling instead of centering each selected item",
+    "chatgpt_header": "Observed dark header added for com.openai.chat; RGB/general extraction algorithm is not proven identical",
+    "limits": [
+      "Not whole-app or all-state pixel/animation acceptance",
+      "No new original-machine-code address equivalence claimed for these UI changes",
+      "Remaining81121 addresses are still not individually verified"
+    ]
   }
 }

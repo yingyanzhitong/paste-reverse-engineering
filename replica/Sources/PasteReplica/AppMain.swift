@@ -143,6 +143,11 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
         return item
     }
 
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        ui?.showPanel()
+        return true
+    }
+
     private func setupMenus() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         statusItem.button?.image = NSImage(systemSymbolName: "clipboard", accessibilityDescription: "Paste Replica")

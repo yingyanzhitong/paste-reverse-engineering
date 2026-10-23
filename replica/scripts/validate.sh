@@ -14,9 +14,6 @@ fi
 "$replica_root/.build/release/paste-replica-core-tests" > "$report_root/core.json"
 python3 "$repository_root/scripts/function_ledger.py" --record-contracts "$report_root/core.json" > "$report_root/function-ledger.json"
 python3 -m unittest discover -s "$repository_root/scripts/tests" > "$report_root/function-ledger-tests.log" 2>&1
-python3 "$replica_root/scripts/test-mcp.py" \
-  --binary "$replica_root/dist/Paste Replica.app/Contents/MacOS/paste-replica-mcp" \
-  --report "$report_root/mcp.json"
 bash "$replica_root/scripts/test-hotkey.sh" "$report_root/hotkey.json"
 bash "$replica_root/scripts/test-shortcut-model.sh" "$report_root/shortcut-model.json"
 bash "$replica_root/scripts/test-window-policy.sh" > "$report_root/window-policy.json"

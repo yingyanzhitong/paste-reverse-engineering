@@ -6,8 +6,8 @@
     "excluded_by_scope": 0,
     "implemented": 0,
     "partial": 0,
-    "pending": 81125,
-    "verified": 9
+    "pending": 81121,
+    "verified": 13
   },
   "targets": [
     {
@@ -19,8 +19,8 @@
         "excluded_by_scope": 0,
         "implemented": 0,
         "partial": 0,
-        "pending": 80696,
-        "verified": 9
+        "pending": 80692,
+        "verified": 13
       },
       "pages": [
         {

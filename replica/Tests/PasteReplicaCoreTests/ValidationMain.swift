@@ -93,6 +93,7 @@ struct ValidationMain {
             ,("transient-opt-out-loop-guard", suite.testTransientOptOutStillRejectsReplicaWriteBack)
             ,("history-erasure-queue-persistence-merge", suite.testHistoryErasureAndQueuePreferencesSurviveReopenAndMerge)
             ,("address-stack-array-window-contracts", suite.testAddressStackArrayAndWindowContracts)
+            ,("address-stack-table-contracts", suite.testAddressStackTableContracts)
             ,("address-ocr-preparation-word-geometry", suite.testAddressOCRPreparationAndWordGeometry)
         ]
         var results: [[String: Any]] = []

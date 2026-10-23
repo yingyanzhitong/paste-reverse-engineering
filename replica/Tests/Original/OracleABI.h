@@ -6,3 +6,4 @@ uint64_t oracle_call_request(const void *function, const void *data, int64_t max
                              void *result, void *error);
 // Returns a retained controller; the Swift caller takes ownership with Unmanaged.
 void *oracle_create_window_controller(void *window);
+void *oracle_create_table_controller(void *table);

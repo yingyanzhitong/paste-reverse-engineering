@@ -562,7 +562,17 @@ final class ReplicaUIController {
             }
         }
         switch event.keyCode {
-        case 53: hidePanel(); return true
+        case 53:
+            if !state.query.isEmpty {
+                state.query = ""
+                state.searchVisible = true
+                state.searchFocus = UUID()
+                state.normalizeSelection()
+            } else if state.searchVisible || isEditing {
+                state.searchVisible = false
+                panel.makeFirstResponder(nil)
+            } else { hidePanel() }
+            return true
         case 36, 76: pasteSelection(plainTextOnly: command || plain); return true
         case 123 where !isEditing: state.moveSelection(-1, extending: shift); return true
         case 124 where !isEditing: state.moveSelection(1, extending: shift); return true

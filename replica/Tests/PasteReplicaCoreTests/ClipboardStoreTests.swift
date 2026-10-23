@@ -593,6 +593,40 @@ final class ClipboardStoreTests {
         }
     }
 
+    func testAddressStackTableContracts() async throws {
+        let counts = [0, 1, 2, 9, 10, 11, 257]
+        let controllers = await MainActor.run {
+            counts.map { count -> OriginalStackTableController in
+                let controller = OriginalStackTableController()
+                controller.snippets = (0..<count).map { ClipboardItem(plainText: "row \($0)") }
+                controller.tableView.reloadData()
+                expectEqual(controller.f_100085230(), count)
+                expectEqual(controller.tableView.numberOfRows, count)
+                for row in [Int.min, -1, 0, count, Int.max] {
+                    expectFalse(controller.f_100085670(row: row))
+                    expectEqual(controller.tableView.delegate?.tableView?(controller.tableView, shouldSelectRow: row), false)
+                }
+                let constraint = controller.f_100082b90()
+                expectTrue(constraint === controller.f_100082b90())
+                expectTrue(constraint.firstItem === controller.scrollView)
+                expectEqual(constraint.constant, 44)
+                expectFalse(constraint.isActive)
+                NSAnimationContext.runAnimationGroup { context in
+                    context.duration = 0
+                    controller.f_100083a20()
+                }
+                expectTrue(constraint.isActive)
+                return controller
+            }
+        }
+        try await Task.sleep(nanoseconds: 100_000_000)
+        await MainActor.run {
+            for (count, controller) in zip(counts, controllers) {
+                expectEqual(controller.f_100082b90().constant, CGFloat(min(10, max(1, count))) * 44)
+            }
+        }
+    }
+
     func testAddressOCRPreparationAndWordGeometry() async throws {
         let image = try await MainActor.run { try textImageFixture(text: "PASTE, PASTE! 8426") }
         expectEqual(ImageTextRecognizer.f_1002d4ba0(imageData: image, maximumDimension: 1400), image)
