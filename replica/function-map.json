@@ -28165,15 +28165,15 @@
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "OriginalPreviewLocalization.f_1001e6b38(Int32(metadata.length))"
-        },
-        {
-          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "private var cardSummary: String"
-        },
-        {
-          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "private var contentTopInset: CGFloat"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "OriginalCompactTextFooter(length: metadata.length"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift",
+          "symbol": "OriginalPreviewLocalization.f_1001e6b38(Int32(length))"
         }
       ],
       "source": {
@@ -28181,9 +28181,9 @@
         "line": 700
       },
       "review": "Actual compact-only card branch updated by window agent; full editor and its Character footer remain unchanged and independently reused. 已核REA/有限完整arm64及实际Source消费者；最终build42通过，148输入SHA一致。只做静态编译，不运行产品/功能/单测/UI/MCP，六父保持partial。",
-      "remaining": "dev38紧凑原生field与class3=0/其余10顶部已接，metadata/Int32资源复用；完整native footer/渐变/theme、对象/动画/复用/VM/ABI和实际像素仍partial。",
+      "remaining": "dev39原生正文/底栏静态布局、主题背景与Header动态颜色投影已接；完整cell外观继承/对象/动画/复用/VM/ABI和实际像素仍partial。",
       "implementation_origin": "newly_migrated",
-      "compiled_review": "reports/replica/text-scroll-capture-static-audit.json"
+      "compiled_review": "reports/replica/text-footer-and-edge-static-audit.json"
     },
     "Paste:0x10031a3a8": {
       "state": "migrated",
@@ -29856,6 +29856,58 @@
       ],
       "compiled_review": "reports/replica/text-scroll-capture-static-audit.json",
       "remaining": "首次token写回与weakproxy清理已接；原typedDI/state对象、完整constructor/析构executor仍partial。"
+    },
+    "Paste:0x1003dd16c": {
+      "state": "partial",
+      "contract": "文本底栏原生子树与原静态尺寸配置。",
+      "implementation_origin": "newly_integrated_finite_behavior",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift",
+          "symbol": "final class OriginalCompactTextFooterView"
+        }
+      ],
+      "compiled_review": "reports/replica/text-footer-and-edge-static-audit.json",
+      "remaining": "有限实际消费者已接；完整原父/对象/动画/全部输入及运行回归仍partial，不按模块或本次编译记完整。"
+    },
+    "Paste:0x1003dcfa0": {
+      "state": "partial",
+      "contract": "文本底栏主题色向opaque和透明端保RGB渐变分发。",
+      "implementation_origin": "newly_integrated_finite_behavior",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift",
+          "symbol": "func configure(length: Int, sizeClass: UInt8, fadingColor: NSColor)"
+        }
+      ],
+      "compiled_review": "reports/replica/text-footer-and-edge-static-audit.json",
+      "remaining": "有限实际消费者已接；完整原父/对象/动画/全部输入及运行回归仍partial，不按模块或本次编译记完整。"
+    },
+    "Paste:0x1003ded74": {
+      "state": "partial",
+      "contract": "从canonical文本元数据复用plain及dominant background生成背景。",
+      "implementation_origin": "newly_integrated_finite_behavior",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift",
+          "symbol": "static func background(for text: AttributedString)"
+        }
+      ],
+      "compiled_review": "reports/replica/text-footer-and-edge-static-audit.json",
+      "remaining": "有限实际消费者已接；完整原父/对象/动画/全部输入及运行回归仍partial，不按模块或本次编译记完整。"
+    },
+    "Paste:0x100226764": {
+      "state": "partial",
+      "contract": "window-space横坐标的30点边缘15步长斜坡滚动。",
+      "implementation_origin": "newly_integrated_finite_behavior",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaNativeCardCollection.swift",
+          "symbol": "private func dragEdgeDelta(windowX x: CGFloat)"
+        }
+      ],
+      "compiled_review": "reports/replica/text-footer-and-edge-static-audit.json",
+      "remaining": "有限实际消费者已接；完整原父/对象/动画/全部输入及运行回归仍partial，不按模块或本次编译记完整。"
     }
   }
 }

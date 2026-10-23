@@ -1,0 +1,73 @@
+{
+  "kind": "concentrated_text_footer_and_drag_edge_static_review",
+  "version": "0.8.0-dev.39",
+  "reviewed_at": "2026-10-23T18:15:26.988961+00:00",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "5f9157f43a157c71222c5377ebefc0b337d74a5c22443b70f7da4d9a3c95cb9b",
+    "replica/Sources/PasteReplica/UI/OriginalCompactTextContent.swift": "d3a103d45be2baeb86b650e9f821282f0b9df5719adc3bbdd64f8cd059695d19",
+    "replica/Sources/PasteReplica/UI/OriginalCompactTextFooter.swift": "354bb3da875cf760e956b2251271b4f634f47e8a25b597caae501ca83172bc33",
+    "replica/Sources/PasteReplica/UI/ReplicaNativeCardCollection.swift": "e1f5a105eea894d826d391df3c1694274344efeeec3e23ec08ae7731a1e8747a"
+  },
+  "build_log": ".local/gap-build-65.log",
+  "compiled_sha256": {
+    "replica/.build/release/PasteReplica": "f347d652f6fab2a7e98ed28a3d6dc577ba8f3b052e1bd86520ac2299198476fd",
+    "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+    "replica/.build/release/paste-replica-mcp": "f07b7d2dafba4a306d4d141fd38f8ce84fc89402da56124ea75e809fe36f4848"
+  },
+  "new_complete_functions": 0,
+  "status": "partial",
+  "product_executed": false,
+  "functional_tests_executed": false,
+  "mcp_tests_executed": false,
+  "checks": [
+    {
+      "feature": "文本底栏",
+      "original_functions": [
+        "Paste:0x1003dd16c",
+        "Paste:0x1003dd3f0",
+        "Paste:0x1003dcfa0",
+        "Paste:0x1003dc390"
+      ],
+      "implementation": "独立原生NSView按[opaque,gradient,label]兄弟顺序；gradient32，opaque18/类3为0，总50/32；countlabel原callout/secondary/center/bottom-10，类3隐藏。淡出端withAlpha0保RGB，角0默认CA端点/禁隐式动画/appearance更新。",
+      "actual_consumer": "主卡片text/rich正文占完整body，底栏overlay不再挤占正文高度；仅unknown保旧通用摘要，text不再重复pin/count。Int32(length)及原计数资源直接复用，旧多余cardSummary分支删除。"
+    },
+    {
+      "feature": "文本背景与外观",
+      "original_functions": [
+        "Paste:0x1003ded74",
+        "Paste:0x10021a014"
+      ],
+      "implementation": "持久AttributedString样本→现plainhelper；plain用已有white/dark20动态槽，rich用现dominantbackground，严格alpha<1才回已有white/windowBackgroundColor动态值；亮度helper选Aqua/DarkAqua，nil名回currentDrawing。",
+      "actual_consumer": "原生文本框及Footer实际设置局部appearance，主卡片背景消费同一算法；短Header通过现动态颜色解析函数投影，原Color分支nil回退保持。未设置应用/窗口appearance或preferredColorScheme。"
+    },
+    {
+      "feature": "拖入接收及边缘滚动",
+      "original_functions": [
+        "Paste:0x100226764"
+      ],
+      "implementation": "同源session/sequence/marker/board/IDs鉴权与落点目标分离；Entered/Updated在有效context中无需先命中卡片；Updated用原window-space draggingLocation.x，30点边缘按15步长斜坡移动clip.bounds.x，保y及size。",
+      "actual_consumer": "不加新timer，沿继承周期dragUpdated；真实可见cells的横向frame扩完整gap24再contains/midpoint，复用现Store IndexSet重排。其余开始/快照/source/session链反向删除patch后逐字还原。"
+    }
+  ],
+  "remaining": [
+    "原插入光标/完整applier/动画/primary额外margin及外来拖入策略未恢复，有限本进程marker适配不当原完整delegate等价。",
+    "SwiftUI原生host组合、整个cell的NSAppearance对象继承/生命周期、nilmetadata旧cell复用与像素/事件/跨应用仍未运行验收。",
+    "文本Footer只恢复静态目标值，原渐变/隐藏及尺寸过渡的完整动画驱动仍partial。"
+  ],
+  "compiled_static_cross_review": {
+    "binary_sha256": "f347d652f6fab2a7e98ed28a3d6dc577ba8f3b052e1bd86520ac2299198476fd",
+    "background": "0x100040b08 complete boundary checked; actual plain/rich/strict alpha branches and consumers",
+    "footer_configure": "0x10004062c inlined brightness/appearance fallback/setAppearance checked",
+    "header": "0x10006b478 calls current background/appearance projection",
+    "entered_updated": [
+      "0x10009a7cc",
+      "0x10009a8a4"
+    ],
+    "authenticated_context": "0x100099500, no hit test in Entered/Updated",
+    "edge": "0x10009a71c contains30/15; Updated0x10009a994 reads draggingLocation then0x10009a998 edge without conversion",
+    "clip_update": "0x10009a99c changes x only, then CGRectEqualToRect and setBounds",
+    "expanded_hit": "0x10009a3f0 passes-24/0 to CGRectInset stub0x1001bfc14 then CGRectContainsPoint0x1001bfb9c",
+    "scope": "Three independent domain peers; actual Source and binary SHA plus current bounded machine code. This is compilation/static evidence, not a runtime acceptance."
+  },
+  "validation": "Final release build65 successful,14.29s,174 inputs unchanged before/after; build64 was an earlier13.8s snapshot before Header/edge changes and is not claimed current."
+}

@@ -234,13 +234,20 @@ struct ReplicaClipboardCard: View {
                 cardContent
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .clipped()
-                if item.kind == .text || item.kind == .richText || item.kind == .unknown {
+                if item.kind == .unknown {
                     HStack(spacing: 4) {
                         if !item.pinboardIDs.isEmpty { Image(systemName: "pin.fill").font(.system(size: 10)) }
-                        Text(cardSummary).lineLimit(2).frame(maxWidth: .infinity, alignment: .center)
+                        Text(itemSummary(item)).lineLimit(2).frame(maxWidth: .infinity, alignment: .center)
                     }
                     .font(.system(size: 13)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
                     .padding(.horizontal, 12).padding(.bottom, 11).padding(.top, 7)
+                }
+            }
+            .overlay(alignment: .bottom) {
+                if let metadata = compactTextMetadata, let background = compactTextBackground {
+                    OriginalCompactTextFooter(length: metadata.length, sizeClass: UInt8(sizeClass),
+                                              fadingColor: background)
+                        .frame(height: sizeClass == 3 ? 32 : 50)
                 }
             }
             .padding(.top, cardGeometry?.bodyTop ?? headerHeight)
@@ -331,7 +338,17 @@ struct ReplicaClipboardCard: View {
         if item.kind == .color, let metadata = item.decodedColorPreviewMetadata {
             return Color(nsColor: OriginalColorPreviewMetadataGenerator.color(metadata.code))
         }
+        if let background = compactTextBackground { return Color(nsColor: background) }
         return Color(nsColor: .textBackgroundColor)
+    }
+
+    private var compactTextMetadata: OriginalTextPreviewMetadata? {
+        guard item.kind == .text || item.kind == .richText else { return nil }
+        return item.decodedTextPreviewMetadata
+    }
+
+    private var compactTextBackground: NSColor? {
+        compactTextMetadata.map { OriginalCompactTextCardAppearance.background(for: $0.text) }
     }
 
     @ViewBuilder private var cardContent: some View {
@@ -435,10 +452,17 @@ struct ReplicaClipboardCard: View {
     }
 
     private func resolvedCardHeaderColor(_ color: NSColor) -> NSColor {
-        guard item.kind == .color, let metadata = item.decodedColorPreviewMetadata else { return color }
-        let background = OriginalColorPreviewMetadataGenerator.color(metadata.code)
-        let name: NSAppearance.Name = OriginalPreviewTextColors.f_1002067d4(background) ? .aqua : .darkAqua
-        guard let appearance = NSAppearance(named: name) else { return color }
+        let appearance: NSAppearance
+        if item.kind == .color, let metadata = item.decodedColorPreviewMetadata {
+            let background = OriginalColorPreviewMetadataGenerator.color(metadata.code)
+            let name: NSAppearance.Name = OriginalPreviewTextColors.f_1002067d4(background) ? .aqua : .darkAqua
+            guard let resolved = NSAppearance(named: name) else { return color }
+            appearance = resolved
+        } else if let background = compactTextBackground {
+            appearance = OriginalCompactTextCardAppearance.appearance(for: background)
+        } else {
+            return color
+        }
         var resolved = color
         appearance.performAsCurrentDrawingAppearance {
             resolved = color.usingColorSpace(.deviceRGB) ?? color
@@ -476,14 +500,6 @@ struct ReplicaClipboardCard: View {
         .background(sizeClass == 3 ? Color.clear
             : pinboardHeaderColor.map { Color(nsColor: $0) } ?? sourceColor(item, store: state.store))
         .clipped()
-    }
-
-    private var cardSummary: String {
-        if item.kind == .text || item.kind == .richText {
-            guard let metadata = item.decodedTextPreviewMetadata else { return "" }
-            return String(localized: OriginalPreviewLocalization.f_1001e6b38(Int32(metadata.length)))
-        }
-        return itemSummary(item)
     }
 
     private var cardTitle: String {

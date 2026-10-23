@@ -289,7 +289,7 @@ final class ReplicaNativeCollectionHost: NSView, NSDraggingSource {
         localMarker = nil
     }
 
-    private func validatedDrop(_ sender: NSDraggingInfo) -> (ReplicaLocalItemDrag, Int)? {
+    private func validatedDrag(_ sender: NSDraggingInfo) -> ReplicaLocalItemDrag? {
         guard let state, let marker = localMarker, let session = draggingSession,
               (sender.draggingSource as? ReplicaNativeCollectionHost) === self,
               sender.draggingSequenceNumber == session.draggingSequenceNumber,
@@ -297,21 +297,44 @@ final class ReplicaNativeCollectionHost: NSView, NSDraggingSource {
               let data = sender.draggingPasteboard.data(forType: Self.markerType),
               let decoded = try? JSONDecoder().decode(ReplicaLocalItemDrag.self, from: data),
               decoded.sessionID == marker.sessionID, decoded.boardID == marker.boardID,
-              decoded.ids == marker.ids,
-              let target = index(at: convert(sender.draggingLocation, from: nil)),
-              items.indices.contains(target) else { return nil }
+              decoded.ids == marker.ids else { return nil }
+        return marker
+    }
+
+    private func validatedDrop(_ sender: NSDraggingInfo) -> (ReplicaLocalItemDrag, Int)? {
+        guard let state, let marker = validatedDrag(sender) else { return nil }
         let point = document.convert(sender.draggingLocation, from: nil)
-        let frame = cardFrame(target)
-        guard let current = state.store.items(in: marker.boardID).firstIndex(where: { $0.id == items[target].id }) else { return nil }
-        return (marker, current + (point.x - frame.minX >= cardSide / 2 ? 1 : 0))
+        for (index, cell) in cells where items.indices.contains(index) && cell.itemID == items[index].id {
+            let frame = cell.frame
+            guard frame.insetBy(dx: -24, dy: 0).contains(point) else { continue }
+            guard let current = state.store.items(in: marker.boardID).firstIndex(where: { $0.id == items[index].id }) else { return nil }
+            return (marker, current + (point.x >= frame.midX ? 1 : 0))
+        }
+        return nil
+    }
+
+    /// f226764 receives the original window-space draggingLocation, without a conversion.
+    private func dragEdgeDelta(windowX x: CGFloat) -> CGFloat {
+        if x <= bounds.minX + 30 {
+            return -((30 - (x - bounds.minX)) / 30) * 15
+        }
+        if x >= bounds.maxX - 30 {
+            return ((30 - (bounds.maxX - x)) / 30) * 15
+        }
+        return 0
     }
 
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
-        validatedDrop(sender) == nil ? [] : .move
+        validatedDrag(sender) == nil ? [] : .move
     }
 
     override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
-        validatedDrop(sender) == nil ? [] : .move
+        guard validatedDrag(sender) != nil else { return [] }
+        let clip = scrollView.contentView
+        var nextBounds = clip.bounds
+        nextBounds.origin.x += dragEdgeDelta(windowX: sender.draggingLocation.x)
+        if nextBounds != clip.bounds { clip.bounds = nextBounds }
+        return .move
     }
 
     override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
