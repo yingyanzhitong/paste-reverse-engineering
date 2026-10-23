@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "kind": "explicit_paywall_presenter_scope_exclusion",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "functions": {
+    "Paste:0x100064afc": {
+      "function_id": "Paste:0x100064afc",
+      "state": "excluded_by_scope",
+      "user_scope_reason": "此地址只激活或呈现PaywallViewController；用户要求独立免费离线复刻，排除付费提示与解锁入口，不修改原版授权校验。",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0035.c",
+        "line": 245
+      },
+      "original_pseudocode_sha256": "04deb6353a9330026c59a720740f1ddd8e07216aaa6eebfe133c01775d1c973c",
+      "complete_static_evidence": {
+        "presenter": {
+          "start": "0x100064afc",
+          "end_exclusive": "0x100064da0",
+          "sha256": "8ae243a67c5fdc1188f82d3873a902a5fb981d89bcb3b508fcb91639d863fbbb"
+        },
+        "controller_factory_evidence_only": {
+          "start": "0x100017bb0",
+          "end_exclusive": "0x100017bd0",
+          "sha256": "9b6489a336e6ad0caf5c4778894a4e0acfb499323a7936f52d39e9a459a277e4"
+        },
+        "class_metadata": {
+          "start": "0x100f8f758",
+          "end_exclusive": "0x100f8f780",
+          "sha256": "cd6d2c48e4f43910e4938bf8d77ad5df66f5b0a7e32f1833905f655ca0413b30"
+        },
+        "class_ro_metadata": {
+          "start": "0x100f8f6f8",
+          "end_exclusive": "0x100f8f720",
+          "sha256": "794509779a62f11c0fe96284da09dfef7b823e3cf8dd0f65764fa53fb683cce5"
+        }
+      },
+      "controller_class": {
+        "address": "0x100f8f758",
+        "ro": "0x100f8f6f8",
+        "name_address": "0x100dd3500",
+        "name": "_TtC5PasteP33_0834BD6CB1CDAA1FA46B007E7F71175821PaywallViewController"
+      },
+      "review": "完整presenter只激活已存在付费窗口或通过已核factory创建并呈现该控制器；factory仅作证据，不计入排除。"
+    }
+  },
+  "count_as_implemented": false,
+  "remove_from_total_denominator": false,
+  "functional_tests_executed": false,
+  "scope_boundary": "仅此一个付费presenter地址；不排除f66068本地恢复、allSatisfy、applier、WindowTransition、窗口通用生命周期或factory证据地址。"
+}

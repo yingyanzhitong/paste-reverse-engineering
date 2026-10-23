@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""核验逐地址排除证据；只识别明确审阅的五个纯CloudKit联网调用跳板。"""
+"""核验逐地址排除证据：五个纯CloudKit跳板和一个完整付费提示入口。"""
 import argparse
 import json
 from pathlib import Path
 from macho_imports import parse_macho, _fragment_hashes
+from paywall_scope_exclusion import REPORT as PAYWALL_REPORT, snapshot as paywall_snapshot
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = 'reports/function-migration/cloud-network-scope-exclusions.json'
@@ -61,9 +62,12 @@ def snapshot(root):
 
 
 def verify_scope_report(root, report=REPORT):
+    if report not in (REPORT, PAYWALL_REPORT):
+        raise ValueError('未逐地址核定的范围排除报告')
     saved = json.loads((root / report).read_text())
-    if saved != snapshot(root):
-        raise ValueError('排除报告与当前原版完整跳板/逐地址审阅清单不符')
+    current = paywall_snapshot(root) if report == PAYWALL_REPORT else snapshot(root)
+    if saved != current:
+        raise ValueError('排除报告与当前原版逐地址审阅证据不符')
     return saved['functions']
 
 
@@ -71,12 +75,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--check', action='store_true')
     args = parser.parse_args()
-    if args.check:
-        entries = verify_scope_report(ROOT)
-    else:
-        result = snapshot(ROOT)
-        (ROOT / REPORT).write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
-        entries = result['functions']
+    entries = {}
+    for report, capture in ((REPORT, snapshot), (PAYWALL_REPORT, paywall_snapshot)):
+        if args.check:
+            entries.update(verify_scope_report(ROOT, report))
+        else:
+            result = capture(ROOT)
+            (ROOT / report).write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+            entries.update(result['functions'])
     print(json.dumps({'checked': args.check, 'excluded_addresses': len(entries),
                       'added_complete_functions': 0, 'total_denominator_unchanged': True}))
 

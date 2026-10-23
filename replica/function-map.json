@@ -29377,6 +29377,82 @@
       ],
       "compiled_review": "reports/replica/ordered-selection-and-modifier-static-audit.json",
       "remaining": "完整原AutoLayout和SwiftUI host尺寸分配尚未运行验收。"
+    },
+    "Paste:0x100228ee8": {
+      "state": "partial",
+      "contract": "selectAll使用当前全部可见项目顺序，anchor=最后项或nil，只更新选择，不擅自移动滚动端。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "applyOrderedSelection(ids, anchor: ids.last, primary: primaryID)"
+        }
+      ],
+      "compiled_review": "reports/replica/collection-shortcut-static-audit.json",
+      "remaining": "原完整native cells刷新与数据集生命周期仍partial。"
+    },
+    "Paste:0x100069fe0": {
+      "state": "partial",
+      "contract": "Cmd-C精确normalized签名，normalCmd优先0，再Cmd|配置plain→3；复制不叠全局plain。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalCollectionShortcutActions.swift",
+          "symbol": "public static func copyOptions("
+        }
+      ],
+      "compiled_review": "reports/replica/collection-shortcut-static-audit.json",
+      "remaining": "原performKeyEquivalent接收者、previewpopover延迟和完整分派父仍partial。"
+    },
+    "Paste:0x10006c60c": {
+      "state": "partial",
+      "contract": "数字快捷粘贴精确normalized签名，plain组优先、条件XOR、允许0mask；先单item恢复后index0单选，匹配无实体仍消费/选首项，免费范围不呈Paywall。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "OriginalCollectionShortcutActions.quickPasteAction(for: signature"
+        }
+      ],
+      "compiled_review": "reports/replica/collection-shortcut-static-audit.json",
+      "remaining": "完整原native事件/实体applier身份/异步数据集更新及回归仍partial。"
+    },
+    "Paste:0x100074bac": {
+      "state": "partial",
+      "contract": "normal numeric组使用原物理1..9键和完整rawquick配置，不禁用零掩码。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalCollectionShortcutActions.swift",
+          "symbol": "OriginalShortcutFunctions.f_1001e94d4(String(index + 1))"
+        }
+      ],
+      "compiled_review": "reports/replica/collection-shortcut-static-audit.json",
+      "remaining": "工厂原返回数组、DI与ABI完整边界未等同；当前融合实际判定消费，不冒完整工厂迁移。"
+    },
+    "Paste:0x100074dcc": {
+      "state": "partial",
+      "contract": "plain numeric配置：plain==quick保quick，否则quick XOR plain；精确匹配先plain3后normal0。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalCollectionShortcutActions.swift",
+          "symbol": "let plainModifiers = plainTextModifierRawValue == quickPasteModifierRawValue"
+        }
+      ],
+      "compiled_review": "reports/replica/collection-shortcut-static-audit.json",
+      "remaining": "原数组工厂/DI与ABI边界仍partial。"
+    },
+    "Paste:0x100064afc": {
+      "state": "excluded_by_scope",
+      "contract": "仅激活或呈现PaywallViewController的完整入口；不包含本地恢复、查询或通用窗口生命周期。",
+      "user_scope_reason": "此地址只激活或呈现PaywallViewController；用户要求独立免费离线复刻，排除付费提示与解锁入口，不修改原版授权校验。",
+      "scope_evidence": {
+        "report": "reports/function-migration/paywall-presenter-scope-exclusions.json",
+        "entry_key": "Paste:0x100064afc"
+      },
+      "implementation_origin": "explicit_user_scope_exclusion",
+      "remaining": "不计已实现，不减81134总分母。"
     }
   }
 }

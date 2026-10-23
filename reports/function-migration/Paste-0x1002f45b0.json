@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002f45b0",
-  "reviewed_at": "2026-10-23T15:50:32.777277+00:00",
+  "reviewed_at": "2026-10-23T16:06:01.208890+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0244.c",
@@ -12,18 +12,18 @@
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchQuery.swift": "4c828b16c6342387d375e6b5a3f24d28b37bbffa1c377e4cdb064ad27b5d1b28",
     "replica/Sources/PasteReplica/UI/ReplicaSearchIndex.swift": "e78958178276341efacbc2a1d240fbef049827fa836337e0ef1584cfa9dc5695",
-    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "009cdd6c883d9a1eee452c447cc96c7f290993ab81a6f85e49ed830b291ce89d"
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "f934aeb77929af5420a5b7a96090762fea6810f4a4f7a92be9fb19a1b8fbad9b"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cffddfcf7bb53d8bb29eaf4af782ebc6047acf2491cc030525e565483950abd9",
+  "compiled_app_binary_sha256": "0daea5ae8876420c5d9d2ce4e03518b4c24188fe17e67a7e251a66867d6a911b",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "自由文本节点分别trim(.whitespaces)并去空后单空格join，转义后在title/textContent以及OS26.4+contentDescription形成=\"value*\"cwdt OR组；非text节点按原UInt8 tag分组，组内有效predicate为OR，多于1加括号，组间与自由文本组AND。无有效项返回空串。",
   "review": "完整part0244两函数静态复核：不是旧contains或多词unordered AND；保留原末尾*及cwdt而不臆解词元标志。String escaping顺序、单项/多项括号、原OS门控与ISO formatter直接对照。实际CSSearchQuery(queryString:queryContext:)及.results异步消费本构造结果。字典组迭代同原未定义排序，不人为按字母排序。未执行原版/复刻查询。",
-  "source_review": "build51集中审阅：既有搜索、权限、焦点与几何helper保留；仅已证选择算法、modifier消费者与files图像布局修正。真实调用继续存在，稳定编译后刷新关联源码绑定，未运行产品或等价测试。",
+  "source_review": "build52集中复审：既有搜索/焦点/纯有序选择helper及入口保留，只修已证selectAll anchor与copy/quick有限生产链。当前编译稳定并刷新关联文件摘要，不把编译当运行等价。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "unchanged_declarations": [
     {

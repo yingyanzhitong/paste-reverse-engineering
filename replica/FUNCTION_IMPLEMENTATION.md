@@ -58,7 +58,7 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 ## 并行迁移与现有实现复用
 
-2026-10-23 当前 0.8.0-dev.28 快照为 1,496 / 81,134：源码实现或复用 584 个、实际系统转发 912 个；另有5个已逐地址核定的范围排除，范围内剩余 79,633 个，其中 266 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
+2026-10-24 当前 0.8.0-dev.29 快照为 1,496 / 81,134：源码实现或复用 584 个、实际系统转发 912 个；另有6个已逐地址核定的范围排除，范围内剩余 79,632 个，其中 271 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
 
 按用户最新要求，四智能体改为先集中核对已有功能和完整调用链：已有实现满足契约就直接复用，只补确认缺失或行为不同的部分。系统转发、薄包装、编译器生成代码按证据成组核对，不再以逐个重写地址推进。功能存在、源码契约迁移、功能回归和一比一验收分别记录；不能把一次静态检查说成全部函数已通过。整体目标保持 active，尚未执行本轮新的功能、UI 或 MCP 测试。
 
@@ -140,3 +140,5 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 0.8.0-dev.27 按完整交互链修正Cmd最后一项、双击单clicked、菜单前选区以及restore空输入/Bool门控；已有格式组合和文件样式直接复用。统一build49通过，159输入前后摘要一致；54个关联源码引用刷新当前编译与源码摘要，并非新增54个实现。原地址完整证据仍1495=Source583+SDK912，没有新增完整计数；新增3个selection父均partial。见[交互静态审阅](../reports/replica/card-interaction-static-audit.json)，未运行应用、功能/单测/UI/MCP回归。
 
 0.8.0-dev.28 集中恢复有序选择纯值函数f22df78（新增静态迁移1），接实际click/已证arrow/paste链；原native CollectionView父保持partial。double/Enter读取原modifier配置及完整raw subset，globalplain仅位2；files底10/原生图像bottom/upDown及源logical128修正。最终build51通过161输入前后一致；50为前置历史，末次去除原版不存在的具名图像copy后重新编译。25条既有源码绑定刷新并非25新实现，SDK912不增不撤；当前1496=584+912。范围内原生事件、完整数据集映射、未证Pinboard输入序及最终功能回归未完成。见[有序选择与modifier审阅](../reports/replica/ordered-selection-and-modifier-static-audit.json)。
+
+0.8.0-dev.29 恢复selectAll锚点、精确copy/quick签名与raw0/XOR/优先级；quick先restore单item后选当前index0，越界仍消费但无实体不写。高层f66068的allSatisfy空集合路由实际是Paywall，不是close，已纠正审阅前提。新增一个[完整付费presenter逐地址排除](../reports/function-migration/paywall-presenter-scope-exclusions.json)，验证其完整676字节、factory32字节及class→RO→Paywall名称链；factory和所有通用函数仅作证据不排。该项不计已实现、不减81134分母。完整1496=Source584+SDK912未增长；12条关联Source绑定刷新不是12个新实现。最终build52成功162输入前后SHA一致，全部运行回归仍待全迁移后执行。见[本轮静态审阅](../reports/replica/collection-shortcut-static-audit.json)。

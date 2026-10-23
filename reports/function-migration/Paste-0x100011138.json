@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100011138",
-  "reviewed_at": "2026-10-23T15:50:32.773568+00:00",
+  "reviewed_at": "2026-10-23T16:06:01.206898+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0007.c",
@@ -11,18 +11,18 @@
   "original_pseudocode_sha256": "77da370655b9c478cbddacfb55d1f9e840bfe558c043654171ca858e22a58383",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "e408e508e9bc0bf2b7477ab142e29e4b1c1087daa63cd402c312f145e6cf16a4",
-    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "009cdd6c883d9a1eee452c447cc96c7f290993ab81a6f85e49ed830b291ce89d"
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "f934aeb77929af5420a5b7a96090762fea6810f4a4f7a92be9fb19a1b8fbad9b"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cffddfcf7bb53d8bb29eaf4af782ebc6047acf2491cc030525e565483950abd9",
+  "compiled_app_binary_sha256": "0daea5ae8876420c5d9d2ce4e03518b4c24188fe17e67a7e251a66867d6a911b",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "Stack窗口控制器windowDidLoad调用super后，若window存在设置level25、collectionBehavior257、背景可移动及frameAutosaveName com.wiheads.paste.paste-stack-frame；nil窗口无操作。已接入实际Stack创建路径，并兼容旧复刻frame键读取。",
   "review": "逐地址对照REA伪代码；文本修改路径另核对arm64分支、回调返回及UTF-16长度相加。已接入实际原生编辑器调用链并编译，编译成功不构成运行时等价证据。Swift公共类型/ARC代替原版私有对象布局和桥接ABI。",
-  "source_review": "build51集中审阅：既有搜索、权限、焦点与几何helper保留；仅已证选择算法、modifier消费者与files图像布局修正。真实调用继续存在，稳定编译后刷新关联源码绑定，未运行产品或等价测试。",
+  "source_review": "build52集中复审：既有搜索/焦点/纯有序选择helper及入口保留，只修已证selectAll anchor与copy/quick有限生产链。当前编译稳定并刷新关联文件摘要，不把编译当运行等价。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "unchanged_declarations": [
     {

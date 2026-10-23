@@ -234,7 +234,7 @@ final class ReplicaUIState: ObservableObject {
     func selectAll() {
         allowsEmptySelection = false
         let ids = visibleItems.map(\.id)
-        applyOrderedSelection(ids, anchor: rangeAnchorID, primary: primaryID)
+        applyOrderedSelection(ids, anchor: ids.last, primary: primaryID)
     }
     func deselectAll() {
         allowsEmptySelection = true
@@ -893,12 +893,20 @@ final class ReplicaUIController {
         if store.preferences.nextPinboardShortcut?.matches(event) == true { state.switchBoard(1); return true }
         let plainModifiers = NSEvent.ModifierFlags(rawValue: store.preferences.plainTextModifierRawValue)
         let plain = event.modifierFlags.isSuperset(of: plainModifiers)
-        let quickModifiers = NSEvent.ModifierFlags(rawValue: store.preferences.quickPasteModifierRawValue)
-        let numericKeys: [UInt16: Int] = [18: 1, 19: 2, 20: 3, 21: 4, 23: 5, 22: 6, 26: 7, 28: 8, 25: 9]
-        if !quickModifiers.isEmpty, modifiers.isSuperset(of: quickModifiers),
-           let number = numericKeys[event.keyCode], state.visibleItems.indices.contains(number - 1) {
-            state.select(state.visibleItems[number - 1])
-            pasteSelection(plainTextOnly: plain)
+        let signature = OriginalShortcutFunctions.f_1001e7d18(event)
+        if !isEditing, let action = OriginalCollectionShortcutActions.quickPasteAction(for: signature,
+            quickPasteModifierRawValue: store.preferences.quickPasteModifierRawValue,
+            plainTextModifierRawValue: store.preferences.plainTextModifierRawValue) {
+            let items = state.visibleItems
+            if items.indices.contains(action.index) {
+                paste(item: items[action.index], plainTextOnly: action.options.contains(.plainTextAndLinks))
+            }
+            if let first = state.visibleItems.first { state.select(first) }
+            return true
+        }
+        if !isEditing, let options = OriginalCollectionShortcutActions.copyOptions(for: signature,
+            plainTextModifierRawValue: store.preferences.plainTextModifierRawValue) {
+            copySelection(plainTextOnly: options.contains(.plainTextAndLinks))
             return true
         }
         if command {
@@ -906,7 +914,6 @@ final class ReplicaUIController {
             case "f": handleSearchCommand(); return true
             case "n": shift ? createPinboard() : newTextItem(); return true
             case ",": showSettings(); return true
-            case "c" where !isEditing: copySelection(plainTextOnly: shift); return true
             case "a" where !isEditing: shift ? state.deselectAll() : state.selectAll(); return true
             default: break
             }

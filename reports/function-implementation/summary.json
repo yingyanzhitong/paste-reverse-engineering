@@ -3,11 +3,11 @@
   "scope": "免费、无需原厂账号；逐地址实现和验证本地功能。联网同步、远程共享、原厂账号与付费解锁路径按用户要求排除，但只有逐函数审阅并记录理由后才允许标记排除。所有本地跳板、运行库及反编译失败地址保留在分母中，不自动忽略。",
   "total_functions": 81134,
   "states": {
-    "excluded_by_scope": 5,
+    "excluded_by_scope": 6,
     "implemented": 0,
     "migrated": 1494,
-    "partial": 266,
-    "pending": 79367,
+    "partial": 271,
+    "pending": 79361,
     "verified": 2
   },
   "targets": [
@@ -17,11 +17,11 @@
       "count": 80705,
       "local_thunks": 12935,
       "states": {
-        "excluded_by_scope": 5,
+        "excluded_by_scope": 6,
         "implemented": 0,
         "migrated": 1390,
-        "partial": 266,
-        "pending": 79042,
+        "partial": 271,
+        "pending": 79036,
         "verified": 2
       },
       "pages": [
@@ -550,7 +550,7 @@
     "code_complete": 1496,
     "source_functions": 584,
     "sdk_forwarders_reused": 912,
-    "remaining": 79633,
+    "remaining": 79632,
     "regression_ready": false,
     "policy": "Finish all in-scope code migration before functional regression; retain explicit per-address scope exclusions."
   },

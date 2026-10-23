@@ -1,0 +1,109 @@
+{
+  "kind": "collection_shortcut_and_select_all_static_review",
+  "version": "0.8.0-dev.29",
+  "generated_at": "2026-10-23T16:06:57.883823+00:00",
+  "original_references": [
+    {
+      "function_id": "Paste:0x100228ee8",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0188.c",
+        "line": 2194
+      }
+    },
+    {
+      "function_id": "Paste:0x100069fe0",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0035.c",
+        "line": 3713
+      }
+    },
+    {
+      "function_id": "Paste:0x10006c60c",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0035.c",
+        "line": 5078
+      }
+    },
+    {
+      "function_id": "Paste:0x100074bac",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0037.c",
+        "line": 2806
+      }
+    },
+    {
+      "function_id": "Paste:0x100074dcc",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0037.c",
+        "line": 2929
+      }
+    },
+    {
+      "function_id": "Paste:0x1001e7d18",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0156.c",
+        "line": 1284
+      }
+    },
+    {
+      "function_id": "Paste:0x100064afc",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0035.c",
+        "line": 245
+      }
+    }
+  ],
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "f934aeb77929af5420a5b7a96090762fea6810f4a4f7a92be9fb19a1b8fbad9b",
+    "replica/Sources/PasteReplicaCore/OriginalCollectionShortcutActions.swift": "01be6b33a11e469bcbbe4afe6b12ff4f3ee7ef64e7f4a7cc64d8ff654379f9fb"
+  },
+  "compiled_sha256": {
+    "replica/.build/release/PasteReplica": "0daea5ae8876420c5d9d2ce4e03518b4c24188fe17e67a7e251a66867d6a911b",
+    "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+    "replica/.build/release/paste-replica-mcp": "91fa6469673d44236a46ebb249c5976d6686a53fbbf0fc3b7c5e4f9125a8b783"
+  },
+  "compilation": {
+    "build": 52,
+    "passed": true,
+    "inputs": 162,
+    "inputs_unchanged": true,
+    "seconds": 22.57
+  },
+  "changes": [
+    "selectAll anchor=ordered.last或nil，primary/滚动端保留",
+    "copy用既有f1e7d18 normalizedmask0xff5f0000与f1e94d4物理键表，精确Cmd先0，再Cmd|配置plain3；不叠全局plain",
+    "quick比较完整normalized签名；plainMask==quickMask保值，否则XOR；plain3优先normal0；零quick不禁用",
+    "quick先snapshot单item restore，再对当前index0单选；匹配越界不写PB/不造hide/不呈Paywall，仍选首项并consume true",
+    "NSTextView编辑接收边界保留，防quick0吞输入数字；Enter/double原rawsubset独立保留"
+  ],
+  "paywall_boundary": {
+    "presenter_function": "Paste:0x100064afc",
+    "formal_exclusion_evidence": "reports/function-migration/paywall-presenter-scope-exclusions.json",
+    "reason": "原f66068条件是allSatisfy，不是isEmpty；空集合触发的路由呈Paywall，免费范围排除此提示，不能误当普通close。",
+    "not_excluded": [
+      "原f66068本地恢复父",
+      "allSatisfy/实体applier",
+      "WindowTransition/通用窗口生命周期",
+      "仅作证据的controllerfactory"
+    ]
+  },
+  "reused": [
+    "现有ANSI键表与event signature",
+    "Options0/3与copy/paste真实消费者",
+    "全局plain仅pasteOR位2，copy绕此偏好",
+    "原有完整纯值选择算法及色卡正常路径"
+  ],
+  "remaining": [
+    "原Responder/previewpopover0.1秒延迟与快捷键冲突优先",
+    "真实dataset fullreload/incremental与pending neighbor生命周期",
+    "原CollectionView/actor/DI身份及运行回归"
+  ],
+  "new_complete_source_functions": 0,
+  "new_partial_parents": 5,
+  "new_scope_exclusion": 1,
+  "functional_tests_executed": false,
+  "unit_tests_executed": false,
+  "product_executed": false,
+  "mcp_tests_executed": false,
+  "full_equivalence_verified": false
+}
