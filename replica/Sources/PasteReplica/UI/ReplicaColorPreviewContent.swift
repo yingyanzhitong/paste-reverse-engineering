@@ -97,7 +97,6 @@ final class ReplicaColorPreviewContent: OriginalLayerBackedView, OriginalPreview
             try state.store.updateColorItem(id: itemID, text: Self.hexString(displayedColor))
             state.normalizeSelection()
         } catch { state.controller?.presentError(error) }
-        display(currentModelColor())
     }
 
     @objc private func colorChanged() {

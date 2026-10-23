@@ -47,6 +47,7 @@ public final class OriginalPasteboardCaptureState {
     public weak var delegate: (any OriginalPasteboardCaptureDelegate)?
     public var items: [OriginalPasteboardItem] = []
     public var lastChangeCount: Int
+    var persistChangeCount: ((Int) -> Void)?
     public var pollTimer: Timer?
     public var syncTimer: Timer?
     public let diagnostics = OriginalNamedDiagnostic.f_1000d4624(name: "Pasteboard")

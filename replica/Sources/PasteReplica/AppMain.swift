@@ -125,6 +125,7 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
                       let capture = OriginalPasteboardCaptureState.current(for: self.pasteboard) else { return nil }
                 return capture.pollTimer == nil
             }
+            ui.state.monitoringPauseChanged = { [weak self] in self?.configurePauseMonitoring() }
             configurePauseMonitoring()
             pausePreferencesObservation = store.$preferences.sink { [weak self] _ in
                 // @Published fires before the two pause fields finish changing.

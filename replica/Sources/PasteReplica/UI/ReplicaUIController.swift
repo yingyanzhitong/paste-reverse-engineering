@@ -8,6 +8,7 @@ import PasteReplicaCore
 final class ReplicaUIState: ObservableObject {
     let store: ClipboardStore
     weak var controller: ReplicaUIController?
+    var monitoringPauseChanged: (() -> Void)?
     @Published var query = "" { didSet {
         if !isApplyingSearchInput { searchInputProjection = nil; refreshSearch() }
     } }
@@ -196,6 +197,7 @@ final class ReplicaUIState: ObservableObject {
         perform {
             try store.save()
             ReplicaCopiedOSD.showPaused(resumeDate: store.preferences.pauseUntil)
+            monitoringPauseChanged?()
         }
     }
 
@@ -205,6 +207,7 @@ final class ReplicaUIState: ObservableObject {
         perform {
             try store.save()
             ReplicaCopiedOSD.showResumed()
+            monitoringPauseChanged?()
         }
     }
 

@@ -1,0 +1,228 @@
+{
+  "kind": "static_exif_raw_value_contract_correction",
+  "version": "0.8.0-dev.16",
+  "source_sha256": "0a85e22ff3ccde5a6601fad92286b616c399a88263b14af587eca0d2e3dcc74e",
+  "compiled_app_sha256": "f0fe4f4368f0921734aca37321612fd2245e2f3145923ef1589cfdfd0861382e",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "swift_probe": "import ImageIO\n@inline(never) public func orientationRawContract(_ value: UInt32) -> UInt32 { (CGImagePropertyOrientation(rawValue: value) ?? .up).rawValue }",
+  "compiler_command": "xcrun swiftc -O -emit-sil orientation-raw-contract.swift",
+  "optimized_sil_contract": "bb0(%0 : $UInt32): return %0 : $UInt32",
+  "finding": "当前Clang导入enum的rawValue构造并非1…8的Swift枚举过滤；优化后原样返回任意UInt32，旧回退.up差异为误判。",
+  "remaining": "NSImage跨actor诊断、完整async/continuation/ARC与actor ABI及功能回归尚未完成。",
+  "functional_tests_executed": false,
+  "probe_executed": false,
+  "sdk-bindings": {
+    "replica": {
+      "container_sha256": "f0fe4f4368f0921734aca37321612fd2245e2f3145923ef1589cfdfd0861382e",
+      "arm64_sha256": "f0fe4f4368f0921734aca37321612fd2245e2f3145923ef1589cfdfd0861382e",
+      "container_size": 4738512,
+      "arm64_size": 4738512,
+      "slice_offset": 0,
+      "cpu_type": "0x100000c",
+      "cpu_subtype": "0x0",
+      "file_type": 2,
+      "header_flags": "0x200085",
+      "two_level_namespace": true,
+      "dyld_binding_metadata": {
+        "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+        "slice_file_offset": 1933312,
+        "data_size": 76544,
+        "fixups_version": 0,
+        "imports_format": 1,
+        "imports_count": 1611,
+        "symbols_format": 0,
+        "unsupported_pointer_formats": [],
+        "confirmed_bind_slots": 2673
+      },
+      "build_version": {
+        "platform": 1,
+        "minimum_os": 917504,
+        "minimum_os_string": "14.0.0",
+        "sdk": 983552,
+        "sdk_string": "15.2.0"
+      },
+      "rejected_stub_counts": {},
+      "selected_stubs": {
+        "0x10016cf58": {
+          "address": "0x10016cf58",
+          "file_offset": 1494872,
+          "container_file_offset": 1494872,
+          "section": "__TEXT,__stubs",
+          "body_size": 12,
+          "body_hex": "500200b0105e45f900021fd6",
+          "instruction_words": [
+            "0xb0000250",
+            "0xf9455e10",
+            "0xd61f0200"
+          ],
+          "instructions": [
+            "adrp x16, PAGE(symbol_pointer)",
+            "ldr x16, [x16, PAGEOFF(symbol_pointer)]",
+            "br x16"
+          ],
+          "pointer_address": "0x1001b5ab8",
+          "pointer_section": "__DATA_CONST,__got",
+          "pointer_file_offset": 1792696,
+          "pointer_container_file_offset": 1792696,
+          "pointer_raw_value": "0x80100000000002f1",
+          "dyld_binding": {
+            "import_index": 753,
+            "import_table_slice_file_offset": 1936452,
+            "symbol": "_$s9VisionKit13ImageAnalyzerC7analyze_11orientation13configurationAA0C8AnalysisCSo7NSImageC_So26CGImagePropertyOrientationVAC13ConfigurationVtYaKF",
+            "dylib_ordinal": 18,
+            "dylib": {
+              "install_name": "/System/Library/Frameworks/VisionKit.framework/Versions/A/VisionKit",
+              "load_command": "0xc",
+              "current_version": 65536,
+              "current_version_string": "1.0.0",
+              "compatibility_version": 65536,
+              "compatibility_version_string": "1.0.0"
+            },
+            "weak_import": false,
+            "import_addend": 0,
+            "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+            "fixups_header_slice_file_offset": 1933312,
+            "pointer_format": 6,
+            "imports_format": 1,
+            "segment_index": 2,
+            "page_index": 0,
+            "page_start": 0,
+            "pointer_slice_file_offset": 1792696,
+            "pointer_raw_value": "0x80100000000002f1",
+            "pointer_addend": 0,
+            "effective_addend": 0
+          },
+          "indirect_symbol_index": 48083,
+          "pointer_indirect_symbol_index": 48083,
+          "symbol": "_$s9VisionKit13ImageAnalyzerC7analyze_11orientation13configurationAA0C8AnalysisCSo7NSImageC_So26CGImagePropertyOrientationVAC13ConfigurationVtYaKF",
+          "dylib_ordinal": 18,
+          "n_type": 1,
+          "n_sect": 0,
+          "n_desc": 4608,
+          "weak_import": false,
+          "dylib": {
+            "install_name": "/System/Library/Frameworks/VisionKit.framework/Versions/A/VisionKit",
+            "load_command": "0xc",
+            "current_version": 65536,
+            "current_version_string": "1.0.0",
+            "compatibility_version": 65536,
+            "compatibility_version_string": "1.0.0"
+          },
+          "cpu_type": "0x100000c",
+          "cpu_subtype": "0x0"
+        }
+      }
+    },
+    "original": {
+      "container_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+      "arm64_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+      "container_size": 19045264,
+      "arm64_size": 19045264,
+      "slice_offset": 0,
+      "cpu_type": "0x100000c",
+      "cpu_subtype": "0x0",
+      "file_type": 2,
+      "header_flags": "0xa18085",
+      "two_level_namespace": true,
+      "dyld_binding_metadata": {
+        "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+        "slice_file_offset": 17088512,
+        "data_size": 276408,
+        "fixups_version": 0,
+        "imports_format": 1,
+        "imports_count": 5525,
+        "symbols_format": 0,
+        "unsupported_pointer_formats": [],
+        "confirmed_bind_slots": 24677
+      },
+      "build_version": {
+        "platform": 1,
+        "minimum_os": 917504,
+        "minimum_os_string": "14.0.0",
+        "sdk": 1705216,
+        "sdk_string": "26.5.0"
+      },
+      "rejected_stub_counts": {
+        "not_direct_undefined_dylib_import": 41,
+        "dyld_binding_disagrees_with_nlist_indirect_binding": 2
+      },
+      "selected_stubs": {
+        "0x100bf7758": {
+          "address": "0x100bf7758",
+          "file_offset": 12547928,
+          "container_file_offset": 12547928,
+          "section": "__TEXT,__stubs",
+          "body_size": 12,
+          "body_hex": "b0150090101a46f900021fd6",
+          "instruction_words": [
+            "0x900015b0",
+            "0xf9461a10",
+            "0xd61f0200"
+          ],
+          "instructions": [
+            "adrp x16, PAGE(symbol_pointer)",
+            "ldr x16, [x16, PAGEOFF(symbol_pointer)]",
+            "br x16"
+          ],
+          "pointer_address": "0x100eabc30",
+          "pointer_section": "__DATA_CONST,__got",
+          "pointer_file_offset": 15383600,
+          "pointer_container_file_offset": 15383600,
+          "pointer_raw_value": "0x8010000000000a9a",
+          "dyld_binding": {
+            "import_index": 2714,
+            "import_table_slice_file_offset": 17099680,
+            "symbol": "_$s9VisionKit13ImageAnalyzerC7analyze_11orientation13configurationAA0C8AnalysisCSo7NSImageC_So26CGImagePropertyOrientationVAC13ConfigurationVtYaKF",
+            "dylib_ordinal": 37,
+            "dylib": {
+              "install_name": "/System/Library/Frameworks/VisionKit.framework/Versions/A/VisionKit",
+              "load_command": "0xc",
+              "current_version": 65536,
+              "current_version_string": "1.0.0",
+              "compatibility_version": 65536,
+              "compatibility_version_string": "1.0.0"
+            },
+            "weak_import": false,
+            "import_addend": 0,
+            "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+            "fixups_header_slice_file_offset": 17088512,
+            "pointer_format": 6,
+            "imports_format": 1,
+            "segment_index": 2,
+            "page_index": 1,
+            "page_start": 0,
+            "pointer_slice_file_offset": 15383600,
+            "pointer_raw_value": "0x8010000000000a9a",
+            "pointer_addend": 0,
+            "effective_addend": 0
+          },
+          "indirect_symbol_index": 2330,
+          "pointer_indirect_symbol_index": 2330,
+          "symbol": "_$s9VisionKit13ImageAnalyzerC7analyze_11orientation13configurationAA0C8AnalysisCSo7NSImageC_So26CGImagePropertyOrientationVAC13ConfigurationVtYaKF",
+          "dylib_ordinal": 37,
+          "n_type": 1,
+          "n_sect": 0,
+          "n_desc": 9472,
+          "weak_import": false,
+          "dylib": {
+            "install_name": "/System/Library/Frameworks/VisionKit.framework/Versions/A/VisionKit",
+            "load_command": "0xc",
+            "current_version": 65536,
+            "current_version_string": "1.0.0",
+            "compatibility_version": 65536,
+            "compatibility_version_string": "1.0.0"
+          },
+          "cpu_type": "0x100000c",
+          "cpu_subtype": "0x0"
+        }
+      }
+    }
+  },
+  "product-call35": {
+    "closure_start": "0x10003db7c",
+    "closure_end": "0x10003dc2c",
+    "orientation_helper": "0x10003e544",
+    "analysis_stub": "0x10016cf58",
+    "app_sha256": "f0fe4f4368f0921734aca37321612fd2245e2f3145923ef1589cfdfd0861382e"
+  }
+}

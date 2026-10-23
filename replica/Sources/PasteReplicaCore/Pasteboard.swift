@@ -282,6 +282,9 @@ extension ClipboardStore {
         let writer = OriginalPasteboardWriter(pasteboard: pasteboard)
         writer.f_10037875c(objects)
         guard writer.lastWriteSucceeded else { throw ClipboardStoreError.pasteboardWriteFailed }
+        if let state = OriginalPasteboardCaptureState.current(for: pasteboard) {
+            state.persistChangeCount?(state.lastChangeCount)
+        }
         try recordRestoredItems(ids: ids)
         Self.restoreUndoManager.f_1000da768().removeAllActions()
     }
@@ -329,6 +332,9 @@ public final class ClipboardMonitor: NSObject, OriginalPasteboardCaptureDelegate
         self.captureState = OriginalPasteboardCaptureState.f_100378664(changeCount: savedCount, pasteboard: pasteboard)
         super.init()
         captureState.delegate = self
+        captureState.persistChangeCount = { [defaults] count in
+            defaults.set(count, forKey: "pasteboard-change-token")
+        }
         OriginalPasteboardCaptureState.register(captureState)
     }
 

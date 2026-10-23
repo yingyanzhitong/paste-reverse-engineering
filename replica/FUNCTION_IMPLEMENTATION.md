@@ -58,7 +58,7 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 ## 并行迁移与现有实现复用
 
-2026-10-23 当前 0.8.0-dev.15 快照为 1,420 / 81,134：源码实现或复用 564 个、实际系统转发 856 个；剩余 79,714 个，其中 173 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
+2026-10-23 当前 0.8.0-dev.16 快照为 1,420 / 81,134：源码实现或复用 564 个、实际系统转发 856 个；剩余 79,714 个，其中 173 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
 
 按用户最新要求，四智能体改为先集中核对已有功能和完整调用链：已有实现满足契约就直接复用，只补确认缺失或行为不同的部分。系统转发、薄包装、编译器生成代码按证据成组核对，不再以逐个重写地址推进。功能存在、源码契约迁移、功能回归和一比一验收分别记录；不能把一次静态检查说成全部函数已通过。整体目标保持 active，尚未执行本轮新的功能、UI 或 MCP 测试。
 
@@ -89,6 +89,8 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 0.8.0-dev.15 按功能调用链集中检查，复用已满足契约的实现。根据原 sourceApplication.name → SearchableItemEntity → pasteApp 证据，将应用建议、普通筛选与索引统一为 sourceName；bundleID 保留作元数据和现有排除策略。建议菜单改为真实 local keyDown monitor，避免主面板提前吞键；初始无选中，端点停留，保留原全部 raw key 分支和 modifier 行为。鼠标冷却使用弱引用 DispatchWorkItem，下一次非空移动取消旧任务，100ms 后清空，刷新列表不提前解除。接受只有节点实际变化并完成发布后关闭，程序性选区不重入提前清理。行样式复用原字体/动态颜色/匹配算法，恢复单标题、省略、18点图标、间距/内距/圆角和首行标题定位。完整实体持久化、stored icon、Scroller、通用 query/addMode1 及 DI 生命周期继续部分实现。
 
 本轮 build33 为中间成功快照，经静态复审修正冷却后，最终 build34 release 编译通过：137 份输入前后摘要一致，日志 9.56 秒、包装 10.57 秒。原有编译器/析构、缓存、异常桥按完整当前机器码及绑定重审；SDK 转发新增5、撤回1，源码新完整计数0。公开证据见 [compiled-reuse-build34.json](../reports/function-migration/compiled-reuse-build34.json) 与 [objc-exception-build34.json](../reports/function-migration/objc-exception-build34.json)。未执行新功能或单元测试、原版动态、UI 或 MCP；未打包安装，当前安装仍0.7.0。集中核对报告将已有路径、实际差异和待验证项分开，避免为过期报告重复开发。
+
+0.8.0-dev.16 继续沿真实消费者链修正，不增加重复地址计数。恢复成功后将 writer 已更新的 captureState.changeCount 保存到同一个注入 defaults，再进入 recency 事务及共享 Undo。颜色提交删除多余旧色回填，保留原 nonthrowing 外层结束顺序。成功保存暂停/恢复偏好并提交 OSD 后，同步停启实际 monitor，外部偏好观察及 timer 去重保持。EXIF rawValue 的旧回退缺口经当前优化 SIL 及原版/产品实际调用与 VisionKit 绑定证据证明为误判，撤回该差异，保持异步/actor 父 partial；见 [exif-orientation-static-audit.json](../reports/replica/exif-orientation-static-audit.json)。最终 build35 的137输入前后摘要一致，日志17.74秒、包装19.14秒；既有编译器/析构、共享缓存及异常桥绑定当前完整体，[compiled-reuse-build35.json](../reports/function-migration/compiled-reuse-build35.json) 与 [objc-exception-build35.json](../reports/function-migration/objc-exception-build35.json) 留证。未运行新产品或测试，未打包安装。
 
 原搜索建议/自动 token 化、完整 query 序列化和反解析、Indexable provider、后台 actor/schema/批量恢复、原图片 ViewModel/优选尺寸/错误传播、原复制时文件大小及完整文件布局/VM、仓库事务、混合格式恢复及 token/repository/undo/DidRestore 副作用仍有差异。独立 CLI 的 ClipboardStore.search 保持原接口，不代表完整原 SearchService。既有 NSImage 跨 MainActor 异步分析警告仍保留在 partial 范围。四个 OCR 算法方法体未改，但外围图片数据读取使整文件摘要改变，旧验证转为历史；不以重新写摘要冒称当前功能通过。没有运行新的功能、单测、原版动态、UI 或 MCP 测试，尚未一比一验收。
 
