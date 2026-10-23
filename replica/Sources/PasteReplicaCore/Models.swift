@@ -54,6 +54,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
         OriginalImagePreviewMetadataCodec.decodeFiles(rawPreview)
     }
     public var pinboardIDs: Set<UUID>
+    public var pinboardOrder: Int64?
     public var isDeleted: Bool
 
     public init(id: UUID = UUID(), createdAt: Date = Date(), updatedAt: Date? = nil,
@@ -62,7 +63,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
                 payloads: [String: Data] = [:], pinboardIDs: Set<UUID> = [], isDeleted: Bool = false,
                 sourceDevice: String = "此Mac", isInHistory: Bool = true,
                 imagePreviewMetadata: OriginalImagePreviewMetadata? = nil,
-                rawPreview: Data? = nil, hasExplicitTitle: Bool? = nil) {
+                rawPreview: Data? = nil, hasExplicitTitle: Bool? = nil, pinboardOrder: Int64? = nil) {
         self.id = id
         self.createdAt = createdAt
         self.updatedAt = updatedAt ?? createdAt
@@ -76,6 +77,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
         self.imagePreviewMetadata = imagePreviewMetadata
         self.rawPreview = rawPreview
         self.pinboardIDs = pinboardIDs
+        self.pinboardOrder = pinboardOrder
         self.isDeleted = isDeleted
         self.sourceDevice = sourceDevice
         self.isInHistory = isInHistory
@@ -246,7 +248,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
 
 public enum ClipboardStoreError: LocalizedError {
     case itemNotFound, pinboardNotFound, missingPlainText, pasteboardWriteFailed
-    case invalidPinboardName, unsupportedArchiveVersion, duplicateIdentifiers
+    case invalidPinboardName, invalidPinboardOrder, unsupportedArchiveVersion, duplicateIdentifiers
 
     public var errorDescription: String? {
         switch self {
@@ -255,6 +257,7 @@ public enum ClipboardStoreError: LocalizedError {
         case .missingPlainText: return "此项目没有可用的纯文本。"
         case .pasteboardWriteFailed: return "写入剪贴板失败。"
         case .invalidPinboardName: return "Pinboard 名称不能为空。"
+        case .invalidPinboardOrder: return "Pinboard 项目移动位置无效。"
         case .unsupportedArchiveVersion: return "不支持此存档版本。"
         case .duplicateIdentifiers: return "存档中包含重复标识符。"
         }

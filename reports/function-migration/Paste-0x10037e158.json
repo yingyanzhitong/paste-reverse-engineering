@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037e158",
-  "reviewed_at": "2026-10-23T14:59:15.352575+00:00",
+  "reviewed_at": "2026-10-23T15:16:51.420490+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
+  "compiled_app_binary_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "分配PasteboardItem实例，调用同一严格可抛错Decoder初始化，保留错误返回寄存器语义。",
-  "review": "最终build45完整0x1001235fc..0x10012363c（64B）：objc_allocWithZone188854后strict initializing-init12363c，保存恢复x21错误寄存器。",
+  "review": "最终build46完整0x100130ac0..0x100130b00（64B）：objc_allocWithZone196104后strict initializing-init130b00，保存恢复x21错误寄存器。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1001235fc",
-    "end_exclusive": "0x10012363c",
+    "start": "0x100130ac0",
+    "end_exclusive": "0x100130b00",
     "size": 64,
-    "sha256": "577f8f896d3ddda182bc17acd02c007a976405d0aff08f9b6a141353ae780fd5",
-    "binary_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
+    "sha256": "350be709a75b0d200db8a55a7fcc8c9cdbf35a4c1b9dc19647e7e8b79d74606d",
+    "binary_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
     "lc_function_starts_verified": true
   }
 }

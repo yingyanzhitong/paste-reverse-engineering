@@ -85,3 +85,7 @@
 "accessibility-access.enable-accessibility-access.subtitle" = "最高の体験を得て、他のアプリケーションに直接貼り付けるために、システム設定でPasteがあなたのMacのアクセシビリティ機能にアクセスできるようにしてください。";
 "accessibility-access.enable-accessibility-access.open-system-settings" = "システム設定を開く";
 "accessibility-access.enable-accessibility-access.allow-access" = "アクセスを許可する";
+"settings.privacy.link-preview.title" = "リンクプレビューを生成する";
+"settings.privacy.link-preview.subtitle" = "一回限りのリンクや分析に敏感なリンクに影響を与える可能性があります。";
+"replica.settings.privacy.saved-link-preview.title" = "Link Previews";
+"replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";

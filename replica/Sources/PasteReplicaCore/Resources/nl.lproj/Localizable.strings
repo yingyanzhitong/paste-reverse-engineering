@@ -85,3 +85,7 @@
 "accessibility-access.enable-accessibility-access.subtitle" = "Voor de beste ervaring en directe plakactie in andere applicaties, geef Paste toegang tot de toegankelijkheidsfuncties van je Mac in Systeeminstellingen.";
 "accessibility-access.enable-accessibility-access.open-system-settings" = "Systeeminstellingen openen";
 "accessibility-access.enable-accessibility-access.allow-access" = "Toegang toestaan";
+"settings.privacy.link-preview.title" = "Link previews genereren";
+"settings.privacy.link-preview.subtitle" = "Kan van invloed zijn op eenmalige en analysegevoelige links.";
+"replica.settings.privacy.saved-link-preview.title" = "Link Previews";
+"replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";

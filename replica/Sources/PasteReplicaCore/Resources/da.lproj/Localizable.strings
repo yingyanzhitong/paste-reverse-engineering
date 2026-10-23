@@ -85,3 +85,7 @@
 "accessibility-access.enable-accessibility-access.subtitle" = "For at få den bedste oplevelse og indsætte direkte i andre applikationer, skal du tillade Paste at få adgang til tilgængelighedsfunktionerne på din Mac i Systemindstillinger.";
 "accessibility-access.enable-accessibility-access.open-system-settings" = "Åbn Systemindstillinger";
 "accessibility-access.enable-accessibility-access.allow-access" = "Tillad adgang";
+"settings.privacy.link-preview.title" = "Generer linkforhåndsvisninger";
+"settings.privacy.link-preview.subtitle" = "Kan påvirke engangs- og analysefølsomme links.";
+"replica.settings.privacy.saved-link-preview.title" = "Link Previews";
+"replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";

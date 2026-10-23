@@ -85,3 +85,7 @@
 "accessibility-access.enable-accessibility-access.subtitle" = "Para tener la mejor experiencia y pegar directamente en otras aplicaciones, permite que Paste acceda a las funciones de accesibilidad de tu Mac en Configuración del Sistema.";
 "accessibility-access.enable-accessibility-access.open-system-settings" = "Abrir Ajustes del Sistema";
 "accessibility-access.enable-accessibility-access.allow-access" = "Permitir acceso";
+"settings.privacy.link-preview.title" = "Generar vistas previas de enlaces";
+"settings.privacy.link-preview.subtitle" = "Puede afectar enlaces únicos y sensibles a análisis.";
+"replica.settings.privacy.saved-link-preview.title" = "Link Previews";
+"replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";

@@ -85,3 +85,7 @@
 "accessibility-access.enable-accessibility-access.subtitle" = "Um die beste Erfahrung zu haben und direkt in andere Anwendungen einzufügen, erlauben Sie Paste den Zugriff auf die Bedienungshilfen Ihres Mac in den Systemeinstellungen.";
 "accessibility-access.enable-accessibility-access.open-system-settings" = "Systemeinstellungen öffnen";
 "accessibility-access.enable-accessibility-access.allow-access" = "Zugriff zulassen";
+"settings.privacy.link-preview.title" = "Linkvorschauen generieren";
+"settings.privacy.link-preview.subtitle" = "Kann sich auf einmalige und analyseabhängige Links auswirken.";
+"replica.settings.privacy.saved-link-preview.title" = "Link Previews";
+"replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";

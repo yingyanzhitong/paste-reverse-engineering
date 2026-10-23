@@ -158,7 +158,12 @@ public final class ClipboardStore: ObservableObject {
             }
             // A local ownership change replaces the relation; merging additions can recreate two owners.
             // Unchanged legacy memberships retain the latest persisted value.
-            if local.pinboardIDs != base.pinboardIDs { value.pinboardIDs = local.pinboardIDs }
+            if local.pinboardIDs != base.pinboardIDs {
+                value.pinboardIDs = local.pinboardIDs
+                value.pinboardOrder = local.pinboardOrder
+            } else if local.pinboardOrder != base.pinboardOrder, remote.pinboardIDs == base.pinboardIDs {
+                value.pinboardOrder = local.pinboardOrder
+            }
             if local.isDeleted != base.isDeleted { value.isDeleted = local.isDeleted }
             return value
         }
@@ -203,7 +208,10 @@ public final class ClipboardStore: ObservableObject {
 
     private func normalize(_ state: inout StoreState) {
         let boards = Set(state.pinboards.map(\.id))
-        for i in state.items.indices { state.items[i].pinboardIDs.formIntersection(boards) }
+        for i in state.items.indices {
+            state.items[i].pinboardIDs.formIntersection(boards)
+            if state.items[i].pinboardIDs.isEmpty { state.items[i].pinboardOrder = nil }
+        }
         state.items.sort { $0.updatedAt == $1.updatedAt ? $0.id.uuidString < $1.id.uuidString : $0.updatedAt > $1.updatedAt }
         var count = 0
         var removed: Set<UUID> = []
@@ -341,6 +349,9 @@ public final class ClipboardStore: ObservableObject {
                 if !state.items[i].isInHistory && item.isInHistory { state.items[i].createdAt = item.createdAt }
                 state.items[i].isInHistory = state.items[i].isInHistory || item.isInHistory
                 state.items[i].isDeleted = false
+                if state.items[i].pinboardIDs == item.pinboardIDs, let order = item.pinboardOrder {
+                    state.items[i].pinboardOrder = order
+                }
                 state.items[i].pinboardIDs.formUnion(item.pinboardIDs)
                 return state.items[i].id
             }
@@ -356,13 +367,39 @@ public final class ClipboardStore: ObservableObject {
             string.folding(options: [.caseInsensitive, .diacriticInsensitive, .widthInsensitive], locale: Locale(identifier: "en_US_POSIX"))
         }
         let terms = folded(query).split(whereSeparator: \.isWhitespace).map(String.init)
-        return items.filter { item in
+        let matches = items.filter { item in
             guard (includeDeleted || !item.isDeleted), kind == nil || item.kind == kind,
                   pinboardID == nil || item.pinboardIDs.contains(pinboardID!),
                   pinboardID != nil || !terms.isEmpty || includeDeleted || item.isInHistory else { return false }
             let haystack = folded([item.title, item.plainText ?? "", item.recognizedText ?? "", item.sourceName, item.sourceBundleID ?? "", item.kind.displayName].joined(separator: "\n"))
             return terms.allSatisfy { haystack.contains($0) }
-        }.sorted { $0.updatedAt > $1.updatedAt }
+        }
+        if pinboardID != nil, terms.isEmpty { return Self.sortedPinboardItems(matches) }
+        return matches.sorted { $0.updatedAt > $1.updatedAt }
+    }
+
+    public func items(in pinboardID: UUID) -> [ClipboardItem] {
+        search(query: "", pinboardID: pinboardID)
+    }
+
+    private static func sortedPinboardItems(_ items: [ClipboardItem]) -> [ClipboardItem] {
+        items.sorted { lhs, rhs in
+            switch (lhs.pinboardOrder, rhs.pinboardOrder) {
+            case let (left?, right?) where left != right: return left < right
+            case (_?, nil): return true
+            case (nil, _?): return false
+            default:
+                if lhs.updatedAt != rhs.updatedAt { return lhs.updatedAt > rhs.updatedAt }
+                return lhs.id.uuidString < rhs.id.uuidString
+            }
+        }
+    }
+
+    private static func writePinboardOrder(_ ids: [UUID], into state: inout StoreState) {
+        let positions = Dictionary(uniqueKeysWithValues: ids.enumerated().map { ($0.element, Int64($0.offset)) })
+        for i in state.items.indices {
+            if let position = positions[state.items[i].id] { state.items[i].pinboardOrder = position }
+        }
     }
 
     public func updateItem(id: UUID, title: String? = nil, text: String? = nil) throws {
@@ -550,13 +587,44 @@ public final class ClipboardStore: ObservableObject {
         }
     }
     public func assign(ids: Set<UUID>, to pinboardID: UUID?) throws {
+        try assign(orderedIDs: items.filter { ids.contains($0.id) }.map(\.id), to: pinboardID)
+    }
+
+    public func assign(orderedIDs: [UUID], to pinboardID: UUID?) throws {
         try mutate { state in
             if let pinboardID, !state.pinboards.contains(where: { $0.id == pinboardID }) { throw ClipboardStoreError.pinboardNotFound }
-            for i in state.items.indices where ids.contains(state.items[i].id) {
-                if let pinboardID { state.items[i].pinboardIDs = [pinboardID] }
-                else { state.items[i].pinboardIDs.removeAll() }
+            var destination = pinboardID.map { board in
+                Self.sortedPinboardItems(state.items.filter { !$0.isDeleted && $0.pinboardIDs.contains(board) }).map(\.id)
+            } ?? []
+            var seen = Set<UUID>()
+            for id in orderedIDs where seen.insert(id).inserted {
+                guard let i = state.items.firstIndex(where: { $0.id == id }) else { continue }
+                if let pinboardID {
+                    if !state.items[i].pinboardIDs.contains(pinboardID) { destination.insert(id, at: 0) }
+                    state.items[i].pinboardIDs = [pinboardID]
+                } else {
+                    state.items[i].pinboardIDs.removeAll()
+                    state.items[i].pinboardOrder = nil
+                }
             }
-            state.items.removeAll { ids.contains($0.id) && !$0.isInHistory && $0.pinboardIDs.isEmpty }
+            if pinboardID != nil { Self.writePinboardOrder(destination, into: &state) }
+            state.items.removeAll { seen.contains($0.id) && !$0.isInHistory && $0.pinboardIDs.isEmpty }
+        }
+    }
+
+    public func reorderItems(ids: [UUID], in pinboardID: UUID, toOffset: Int) throws {
+        try mutate { state in
+            guard state.pinboards.contains(where: { $0.id == pinboardID }) else { throw ClipboardStoreError.pinboardNotFound }
+            let current = Self.sortedPinboardItems(state.items.filter { !$0.isDeleted && $0.pinboardIDs.contains(pinboardID) }).map(\.id)
+            guard (0...current.count).contains(toOffset) else { throw ClipboardStoreError.invalidPinboardOrder }
+            let selected = Set(ids)
+            let offsets = current.indices.filter { selected.contains(current[$0]) }
+            let moved = offsets.map { current[$0] }
+            let remaining = current.filter { !selected.contains($0) }
+            let insertion = toOffset - offsets.filter { $0 < toOffset }.count
+            var reordered = remaining
+            reordered.insert(contentsOf: moved, at: insertion)
+            Self.writePinboardOrder(reordered, into: &state)
         }
     }
     public func unassign(ids: Set<UUID>, from pinboardID: UUID) throws {
@@ -628,7 +696,12 @@ public final class ClipboardStore: ObservableObject {
             for board in archive.pinboards { boards[board.id] = board }
             state.pinboards = Array(boards.values)
             var items = Dictionary(uniqueKeysWithValues: state.items.map { ($0.id, $0) })
-            for item in importedItems where items[item.id] == nil || items[item.id]!.updatedAt <= item.updatedAt { items[item.id] = item }
+            for var item in importedItems where items[item.id] == nil || items[item.id]!.updatedAt <= item.updatedAt {
+                if item.pinboardOrder == nil, let existing = items[item.id], existing.pinboardIDs == item.pinboardIDs {
+                    item.pinboardOrder = existing.pinboardOrder
+                }
+                items[item.id] = item
+            }
             state.items = Array(items.values)
             state.preferences = archive.preferences
         }

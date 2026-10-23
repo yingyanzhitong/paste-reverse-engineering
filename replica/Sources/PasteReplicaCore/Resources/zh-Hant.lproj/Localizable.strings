@@ -85,3 +85,7 @@
 "accessibility-access.enable-accessibility-access.subtitle" = "為了獲得最佳體驗並直接貼到其他應用程式，請在系統設置中允許 Paste 存取您的 Mac 的輔助功能。";
 "accessibility-access.enable-accessibility-access.open-system-settings" = "打開系統設置";
 "accessibility-access.enable-accessibility-access.allow-access" = "允許訪問";
+"settings.privacy.link-preview.title" = "生成鏈接預覽";
+"settings.privacy.link-preview.subtitle" = "可能會影響一次性和對分析敏感的鏈接。";
+"replica.settings.privacy.saved-link-preview.title" = "連結預覽";
+"replica.settings.privacy.saved-link-preview.subtitle" = "顯示已儲存的連結預覽。";

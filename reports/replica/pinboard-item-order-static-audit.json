@@ -1,0 +1,261 @@
+{
+  "kind": "dev25_pinboard_item_order_real_store_and_ui_consumers",
+  "reviewed_at": "2026-10-23T15:09:10.703583+00:00",
+  "functions": {
+    "Paste:0x100329088": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "existing_extended",
+      "contract": "pinboard rawType2按displayOrderInPinboard Integer64升序查询，history按timestamp独立排序。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "private static func sortedPinboardItems("
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func items(in pinboardID: UUID)"
+        }
+      ],
+      "remaining": "独立JSON旧缺field兼容、同order tiebreak与混合nil策略不是原CoreData排序身份；原predicate/NSFetcherror路径与history完整父仍partial。",
+      "compiled_review": "reports/replica/pinboard-item-order-static-audit.json"
+    },
+    "Paste:0x1003620f8": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "existing_extended",
+      "contract": "过滤已targetowner；newinputs按输入顺序逐项头插，故多输入最终逆序置前；目标board重写dense0..，不更新historytimestamp，不给所有普通board克隆。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func assign(orderedIDs: [UUID], to pinboardID: UUID?)"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "private static func writePinboardOrder("
+        }
+      ],
+      "remaining": "实体身份/CKSharegate/原NSContext事务与通知整父仍partial；原sourceboard排序洞不强制重排，legacy多owner不后台改写。",
+      "compiled_review": "reports/replica/pinboard-item-order-static-audit.json"
+    },
+    "Paste:0x100362584": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "existing_extended",
+      "contract": "完整board当前序列按输入实体映射firstindex→IndexSet去重升序→SwiftUI.move(fromOffsets,toOffset)→所有位置0..；仅pinboardcontext生产UI入口。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func reorderItems(ids: [UUID], in pinboardID: UUID, toOffset: Int)"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "try state.store.reorderItems(ids: marker.ids, in: boardID, toOffset: index + (after ? 1 : 0))"
+        }
+      ],
+      "remaining": "supported validboundary move值算法已实现，adapter对非法offset抛error而非复刻SwiftUI潜在precondition；原NSContext/完整draggeometry/autoscroll/Undo/notifications仍partial。",
+      "compiled_review": "reports/replica/pinboard-item-order-static-audit.json"
+    }
+  },
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
+    "replica/Sources/PasteReplicaCore/Models.swift": "9bbaaf37f9ad0e82c9bf71616b4284d3bbe261ff819bf432112efbdb396ed63c",
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
+  },
+  "summary": {
+    "source_ready": true,
+    "source_frozen": true,
+    "compiled": true,
+    "full_contract_candidates": 0,
+    "partial_functions": 3,
+    "new_function_count": 0,
+    "functional_tests_executed": false,
+    "unit_tests_executed": false,
+    "products_started": false,
+    "independent_build_executed": false
+  },
+  "original_evidence": [
+    ".local/pasteboard-dev25-pinboard-order-original-bodies.json",
+    ".local/pasteboard-dev25-pinboard-order-review.json",
+    ".local/pasteboard-dev25-pinboard-order-model.json"
+  ],
+  "original_integer_type": {
+    "path": "/Applications/Paste.app/Contents/Resources/PastePackages_PasteCore.bundle/Contents/Resources/v5Paste.momd/v10.mom",
+    "sha256": "25ee25cb8d2e5745c2d258e278ea5a64c72e1f1124f07392dcfdc21e39febc95",
+    "archive_object_index": 218,
+    "property": "displayOrderInPinboard",
+    "NSAttributeType": 300,
+    "attribute_type": "Integer64",
+    "default_value": 0,
+    "attribute_value_class": "NSNumber",
+    "source_api_replica": "ClipboardItem.pinboardOrder: Int64?; nil oldarchivecompat, no copyingcompiledmodelresources"
+  },
+  "original_contract": {
+    "query": "f329088 onrawType2 constructsNSSortDescriptor(key:displayOrderInPinboard,ascending:true) andpredicate list==thisList; no secondarytie-sort proven. HistoryrawType1 uses timestampdesc separately.",
+    "insert": "f3620f8 fetchestargetcurrentorder; selectsinputs notalreadyownedbysametarget; each ininputforwardorder setList(target) thenf898FC(0,0,1,item)→insertatindex0; finallytargetarray enumerated0..<count, setDisplayOrder onlyifdifferent.",
+    "insert_helper_proof": "f898FC computes rangeend-start=0, newcountdelta1; memmove(array[start+1],array[start],oldcount*8), storesitematarray[start]; notappend despite incorrectdecompilerarraytags.",
+    "multiple_insert_example": "existing[X,Y], orderedinputs[A,B]→[B,A,X,Y]; alreadytargetelements filteredbeforeinsertion remaininplace. This isstaticcontractexample, notexecutedtest.",
+    "cross_board": "f3620f8 setList(target) detachesoldowner; updatesanddensifiesonlytargetarray. No sourceboardenumeration/reindex found inthisfunction; sourceorderholes arepossible andstill sortascending. No unconditionalclone/no timestamprefresh inthislocalbranch.",
+    "move_reorder": "f362584 fetchescurrentboardarrayusingf329088; compactMapeachprovidedentity→firstcurrentindexvia3628AC NSObjectequality, skipsmissing; createsIndexSet whichdeduplicates; SwiftUI.MutableCollection.move(fromOffsets,toOffset) thenenumeratesall0..<count andwritesonlychangeddisplayOrder.",
+    "reorder_bounds": "RepositoryforwardsprovidedtoOffset toSwiftUI.move; noadditionalclamp orcustomwrapfound. UnderlyingSwiftUIrangecontract not assertedfrommethodname alone; caller suppliedvalidindexpath remainsboundedauditgap.",
+    "ui_chain": "ItemCollectionView.f6F29C resolvesitemrepresentations through6C924 thenVM.f3BACE8; contextsigncheck accepts pinboardtag2 only; f2FF310 transaction→3BBAF0→3BAD60→basewitness+30 ecca80=364034→362584. History/search tag0/1 not takenbythisreorderentry."
+  },
+  "current_value_algorithm_static_review": {
+    "ordering": "One sortedPinboardItems helper: presentInt64ascending; nillegacyafterexplicitorders; equal/missingorder fallbackupdatedAtdesc+UUIDlex. Entirelegacyboard withoutfield thuspreservesits priorvisibleorder; no eagerfieldassignment. items(in:) andnonqueryboardsearch bothusehelper.",
+    "assign": "New orderedIDs APIpreservesfirstuniqueinputoccurrence, ignoresmissingIDs, snapshotslatestdestinationafterflockmerge; sameownerdoesnotreinsert; eachnewownerheadsinsert; densifyonlydestination; membershipreplaceswithtargetsingleowner. OldSetAPI remainscompatible, selectsinputsinpersisteditemsorder.",
+    "reorder": "Snapshotlatestvisibleboard sortedwithsamehelper; selectedIDsSet→ascendingcurrentoffsets; movevaluesinoriginalcurrentorder; insertion=toOffset-count(offset<toOffset); remaining.insert(contentsOf:moved,at:insertion); denseInt64writes; no timestamptouch.",
+    "legacytrash": "Oldglobaltrashitems excludedfromcurrentboardreorderarray toalignactualitems(in:) visibleUI andpreventhiddenlegacyitems shiftingdropoffset; notclaimedoriginalisDeleted model.",
+    "no_owner": "ExistingnormalizeclearsnewoptionalorderonlywhennoPinboardmembershipremains; detachdoesnotrenumberremainingotheritems; sourceboardholesretained, targetonlydense peroriginal.",
+    "capture_add": "Newstoreditem carriesoptionalfield; matchingcapturenoowner/ordernil doesnotresetexistingrank; suppliedrankonlycopiedifmatchingowners. Existingchecksumdedup/metadata behaviorreused.",
+    "merge": "Explicitlocalownerchange carriesitsrank; localrankchangeonlyappliesifremoteownerunchangedfrombaseline. Unrelatedremoteownerchange keepsremoterank, avoidstaleoldboardreorderbecomingnewboardrank.",
+    "import": "Schema1 automaticoptionalCodable fieldkeepsmissingkeynil; importwithsamemembership/oldmissingfield preservesexistingrank, suppliedfieldexplicitimportretained subjectexistingupdatedAtprecedence. No replacingarchives oruserlegacydata."
+  },
+  "compatibility_boundaries": [
+    "No load-timeconversionoflegacySetmemberships orranknil",
+    "Mixedlegacy+explicitorderboards appendlegacy-nil after explicitorders; deterministicfallbackindependentadapter, notclaimedoriginalequalvalueCoreDatasort",
+    "OldduplicateItem retainsrankcopy; fulloriginalduplicatecallerorderingnotreviewed andnofullcontractclaimed",
+    "No CKShareclonegeneralization ornetworkfeatureenablement",
+    "OriginalinvalidtoOffsettrapnotdeliberatelycopied; publicAPIthrowslocalizedinvalidPinboardOrder beforepersisting"
+  ],
+  "static_scenarios_not_runtime_tests": [
+    "oldallnilboard keepsupdatedAt/UUIDdisplayorderuntilfirstexplicitassign/reorder",
+    "ordered[A,B] intodestination[X,Y] yields[B,A,X,Y]",
+    "alreadytargetinput isnotmovedtofront, butexplicitoperationdensifiescurrentrank",
+    "movingoffsets[1,3] to5 removesboththeninsertsat3 preservingrelativecurrentorder",
+    "missing/repeatedinputIDs yieldonlyexistinguniquecurrentindices",
+    "crossboardassign changesowner/rankonlytarget, nohistorytimestamprefresh",
+    "historycapture/restore canchangeupdatedAt whileexplicitboardrankkeepsexistingboardposition",
+    "oldarchivewithoutorder doesnotclear sameowner existingrank",
+    "localreorder+remoteownermove retainsremoteowner/rankpair"
+  ],
+  "ui_consumers_pending": null,
+  "scope": "OwnedCoreStore/Models + WindowrealUIconsumers boundtofinal46/SHA; originalarm64/momstaticreview; no Sourceedited duringbinaryreview, no runtime/functional/unit/UI/MCP tests.",
+  "ui_consumers": [
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+      "symbol": "if let pinboardID, !showDeleted { return store.items(in: pinboardID) }",
+      "contract": "nonsearchboardonecanonicalorder; activequeryglobalresults retainseparatesort"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+      "symbol": "try store.assign(orderedIDs: ids, to: id)",
+      "contract": "selectedItemsvisibleorder array; primaryfallback; createboardassignalsopassesorderedIDs"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "symbol": "private func receiveItemDrop(",
+      "contract": "ownProcessmarker sessionUUID/boardUUID/orderedselectedIDs; async rechecksameboard/session/nonsearch/nottrash; currenttargetindex+before/after boundary→reorderItems; no pasteboardread"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "symbol": "let provider = itemDragProvider(item)",
+      "contract": "existingexternalcontent representationspreservedbefore internalmarkeraddition"
+    }
+  ],
+  "final_source_note": "Window samebatchHeadercolorappearanceonly adjustedPanelViews; PinboardDNDconsumer unchanged, finalSHA bound",
+  "prior_objc_catcher_revalidation": {
+    "binary_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
+    "function": "Paste:0x1002d2b54",
+    "replica_symbol": "+[PRObjCExceptionCatcher catchExceptionIn:]",
+    "start": "0x1001939c0",
+    "end_exclusive": "0x100193a10",
+    "size": 80,
+    "full_machine_code_hex": "f44fbea9fd7b01a9fd430091e00302aae5090094f30300aa080840f900013fd6140080d2e00313aadc090094e00314aafd7b41a9f44fc2a8c6090014c8090094df090094f40300aac8090094f6ffff17",
+    "sha256": "5158c091e04d2f7471d2becdd0e1ef4e73768a08acec33319457453bcc76b060",
+    "boundary_proof": "last LC_FUNCTION_STARTS entry through __TEXT,__text section end; next __stubs begins at endpoint",
+    "arc_enabled_in_actual_swiftpm_clang_command": true,
+    "compile_flags_confirmed": [
+      "-fobjc-arc",
+      "-O2",
+      "-fblocks",
+      "-target arm64-apple-macosx14.0"
+    ],
+    "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001001939c0 <+[PRObjCExceptionCatcher catchExceptionIn:]>:\n1001939c0:     \tstp\tx20, x19, [sp, #-0x20]!\n1001939c4:     \tstp\tx29, x30, [sp, #0x10]\n1001939c8:     \tadd\tx29, sp, #0x10\n1001939cc:     \tmov\tx0, x2\n1001939d0:     \tbl\t0x100196164 <_swift_willThrowTypedImpl+0x100196164>\n1001939d4:     \tmov\tx19, x0\n1001939d8:     \tldr\tx8, [x0, #0x10]\n1001939dc:     \tblr\tx8\n1001939e0:     \tmov\tx20, #0x0               ; =0\n1001939e4:     \tmov\tx0, x19\n1001939e8:     \tbl\t0x100196158 <_swift_willThrowTypedImpl+0x100196158>\n1001939ec:     \tmov\tx0, x20\n1001939f0:     \tldp\tx29, x30, [sp, #0x10]\n1001939f4:     \tldp\tx20, x19, [sp], #0x20\n1001939f8:     \tb\t0x100196110 <_swift_willThrowTypedImpl+0x100196110>\n1001939fc:     \tbl\t0x10019611c <_swift_willThrowTypedImpl+0x10019611c>\n100193a00:     \tbl\t0x10019617c <_swift_willThrowTypedImpl+0x10019617c>\n100193a04:     \tmov\tx20, x0\n100193a08:     \tbl\t0x100196128 <_swift_willThrowTypedImpl+0x100196128>\n100193a0c:     \tb\t0x1001939e4 <+[PRObjCExceptionCatcher catchExceptionIn:]+0x24>\n",
+    "objc_method_table": {
+      "table": "0x1001976b0",
+      "flags": "0x8000000c",
+      "stride": 12,
+      "count": 1,
+      "methods": [
+        {
+          "entry": "0x1001976b8",
+          "name": "catchExceptionIn:",
+          "imp": "0x1001939c0"
+        }
+      ]
+    },
+    "lsda": {
+      "start": "0x1001d7c80",
+      "bytes": "ff9b15010c001c00001c043c01203000000100002cf00000",
+      "indirect_type_pointer_slot": "0x1001e6cc0",
+      "type_binding": {
+        "import_index": 1311,
+        "import_table_slice_file_offset": 2168060,
+        "symbol": "_OBJC_EHTYPE_$_NSException",
+        "dylib_ordinal": 7,
+        "dylib": {
+          "install_name": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+          "load_command": "0xc",
+          "current_version": 210239488,
+          "current_version_string": "3208.0.0",
+          "compatibility_version": 9830400,
+          "compatibility_version_string": "150.0.0"
+        },
+        "weak_import": false,
+        "import_addend": 0,
+        "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+        "fixups_header_slice_file_offset": 2162688,
+        "pointer_format": 6,
+        "imports_format": 1,
+        "segment_index": 2,
+        "page_index": 0,
+        "page_start": 0,
+        "pointer_slice_file_offset": 1993920,
+        "pointer_raw_value": "0x801000000000051f",
+        "pointer_addend": 0,
+        "effective_addend": 0
+      }
+    },
+    "runtime_stubs": {
+      "0x100196164": "_objc_retain",
+      "0x100196158": "_objc_release",
+      "0x100196110": "_objc_autoreleaseReturnValue",
+      "0x10019611c": "_objc_begin_catch",
+      "0x10019617c": "_objc_retainAutoreleasedReturnValue",
+      "0x100196128": "_objc_end_catch"
+    },
+    "ownership_review": "Normal: retain block→invoke→nil→release block→autoreleaseReturnValue(nil). Catch: objc_begin_catch→objc_retainAutoreleasedReturnValue(exception)→preserve x20→objc_end_catch→release block→objc_autoreleaseReturnValue(exception). Thus exception stays retained across end_catch and returned +0, original catch object identity preserved; original used objc_retain rather than retained-return optimization.",
+    "functional_tests_executed": false,
+    "compiled_build": 46,
+    "revalidation_only": true,
+    "new_function_count": 0
+  },
+  "compiled_build": 46,
+  "binary_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
+  "compiled_manifest": ".local/gap-build-complete.json",
+  "compiler_lifecycle_revalidation": {
+    "path": ".local/interaction-build46-compiled-reuse-review.json",
+    "old_functions_kept": 8,
+    "new_function_count": 0
+  },
+  "permissions_current_binary_review": {
+    "path": ".local/pasteboard-dev25-permissions-build46.json",
+    "getter_preserved": true,
+    "map_release_before_ax": true
+  },
+  "pure_getter_current_review": {
+    "start": "0x1001167b4",
+    "end_exclusive": "0x1001167d0",
+    "size": 28,
+    "sha256": "3012df0b4ea7571227a0ebeed691aa83c089318d1ac167aea1b94726b2569d54",
+    "binary_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
+    "decision": "preserve_existing_migrated"
+  },
+  "current_auxiliary_bindings": {
+    "permissions": ".local/pasteboard-dev25-permissions-build46.json",
+    "modal": ".local/pasteboard-dev25-modal-build46.json",
+    "sounds": ".local/pasteboard-dev25-sounds-build46.json",
+    "itemorder": ".local/pasteboard-dev25-order-build46.json"
+  }
+}

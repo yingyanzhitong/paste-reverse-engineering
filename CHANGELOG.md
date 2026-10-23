@@ -1,5 +1,18 @@
 # 更新日志
 
+## 0.8.0-dev.25 - 2026-10-23
+
+- 三类compact卡片改读已保存元数据：图片stored preview/原尺寸/既有棋盘，颜色canonical UInt64整卡背景/HEX和亮度字色，文件canonical paths/count/preview与multipleDocuments128。独立全文/图片编辑预览保持其原链；旧image rawnil允许已存typed兼容，未批量重建数据。
+- 拆开bodyTop/headerHeight/lockOffset三个几何值，raw0/1/2仍56/52/48；raw3 fullsize时bodyTop0、Header仍新36/旧34，ZStack叠加而不删Header。纯值f3d8588绑定完整100B当前body后新增完整1；cell/Config/VM父保partial。
+- 短Headerstyle1字色恢复whiteα.85/.55；色卡style0按原brightness>0.55选Aqua否则DarkAqua，在对应AppKit appearance中解析动态字色。gradient/锁图标/原生绘制与完整对象层次仍未等同。
+- Privacy真实加入链接预览本地偏好控件，接既有coding/merge和卡片消费者。展示自有“链接预览/显示已保存的链接预览”文案，其他非中文locale英文回退；原Generate/download两key17语言仅保审计资源，不误称支持网络下载。
+- Pinboard新增Int64?项目排序字段，缺值兼容旧可见顺序；真实items(in:)/Store.search统一板内序，explicit assign按输入逐项insert0、重排按选中索引集合和移动前边界执行，再写dense0..。关系与order耦合merge，旧归档/导入/采集不误抹既有序值。
+- 卡片保留外拖多格式表示，另用ownProcess/session/board/有序IDs标记实际板内拖排，drop映射移动前边界并异步复核上下文。中点命中/未还原autoscroll仍明示适配partial，不与tab重排混淆。原非空query独立searchVM优先，移除选中board额外结果过滤，显式Pinboard token保留。
+- 最终build46 release成功，155输入SHA前后一致，日志19.33秒/包装21.18秒；既有编译器、缓存、异常桥、纯AXgetter、权限map/modal/sounds和有限新几何/拖排/appearance当前体与绑定静态复核。未运行产品、单测、功能、原版动态、UI/MCP、重启或异常注入。
+- 逐地址证据1,493 / 81,134（源码583、SDK910），排除5，范围内剩余79,636，其中256部分实现。本轮源码完整新增1、SDK新增1无撤回，净增2；24合并记录不是24新增完整。73行为条目绑定99源码，状态32已有列明行为/38差异或缺证据/1缺失/2未审，不是产品完成率。
+- 新增同版本官方MIT SDK复用可行性证据：Sentry9.24.0 release与官方Package校验值相同，85个Scope方法长度与非重定位指令完全一致；每个重定位目标和实际产品接入尚未验证，新增完成0，未向副本加入第三方库或网络能力。
+- 源码与公开报告同步；未打包安装，安装仍0.7.0，完整一比一验收未完成。面板关闭/失焦动画链仅完成静态取证，尚未落地。
+
 ## 0.8.0-dev.24 - 2026-10-23
 
 - 集中恢复窗口高度完整可见链：顶部10高原生handle记录mousedown位置/初始尺寸，拖动按原sqrt+round越界阻尼，mouseup限制252...412并动画/保存，doubleClick2重置332。live只改frame不每帧写偏好，防偏好观察回写覆盖拖动。

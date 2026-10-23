@@ -85,3 +85,7 @@
 "accessibility-access.enable-accessibility-access.subtitle" = "כדי לקבל את החוויה הטובה ביותר ולהדביק ישירות לאפליקציות אחרות, אפשר ל-Paste לגשת לתכונות הנגישות של המק שלך בהגדרות המערכת.";
 "accessibility-access.enable-accessibility-access.open-system-settings" = "פתח את הגדרות מערכת";
 "accessibility-access.enable-accessibility-access.allow-access" = "אפשר גישה";
+"settings.privacy.link-preview.title" = "צור תצוגות מקדימות של קישורים";
+"settings.privacy.link-preview.subtitle" = "עשוי להשפיע על קישורים חד פעמיים ורגישים לניתוח.";
+"replica.settings.privacy.saved-link-preview.title" = "Link Previews";
+"replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";

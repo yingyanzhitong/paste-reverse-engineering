@@ -85,3 +85,7 @@
 "accessibility-access.enable-accessibility-access.subtitle" = "Aby mieć najlepsze doświadczenie i wklejać bezpośrednio do innych aplikacji, zezwól aplikacji Paste na dostęp do funkcji dostępności Twojego Maca w Ustawieniach systemowych.";
 "accessibility-access.enable-accessibility-access.open-system-settings" = "Otwórz ustawienia systemowe";
 "accessibility-access.enable-accessibility-access.allow-access" = "Zezwól na dostęp";
+"settings.privacy.link-preview.title" = "Generuj podglądy linków";
+"settings.privacy.link-preview.subtitle" = "Może mieć wpływ na jednorazowe i wrażliwe na analizy linki.";
+"replica.settings.privacy.saved-link-preview.title" = "Link Previews";
+"replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";

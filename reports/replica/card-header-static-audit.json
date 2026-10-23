@@ -1,11 +1,11 @@
 {
-  "生成时间": "2026-10-23T14:57:42.077683+00:00",
+  "生成时间": "2026-10-23T15:15:43.917328+00:00",
   "范围": "既有卡片/主面板有限动态布局与metadata消费者静态对照，不是全功能/像素验收",
-  "结论": "主面板按根视图实际bounds动态布局卡片，并联动原0..3通用Header字体/图标几何。此前232仅新OS默认高度输入，现已移除固定尺寸；完整内容特化、动画、材质与窗口高度限制仍partial。",
+  "结论": "按原有限metadata与约束链恢复卡片bodyTop/Header独立几何、image/color/files内容、raw3 fullsize覆盖与短Header颜色；缺失元数据不再回退payload。主面板动态高度/尺寸与Pinboard排序读取复用既有链。原渐变/图标/快捷键/锁/原生动画仍partial，未做像素或功能验收。",
   "源码": [
     {
       "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-      "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
+      "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
     }
   ],
   "原证据": {
@@ -127,11 +127,11 @@
     "behavior": "独立预览Header同步decodedFilePreviewMetadata?.paths.count，nil保原fallback1，不使用??0或itemFileURLs。"
   },
   "未完成或未证实": [
-    "原低priority约束动画/冲突解决与SwiftUImax0保护、sizeclasstransitionManager动画对象仍partial。",
-    "Style3内容特化fullsize：Color/image/link preferredCompactHeaderStyle及图像比例/背景gradient/完全覆盖Header仍partial，未猜imagefullsize。通用非fullsize样式不等于完整所有分支。",
-    "原sidecarwidth对leading的动态偏移未实现，现collectionleading24；素材blur/Glass/background/native约束对象及文字基线仍partial。",
-    "Dev24 removes old window min300/screen-80: live damping,end clamp252...412,reset332 and per-store native autosave now exist; compatibility/actor/whole transition stay partial.",
-    "Link now uses live preview preference and its own title/URL footer; extra third host row and outer duplicate padding removed. Whole HeaderPin/image/style3 fullsize stays partial."
+    "原低priority约束冲突、sizeclass transition动画、材质/Glass/blur与原生文字基线仍partial。",
+    "metadata nil的原reused-cell初值/清理、Header渐变/图标/锁/shortcut对象及文件path完整算法未完整。",
+    "canonical三类已接真实消费者，但原SDK原生View层次/alpha/颜色管理与完整content constraints未作动态像素核验。",
+    "Pinboard拖排API与真实card drop已接；精确原hit testing/drag image/autoscroll/跨窗口行为仍partial。",
+    "原main window resign/过渡关闭完整链已查明但本轮尚未实现；见只读dismissal review。"
   ],
   "限制": "只做静态REA/机器码/Source对照与统一编译；未运行原版或复刻产品、功能回归、单测、UI/CUA/MCP，未验证像素一致。",
   "上轮build41验证": {
@@ -286,13 +286,6 @@
     "cardHeader actual ZStack positions76x76SourceAppIcon trailing+14, centers labels with leading12/trailing62, fixesHeader48 and clips. Existing originaltitle/font/date reuse unchanged.",
     "No panel outer geometry rewrite or new feature row; fixed232 current adapter retained. Root controls unifiedbuild.",
     "Compact text/richText now renders only decodedTextPreviewMetadata.text. Card-specific footer uses original editor.character-count resource f1e6b38(Int32(metadata.length)); Int32 conversion preserves original overflow trap. Nil metadata creates neither text nor numeric fallback. Noncompact/full editor/auxiliary itemSummary stayunchanged."
-  ],
-  "dev22未完成或未证实": [
-    "Full panel container height/scroll242/offset11, dynamically available card square size and sizeclass transitions/animations still differ from original;232 is current adapter input, not claimed original fixedsize.",
-    "Original style3 compact layout/image fullsize/specialColor/link preferredstyle, live source icon entity assets and pinboard hide policy remain partial.",
-    "Current gray inactive selection, content shadow, sourcepalette, native text baseline/drawing and whole card content constraints remain partial. No runtime pixel equivalence asserted.",
-    "Color/image/file/text content-specific rendering is outside this finite group; no global geometry completion implied.",
-    "TextItemCell full native previewLabel/footer constraints, used-cell prior values on missing metadata, fading theme/source appearance and gradient remainpartial; SwiftUI nil projection does not assert original recycling cleanup."
   ],
   "text元数据依赖": [
     {
@@ -521,23 +514,23 @@
     "parent_partial_status_preserved": true
   },
   "验证": {
-    "parent_build": "gap-build45",
+    "parent_build": "gap-build46",
     "result": "passed",
-    "elapsed_seconds": 21.99,
-    "compiler_log_elapsed_seconds": 20.26,
-    "stable_input_count": 153,
+    "elapsed_seconds": 21.18,
+    "compiler_log_elapsed_seconds": 19.33,
+    "stable_input_count": 155,
     "input_sha_before_after_equal": true,
     "kind": "static_compilation_only",
     "functional_regression_executed": false,
     "product_executed": false,
-    "build_log": ".local/gap-build-45.log",
-    "build_log_sha256": "5cdafaf6521db25027e1cfaed23383ae3ed35caac734526fd8856965d83dae5e",
+    "build_log": ".local/gap-build-46.log",
+    "build_log_sha256": "bfa4c0812b8e84027a86dbff7f4ad0033b3fb49f5f1e5548b1696c53e1aa5bb5",
     "source_manifest_file": ".local/gap-build-complete.json",
-    "source_manifest_sha256": "bd6eca92e438a64a6c108b65bc6812692e7d043532ef5b1c769ebe5a74b44840",
+    "source_manifest_sha256": "cb61aaafcfbc59b8ae458c289609bf838667a3fa23dedfc9816df6cf74e7fea7",
     "compiled_sha256": {
-      "replica/.build/release/PasteReplica": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
+      "replica/.build/release/PasteReplica": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
       "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
-      "replica/.build/release/paste-replica-mcp": "7cfb38953a21eaa3f95cd1784723043e1ea3739b2adf31376501fb6d7792346b"
+      "replica/.build/release/paste-replica-mcp": "5425fcac1e17c88b3a5ffa0458abac9a0e0650a5b9e4aa88ceee5885875d656b"
     },
     "parent_partial_status_preserved": true
   },
@@ -561,7 +554,7 @@
       "Current drag expression uses initialHeight+currentY-initialY (fadd then fsub); original initialHeight-(initialY-currentY) (fsub then fsub). No bit-for-bit floating arithmetic equivalence claim; all height parents stay partial."
     ]
   },
-  "current_scope_note": "dev21/22/23 records are historical; current behavior uses dev24 height/link consumers and final45 validation.",
+  "current_scope_note": "dev21..24 are historical records; current Source and final46 validation supersede old known-gap statements.",
   "current_dynamic_height_review45": {
     "generated_at": "2026-10-23T14:38:57.946766+00:00",
     "mode": "完整有限MainView约束→collectionbounds→cardH→sizeclass→Header几何链；Source已接真实动态bounds",
@@ -718,5 +711,33 @@
       "Style3内容特化fullsize：Color/image/link preferredCompactHeaderStyle及图像比例/背景gradient/完全覆盖Header仍partial，未猜imagefullsize。通用非fullsize样式不等于完整所有分支。",
       "原sidecarwidth对leading的动态偏移未实现，现collectionleading24；素材blur/Glass/background/native约束对象及文字基线仍partial。"
     ]
-  }
+  },
+  "current_final46_body_review": {
+    "path": ".local/window-dev25-build46-body-review.json",
+    "sha256": "b621b3c285a368ab75aaea15804b0a90fe8e1b57cac6214f0c000cbff849e896",
+    "结论": {
+      "focus": "MainWindow makeFirstResponder objc IMP b7a18..b7aec: getObjectType; nonnil argument retained; nil initialFirstResponder then contentView fallback; objc_msgSendSuper2 uses makeFirstResponder:. Original/current superclass NSPanel. Existing bounded f0778c0 candidate unchanged; original actor wrapper not claimed.",
+      "key_main": "b7a08..b7a10/b7a10..b7a18 each 8B mov1/ret; no actor diagnostic check. Both remain partial.",
+      "dragdrop": "cardDragProvider 62c7c..63310 retains external itemDragProvider and ownProcess marker; receiveItemDrop 63310..637d4, decoded async main actor body64b64..6506c checks session/board/query/deleted then current store search and selected item index;6506c..65104 calls actual ClipboardStore.reorderItems at ee614 with premove boundary. Native precise hit-testing/autoscroll remains partial.",
+      "appearance": "headerPrimary6580c..659e4 and secondary65c6c..65e2c call presentation resolver; style1 white alpha .85/.55; style0 calls actual resolvedHeader65e2c..66138. That body decodes canonicalColor, calls colorGenerator117708 and brightness146b18, chooses appearanceNamed:,performAsCurrentDrawingAppearance:; closure66138..661c4 calls deviceRGBColorSpace/colorUsingColorSpace:. Parent NSAppearance hierarchy remains partial.",
+      "geometry": "cardGeometry5f900..5fab8 actual resolver->geometry; geometry117264..1172c8 full bounded 100B returns independent d0/d1/d2. class0/1/2 table56/52/48;class3 modern36/old34, fullsizebodyTop0 otherwiseheaderHeight,lock8/7 versus-10. Header remains overlay consumer. All broad card parents partial."
+    }
+  },
+  "dev25_actual_consumers": {
+    "pinboard_item_order": "无query且非deleted时board直接读store.items(in:)原displayOrder，不用updatedAt；ordered assign用当前selectedItems显示序。",
+    "actual_drag_drop": "现有外拖多格式provider保留，附ownProcess marker(sessionUUID,boardUUID,orderedIDs)；卡片drop midpoint前后映完整board移动前边界，异步再核上下文后store.reorderItems。",
+    "search_context": "isSearchQueryEmpty判断原有效query；非空query不再额外受selectedboard过滤，显式Pinboard query token仍由索引匹配；原120ms/事务父partial。",
+    "canonical_card": "image/color/files卡片只消费canonical metadata新helper，无payload兜底；自己的尺寸/HEX/path标签替代通用summary，独立full preview不变。",
+    "body_header": "ZStack保Header顶端，bodyTop与Headerheight分开；raw0/1/2为56/52/48，raw3 fullsize0而header36/34，非fullsizebodyTop==header；Color整卡canonical背景。",
+    "header_style": "仅短class3，style1 title whiteα.85/subtitle .55；style0与原2映0用现primary/secondary getter，gradient/icon/lock未声称完整。",
+    "dismissal": "本轮仅完整证据JSON；未改自动hide，sheets/modal和一次suppression、generation动画仍待完整接链。",
+    "color_header_appearance": "仅canonical色卡Headerstyle0：复用f2067d4亮度>0.55选Aqua否则DarkAqua，performAsCurrentDrawingAppearance内将原动态primary/secondary解析为deviceRGB；其他卡片保持应用appearance。完整原NSAppearance对象层次/命名失败fallback仍partial。"
+  },
+  "历史dev22未完成或未证实": [
+    "Full panel container height/scroll242/offset11, dynamically available card square size and sizeclass transitions/animations still differ from original;232 is current adapter input, not claimed original fixedsize.",
+    "Original style3 compact layout/image fullsize/specialColor/link preferredstyle, live source icon entity assets and pinboard hide policy remain partial.",
+    "Current gray inactive selection, content shadow, sourcepalette, native text baseline/drawing and whole card content constraints remain partial. No runtime pixel equivalence asserted.",
+    "Color/image/file/text content-specific rendering is outside this finite group; no global geometry completion implied.",
+    "TextItemCell full native previewLabel/footer constraints, used-cell prior values on missing metadata, fading theme/source appearance and gradient remainpartial; SwiftUI nil projection does not assert original recycling cleanup."
+  ]
 }

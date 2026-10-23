@@ -1,7 +1,7 @@
 {
   "kind": "static_existing_feature_audit",
   "schema_version": 1,
-  "generated_at": "2026-10-23T14:59:45.296773+00:00",
+  "generated_at": "2026-10-23T15:18:03.718965+00:00",
   "policy": "按已有功能和调用链集中复核，只补真实缺口；本报告不修改逐地址台账，不将模块存在或候选匹配记为等价通过。",
   "functional_tests_executed": false,
   "mcp_tests_executed": false,
@@ -15,16 +15,16 @@
     "states": {
       "excluded_by_scope": 5,
       "implemented": 0,
-      "migrated": 1489,
-      "partial": 249,
-      "pending": 79389,
+      "migrated": 1491,
+      "partial": 256,
+      "pending": 79380,
       "verified": 2
     },
     "migration": {
-      "code_complete": 1491,
-      "source_functions": 582,
-      "sdk_forwarders_reused": 909,
-      "remaining": 79638,
+      "code_complete": 1493,
+      "source_functions": 583,
+      "sdk_forwarders_reused": 910,
+      "remaining": 79636,
       "regression_ready": false,
       "policy": "Finish all in-scope code migration before functional regression; retain explicit per-address scope exclusions."
     }
@@ -44,7 +44,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func search(",
-          "line": 353
+          "line": 364
         },
         {
           "path": "replica/Sources/PasteReplica/UI/FilterBrowser.swift",
@@ -54,7 +54,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "var visibleItems:",
-          "line": 86
+          "line": 87
         },
         {
           "path": "replica/Sources/PasteReplica/UI/SearchEditor.swift",
@@ -163,7 +163,8 @@
         "建议local keyDown先于Panel；初始nil、端点clamp、Home/End/PageUp/PageDown，Enter/Tab/Right有选中才接受，原不查modifier；weak DispatchWorkItem100ms冷却，刷新rows不提前解除。",
         "复用原字体、动态主色、原词匹配range；单title tail/18图标/7间距/3×8内距/7圆角/5列表边距及首行标题minX对齐；仅真变接受完成后关菜单，display选区不提前关闭。",
         "主面板关闭后真实订阅DidCreate/成功恢复事件，单次10秒后仅非空查询清原节点和筛选；提前重开取消timer并保留搜索，空搜索框显示不当成search上下文。",
-        "dev19普通捕获保留原title缺省；Indexable标题仅nil使用固定英文kind，显式空标题保留空串；Header单独使用本地化且empty fallback，不混同两种消费者。"
+        "dev19普通捕获保留原title缺省；Indexable标题仅nil使用固定英文kind，显式空标题保留空串；Header单独使用本地化且empty fallback，不混同两种消费者。",
+        "dev25非空query按原独立searchVM优先，不再附加selectedboard成员过滤；显式Pinboard token仍由实际query匹配，原120ms投影边界继续partial。"
       ],
       "gaps": [
         "完整原输入建议/自动token化、query模型编码和原实体Indexable提供者仍未全部恢复；独立CLI ClipboardStore.search保留既有API行为，不是原Spotlight完整接口",
@@ -172,9 +173,9 @@
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
         "replica/Sources/PasteReplica/UI/FilterBrowser.swift": "5b2f8cfbb48eb59e4be7a04a90b8d57809c2de9a316d77e76a6c41e44f500af2",
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32",
         "replica/Sources/PasteReplica/UI/SearchEditor.swift": "13ce2f341f2e7aad16ac8083f46575b20b060086cc5a66ebe6399d8740915107",
         "replica/Sources/PasteReplicaCore/OriginalFilterBrowserPopover.swift": "f0476a5457e4326cfa241adc063afb2e0031627cb49fe8bdf226634f9731ae7f",
         "replica/Sources/PasteReplicaCore/OriginalSearchDateRanges.swift": "91f2f941e01c03dc575e29edb80144c4e268174528e551deb72642b4a7743451",
@@ -189,7 +190,7 @@
         "replica/Sources/PasteReplicaCore/OriginalSearchSuggestionAnchor.swift": "2af28e89780d0e373331ea15588909cea7d99e1008e396717bb57b10b21436a7",
         "replica/Sources/PasteReplica/UI/ReplicaSearchSuggestionsMenu.swift": "2b46083f6752861703127b267caa380ee9abe901df87fe0bc859a700f02db23a",
         "replica/Sources/PasteReplica/UI/ReplicaSearchSuggestionSource.swift": "3b8891d82227ab85f16852880b76bdb392be1f223e846d6fdbd06ded25dab24b",
-        "replica/Sources/PasteReplicaCore/Models.swift": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90"
+        "replica/Sources/PasteReplicaCore/Models.swift": "9bbaaf37f9ad0e82c9bf71616b4284d3bbe261ff819bf432112efbdb396ed63c"
       },
       "original_reference_status": [
         {
@@ -238,22 +239,22 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func createPinboard(",
-          "line": 517
+          "line": 554
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func assign(",
-          "line": 552
+          "line": 589
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func reorderPinboards(",
-          "line": 577
+          "line": 645
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "func movePinboard(id:",
-          "line": 225
+          "line": 226
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
@@ -263,24 +264,37 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func delete(ids: Set<UUID>, contextPinboardID: UUID?) throws",
-          "line": 494
+          "line": 531
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func reorderItems(ids: [UUID], in pinboardID: UUID, toOffset: Int) throws",
+          "line": 615
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "private func receiveItemDrop(",
+          "line": 286
         }
       ],
       "original_functions": [],
       "covered_behavior": [
         "新建、重命名、删除、颜色、顺序持久化及既有tab操作直接复用。",
         "dev24原普通本地assign为单owner移动，保留history关联；旧多板归档不批量改写，仅显式移动替换归属。",
-        "context删除：history仅清history，board只解除匹配board；无剩余关系物理删除。非空search优先board并走全局物理删除，CKShare复制不套普通离线。"
+        "context删除：history仅清history，board只解除匹配board；无剩余关系物理删除。非空search优先board并走全局物理删除，CKShare复制不套普通离线。",
+        "无query且非deleted时board直接读store.items(in:)原displayOrder，不用updatedAt；ordered assign用当前selectedItems显示序。",
+        "现有外拖多格式provider保留，附ownProcess marker(sessionUUID,boardUUID,orderedIDs)；卡片drop midpoint前后映完整board移动前边界，异步再核上下文后store.reorderItems。",
+        "新增Int64?项目顺序；新归板输入逐项insert0，重排按选中索引集合及移动前边界执行，再写dense0..；旧未存order数据保原显示序直到显式操作。"
       ],
       "gaps": [
-        "完整原CoreData事务/撤销/观察者、共享参与者与每项displayOrder仍有缺口；独立JSON三方merge替换显式关系不等同原实体ABI。",
-        "未执行跨板/搜索/并发的运行回归；保留旧多板值兼容，不把接口存在当原函数全覆盖。"
+        "原CoreData/share/事务/撤销/观察与独立JSON仍有差异；本地drag midpoint/ownProcess marker不是原精确hit-test/autoscroll。",
+        "并发关系与order相绑定，旧归档兼容已静态审阅但未运行重排/归档/多进程回归。"
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841",
-        "replica/Sources/PasteReplica/UI/PanelViews.swift": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
       },
       "original_reference_status": [],
       "reviewer": "root"
@@ -293,12 +307,12 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "func select(_ item:",
-          "line": 124
+          "line": 125
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "func pasteSelection(",
-          "line": 477
+          "line": 478
         },
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
@@ -335,7 +349,7 @@
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32",
         "replica/Sources/PasteReplica/AppMain.swift": "8762250faf72f69c6f3f4be7cecbb1627909481726f02be5ec38bf593339b6d8",
         "replica/Sources/PasteReplica/UI/OriginalAccessibilityModals.swift": "4a229ac0d1f720eca435b010cc7c2f3da45ea970f991861762fb2d078527fed5"
       },
@@ -372,12 +386,12 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "func showStack()",
-          "line": 393
+          "line": 394
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "func consumeStackHead()",
-          "line": 432
+          "line": 433
         },
         {
           "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
@@ -417,8 +431,8 @@
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841",
-        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "594f4d5def8462752221381b7d79e03701724c6b8b42c419a7b48e6b7cbe9917",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32",
+        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "bc26f6763271beed4c8f180b3f9773887b80d550df7c38082658d551d99d8abb",
         "replica/Sources/PasteReplicaCore/OriginalStackTableController.swift": "bbd3276b4c9772cf92fcf68a59a3083c0f0f5569915cb56d83ce2b421419a717",
         "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "e408e508e9bc0bf2b7477ab142e29e4b1c1087daa63cd402c312f145e6cf16a4"
       },
@@ -500,12 +514,12 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "复制图中文字",
-          "line": 375
+          "line": 470
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "struct ReplicaItemContent",
-          "line": 436
+          "line": 531
         },
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift",
@@ -545,7 +559,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "func saveRecognizedDocument(",
-          "line": 592
+          "line": 660
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaSearchIndex.swift",
@@ -565,7 +579,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "private static func withPreviewMetadata",
-          "line": 277
+          "line": 285
         }
       ],
       "original_functions": [
@@ -591,14 +605,14 @@
       "reuse_candidates": [],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OCR.swift": "862d26c538ee33b527297b973197d609136755e66ab887f5f8eea9d3fad08739",
-        "replica/Sources/PasteReplica/UI/PanelViews.swift": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1",
         "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift": "0a85e22ff3ccde5a6601fad92286b616c399a88263b14af587eca0d2e3dcc74e",
         "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d",
         "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
         "replica/Sources/PasteReplica/UI/ReplicaSearchIndex.swift": "e78958178276341efacbc2a1d240fbef049827fa836337e0ef1584cfa9dc5695",
         "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "2c08314bd0e63ada540371d2a856cd277d814997cd97ae5fbc3f1bfc676893e9",
-        "replica/Sources/PasteReplicaCore/Models.swift": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90"
+        "replica/Sources/PasteReplicaCore/Models.swift": "9bbaaf37f9ad0e82c9bf71616b4284d3bbe261ff819bf432112efbdb396ed63c"
       },
       "original_reference_status": [
         {
@@ -640,27 +654,27 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func delete(ids:",
-          "line": 493
+          "line": 530
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func restore(ids:",
-          "line": 503
+          "line": 540
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func duplicateItem(",
-          "line": 542
+          "line": 579
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func eraseHistory()",
-          "line": 585
+          "line": 653
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "private var contextMenu:",
-          "line": 359
+          "line": 454
         }
       ],
       "original_functions": [],
@@ -675,8 +689,8 @@
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
-        "replica/Sources/PasteReplica/UI/PanelViews.swift": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
       },
       "original_reference_status": [],
       "reviewer": "root"
@@ -699,12 +713,12 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "private var cardTitle:",
-          "line": 344
+          "line": 439
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "func showPanel(",
-          "line": 331
+          "line": 332
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalTextPreviewMetadata.swift",
@@ -719,7 +733,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "override func makeFirstResponder(_ responder: NSResponder?) -> Bool",
-          "line": 240
+          "line": 241
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
@@ -730,6 +744,60 @@
           "path": "replica/Sources/PasteReplica/UI/ReplicaPanelResizeHandle.swift",
           "symbol": "final class ReplicaPanelResizeHandle: NSView",
           "line": 4
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift",
+          "symbol": "public static func resolve(",
+          "line": 13,
+          "sha256": "acb4df601c1f35cf1e8767bc8a66140c99ec082c8c82f79acd49fc316a5d09cf"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift",
+          "symbol": "public func geometry(sizeClass: UInt8, modernOS: Bool) -> Geometry",
+          "line": 53,
+          "sha256": "acb4df601c1f35cf1e8767bc8a66140c99ec082c8c82f79acd49fc316a5d09cf"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaCanonicalCardContent.swift",
+          "symbol": "struct ReplicaCanonicalCardContent: View",
+          "line": 7,
+          "sha256": "e21e1292d1b14e681459098262c5bfca77788fc4b67fdc26c7b2bfe9b6096d97"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+          "symbol": "Toggle(OriginalSettingsLocalization.text(\"replica.settings.privacy.saved-link-preview.title\")",
+          "line": 353,
+          "sha256": "bc26f6763271beed4c8f180b3f9773887b80d550df7c38082658d551d99d8abb"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "OriginalCardPresentation.resolve(item, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)",
+          "line": 302,
+          "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "ReplicaCanonicalCardContent(item: item, sizeClass: UInt8(sizeClass))",
+          "line": 324,
+          "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": ".padding(.top, cardGeometry?.bodyTop ?? headerHeight)",
+          "line": 236,
+          "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "resolvedCardHeaderColor(OriginalSearchAppearance.f_1001fec18() ?? .labelColor)",
+          "line": 387,
+          "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "if item.kind == .text || item.kind == .richText || item.kind == .unknown {",
+          "line": 227,
+          "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
         }
       ],
       "original_functions": [
@@ -755,27 +823,30 @@
         "End resize clamp252...412 andanimatedset/save, reset332 onlyifchanged; saves independentnativeframe thenJSON.panelHeight viaexistingstore.save. Currentappbundledefaultsdomainand stableSHA256(standardized/resolvedstore.directoryURL.path)inname isolate apps/store instances.",
         "positionPanel nowNSScreen.main.frame origin/width andstoredheight; removesprefmin300/screenheight-80. restore-firstcapturedheight syncsJSONvalue in memorybeforeprefsubscription; noextraheightmodel.",
         "UI deleteSelection uses showDeleted OR nonemptyquery→permanentlyDelete; elsecontextPinboardID currentboard/nilhistory. Root/PB evidencef7DF7C/f7EAC0 validatessearchoverboard. NoStore/Models edits bythisagent.",
-        "PanelViews passes livepref.linkPreviewsEnabled throughReplicaItemContent toimage-ownedlinkcontent; linkouterhorizontal12/top11去重，link跳过整条通用summary HStack（含旧pinicon/bottompad）。Image完整BaseCell/LinkCell/footer构造树证明无第三host行；原Header独立pinboardIcon完整链仍partial。"
+        "PanelViews passes livepref.linkPreviewsEnabled throughReplicaItemContent toimage-ownedlinkcontent; linkouterhorizontal12/top11去重，link跳过整条通用summary HStack（含旧pinicon/bottompad）。Image完整BaseCell/LinkCell/footer构造树证明无第三host行；原Header独立pinboardIcon完整链仍partial。",
+        "Imagecompactcard usesstoredpreviewData+originalsize/checkerboard; Modellegacyrawniltypedfallbackretainedexplicitly, notoriginalraw-onlyVMclaim.",
+        "Colorcompactcard wholecanonicalcolorbackground/UInt64→existingcolorhelper/18fixedpitchHEX; existingFilescardcanonicalpreview/path/count/multiple128, nofixedpayloadicons.",
+        "Typefullsize/styleconfiguration actualclassifier+threeconstraintgeometry; class3fullsizebodyoverlaysheaderwhichstays36/34; duplicatecommonfooterremovedfor3types.",
+        "ZStack保Header顶端，bodyTop与Headerheight分开；raw0/1/2为56/52/48，raw3 fullsize0而header36/34，非fullsizebodyTop==header；Color整卡canonical背景。",
+        "仅短class3，style1 title whiteα.85/subtitle .55；style0与原2映0用现primary/secondary getter，gradient/icon/lock未声称完整。",
+        "仅canonical色卡Headerstyle0：复用f2067d4亮度>0.55选Aqua否则DarkAqua，performAsCurrentDrawingAppearance内将原动态primary/secondary解析为deviceRGB；其他卡片保持应用appearance。完整原NSAppearance对象层次/命名失败fallback仍partial。"
       ],
       "gaps": [
-        "原低priority约束动画/冲突解决与SwiftUImax0保护、sizeclasstransitionManager动画对象仍partial。",
-        "Style3内容特化fullsize：Color/image/link preferredCompactHeaderStyle及图像比例/背景gradient/完全覆盖Header仍partial，未猜imagefullsize。通用非fullsize样式不等于完整所有分支。",
-        "原sidecarwidth对leading的动态偏移未实现，现collectionleading24；素材blur/Glass/background/native约束对象及文字基线仍partial。",
-        "Neverread/write originalPasteApp autosavekey; independentname inowncurrentappdefaultsdomain + perphysicaldirectorySHA256. Exactoriginalkey exists onlyevidencereview, notimplementation.",
-        "Originalrestorefalse uses332; noindependent副本存档时保既有JSON.panelHeight isintentionallegacycompat. Invalidnonfinite/nonpositivelegacyheight fallsback332. Nativeautosaverestoresuccessnotunconditionallyclamped; endresizerangeonly.",
-        "Originalweakwindowcallbacks replacedweakcontrollerwhichownspanel; extraonGestureFinished bookkeeping forprefobserverguard doesnotpretendoriginalobjectlayout/ABI complete.",
-        "Originalprivateconditionalmodernresizecursor unproved; publicresizeUpDownfallbackonly. MainActor diagnosticobjcbridge mismatch remains priorpartial.",
-        "Nativeframeautosave write + JSONsave nottransactional; store.save failure presents existingerrorUI afterframeapplied. OriginalnonthrowingAppKitframesave + independentCoreData/prefs notclaimederroridentitymatched.",
-        "OriginalfullshowtransitionGeneration/animatedslide/closedWindowManager/resignscreenchanged/framesizefreezing notrestoredbyheightgroup. No product/regression/pixel claim."
+        "原AppKit绘制/gradient/材质、锁图标及完整CompactHeader/native对象与SwiftUI差异仍未回归。",
+        "本轮仅完整证据JSON；未改自动hide，sheets/modal和一次suppression、generation动画仍待完整接链。",
+        "旧image raw缺失仍允许已存typed metadata兼容，不声称原raw-only VM完全一致。"
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplica/UI/PanelViews.swift": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85",
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32",
         "replica/Sources/PasteReplicaCore/OriginalTextPreviewMetadata.swift": "7c09e2e2297ef070a792bf8a50e51ab162146d27b516d7e92ac3bd53df36b676",
         "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "1620a024a011c19294f16680ae2a8d6e92afac426d4ebbe1dd4e1fac1e364ca0",
         "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "06533b5b0a24c1d4cfbab707ff1042ba9e341c9d143679b59ca2d2223dc4a26c",
-        "replica/Sources/PasteReplica/UI/ReplicaPanelResizeHandle.swift": "f0461fe70bbcb486c89ef24d7d2d119b051cd5bbfb34279df06f72636f6bcbbe"
+        "replica/Sources/PasteReplica/UI/ReplicaPanelResizeHandle.swift": "f0461fe70bbcb486c89ef24d7d2d119b051cd5bbfb34279df06f72636f6bcbbe",
+        "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift": "acb4df601c1f35cf1e8767bc8a66140c99ec082c8c82f79acd49fc316a5d09cf",
+        "replica/Sources/PasteReplica/UI/ReplicaCanonicalCardContent.swift": "e21e1292d1b14e681459098262c5bfca77788fc4b67fdc26c7b2bfe9b6096d97",
+        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "bc26f6763271beed4c8f180b3f9773887b80d550df7c38082658d551d99d8abb"
       },
       "original_reference_status": [
         {
@@ -850,7 +921,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "showPreview",
-          "line": 506
+          "line": 507
         }
       ],
       "original_functions": [
@@ -873,7 +944,7 @@
       },
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPreviewWindows.swift": "4cc1f30d0de962162c6231a6207cc7623fc82e20f126f3ebc3edb326d5592c2d",
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841"
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32"
       },
       "original_reference_status": [
         {
@@ -913,7 +984,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "showPreview",
-          "line": 506
+          "line": 507
         }
       ],
       "original_functions": [
@@ -950,7 +1021,7 @@
       },
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPreviewWindows.swift": "4cc1f30d0de962162c6231a6207cc7623fc82e20f126f3ebc3edb326d5592c2d",
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841"
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32"
       },
       "original_reference_status": [
         {
@@ -1032,7 +1103,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "makePreviewPopover",
-          "line": 289
+          "line": 290
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPreviewPopover.swift",
@@ -1097,7 +1168,7 @@
       },
       "source_sha256": {
         "replica/Sources/PasteReplica/UI/PreviewAnchor.swift": "aa621221c95e877131ce3f53723be87730091482eeac479ec109daf66adaf923",
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32",
         "replica/Sources/PasteReplicaCore/OriginalPreviewPopover.swift": "352554008c692f89091bf3cb700b0cfee1b55768b5a709c3b4320951a154a46e",
         "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d"
       },
@@ -1526,7 +1597,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "updateRichTextItem",
-          "line": 407
+          "line": 444
         },
         {
           "path": "replica/Sources/PasteReplica/UI/RichTextEditor.swift",
@@ -1557,7 +1628,7 @@
       },
       "source_sha256": {
         "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
         "replica/Sources/PasteReplica/UI/RichTextEditor.swift": "75b46eaf2b06289118b91e7fb300ad4518fa66f45f0b4858223311e41b2ac89c"
       },
       "original_reference_status": [
@@ -2243,7 +2314,7 @@
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "makePreviewContent",
           "sha256": "7f7ba09e89fb546270f68232ddb9112dbfb45da35205208368b7b8a40bedf2ac",
-          "line": 513
+          "line": 514
         },
         {
           "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
@@ -2338,7 +2409,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "OriginalLinkPreviewMetadataGenerator.generate(items)",
-          "line": 291,
+          "line": 299,
           "sha256": "1aa4aa65d88069fbdb29cf3f1d801bc8405216a7fd40d40a85dbea8ef505caf5"
         },
         {
@@ -2368,7 +2439,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact, linkPreviewsEnabled: linkPreviewsEnabled)",
-          "line": 457,
+          "line": 552,
           "sha256": "4bcf7d00baa7a8d907c4ee14cc22a5af62ba71eee6b580ec4b9cd8a3147ea3df"
         },
         {
@@ -2422,13 +2493,13 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact, linkPreviewsEnabled: linkPreviewsEnabled)",
-          "line": 457,
+          "line": 552,
           "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "ReplicaItemContent(item: item, compact: true, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)",
-          "line": 224,
+          "line": 326,
           "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
         },
         {
@@ -2440,20 +2511,19 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Models.swift",
           "symbol": "public var linkPreviewsEnabled: Bool",
-          "line": 127,
+          "line": 129,
           "sha256": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90"
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "if local.linkPreviewsEnabled != base.linkPreviewsEnabled",
-          "line": 200,
+          "line": 205,
           "sha256": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c"
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "if item.kind != .link {",
-          "line": 228,
-          "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
+          "symbol": "if item.kind == .text || item.kind == .richText || item.kind == .unknown {",
+          "line": 227
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalLinkDisplay.swift",
@@ -2524,22 +2594,22 @@
         "parent_partial_status_preserved": true
       },
       "source_sha256": {
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32",
         "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d",
         "replica/Sources/PasteReplica/UI/ReplicaReadOnlyPreviewContent.swift": "75c71b7c823ac6dfe3e59a033db183419afd55dca88b37941f4a35eb9021d36b",
-        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "594f4d5def8462752221381b7d79e03701724c6b8b42c419a7b48e6b7cbe9917",
+        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "bc26f6763271beed4c8f180b3f9773887b80d550df7c38082658d551d99d8abb",
         "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift": "0a85e22ff3ccde5a6601fad92286b616c399a88263b14af587eca0d2e3dcc74e",
         "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2",
         "replica/Sources/PasteReplica/UI/ReplicaColorPreviewContent.swift": "2d6bd2d25ed3d56897ba22d14ffbcda84f37348cdc15e06a2508fd09dabb7662",
         "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift": "1d9ad12dc1f5b46c40b8ee4f06ab8362693d22e0d099625cde7209f0bd62db37",
         "replica/Sources/PasteReplica/UI/ReplicaFilePreviewContent.swift": "e2bd5375e67f5e326d371bf4c07944358d2a47098469a078d8fd086925c2e5ec",
         "replica/Sources/PasteReplicaCore/OriginalFilePreviewMetadata.swift": "abf5d495807ef79b7d857eff269f77de1d69c704eafac9130616c7664a6eebe0",
-        "replica/Sources/PasteReplicaCore/Models.swift": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90",
+        "replica/Sources/PasteReplicaCore/Models.swift": "9bbaaf37f9ad0e82c9bf71616b4284d3bbe261ff819bf432112efbdb396ed63c",
         "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "1620a024a011c19294f16680ae2a8d6e92afac426d4ebbe1dd4e1fac1e364ca0",
         "replica/Sources/PasteReplicaCore/OriginalColorPreviewMetadata.swift": "b78c20f7a126322c3be604b7a26fc7d630384f31265969e4d17c5cf0887f60b2",
         "replica/Sources/PasteReplicaCore/OriginalLinkPreviewMetadata.swift": "cf30ef0714e8f3bfa31c11765ce3a0493b3228013c3d4096cc5c32e851c2be00",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
-        "replica/Sources/PasteReplica/UI/PanelViews.swift": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1",
         "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "06533b5b0a24c1d4cfbab707ff1042ba9e341c9d143679b59ca2d2223dc4a26c",
         "replica/Sources/PasteReplicaCore/OriginalLinkDisplay.swift": "22ddf146e091d4b1f9fb0315e95a8bfb527542b1e1f945c9c80a776e47302b20"
       },
@@ -2782,7 +2852,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "makePreviewPopover",
-          "line": 289
+          "line": 290
         }
       ],
       "original_functions": [
@@ -2823,7 +2893,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplica/WindowSharingPolicy.swift": "072433ef383fb8a58b6be171d3096af92cec573da60b0790de0f65db114571ce",
         "replica/Sources/PasteReplicaCore/OriginalConfigurationFunctions.swift": "d777c6848066ec198ca41739d0a785ece4df2000977cda19b230e3d4530fcb54",
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841"
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32"
       },
       "original_reference_status": [
         {
@@ -3215,7 +3285,7 @@
       },
       "source_sha256": {
         "replica/Sources/PasteReplica/BackgroundService.swift": "a117f0cd7e8742e0bedd7c3cf52935bc343db072d8beae4f4ee7437e58ed63e7",
-        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "594f4d5def8462752221381b7d79e03701724c6b8b42c419a7b48e6b7cbe9917"
+        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "bc26f6763271beed4c8f180b3f9773887b80d550df7c38082658d551d99d8abb"
       },
       "original_reference_status": [
         {
@@ -3241,7 +3311,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Models.swift",
           "symbol": "Preferences",
-          "line": 99
+          "line": 101
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
@@ -3282,14 +3352,15 @@
       "covered_behavior": [
         "真实通用/隐私/快捷键/本地偏好UI与持久化存在；后台开关已经连真实service链。",
         "现General/Privacy/Shortcuts共28个有精确原key的现有label一次复用原17locale（476值相同）；保留真实sidebar/Form与偏好binding。显式权限按钮接原IOHID/AX系统动作helper，不在启动或偏好setter自动prompt。页面布局/控件完整性仍partial。",
-        "dev23声音按真实DidCapture/DidRestore事件在通知时读取playSounds；capture不在writer内过早播放，restore真实播放路径接入。"
+        "dev23声音按真实DidCapture/DidRestore事件在通知时读取playSounds；capture不在writer内过早播放，restore真实播放路径接入。",
+        "LinkprivacyrealUItoggle→samepersistedbool/realcardconsumer; originalkey/default/Bindingkeypathclosed. Displayownofflinewords, originalGenerate/downloadstrings17localesonlyresourceevidence."
       ],
       "gaps": [
         "原GeneralSettingsViewModel不是窗口visibility manager；旧local-evidence曾把f0ac170错认，不能借旧证据宣称全部设置函数完成。",
         "现Settings为独立SwiftUI Form/sidebar，未见对原全页布局/全部可观察默认值/资源文案的完整逐函数证据。",
         "本轮仅审核后台与screen-sharing交界，其余设置原函数保持未审，不按页面存在算满。",
         "Copy/Paste原音频未分发，缺自身资源时实际沿用Pop，音色仍不同；不能算原声音全还原。",
-        "linkPreviewsEnabled真实持久化与消费者已接；原偏好控件入口/完整设置布局尚未恢复，未冒新增开关UI。"
+        "Privacy控件使用离线本地显示语义文案，原网络Generate/download描述仅证据归档；完整设置对象/布局/账号UI排除边界仍未一比一。"
       ],
       "reuse_candidates": [],
       "ledger_states_at_audit": {
@@ -3297,9 +3368,9 @@
         "Paste:0x1000adc6c": "partial"
       },
       "source_sha256": {
-        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "594f4d5def8462752221381b7d79e03701724c6b8b42c419a7b48e6b7cbe9917",
-        "replica/Sources/PasteReplicaCore/Models.swift": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "bc26f6763271beed4c8f180b3f9773887b80d550df7c38082658d551d99d8abb",
+        "replica/Sources/PasteReplicaCore/Models.swift": "9bbaaf37f9ad0e82c9bf71616b4284d3bbe261ff819bf432112efbdb396ed63c",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
         "replica/Sources/PasteReplicaCore/OriginalSettingsLocalization.swift": "f9c5663239b8fbd7251b0fdcce5c0d19bbfa2c620642d75bcb61073a37e028a5",
         "replica/Sources/PasteReplica/UI/OriginalAccessibilityRequestAction.swift": "22fbc993dae45d453bb2c6586a7823b3c633b2a22446c824cb75256b1e011ed0",
         "replica/Sources/PasteReplicaCore/OriginalAccessibilityService.swift": "e015554a40a64837f284fb9a0dc08a2639e8606b4e34b5930234cf1751e40073",
@@ -3501,7 +3572,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "func saveRecognizedDocument(",
-          "line": 592
+          "line": 660
         }
       ],
       "original_functions": [
@@ -3541,7 +3612,7 @@
         "replica/Sources/PasteReplicaCore/OriginalPasteboardClassification.swift": "120318efac6b9e47b12a415427c830d051338fcbe0257f6f6c6d5bbab6f30614",
         "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271",
         "replica/Sources/PasteReplicaCore/OCR.swift": "862d26c538ee33b527297b973197d609136755e66ab887f5f8eea9d3fad08739",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c"
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb"
       },
       "original_reference_status": [
         {
@@ -3845,7 +3916,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "func pauseMonitoring",
-          "line": 198
+          "line": 199
         },
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
@@ -3870,7 +3941,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "monitoringPauseChanged?()",
-          "line": 204
+          "line": 205
         }
       ],
       "original_functions": [
@@ -3934,7 +4005,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboardPolicies.swift": "b85860e5fdc4be03afd7f4f69651f3ed1fc15c2c48d4a765fdcae5fdc8787dc7",
         "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift": "f435b9bc2af4c37f19e74b5a36b88eba7d94a93ed2628ea3ad1292676a5ab8f4",
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32",
         "replica/Sources/PasteReplica/AppMain.swift": "8762250faf72f69c6f3f4be7cecbb1627909481726f02be5ec38bf593339b6d8"
       },
       "original_reference_status": [
@@ -4242,12 +4313,12 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "importArchive",
-          "line": 609
+          "line": 677
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func importArchive(",
-          "line": 609
+          "line": 677
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
@@ -4280,7 +4351,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboardArchive.swift": "52c2053221184f1fc32aa997c78a3ef90657610590f0aecf760e13b9e9139e12",
         "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c"
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb"
       },
       "original_reference_status": [
         {
@@ -4499,7 +4570,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func add(",
-          "line": 315
+          "line": 323
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
@@ -4527,7 +4598,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboardChecksums.swift": "91b10577b3103f2b5e4ad0879dce27b6ed53648531a0265d93d7d9f636fc611f",
         "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c"
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb"
       },
       "original_reference_status": [
         {
@@ -4562,7 +4633,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func add(",
-          "line": 315
+          "line": 323
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
@@ -4586,7 +4657,7 @@
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
         "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271"
       },
       "original_reference_status": [
@@ -4629,7 +4700,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func add(",
-          "line": 315
+          "line": 323
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
@@ -4639,27 +4710,27 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func updateItem(",
-          "line": 368
+          "line": 405
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func updateRichTextItem(",
-          "line": 407
+          "line": 444
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func updateImageItem(",
-          "line": 426
+          "line": 463
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func updateLinkItem(",
-          "line": 451
+          "line": 488
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func updateColorItem(",
-          "line": 477
+          "line": 514
         },
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift",
@@ -4697,7 +4768,7 @@
         "edit.replaces_payload"
       ],
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
         "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271",
         "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2",
         "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift": "1d9ad12dc1f5b46c40b8ee4f06ab8362693d22e0d099625cde7209f0bd62db37",
@@ -4729,7 +4800,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "private func mutate",
-          "line": 228
+          "line": 236
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
@@ -4744,7 +4815,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Models.swift",
           "symbol": "public struct AppPreferences",
-          "line": 99
+          "line": 101
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
@@ -4774,7 +4845,7 @@
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
           "symbol": "observation = store.objectWillChange.sink",
-          "line": 49
+          "line": 50
         }
       ],
       "original_functions": [
@@ -4802,11 +4873,11 @@
         "callbacks.no_sync_reentrant_save"
       ],
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
         "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271",
-        "replica/Sources/PasteReplicaCore/Models.swift": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90",
+        "replica/Sources/PasteReplicaCore/Models.swift": "9bbaaf37f9ad0e82c9bf71616b4284d3bbe261ff819bf432112efbdb396ed63c",
         "replica/Sources/PasteReplica/AppMain.swift": "8762250faf72f69c6f3f4be7cecbb1627909481726f02be5ec38bf593339b6d8",
-        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841"
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32"
       },
       "original_reference_status": [
         {
@@ -4897,7 +4968,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaObjC/PRObjCExceptionCatcher.m": "99b8ce9f229954f427517a16c4a976b6b1ad776873c0eb5a6856b6a82943af6e",
         "replica/Sources/PasteReplicaCore/OriginalObjCExceptionBridge.swift": "83c6a0735223b544a2d156b9ea26f9aff8896ca6f16c4d8a6c39ae550ac39c88",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
         "replica/Sources/PasteReplicaCore/OriginalPasteboardArchive.swift": "52c2053221184f1fc32aa997c78a3ef90657610590f0aecf760e13b9e9139e12"
       },
       "original_reference_status": [
@@ -4943,7 +5014,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func add(",
-          "line": 315
+          "line": 323
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalSoundEffects.swift",
@@ -4953,7 +5024,12 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "public func delete(ids: Set<UUID>, contextPinboardID: UUID?)",
-          "line": 494
+          "line": 531
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func reorderItems(ids: [UUID], in pinboardID: UUID, toOffset: Int)",
+          "line": 615
         }
       ],
       "original_functions": [
@@ -4967,16 +5043,17 @@
       "covered_behavior": [
         "当前capture会入历史、触发onCapture，可入Stack；已有Pinboard归属与去重保留。",
         "dev23实际事件消费者读取当前playSounds并播放对应Copy/Paste或已明示的系统Pop fallback，订阅在AppMain持有，停止取消和释放声音ID；原音色/DI父保持partial。",
-        "dev24/build45：普通无CKShare Pinboard显式assign复用同实体并移动到单owner，history关联保留；按history/board/search区分清关联或物理删除。年龄清理只匹配无Pinboard项，旧多板数据无后台迁移；merge已改为显式本地归属改动整体替换。"
+        "dev24/build45：普通无CKShare Pinboard显式assign复用同实体并移动到单owner，history关联保留；按history/board/search区分清关联或物理删除。年龄清理只匹配无Pinboard项，旧多板数据无后台迁移；merge已改为显式本地归属改动整体替换。",
+        "dev25/build46：新增已核Integer64的可选pinboardOrder，非searchboard查询/UI共用排序；orderedassign逐项头插、目标dense0..；真实ownProcess卡片拖放接完整board IndexSet等效move；旧缺field数据沿先前顺序直到显式操作，owner/order并发merge及旧归档兼容已接。"
       ],
       "gaps": [
-        "已核CKShare/currentUserParticipant才进入newUUID复制准备，普通离线无CKShare复用实体并setList移动；本轮已修单owner/context删除/age。完整共享权限复制分支、原displayOrder重排、historyattributes全部策略及CoreData/Undo事件身份仍partial，不能把整父或整共享分支排除。",
+        "已核CKShare/currentUserParticipant才进入newUUID复制准备，普通离线无CKShare复用实体并setList移动；本轮已修单owner/context删除/age。完整共享权限复制分支、本地itemdisplayOrder已接真实插入/移动/查询/拖放消费者；原完整draggeometry/动画/autoscroll、historyattributes全部策略及CoreData/Undo事件身份仍partial，不能把整父或整共享分支排除。",
         "这里只记录当前调用链缺口；Stack/Pinboard独立UI审计由主智能体汇总，不能相互代替底层repo契约。"
       ],
       "reuse_candidates": [],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
         "replica/Sources/PasteReplicaCore/OriginalSoundEffects.swift": "9fea7bd27a0f354737883e390ecc1eb6cef885725a7f1768ea697c7d6471b79e"
       },
       "original_reference_status": [
@@ -5336,7 +5413,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Models.swift",
           "symbol": "isDiagnosticsEnabled",
-          "line": 124
+          "line": 126
         },
         {
           "path": "replica/Sources/PasteReplica/AppMain.swift",
@@ -5359,7 +5436,7 @@
       "reuse_candidates": [],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalDiagnosticsManager.swift": "afb071a98b036e3023f254c039ca1d85c4a975e79307aa3f3075b1caf21513ed",
-        "replica/Sources/PasteReplicaCore/Models.swift": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90",
+        "replica/Sources/PasteReplicaCore/Models.swift": "9bbaaf37f9ad0e82c9bf71616b4284d3bbe261ff819bf432112efbdb396ed63c",
         "replica/Sources/PasteReplica/AppMain.swift": "8762250faf72f69c6f3f4be7cecbb1627909481726f02be5ec38bf593339b6d8"
       },
       "original_reference_status": [
@@ -5804,7 +5881,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "recordRestoredItems(ids:",
-          "line": 249
+          "line": 257
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPasteboardCaptureState.swift",
@@ -5819,7 +5896,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Models.swift",
           "symbol": "playSounds: Bool = true",
-          "line": 131
+          "line": 133
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalSoundEffects.swift",
@@ -5848,22 +5925,23 @@
         "dev20：原isSoundEffectsEnabled默认true已接AppPreferences init与缺keyfallback，已存false/encode/merge保持；完整Copy/Paste原声音资源及播放链仍非等价。",
         "dev23实际事件消费者读取当前playSounds并播放对应Copy/Paste或已明示的系统Pop fallback，订阅在AppMain持有，停止取消和释放声音ID；原音色/DI父保持partial。",
         "dev23/build44：AppMain实际持有独立声音消费者，DidCapture在Undo后播放、DidRestore在成功writer/token/recency/Undo后播放；事件时读取同playSounds，false静音。仅自身bundle资源可建AudioServices，资源缺/创建失败实际沿用系统Pop。",
-        "dev24/build45：纠正旧newUUID过宽推论：普通本地板与history可复用同实体，仅共享参与者状态触发原克隆准备；实际删除路由按非空query优先global，非search再history或board作用域。"
+        "dev24/build45：纠正旧newUUID过宽推论：普通本地板与history可复用同实体，仅共享参与者状态触发原克隆准备；实际删除路由按非空query优先global，非search再history或board作用域。",
+        "dev25/build46：restore/capture的history recency不再驱动已有明确rank的board项目顺序；板内rank独立持久化，按原localmove保持实体与history关联。"
       ],
       "gaps": [
         "没有真实f37a144完整方法，不可用底层writer+其他捕获方法间接存在作全链等价。",
         "DidRestore原3消费者已定位：ClosedState清状态、原Paste.aiff系统声、rateApp检查；当前capture/restore完整事件消费者已接，缺原音效资源时实际用系统Pop，音色与原Copy/Paste不同；开关默认true且已存false保留。原资源未验证公开复用许可，未拷贝原素材或以替代音色声称完整。",
         "Stack原复杂路由/动画、JSON过滤失效ID和实体模型仍partial；热键pop和empty-close顺序已接，原无目标接受回执，不应将等待回执当新增要求。",
-        "普通本地Pinboard单owner移动、3context删除与age条件已接；旧多板兼容、原共享复制门槛、displayOrder和完整history策略仍partial；已注册monitor的token、recency、Undo及闭窗DidRestore消费者已接。原ClosedState的Published/DI对象和120ms context投影、close时点不同，声音真实事件消费者已接，但原Copy/Paste音色仍不同；rateApp消费者仍缺。"
+        "普通本地Pinboard单owner移动、3context删除与age条件已接；旧多板兼容、原共享复制门槛与完整history策略仍partial；本地displayOrder值/真实消费者已接，完整drag父仍partial；已注册monitor的token、recency、Undo及闭窗DidRestore消费者已接。原ClosedState的Published/DI对象和120ms context投影、close时点不同，声音真实事件消费者已接，但原Copy/Paste音色仍不同；rateApp消费者仍缺。"
       ],
       "reuse_candidates": [],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271",
         "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
         "replica/Sources/PasteReplicaCore/OriginalPasteboardCaptureState.swift": "91f582575946ec8e4238d539ac477be694bb0adc1ce4f9a184747e43ba670f5f",
         "replica/Sources/PasteReplicaCore/OriginalPasteKeyTranslation.swift": "76118ad54378bc18b97d3f4560eca9032be38832c96d045d318f9335c9a68d12",
-        "replica/Sources/PasteReplicaCore/Models.swift": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90",
+        "replica/Sources/PasteReplicaCore/Models.swift": "9bbaaf37f9ad0e82c9bf71616b4284d3bbe261ff819bf432112efbdb396ed63c",
         "replica/Sources/PasteReplicaCore/OriginalSoundEffects.swift": "9fea7bd27a0f354737883e390ecc1eb6cef885725a7f1768ea697c7d6471b79e"
       },
       "original_reference_status": [
@@ -9173,7 +9251,7 @@
       "reuse_candidates": [],
       "source_sha256": {
         "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift": "0a85e22ff3ccde5a6601fad92286b616c399a88263b14af587eca0d2e3dcc74e",
-        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "594f4d5def8462752221381b7d79e03701724c6b8b42c419a7b48e6b7cbe9917",
+        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "bc26f6763271beed4c8f180b3f9773887b80d550df7c38082658d551d99d8abb",
         "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "c88f3b2093a86fbfaba73baaf5ec6c54d9a72b5acca11ca6b460753ff995686d",
         "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2"
       },
@@ -9415,7 +9493,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
           "symbol": "private static func withPreviewMetadata",
-          "line": 277,
+          "line": 285,
           "sha256": "77520ab60118fed0cc139c219159ddd08ade2748515dd0db603edbfb120d6b32"
         },
         {
@@ -9486,8 +9564,8 @@
         "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2",
         "replica/Sources/PasteReplica/UI/OriginalImageCheckerboardView.swift": "33688d7bc85daf8236ba92017cee0828157202fc46f7c8be8e7f2663588bc51d",
         "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "2c08314bd0e63ada540371d2a856cd277d814997cd97ae5fbc3f1bfc676893e9",
-        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c",
-        "replica/Sources/PasteReplicaCore/Models.swift": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90",
+        "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb",
+        "replica/Sources/PasteReplicaCore/Models.swift": "9bbaaf37f9ad0e82c9bf71616b4284d3bbe261ff819bf432112efbdb396ed63c",
         "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "1620a024a011c19294f16680ae2a8d6e92afac426d4ebbe1dd4e1fac1e364ca0"
       },
       "original_reference_status": [

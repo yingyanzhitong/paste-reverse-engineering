@@ -1,0 +1,7603 @@
+{
+  "kind": "third_party_reuse_feasibility_only",
+  "source_object": ".local/SentryScope-upstream.o",
+  "source_object_sha256": "094264828b4bd782aafb9bf47bc30f0bd41ddac45da9f195e9427e06d313df93",
+  "archive_provenance": ".local/sentry-official-9.24.0-provenance.json",
+  "matched_methods": 85,
+  "same_size_and_nonrelocation_body": 85,
+  "methods": [
+    {
+      "original_address": "0x100b46840",
+      "selector": "initWithMaxBreadcrumbs:",
+      "original_size": 548,
+      "official_size": 548,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 520,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 512,
+          "type": 2,
+          "symbol": "_objc_msgSend$setPropagationContext:"
+        },
+        {
+          "offset": 496,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 492,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 488,
+          "type": 4,
+          "symbol": "l260"
+        },
+        {
+          "offset": 484,
+          "type": 3,
+          "symbol": "l260"
+        },
+        {
+          "offset": 480,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 472,
+          "type": 2,
+          "symbol": "_objc_msgSend$setObservers:"
+        },
+        {
+          "offset": 456,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 452,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 448,
+          "type": 4,
+          "symbol": "l256"
+        },
+        {
+          "offset": 444,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 428,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 424,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 420,
+          "type": 4,
+          "symbol": "l259"
+        },
+        {
+          "offset": 416,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 400,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 396,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 392,
+          "type": 4,
+          "symbol": "l259"
+        },
+        {
+          "offset": 388,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 372,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 368,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 364,
+          "type": 4,
+          "symbol": "l259"
+        },
+        {
+          "offset": 360,
+          "type": 3,
+          "symbol": "l259"
+        },
+        {
+          "offset": 356,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 340,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 332,
+          "type": 2,
+          "symbol": "_objc_msgSend$scopeBuffer"
+        },
+        {
+          "offset": 328,
+          "type": 4,
+          "symbol": "l258"
+        },
+        {
+          "offset": 324,
+          "type": 3,
+          "symbol": "l258"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 312,
+          "type": 2,
+          "symbol": "_objc_msgSend$setAttributesDictionary:"
+        },
+        {
+          "offset": 296,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 292,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 288,
+          "type": 4,
+          "symbol": "l257"
+        },
+        {
+          "offset": 284,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 276,
+          "type": 2,
+          "symbol": "_objc_msgSend$setFingerprintArray:"
+        },
+        {
+          "offset": 260,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 256,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 252,
+          "type": 4,
+          "symbol": "l256"
+        },
+        {
+          "offset": 248,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 240,
+          "type": 2,
+          "symbol": "_objc_msgSend$setAttachmentArray:"
+        },
+        {
+          "offset": 224,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 216,
+          "type": 4,
+          "symbol": "l256"
+        },
+        {
+          "offset": 212,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_msgSend$setContextDictionary:"
+        },
+        {
+          "offset": 188,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 184,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 180,
+          "type": 4,
+          "symbol": "l257"
+        },
+        {
+          "offset": 176,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 168,
+          "type": 2,
+          "symbol": "_objc_msgSend$setExtraDictionary:"
+        },
+        {
+          "offset": 152,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 148,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 144,
+          "type": 4,
+          "symbol": "l257"
+        },
+        {
+          "offset": 140,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 132,
+          "type": 2,
+          "symbol": "_objc_msgSend$setTagDictionary:"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 108,
+          "type": 4,
+          "symbol": "l257"
+        },
+        {
+          "offset": 104,
+          "type": 3,
+          "symbol": "l257"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_msgSend$initWithCapacity:"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 72,
+          "type": 4,
+          "symbol": "l256"
+        },
+        {
+          "offset": 68,
+          "type": 3,
+          "symbol": "l256"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_msgSendSuper2"
+        },
+        {
+          "offset": 40,
+          "type": 4,
+          "symbol": "l244"
+        },
+        {
+          "offset": 36,
+          "type": 3,
+          "symbol": "l244"
+        },
+        {
+          "offset": 28,
+          "type": 4,
+          "symbol": "l_OBJC_CLASSLIST_SUP_REFS_$_"
+        },
+        {
+          "offset": 24,
+          "type": 3,
+          "symbol": "l_OBJC_CLASSLIST_SUP_REFS_$_"
+        }
+      ],
+      "official_body_sha256": "87cbd795705ab0525b9054c363398965b7c68fdc227496d4453f77181e4008e7",
+      "original_body_sha256": "3fd69220c05b6562db307d0d024bf505a8c5cd02ef7463ab02c3afd2ff9046dd"
+    },
+    {
+      "original_address": "0x100b46a64",
+      "selector": "init",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_msgSend$initWithMaxBreadcrumbs:"
+        }
+      ],
+      "official_body_sha256": "db34cb44a262b90c8fe2945ec30b12fe1dbcfcbd982bb273e51039204ffc1c49",
+      "original_body_sha256": "2c6cf99b20024fae51ae1e3e5cecdd567e809e2171278fcc53d7b02084321ae7"
+    },
+    {
+      "original_address": "0x100b46a6c",
+      "selector": "featureFlagBuffer",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleaseReturnValue"
+        }
+      ],
+      "official_body_sha256": "4fbe03c482f52e1c0a8f15400e099a1a058e2e8a7e66956d6ec749fc6080902b",
+      "original_body_sha256": "6b17c2c66a7b586d4a1cba06dd3e02c73591214373fbad4c41dccd4bafb522ae"
+    },
+    {
+      "original_address": "0x100b46a74",
+      "selector": "initWithScope:",
+      "original_size": 824,
+      "official_size": 824,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 820,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 812,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 776,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 768,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 760,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 752,
+          "type": 2,
+          "symbol": "_objc_msgSend$setReplayId:"
+        },
+        {
+          "offset": 736,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 728,
+          "type": 2,
+          "symbol": "_objc_msgSend$replayId"
+        },
+        {
+          "offset": 720,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 712,
+          "type": 2,
+          "symbol": "_objc_msgSend$setSpan:"
+        },
+        {
+          "offset": 696,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 688,
+          "type": 2,
+          "symbol": "_objc_msgSend$span"
+        },
+        {
+          "offset": 680,
+          "type": 2,
+          "symbol": "_objc_msgSend$setLevelEnum:"
+        },
+        {
+          "offset": 668,
+          "type": 2,
+          "symbol": "_objc_msgSend$levelEnum"
+        },
+        {
+          "offset": 660,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 652,
+          "type": 2,
+          "symbol": "_objc_msgSend$setEnvironmentString:"
+        },
+        {
+          "offset": 636,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 628,
+          "type": 2,
+          "symbol": "_objc_msgSend$environmentString"
+        },
+        {
+          "offset": 620,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 612,
+          "type": 2,
+          "symbol": "_objc_msgSend$setDistString:"
+        },
+        {
+          "offset": 596,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 588,
+          "type": 2,
+          "symbol": "_objc_msgSend$distString"
+        },
+        {
+          "offset": 580,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 572,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 564,
+          "type": 2,
+          "symbol": "_objc_msgSend$setUserObject:"
+        },
+        {
+          "offset": 548,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 540,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 532,
+          "type": 2,
+          "symbol": "_objc_msgSend$userObject"
+        },
+        {
+          "offset": 524,
+          "type": 2,
+          "symbol": "_objc_msgSend$setMaxBreadcrumbs:"
+        },
+        {
+          "offset": 512,
+          "type": 2,
+          "symbol": "_objc_msgSend$maxBreadcrumbs"
+        },
+        {
+          "offset": 504,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 496,
+          "type": 2,
+          "symbol": "_objc_msgSend$setPropagationContext:"
+        },
+        {
+          "offset": 480,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 472,
+          "type": 2,
+          "symbol": "_objc_msgSend$propagationContext"
+        },
+        {
+          "offset": 464,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 456,
+          "type": 2,
+          "symbol": "_objc_msgSend$addEntriesFromDictionary:"
+        },
+        {
+          "offset": 440,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 432,
+          "type": 2,
+          "symbol": "_objc_msgSend$attributes"
+        },
+        {
+          "offset": 420,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 412,
+          "type": 2,
+          "symbol": "_objc_msgSend$addObjectsFromArray:"
+        },
+        {
+          "offset": 396,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 388,
+          "type": 2,
+          "symbol": "_objc_msgSend$attachments"
+        },
+        {
+          "offset": 376,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 368,
+          "type": 2,
+          "symbol": "_objc_msgSend$addObjectsFromArray:"
+        },
+        {
+          "offset": 352,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 344,
+          "type": 2,
+          "symbol": "_objc_msgSend$fingerprints"
+        },
+        {
+          "offset": 332,
+          "type": 2,
+          "symbol": "_objc_msgSend$addObjectsFromArray:"
+        },
+        {
+          "offset": 316,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 308,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 292,
+          "type": 2,
+          "symbol": "_objc_msgSend$initWithCapacity:"
+        },
+        {
+          "offset": 280,
+          "type": 2,
+          "symbol": "_objc_msgSend$maxBreadcrumbs"
+        },
+        {
+          "offset": 268,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 264,
+          "type": 4,
+          "symbol": "l256"
+        },
+        {
+          "offset": 260,
+          "type": 3,
+          "symbol": "l256"
+        },
+        {
+          "offset": 252,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 244,
+          "type": 2,
+          "symbol": "_objc_msgSend$breadcrumbs"
+        },
+        {
+          "offset": 236,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 228,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_msgSend$copyBuffer"
+        },
+        {
+          "offset": 196,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 188,
+          "type": 2,
+          "symbol": "_objc_msgSend$addEntriesFromDictionary:"
+        },
+        {
+          "offset": 172,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 160,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 152,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 144,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_msgSend$addEntriesFromDictionary:"
+        },
+        {
+          "offset": 120,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_msgSend$tags"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_msgSend$addEntriesFromDictionary:"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_msgSend$extras"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_msgSend$initWithMaxBreadcrumbs:"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_msgSend$maxBreadcrumbs"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "e4eeb089ee8f54fab1b28de8062bd5df560a895c3d5b4493f3f64c157048d424",
+      "original_body_sha256": "e35a08f12740c7cb6f39517d348a9afda286cde99a891b25b66ddbfea06fa0e4"
+    },
+    {
+      "original_address": "0x100b46dac",
+      "selector": "add:",
+      "original_size": 4,
+      "official_size": 4,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 0,
+          "type": 2,
+          "symbol": "_objc_msgSend$addBreadcrumb:"
+        }
+      ],
+      "official_body_sha256": "a7911cdfdc28e6a1867e359ba426081aacfa692fdeb3e978d2a68dd924fa8c3e",
+      "original_body_sha256": "fa85e0131e9e177b746ee3f1b5c5a9208dc6d3e92542da22722dc99085225fbb"
+    },
+    {
+      "original_address": "0x100b46db0",
+      "selector": "addBreadcrumb:",
+      "original_size": 560,
+      "official_size": 560,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 556,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 548,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 512,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 464,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 460,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 452,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 444,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 436,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 428,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 420,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 412,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 396,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 364,
+          "type": 2,
+          "symbol": "_objc_msgSend$addSerializedBreadcrumb:"
+        },
+        {
+          "offset": 348,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 284,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 276,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 252,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 244,
+          "type": 2,
+          "symbol": "_objc_msgSend$serialize"
+        },
+        {
+          "offset": 216,
+          "type": 2,
+          "symbol": "_objc_msgSend$setObject:atIndexedSubscript:"
+        },
+        {
+          "offset": 196,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 188,
+          "type": 2,
+          "symbol": "_objc_msgSend$snapshotCopy"
+        },
+        {
+          "offset": 180,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 172,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 164,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 148,
+          "type": 2,
+          "symbol": "_logDebug"
+        },
+        {
+          "offset": 140,
+          "type": 4,
+          "symbol": "l220"
+        },
+        {
+          "offset": 136,
+          "type": 3,
+          "symbol": "l220"
+        },
+        {
+          "offset": 128,
+          "type": 4,
+          "symbol": "LC3"
+        },
+        {
+          "offset": 124,
+          "type": 3,
+          "symbol": "LC3"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_msgSend$message"
+        },
+        {
+          "offset": 96,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 88,
+          "type": 2,
+          "symbol": "_objc_msgSend$category"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_debugEnabled"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_msgSend$maxBreadcrumbs"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 40,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 36,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "063f3c4fb40ecca6d624ff922656419403efa854753f77dcf63aa0903d9ef19b",
+      "original_body_sha256": "c1db7b9e43c29eb1de83117ca8c8c9de4cd39cd3e16f2726148c4e48b9f3c18b"
+    },
+    {
+      "original_address": "0x100b46fe0",
+      "selector": "setSpan:",
+      "original_size": 408,
+      "official_size": 408,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 404,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 396,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 368,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 320,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 316,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 308,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 300,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 292,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 284,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 268,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 236,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 228,
+          "type": 2,
+          "symbol": "_objc_msgSend$setTraceContext:"
+        },
+        {
+          "offset": 212,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_msgSend$buildTraceContext:"
+        },
+        {
+          "offset": 184,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 140,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 120,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 44,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 40,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "8f3f5438d7331e697da51b9eac735b6543b2662ce497b2789d08e2cea6f5701a",
+      "original_body_sha256": "c9bdd0e102d27cc617858909b3c3bb06c1de094f688978908f8fcb1e7b52cf6b"
+    },
+    {
+      "original_address": "0x100b47178",
+      "selector": "propagationContext",
+      "original_size": 76,
+      "official_size": 76,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "9513e8ab549f32a3c33c8ea5dbff6292a7b04bed2408d0a48030c5c940fd1bb6",
+      "original_body_sha256": "f437a62f34d4898ed6bd66ead75dcddcd96f1475f4965eac6bc3e5f9362aff39"
+    },
+    {
+      "original_address": "0x100b471c4",
+      "selector": "setPropagationContext:",
+      "original_size": 436,
+      "official_size": 436,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 432,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 424,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 388,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 340,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 336,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 328,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 312,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 296,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 288,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 272,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 240,
+          "type": 2,
+          "symbol": "_objc_msgSend$setTraceContext:"
+        },
+        {
+          "offset": 224,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 180,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 160,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 128,
+          "type": 2,
+          "symbol": "_objc_msgSend$traceContextForEvent"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 44,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 40,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "b0a2e573b78f83a54271c5c7b6c3879aecb085927140b75105cab58e8dc4cafd",
+      "original_body_sha256": "00a0b78b3469c4f386086a62e78286dd18703c346d07a0bfcb2146860399af04"
+    },
+    {
+      "original_address": "0x100b47378",
+      "selector": "setPropagationContextWithTraceId:spanId:",
+      "original_size": 128,
+      "official_size": 128,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 124,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 104,
+          "type": 2,
+          "symbol": "_objc_msgSend$setPropagationContext:"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_msgSend$initWithTraceId:spanId:"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 28,
+          "type": 4,
+          "symbol": "l260"
+        },
+        {
+          "offset": 24,
+          "type": 3,
+          "symbol": "l260"
+        }
+      ],
+      "official_body_sha256": "2c93ece7843d5b332f989fbbf4dca270d36032de3a22630e48b898bba8a1a71b",
+      "original_body_sha256": "5f609a25eb5d14945a6ca58da25da71b9d78b98794ba3c025dff8c291ff5114c"
+    },
+    {
+      "original_address": "0x100b473f8",
+      "selector": "span",
+      "original_size": 76,
+      "official_size": 76,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "4c76dadc07b5e786446d22dde7513f6663977dbac2da6d517a0dc757c6866d4d",
+      "original_body_sha256": "5235a8d44cada613290eb3cd718bd2fc17e00484d473c07e53f9214001faafdb"
+    },
+    {
+      "original_address": "0x100b47444",
+      "selector": "getCastedInternalSpan",
+      "original_size": 136,
+      "official_size": 136,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 132,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 104,
+          "type": 2,
+          "symbol": "_logDebug"
+        },
+        {
+          "offset": 96,
+          "type": 4,
+          "symbol": "l221"
+        },
+        {
+          "offset": 92,
+          "type": 3,
+          "symbol": "l221"
+        },
+        {
+          "offset": 88,
+          "type": 4,
+          "symbol": "LC3"
+        },
+        {
+          "offset": 84,
+          "type": 3,
+          "symbol": "LC3"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_debugEnabled"
+        },
+        {
+          "offset": 64,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 52,
+          "type": 2,
+          "symbol": "_objc_msgSend$isKindOfClass:"
+        },
+        {
+          "offset": 40,
+          "type": 2,
+          "symbol": "_objc_msgSend$class"
+        },
+        {
+          "offset": 36,
+          "type": 4,
+          "symbol": "l261"
+        },
+        {
+          "offset": 32,
+          "type": 3,
+          "symbol": "l261"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 12,
+          "type": 2,
+          "symbol": "_objc_msgSend$span"
+        }
+      ],
+      "official_body_sha256": "80577363ba63fb3c2d26b431464a7387bb5d26e55a7c4e8256a2d2421c88611d",
+      "original_body_sha256": "582c13e0d886b2b9409cf166d44b381cf00d477c18fcc0fea0e4e7ecf9feadee"
+    },
+    {
+      "original_address": "0x100b474cc",
+      "selector": "clear",
+      "original_size": 604,
+      "official_size": 604,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 600,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 584,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 556,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 516,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 512,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 504,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 488,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 456,
+          "type": 2,
+          "symbol": "_objc_msgSend$clear"
+        },
+        {
+          "offset": 444,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 400,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 380,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 372,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 352,
+          "type": 2,
+          "symbol": "_objc_msgSend$setLevelEnum:"
+        },
+        {
+          "offset": 340,
+          "type": 2,
+          "symbol": "_objc_msgSend$setEnvironmentString:"
+        },
+        {
+          "offset": 328,
+          "type": 2,
+          "symbol": "_objc_msgSend$setDistString:"
+        },
+        {
+          "offset": 316,
+          "type": 2,
+          "symbol": "_objc_msgSend$setUserObject:"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 296,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 288,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeAllObjects"
+        },
+        {
+          "offset": 280,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 272,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 264,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 256,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 248,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 236,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 228,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_msgSend$clearAttachments"
+        },
+        {
+          "offset": 212,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 196,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeAllObjects"
+        },
+        {
+          "offset": 188,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 180,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 172,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 164,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeAll"
+        },
+        {
+          "offset": 148,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeAllObjects"
+        },
+        {
+          "offset": 140,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 132,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 124,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeAllObjects"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeAllObjects"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 52,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 44,
+          "type": 2,
+          "symbol": "_objc_msgSend$clearBreadcrumbs"
+        },
+        {
+          "offset": 32,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 28,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "0a1248b5b13d9de8ad70bde647ca47b261430dc66027e383cbe512a49f17d8e4",
+      "original_body_sha256": "4a050dd5eaaa80fa64e92e6efb6676aee6fd4302f7295b92c14b248cdf11d67b"
+    },
+    {
+      "original_address": "0x100b47728",
+      "selector": "clearBreadcrumbs",
+      "original_size": 332,
+      "official_size": 332,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 328,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 288,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 248,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 244,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 236,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 228,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 172,
+          "type": 2,
+          "symbol": "_objc_msgSend$clearBreadcrumbs"
+        },
+        {
+          "offset": 160,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 96,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 88,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeAllObjects"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 32,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 28,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "9398ad2b38231c49c583eddd32060d166a6c6b492fc9c0c9dd323ad5890da27e",
+      "original_body_sha256": "2b1134d0652b21ef651a22a86f0da6936fa9c0915efff3a51040ef1f43a5dce6"
+    },
+    {
+      "original_address": "0x100b47874",
+      "selector": "breadcrumbs",
+      "original_size": 220,
+      "official_size": 220,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 216,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 208,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 196,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 172,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 164,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 140,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 132,
+          "type": 2,
+          "symbol": "_objc_msgSend$addObject:"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_msgSend$objectAtIndexedSubscript:"
+        },
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 32,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 28,
+          "type": 4,
+          "symbol": "l256"
+        },
+        {
+          "offset": 24,
+          "type": 3,
+          "symbol": "l256"
+        }
+      ],
+      "official_body_sha256": "e115538966465e45bf525fd0fec7e8bfd616965b94e405280b6cdd100e27c6d7",
+      "original_body_sha256": "52f1c06960cff2cbf80b69317bc8323843e353e6123c1695463b5d7f88a41b8c"
+    },
+    {
+      "original_address": "0x100b47950",
+      "selector": "setContextValue:forKey:",
+      "original_size": 424,
+      "official_size": 424,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 420,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 412,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 380,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 332,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 328,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 312,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 296,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 288,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 272,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 240,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 232,
+          "type": 2,
+          "symbol": "_objc_msgSend$setContext:"
+        },
+        {
+          "offset": 216,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 200,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 128,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 44,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 40,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "59fe60e88e7fdf6769faa1bb557992b23bf0d40dc2c4873fe96496c0d187e3cd",
+      "original_body_sha256": "73363e930b96b5ef88ddafda89f25b4f516612b67de787dd1bc0b6c7ad174a85"
+    },
+    {
+      "original_address": "0x100b47af8",
+      "selector": "getContextForKey:",
+      "original_size": 136,
+      "official_size": 136,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 132,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 124,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 64,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_msgSend$objectForKey:"
+        },
+        {
+          "offset": 44,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 24,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "532e17554a5627d7830e08e3a31ee6cdfd611a19183399777a354cf3c7b455e1",
+      "original_body_sha256": "5d910444bef7bd9714049d30c5a08fb925e4708b27a392a6d2260c7960165f56"
+    },
+    {
+      "original_address": "0x100b47b80",
+      "selector": "removeContextForKey:",
+      "original_size": 396,
+      "official_size": 396,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 392,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 384,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 352,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 304,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 300,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 292,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 284,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 276,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 268,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 252,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 212,
+          "type": 2,
+          "symbol": "_objc_msgSend$setContext:"
+        },
+        {
+          "offset": 196,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 180,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 88,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeObjectForKey:"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 40,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 36,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "b34ce5d4932c448e020ca0090b6104d11b4572fb6cf88a96e6be423be18eeafc",
+      "original_body_sha256": "8e22c51ccf099c0cc6c5eed6007d0253989a9698d24edcecf8d7b570d98a4009"
+    },
+    {
+      "original_address": "0x100b47d0c",
+      "selector": "context",
+      "original_size": 96,
+      "official_size": 96,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "fb57abc79f2f0c0a890c34f7fc0e3a5545543524d02d4dca438d3d5f7ddce1a6",
+      "original_body_sha256": "9fc293077da51ad29e4655484ef5a43b584a9205f85364908b32d922cbd75a85"
+    },
+    {
+      "original_address": "0x100b47d6c",
+      "selector": "setExtraValue:forKey:",
+      "original_size": 424,
+      "official_size": 424,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 420,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 412,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 380,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 332,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 328,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 312,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 296,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 288,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 272,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 240,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 232,
+          "type": 2,
+          "symbol": "_objc_msgSend$setExtras:"
+        },
+        {
+          "offset": 216,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 200,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 128,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 44,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 40,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "00da64c57c1fb882613818bef2bf5759cbd145b01239a6b1b239ad66bdf390a4",
+      "original_body_sha256": "a85027cefabcad03451d474a070296d24bbd93574f303a6ee7d9445724b7242f"
+    },
+    {
+      "original_address": "0x100b47f14",
+      "selector": "removeExtraForKey:",
+      "original_size": 396,
+      "official_size": 396,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 392,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 384,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 352,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 304,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 300,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 292,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 284,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 276,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 268,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 252,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 212,
+          "type": 2,
+          "symbol": "_objc_msgSend$setExtras:"
+        },
+        {
+          "offset": 196,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 180,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 88,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeObjectForKey:"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 40,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 36,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "12728f1c24df9a6fadecc7886d5fc628bfb031b720da957e0f73ed50943f6bcd",
+      "original_body_sha256": "e80e64e3ef09bbde03cf90bb8129f516735769f43b5623b1cac4c77c1e9c93e0"
+    },
+    {
+      "original_address": "0x100b480a0",
+      "selector": "setExtras:",
+      "original_size": 400,
+      "official_size": 400,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 396,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 388,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 356,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 308,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 304,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 296,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 288,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 280,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 272,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 256,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 224,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 216,
+          "type": 2,
+          "symbol": "_objc_msgSend$setExtras:"
+        },
+        {
+          "offset": 200,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 184,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 140,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 120,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_msgSend$addEntriesFromDictionary:"
+        },
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 40,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 36,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "a79e0bbc2413a9c49c08b3a8c79bdd4cfe9d0044158034f32c3cccc67ba0c6d0",
+      "original_body_sha256": "2f35488f0dfd691c0fb9a880b2c85e4c6af25eb42395879c07ed4774b53f57cb"
+    },
+    {
+      "original_address": "0x100b48230",
+      "selector": "extras",
+      "original_size": 96,
+      "official_size": 96,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "185354d200d60900cd82c7482f3fb05ed499222c549c4c330510dc5f530def9d",
+      "original_body_sha256": "6fa0206236929ea55ce32b526826869d37c93f293d24ea8030427df846e5250d"
+    },
+    {
+      "original_address": "0x100b48290",
+      "selector": "setTagValue:forKey:",
+      "original_size": 424,
+      "official_size": 424,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 420,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 412,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 380,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 332,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 328,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 312,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 296,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 288,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 272,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 240,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 232,
+          "type": 2,
+          "symbol": "_objc_msgSend$setTags:"
+        },
+        {
+          "offset": 216,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 200,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 128,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_msgSend$setObject:forKeyedSubscript:"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 44,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 40,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "e1d928ac38c08cf7472f884bfae73d05d57611c1b364a9ec539bd052e5e25913",
+      "original_body_sha256": "028b0f13037319fd8d3da741c519dce890645d78220a1e831700cf5609e3934a"
+    },
+    {
+      "original_address": "0x100b48438",
+      "selector": "removeTagForKey:",
+      "original_size": 396,
+      "official_size": 396,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 392,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 384,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 352,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 304,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 300,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 292,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 284,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 276,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 268,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 252,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 212,
+          "type": 2,
+          "symbol": "_objc_msgSend$setTags:"
+        },
+        {
+          "offset": 196,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 180,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 88,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeObjectForKey:"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 40,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 36,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "c55d8ddec0ddcafa1c7f5a9f4e7c86c0fc412f6ab2b55c87efef50fb9d94ea68",
+      "original_body_sha256": "03a631b3804ab47e207a1c27bdced9f9e77fde1f1f51d2f11b521a9dc4fccc76"
+    },
+    {
+      "original_address": "0x100b485c4",
+      "selector": "setTags:",
+      "original_size": 420,
+      "official_size": 420,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 416,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 408,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 376,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 328,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 324,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 316,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 308,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 300,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 292,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 284,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 268,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 236,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 228,
+          "type": 2,
+          "symbol": "_objc_msgSend$setTags:"
+        },
+        {
+          "offset": 212,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 196,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 152,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 132,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 124,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 104,
+          "type": 2,
+          "symbol": "_objc_msgSend$addEntriesFromDictionary:"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 40,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 36,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "d8d68f8f3024c55563051961a575ce54f8432a82adcf377df896c8eba9e2f69d",
+      "original_body_sha256": "42141e24be489472b955fa33ddd616a0a4aab3db772c8308688c25cd08ac4e6b"
+    },
+    {
+      "original_address": "0x100b48768",
+      "selector": "tags",
+      "original_size": 96,
+      "official_size": 96,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "78648d925f8fa415b73479e7d0ed9f5fd5520514cdeb24c3419f22a69b8f78b7",
+      "original_body_sha256": "fd5a399d9c41a58fdc408d43958e560c7dbf4af7378c40b78d37ef86735e92e9"
+    },
+    {
+      "original_address": "0x100b487c8",
+      "selector": "setUser:",
+      "original_size": 364,
+      "official_size": 364,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 360,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 352,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 276,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 272,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 264,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 256,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 248,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 240,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 224,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 192,
+          "type": 2,
+          "symbol": "_objc_msgSend$setUser:"
+        },
+        {
+          "offset": 176,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 132,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 104,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_msgSend$setUserObject:"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 64,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 52,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 36,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 32,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "3872906467a556e71a2c6bae5bc728271545358d0c368500935d11e6b6baef49",
+      "original_body_sha256": "34adce34dbb55b68f272e966a383f164b83401f6198a325ef2235ad8eeaf1228"
+    },
+    {
+      "original_address": "0x100b48934",
+      "selector": "setDist:",
+      "original_size": 284,
+      "official_size": 284,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 280,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 240,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 236,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 228,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 172,
+          "type": 2,
+          "symbol": "_objc_msgSend$setDist:"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 64,
+          "type": 2,
+          "symbol": "_objc_msgSend$setDistString:"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 32,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 28,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "7b3656f903afaf7d1d98a680b7f05883143871070a1c66ff9200813ec045001d",
+      "original_body_sha256": "83f10318a341813d2f432bebced251f760dcdb748f17c94fb28bbf769974381e"
+    },
+    {
+      "original_address": "0x100b48a50",
+      "selector": "setEnvironment:",
+      "original_size": 284,
+      "official_size": 284,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 280,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 240,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 236,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 228,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 172,
+          "type": 2,
+          "symbol": "_objc_msgSend$setEnvironment:"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 64,
+          "type": 2,
+          "symbol": "_objc_msgSend$setEnvironmentString:"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 32,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 28,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "7b3656f903afaf7d1d98a680b7f05883143871070a1c66ff9200813ec045001d",
+      "original_body_sha256": "7e861bab645b3dfb133ca3e9ca7370afbc661c385ed66c7f5bbb8e75fa089259"
+    },
+    {
+      "original_address": "0x100b48b6c",
+      "selector": "setFingerprint:",
+      "original_size": 408,
+      "official_size": 408,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 404,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 396,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 364,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 316,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 312,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 296,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 288,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 280,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 264,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 232,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 224,
+          "type": 2,
+          "symbol": "_objc_msgSend$setFingerprint:"
+        },
+        {
+          "offset": 208,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 192,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 148,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 128,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 120,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_msgSend$addObjectsFromArray:"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeAllObjects"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 40,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 36,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "7ba42b797494847f305fc15db2f0a5d794b4c883eafc1086fdceec0deb3f478c",
+      "original_body_sha256": "70d276c875d75d3b3a4f1cb9c20b148dacee9b1af8b69238d5fb94aac5e53460"
+    },
+    {
+      "original_address": "0x100b48d04",
+      "selector": "fingerprints",
+      "original_size": 96,
+      "official_size": 96,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "3c74efe99089e04313b402e20ad035bb2a854a22baf0adce40363aaf3d86b83f",
+      "original_body_sha256": "ae149ad1b1b4f239f46341b84fef751b5d742f667025e09194119af7a57eef70"
+    },
+    {
+      "original_address": "0x100b48d64",
+      "selector": "setCurrentScreen:",
+      "original_size": 324,
+      "official_size": 324,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 276,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 272,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 264,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 256,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 240,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 208,
+          "type": 2,
+          "symbol": "_objc_msgSend$setCurrentScreen:"
+        },
+        {
+          "offset": 192,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 172,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 136,
+          "type": 4,
+          "symbol": "l247"
+        },
+        {
+          "offset": 132,
+          "type": 3,
+          "symbol": "l247"
+        },
+        {
+          "offset": 120,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 40,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 36,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "e5218351130109ae76aee96399c9e7f0b7b2a377a62d626a23db3b863ffb5759",
+      "original_body_sha256": "5304d0bfc1ac94e2052d7e5be16beefc6c2d23a1dcc95585e02a6327255669d4"
+    },
+    {
+      "original_address": "0x100b48ea8",
+      "selector": "setLevel:",
+      "original_size": 260,
+      "official_size": 260,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 256,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 216,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 212,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 188,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_msgSend$setLevel:"
+        },
+        {
+          "offset": 140,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 96,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_msgSend$setLevelEnum:"
+        },
+        {
+          "offset": 36,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 32,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "ca92e265acc1ed41ff01ece9ca9753ff8042fccdff0dd25a0d3f254bdacee84b",
+      "original_body_sha256": "51e79d5f4ef612a89711194c4dcb470839342a322ffa7cdd646e5e48c6b2a373"
+    },
+    {
+      "original_address": "0x100b48fac",
+      "selector": "includeAttachment:",
+      "original_size": 4,
+      "official_size": 4,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 0,
+          "type": 2,
+          "symbol": "_objc_msgSend$addAttachment:"
+        }
+      ],
+      "official_body_sha256": "a7911cdfdc28e6a1867e359ba426081aacfa692fdeb3e978d2a68dd924fa8c3e",
+      "original_body_sha256": "8fae099ff66765ec6d615eeb48504e557dcf6a5c07f754d83c78c8a6772155b0"
+    },
+    {
+      "original_address": "0x100b48fb0",
+      "selector": "addAttachment:",
+      "original_size": 116,
+      "official_size": 116,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 104,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 64,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_msgSend$addObject:"
+        },
+        {
+          "offset": 44,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 24,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "cf16beba644d6c9ceeaf4d358a0f8d3a5f590006c30017ed39a4730a189c962d",
+      "original_body_sha256": "b2269fbd906db3b45fbe51bdff6f23e2f05b9b8dfa8b9db42d064632c435ea59"
+    },
+    {
+      "original_address": "0x100b49024",
+      "selector": "addCrashReportAttachmentInPath:",
+      "original_size": 172,
+      "official_size": 172,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 168,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 148,
+          "type": 2,
+          "symbol": "_objc_msgSend$addAttachment:"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 124,
+          "type": 2,
+          "symbol": "_objc_msgSend$initWithPath:"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_msgSend$initWithPath:filename:contentType:attachmentType:"
+        },
+        {
+          "offset": 100,
+          "type": 4,
+          "symbol": "l223"
+        },
+        {
+          "offset": 96,
+          "type": 3,
+          "symbol": "l223"
+        },
+        {
+          "offset": 92,
+          "type": 4,
+          "symbol": "l222"
+        },
+        {
+          "offset": 88,
+          "type": 3,
+          "symbol": "l222"
+        },
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 76,
+          "type": 4,
+          "symbol": "l262"
+        },
+        {
+          "offset": 72,
+          "type": 3,
+          "symbol": "l262"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_msgSend$isEqualToString:"
+        },
+        {
+          "offset": 52,
+          "type": 4,
+          "symbol": "l222"
+        },
+        {
+          "offset": 48,
+          "type": 3,
+          "symbol": "l222"
+        },
+        {
+          "offset": 40,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 32,
+          "type": 2,
+          "symbol": "_objc_msgSend$lastPathComponent"
+        },
+        {
+          "offset": 24,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "56a7303d68896d40e116ce03ef0631b601cfcf29d628b919d6d107c2ed76bff7",
+      "original_body_sha256": "cb2f0051da8919f36a37f4adf2b5c6f227039016d4ec728fd7e2722e74ccb08c"
+    },
+    {
+      "original_address": "0x100b490d0",
+      "selector": "clearAttachments",
+      "original_size": 84,
+      "official_size": 84,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 44,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeAllObjects"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "42bf2dd576f1f5b09f57a413f93c894f109f2ee535fede00d36b20cd0661ac2f",
+      "original_body_sha256": "bf2b46ac400bfcd4f5af73814e56851f599f4615672c528e8606592fb0675004"
+    },
+    {
+      "original_address": "0x100b49124",
+      "selector": "attachments",
+      "original_size": 96,
+      "official_size": 96,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "f02382859cd1d893468b2f747d3eef3597aa68f832a7ed39d6dfa4f7f6509c35",
+      "original_body_sha256": "23debe741f50a658c37b902d041326cb336c8d167dc03ae5a30a07a35e3ebb18"
+    },
+    {
+      "original_address": "0x100b49184",
+      "selector": "attributes",
+      "original_size": 96,
+      "official_size": 96,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "115cd491a8fb6e2c0045cee77ef0d36d3c238c917d0558393140439b93c0b862",
+      "original_body_sha256": "4d50cff752ea583c0f3decb5d51a201efac6582e4b6fcf29d03dfdac29017d7e"
+    },
+    {
+      "original_address": "0x100b491e4",
+      "selector": "setAttributeValue:forKey:",
+      "original_size": 476,
+      "official_size": 476,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 472,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 464,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 432,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 384,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 380,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 372,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 364,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 356,
+          "type": 2,
+          "symbol": "_logError"
+        },
+        {
+          "offset": 348,
+          "type": 4,
+          "symbol": "l224"
+        },
+        {
+          "offset": 344,
+          "type": 3,
+          "symbol": "l224"
+        },
+        {
+          "offset": 340,
+          "type": 4,
+          "symbol": "LC3"
+        },
+        {
+          "offset": 336,
+          "type": 3,
+          "symbol": "LC3"
+        },
+        {
+          "offset": 328,
+          "type": 2,
+          "symbol": "_errorEnabled"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 312,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 288,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 256,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 248,
+          "type": 2,
+          "symbol": "_objc_msgSend$setAttributes:"
+        },
+        {
+          "offset": 232,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 216,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 172,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 152,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 144,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 124,
+          "type": 2,
+          "symbol": "_objc_msgSend$setObject:forKeyedSubscript:"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 88,
+          "type": 2,
+          "symbol": "_objc_msgSend$length"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 44,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 40,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "9e1988c5041fcd880a6809c87ff821d96fa2cef749eeee61ace31b4940c95036",
+      "original_body_sha256": "fe70582053226667082a0b2a42c1aaaddd38cfe557f3cf14d8eb961e437a8ef4"
+    },
+    {
+      "original_address": "0x100b493c0",
+      "selector": "removeAttributeForKey:",
+      "original_size": 396,
+      "official_size": 396,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 392,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 384,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 352,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 304,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 300,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 292,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 284,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 276,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 268,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 252,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 212,
+          "type": 2,
+          "symbol": "_objc_msgSend$setAttributes:"
+        },
+        {
+          "offset": 196,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 180,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 88,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeObjectForKey:"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 40,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 36,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "1eb7051d08f86e517022cbfe6d8624c6765479338c7d317ac5a3fc323353b083",
+      "original_body_sha256": "72944f33528729fa7877a1cbbd309a606453447be1573ed6dbcb1f949c24537c"
+    },
+    {
+      "original_address": "0x100b4954c",
+      "selector": "serialize",
+      "original_size": 992,
+      "official_size": 992,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 988,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 980,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 968,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 940,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 932,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 924,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 916,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 908,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 900,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 888,
+          "type": 4,
+          "symbol": "l236"
+        },
+        {
+          "offset": 884,
+          "type": 3,
+          "symbol": "l236"
+        },
+        {
+          "offset": 876,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 868,
+          "type": 2,
+          "symbol": "_objc_msgSend$attributes"
+        },
+        {
+          "offset": 856,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 844,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 836,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 828,
+          "type": 2,
+          "symbol": "_objc_msgSend$attributes"
+        },
+        {
+          "offset": 820,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 808,
+          "type": 4,
+          "symbol": "l235"
+        },
+        {
+          "offset": 804,
+          "type": 3,
+          "symbol": "l235"
+        },
+        {
+          "offset": 796,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 788,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 780,
+          "type": 2,
+          "symbol": "_objc_msgSend$serializeBreadcrumbs"
+        },
+        {
+          "offset": 772,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 764,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 752,
+          "type": 4,
+          "symbol": "l234"
+        },
+        {
+          "offset": 748,
+          "type": 3,
+          "symbol": "l234"
+        },
+        {
+          "offset": 740,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 732,
+          "type": 2,
+          "symbol": "_nameForSentryLevel"
+        },
+        {
+          "offset": 724,
+          "type": 2,
+          "symbol": "_objc_msgSend$levelEnum"
+        },
+        {
+          "offset": 716,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 708,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 696,
+          "type": 4,
+          "symbol": "l233"
+        },
+        {
+          "offset": 692,
+          "type": 3,
+          "symbol": "l233"
+        },
+        {
+          "offset": 684,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 676,
+          "type": 2,
+          "symbol": "_objc_msgSend$fingerprints"
+        },
+        {
+          "offset": 664,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 652,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 644,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 636,
+          "type": 2,
+          "symbol": "_objc_msgSend$fingerprints"
+        },
+        {
+          "offset": 628,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 620,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 608,
+          "type": 4,
+          "symbol": "l232"
+        },
+        {
+          "offset": 604,
+          "type": 3,
+          "symbol": "l232"
+        },
+        {
+          "offset": 596,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 588,
+          "type": 2,
+          "symbol": "_objc_msgSend$replayId"
+        },
+        {
+          "offset": 580,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 572,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 560,
+          "type": 4,
+          "symbol": "l231"
+        },
+        {
+          "offset": 556,
+          "type": 3,
+          "symbol": "l231"
+        },
+        {
+          "offset": 548,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 540,
+          "type": 2,
+          "symbol": "_objc_msgSend$environmentString"
+        },
+        {
+          "offset": 532,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 524,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 512,
+          "type": 4,
+          "symbol": "l230"
+        },
+        {
+          "offset": 508,
+          "type": 3,
+          "symbol": "l230"
+        },
+        {
+          "offset": 500,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 492,
+          "type": 2,
+          "symbol": "_objc_msgSend$distString"
+        },
+        {
+          "offset": 484,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 476,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 468,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 456,
+          "type": 4,
+          "symbol": "l229"
+        },
+        {
+          "offset": 452,
+          "type": 3,
+          "symbol": "l229"
+        },
+        {
+          "offset": 444,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 436,
+          "type": 2,
+          "symbol": "_objc_msgSend$serialize"
+        },
+        {
+          "offset": 428,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 420,
+          "type": 2,
+          "symbol": "_objc_msgSend$userObject"
+        },
+        {
+          "offset": 412,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 400,
+          "type": 4,
+          "symbol": "l228"
+        },
+        {
+          "offset": 396,
+          "type": 3,
+          "symbol": "l228"
+        },
+        {
+          "offset": 388,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 380,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 368,
+          "type": 2,
+          "symbol": "_objc_msgSend$mutableCopy"
+        },
+        {
+          "offset": 360,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 352,
+          "type": 2,
+          "symbol": "_objc_msgSend$context"
+        },
+        {
+          "offset": 344,
+          "type": 2,
+          "symbol": "_objc_msgSend$setObject:forKeyedSubscript:"
+        },
+        {
+          "offset": 332,
+          "type": 4,
+          "symbol": "l227"
+        },
+        {
+          "offset": 328,
+          "type": 3,
+          "symbol": "l227"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 312,
+          "type": 2,
+          "symbol": "_objc_msgSend$buildTraceContext:"
+        },
+        {
+          "offset": 300,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 292,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 280,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 272,
+          "type": 2,
+          "symbol": "_objc_msgSend$span"
+        },
+        {
+          "offset": 264,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 256,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 244,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 236,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 228,
+          "type": 2,
+          "symbol": "_objc_msgSend$span"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 212,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 200,
+          "type": 4,
+          "symbol": "l226"
+        },
+        {
+          "offset": 196,
+          "type": 3,
+          "symbol": "l226"
+        },
+        {
+          "offset": 188,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 180,
+          "type": 2,
+          "symbol": "_objc_msgSend$extras"
+        },
+        {
+          "offset": 168,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 148,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 140,
+          "type": 2,
+          "symbol": "_objc_msgSend$extras"
+        },
+        {
+          "offset": 132,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 124,
+          "type": 2,
+          "symbol": "_objc_msgSend$setValue:forKey:"
+        },
+        {
+          "offset": 112,
+          "type": 4,
+          "symbol": "l225"
+        },
+        {
+          "offset": 108,
+          "type": 3,
+          "symbol": "l225"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_msgSend$tags"
+        },
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 52,
+          "type": 2,
+          "symbol": "_objc_msgSend$tags"
+        },
+        {
+          "offset": 40,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 32,
+          "type": 4,
+          "symbol": "l257"
+        },
+        {
+          "offset": 28,
+          "type": 3,
+          "symbol": "l257"
+        }
+      ],
+      "official_body_sha256": "cdadabfe690ea1153d37c44bd9f54f183d57a521fd50a825ad869abcbf3806cd",
+      "original_body_sha256": "4517f53cac99d1007eef891045cf952a6678a9051e44b93b68cb9826ae09609b"
+    },
+    {
+      "original_address": "0x100b4992c",
+      "selector": "serializeBreadcrumbs",
+      "original_size": 312,
+      "official_size": 312,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 308,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 260,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 256,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 248,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 232,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 200,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 192,
+          "type": 2,
+          "symbol": "_objc_msgSend$addObject:"
+        },
+        {
+          "offset": 176,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 168,
+          "type": 2,
+          "symbol": "_objc_msgSend$serialize"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_msgSend$breadcrumbs"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 52,
+          "type": 4,
+          "symbol": "l256"
+        },
+        {
+          "offset": 48,
+          "type": 3,
+          "symbol": "l256"
+        },
+        {
+          "offset": 36,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 32,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "8749eb2f5ceb872350c0c903a1649916f79dfb6822f22d8b3ed08f0ae836e75f",
+      "original_body_sha256": "a9602b16b0e7a41955fe029f27b417d8b19ce894fb3b6fa9c0307fd331a6a672"
+    },
+    {
+      "original_address": "0x100b49a64",
+      "selector": "applyToSession:",
+      "original_size": 88,
+      "official_size": 88,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_msgSend$setEnvironment:"
+        },
+        {
+          "offset": 40,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 32,
+          "type": 2,
+          "symbol": "_objc_msgSend$environmentString"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "3c51290d93b6b9ecc324a628c66d20359d51f9ff64aaff739b35aa64240341b7",
+      "original_body_sha256": "47afd7f0c7c8ee28793c2c4d00b57c9228f3e2c1859cdf4b51e66fdf670dda88"
+    },
+    {
+      "original_address": "0x100b49abc",
+      "selector": "applyToEvent:maxBreadcrumb:",
+      "original_size": 1576,
+      "official_size": 1576,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 1572,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 1564,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 1552,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 1516,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1508,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1500,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1492,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1484,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1476,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1468,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1460,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 1452,
+          "type": 2,
+          "symbol": "_objc_msgSend$setContext:"
+        },
+        {
+          "offset": 1440,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1432,
+          "type": 2,
+          "symbol": "_objc_msgSend$setObject:forKeyedSubscript:"
+        },
+        {
+          "offset": 1420,
+          "type": 4,
+          "symbol": "l218"
+        },
+        {
+          "offset": 1416,
+          "type": 3,
+          "symbol": "l218"
+        },
+        {
+          "offset": 1408,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 1400,
+          "type": 2,
+          "symbol": "_objc_msgSend$buildTraceContext:"
+        },
+        {
+          "offset": 1388,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1380,
+          "type": 2,
+          "symbol": "_objc_msgSend$mergeEntriesFromDictionary:intoDictionary:"
+        },
+        {
+          "offset": 1360,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 1352,
+          "type": 2,
+          "symbol": "_objc_msgSend$context"
+        },
+        {
+          "offset": 1344,
+          "type": 4,
+          "symbol": "l265"
+        },
+        {
+          "offset": 1340,
+          "type": 3,
+          "symbol": "l265"
+        },
+        {
+          "offset": 1332,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1324,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 1316,
+          "type": 2,
+          "symbol": "_objc_msgSend$context"
+        },
+        {
+          "offset": 1308,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeObjectForKey:"
+        },
+        {
+          "offset": 1300,
+          "type": 4,
+          "symbol": "l238"
+        },
+        {
+          "offset": 1296,
+          "type": 3,
+          "symbol": "l238"
+        },
+        {
+          "offset": 1288,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1280,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1252,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1240,
+          "type": 2,
+          "symbol": "_objc_msgSend$isEqualToString:"
+        },
+        {
+          "offset": 1224,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 1216,
+          "type": 2,
+          "symbol": "_objc_msgSend$event"
+        },
+        {
+          "offset": 1212,
+          "type": 4,
+          "symbol": "l263"
+        },
+        {
+          "offset": 1184,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 1176,
+          "type": 2,
+          "symbol": "_objc_msgSend$type"
+        },
+        {
+          "offset": 1160,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 1152,
+          "type": 2,
+          "symbol": "_objc_msgSend$type"
+        },
+        {
+          "offset": 1144,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1132,
+          "type": 2,
+          "symbol": "_objc_msgSend$mutableCopy"
+        },
+        {
+          "offset": 1124,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 1116,
+          "type": 2,
+          "symbol": "_objc_msgSend$context"
+        },
+        {
+          "offset": 1100,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1092,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1080,
+          "type": 2,
+          "symbol": "_objc_msgSend$setTransaction:"
+        },
+        {
+          "offset": 1064,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 1056,
+          "type": 2,
+          "symbol": "_objc_msgSend$name"
+        },
+        {
+          "offset": 1048,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 1040,
+          "type": 2,
+          "symbol": "_objc_msgSend$transactionContext"
+        },
+        {
+          "offset": 1028,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1020,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 1008,
+          "type": 2,
+          "symbol": "_objc_msgSend$isKindOfClass:"
+        },
+        {
+          "offset": 996,
+          "type": 2,
+          "symbol": "_objc_msgSend$class"
+        },
+        {
+          "offset": 992,
+          "type": 4,
+          "symbol": "l264"
+        },
+        {
+          "offset": 988,
+          "type": 3,
+          "symbol": "l264"
+        },
+        {
+          "offset": 976,
+          "type": 2,
+          "symbol": "_objc_msgSend$isEqualToString:"
+        },
+        {
+          "offset": 960,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 952,
+          "type": 2,
+          "symbol": "_objc_msgSend$transaction"
+        },
+        {
+          "offset": 948,
+          "type": 4,
+          "symbol": "l263"
+        },
+        {
+          "offset": 940,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 932,
+          "type": 2,
+          "symbol": "_objc_msgSend$type"
+        },
+        {
+          "offset": 920,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 912,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 900,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 892,
+          "type": 2,
+          "symbol": "_objc_msgSend$span"
+        },
+        {
+          "offset": 884,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 876,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 860,
+          "type": 3,
+          "symbol": "l263"
+        },
+        {
+          "offset": 856,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 848,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 840,
+          "type": 2,
+          "symbol": "_objc_msgSend$span"
+        },
+        {
+          "offset": 832,
+          "type": 2,
+          "symbol": "_objc_msgSend$setLevel:"
+        },
+        {
+          "offset": 816,
+          "type": 2,
+          "symbol": "_objc_msgSend$levelEnum"
+        },
+        {
+          "offset": 808,
+          "type": 2,
+          "symbol": "_objc_msgSend$setEnvironment:"
+        },
+        {
+          "offset": 792,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 784,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 776,
+          "type": 2,
+          "symbol": "_objc_msgSend$environment"
+        },
+        {
+          "offset": 760,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 752,
+          "type": 2,
+          "symbol": "_objc_msgSend$environmentString"
+        },
+        {
+          "offset": 744,
+          "type": 2,
+          "symbol": "_objc_msgSend$setDist:"
+        },
+        {
+          "offset": 728,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 720,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 712,
+          "type": 2,
+          "symbol": "_objc_msgSend$dist"
+        },
+        {
+          "offset": 696,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 688,
+          "type": 2,
+          "symbol": "_objc_msgSend$distString"
+        },
+        {
+          "offset": 680,
+          "type": 2,
+          "symbol": "_objc_msgSend$setUser:"
+        },
+        {
+          "offset": 664,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 652,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 644,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 636,
+          "type": 2,
+          "symbol": "_objc_msgSend$userObject"
+        },
+        {
+          "offset": 628,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 620,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 612,
+          "type": 2,
+          "symbol": "_objc_msgSend$setBreadcrumbs:"
+        },
+        {
+          "offset": 596,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 588,
+          "type": 2,
+          "symbol": "_objc_msgSend$subarrayWithRange:"
+        },
+        {
+          "offset": 568,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 560,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 552,
+          "type": 2,
+          "symbol": "_objc_msgSend$breadcrumbs"
+        },
+        {
+          "offset": 540,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 532,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 524,
+          "type": 2,
+          "symbol": "_objc_msgSend$breadcrumbs"
+        },
+        {
+          "offset": 516,
+          "type": 2,
+          "symbol": "_objc_msgSend$setFingerprint:"
+        },
+        {
+          "offset": 500,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 492,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 484,
+          "type": 2,
+          "symbol": "_objc_msgSend$fingerprint"
+        },
+        {
+          "offset": 472,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 464,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 456,
+          "type": 2,
+          "symbol": "_objc_msgSend$fingerprints"
+        },
+        {
+          "offset": 448,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 440,
+          "type": 2,
+          "symbol": "_objc_msgSend$setExtra:"
+        },
+        {
+          "offset": 424,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 416,
+          "type": 2,
+          "symbol": "_objc_msgSend$extras"
+        },
+        {
+          "offset": 404,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 396,
+          "type": 2,
+          "symbol": "_objc_msgSend$addEntriesFromDictionary:"
+        },
+        {
+          "offset": 380,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 372,
+          "type": 2,
+          "symbol": "_objc_msgSend$extra"
+        },
+        {
+          "offset": 364,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 356,
+          "type": 2,
+          "symbol": "_objc_msgSend$addEntriesFromDictionary:"
+        },
+        {
+          "offset": 340,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 332,
+          "type": 2,
+          "symbol": "_objc_msgSend$extras"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 316,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 312,
+          "type": 4,
+          "symbol": "l257"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 296,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 288,
+          "type": 2,
+          "symbol": "_objc_msgSend$extra"
+        },
+        {
+          "offset": 280,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 272,
+          "type": 2,
+          "symbol": "_objc_msgSend$setTags:"
+        },
+        {
+          "offset": 256,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 248,
+          "type": 2,
+          "symbol": "_objc_msgSend$tags"
+        },
+        {
+          "offset": 236,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 228,
+          "type": 2,
+          "symbol": "_objc_msgSend$addEntriesFromDictionary:"
+        },
+        {
+          "offset": 212,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_msgSend$tags"
+        },
+        {
+          "offset": 196,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 188,
+          "type": 2,
+          "symbol": "_objc_msgSend$addEntriesFromDictionary:"
+        },
+        {
+          "offset": 172,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 164,
+          "type": 2,
+          "symbol": "_objc_msgSend$tags"
+        },
+        {
+          "offset": 152,
+          "type": 2,
+          "symbol": "_objc_msgSend$init"
+        },
+        {
+          "offset": 148,
+          "type": 2,
+          "symbol": "_objc_alloc"
+        },
+        {
+          "offset": 144,
+          "type": 4,
+          "symbol": "l257"
+        },
+        {
+          "offset": 136,
+          "type": 3,
+          "symbol": "l257"
+        },
+        {
+          "offset": 132,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 124,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_msgSend$tags"
+        },
+        {
+          "offset": 104,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 96,
+          "type": 2,
+          "symbol": "_logWarn"
+        },
+        {
+          "offset": 88,
+          "type": 4,
+          "symbol": "l237"
+        },
+        {
+          "offset": 84,
+          "type": 3,
+          "symbol": "l237"
+        },
+        {
+          "offset": 80,
+          "type": 4,
+          "symbol": "LC3"
+        },
+        {
+          "offset": 76,
+          "type": 3,
+          "symbol": "LC3"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_warnEnabled"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_msgSend$isFatalEvent"
+        },
+        {
+          "offset": 44,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "4e0a1921f6bea595a5e9243c886edb4dac6265639fbd62b716d96750297e3530",
+      "original_body_sha256": "b4623f0d327ae9ed4d776a7daf1c92bb20e0be6b675a650cf76fd721b3fa7437"
+    },
+    {
+      "original_address": "0x100b4a0e4",
+      "selector": "addScopeObserver:",
+      "original_size": 452,
+      "official_size": 452,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 448,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 440,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 428,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 408,
+          "type": 2,
+          "symbol": "_logWarn"
+        },
+        {
+          "offset": 400,
+          "type": 4,
+          "symbol": "l239"
+        },
+        {
+          "offset": 396,
+          "type": 3,
+          "symbol": "l239"
+        },
+        {
+          "offset": 392,
+          "type": 4,
+          "symbol": "LC3"
+        },
+        {
+          "offset": 388,
+          "type": 3,
+          "symbol": "LC3"
+        },
+        {
+          "offset": 380,
+          "type": 2,
+          "symbol": "_warnEnabled"
+        },
+        {
+          "offset": 372,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 364,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 356,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 348,
+          "type": 2,
+          "symbol": "_objc_msgSend$addObject:"
+        },
+        {
+          "offset": 336,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 328,
+          "type": 2,
+          "symbol": "_objc_msgSend$observers"
+        },
+        {
+          "offset": 320,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 312,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 300,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 292,
+          "type": 4,
+          "symbol": "l242"
+        },
+        {
+          "offset": 288,
+          "type": 3,
+          "symbol": "l242"
+        },
+        {
+          "offset": 280,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 272,
+          "type": 4,
+          "symbol": "l243"
+        },
+        {
+          "offset": 268,
+          "type": 3,
+          "symbol": "l243"
+        },
+        {
+          "offset": 260,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 252,
+          "type": 4,
+          "symbol": "l241"
+        },
+        {
+          "offset": 248,
+          "type": 3,
+          "symbol": "l241"
+        },
+        {
+          "offset": 240,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 232,
+          "type": 4,
+          "symbol": "l245"
+        },
+        {
+          "offset": 228,
+          "type": 3,
+          "symbol": "l245"
+        },
+        {
+          "offset": 220,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 196,
+          "type": 4,
+          "symbol": "l252"
+        },
+        {
+          "offset": 192,
+          "type": 3,
+          "symbol": "l252"
+        },
+        {
+          "offset": 184,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 172,
+          "type": 4,
+          "symbol": "l251"
+        },
+        {
+          "offset": 168,
+          "type": 3,
+          "symbol": "l251"
+        },
+        {
+          "offset": 160,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 152,
+          "type": 4,
+          "symbol": "l249"
+        },
+        {
+          "offset": 148,
+          "type": 3,
+          "symbol": "l249"
+        },
+        {
+          "offset": 140,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 132,
+          "type": 4,
+          "symbol": "l248"
+        },
+        {
+          "offset": 128,
+          "type": 3,
+          "symbol": "l248"
+        },
+        {
+          "offset": 120,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 112,
+          "type": 4,
+          "symbol": "l246"
+        },
+        {
+          "offset": 108,
+          "type": 3,
+          "symbol": "l246"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 92,
+          "type": 4,
+          "symbol": "l250"
+        },
+        {
+          "offset": 88,
+          "type": 3,
+          "symbol": "l250"
+        },
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 72,
+          "type": 4,
+          "symbol": "l253"
+        },
+        {
+          "offset": 68,
+          "type": 3,
+          "symbol": "l253"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 52,
+          "type": 4,
+          "symbol": "l255"
+        },
+        {
+          "offset": 48,
+          "type": 3,
+          "symbol": "l255"
+        },
+        {
+          "offset": 40,
+          "type": 2,
+          "symbol": "_objc_msgSend$respondsToSelector:"
+        },
+        {
+          "offset": 36,
+          "type": 4,
+          "symbol": "l254"
+        },
+        {
+          "offset": 32,
+          "type": 3,
+          "symbol": "l254"
+        },
+        {
+          "offset": 24,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "83687dc788bfd31117c4f00d6fa1ba9451b75532c93c604157b0bb350440ed47",
+      "original_body_sha256": "c10f20a3a791418fef66eff1bed004faf285f6e0a08cb23003efd2e9ac8877af"
+    },
+    {
+      "original_address": "0x100b4a2a8",
+      "selector": "updateFeatureFlagsContextLocked",
+      "original_size": 368,
+      "official_size": 368,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 364,
+          "type": 2,
+          "symbol": "___stack_chk_fail"
+        },
+        {
+          "offset": 316,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 312,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 304,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 296,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 280,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 248,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 240,
+          "type": 2,
+          "symbol": "_objc_msgSend$setContext:"
+        },
+        {
+          "offset": 224,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 208,
+          "type": 2,
+          "symbol": "_objc_enumerationMutation"
+        },
+        {
+          "offset": 164,
+          "type": 2,
+          "symbol": "_objc_msgSend$countByEnumeratingWithState:objects:count:"
+        },
+        {
+          "offset": 144,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_msgSend$observerSnapshot"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeObjectForKey:"
+        },
+        {
+          "offset": 112,
+          "type": 4,
+          "symbol": "l238"
+        },
+        {
+          "offset": 108,
+          "type": 3,
+          "symbol": "l238"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_msgSend$setObject:forKeyedSubscript:"
+        },
+        {
+          "offset": 92,
+          "type": 4,
+          "symbol": "l238"
+        },
+        {
+          "offset": 88,
+          "type": 3,
+          "symbol": "l238"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_msgSend$count"
+        },
+        {
+          "offset": 64,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_msgSend$serializeForContext"
+        },
+        {
+          "offset": 40,
+          "type": 6,
+          "symbol": "___stack_chk_guard"
+        },
+        {
+          "offset": 36,
+          "type": 5,
+          "symbol": "___stack_chk_guard"
+        }
+      ],
+      "official_body_sha256": "985f8912969762b39e439bffb5ffe653d9cb51b72cb0c60aa2568d2f4d451631",
+      "original_body_sha256": "25c1a63cd2d3d8292a00db8649c3c6e2c3605db6ae9449386c57406dccc09881"
+    },
+    {
+      "original_address": "0x100b4a418",
+      "selector": "addFeatureFlagWithName:result:",
+      "original_size": 252,
+      "official_size": 252,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 248,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 240,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 224,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 200,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 192,
+          "type": 2,
+          "symbol": "_objc_msgSend$addFeatureFlagWithName:result:"
+        },
+        {
+          "offset": 176,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 168,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 160,
+          "type": 2,
+          "symbol": "_objc_msgSend$updateFeatureFlagsContextLocked"
+        },
+        {
+          "offset": 152,
+          "type": 2,
+          "symbol": "_objc_msgSend$addWithName:result:"
+        },
+        {
+          "offset": 136,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 128,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 120,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 112,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "_objc_msgSend$isKindOfClass:"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_msgSend$class"
+        },
+        {
+          "offset": 64,
+          "type": 4,
+          "symbol": "l261"
+        },
+        {
+          "offset": 60,
+          "type": 3,
+          "symbol": "l261"
+        },
+        {
+          "offset": 52,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 44,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 32,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "d6e788a5a37f0a514c4fe3359edafa59519184a5e00baad82ad6307656db1ceb",
+      "original_body_sha256": "aeb164ec7ad2a279f4181febf821927f25444f9f7208d9f00ba0a30eb8b6bc4b"
+    },
+    {
+      "original_address": "0x100b4a514",
+      "selector": "clearFeatureFlags",
+      "original_size": 92,
+      "official_size": 92,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 88,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 80,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 52,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 44,
+          "type": 2,
+          "symbol": "_objc_msgSend$updateFeatureFlagsContextLocked"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_msgSend$removeAll"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "59cac0cefeac8a179677c352f51d0fd2e2c104049c02c63e3c85bb74be6011a2",
+      "original_body_sha256": "2af11ae347db5ed0a7c46d141256ea928b19219689828fc92db75e4202586fcf"
+    },
+    {
+      "original_address": "0x100b4a570",
+      "selector": "observerSnapshot",
+      "original_size": 128,
+      "official_size": 128,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 124,
+          "type": 2,
+          "symbol": "__Unwind_Resume"
+        },
+        {
+          "offset": 116,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 104,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 76,
+          "type": 2,
+          "symbol": "_objc_sync_exit"
+        },
+        {
+          "offset": 68,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 56,
+          "type": 2,
+          "symbol": "_objc_msgSend$copy"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 40,
+          "type": 2,
+          "symbol": "_objc_msgSend$observers"
+        },
+        {
+          "offset": 32,
+          "type": 2,
+          "symbol": "_objc_sync_enter"
+        },
+        {
+          "offset": 24,
+          "type": 2,
+          "symbol": "_objc_retain"
+        }
+      ],
+      "official_body_sha256": "e2570e7c091f4f2845e72e709189e0f98e74ba515885f392c6d443f1df3fba09",
+      "original_body_sha256": "ba90ed8bc157e2b9c13e0badb0350d01866570ba84e228cf8e237e9370c2615b"
+    },
+    {
+      "original_address": "0x100b4a5f0",
+      "selector": "buildTraceContext:",
+      "original_size": 180,
+      "official_size": 180,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 176,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 160,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 152,
+          "type": 2,
+          "symbol": "_objc_msgSend$setObject:forKeyedSubscript:"
+        },
+        {
+          "offset": 148,
+          "type": 4,
+          "symbol": "l219"
+        },
+        {
+          "offset": 144,
+          "type": 3,
+          "symbol": "l219"
+        },
+        {
+          "offset": 136,
+          "type": 6,
+          "symbol": "_kSentrySpanStatusNameOk"
+        },
+        {
+          "offset": 132,
+          "type": 5,
+          "symbol": "_kSentrySpanStatusNameOk"
+        },
+        {
+          "offset": 124,
+          "type": 2,
+          "symbol": "_objc_msgSend$mutableCopy"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 100,
+          "type": 2,
+          "symbol": "_objc_msgSend$traceContextForEvent"
+        },
+        {
+          "offset": 92,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_msgSend$propagationContext"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_retain"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 52,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 44,
+          "type": 2,
+          "symbol": "_objc_msgSend$objectForKeyedSubscript:"
+        },
+        {
+          "offset": 40,
+          "type": 4,
+          "symbol": "l219"
+        },
+        {
+          "offset": 36,
+          "type": 3,
+          "symbol": "l219"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_msgSend$serialize"
+        }
+      ],
+      "official_body_sha256": "2dfb622efab940c481dbfaac0751f319256c6bbae11331dcddde9fcdb75540a9",
+      "original_body_sha256": "27760318f5028bf927640430d63ffcd29cf09b9841f7656539185d16a2a8eea4"
+    },
+    {
+      "original_address": "0x100b4a6a4",
+      "selector": "propagationContextTraceId",
+      "original_size": 68,
+      "official_size": 68,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 64,
+          "type": 2,
+          "symbol": "_objc_autoreleaseReturnValue"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_release"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 28,
+          "type": 2,
+          "symbol": "_objc_msgSend$traceId"
+        },
+        {
+          "offset": 20,
+          "type": 2,
+          "symbol": "_objc_retainAutoreleasedReturnValue"
+        },
+        {
+          "offset": 12,
+          "type": 2,
+          "symbol": "_objc_msgSend$propagationContext"
+        }
+      ],
+      "official_body_sha256": "498380b7d7f40b9cdc6ea7f55a2d84f059d6b997a652ba1e33d036232e726274",
+      "original_body_sha256": "37175e405c598900ef4dcbb7cc1b9c2d7db5bcda98780a81720f37c1c17ddcb2"
+    },
+    {
+      "original_address": "0x100b4a6e8",
+      "selector": "replayId",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [],
+      "official_body_sha256": "095bb56e13b6dfde16ade0b592279392884c282a7c7810cb58472b839de552de",
+      "original_body_sha256": "095bb56e13b6dfde16ade0b592279392884c282a7c7810cb58472b839de552de"
+    },
+    {
+      "original_address": "0x100b4a6f0",
+      "selector": "setReplayId:",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        }
+      ],
+      "official_body_sha256": "59ed78706bc5a6532ba637621310b5efe2b9ef2a3b1a22da41fa3fabec70f5ca",
+      "original_body_sha256": "21922aa9b102bd11d1b9e702a1bfc6a60c4f0fa19d86bb5d69830436fef1a40a"
+    },
+    {
+      "original_address": "0x100b4a6fc",
+      "selector": "maxBreadcrumbs",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [],
+      "official_body_sha256": "ac1915dbf8ae56825a9e0c79c21190a655d4b32b9c10f299546aad7c9ecadc66",
+      "original_body_sha256": "ac1915dbf8ae56825a9e0c79c21190a655d4b32b9c10f299546aad7c9ecadc66"
+    },
+    {
+      "original_address": "0x100b4a704",
+      "selector": "setMaxBreadcrumbs:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [],
+      "official_body_sha256": "cf67f580193e35b5503d10a1cc1789b428b5e60d80b44bf39a4924082ca97c88",
+      "original_body_sha256": "cf67f580193e35b5503d10a1cc1789b428b5e60d80b44bf39a4924082ca97c88"
+    },
+    {
+      "original_address": "0x100b4a70c",
+      "selector": "currentBreadcrumbIndex",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [],
+      "official_body_sha256": "62c64bd585db7a91917843362bb75aa8dd20b002bce4874891b0b3ec8fd242b9",
+      "original_body_sha256": "62c64bd585db7a91917843362bb75aa8dd20b002bce4874891b0b3ec8fd242b9"
+    },
+    {
+      "original_address": "0x100b4a714",
+      "selector": "setCurrentBreadcrumbIndex:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [],
+      "official_body_sha256": "493b51543618058e5b9fe5f50688e65b91920bb7bc32af679e8e5be56795cbe2",
+      "original_body_sha256": "493b51543618058e5b9fe5f50688e65b91920bb7bc32af679e8e5be56795cbe2"
+    },
+    {
+      "original_address": "0x100b4a71c",
+      "selector": "attachmentArray",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_getProperty"
+        }
+      ],
+      "official_body_sha256": "417efdae0fc09ba6acd22fc925838bd78d57538c659c15f2b5a54495eebc4682",
+      "original_body_sha256": "92090e87884a56fac2807f5cf406a8c570ac23df1fc15b7f0b88e41ef527d842"
+    },
+    {
+      "original_address": "0x100b4a728",
+      "selector": "setAttachmentArray:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_setProperty_atomic"
+        }
+      ],
+      "official_body_sha256": "1584f1100c15b7fc95cb7c9f84f04ee7d3fcd88df6704dd71d5b5a8fae394c29",
+      "original_body_sha256": "949e5573937f4e7e5aa58eb33271c29bcd8e477d2196deb978bfd508f507584c"
+    },
+    {
+      "original_address": "0x100b4a730",
+      "selector": "observers",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [],
+      "official_body_sha256": "d598436bff3a9dd6f386d52e9d196b4b622d920d9df2d4b374773cddd2c4c4b8",
+      "original_body_sha256": "d598436bff3a9dd6f386d52e9d196b4b622d920d9df2d4b374773cddd2c4c4b8"
+    },
+    {
+      "original_address": "0x100b4a738",
+      "selector": "setObservers:",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        }
+      ],
+      "official_body_sha256": "39dbba4c1c11f6fe184bda6fc89e2dd4eba913135b62834d346acbbd6d52c5e6",
+      "original_body_sha256": "38e20930452abc6e649cab9fe0ec489429cdebe106c0d13e2c6cc8a90cced9d1"
+    },
+    {
+      "original_address": "0x100b4a744",
+      "selector": "breadcrumbArray",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_getProperty"
+        }
+      ],
+      "official_body_sha256": "d354ff6879731674e1be942abeacd19db1f062e795f7dd0e0ce80719866d3f58",
+      "original_body_sha256": "e80880b7797b1bff21edd38854734c53161765a6895abb2fa0abad5327691d71"
+    },
+    {
+      "original_address": "0x100b4a750",
+      "selector": "setBreadcrumbArray:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_setProperty_atomic"
+        }
+      ],
+      "official_body_sha256": "8f2f1b3cddc39a54662b99431167d29f622639a56aadf386d5321298b3664eeb",
+      "original_body_sha256": "2f69bbaa2b6122bcef5a92d9a0b093eec8be09d7e34b29bccc8952385067a935"
+    },
+    {
+      "original_address": "0x100b4a758",
+      "selector": "attributesDictionary",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_getProperty"
+        }
+      ],
+      "official_body_sha256": "4a53a7e6b0c0f26ba2bae068e9fdc8ed5ccf28fb63a2e9748ee0b41bb9a81898",
+      "original_body_sha256": "d01bb9a9ece5348062c4ab2e4b000f2e40781c51b01fdfa424eba05b325c4152"
+    },
+    {
+      "original_address": "0x100b4a764",
+      "selector": "setAttributesDictionary:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_setProperty_atomic"
+        }
+      ],
+      "official_body_sha256": "9404106ec6714e85e55228a1fe91dd6f18d273cba32019f1678e9f474ae86734",
+      "original_body_sha256": "b3f0907a413ad587c7c5b65694d62128c766b1f87761ed6c4d8a170c3c0faee1"
+    },
+    {
+      "original_address": "0x100b4a76c",
+      "selector": "environmentString",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_getProperty"
+        }
+      ],
+      "official_body_sha256": "a0e81372f867c809a7d73ff14ee68438fd52a3544e082d4fb301bb09e7a98c01",
+      "original_body_sha256": "abde27dbe8f1bb59b728b2a3a3bd3a3511624db9034dfa7620aace456f7b91b5"
+    },
+    {
+      "original_address": "0x100b4a778",
+      "selector": "setEnvironmentString:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_setProperty_atomic_copy"
+        }
+      ],
+      "official_body_sha256": "aabf368bd124b4f4f59944425a939646de115ed172adb34e16467221be3dfb93",
+      "original_body_sha256": "f27457d9a35d30b933645e2a625fdde716f315bcaf9ef752f9b0ac2132cf198c"
+    },
+    {
+      "original_address": "0x100b4a780",
+      "selector": "distString",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_getProperty"
+        }
+      ],
+      "official_body_sha256": "660a8057525555568a6549c3b93453d07c377ef9efdb1d66dd0dadfb4c36a150",
+      "original_body_sha256": "596ce02fc0952b54f3a4e2e4822d1c944f9524472d821033f6a2ac7eb5bf647a"
+    },
+    {
+      "original_address": "0x100b4a78c",
+      "selector": "setDistString:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_setProperty_atomic_copy"
+        }
+      ],
+      "official_body_sha256": "42f31c5b35bf245a529ebecea5f20c8db3d90f1083992787ee3b9d6fb7e7fd40",
+      "original_body_sha256": "975f2c7e03eafb128ae6025ea385ae4bb1929057692ad82f699eab47f6b325e9"
+    },
+    {
+      "original_address": "0x100b4a794",
+      "selector": "extraDictionary",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_getProperty"
+        }
+      ],
+      "official_body_sha256": "351786544b1b08e78a3f3fb76db7b1063f25583fff3f1c090e47ee57c586fb24",
+      "original_body_sha256": "7827b417da065e3698ac5a1b61ed9a5ff7e70544665967aa2c56979da1260c2f"
+    },
+    {
+      "original_address": "0x100b4a7a0",
+      "selector": "setExtraDictionary:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_setProperty_atomic"
+        }
+      ],
+      "official_body_sha256": "59545e9e8aaf99f6f656a790f4bc3209cd773650ff0e0264e931e33a5c31c8a6",
+      "original_body_sha256": "62dae0f8edd0e7d9cc63bc99a7e2ca462eca823dcf927d38b367a6454afaf419"
+    },
+    {
+      "original_address": "0x100b4a7a8",
+      "selector": "fingerprintArray",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_getProperty"
+        }
+      ],
+      "official_body_sha256": "827bd6ccd19251710a8f1f64fe504fe9b7aa98f8bc2ef7e74f8055226e11adf9",
+      "original_body_sha256": "26ec579318fa2d497d82455e9b402416c5daa19122ba0c613c9b0af81dd425c5"
+    },
+    {
+      "original_address": "0x100b4a7b4",
+      "selector": "setFingerprintArray:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_setProperty_atomic"
+        }
+      ],
+      "official_body_sha256": "c935e9b5d4218ff8e06c0a9eb4072bccc8f52063fa43f36cc94f42c1b6981325",
+      "original_body_sha256": "642f2c751380d6a9ad6662d8c5a67c3fab8f66b3465ddefae6052eb76a4bfa42"
+    },
+    {
+      "original_address": "0x100b4a7bc",
+      "selector": "levelEnum",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [],
+      "official_body_sha256": "2c5f27fe901329ddd9be5f1b7961d0a984f813a76cac0c1f81ae43071f5b08b1",
+      "original_body_sha256": "2c5f27fe901329ddd9be5f1b7961d0a984f813a76cac0c1f81ae43071f5b08b1"
+    },
+    {
+      "original_address": "0x100b4a7c4",
+      "selector": "setLevelEnum:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [],
+      "official_body_sha256": "81314376651ab9b3d968181ea779fe9a38106b0d0113c09b5abf2bce11bc3857",
+      "original_body_sha256": "81314376651ab9b3d968181ea779fe9a38106b0d0113c09b5abf2bce11bc3857"
+    },
+    {
+      "original_address": "0x100b4a7cc",
+      "selector": "contextDictionary",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_getProperty"
+        }
+      ],
+      "official_body_sha256": "65d106d4da90e6960e08d43287fdc1f35883588413a2059fc37eec41680496a1",
+      "original_body_sha256": "7021eaf477b6173710b3bdc4cc8a0ced3161a89f7c60aaf2c601d4560bdb365d"
+    },
+    {
+      "original_address": "0x100b4a7d8",
+      "selector": "setContextDictionary:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_setProperty_atomic"
+        }
+      ],
+      "official_body_sha256": "8a672f1c322d5a61d67428b9d5f23609ba7780a9da4b4696f0cdd34266c84104",
+      "original_body_sha256": "f1033a01c6fa718267197683c9df28107fc5592557f52b810008330e428d89f3"
+    },
+    {
+      "original_address": "0x100b4a7e0",
+      "selector": "tagDictionary",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_getProperty"
+        }
+      ],
+      "official_body_sha256": "7992603adae12584193ee2cf5943aa87dca1d87bf61bf3f779a5e2e0573d6cd2",
+      "original_body_sha256": "8878373eec6ff58cd16f81bd0948814c704224dd4b15f6eb1d50866fece95b10"
+    },
+    {
+      "original_address": "0x100b4a7ec",
+      "selector": "setTagDictionary:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_setProperty_atomic"
+        }
+      ],
+      "official_body_sha256": "a1c2eeb7314edee35ce92e37e8a2784f7327165e1d934a6b890122c4188ce87a",
+      "original_body_sha256": "57c4a426d5c4865598cfca5c010a62cd5df26773c1019173fbbd934b29664fd6"
+    },
+    {
+      "original_address": "0x100b4a7f4",
+      "selector": "userObject",
+      "original_size": 12,
+      "official_size": 12,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 8,
+          "type": 2,
+          "symbol": "_objc_getProperty"
+        }
+      ],
+      "official_body_sha256": "bdd3686af39fd4dcbd763c4b773d60aa461a5fe139b6a698e9a4e6901779d4f2",
+      "original_body_sha256": "2230362fa74fa19ae1ebafc216b25887e386cbdb7ae1b6eaa566600e6e98a3b0"
+    },
+    {
+      "original_address": "0x100b4a800",
+      "selector": "setUserObject:",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 4,
+          "type": 2,
+          "symbol": "_objc_setProperty_atomic"
+        }
+      ],
+      "official_body_sha256": "dd96d31cf602ce41cbc96e2bc48be102140c83928e84d7295c7c8871578a2a0b",
+      "original_body_sha256": "17f564eae1de7822b944bc3274544856679166b30d713af9b7f1c81325ef365a"
+    },
+    {
+      "original_address": "0x100b4a808",
+      "selector": "currentScreen",
+      "original_size": 8,
+      "official_size": 8,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [],
+      "official_body_sha256": "a28213a16d3021900ec3b7340d6d01776144729f69c6b144002f7adc208d868f",
+      "original_body_sha256": "a28213a16d3021900ec3b7340d6d01776144729f69c6b144002f7adc208d868f"
+    },
+    {
+      "original_address": "0x100b4a810",
+      "selector": ".cxx_destruct",
+      "original_size": 252,
+      "official_size": 252,
+      "same_size": true,
+      "non_relocation_mismatches": [],
+      "same_nonrelocation_body": true,
+      "relocations": [
+        {
+          "offset": 248,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 228,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 216,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 204,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 192,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 180,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 168,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 156,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 144,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 132,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 120,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 108,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 96,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 84,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 72,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 60,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 48,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 36,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        },
+        {
+          "offset": 24,
+          "type": 2,
+          "symbol": "_objc_storeStrong"
+        }
+      ],
+      "official_body_sha256": "abe3e47555ca6376252217c11a1756e97f2310985bb2884c09df0406f82b7e27",
+      "original_body_sha256": "71f0f3d3a9990869a4872802c3797c84634f8b37127308fd067101cc891263e0"
+    }
+  ],
+  "integrated_into_replica": false,
+  "new_complete_functions": 0,
+  "limits": "All relocation targets, exact license-preserving product linkage and actual local consumers remain to verify. Masking relocation bytes and matching names/version is not equivalence or completion.",
+  "status": "未接入产品，所有重定位目标仍需核验，不计任何函数完成",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "official_archive": {
+    "download_url": "https://github.com/getsentry/sentry-cocoa/releases/download/9.24.0/Sentry.xcframework.zip",
+    "archive_sha256": "c530edd27b20f7c151e73d84a34ee03474e3d5ddab65ffe9d30366f80149668a",
+    "matches_upstream_package_checksum": true,
+    "member": "Sentry.xcframework/macos-arm64_arm64e_x86_64/Sentry.framework/Versions/A/Sentry",
+    "member_path": ".local/sentry-official-9.24.0-macos",
+    "member_sha256": "be2cabe9e66f31e7c203420070125fb3340c2b3241b3e0866b571507ad17afc6",
+    "member_bytes": 26034520,
+    "executable_run": false,
+    "integrated_into_replica": false
+  },
+  "license": "MIT, Sentry copyright 2015, license notice required for integration; no original proprietary binaries included"
+}

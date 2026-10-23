@@ -8,19 +8,19 @@
     "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift",
     "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift"
   ],
-  "verification": "Original complete REA/arm64/pattern/SDK + actual Source/consumerpeer + finite final45 compiledformatter body and6 matchingSDKbindings. Unified45 compiled21.99s/log20.26s,153 inputSHA unchanged; no runtime/product/functional/unit/UI/MCP execution.",
+  "verification": "Current46 SourceconsumerSHA/locale/privacy/geometrybinds; formattercompiled45 andlocalgeneratorcompiled44 proofs retainedasexplicit historicalsnapshots. Unified46 release155inputsSHAunchanged21.18s/log19.33s; no product/functional/UI/MCP execution.",
   "unified_build": {
-    "name": "gap-build45",
+    "name": "gap-build46",
     "manifest": ".local/gap-build-complete.json",
-    "manifest_sha256": "bd6eca92e438a64a6c108b65bc6812692e7d043532ef5b1c769ebe5a74b44840",
-    "log": ".local/gap-build-45.log",
-    "seconds": 21.99,
-    "compiler_log_seconds": 20.26,
-    "inputs": 153,
+    "manifest_sha256": "cb61aaafcfbc59b8ae458c289609bf838667a3fa23dedfc9816df6cf74e7fea7",
+    "log": ".local/gap-build-46.log",
+    "seconds": 21.18,
+    "compiler_log_seconds": 19.33,
+    "inputs": 155,
     "sha_before_after_equal": true,
     "result": "compiled",
     "functional_execution": false,
-    "app_sha256": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685"
+    "app_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f"
   },
   "new_complete_original_addresses": 0,
   "local_helper_contract": "Local initial link metadata: first item URL only; missing item/URL nil; public.url-name trimmed whitespacesAndNewlines while nil and empty remain distinct; initial icon/image nil. Original function also invokes conditional asynchronous provider, so whole address stays partial.",
@@ -44,8 +44,8 @@
     {
       "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
       "symbol": "OriginalLinkPreviewMetadataGenerator.generate(items)",
-      "line": 291,
-      "sha256": "63f11c115e4c9329f7fe3b068f3a1c7ec1afe3b47ace960fe8ca91e526f71a7c"
+      "line": 299,
+      "sha256": "a53cbe1a014dc8a3aabf086199f78d1e8a2aa3a533e84bab3dce746f0f5cdcdb"
     },
     {
       "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
@@ -63,7 +63,7 @@
       "path": "replica/Sources/PasteReplicaCore/Models.swift",
       "symbol": "public var decodedLinkPreviewMetadata:",
       "line": 47,
-      "sha256": "cd99c8b7d8871a680d3d712b365e1660588b960f6672d1b23b60e9285d13eb90"
+      "sha256": "9bbaaf37f9ad0e82c9bf71616b4284d3bbe261ff819bf432112efbdb396ed63c"
     },
     {
       "path": "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift",
@@ -74,8 +74,8 @@
     {
       "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
       "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact, linkPreviewsEnabled: linkPreviewsEnabled)",
-      "line": 457,
-      "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
+      "line": 552,
+      "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
     }
   ],
   "evidence_sha256": {
@@ -141,7 +141,11 @@
     "fact": "Actual body calls first item.f37ce0c, literal public.url-name, optional branch then whitespace/newline set and trimming; initial icon/image nil. Same exact original SDK symbols/installname/nonweak/zeroaddend for CharacterSet.whitespacesAndNewlines and StringProtocol.trimmingCharacters.",
     "app_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306"
   },
-  "dev24_extension": {
+  "new_complete_source_candidates": [
+    "Paste:0x1003189b0"
+  ],
+  "new_complete_original_addresses_note": "dev23 added0 wholeaddresses; dev24 onlypureformatter f3189b0 sourcecandidate, Rootledgerowns finalregistration.",
+  "previous_build45_snapshot": {
     "generated_at": "2026-10-23T14:51:06.524143+00:00",
     "scope": "dev24 single concentrated link visible-value group",
     "source_frozen": true,
@@ -392,8 +396,48 @@
       "functional_execution": false
     }
   },
-  "new_complete_source_candidates": [
-    "Paste:0x1003189b0"
-  ],
-  "new_complete_original_addresses_note": "dev23 added0 wholeaddresses; dev24 onlypureformatter f3189b0 sourcecandidate, Rootledgerowns finalregistration."
+  "dev25_privacy_card_extension": {
+    "audit": "reports/replica/canonical-card-static-audit.json",
+    "unified_build": {
+      "name": "gap-build46",
+      "manifest": ".local/gap-build-complete.json",
+      "manifest_sha256": "cb61aaafcfbc59b8ae458c289609bf838667a3fa23dedfc9816df6cf74e7fea7",
+      "log": ".local/gap-build-46.log",
+      "seconds": 21.18,
+      "compiler_log_seconds": 19.33,
+      "inputs": 155,
+      "sha_before_after_equal": true,
+      "result": "compiled",
+      "functional_execution": false,
+      "app_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f"
+    },
+    "privacy": {
+      "original_full_chain": "PrivacyViewf7f868 loadsresourcef1e1254title/f1e10d4subtitle→callbackf8255c→f7fac8 miniToggleObservedObjectBindingkeypathc27698→getterf82584→f7fc1c wrapperVM+0xc0; VMinitf00a90c usesprefkeypathc234c8→f00c64c→f6d2a4 keyisLinkPreviewsEnabled/defaulttrue. Setterf82588→f7fd04 boolwrite; sameprefusedactualcardproviderdev24.",
+      "new_actual_consumer": "AuxiliaryprivacyForm Toggle→existingpreferenceBinding(\\.linkPreviewsEnabled)→store.updatePreferences→persistedBool/cardconsumers. NoHTTPorwebcontentdownload.",
+      "visible_words": "Ownkeys replica.settings.privacy.saved-link-preview.title/subtitle; en LinkPreviews/Show savedlinkpreviews; zhHans/zhHant ownlocalized. Remaining14localeexplicitEnglishfallback, notguessedtranslation.",
+      "original_resources": "Two originalGenerate/downloadkeys exactlypreserved17localeandhashbound, notshownaspromisednetworkcapability.",
+      "resource_bundle_verified": "All17releasebundleLocalizable.strings exactlyequalfrozenSourcebytes; own3languagevalues/14Englishfallbackand original2keys retained."
+    },
+    "actual_refs": [
+      {
+        "path": "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift",
+        "symbol": "public static func resolve(",
+        "line": 13,
+        "sha256": "acb4df601c1f35cf1e8767bc8a66140c99ec082c8c82f79acd49fc316a5d09cf"
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift",
+        "symbol": "public func geometry(sizeClass: UInt8, modernOS: Bool) -> Geometry",
+        "line": 53,
+        "sha256": "acb4df601c1f35cf1e8767bc8a66140c99ec082c8c82f79acd49fc316a5d09cf"
+      },
+      {
+        "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+        "symbol": "Toggle(OriginalSettingsLocalization.text(\"replica.settings.privacy.saved-link-preview.title\")",
+        "line": 353,
+        "sha256": "bc26f6763271beed4c8f180b3f9773887b80d550df7c38082658d551d99d8abb"
+      }
+    ],
+    "note": "Originalformattercompiledproof45remainshistorical; newgeometry/privacycurrent46. NoHTTPenhancementimplemented."
+  }
 }

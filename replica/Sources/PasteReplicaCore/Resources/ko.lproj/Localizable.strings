@@ -85,3 +85,7 @@
 "accessibility-access.enable-accessibility-access.subtitle" = "최고의 경험을 하고 다른 애플리케이션에 직접 붙여넣기를 하려면, 시스템 설정에서 Paste가 Mac의 접근성 기능에 액세스할 수 있도록 허용해 주세요.";
 "accessibility-access.enable-accessibility-access.open-system-settings" = "시스템 설정 열기";
 "accessibility-access.enable-accessibility-access.allow-access" = "액세스 허용";
+"settings.privacy.link-preview.title" = "링크 미리보기 생성";
+"settings.privacy.link-preview.subtitle" = "일회성 및 분석에 민감한 링크에 영향을 줄 수 있습니다.";
+"replica.settings.privacy.saved-link-preview.title" = "Link Previews";
+"replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";

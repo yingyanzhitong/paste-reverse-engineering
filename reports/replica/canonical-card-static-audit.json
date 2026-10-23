@@ -1,0 +1,229 @@
+{
+  "generated_at": "2026-10-23T15:12:26.955352+00:00",
+  "scope": "dev25 concentrated allcardtypeconfiguration and actualprivacylinktoggle",
+  "source_changed": true,
+  "source_frozen": true,
+  "unified_build": {
+    "name": "gap-build46",
+    "manifest": ".local/gap-build-complete.json",
+    "manifest_sha256": "cb61aaafcfbc59b8ae458c289609bf838667a3fa23dedfc9816df6cf74e7fea7",
+    "log": ".local/gap-build-46.log",
+    "seconds": 21.18,
+    "compiler_log_seconds": 19.33,
+    "inputs": 155,
+    "sha_before_after_equal": true,
+    "result": "compiled",
+    "functional_execution": false,
+    "app_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f"
+  },
+  "verification": "Original fullfiniteREA/arm64/keypath/resource evidence + actualSource/consumerpeer + final46 complete100bytegeometrybody andconstanttable. Unified46 release21.18s/log19.33s,155inputs unchanged;17copiedlocale resourcesstaticbyteequalSource. No product/functional/unit/UI/MCP/originaldynamicexecution.",
+  "baseline": "dev24/build45; report distinguishespreexistingcardgaps fromthisroundrepair.",
+  "type_chains": [
+    {
+      "kind": "image",
+      "original": "f3cff8c canonicalcase2 previewData→NSImage; originalmetadatawidth/height→Int+%d × %d overlaylabel hiddenclass3; fullsizetrue, constructorstyle1. Checkerboard+ImageViewallzeroanchors.",
+      "current_repair": "Newcompactcard uses decodedImagePreviewMetadata.previewData and storedsize, existingcheckerboardreused, newlabels; nofullpayloadfallback.",
+      "compatibility": "Explicit existinglegacytyped fallback: Models decodedImage getter can userawnil imagePreviewMetadata typed. Source resolvecanonicalimage accepts thatlegacygetter; originalraw-onlyVM not claimed complete. No oldrecordmigration/clearing.",
+      "remaining": "Nativecustomdrawing/fill/overlaymaterial/shortcutheight andnativecheckerboardclipping layouts partial."
+    },
+    {
+      "kind": "color",
+      "original": "f3ccf14 canonicalcase3 UInt64→f308ea0color; entireBaseContentbackground=color,fullsizetrue/style0; fixedpitch18 upperHEXRGB label. f21a014 brightness>0.55 choosesAqua elseDarkAqua, impactswholecellprimary/secondary.",
+      "current_repair": "Newcompactcard generator.color(code) fillsregion,Window entirecardbackgroundcanonicalcolor;labelusesRGBdeviceconversion/Intcomponenttruncation/upperHEX; explicitbrightnessblackwhitealpha.85.",
+      "remaining": "FullAppKitappearance override, originalcontrast/headercolorbinding andallnativeconstraints partial; SourceOwnerWindow handlesheader."
+    },
+    {
+      "kind": "files",
+      "original": "f3ce7c4 canonicalcase4 paths.count==1 storedpreviewData→NSImage andcanonicalpath; elseNSImage.multipleDocumentsName size128 andf1c6fb0title. Basefullsizefalse/style2; nofile totalsizefooteroncard.",
+      "current_repair": "Newcompactcard onlycanonicalpaths/preview/count; emptyinvalidsinglepreview nofakefileicon/payloadfallback. Ownpath/multiplelabel included, genericsummaryremovedbyWindow.",
+      "remaining": "HeadTruncatedLabelfullalgorithm, allnativeimagegeometry/shortcut-relativebottom alignment andanimationpartial."
+    },
+    {
+      "kind": "link",
+      "original": "dev24providerBool defaulttrue→fullsize/style0/1 orfalse2. Canonicalname/url/images/finalformatteralreadyrestored.",
+      "current_repair": "ReuseexistingLinkMetadataContent, newPresentation sharesactualfullsize/sizeclassgeometry. Realprivacytoggleaddedthisround.",
+      "remaining": "Nativefade/drawing/compactgradient/OSiconcorners/fullpreviewparentpartial."
+    },
+    {
+      "kind": "text/richText",
+      "original": "Canonicalcase0 textsample+UTF16count; basefullsizefalse/style2;full editorCharacterfooterindependent.",
+      "current_repair": "Reuseexistingdev22chain; noimage/files/colorhandlingappliedtofullpreview/editor.",
+      "remaining": "TextCellwholeparent/nativefieldmeasurementpartial."
+    },
+    {
+      "kind": "unknown",
+      "original": "Basefullsizefalse/style2 whenunknown; unknownpreviewf3dc? remainsindependent.",
+      "current_repair": "resolveunknownreturnsnil;Windowretainsbaselineheaderdefault as explicitadaptation.",
+      "remaining": "No wholeunknownVM/config equivalence claim."
+    }
+  ],
+  "presentation_api": "OriginalCardPresentation.resolve(ClipboardItem,linkPreviewsEnabled:Bool)->optional @MainActor; fieldsisCompactContentFullsize Bool/preferredCompactHeaderStyle UInt8; geometry(sizeClass:UInt8,modernOS:Bool)->Geometry threeCGFloat publicfields/bodyTop/headerHeight/lockCenterOffset.",
+  "geometry": {
+    "source": "f3d8588 fullarm64 + exactconstraintgettersf3d8230/f3d83c4/f3d82fc",
+    "rows": {
+      "0": [
+        56,
+        56,
+        -10
+      ],
+      "1": [
+        52,
+        52,
+        -10
+      ],
+      "2": [
+        48,
+        48,
+        -10
+      ],
+      "3_or_more_nonfullsize_modern": [
+        36,
+        36,
+        -10
+      ],
+      "3_or_more_nonfullsize_legacy": [
+        34,
+        34,
+        -10
+      ],
+      "3_or_more_fullsize_modern": [
+        0,
+        36,
+        8
+      ],
+      "3_or_more_fullsize_legacy": [
+        0,
+        34,
+        7
+      ]
+    },
+    "order": [
+      "bodyTop",
+      "headerHeight",
+      "lockCenterOffset"
+    ],
+    "fullsize": "Overlaponlyclass3+,Headerstays36/34;WindowZStackbodypaddingbodyTop/Headeroverlayrealconsumer. LockvaluehelpercompletebutnativeLockViewparentstillpartial."
+  },
+  "privacy": {
+    "original_full_chain": "PrivacyViewf7f868 loadsresourcef1e1254title/f1e10d4subtitle→callbackf8255c→f7fac8 miniToggleObservedObjectBindingkeypathc27698→getterf82584→f7fc1c wrapperVM+0xc0; VMinitf00a90c usesprefkeypathc234c8→f00c64c→f6d2a4 keyisLinkPreviewsEnabled/defaulttrue. Setterf82588→f7fd04 boolwrite; sameprefusedactualcardproviderdev24.",
+    "new_actual_consumer": "AuxiliaryprivacyForm Toggle→existingpreferenceBinding(\\.linkPreviewsEnabled)→store.updatePreferences→persistedBool/cardconsumers. NoHTTPorwebcontentdownload.",
+    "visible_words": "Ownkeys replica.settings.privacy.saved-link-preview.title/subtitle; en LinkPreviews/Show savedlinkpreviews; zhHans/zhHant ownlocalized. Remaining14localeexplicitEnglishfallback, notguessedtranslation.",
+    "original_resources": "Two originalGenerate/downloadkeys exactlypreserved17localeandhashbound, notshownaspromisednetworkcapability.",
+    "resource_bundle_verified": "All17releasebundleLocalizable.strings exactlyequalfrozenSourcebytes; own3languagevalues/14Englishfallbackand original2keys retained."
+  },
+  "remaining": [
+    "Per-typewholeVM/ABI/ConfigDI and originalstatefulinvalid-metadata/reusedcellbehavior remainpartial. Optionalresolve nil resetsnone, doesnotpretendoriginaltrap/statecontract.",
+    "SwiftUI image drawing/NSImageView filling, HeadTruncatedLabel, materialbadge/shortcutrelation, allouterconstraints andanimations remainpartial.",
+    "Presentation fullsizegeometry doesnotmeanHeaderheightzero: onlybodyTopzero inclass3; Headerstyle raw2→Header0, rawstyle1smallwhitealpha.85/.55vsstyle0primary/secondary. Allgradientandiconclippingbehaviornotclaimed.",
+    "OriginalUIprivacyGenerate/downloadsubtitle storedexactlyasresourceevidence; visibleUIusesownlocal-onlytitle/subtitle, originalentirePrivacyViewparentpartial.",
+    "No products/functional/unit/UI/MCP/originaldynamic execution; onlyRootunifiedcompilepending46."
+  ],
+  "owned_sources": [
+    "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift",
+    "replica/Sources/PasteReplica/UI/ReplicaCanonicalCardContent.swift",
+    "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift"
+  ],
+  "source_refs": [
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift",
+      "symbol": "public static func resolve(",
+      "line": 13,
+      "sha256": "acb4df601c1f35cf1e8767bc8a66140c99ec082c8c82f79acd49fc316a5d09cf"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift",
+      "symbol": "public func geometry(sizeClass: UInt8, modernOS: Bool) -> Geometry",
+      "line": 53,
+      "sha256": "acb4df601c1f35cf1e8767bc8a66140c99ec082c8c82f79acd49fc316a5d09cf"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaCanonicalCardContent.swift",
+      "symbol": "struct ReplicaCanonicalCardContent: View",
+      "line": 7,
+      "sha256": "e21e1292d1b14e681459098262c5bfca77788fc4b67fdc26c7b2bfe9b6096d97"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+      "symbol": "Toggle(OriginalSettingsLocalization.text(\"replica.settings.privacy.saved-link-preview.title\")",
+      "line": 353,
+      "sha256": "bc26f6763271beed4c8f180b3f9773887b80d550df7c38082658d551d99d8abb"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "symbol": "OriginalCardPresentation.resolve(item, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)",
+      "line": 302,
+      "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "symbol": "ReplicaCanonicalCardContent(item: item, sizeClass: UInt8(sizeClass))",
+      "line": 324,
+      "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "symbol": ".padding(.top, cardGeometry?.bodyTop ?? headerHeight)",
+      "line": 236,
+      "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "symbol": "resolvedCardHeaderColor(OriginalSearchAppearance.f_1001fec18() ?? .labelColor)",
+      "line": 387,
+      "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "symbol": "if item.kind == .text || item.kind == .richText || item.kind == .unknown {",
+      "line": 227,
+      "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
+    }
+  ],
+  "evidence_sha256": {
+    ".local/image-dev25-card-header-arm64.txt": "be5e99291410e1410b9e93759e4d2e9ebaa11fa89f12a34c52dde715b9205a57",
+    ".local/image-dev25-image-card-arm64.txt": "354ef53987263c28900315bcdceb4b12c06bd44cc62ae8cdcc48329bfd94700d",
+    ".local/image-dev25-color-card-arm64.txt": "e0cdcd70abd6a0972edb91693dbbe364425da78b723a89b6188248acbe19281f",
+    ".local/image-dev25-files-card-arm64.txt": "e7aaeb1841822a781aba5b20a2759ed31b83a504ca9bb8974a9dc6454a51fe84",
+    ".local/image-dev25-privacy-link-row-arm64.txt": "7f21f06e9121c0469e0e5bf206eb92fe7e538590ec02b85f7dc64967f4002686",
+    ".local/image-dev25-privacy-toggle-path-arm64.txt": "5af07e6c99c390b9c2cb09727fc3dc0fea42a73fcf6ee8a1b2b26237cd041c65",
+    ".local/image-dev25-color-appearance-arm64.txt": "84cc4637ab9a74adcf3b2a31794d417582e56bb1097360fe11db4d8bd370aed9",
+    ".local/image-dev25-card-config-bindings.json": "1df8113cf3715bd787bdfc5467e7c4f25e64dd6c61d4a524ff30a51d6e76b933",
+    ".local/image-dev25-privacy-resources.json": "642a260b69aec7b798843d8a18de32b8bfc63ed0128ee9d7d8059a3babc98526",
+    ".local/image-dev25-compiled-geometry46-arm64.txt": "befcd04c9b93908d811c33bbbec38f885a52259f00f037414548dc795d8e787c",
+    ".local/image-dev25-compiled-geometry46-binding.json": "654785829cc7c7f6bf2992e3296bfcbb87a23b528e3dc2b5211397c7c94e0d2d"
+  },
+  "counting": "Onlygeometryf3d8588completepure-sourcecandidate; existingtypecell/config/privacyparentspartial, nofeatureincrease.",
+  "bound_at": "2026-10-23T15:15:21.096701+00:00",
+  "compiled_geometry": {
+    "app_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
+    "function_range": [
+      "0x100117264",
+      "0x1001172c8"
+    ],
+    "body": ".local/image-dev25-compiled-geometry46-arm64.txt",
+    "current_sdk_calls": 0,
+    "table": {
+      "address": "0x10019d568",
+      "values": [
+        56.0,
+        52.0,
+        48.0
+      ]
+    },
+    "return_registers": {
+      "d0": "bodyTop",
+      "d1": "headerHeight",
+      "d2": "lockCenterOffset"
+    },
+    "static_body_proof": [
+      "100117268 checks rawUInt8 sizeClass>=3; otherwisetable56/52/48→d0/d1andd2=-10.",
+      "10011728c selectsOSbool legacy34/modern36 intod1;7/8 intod0temp.",
+      "1001172b0 testsstoredfullsize bit;fullsizetrue d2=7/8,d0=0;false d2=-10,d0=d1.",
+      "Headerstylebyte is not used bypuregeometrybody; it remains independent."
+    ],
+    "os_adapter": "Original function obtainsmac26bool via SDK twice; newpurefunction explicitmodernOS input supplied byWindow real#available(macOS26,*). WholeOS/actor/ABIparents remainpartial.",
+    "verification": "Static fullbody/table read only; no productexecution or functionaltest.",
+    "body_size": 100
+  },
+  "actual_header_peer": "Window final46 ZStack bodyTop/Header overlay; rawstyle2mapsHeader0 andraw1smallwhite.85/.55; colorstyle0explicitAqua/DarkAqua dynamiccolorresolution usingappearance.performAsCurrentDrawingAppearance. Fullgradient/nativeappearanceparentpartial."
+}

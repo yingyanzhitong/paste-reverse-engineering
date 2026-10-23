@@ -85,3 +85,7 @@
 "accessibility-access.enable-accessibility-access.subtitle" = "To have the best experience and paste directly to other applications, allow Paste to access the accessibility features of your Mac in System Settings.";
 "accessibility-access.enable-accessibility-access.open-system-settings" = "Open System Settings";
 "accessibility-access.enable-accessibility-access.allow-access" = "Allow Access";
+"settings.privacy.link-preview.title" = "Generate Link Previews";
+"settings.privacy.link-preview.subtitle" = "Download web content for previews; may activate one-time or analytics-sensitive links.";
+"replica.settings.privacy.saved-link-preview.title" = "Link Previews";
+"replica.settings.privacy.saved-link-preview.subtitle" = "Show saved link previews.";

@@ -34,6 +34,7 @@ final class ReplicaUIState: ObservableObject {
     @Published var allowsEmptySelection = false
     private var observation: AnyCancellable?
     private let searchIndex: ReplicaSearchIndex
+    let itemDragSessionID = UUID()
     private var searchInputProjection: [OriginalSearchQueryNode]?
     private var isApplyingSearchInput = false
 
@@ -84,13 +85,13 @@ final class ReplicaUIState: ObservableObject {
     func retrySearch() { searchIndex.retry() }
 
     var visibleItems: [ClipboardItem] {
-        if searchIndex.queryString.isEmpty {
+        if isSearchQueryEmpty {
+            if let pinboardID, !showDeleted { return store.items(in: pinboardID) }
             return store.search(query: "", pinboardID: pinboardID, includeDeleted: showDeleted)
                 .filter { !showDeleted || $0.isDeleted }
         }
         return store.items.filter { item in
             (showDeleted ? item.isDeleted : !item.isDeleted)
-                && (pinboardID == nil || item.pinboardIDs.contains(pinboardID!))
                 && searchIndex.identifiers.contains(item.id)
         }.sorted { $0.updatedAt > $1.updatedAt }
     }
@@ -178,8 +179,8 @@ final class ReplicaUIState: ObservableObject {
     }
 
     func assignSelection(to id: UUID?) {
-        let ids = selection.isEmpty ? Set(primaryItem.map { [$0.id] } ?? []) : selection
-        perform { try store.assign(ids: ids, to: id) }
+        let ids = selection.isEmpty ? primaryItem.map { [$0.id] } ?? [] : selectedItems.map(\.id)
+        perform { try store.assign(orderedIDs: ids, to: id) }
     }
 
     func addToStack(_ item: ClipboardItem) {
@@ -580,10 +581,10 @@ final class ReplicaUIController {
 
     func createPinboard(assignSelection: Bool = false) {
         guard let name = prompt(title: "新建 Pinboard", message: "为这个分组输入名称。", initial: "") else { return }
-        let ids = state.selection
+        let ids = state.selectedItems.map(\.id)
         state.perform {
             let board = try store.createPinboard(name: name, colorHex: "5575D9")
-            if assignSelection { try store.assign(ids: ids, to: board.id) }
+            if assignSelection { try store.assign(orderedIDs: ids, to: board.id) }
             state.chooseBoard(board.id)
         }
     }

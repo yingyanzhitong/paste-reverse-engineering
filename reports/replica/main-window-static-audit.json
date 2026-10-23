@@ -1,14 +1,14 @@
 {
-  "生成时间": "2026-10-23T14:57:42.077683+00:00",
+  "生成时间": "2026-10-23T15:15:43.917328+00:00",
   "范围": "现主剪贴板窗口的完整小访问器/焦点回退与有限原生flags；不是整个主窗口/面板验收",
   "源码": [
     {
       "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
-      "sha256": "636586d049245550c554959699d469969b18a533f933c9f15ad717154ffe3841"
+      "sha256": "3702f7651dfa1ea9d65ecda3d9d79f49c1f952bff68aea4d8c928e96ff33ca32"
     },
     {
       "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-      "sha256": "76b76c5c098f7bbc5851f5ac1721171a862337c46afe31f639335ee753f31b85"
+      "sha256": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1"
     }
   ],
   "原证据": {
@@ -351,23 +351,23 @@
     "parent_partial_status_preserved": true
   },
   "验证": {
-    "parent_build": "gap-build45",
+    "parent_build": "gap-build46",
     "result": "passed",
-    "elapsed_seconds": 21.99,
-    "compiler_log_elapsed_seconds": 20.26,
-    "stable_input_count": 153,
+    "elapsed_seconds": 21.18,
+    "compiler_log_elapsed_seconds": 19.33,
+    "stable_input_count": 155,
     "input_sha_before_after_equal": true,
     "kind": "static_compilation_only",
     "functional_regression_executed": false,
     "product_executed": false,
-    "build_log": ".local/gap-build-45.log",
-    "build_log_sha256": "5cdafaf6521db25027e1cfaed23383ae3ed35caac734526fd8856965d83dae5e",
+    "build_log": ".local/gap-build-46.log",
+    "build_log_sha256": "bfa4c0812b8e84027a86dbff7f4ad0033b3fb49f5f1e5548b1696c53e1aa5bb5",
     "source_manifest_file": ".local/gap-build-complete.json",
-    "source_manifest_sha256": "bd6eca92e438a64a6c108b65bc6812692e7d043532ef5b1c769ebe5a74b44840",
+    "source_manifest_sha256": "cb61aaafcfbc59b8ae458c289609bf838667a3fa23dedfc9816df6cf74e7fea7",
     "compiled_sha256": {
-      "replica/.build/release/PasteReplica": "62571106dce07140c4d99b99d0b0080788b019b1b4b955283972770cb0392685",
+      "replica/.build/release/PasteReplica": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
       "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
-      "replica/.build/release/paste-replica-mcp": "7cfb38953a21eaa3f95cd1784723043e1ea3739b2adf31376501fb6d7792346b"
+      "replica/.build/release/paste-replica-mcp": "5425fcac1e17c88b3a5ffa0458abac9a0e0650a5b9e4aa88ceee5885875d656b"
     },
     "parent_partial_status_preserved": true
   },
@@ -1081,5 +1081,26 @@
       "Style3内容特化fullsize：Color/image/link preferredCompactHeaderStyle及图像比例/背景gradient/完全覆盖Header仍partial，未猜imagefullsize。通用非fullsize样式不等于完整所有分支。",
       "原sidecarwidth对leading的动态偏移未实现，现collectionleading24；素材blur/Glass/background/native约束对象及文字基线仍partial。"
     ]
+  },
+  "current_final46_body_review": {
+    "path": ".local/window-dev25-build46-body-review.json",
+    "sha256": "b621b3c285a368ab75aaea15804b0a90fe8e1b57cac6214f0c000cbff849e896",
+    "结论": {
+      "focus": "MainWindow makeFirstResponder objc IMP b7a18..b7aec: getObjectType; nonnil argument retained; nil initialFirstResponder then contentView fallback; objc_msgSendSuper2 uses makeFirstResponder:. Original/current superclass NSPanel. Existing bounded f0778c0 candidate unchanged; original actor wrapper not claimed.",
+      "key_main": "b7a08..b7a10/b7a10..b7a18 each 8B mov1/ret; no actor diagnostic check. Both remain partial.",
+      "dragdrop": "cardDragProvider 62c7c..63310 retains external itemDragProvider and ownProcess marker; receiveItemDrop 63310..637d4, decoded async main actor body64b64..6506c checks session/board/query/deleted then current store search and selected item index;6506c..65104 calls actual ClipboardStore.reorderItems at ee614 with premove boundary. Native precise hit-testing/autoscroll remains partial.",
+      "appearance": "headerPrimary6580c..659e4 and secondary65c6c..65e2c call presentation resolver; style1 white alpha .85/.55; style0 calls actual resolvedHeader65e2c..66138. That body decodes canonicalColor, calls colorGenerator117708 and brightness146b18, chooses appearanceNamed:,performAsCurrentDrawingAppearance:; closure66138..661c4 calls deviceRGBColorSpace/colorUsingColorSpace:. Parent NSAppearance hierarchy remains partial.",
+      "geometry": "cardGeometry5f900..5fab8 actual resolver->geometry; geometry117264..1172c8 full bounded 100B returns independent d0/d1/d2. class0/1/2 table56/52/48;class3 modern36/old34, fullsizebodyTop0 otherwiseheaderHeight,lock8/7 versus-10. Header remains overlay consumer. All broad card parents partial."
+    }
+  },
+  "dev25_current_facts": {
+    "pinboard_item_order": "无query且非deleted时board直接读store.items(in:)原displayOrder，不用updatedAt；ordered assign用当前selectedItems显示序。",
+    "actual_drag_drop": "现有外拖多格式provider保留，附ownProcess marker(sessionUUID,boardUUID,orderedIDs)；卡片drop midpoint前后映完整board移动前边界，异步再核上下文后store.reorderItems。",
+    "search_context": "isSearchQueryEmpty判断原有效query；非空query不再额外受selectedboard过滤，显式Pinboard query token仍由索引匹配；原120ms/事务父partial。",
+    "canonical_card": "image/color/files卡片只消费canonical metadata新helper，无payload兜底；自己的尺寸/HEX/path标签替代通用summary，独立full preview不变。",
+    "body_header": "ZStack保Header顶端，bodyTop与Headerheight分开；raw0/1/2为56/52/48，raw3 fullsize0而header36/34，非fullsizebodyTop==header；Color整卡canonical背景。",
+    "header_style": "仅短class3，style1 title whiteα.85/subtitle .55；style0与原2映0用现primary/secondary getter，gradient/icon/lock未声称完整。",
+    "dismissal": "本轮仅完整证据JSON；未改自动hide，sheets/modal和一次suppression、generation动画仍待完整接链。",
+    "color_header_appearance": "仅canonical色卡Headerstyle0：复用f2067d4亮度>0.55选Aqua否则DarkAqua，performAsCurrentDrawingAppearance内将原动态primary/secondary解析为deviceRGB；其他卡片保持应用appearance。完整原NSAppearance对象层次/命名失败fallback仍partial。"
   }
 }

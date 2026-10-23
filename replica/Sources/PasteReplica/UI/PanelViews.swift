@@ -219,24 +219,26 @@ struct ReplicaClipboardCard: View {
     @Environment(\.controlActiveState) private var activeState
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            cardHeader
-            ReplicaItemContent(item: item, compact: true, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.horizontal, item.kind == .link ? 0 : 12).padding(.top, item.kind == .link ? 0 : 11)
-                .clipped()
-            if item.kind != .link {
-                HStack(spacing: 4) {
-                    if !item.pinboardIDs.isEmpty { Image(systemName: "pin.fill").font(.system(size: 10)) }
-                    Text(cardSummary).lineLimit(2).frame(maxWidth: .infinity, alignment: .center)
+        ZStack(alignment: .topLeading) {
+            VStack(alignment: .leading, spacing: 0) {
+                cardContent
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    .clipped()
+                if item.kind == .text || item.kind == .richText || item.kind == .unknown {
+                    HStack(spacing: 4) {
+                        if !item.pinboardIDs.isEmpty { Image(systemName: "pin.fill").font(.system(size: 10)) }
+                        Text(cardSummary).lineLimit(2).frame(maxWidth: .infinity, alignment: .center)
+                    }
+                    .font(.system(size: 13)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
+                    .padding(.horizontal, 12).padding(.bottom, 11).padding(.top, 7)
                 }
-                .font(.system(size: 13)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
-                .padding(.horizontal, 12).padding(.bottom, 11).padding(.top, 7)
             }
+            .padding(.top, cardGeometry?.bodyTop ?? headerHeight)
+            cardHeader
         }
         .frame(width: sideLength, height: sideLength)
         .background(ReplicaItemPreviewAnchor(itemID: item.id, controller: state.controller))
-        .background(Color(nsColor: .textBackgroundColor))
+        .background(cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: cardCornerRadius, style: cardCornerStyle))
         .background {
             if selected {
@@ -253,12 +255,77 @@ struct ReplicaClipboardCard: View {
         }
         .onTapGesture { state.select(item, modifiers: NSEvent.modifierFlags) }
         .contextMenu { contextMenu }
-        .onDrag { item.isDeleted ? NSItemProvider() : itemDragProvider(item) }
+        .onDrag { cardDragProvider() }
+        .onDrop(of: [ReplicaLocalItemDrag.typeIdentifier], isTargeted: nil) { providers, location in
+            receiveItemDrop(providers, after: location.x >= sideLength / 2)
+        }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(item.kind.displayName)，\(item.sourceName)，\(item.title)，\(item.plainText.map { String($0.prefix(160)) } ?? "")")
         .accessibilityAddTraits(selected ? [.isSelected, .isButton] : .isButton)
         .accessibilityAction { state.select(item) }
         .accessibilityIdentifier("clipboard-card-\(item.id.uuidString)")
+    }
+
+    private func cardDragProvider() -> NSItemProvider {
+        guard !item.isDeleted else { return NSItemProvider() }
+        let provider = itemDragProvider(item)
+        guard let boardID = state.pinboardID, state.isSearchQueryEmpty, !state.showDeleted else { return provider }
+        prepareSelection()
+        let marker = ReplicaLocalItemDrag(sessionID: state.itemDragSessionID, boardID: boardID,
+                                          ids: state.selectedItems.map(\.id))
+        if let data = try? JSONEncoder().encode(marker) {
+            provider.registerDataRepresentation(forTypeIdentifier: ReplicaLocalItemDrag.typeIdentifier,
+                                                visibility: .ownProcess) { completion in
+                completion(data, nil)
+                return nil
+            }
+        }
+        return provider
+    }
+
+    private func receiveItemDrop(_ providers: [NSItemProvider], after: Bool) -> Bool {
+        guard let boardID = state.pinboardID, state.isSearchQueryEmpty, !state.showDeleted,
+              let provider = providers.first(where: { $0.hasItemConformingToTypeIdentifier(ReplicaLocalItemDrag.typeIdentifier) }) else { return false }
+        provider.loadDataRepresentation(forTypeIdentifier: ReplicaLocalItemDrag.typeIdentifier) { data, _ in
+            guard let data, let marker = try? JSONDecoder().decode(ReplicaLocalItemDrag.self, from: data) else { return }
+            Task { @MainActor in
+                guard marker.sessionID == state.itemDragSessionID, marker.boardID == boardID,
+                      state.pinboardID == boardID, state.isSearchQueryEmpty, !state.showDeleted,
+                      let index = state.store.items(in: boardID).firstIndex(where: { $0.id == item.id }) else { return }
+                state.perform { try state.store.reorderItems(ids: marker.ids, in: boardID, toOffset: index + (after ? 1 : 0)) }
+            }
+        }
+        return true
+    }
+
+    private var presentation: OriginalCardPresentation? {
+        OriginalCardPresentation.resolve(item, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)
+    }
+
+    private var cardGeometry: OriginalCardPresentation.Geometry? {
+        presentation?.geometry(sizeClass: UInt8(sizeClass), modernOS: modernCardOS)
+    }
+
+    private var modernCardOS: Bool {
+        if #available(macOS 26, *) { return true }
+        return false
+    }
+
+    private var cardBackground: Color {
+        if item.kind == .color, let metadata = item.decodedColorPreviewMetadata {
+            return Color(nsColor: OriginalColorPreviewMetadataGenerator.color(metadata.code))
+        }
+        return Color(nsColor: .textBackgroundColor)
+    }
+
+    @ViewBuilder private var cardContent: some View {
+        switch item.kind {
+        case .image, .color, .files:
+            ReplicaCanonicalCardContent(item: item, sizeClass: UInt8(sizeClass))
+        default:
+            ReplicaItemContent(item: item, compact: true, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)
+                .padding(.horizontal, item.kind == .link ? 0 : 12).padding(.top, item.kind == .link ? 0 : 11)
+        }
     }
 
     private var cardCornerRadius: CGFloat {
@@ -284,6 +351,7 @@ struct ReplicaClipboardCard: View {
     }
 
     private var headerHeight: CGFloat {
+        if let cardGeometry { return cardGeometry.headerHeight }
         switch sizeClass {
         case 0: return 56
         case 1: return 52
@@ -304,10 +372,37 @@ struct ReplicaClipboardCard: View {
                 .font(Font(NSFont.systemFont(ofSize: NSFont.preferredFont(forTextStyle: sizeClass == 3 ? .headline : .title3, options: [:]).pointSize,
                                             weight: sizeClass == 3 ? .semibold : .medium)))
                 .lineLimit(1)
+                .foregroundStyle(headerPrimaryColor)
             Text(relativeTime(item.createdAt))
                 .font(Font(NSFont.preferredFont(forTextStyle: sizeClass == 3 ? .body : .callout, options: [:])))
-                .foregroundStyle(sizeClass == 3 ? Color(nsColor: .secondaryLabelColor) : .white.opacity(0.8))
+                .foregroundStyle(headerSecondaryColor)
         }
+    }
+
+    private var compactHeaderStyle: UInt8 { presentation?.preferredCompactHeaderStyle == 1 ? 1 : 0 }
+
+    private var headerPrimaryColor: Color {
+        guard sizeClass == 3 else { return .white }
+        return compactHeaderStyle == 1 ? .white.opacity(0.85)
+            : Color(nsColor: resolvedCardHeaderColor(OriginalSearchAppearance.f_1001fec18() ?? .labelColor))
+    }
+
+    private var headerSecondaryColor: Color {
+        guard sizeClass == 3 else { return .white.opacity(0.8) }
+        return compactHeaderStyle == 1 ? .white.opacity(0.55)
+            : Color(nsColor: resolvedCardHeaderColor(OriginalToolbarAppearance.secondaryForeground()))
+    }
+
+    private func resolvedCardHeaderColor(_ color: NSColor) -> NSColor {
+        guard item.kind == .color, let metadata = item.decodedColorPreviewMetadata else { return color }
+        let background = OriginalColorPreviewMetadataGenerator.color(metadata.code)
+        let name: NSAppearance.Name = OriginalPreviewTextColors.f_1002067d4(background) ? .aqua : .darkAqua
+        guard let appearance = NSAppearance(named: name) else { return color }
+        var resolved = color
+        appearance.performAsCurrentDrawingAppearance {
+            resolved = color.usingColorSpace(.deviceRGB) ?? color
+        }
+        return resolved
     }
 
     private var cardHeader: some View {
@@ -501,6 +596,13 @@ func itemFileURLs(_ item: ClipboardItem) -> [URL] {
     }
     var unique = Set<URL>()
     return urls.filter { unique.insert($0).inserted }
+}
+
+private struct ReplicaLocalItemDrag: Codable {
+    static let typeIdentifier = "com.pastereplica.internal.pinboard-item-drag"
+    let sessionID: UUID
+    let boardID: UUID
+    let ids: [UUID]
 }
 
 func itemDragProvider(_ item: ClipboardItem) -> NSItemProvider {
