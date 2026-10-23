@@ -339,9 +339,8 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
                                                      .credits: NSAttributedString(string: "原生剪贴板历史与 Pinboard 工具")])
     }
     @objc private func pause(_ sender: Any?) {
-        store.preferences.isMonitoringPaused.toggle()
-        store.preferences.pauseUntil = nil
-        do { try store.save() } catch { ui.presentError(error) }
+        if store.preferences.isMonitoringPaused { ui.state.resumeMonitoring() }
+        else { ui.state.pauseMonitoring() }
     }
 
     private func paste(id: UUID, plain: Bool) {

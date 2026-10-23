@@ -32,3 +32,9 @@
 "preview.reveal-in-finder.title" = "לחשוף ב Finder";
 
 "general.copied" = "הועתק";
+
+"general.paste-paused" = "Paste הושהה";
+
+"general.paste-resumed" = "Paste התחדש";
+
+"general.until" = "עד %@";

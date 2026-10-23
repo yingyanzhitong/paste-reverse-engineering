@@ -227,42 +227,29 @@ extension ClipboardStore {
     }
 
     public func writeToPasteboard(ids: [UUID], pasteboard: NSPasteboard, plainTextOnly: Bool = false) throws {
+        try writeToPasteboard(ids: ids, pasteboard: pasteboard, options: plainTextOnly ? .plainText : [])
+    }
+
+    public func writeToPasteboard(ids: [UUID], pasteboard: NSPasteboard,
+                                  options: OriginalPasteboardRestore.Options) throws {
         try save()
         guard !ids.isEmpty else { throw ClipboardStoreError.itemNotFound }
         let selected = try ids.map { id -> ClipboardItem in
             guard let item = items.first(where: { $0.id == id && !$0.isDeleted }) else { throw ClipboardStoreError.itemNotFound }
             return item
         }
-        var objects: [OriginalPasteboardItem] = []
-        if plainTextOnly {
-            for item in selected {
-                let representations = (try? Self.originalPasteboardItems(from: item.payloads)) ?? []
-                var projected = OriginalPasteboardRestore.f_10031bcdc(representations)
-                if projected.isEmpty {
-                    if let text = item.plainText {
-                        projected = [OriginalPasteboardItem.f_10037c6d4(text)]
-                    } else if let text = item.recognizedText, !text.isEmpty {
-                        projected = [OriginalPasteboardItem.f_10037c6d4(text)]
-                    } else {
-                        throw ClipboardStoreError.missingPlainText
-                    }
-                }
-                for object in projected {
-                    object.f_10037c4a8(item.sourceBundleID ?? "", forType: "org.nspasteboard.source")
-                }
-                objects.append(contentsOf: projected)
+        let selections = try selected.map { item -> OriginalPasteboardRestore.Selection in
+            let kind: OriginalPasteboardContentKind
+            switch item.kind {
+            case .text, .richText: kind = .text
+            case .link: kind = .link
+            case .image: kind = .image
+            case .files: kind = .files
+            case .color: kind = .color
+            case .unknown: kind = .unknown
             }
-            if selected.count > 1 {
-                let text = OriginalPasteboardRestore.f_100383a0c(separator: "\n", contents:
-                    objects.compactMap { $0.f_10037c9a8().map { NSAttributedString(string: $0) } })
-                objects = [OriginalPasteboardItem.f_10037c6d4(text.string)]
-            }
-        } else {
-          for item in selected {
+            let plain = OriginalPasteboardRestore.usesPlainProjection(kind: kind, options: options)
             var representations = try Self.originalPasteboardItems(from: item.payloads)
-            if item.kind == .image {
-                representations = Self.imageRestore.prepare(representations, sourceName: item.sourceName, timestamp: item.createdAt)
-            }
             for object in representations {
                 for type in Self.analysisPayloadKeys.union([multiItemPayloadKey, orderedTypesPayloadKey, originalItemDataPayloadKey]) {
                     object.f_10037dab0(type)
@@ -270,37 +257,27 @@ extension ClipboardStore {
                 if object.f_10037da6c().isEmpty, let text = item.plainText {
                     object.f_10037c4a8(text, forType: NSPasteboard.PasteboardType.string.rawValue)
                 }
-                if !object.f_10037da6c().isEmpty {
-                    object.f_100383574(removingTypesContaining: ["com.microsoft.ole.source"])
-                    object.f_10037c4a8(item.sourceBundleID ?? "", forType: "org.nspasteboard.source")
-                    object.f_1003838bc()
-                    objects.append(object)
+            }
+            // Existing replica metadata/OCR fallback is an input adapter, outside the original value processor.
+            if plain, OriginalPasteboardRestore.f_10031bcdc(representations).isEmpty {
+                if let text = item.plainText {
+                    representations = [OriginalPasteboardItem.f_10037c6d4(text)]
+                } else if let text = item.recognizedText, !text.isEmpty {
+                    representations = [OriginalPasteboardItem.f_10037c6d4(text)]
                 }
             }
-          }
-          // Original grouping switches the entire multi-selection to attributed-text
-          // projection as soon as any entity is text/link, including mixed selections.
-          if selected.count > 1, selected.contains(where: { [.text, .richText, .link].contains($0.kind) }) {
-              let content = objects.compactMap { $0.f_10037d33c() }
-              let combined = OriginalPasteboardRestore.f_100383a0c(separator: "\n", contents: content)
-              if combined.length > 0 {
-                  let aggregate = OriginalPasteboardItem()
-                  aggregate.f_1003838bc()
-                  if let data = OriginalPasteboardRestore.f_100381fdc(combined) {
-                      aggregate.f_10037d8c8(data, forType: NSPasteboard.PasteboardType.rtf.rawValue)
-                  } else {
-                      aggregate.f_10037c4a8(combined.string, forType: NSPasteboard.PasteboardType.string.rawValue)
-                  }
-                  objects = [aggregate]
-              } else {
-                  objects = []
-              }
-          }
+            if !plain, kind == .image {
+                representations = Self.imageRestore.prepare(representations, sourceName: item.sourceName, timestamp: item.createdAt)
+            }
+            return .init(kind: kind, items: representations, sourceBundleID: item.sourceBundleID)
         }
-        guard let first = objects.first else { throw ClipboardStoreError.pasteboardWriteFailed }
-        if plainTextOnly { for object in objects { object.f_1003838bc() } }
-        first.f_10037d8c8(Data(), forType: generatedType.rawValue)
-        first.f_10037d8c8(Data(), forType: replicaGeneratedType.rawValue)
+        let objects = OriginalPasteboardRestore.f_10038222c(selections, options: options,
+            removingTypesContaining: ["com.microsoft.ole.source"]).flatMap { $0 }
+        if let first = objects.first {
+            first.f_10037d8c8(Data(), forType: generatedType.rawValue)
+            first.f_10037d8c8(Data(), forType: replicaGeneratedType.rawValue)
+        }
+        // The original writer clears and writes even when processing produced no representations.
         let writer = OriginalPasteboardWriter(pasteboard: pasteboard)
         writer.f_10037875c(objects)
         guard writer.lastWriteSucceeded else { throw ClipboardStoreError.pasteboardWriteFailed }

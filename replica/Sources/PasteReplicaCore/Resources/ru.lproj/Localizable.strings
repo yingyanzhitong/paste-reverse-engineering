@@ -32,3 +32,9 @@
 "preview.reveal-in-finder.title" = "Показать в Finder";
 
 "general.copied" = "Скопировано";
+
+"general.paste-paused" = "Paste приостановлена";
+
+"general.paste-resumed" = "Paste возобновлена";
+
+"general.until" = "До %@";

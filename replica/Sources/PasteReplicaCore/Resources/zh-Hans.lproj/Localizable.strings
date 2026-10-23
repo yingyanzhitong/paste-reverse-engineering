@@ -32,3 +32,9 @@
 "preview.reveal-in-finder.title" = "在 Finder 中显示";
 
 "general.copied" = "已复制";
+
+"general.paste-paused" = "Paste 暂停";
+
+"general.paste-resumed" = "Paste 恢复";
+
+"general.until" = "直到 %@";

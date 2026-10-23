@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037e158",
-  "reviewed_at": "2026-10-23T11:40:50.068324+00:00",
+  "reviewed_at": "2026-10-23T11:52:28.028427+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "1e3578b657dbb26e780a90d285985e02f849d386d7eaddae2deba3afecfbb1e1",
+  "compiled_app_binary_sha256": "8fd4cce67b145109a002bbc4f592b4e618bfc77b2052555caacc10b8f606483e",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "分配PasteboardItem实例，调用同一严格可抛错Decoder初始化，保留错误返回寄存器语义。",
-  "review": "最终build27完整Decoder allocating-init f0c80..f0cc0：objc_allocWithZone后调用当前严格Decoder init f0cc0，保留x21错误寄存器；64字节完整边界来自重新解析LC_FUNCTION_STARTS。",
+  "review": "最终build28完整Decoder allocating-init f3684..f36c4：objc_allocWithZone后调用当前严格Decoder init f36c4，保留x21错误寄存器；64字节完整边界来自重新解析LC_FUNCTION_STARTS。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000f0c80",
-    "end_exclusive": "0x1000f0cc0",
+    "start": "0x1000f3684",
+    "end_exclusive": "0x1000f36c4",
     "size": 64,
-    "sha256": "81892971c18970108e8c69e5e76dcbde5cf0cb04a84e5076e2c5eeaf192a6020",
-    "binary_sha256": "1e3578b657dbb26e780a90d285985e02f849d386d7eaddae2deba3afecfbb1e1",
+    "sha256": "b6a1071df660f71a5cb42e66a9b445407241d763327da4b07ce6c828ba764eb8",
+    "binary_sha256": "8fd4cce67b145109a002bbc4f592b4e618bfc77b2052555caacc10b8f606483e",
     "lc_function_starts_verified": true
   }
 }

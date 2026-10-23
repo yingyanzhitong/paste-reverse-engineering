@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100236e48",
-  "reviewed_at": "2026-10-23T11:40:50.513476+00:00",
+  "reviewed_at": "2026-10-23T11:52:28.423871+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0193.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "63be8fc7548591e83c89ebfcd76f5fc515c410868e971dc048a1222809c58cd7",
   "source_sha256": {
-    "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift": "e0c23384585b00c2e0f5afdd7b3631bf1081d3f1a1a751873c1fa9d4934d3929"
+    "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift": "c851822ca29c0a352dcf0c50b79e14dcadd5508817c7e941a62b9d4b9c4fc8d0"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "1e3578b657dbb26e780a90d285985e02f849d386d7eaddae2deba3afecfbb1e1",
+  "compiled_app_binary_sha256": "8fd4cce67b145109a002bbc4f592b4e618bfc77b2052555caacc10b8f606483e",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "MainActor 消退函数以 NSAnimationContext.runAnimationGroup 配 duration0.5、easeOut、allowsImplicitAnimation=true，animation设该window.animator.alpha0，completion再orderOut(nil)；真实倒计时回调消费。",
   "review": "原 REA 与指定 arm64 原窗口/布局/延时/动画/成功分支静态核对；真实诊断停止及本地 copy 成功消费者已接。最终 build27 release 编译通过，130 输入 SHA 构建前后一致；绑定冻结源/产物摘要。无产品、功能、单测、UI、原版动态或 MCP 执行；完整父契约继续 partial。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

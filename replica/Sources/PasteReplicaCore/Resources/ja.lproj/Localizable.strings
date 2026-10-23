@@ -32,3 +32,9 @@
 "preview.reveal-in-finder.title" = "Finderで表示";
 
 "general.copied" = "コピー済み";
+
+"general.paste-paused" = "Paste 一時停止されました";
+
+"general.paste-resumed" = "Paste 再開しました";
+
+"general.until" = "まで %@";

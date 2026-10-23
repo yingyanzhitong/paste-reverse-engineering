@@ -3,13 +3,32 @@ import PasteReplicaCore
 import QuartzCore
 import SwiftUI
 
-/// The copied-only branch of the recovered OSD. Optional subtitle/action remain separate contracts.
+/// Recovered local OSD presentation. The original optional action remains a separate contract.
 @MainActor
 enum ReplicaCopiedOSD {
     static func showCopied() {
+        show(symbolName: "checkmark", title: String(localized: OriginalPreviewLocalization.f_1001c482c()))
+    }
+
+    static func showPaused(resumeDate: Date?) {
+        let subtitle: String?
+        if let resumeDate {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm"
+            subtitle = String(localized: OriginalPreviewLocalization.f_1001e6c18(formatter.string(from: resumeDate)))
+        } else { subtitle = nil }
+        show(symbolName: "pause", title: String(localized: OriginalPreviewLocalization.f_1001c5838()),
+             subtitle: subtitle)
+    }
+
+    static func showResumed() {
+        show(symbolName: "arrow.clockwise", title: String(localized: OriginalPreviewLocalization.f_1001c59b8()))
+    }
+
+    private static func show(symbolName: String, title: String?, subtitle: String? = nil) {
         // The original controller enqueues its presenter on MainActor rather than presenting inline.
         Task { @MainActor in
-            let content = NSHostingView(rootView: CopiedContent())
+            let content = NSHostingView(rootView: Content(symbolName: symbolName, title: title, subtitle: subtitle))
             let effect = NSVisualEffectView()
             effect.wantsLayer = true
             effect.layer?.cornerRadius = 20
@@ -52,15 +71,19 @@ enum ReplicaCopiedOSD {
         }
     }
 
-    private struct CopiedContent: View {
+    private struct Content: View {
+        let symbolName: String
+        let title: String?
+        let subtitle: String?
+
         var body: some View {
             VStack(spacing: 16) {
-                Image(systemName: "checkmark")
+                Image(systemName: symbolName)
                     .renderingMode(.template)
                     .font(.system(size: 86))
                 VStack(spacing: 4) {
-                    Text(String(localized: OriginalPreviewLocalization.f_1001c482c()))
-                        .font(.title)
+                    if let title { Text(title).font(.title) }
+                    if let subtitle { Text(subtitle).font(.body) }
                 }
             }
             .foregroundStyle(.secondary)

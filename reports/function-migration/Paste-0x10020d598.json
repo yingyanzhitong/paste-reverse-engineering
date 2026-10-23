@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10020d598",
+  "reviewed_at": "2026-10-23T11:52:28.434949+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0177.c",
+    "line": 328
+  },
+  "original_pseudocode_sha256": "d61bd3dcbffbb205ff29b4d22735108db17c4477ffcf0662dec0dabe9916959d",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/ReplicaCopiedOSD.swift": "c851822ca29c0a352dcf0c50b79e14dcadd5508817c7e941a62b9d4b9c4fc8d0"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8fd4cce67b145109a002bbc4f592b4e618bfc77b2052555caacc10b8f606483e",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "原 pause symbol 值在真实暂停 OSD 的 symbolName 参数直接消费，不新造getter灌地址。",
+  "review": "原REA/arm64常量、日期formatter与真实本地暂停/恢复/复制消费者静态核对；最终build28 release编译通过，131输入SHA构建前后一致，绑定冻结源与产物。仅原子级可证合同作candidate；原定时器/自动恢复/OSD可选action等完整父仍partial。无产品、功能、单测、原版动态、UI或MCP执行。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

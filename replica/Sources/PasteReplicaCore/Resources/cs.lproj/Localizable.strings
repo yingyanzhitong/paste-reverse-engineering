@@ -32,3 +32,9 @@
 "preview.reveal-in-finder.title" = "Ukázat ve Finderu";
 
 "general.copied" = "Zkopírováno";
+
+"general.paste-paused" = "Paste pozastaveno";
+
+"general.paste-resumed" = "Paste obnovena";
+
+"general.until" = "Do %@";

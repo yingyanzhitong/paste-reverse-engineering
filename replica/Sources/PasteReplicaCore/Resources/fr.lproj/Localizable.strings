@@ -32,3 +32,9 @@
 "preview.reveal-in-finder.title" = "Révéler dans Finder";
 
 "general.copied" = "Copié";
+
+"general.paste-paused" = "Paste en pause";
+
+"general.paste-resumed" = "Paste repris";
+
+"general.until" = "Jusqu'à %@";

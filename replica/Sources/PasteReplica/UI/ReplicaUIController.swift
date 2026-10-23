@@ -8,8 +8,12 @@ import PasteReplicaCore
 final class ReplicaUIState: ObservableObject {
     let store: ClipboardStore
     weak var controller: ReplicaUIController?
-    @Published var query = "" { didSet { refreshSearch() } }
-    @Published var searchFilters: [ReplicaSearchFilterChip.Selection] = [] { didSet { refreshSearch() } }
+    @Published var query = "" { didSet {
+        if !isApplyingSearchInput { searchInputProjection = nil; refreshSearch() }
+    } }
+    @Published var searchFilters: [ReplicaSearchFilterChip.Selection] = [] { didSet {
+        if !isApplyingSearchInput { searchInputProjection = nil; refreshSearch() }
+    } }
     @Published var pinboardID: UUID?
     @Published var showDeleted = false
     @Published var selection: Set<UUID> = []
@@ -28,6 +32,8 @@ final class ReplicaUIState: ObservableObject {
     @Published var allowsEmptySelection = false
     private var observation: AnyCancellable?
     private let searchIndex: ReplicaSearchIndex
+    private var searchInputProjection: [OriginalSearchQueryNode]?
+    private var isApplyingSearchInput = false
 
     init(store: ClipboardStore) {
         self.store = store
@@ -48,21 +54,22 @@ final class ReplicaUIState: ObservableObject {
     }
 
     private var searchQueryNodes: [OriginalSearchQueryNode] {
+        if let searchInputProjection { return searchInputProjection }
         var buffer = query
         var nodes: [OriginalSearchQueryNode] = []
         OriginalSearchTextTokens.f_1002f8760(&buffer, into: &nodes)
-        nodes += searchFilters.map { selection in
-            let value: String
-            switch selection {
-            case let .kind(kind): value = kind == .files ? "file" : kind == .richText ? "text" : kind.rawValue
-            case let .source(source): value = source
-            case let .device(device): value = device
-            case let .date(filter): return OriginalSearchDateEncoding.f_1002d9d2c(filter.range)
-            case let .pinboard(id): value = id.uuidString
-            }
-            return .filter(selection.group, value)
-        }
-        return nodes
+        nodes += searchFilters.map(\.queryNode)
+        return OriginalSearchQueryNormalization.f_1002da16c(nodes, flag: 0)
+    }
+
+    func applySearchInput(nodes: [OriginalSearchQueryNode], text: String,
+                          filters: [ReplicaSearchFilterChip.Selection]) {
+        isApplyingSearchInput = true
+        query = text
+        searchFilters = filters
+        searchInputProjection = nodes
+        isApplyingSearchInput = false
+        refreshSearch()
     }
 
     var isSearchQueryEmpty: Bool { OriginalSearchQuery.f_1002ddcf0(searchQueryNodes) }
@@ -186,13 +193,19 @@ final class ReplicaUIState: ObservableObject {
     func pauseMonitoring(minutes: Int? = nil) {
         store.preferences.isMonitoringPaused = true
         store.preferences.pauseUntil = minutes.map { Date().addingTimeInterval(Double($0) * 60) }
-        perform { try store.save() }
+        perform {
+            try store.save()
+            ReplicaCopiedOSD.showPaused(resumeDate: store.preferences.pauseUntil)
+        }
     }
 
     func resumeMonitoring() {
         store.preferences.isMonitoringPaused = false
         store.preferences.pauseUntil = nil
-        perform { try store.save() }
+        perform {
+            try store.save()
+            ReplicaCopiedOSD.showResumed()
+        }
     }
 
     func movePinboard(_ board: Pinboard, by offset: Int) {

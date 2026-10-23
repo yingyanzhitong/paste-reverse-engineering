@@ -21,6 +21,7 @@ struct ReplicaSearchEditor: NSViewRepresentable {
     @Binding var focused: Bool
     var filters: [ReplicaSearchFilterChip]
     var onFiltersChange: ([ReplicaSearchFilterChip.Selection]) -> Void
+    var onInputChange: (String, [ReplicaSearchFilterChip.Selection], [OriginalSearchQueryNode]) -> Void
     var onEnter: () -> Void
     var onCancel: () -> Void
     var onShowFilters: (NSButton) -> Void
@@ -75,37 +76,39 @@ struct ReplicaSearchEditor: NSViewRepresentable {
         private var renderedFilters: [ReplicaSearchFilterChip.Selection] = []
         init(_ parent: ReplicaSearchEditor) { self.parent = parent }
 
-        private func contents(_ storage: NSAttributedString, editor: NSTextView) -> (String, [ReplicaSearchFilterChip.Selection]) {
+        private func contents(_ storage: NSAttributedString, editor: NSTextView)
+            -> (String, [ReplicaSearchFilterChip.Selection], [OriginalSearchQueryNode], Bool) {
             var selections: [ReplicaSearchFilterChip.Selection] = []
-            var ranges: [NSRange] = []
-            storage.enumerateAttribute(searchFilterSelectionKey,
-                in: NSRange(location: 0, length: storage.length)) { value, range, _ in
-                if let selection = value as? ReplicaSearchFilterChip.Selection {
-                    selections.append(selection)
-                    ranges.append(range)
+            var nodes: [OriginalSearchQueryNode] = []
+            var buffer = ""
+            let string = editor.f_1000f7254() as NSString
+            storage.enumerateAttributes(in: NSRange(location: 0, length: storage.length)) { attributes, range, _ in
+                let selection = attributes[searchFilterSelectionKey] as? ReplicaSearchFilterChip.Selection
+                for character in string.substring(with: range) {
+                    if character == "\u{FFFC}" {
+                        OriginalSearchTextTokens.f_1002f8760(&buffer, into: &nodes)
+                        if let selection { selections.append(selection); nodes.append(selection.queryNode) }
+                    } else { buffer.append(character) }
                 }
             }
-            let plain = editor.f_1000f7254()
-            guard !ranges.isEmpty else { return (plain, selections) }
-            // Each attachment separates original free-text query nodes.
-            let string = plain as NSString
-            var pieces: [String] = []
-            var offset = 0
-            for range in ranges {
-                pieces.append(string.substring(with: NSRange(location: offset, length: range.location - offset)))
-                offset = NSMaxRange(range)
+            OriginalSearchTextTokens.f_1002f8760(&buffer, into: &nodes)
+            let normalized = OriginalSearchQueryNormalization.f_1002da16c(nodes, flag: 0)
+            let filters = normalized.compactMap { node -> ReplicaSearchFilterChip.Selection? in
+                guard case .filter = node else { return nil }
+                return selections.first { $0.queryNode == node }
             }
-            pieces.append(string.substring(from: offset))
-            let text = pieces.map { $0.trimmingCharacters(in: .whitespaces) }
-                .filter { !$0.isEmpty }.joined(separator: " ")
-            return (text, selections)
+            let text = normalized.compactMap { node -> String? in
+                guard case let .text(text) = node else { return nil }
+                return text
+            }.joined()
+            return (text, filters, normalized, nodes != normalized)
         }
 
         func updateContents(_ field: SearchField, editor: SearchTextView) {
             guard !editor.hasMarkedText(), let storage = editor.textStorage else { return }
             let selections = parent.filters.map(\.selection)
             let previous = contents(storage, editor: editor)
-            guard previous.0 != parent.text || previous.1 != selections else { return }
+            guard previous.0 != parent.text || previous.1 != selections || previous.3 else { return }
             let range = editor.selectedRange()
             let position = max(0, range.location - previous.1.count)
             let result = NSMutableAttributedString(string: "")
@@ -128,9 +131,9 @@ struct ReplicaSearchEditor: NSViewRepresentable {
             }
             renderedFilters = selections
             field.f_100045c2c().f_1000449e8()
-            let location = min(result.length, selections.count + position)
+            let location = previous.3 ? result.length : min(result.length, selections.count + position)
             editor.setSelectedRange(NSRange(location: location,
-                length: min(range.length, result.length - location)))
+                length: previous.3 ? 0 : min(range.length, result.length - location)))
         }
 
         func attach(_ field: SearchField, editor: SearchTextView) {
@@ -158,12 +161,9 @@ struct ReplicaSearchEditor: NSViewRepresentable {
             }
             editor.didChange = { [weak self, weak editor] in
                 guard let self, let editor, !editor.hasMarkedText(), let storage = editor.textStorage else { return }
-                let (text, selections) = self.contents(storage, editor: editor)
-                self.parent.text = text
-                if selections != self.renderedFilters {
-                    self.renderedFilters = selections
-                    self.parent.onFiltersChange(selections)
-                }
+                let (text, selections, nodes, _) = self.contents(storage, editor: editor)
+                self.renderedFilters = selections
+                self.parent.onInputChange(text, selections, nodes)
             }
         }
     }

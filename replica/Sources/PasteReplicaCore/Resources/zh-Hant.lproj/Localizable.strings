@@ -32,3 +32,9 @@
 "preview.reveal-in-finder.title" = "在Finder中顯示";
 
 "general.copied" = "已複製";
+
+"general.paste-paused" = "Paste暫停";
+
+"general.paste-resumed" = "Paste恢復";
+
+"general.until" = "直到%@";

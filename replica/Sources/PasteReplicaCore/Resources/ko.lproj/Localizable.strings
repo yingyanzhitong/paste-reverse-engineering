@@ -32,3 +32,9 @@
 "preview.reveal-in-finder.title" = "Finder에 공개";
 
 "general.copied" = "복사됨";
+
+"general.paste-paused" = "Paste 일시중지됨";
+
+"general.paste-resumed" = "Paste 재개됨";
+
+"general.until" = "까지 %@";

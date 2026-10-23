@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037df18",
-  "reviewed_at": "2026-10-23T11:40:50.074512+00:00",
+  "reviewed_at": "2026-10-23T11:52:28.034000+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "1e3578b657dbb26e780a90d285985e02f849d386d7eaddae2deba3afecfbb1e1",
+  "compiled_app_binary_sha256": "8fd4cce67b145109a002bbc4f592b4e618bfc77b2052555caacc10b8f606483e",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "CodingKeys的description协议入口使用本类型CodingKey witness并转发Swift.CodingKey默认description。",
-  "review": "最终build27完整CodingKeys description witness f0c58..f0c80：通过当前f3950..f3994 CodingKey witness accessor调用Swift CodingKey description默认实现；当前description conformance158064+24绑定f0c58。",
+  "review": "最终build28完整CodingKeys description witness f365c..f3684：通过当前f6334..f6378 CodingKey witness accessor调用Swift CodingKey description默认实现；当前description conformance15b8c4+24绑定f365c。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000f0c58",
-    "end_exclusive": "0x1000f0c80",
+    "start": "0x1000f365c",
+    "end_exclusive": "0x1000f3684",
     "size": 40,
-    "sha256": "f3a8573e2779abd0503c1d371b1f05575afdf6a1287c042b46986b0c17a73f26",
-    "binary_sha256": "1e3578b657dbb26e780a90d285985e02f849d386d7eaddae2deba3afecfbb1e1",
+    "sha256": "fe66f14cf9eaf174b410434320ad158441a60dfa5818ad9d09961276a6cd2c11",
+    "binary_sha256": "8fd4cce67b145109a002bbc4f592b4e618bfc77b2052555caacc10b8f606483e",
     "lc_function_starts_verified": true
   }
 }

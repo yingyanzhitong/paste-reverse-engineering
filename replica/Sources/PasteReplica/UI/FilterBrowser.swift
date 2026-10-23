@@ -3,6 +3,18 @@ import SwiftUI
 import PasteReplicaCore
 
 extension ReplicaSearchFilterChip.Selection {
+    var queryNode: OriginalSearchQueryNode {
+        let value: String
+        switch self {
+        case let .kind(kind): value = kind == .files ? "file" : kind == .richText ? "text" : kind.rawValue
+        case let .source(source): value = source
+        case let .device(device): value = device
+        case let .date(filter): return OriginalSearchDateEncoding.f_1002d9d2c(filter.range)
+        case let .pinboard(id): value = id.uuidString
+        }
+        return .filter(group, value)
+    }
+
     var group: UInt8 {
         switch self {
         case .source: return 0

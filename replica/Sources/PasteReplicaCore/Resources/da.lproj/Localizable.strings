@@ -32,3 +32,9 @@
 "preview.reveal-in-finder.title" = "Vis i Finder";
 
 "general.copied" = "Kopieret";
+
+"general.paste-paused" = "Paste sat på pause";
+
+"general.paste-resumed" = "Paste genoptaget";
+
+"general.until" = "Indtil %@";

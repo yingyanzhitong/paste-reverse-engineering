@@ -32,3 +32,9 @@
 "preview.reveal-in-finder.title" = "Onthullen in Finder";
 
 "general.copied" = "Gekopieerd";
+
+"general.paste-paused" = "Paste gepauzeerd";
+
+"general.paste-resumed" = "Paste hervat";
+
+"general.until" = "Tot %@";

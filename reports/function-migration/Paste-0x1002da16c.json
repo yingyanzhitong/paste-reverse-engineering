@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002da16c",
+  "reviewed_at": "2026-10-23T11:52:28.436803+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0236.c",
+    "line": 2587
+  },
+  "original_pseudocode_sha256": "2d60c3b531024ec7109c46f8686e0dc8799befd6e33162d6a3f138287116f739",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchQueryNormalization.swift": "fc2414e1395bb916246c9ef38509730c394e3d0feebbf0ca6dc9438f86409eb9",
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "05087761a0373532fecbdbee351ce11e83ff0a87be852f5cb72c68f2591aa2ae",
+    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "88f9bce056d3f58d9666dfe7921b21f7b2a856eaa20261e1139ab5cf987bde8c"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8fd4cce67b145109a002bbc4f592b4e618bfc77b2052555caacc10b8f606483e",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "filter value以.whitespaces trim仅判空，保留raw值；按(tag,raw String)去重保首项顺序。以原始输入最后filter（包含空/重复）为分界，text按前/后保序分组。flag bit0=1丢trim为空text、否则保留，均不改raw、不合并、不去重。最终返回filters + afterLastFilterText + beforeOrNoFilterText。",
+  "review": "完整REA与arm64核实，尾部不能从伪代码未传参猜序：x29-b0=before→x21，x29-c0=after→x19；da56c index>last跳da634写-c0；da570写-b0；da71c base filters slot-b8→output slot-78；da724以x19首append，da734以x21次append，x20固定指output slot。原Set比较tag与原String，不trim后去重。 Root实际接UIController.searchQueryNodes fallback及SearchEditor.contents attributes runs；applySearchInput保存规范节点边界，不先拼串丢失前后分组。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

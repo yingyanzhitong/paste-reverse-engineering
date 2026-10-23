@@ -14,6 +14,14 @@ public enum OriginalPreviewLocalization {
                                 bundle: .atURL(resourceBundle.bundleURL))
     }
 
+    public static func f_1001c5838() -> LocalizedStringResource { resource("general.paste-paused") }
+    public static func f_1001c59b8() -> LocalizedStringResource { resource("general.paste-resumed") }
+
+    public static func f_1001e6c18(_ time: String) -> LocalizedStringResource {
+        LocalizedStringResource("general.until", defaultValue: "\(time)", table: "Localizable",
+                                locale: .current, bundle: .atURL(resourceBundle.bundleURL))
+    }
+
     public static func f_1001c482c() -> LocalizedStringResource {
         resource("general.copied")
     }
