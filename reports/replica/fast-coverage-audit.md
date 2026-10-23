@@ -10,24 +10,20 @@
 
 ## 发现的优先问题
 
-- 筛选浏览器仍使用菜单，和原版Popover不同
-- OCR内核已有，但图片文字选择层缺失
-- 字段序列化已具备，但原ItemData内部压缩格式仍缺失
+- 搜索完整索引、原日期选项及全部事件/焦点边界尚未对齐
 - repo与恢复副作用仍是主要全链缺口
 - 不能宣称快捷键完整一比一验收
-- 预览Header缺Pin和Share完整交互
-- 底栏统计与显示明确不同
 - 非文本内容factory未完整
 
 ## 功能清单
 
 | 功能 | 静态结论 | 已有行为 | 差异或待确认项 |
 | --- | --- | --- | --- |
-| 搜索与筛选 | 已有代码，仍有差异或缺证据 | 搜索匹配标题、正文、OCR、来源及类型，支持多词、大小写/宽度/变音折叠；类型、应用、日期、设备、Pinboard筛选有实际UI入口；已选筛选接原生附件编辑；Enter/Escape和原生文本选区/撤销菜单有已恢复调用 | 原版f03f044使用FilterBrowserPopover与SwiftUI浏览器，当前筛选入口仍用NSMenu，属于已确认交互差异；完整token/coordinator和建议菜单未恢复，不因基本搜索可用把原搜索链全部记完成 |
+| 搜索与筛选 | 已有代码，仍有差异或缺证据 | 真实原生Popover+SwiftUI三列筛选浏览器已取代菜单；宽440/最小高230/最大高330来自原汇编；多选筛选同组OR跨组AND；支持类型、应用、Pinboard、日期、设备，RTF并入text；长分组>=11项折8+展开/收起；Cmd选择保留、Option打开隐藏已选、键盘移动/Tab/Enter/Escape、焦点返回已接；筛选token保持原生附件编辑，Esc先清自由文本和筛选再收起搜索/关闭面板；普通筛选条目按真实FilterItemView恢复16点图标、28高、胶囊按钮、选中/按压状态和向外4点的2点键盘高亮；移除无原证据的hover选中行为 | 完整SearchService/CSSearchQuery索引及原query模型仍未恢复；现有自由文本匹配不是原Spotlight完整语义；原日期选项来源、完整query服务及全部键盘/焦点边界待后续核对；无运行/UI验收 |
 | Pinboard整理 | 已有代码，仍有差异或缺证据 | 新建、重命名、删除、颜色、顺序持久化已存在；项目可加入多个Pinboard、从指定或全部Pinboard移除，支持tab拖动排序和快捷键切换 | 已有独立实现，无需从零重写；但原版Pinboard完整行为和逐地址对应尚无完整证据；重排边界、删除后保留策略和不同筛选下拖放需后续针对性对比，不能静态判一比一 |
 | 多选与粘贴 | 已有代码，仍有差异或缺证据 | Cmd切换选择、Shift区间选择、全选/取消、键盘延伸选择已有实际入口；多项目按可见顺序写剪贴板，原格式/纯文本转换和辅助功能直接粘贴已有实现；目标激活等待、generation及剪贴板changeCount避免过期粘贴 | 物理目标应用、权限拒绝、时序和原版全部快捷键分支仍待最终回归；上述功能存在不代表原版所有selection/restore函数已满足；现有可用路径优先保留 |
 | Paste Stack队列 | 已有代码，仍有差异或缺证据 | 独立非激活窗口、原生NSTableView、行数/高度更新和拒绝选行已接；手工加入、显示时捕获、去重、反转、队首粘贴后消费及跨启动队列保存已实现；单项复制/粘贴/预览/移除有现成右键入口 | Stack cell仍用NSHostingView独立布局，原版完整cell/动画/快捷键生命周期并未全对齐；窗口和表格少量函数有历史验证，不外推整个Stack已一比一 |
-| 离线OCR及图片文字交互 | 已有代码，仍有差异或缺证据 | Vision离线识别、缓存全文/逐词置信度/位置框已有实现；识别结果参与搜索；图片菜单可复制识别文字，四个内核函数保留有效历史差分证据 | 图片内容当前用SwiftUI Image显示，没有按词框命中、拖选、高亮的原版图片文字选择层，属明确UI缺口；最终回归前不重复执行旧OCR用例维持标签；内核通过不能替代文字选择交互验收 |
+| 离线OCR及图片文字交互 | 已有代码，仍有差异或缺证据 | Vision离线识别、缓存全文/逐词置信度/位置框已有实现；识别结果参与搜索；图片菜单可复制识别文字，四个内核函数保留有效历史差分证据；图片预览已接原版采用的VisionKit Live Text原生overlay，trackingImageView负责文字选择/拖选/复制，无自造逐词fallback | 原ZoomableImageView完整缩放/滚动尚未恢复；异常EXIF raw枚举边界及异步owner生命周期仍待核；原生选择组件只通过编译静态核对，尚未功能/交互回归；历史OCR内核验证不外推为新交互已验收 |
 | 历史项目管理 | 已有代码，仍有差异或缺证据 | 删除/恢复/永久删除、副本、重命名、清空历史和Pinboard保留路径均有现有代码；普通/最近删除视图和批量操作通过卡片菜单接入 | 原版历史仓库事务、撤销/观察者和全异常分支不等于当前JSON操作；接口存在不当作原仓库函数全覆盖 |
 | 剪贴板项目读写与类型顺序 | 列明行为已有代码 | 有序types与dataByType独立；保留重复类型；nil删除data但不删types；空Data与缺失分开处理。；严格UTF8；缺失/非法编码返回nil；stable删除所有同名types；实际capture与writer调用。 |  |
 | 文本、URL、图像及富文本识别 | 列明行为已有代码 | 文本按固定优先级逐项失败继续，空串有效；图像Data固定优先级后只解码一次；URL直接值和文本fallback分开。；Any setter处理Data/String/attributedString/URL/Image，图像PNG编码；富文本清paragraph textBlocks。；颜色6位规则及无#时必须有A-F；link detector空/失败保留link、非完整匹配降text分支已按汇编核对。 | 仅覆盖列出的识别/投影算法，未据此宣称所有图像预处理和粘贴组合器已完成。 |
@@ -35,9 +31,9 @@
 | 捕获状态与历史管理器构造 | 已有代码，仍有差异或缺证据 | nil弱delegate、空items、nil双timer、零token读取系统changeCount及Pasteboard namedlogger已实现。；UndoManager通过原54:19站点共享并经真实Dependency首次缓存。 | 原history manager lazily建立capture state；当前init立即创建，不能把lazy getter/constructor逐个宣称等价。；原构造token为0时会立即写回系统token；当前直到同步回调才保存。；原析构显式清delegate、stop并通知；现有deinit仅清timer，尚未覆盖原全部次序。；第二lazy DI确认为PasteTelemetry13:19，联网后端依离线范围不恢复，混合constructor保留partial。 |
 | 应用/类型过滤与访问权限读取 | 列明行为已有代码 | 前台app缺失拒绝；FirefoxDeveloperEdition精确排除，其他bundle substring排除；ignoredTypes双向substring。；Excel仅UTF16/UTF8；fileURL+PNG精确集合排fileURL；固定Microsoft三类标识过滤。；macOS15.4+读取同accessBehavior getter，背景读取需raw2；老系统允许。 | 外围新增保密/临时/暂停偏好属于产品额外政策，未把整个捕获入口判定为原版同函数。 |
 | 系统读取到delegate/落库整链 | 已有代码，仍有差异或缺证据 | 背景权限、rawItems可选、delegate为空/拒绝分支、逐类型数据读取、累计1GiB限制、溢出trap、临时items清理均存在。；token/count+1、同步通知、空内容、创建成功/失败、Undo清空与DidCreate/DidCapture通知结构存在。 | 底层repo getOrCreate、metadata、capture-actions和事务仍不完整；不可因上层回调流程已存在而整链标满。；原遥测事件后端使用离线适配，不能认定原全依赖链一致。 |
-| 项目字段Codable/NSCoding协议 | 列明行为已有代码 | types与dataByType严格必需、按顺序编码；NSSecureCoding类型白名单和失败nil；ObjC桥与Swift协议入口均存在。；6个编译器入口已按最终build15完整边界、ObjC methods/Swift conformance重新审核，不沿用旧binary地址。 | 仅字段协议已满足；不代表原ItemData压缩格式、归档类身份和整库兼容已经满足。 |
-| 现有JSON及NSKeyedArchive导入适配 | 已有代码，仍有差异或缺证据 | JSON数组及NSKeyedUnarchiver受限类型解码，支持原class-name aliases；外层StoreState存档与剪贴板项数组分别处理。 | 编码class identity仍为独立复刻类型，未证明和原PasteCore.PasteboardItem产生同字节归档。；普通JSON数组可解析不等于原ItemData存储格式全覆盖；现外层识别头不覆盖原bvx和zlib压缩。；未恢复原ObjC NSException包装，不把Swift do/catch等同。 |
-| 原ItemData压缩/版本兼容格式 | 缺少实现 | 可复用已满足的OriginalPasteboardItem Codable模型与原生PropertyListEncoder/Decoder、JSONEncoder/Decoder。 | 原31aeec识别bvx前三字节→LZFSE(0x801)解压；bplist或首字节[/{保留；其余尝试zlib(0x205)，失败回原Data；bplist先plist decoder，再JSON，最终失败空数组。当前无该兼容算法。；原31a8e8按itemSerializationFormat选binary plist+LZFSE或JSON+zlib；含图像Data时不压缩，否则压缩失败保留rawData。当前未实现。；原解压缓冲初始max(input.count*2,65536)，满缓冲倍增至限制，失败返回nil；不能以NSKeyedArchive解码器代替压缩器。 |
+| 项目字段Codable/NSCoding协议 | 列明行为已有代码 | types与dataByType严格必需、按顺序编码；NSSecureCoding类型白名单和失败nil；ObjC桥与Swift协议入口均存在。；6个编译器入口已按当前build18的完整LC_FUNCTION_STARTS边界、机器码、ObjC methods与Swift conformance重新审核，不沿用旧二进制地址。 | 仅字段协议已满足；不代表原ItemData压缩格式、归档类身份和整库兼容已经满足。 |
+| 现有JSON及NSKeyedArchive导入适配 | 已有代码，仍有差异或缺证据 | 归档decodeItems先严格原codec数组解码，支持未压缩JSON/binary plist、LZFSE及zlib；失败保留既有NSKeyedUnarchiver受限类型兼容。；原class-name aliases仍保留，外层StoreState存档与剪贴板项数组分别处理；原codec解码空数组与非法数据在外部导入识别中分开。；ClipboardStore.importArchive已按decodeIfValid !=nil接通压缩数组文件导入，不仅靠header前缀识别。 | 编码class identity仍为独立复刻类型，未证明和原PasteCore.PasteboardItem产生同字节归档。；未恢复原ObjC NSException包装，不把Swift do/catch等同。 |
+| 原ItemData压缩/版本兼容格式 | 已有代码，仍有差异或缺证据 | 已按原字节前缀恢复bvx→LZFSE、bplist保留、首字节[/{保留、其他尝试zlib且解压失败回原Data。；binary plist先PropertyListDecoder，失败再JSONDecoder，源f31aeec最终失败[]；严格adapter为导入识别与去重保留nil失败状态。；按useBinaryPlist默认false选择binary plist+LZFSE或JSON+zlib；encoder失败空Data；存在任一图像Data含空则不压缩；其余压缩失败用原bytes。；压缩buffer恰为input.count；解压初始max(input.count*2,65536)、满buffer倍增且按0x0fffffff阈值停止，全部native Compression API，无自造格式。；新capture多项实际保存raw metadata；writer/checksum读取并剔除；去重/image读取规范化；保留旧items+json只读兼容，损坏新blob保持原bytes身份。 | codec实现已通过主智能体统一build18编译，6个完整值契约已合并migrated；仅静态核对，未执行产品/功能/单测/MCP回归。；原CoreData ItemDataEntity实体setter、DI itemSerializationFormat注入、raw字段事务及ObjC异常包装尚未恢复，f31a8e8仍partial；不能把独立raw metadata适配宣称原整库。；单项复刻记录继续原有types元数据+raw payload字典结构；原多项codec已消费，整库数据层仍不等价。 |
 | MD5字节、字符串与十六进制基础 | 列明行为已有代码 | Data有效范围update，digest迭代顺序%02x，strictUTF8字符串散列；都通过known content checksum实际调用。 |  |
 | 内容分类checksum与unknown归档摘要 | 已有代码，仍有差异或缺证据 | image取首个存在图像Data；text/color/link取首item普通文本；files有效URL.path按原FileSnippet:拼接。；add仅双方known digest有效时按digest判等，unknown/损坏metadata回退旧归一化比较。 | unknown或files无有效URL会归档后散列，原类身份/字节顺序仍未证明，known-only入口故意不使用该分支作等价去重。；原repo按checksum fetch无额外kind条件，但当前fallback仍按旧kind/plainText/payload比较，不能标全策略等价。 |
 | 原仓库get/create/update与现有JSON仓库 | 已有代码，仍有差异或缺证据 | 相同known checksum命中现有item，保留旧title并更新kind/plainText/payload；image只补旧内部OCR缺失键。；新UUID与本地来源、pin/history/date等产品行为已有代码。 | 原CoreData ItemEntity/ItemDataEntity对象关系、旧data删除后重建及解析viewmodel缓存生命周期尚未映射。；原事务中的isNew、空checksum错误、源设备/来源元数据及timestamp全部次序尚未证明。 |
@@ -45,7 +41,7 @@
 | 上下文事务与异常捕获 | 已有代码，仍有差异或缺证据 | 现有JSON仓库具备文件锁、读最新状态、变更后持久化发布、throw传播与本地合并，产品基本事务能力存在。 | 不等价原CoreData context provider、performAndWait、hasChanges保存、事务对象状态和错误路径。；原303634/304bd4约0xAD4/0xACC完整体，Ghidra大量错误块被删除；不能仅凭20行伪码判其已满足。 |
 | Objective-C异常到Swift Error桥接 | 缺少实现 |  | 没有ObjC @try/@catch(NSException*) target，Swift do/catch无法替代。；已从原unwind/LSDA证明原catch类型NSException，错误保存name/reason；普通Swift Result错误也要传播，未写结果为trap。 |
 | capture后的历史/Pinboard动作 | 已有代码，仍有差异或缺证据 | 当前capture会入历史、触发onCapture，可入Stack；已有Pinboard归属与去重保留。 | 原根据ListEntity rawType、分享元数据、list attributes决定复制或移动、更新时间、保留期清理和重排；未证明现有多归属Set模型满足。；这里只记录当前调用链缺口；Stack/Pinboard独立UI审计由主智能体汇总，不能相互代替底层repo契约。 |
-| 命名日志、DI首次缓存与生命周期 | 列明行为已有代码 | 静态全局factory Dependency首次解析缓存；实例单unfair锁保护可选sink缓存；四级wrapper透传。；build15完整Cfd与CfD均按lock→name→cached释放，CfD metadata真实绑定，大小0x50 align7与原一致。 |  |
+| 命名日志、DI首次缓存与生命周期 | 列明行为已有代码 | 静态全局factory Dependency首次解析缓存；实例单unfair锁保护可选sink缓存；四级wrapper透传。；build18完整Cfd与CfD均按lock→name→cached释放，当前CfD metadata真实绑定，大小0x50 align7与原一致；证据见gap-build18-compiled-reuse-review.json。 |  |
 | 共享配置、system/file输出 | 列明行为已有代码 | 固定共享站点配置/输出，默认minimum1、file disabled；单utility串行queue同步输出，system先于file。；system name同时作subsystem/category，level0 debug/1 info/2 error/3 fault；按name缓存Logger。；file启用/目录非nil后生成原格式时间/等级/名称行，创建或复开日志并seek/write/sync，close吞错清句柄。 | 本次为静态存在及契约核对；未实际写日志验证文件名/编码/系统日志采集。 |
 | 诊断偏好、启动恢复与启停核心 | 列明行为已有代码 | isDiagnosticsEnabled默认false且兼容旧JSON；AppMain持有单manager、恢复saved flag，并把后续偏好变更传播到setter。；setter值变化才persist，重读字段后启用或禁用；开启创建目录、close旧句柄、设dir/file开、level0；关闭file关/close/level1。 | 原DI+App.swift 60:19共享provider与manager全部依赖字段尚未整体映射，未把整constructor计满。 |
 | 诊断日志URL与文件列表 | 已有代码，仍有差异或缺证据 | 当前fileURL getter、目录失败空数组、精确.log+前缀过滤及按lastPathComponent升序均有代码。 | 没有产品UI/导出/复制调用消费这两API；不能把可调用但未接入的helper计完整链路。 |
@@ -76,14 +72,14 @@
 | 预览窗口登记、关闭和最上层编辑状态 | 已有代码，仍有差异或缺证据 | 现有窗口优先；存储entry、关闭通知、移除窗口、发布topmost、编辑状态更新及清理已接入。 | 原CoreData对象URI/AnyHashable身份由独立UUID替代；跨原版归档身份兼容无证据。；f08764c比较体存在，但未发现原版对应topmost相等筛选订阅实际入口，不因函数存在计完整。 |
 | 卡片anchor、Popover展示与编辑脱离 | 已有代码，仍有差异或缺证据 | 逐卡真实NSView anchor已接，showPreview先已有detached、再anchor Popover、最后无anchor独立窗。；Popover transient/animates、willShow/willClose发布、mainWindowWillClose关闭、NSPanel detach几何与keepOpen分支已存在。 | makeContentView只返回text/richText；其他kind虽能走fallback预览，但编辑脱离factory返回nil。；原CoreData/DI内容factory及配置订阅事件域尚未等同。；旧台账remaining中的“anchor/生产UI未接入”已过时，但不代表全部依赖已恢复。 |
 | 预览标题原生编辑与取消提交 | 列明行为已有代码 | 真实Header使用原生TitleLabel/field，保存原值→可编辑→first responder；取消回原值并abort，结束回调写store.updateItem title。；原native单行/截断/placeholder颜色字体、intrinsic width四舍五入、nullable insertion色转发已存在。 |  |
-| 预览Header完整Pin/Share/Edit及状态刷新 | 已有代码，仍有差异或缺证据 | close、标题及Edit按钮实际存在，间距/约束部分恢复；Edit会进入原生inline模式。 | actionsStack目前只有Edit，缺原Pin/Share按钮、真实NSMenu与NSSharingServicePicker入口。；原placeholder来源、Pin图标颜色、share.enabled、edit.visibility分支未完整恢复；当前kind.displayName为固定中文。；缺Pin/Share会改变Header样式与空间分配，是可见差异。 |
-| 预览/编辑模式及回调次序 | 已有代码，仍有差异或缺证据 | 真实按钮→begin/commit/cancel；content先处理，再切双Header/编辑状态/结束回调；Popover进入编辑会脱离。 | configureWritingTools未提供真实工厂，supportsWritingTools默认false；原type5按钮判断未恢复。；只有text/richText满足Editable；非文本编辑链未恢复。；footer固定38的适配布局与原footer动态高度/insets不同。 |
+| 预览Header完整Pin/Share/Edit及状态刷新 | 已有代码，仍有差异或缺证据 | close、标题及Edit按钮实际存在，间距/约束部分恢复；Edit会进入原生inline模式。；本轮已接Pin/Share/Edit三真实ToolbarButton，Pin菜单实际assign/unassign/create当前item；Share接native picker。 | 原lazy factories、CoreData单Pinboard/独立多板模型、board type/icon、share.enabled/edit.visibility、placeholder原模型未完整恢复。；新建Pinboard prompt仅本地适配，未证明原prompt完整字样/默认值相同。 |
+| 预览/编辑模式及回调次序 | 已有代码，仍有差异或缺证据 | 真实按钮→begin/commit/cancel；content先处理，再切双Header/编辑状态/结束回调；Popover进入编辑会脱离。 | configureWritingTools未提供真实工厂，supportsWritingTools默认false；原type5按钮判断未恢复。；只有text/richText满足Editable；非文本编辑链未恢复。 |
 | Inline文本保存、取消、模型更新 | 已有代码，仍有差异或缺证据 | text/richText创建真实NSTextView；begin重新载入、cancel恢复原存储、commit调用updateRichTextItem，items变化驱动非编辑状态刷新。；canCommit按恢复后的原文/规范化基线比较，Save按钮接真实enabled。 | 原CoreData writer、完整TextItemContent父容器/DI/撤销边界未逐契约恢复；当前本地store适配不能直接等同原writer。；原所有内容类型的save/cancel尚无共同完整覆盖。 |
 | 文本属性规范化和只读颜色 | 列明行为已有代码 | 原字体traits保留、paragraph.textBlocks清理、编辑规范化、可编辑/只读原文选择及前背景颜色链有真实消费。；颜色按UTF16覆盖次数、NSCountedSet枚举与稳定降序；光亮阈值与plain/rich分支已静态恢复。 |  |
 | 四种文字格式、选择并集及Undo | 列明行为已有代码 | 四种真实Toolbar按钮与Cmd B/I/U接document→f2072a0；typingAttrs和selection分支存在，选区traits取所有run并集。；按原首字符forceRemove策略处理mixed run，并注册原range的undo；selected→style真实更新。 |  |
 | TextStorage/KVO异步通知与owner生命周期 | 已有代码，仍有差异或缺证据 | typingAttributes .new无.initial，独立MainActor Task只刷traits；storage delegate Task先traits再读真实storage内容，已实际接document。；默认非inline编辑器原路径保留；inline没有同步伪造textDidChange。 | 原weak TextEditor owner与当前bridge weak nativeTextView不是同一生命周期；原lazy editButtons与可替换owner callbacks未完整恢复。；因此不能因按钮可点或build通过把这组owner函数升满。 |
 | 原生Toolbar呈现及Header/EditButtons惰性工厂 | 已有代码，仍有差异或缺证据 | 真实原生图标/字号/尺寸、hover/pressed/selected/disabled、primary保存、快捷键及tooltip已存在。；17语言原tooltip已消费；Save Cmd S、Cancel Escape已接真实动作。 | Header save/cancel及四格式按钮目前eager构造，未独立恢复原lazy缓存getter；EditButtons.onToggleTrait完整协议未恢复。 |
-| 文字底栏字符/词/行及布局 | 已有代码，仍有差异或缺证据 | 当前确有单label底栏，document.$content驱动字符/词数。 | 缺行数；当前words按Character.isWhitespace分隔，原版用CharacterSet.whitespaces并去空，换行语义不同。；当前固定中文；原3项使用Localizable.stringsdict plural和Int32 count。；当前system12/secondaryLabel单label、固定38；原3个monospacedDigit preferred.body label、间隔中点、spacing8、容器上下11左右12。；原footer每次移除全部subviews、安装新metadata view并layout的完整链尚无对应。 |
+| 文字底栏字符/词/行及布局 | 列明行为已有代码 | 原String.count字符、whitespaces去空词、newlines含空段行及Int32边界已按证据恢复。；17locale三项原plural字典已接LocalizedStringResource计数API。；三label原字号/monospacedDigits/颜色、两个中点、spacing8、上下11左右12及替换layout调用已落真实doc内容路径。 |  |
 | 图片/文件/链接/颜色原版内容与编辑 | 已有代码，仍有差异或缺证据 | 非text/richText有ReplicaPreviewView fallback展示。 | 当前原生adapter明确guard仅text/richText；未见原版image/color/link独立renderer与Editable完整函数链。；fallback展示存在不证明原函数实现；其他kind Popover.detach内容factory可返回nil。 |
 | 预览九条本地化键及资源装配 | 列明行为已有代码 | 九个预览key逐地址恢复；17locale实际原文，真实factory以String(localized:)消费。；本地化Bundle优先.app/Contents/Resources下SwiftPM资源，否则Bundle.module；装配由主刚修，静态source可见。 |  |
 | 本地屏幕共享时窗口可见策略 | 已有代码，仍有差异或缺证据 | 真实窗口策略向NSApp.windows/keyWindow及Popover实际view.window写readOnly/none；当前设置默认true。；独立old/new decode与default薄函数已存在并接preferenceChanges。 | 原UserDefaults/keyPath Config publisher初始发布、重复值事件及损坏存储域与当前typed JSON preference事件不等同。；Popover publisher加prepend当前值，原相应完整事件契约仍未恢复。；已接生产路径，旧remaining中“UI尚未接入”应改为上述真实依赖缺口。 |
@@ -91,6 +87,10 @@
 | Helper入口及编译器生成支持函数 | 已有代码，仍有差异或缺证据 | 真实Helper主程序建立NSApplication和Delegate、run-loop并保持delegate生命周期；finishLaunching进入startMonitoring。 | 原entry调用NSApplicationMain(argc,argv)；复刻调用app.run并额外setActivationPolicy(.prohibited)。未审明这些bootstrap差异的完整契约。；原未映射async/weak/runtime/桥接地址不能因Swift重新编译会生成同类函数就批量算覆盖。 |
 | 后台设置开关和ServiceManagement注册 | 已有代码，仍有差异或缺证据 | 真实Toggle用CurrentValueSubject状态；请求先publish；enabled且service已enabled先忽略unregister错误再register；失败不回滚subject。；本地成功/失败日志文本及operation分支已恢复。 | 原console/file diagnostic provider尚未完整；当前OSLog替代，Sentry.captureError含本地队列/状态未证明可全部按网络排除。；后台可用性仍受系统ServiceManagement注册环境影响，此轮不执行产品验证。 |
 | 设置页整体布局/本地偏好 | 已有代码，仍有差异或缺证据 | 真实通用/隐私/快捷键/本地偏好UI与持久化存在；后台开关已经连真实service链。 | 原GeneralSettingsViewModel不是窗口visibility manager；旧local-evidence曾把f0ac170错认，不能借旧证据宣称全部设置函数完成。；现Settings为独立SwiftUI Form/sidebar，未见对原全页布局/全部可观察默认值/资源文案的完整逐函数证据。；本轮仅审核后台与screen-sharing交界，其余设置原函数保持未审，不按页面存在算满。 |
+| 图片原生文字命中、拖选与复制 | 列明行为已有代码 | 图片预览真实分支创建NSImageView，VisionKit overlay跟踪同一图像的绘制坐标，自动提供词/字符命中、拖选高亮、Cmd-C与系统复制菜单；automatic交互与text-only分析遵循原始REA；失败analysis=nil，不使用自制字框选择层；OCR缓存写入或改标题不会重置当前图像overlay，图像payload变化才重建 | 仅代码和系统组件静态存在，未运行交互/截图/复制验证，不能宣称一比一验收通过；已接入原生Zoomable容器；原图片标题/底栏/棋盘背景/编辑结构与ImagePreview sizing尚不完整，popover动态detach factory仍只支持text/richText。 |
+| EXIF方向与异步原生分析 | 已有代码，仍有差异或缺证据 | TIFF方向属性转换失败回1；.text配置，MainActor task强捕获本次image/overlay，成功set analysis，失败set nil；不保存/取消Task句柄，保留原版旧overlay异步完成但不会覆盖新overlay的生命周期 | raw EXIF不在1…8时当前适配up，而原始UInt32无枚举范围检查；该分支保留partial；当前编译器async continuation/释放ABI未逐机器码比对；gap-build16统一编译已通过，尚未运行验收 |
+| 搜索OCR缓存继续复用 | 列明行为已有代码 | 原有RecognizedTextDocument.words/boundingBox、OCR缓存、搜索与复制文字菜单不变；文字选择恢复的是原厂VisionKit独立显示路径，不对已有OCR算法反复改写 | 不把VisionKit opaque ImageAnalysis与JSON OCR缓存宣称同一种结构；未新增历史验证次数 |
+| 图片原生滚动、双指缩放、居中与overlay跟随 | 列明行为已有代码 | 图片预览真实adapter返回NSView容器，内部lazy同一imageView/CenteringClipView/NSScrollView，双scroller+allowsMagnification，透明背景与四边布局。；原倍率、layout/frame、liveResizeEnd重算、insets缩放、flipped上下选择、逐轴居中/夹取、alignAllEdgesNearest均按arm64与SDK逐支恢复。；仅源图片payload变化时set image后重建同一imageView的LiveText overlay；layout/pinch保持overlay跟随，不重启分析。；11本体静态候选已由主gap-build18编译通过（18.23秒112输入SHA前后一致）；旧LiveText helper整段未改。 | 仅静态存在和编译通过，未运行滚动/双指缩放/拖选/复制或截图验收。；4个原ObjC actor包装入口的ABI/执行器报告尚未与当前编译器逐机器码核对，保留partial。；EXIF非法UInt32映射up、asyncABI仍保留原partial；上层图片编辑/rotate/undo/toolbar并未因容器完成而计满。 |
 
 ## 复核方式
 

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10023e804",
-  "reviewed_at": "2026-10-23T09:48:24.900108+00:00",
+  "reviewed_at": "2026-10-23T10:29:40.139967+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0196.c",
@@ -14,13 +14,13 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "先super；旧tracking存在则移除；以bounds/options0x481/self/nil userInfo创建并添加tracking；pressedMouseButtons非0则hover=false，否则用bounds包含convert(NSEvent.mouseLocation,from:nil)；写hover后更新，再写pressed=false后更新。",
   "review": "part-0196.c:539；原始screen mouseLocation→from:nil顺序按原版保留，未擅改坐标。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

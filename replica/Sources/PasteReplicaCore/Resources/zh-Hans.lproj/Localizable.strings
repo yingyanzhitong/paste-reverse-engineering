@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "删除线";
 "edit-item.toolbar.text.underline" = "下划线";
 "general.action.cancel" = "取消";
+"general.action.create-pinboard" = "创建 Pinboard";
 "general.action.edit" = "编辑";
+"general.action.pin" = "固定";
 "general.action.restart-paste" = "重启 Paste";
 "general.action.save" = "保存";
+"general.action.share" = "分享";
+"general.action.unpin" = "取消固定";
+"search.filters.section.type" = "类型";
+"search.filters.section.app" = "应用";
+"search.filters.section.pinboard" = "图钉板";
+"search.filters.section.date" = "日期";
+"search.filters.section.device" = "设备";
+"general.more" = "更多";
+"general.less" = "收起";

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000ce40c",
-  "reviewed_at": "2026-10-23T09:48:24.804833+00:00",
+  "reviewed_at": "2026-10-23T10:29:40.071520+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0065.c",
@@ -15,13 +15,13 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "String-bearing ShortcutValidatorError的LocalizedError.errorDescription读取唯一message字段，返回非nil Optional<String>，以ARC保留String桥对象，无参数分支或其他副作用。",
   "review": "原版LocalizedError conformance descriptor0x100c337a8的errorDescription requirement位于0x100c337c8，其signed relative32解到f0ce40c；原函数取self前16字节并swift_bridgeObjectRetain后返回，无其他分支。当前真实validatorService构造错误并由Published Error送至SwiftUI .localizedDescription，复用既有getter即可，不增薄空壳。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

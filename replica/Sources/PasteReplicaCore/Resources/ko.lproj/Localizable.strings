@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "취소선";
 "edit-item.toolbar.text.underline" = "밑줄";
 "general.action.cancel" = "취소";
+"general.action.create-pinboard" = "핀보드 생성";
 "general.action.edit" = "편집";
+"general.action.pin" = "고정";
 "general.action.restart-paste" = "Paste 재시작";
 "general.action.save" = "저장";
+"general.action.share" = "공유하기";
+"general.action.unpin" = "고정 해제";
+"search.filters.section.type" = "유형";
+"search.filters.section.app" = "앱";
+"search.filters.section.pinboard" = "핀보드";
+"search.filters.section.date" = "날짜";
+"search.filters.section.device" = "기기";
+"general.more" = "더 보기";
+"general.less" = "간략히";

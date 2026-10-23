@@ -74,4 +74,37 @@ public enum OriginalPreviewLocalization {
         resource("diagnostics.action.stop-and-copy-logs")
     }
 
+    public static func f_1001c2a08() -> LocalizedStringResource {
+        resource("general.action.pin")
+    }
+
+    public static func f_1001c3f08() -> LocalizedStringResource {
+        resource("general.action.share")
+    }
+
+    public static func f_1001c0f08() -> LocalizedStringResource {
+        resource("general.action.create-pinboard")
+    }
+
+    public static func f_1001c4208() -> LocalizedStringResource {
+        resource("general.action.unpin")
+    }
+
+    private static func countResource(_ count: Int32, key: StaticString) -> LocalizedStringResource {
+        LocalizedStringResource(key, defaultValue: "\(count)", table: "Localizable",
+                                locale: .current, bundle: .atURL(resourceBundle.bundleURL))
+    }
+
+    public static func f_1001e6b38(_ count: Int32) -> LocalizedStringResource {
+        countResource(count, key: "editor.character-count")
+    }
+
+    public static func f_1001e6b78(_ count: Int32) -> LocalizedStringResource {
+        countResource(count, key: "editor.word-count")
+    }
+
+    public static func f_1001e6b58(_ count: Int32) -> LocalizedStringResource {
+        countResource(count, key: "editor.line-count")
+    }
+
 }

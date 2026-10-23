@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "刪除線";
 "edit-item.toolbar.text.underline" = "底線";
 "general.action.cancel" = "取消";
+"general.action.create-pinboard" = "建立剪貼夾";
 "general.action.edit" = "編輯";
+"general.action.pin" = "固定";
 "general.action.restart-paste" = "重新啟動Paste";
 "general.action.save" = "儲存";
+"general.action.share" = "分享";
+"general.action.unpin" = "拔掉插頭";
+"search.filters.section.type" = "類型";
+"search.filters.section.app" = "應用程式";
+"search.filters.section.pinboard" = "圖釘板";
+"search.filters.section.date" = "日期";
+"search.filters.section.device" = "裝置";
+"general.more" = "更多";
+"general.less" = "收起";

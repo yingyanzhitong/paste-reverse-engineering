@@ -29,6 +29,9 @@ struct ReplicaPreviewView: View {
                     Divider()
                     if item.kind == .files, !itemFileURLs(item).isEmpty {
                         filePreview(urls: itemFileURLs(item))
+                    } else if item.kind == .image, let image = itemImage(item) {
+                        OriginalImageTextSelection(item: item, image: image)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
                         ScrollView {
                             ReplicaItemContent(item: item, compact: false)

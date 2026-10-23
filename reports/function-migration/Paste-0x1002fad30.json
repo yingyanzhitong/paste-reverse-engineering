@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002fad30",
-  "reviewed_at": "2026-10-23T09:48:24.773254+00:00",
+  "reviewed_at": "2026-10-23T10:29:40.043719+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0246.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "c384670cbedb4ac8627ce7d8b33aeafcc226097401a64b2ef5ffa885f43e08dc",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "9e34715a64540700f87a4677a98b52753a3c1d6077570cb8ff9f86dbabe8c576"
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "82df0f81fc4d2117637cc6dd2bc8b37deec1ec8a4bdf92c91a8c808048b28c91"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "按PasteCore/DI+PasteCore.swift文件54:19共享UndoManager，使用f2fd5e4工厂。",
   "review": "源part0246核对完整函数常量0x36/0x13；当前沿用通用TaskLocal/global sharedcache，不再为每个monitor独享固定backend。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

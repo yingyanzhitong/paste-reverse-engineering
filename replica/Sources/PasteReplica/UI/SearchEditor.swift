@@ -4,7 +4,7 @@ import PasteReplicaCore
 
 struct ReplicaSearchFilterChip {
     enum Selection: Hashable {
-        case kind(ClipboardKind), source(String), device(String), date(Int)
+        case kind(ClipboardKind), source(String), device(String), date(Int), pinboard(UUID)
     }
     let selection: Selection
     let title: String
@@ -12,21 +12,6 @@ struct ReplicaSearchFilterChip {
 }
 
 private let searchFilterSelectionKey = NSAttributedString.Key("com.pastereplica.search.filter")
-
-@MainActor
-final class ReplicaSearchMenuAction: NSObject {
-    private let action: () -> Void
-    private init(action: @escaping () -> Void) { self.action = action }
-    @objc private func perform(_ sender: NSMenuItem) { action() }
-
-    static func item(title: String, action: @escaping () -> Void) -> NSMenuItem {
-        let target = ReplicaSearchMenuAction(action: action)
-        let item = NSMenuItem(title: title, action: #selector(perform(_:)), keyEquivalent: "")
-        item.target = target
-        item.representedObject = target
-        return item
-    }
-}
 
 /// Bridge the recovered NSTextView delegate into the existing panel. This does
 /// not claim migration of SearchField's remaining layout and filter functions.

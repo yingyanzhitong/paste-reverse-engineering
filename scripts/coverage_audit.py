@@ -23,6 +23,10 @@ def main():
     output = ROOT / "reports/replica/fast-coverage-audit.json"
     if args.check:
         report = json.loads(output.read_text())
+        binary_hashes = {b["name"]: b["arm64_sha256"] for b in
+                         json.loads((ROOT / "reports/target-manifest.json").read_text())["binaries"]}
+        if report["original_binary_sha256"] != binary_hashes:
+            raise ValueError("快审后原版二进制清单改变")
         fragments = {}
         for feature in report["features"]:
             for path, digest in feature["source_sha256"].items():
@@ -60,8 +64,10 @@ def main():
                 if relative.is_absolute() or {"..", ".local"}.intersection(relative.parts):
                     raise ValueError("引用必须是公开源码路径")
                 source = ROOT / relative
-                if source.is_symlink() or ref["symbol"] not in source.read_text():
+                text = source.read_text()
+                if source.is_symlink() or ref["symbol"] not in text:
                     raise ValueError("源码引用失效: " + str(ref))
+                ref["line"] = text[:text.index(ref["symbol"])].count("\n") + 1
                 hashes[str(relative)] = hashlib.sha256(source.read_bytes()).hexdigest()
             feature["source_sha256"] = hashes
             feature["original_reference_status"] = []

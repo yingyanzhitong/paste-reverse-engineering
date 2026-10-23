@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "Doorhalen";
 "edit-item.toolbar.text.underline" = "Onderstreep";
 "general.action.cancel" = "Annuleren";
+"general.action.create-pinboard" = "Maak Prikbord";
 "general.action.edit" = "Bewerken";
+"general.action.pin" = "Prik";
 "general.action.restart-paste" = "Paste opnieuw starten";
 "general.action.save" = "Opslaan";
+"general.action.share" = "Delen";
+"general.action.unpin" = "Unpin";
+"search.filters.section.type" = "Type";
+"search.filters.section.app" = "App";
+"search.filters.section.pinboard" = "Prikbord";
+"search.filters.section.date" = "Datum";
+"search.filters.section.device" = "Apparaat";
+"general.more" = "Meer";
+"general.less" = "Minder";

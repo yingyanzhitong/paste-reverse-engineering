@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100054b2c",
-  "reviewed_at": "2026-10-23T09:48:24.689137+00:00",
+  "reviewed_at": "2026-10-23T10:29:39.981626+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0030.c",
@@ -14,13 +14,13 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "按UInt8 filter tag返回可选系统符号名：0 app.dashed；1对value.lowercased精确匹配link/image/color/text/file/unknown，未知用exclamationmark.triangle.fill；2 nil；3 calendar；4 macbook.and.iphone；其他circle.fill。",
-  "review": "逐分支REA核对；PanelViews真实筛选chip图标已消费，应用图标服务与日期/设备标题仍属父层未完成项，不因本函数恢复提升f0546e0等父函数。",
+  "review": "系统符号分支body保持；真实消费者迁至FilterBrowser.swift中的ReplicaFilterMatching.chip，原type:text包含RTF静态映射已核；完整图标/日期服务父层仍partial。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

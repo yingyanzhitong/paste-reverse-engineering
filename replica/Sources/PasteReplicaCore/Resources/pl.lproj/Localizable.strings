@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "Przekreślenie";
 "edit-item.toolbar.text.underline" = "Podkreśl";
 "general.action.cancel" = "Anuluj";
+"general.action.create-pinboard" = "Utwórz Pinboard";
 "general.action.edit" = "Edytuj";
+"general.action.pin" = "Przypnij";
 "general.action.restart-paste" = "Uruchom ponownie Paste";
 "general.action.save" = "Zapisz";
+"general.action.share" = "Udostępnij";
+"general.action.unpin" = "Odpiąć";
+"search.filters.section.type" = "Typ";
+"search.filters.section.app" = "Aplikacja";
+"search.filters.section.pinboard" = "Tablica";
+"search.filters.section.date" = "Data";
+"search.filters.section.device" = "Urządzenie";
+"general.more" = "Więcej";
+"general.less" = "Mniej";

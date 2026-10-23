@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d48c8",
-  "reviewed_at": "2026-10-23T09:48:24.735063+00:00",
+  "reviewed_at": "2026-10-23T10:29:40.012765+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,18 +14,19 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "按 lock→name→optional logger 顺序释放字段，再释放类实例。",
-  "review": "build15完整deallocating-deinit CfD按lock/name/cached顺序释放后swift_deallocClassInstance(self,0x50,7)，与原0d48c8..0d48fc的字段/大小/align一致。metadata100168c58前destroy槽100168c48 chained-pointer target→1000be6e8，真实类生命周期绑定；实例offset常量117378/380/388=0x10/0x18/0x28。",
+  "review": "build18完整deallocating-deinit d2880..d28b4按同样顺序释放后swift_deallocClassInstance(self,0x50,7)；当前metadata185f20前destroy slot185f10实际target d2880。当前字段常量12f698/12f6a0/12f6a8为0x10/0x18/0x28。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000be6e8",
-    "end_exclusive": "0x1000be71c",
-    "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+    "start": "0x1000d2880",
+    "end_exclusive": "0x1000d28b4",
+    "size": 52,
+    "sha256": "a637fc74272dde6fc2149d245b0e94fb70fa5e8943eb0e22a320b50ba08f4dca"
   }
 }

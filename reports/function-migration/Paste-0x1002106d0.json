@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002106d0",
-  "reviewed_at": "2026-10-23T09:48:24.939989+00:00",
+  "reviewed_at": "2026-10-23T10:29:40.169929+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0180.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "44aab5d054e5a78f3325f939a740670a3242e79abb64496c3f6904680ba8252d",
   "source_sha256": {
-    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "ae30f072ca21b4da6cdc4535ee7f9ed5e0c72b45dd06ea7235f666e045ea48ab"
+    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "0878b876ad82384ad934157478a532632c7f0267ddfa9636040be079781aa686"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "按bold0、italic1、underline2、strike3顺序查询给定trait Set，每项向对应真实ToolbarButton写isSelected并立即触发style刷新，返回0。",
   "review": "part-0180.c:57；四原生按钮由EditButtons容器构造已存在，复刻只在一次恢复后的trait状态回调中执行四次更新，不因四个Published合并产生16次UI刷新；显式返回0。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

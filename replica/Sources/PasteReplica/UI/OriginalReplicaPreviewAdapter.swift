@@ -236,17 +236,45 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
 }
 
 @MainActor
+private final class ReplicaPreviewActionMenuItem: NSMenuItem {
+    private let invoke: () -> Void
+    init(title: String, invoke: @escaping () -> Void) {
+        self.invoke = invoke
+        super.init(title: title, action: #selector(performMenuAction), keyEquivalent: "")
+        target = self
+    }
+    required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    @objc private func performMenuAction() { invoke() }
+}
+
+@MainActor
 private final class ReplicaInlinePreviewHeader: NSView {
     var onEdit: (() -> Void)?
     var onClose: (() -> Void)?
     let titleLabel = OriginalPreviewTitleLabel()
     private var itemObservation: AnyCancellable?
+    private var pinboardObservation: AnyCancellable?
+    private weak var state: ReplicaUIState?
+    private let itemID: UUID
+    private var pinButton: OriginalToolbarButton?
+    private var sharingPicker: NSSharingServicePicker?
+
     init(state: ReplicaUIState, item: ClipboardItem) {
+        self.state = state
+        itemID = item.id
         super.init(frame: .zero)
         let close = NSButton()
         f_1000123d4(close)
         let edit = OriginalToolbarButton(title: String(localized: OriginalPreviewLocalization.f_1001c1688())) { [weak self] _ in self?.onEdit?() }
-        let row = NSStackView(views: [edit])
+        let pin = OriginalToolbarButton(symbol: "circle.dashed", toolTip: String(localized: OriginalPreviewLocalization.f_1001c2a08())) { [weak self] button in
+            self?.showPinMenu(from: button)
+        }
+        pin.hasPullDownArrow = true
+        pinButton = pin
+        let share = OriginalToolbarButton(symbol: "square.and.arrow.up", toolTip: String(localized: OriginalPreviewLocalization.f_1001c3f08())) { [weak self] button in
+            self?.showSharingPicker(from: button)
+        }
+        let row = NSStackView(views: [pin, share, edit])
         row.spacing = 8
         row.alignment = .centerY
         for child in [close, titleLabel, row] {
@@ -268,10 +296,101 @@ private final class ReplicaInlinePreviewHeader: NSView {
                 let field = self.titleLabel.f_100013084()
                 field.f_10023b600(current.kind.displayName)
                 field.f_10023b214(current.title)
+                self.refreshPinAppearance(current)
+            }
+        }
+        pinboardObservation = state.store.$pinboards.sink { [weak self] boards in
+            MainActor.assumeIsolated {
+                guard let self, let item = self.state?.store.items.first(where: { $0.id == self.itemID }) else { return }
+                self.refreshPinAppearance(item, boards: boards)
             }
         }
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    private func refreshPinAppearance(_ item: ClipboardItem, boards: [Pinboard]? = nil) {
+        let pinboard = (boards ?? state?.store.pinboards ?? []).first { item.pinboardIDs.contains($0.id) }
+        pinButton?.symbol = item.pinboardIDs.isEmpty ? "circle.dashed" : "circle.fill"
+        pinButton?.contentTintColor = pinboard.flatMap { Self.pinColor($0.colorHex) }
+    }
+
+    private static func pinColor(_ hex: String) -> NSColor? {
+        let value = hex.hasPrefix("#") ? String(hex.dropFirst()) : hex
+        guard value.count == 6, let rgb = UInt32(value, radix: 16) else { return nil }
+        return NSColor(srgbRed: CGFloat((rgb >> 16) & 255) / 255,
+                       green: CGFloat((rgb >> 8) & 255) / 255,
+                       blue: CGFloat(rgb & 255) / 255, alpha: 1)
+    }
+
+    private func showPinMenu(from button: NSButton) {
+        guard let state, let item = state.store.items.first(where: { $0.id == itemID }) else { return }
+        let menu = NSMenu()
+        for board in state.store.pinboards {
+            let entry = ReplicaPreviewActionMenuItem(title: board.name) { [weak self] in
+                guard let self, let state = self.state else { return }
+                state.perform { try state.store.assign(ids: [self.itemID], to: board.id) }
+            }
+            entry.state = item.pinboardIDs.contains(board.id) ? .on : .off
+            let color = Self.pinColor(board.colorHex) ?? .clear
+            let image = NSImage(size: NSSize(width: 12, height: 12), flipped: false) { bounds in
+                color.setFill()
+                NSBezierPath(ovalIn: bounds).fill()
+                return true
+            }
+            entry.image = image
+            menu.addItem(entry)
+        }
+        menu.addItem(.separator())
+        menu.addItem(ReplicaPreviewActionMenuItem(title: String(localized: OriginalPreviewLocalization.f_1001c0f08()) + "...") { [weak self] in
+            self?.createPinboardForCurrentItem()
+        })
+        if !item.pinboardIDs.isEmpty {
+            menu.addItem(ReplicaPreviewActionMenuItem(title: String(localized: OriginalPreviewLocalization.f_1001c4208())) { [weak self] in
+                guard let self, let state = self.state else { return }
+                state.perform { try state.store.assign(ids: [self.itemID], to: nil) }
+            })
+        }
+        menu.popUp(positioning: nil, at: NSPoint(x: -10, y: 0), in: button)
+    }
+
+    private func createPinboardForCurrentItem() {
+        guard let state else { return }
+        let alert = NSAlert()
+        alert.messageText = String(localized: OriginalPreviewLocalization.f_1001c0f08())
+        let input = NSTextField(frame: NSRect(x: 0, y: 0, width: 260, height: 24))
+        alert.accessoryView = input
+        alert.addButton(withTitle: String(localized: OriginalPreviewLocalization.f_1001c3908()))
+        alert.addButton(withTitle: String(localized: OriginalPreviewLocalization.f_1001c0788()))
+        alert.window.initialFirstResponder = input
+        guard alert.runModal() == .alertFirstButtonReturn else { return }
+        let name = input.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty else { return }
+        state.perform {
+            let board = try state.store.createPinboard(name: name)
+            try state.store.assign(ids: [itemID], to: board.id)
+        }
+    }
+
+    private func showSharingPicker(from button: NSButton) {
+        guard let state, let item = state.store.items.first(where: { $0.id == itemID }) else { return }
+        do {
+            let content = try ClipboardStore.originalPasteboardItems(from: item.payloads)
+            let kind: OriginalPasteboardContentKind
+            switch item.kind {
+            case .image: kind = .image
+            case .files: kind = .files
+            case .link: kind = .link
+            case .color: kind = .color
+            case .text, .richText: kind = .text
+            case .unknown: kind = .unknown
+            }
+            let picker = OriginalPreviewSharing.f_1000183e0([
+                .init(items: content, rawType: Int(kind.rawValue))
+            ])
+            sharingPicker = picker
+            picker.show(relativeTo: .zero, of: button, preferredEdge: .minY)
+        } catch { state.controller?.presentError(error) }
+    }
 
     private func f_1000123d4(_ button: NSButton) {
         if NSImage(systemSymbolName: "xmark.circle.fill", accessibilityDescription: nil) == nil {
@@ -357,23 +476,13 @@ private final class ReplicaInlinePreviewFormatting: NSView {
 }
 
 @MainActor
-private final class ReplicaInlinePreviewFooter: NSView {
+private final class ReplicaInlinePreviewFooter: OriginalPreviewFooterView {
     private var contentObservation: AnyCancellable?
     init(document: ReplicaRichTextDocument) {
-        super.init(frame: .zero)
-        let label = NSTextField(labelWithString: "")
-        label.font = .systemFont(ofSize: 12)
-        label.textColor = .secondaryLabelColor
-        label.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(label)
-        NSLayoutConstraint.activate([
-            heightAnchor.constraint(equalToConstant: 38),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
-        contentObservation = document.$content.sink { [weak label] content in
+        super.init()
+        contentObservation = document.$content.sink { [weak self] content in
             MainActor.assumeIsolated {
-                label?.stringValue = "\(content.string.count) 个字符  ·  \(content.string.split(whereSeparator: \.isWhitespace).count) 单词"
+                self?.f_1003df0b0(OriginalPreviewTextMetaView(text: content.string))
             }
         }
     }

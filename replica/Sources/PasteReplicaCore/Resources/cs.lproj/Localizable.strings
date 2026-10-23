@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "Přeškrtnutí";
 "edit-item.toolbar.text.underline" = "Podtrhnout";
 "general.action.cancel" = "Zrušit";
+"general.action.create-pinboard" = "Vytvořit Pinboard";
 "general.action.edit" = "Upravit";
+"general.action.pin" = "Připnout";
 "general.action.restart-paste" = "Restartovat Paste";
 "general.action.save" = "Uložit";
+"general.action.share" = "Sdílet";
+"general.action.unpin" = "Odepnout";
+"search.filters.section.type" = "Typ";
+"search.filters.section.app" = "Aplikace";
+"search.filters.section.pinboard" = "Nástěnka";
+"search.filters.section.date" = "Datum";
+"search.filters.section.device" = "Zařízení";
+"general.more" = "Více";
+"general.less" = "Méně";

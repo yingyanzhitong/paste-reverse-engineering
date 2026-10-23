@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037e158",
-  "reviewed_at": "2026-10-23T09:48:24.712875+00:00",
+  "reviewed_at": "2026-10-23T10:29:39.998732+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,18 +14,19 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "分配PasteboardItem实例，调用同一严格可抛错Decoder初始化，保留错误返回寄存器语义。",
-  "review": "build15完整Decoder allocating-init：objc_allocWithZone→1000bf9c0严格init(from:)，保留x21错误寄存器并返回。Current Decodable witness也实际分配同类与调用相同init，非孤立符号。",
+  "review": "build18完整Decoder allocating-init d3b18..d3b58：objc_allocWithZone后调用严格Decoder init d3b58，保留x21错误寄存器。完整边界有新LC_FUNCTION_STARTS支持。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000bf980",
-    "end_exclusive": "0x1000bf9c0",
-    "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+    "start": "0x1000d3b18",
+    "end_exclusive": "0x1000d3b58",
+    "size": 64,
+    "sha256": "049f3e57e4870343a22c86973c053acb646c9af990c2de298e5d4d59f75791d5"
   }
 }

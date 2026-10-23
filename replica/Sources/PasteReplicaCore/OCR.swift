@@ -37,9 +37,11 @@ extension ClipboardItem {
     }
 
     var imageData: Data? {
-        for key in [NSPasteboard.PasteboardType.png.rawValue, NSPasteboard.PasteboardType.tiff.rawValue,
-                    "public.jpeg", "public.heic", "com.compuserve.gif"] {
-            if let data = payloads[key] { return data }
+        for representation in ClipboardStore.normalizedPasteboardPayloads(payloads) {
+            for key in [NSPasteboard.PasteboardType.png.rawValue, NSPasteboard.PasteboardType.tiff.rawValue,
+                        "public.jpeg", "public.heic", "com.compuserve.gif"] {
+                if let data = representation[key] { return data }
+            }
         }
         return nil
     }

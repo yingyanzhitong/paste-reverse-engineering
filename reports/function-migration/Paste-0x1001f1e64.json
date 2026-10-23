@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001f1e64",
-  "reviewed_at": "2026-10-23T09:48:24.797754+00:00",
+  "reviewed_at": "2026-10-23T10:29:40.065387+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0160.c",
@@ -14,13 +14,13 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "以PasteShortcut/DI+PasteShortcut.swift:12:19声明位置为键，经通用共享service cache解析具体validator；miss调用f1e75e4 factory，hit复用同引用。",
   "review": "keypath pattern0x100c33dd8+0x20处relative32为0xff5be06c，解出getter0x1001f1e64；导出传文件名36字节、line12、column19和factoryf1e75e4。实际shortcutValidator provider委托本函数，被OriginalDependency首次resolve。root通用cache承担全局/TaskLocal隔离、NSRecursiveLock、typedcast和Optional装箱。 与原泛型helper相同的文件/列固定规则已提取至真实f1e7580，validator按line12调用，manager provider按line6调用。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

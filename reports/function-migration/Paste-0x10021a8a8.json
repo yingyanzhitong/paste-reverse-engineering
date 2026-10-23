@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10021a8a8",
+  "reviewed_at": "2026-10-23T10:29:40.266397+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0184.c",
+    "line": 156
+  },
+  "original_pseudocode_sha256": "37e6096aa3198179efa822ae34dcd4d15acaeb181b6f1bce2a7cb277ec3f63c2",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift": "0a85e22ff3ccde5a6601fad92286b616c399a88263b14af587eca0d2e3dcc74e"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "读取NSImage.TIFFRepresentation→CGImageSource→第0张properties→kCGImagePropertyOrientation UInt32转换；任一缺失失败返回raw1，成功保留所有UInt32 raw值。",
+  "review": "part0184及arm64 21aa10..21aaa0：只做UInt32动态转换，成功直接返回w0，不把不存在或非法转换写为0。当前getter也返回raw；分析调用点转CF_CLOSED_ENUM的极端越界适配另列partial。 本轮仅增加容器、改adapter到容器转发；还原明确的adapter改动并去掉新容器后，整文件SHA与旧批次完全相同，原helper逐字节未变。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

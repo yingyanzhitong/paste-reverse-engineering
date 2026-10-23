@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002fe514",
-  "reviewed_at": "2026-10-23T09:48:24.782441+00:00",
+  "reviewed_at": "2026-10-23T10:29:40.051483+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0249.c",
@@ -14,13 +14,13 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "尝试创建日志目录（中间目录允许，失败吞掉继续）；关闭旧句柄，设置directoryURL并启用文件输出，将共享console门槛设0。",
   "review": "源part0249完整调用次序已核，目录创建失败后仍启用逻辑保持。 AppMain已静态复审：makeLocal持有单实例，初始恢复flag，偏好变更下一runloop读取已提交值，persist仅变化save；enable/disable/close形成产品真实调用链。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100bf4e00",
+  "reviewed_at": "2026-10-23T10:29:56.312659+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-1171.c",
+    "line": 599
+  },
+  "original_pseudocode_sha256": "acd8ebc849dbae3e240c4837cd851e73dcfe87ac10c256aa02ee8f7075819bbd",
+  "source_sha256": {},
+  "sdk_implementation": {
+    "report": "reports/function-migration/sdk-import-reuse.json",
+    "entry_key": "Paste:0x100bf4e00",
+    "symbol": "_$s10Foundation8CalendarV9ComponentOMa"
+  },
+  "sdk_reuse_report_sha256": "e063f961b4689ffcc65e98fd356a48dd80618b52eb107a93851be36461af1ec0",
+  "implementation_origin": "existing_sdk_reused",
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+  "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；系统内部实现及调用方行为不计入纯转发体契约。"
+}

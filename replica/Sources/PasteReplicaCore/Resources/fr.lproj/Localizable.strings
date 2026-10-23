@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "Barré";
 "edit-item.toolbar.text.underline" = "Souligner";
 "general.action.cancel" = "Annuler";
+"general.action.create-pinboard" = "Créer un tableau d'affichage";
 "general.action.edit" = "Modifier";
+"general.action.pin" = "Épingler";
 "general.action.restart-paste" = "Redémarrer Paste";
 "general.action.save" = "Enregistrer";
+"general.action.share" = "Partager";
+"general.action.unpin" = "Détacher";
+"search.filters.section.type" = "Type";
+"search.filters.section.app" = "App";
+"search.filters.section.pinboard" = "Tableau";
+"search.filters.section.date" = "Date";
+"search.filters.section.device" = "Appareil";
+"general.more" = "Plus";
+"general.less" = "Moins";

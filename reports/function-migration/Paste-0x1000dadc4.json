@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000dadc4",
-  "reviewed_at": "2026-10-23T09:48:24.705466+00:00",
+  "reviewed_at": "2026-10-23T10:29:39.993791+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0072.c",
@@ -14,20 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_compiler_generated_reused",
   "contract": "非actor共享cache析构：先释放+0x10的NSRecursiveLock，再释放+0x18的[String:Any]字典，最后以size32/alignment7释放实例；无额外cache字段或异步调度。",
-  "review": "原完整0x1000dadc4..0x1000dadf0汇编纠正Ghidra objc_release省略；build15实际__deallocating_deinit 0x1000e9204..0x1000e9230逐条核定相同字段释放顺序及32/7实例释放。nm下一函数边界0x1000e9230，非内联片段，不将deinit另一个body重复计数。无产品运行或功能验证。",
+  "review": "build18完整__deallocating_deinit再核：+0x10 objc_release→+0x18 bridgeObjectRelease→size32/alignment7 dealloc，次序与原ddc4..ddf0完整体一致。源body不改，独立解析LC_FUNCTION_STARTS再确认当前边界；非actor无需模拟hop。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000e9204",
-    "end_exclusive": "0x1000e9230",
-    "source": "build15 complete nm boundary and static lldb instruction review",
-    "binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87"
+    "start": "0x1001015d0",
+    "end_exclusive": "0x1001015fc",
+    "binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
+    "source": "build18 complete nm/LC function boundary and static llvm-objdump body review; no earlier build address retained",
+    "lc_function_starts_verified": true
   },
   "original_static_body": [
     "ldr x0,[x20,#0x10]",

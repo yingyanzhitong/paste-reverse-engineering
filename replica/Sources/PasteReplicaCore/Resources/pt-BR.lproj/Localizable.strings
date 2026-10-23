@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "Tachado";
 "edit-item.toolbar.text.underline" = "Sublinhar";
 "general.action.cancel" = "Cancelar";
+"general.action.create-pinboard" = "Criar Pinboard";
 "general.action.edit" = "Editar";
+"general.action.pin" = "Fixar";
 "general.action.restart-paste" = "Reiniciar o Paste";
 "general.action.save" = "Salvar";
+"general.action.share" = "Compartilhar";
+"general.action.unpin" = "Desfixar";
+"search.filters.section.type" = "Tipo";
+"search.filters.section.app" = "App";
+"search.filters.section.pinboard" = "Quadro";
+"search.filters.section.date" = "Data";
+"search.filters.section.device" = "Dispositivo";
+"general.more" = "Mais";
+"general.less" = "Menos";

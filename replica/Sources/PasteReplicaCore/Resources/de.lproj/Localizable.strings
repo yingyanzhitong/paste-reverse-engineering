@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "Durchgestrichen";
 "edit-item.toolbar.text.underline" = "Unterstreichen";
 "general.action.cancel" = "Abbrechen";
+"general.action.create-pinboard" = "Pinnwand erstellen";
 "general.action.edit" = "Bearbeiten";
+"general.action.pin" = "Fixieren";
 "general.action.restart-paste" = "Paste neu starten";
 "general.action.save" = "Speichern";
+"general.action.share" = "Teilen";
+"general.action.unpin" = "Lösen";
+"search.filters.section.type" = "Typ";
+"search.filters.section.app" = "App";
+"search.filters.section.pinboard" = "Pinnwand";
+"search.filters.section.date" = "Datum";
+"search.filters.section.device" = "Gerät";
+"general.more" = "Mehr";
+"general.less" = "Weniger";

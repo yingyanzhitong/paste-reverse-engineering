@@ -4,7 +4,7 @@ public enum OriginalPasteboardArchive {
     public enum ArchiveError: Error { case invalidRoot }
 
     public static func decodeItems(_ data: Data) throws -> [OriginalPasteboardItem] {
-        if let items = try? JSONDecoder().decode([OriginalPasteboardItem].self, from: data) { return items }
+        if let items = OriginalPasteboardDataCodec.decodeIfValid(data) { return items }
         let decoder = try NSKeyedUnarchiver(forReadingFrom: data)
         decoder.requiresSecureCoding = true
         decoder.decodingFailurePolicy = .setErrorAndReturn

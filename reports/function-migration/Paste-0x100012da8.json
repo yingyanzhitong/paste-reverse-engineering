@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100012da8",
-  "reviewed_at": "2026-10-23T09:48:24.822897+00:00",
+  "reviewed_at": "2026-10-23T10:29:40.084831+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0007.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "1cfc45d23d4d5aba315e8bfefc7388dc6640d473eb51db4ee05570070d0e58b7",
   "source_sha256": {
-    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "ae30f072ca21b4da6cdc4535ee7f9ed5e0c72b45dd06ea7235f666e045ea48ab"
+    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "0878b876ad82384ad934157478a532632c7f0267ddfa9636040be079781aa686"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "PreviewHeader取消命令调用titleLabel.cancelEditing，不转发super、不关闭窗口。",
   "review": "part-0007.c:1880；新增Header responder入口，恢复Escape取消原位标题的路径。 仅静态迁移，等待主智能体统一编译。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

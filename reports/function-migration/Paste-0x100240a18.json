@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100240a18",
+  "reviewed_at": "2026-10-23T10:29:40.284829+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0197.c",
+    "line": 176
+  },
+  "original_pseudocode_sha256": "cc7798e1232781e460f76ffc3fd40ca409ae21a917badcaa292db55e74b87a74",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/OriginalImageTextSelection.swift": "0a85e22ff3ccde5a6601fad92286b616c399a88263b14af587eca0d2e3dcc74e"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "返回当前持有的可空NSImage，返回值依Swift ARC持有。",
+  "review": "REA part0197/arm64/本机SDK静态逐项核；真实adapter或系统NSView调用链已接入。真实倍率计算读取该getter，不增加孤立getter。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

@@ -51,16 +51,13 @@ struct ReplicaPanelView: View {
         .padding(8)
         .preferredColorScheme(state.preferredScheme)
         .onChange(of: state.query) { _, _ in state.normalizeSelection() }
-        .onChange(of: state.kind) { _, _ in state.normalizeSelection() }
-        .onChange(of: state.sourceFilter) { _, _ in state.normalizeSelection() }
-        .onChange(of: state.deviceFilter) { _, _ in state.normalizeSelection() }
-        .onChange(of: state.dateFilterDays) { _, _ in state.normalizeSelection() }
+        .onChange(of: state.searchFilters) { _, _ in state.normalizeSelection() }
         .onChange(of: state.searchFocus) { _, _ in searchFocused = true }
         .onChange(of: state.searchVisible) { _, visible in if !visible { searchFocused = false } }
         .accessibilityIdentifier("clipboard-panel")
     }
 
-    private var searching: Bool { searchFocused || state.searchVisible || !state.query.isEmpty }
+    private var searching: Bool { searchFocused || state.searchVisible || !state.query.isEmpty || !state.searchFilters.isEmpty }
 
     private var header: some View {
         ZStack {
@@ -82,84 +79,15 @@ struct ReplicaPanelView: View {
     private var searchField: some View {
         ReplicaSearchEditor(text: $state.query, focused: $searchFocused,
             filters: searchFilterChips,
-            onFiltersChange: { selections in
-                state.kind = nil
-                state.sourceFilter = nil
-                state.deviceFilter = nil
-                state.dateFilterDays = nil
-                for selection in selections {
-                    switch selection {
-                    case let .kind(value): state.kind = value
-                    case let .source(value): state.sourceFilter = value
-                    case let .device(value): state.deviceFilter = value
-                    case let .date(value): state.dateFilterDays = value
-                    }
-                }
-            },
+            onFiltersChange: { state.searchFilters = $0 },
             onEnter: { state.controller?.pasteSelection(plainTextOnly: false) },
             onCancel: { state.controller?.cancelSearchOrPanel() },
-            onShowFilters: { button in
-                let menu = makeSearchFilterMenu()
-                menu.delegate = button.superview as? OriginalSearchField
-                menu.popUp(positioning: nil,
-                    at: NSPoint(x: button.bounds.minX, y: button.bounds.minY - 4), in: button)
-            })
+            onShowFilters: { button in state.controller?.showFilterBrowser(relativeTo: button) })
             .frame(width: 400, height: 32)
     }
 
     private var searchFilterChips: [ReplicaSearchFilterChip] {
-        var result: [ReplicaSearchFilterChip] = []
-        func symbol(_ kind: UInt8, value: String = "") -> NSImage? {
-            OriginalSearchFilterSymbols.f_100054b2c(kind: kind, value: value)
-                .flatMap { OriginalSystemImageFunctions.f_1000f653c($0) }
-        }
-        if let kind = state.kind {
-            let value = kind == .files ? "file" : kind == .richText ? "text" : kind.rawValue
-            result.append(.init(selection: .kind(kind), title: kind.displayName,
-                image: symbol(1, value: value)))
-        }
-        if let source = state.sourceFilter {
-            let bundleID = state.store.items.first { $0.sourceName == source }?.sourceBundleID
-            let appURL = bundleID.flatMap { NSWorkspace.shared.urlForApplication(withBundleIdentifier: $0) }
-            let icon = appURL.map { NSWorkspace.shared.icon(forFile: $0.path) }
-            result.append(.init(selection: .source(source), title: source,
-                image: icon ?? symbol(0)))
-        }
-        if let days = state.dateFilterDays {
-            let title = [1: "今天", 7: "过去一周", 30: "过去一个月"][days] ?? "\(days) 天"
-            result.append(.init(selection: .date(days), title: title,
-                image: symbol(3)))
-        }
-        if let device = state.deviceFilter {
-            result.append(.init(selection: .device(device), title: device,
-                image: symbol(4)))
-        }
-        return result
-    }
-
-    private func makeSearchFilterMenu() -> NSMenu {
-        let menu = NSMenu()
-        func action(_ title: String, _ body: @escaping () -> Void) {
-            menu.addItem(ReplicaSearchMenuAction.item(title: title, action: body))
-        }
-        func section(_ title: String) {
-            menu.addItem(.separator())
-            menu.addItem(.sectionHeader(title: title))
-        }
-        action("清除筛选") { state.kind = nil; state.sourceFilter = nil; state.dateFilterDays = nil; state.deviceFilter = nil }
-        section("类型")
-        for kind in ClipboardKind.allCases { action(kind.displayName) { state.kind = kind } }
-        section("应用")
-        for name in Set(state.store.items.map(\.sourceName)).sorted() { action(name) { state.sourceFilter = name } }
-        section("日期")
-        action("今天") { state.dateFilterDays = 1 }
-        action("过去一周") { state.dateFilterDays = 7 }
-        action("过去一个月") { state.dateFilterDays = 30 }
-        section("设备")
-        for name in Set(state.store.items.map(\.sourceDevice)).sorted() { action(name) { state.deviceFilter = name } }
-        section("Pinboard")
-        for board in state.store.pinboards { action(board.name) { state.chooseBoard(board.id) } }
-        return menu
+        state.searchFilters.map { ReplicaFilterMatching.chip($0, store: state.store) }
     }
 
     private var boardTabs: some View {

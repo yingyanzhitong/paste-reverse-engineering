@@ -9,16 +9,13 @@ final class ReplicaUIState: ObservableObject {
     let store: ClipboardStore
     weak var controller: ReplicaUIController?
     @Published var query = ""
-    @Published var kind: ClipboardKind?
+    @Published var searchFilters: [ReplicaSearchFilterChip.Selection] = []
     @Published var pinboardID: UUID?
     @Published var showDeleted = false
     @Published var selection: Set<UUID> = []
     @Published var primaryID: UUID?
     @Published var searchFocus = UUID()
     @Published var searchVisible = false
-    @Published var sourceFilter: String?
-    @Published var deviceFilter: String?
-    @Published var dateFilterDays: Int?
     @Published var stackIDs: [UUID] = [] {
         didSet {
             guard oldValue != stackIDs, store.preferences.stackItemIDs != stackIDs else { return }
@@ -41,13 +38,9 @@ final class ReplicaUIState: ObservableObject {
     }
 
     var visibleItems: [ClipboardItem] {
-        store.search(query: query, kind: kind, pinboardID: pinboardID, includeDeleted: showDeleted)
+        store.search(query: query, pinboardID: pinboardID, includeDeleted: showDeleted)
             .filter { !showDeleted || $0.isDeleted }
-            .filter { item in
-                (sourceFilter == nil || item.sourceName == sourceFilter)
-                    && (deviceFilter == nil || item.sourceDevice == deviceFilter)
-                    && (dateFilterDays == nil || item.createdAt >= Calendar.current.startOfDay(for: Date()).addingTimeInterval(-Double(max(0, dateFilterDays! - 1)) * 86400))
-            }
+            .filter { item in ReplicaFilterMatching.matches(item, selections: searchFilters) }
     }
     var selectedItems: [ClipboardItem] { visibleItems.filter { selection.contains($0.id) } }
     var primaryItem: ClipboardItem? {
@@ -222,6 +215,7 @@ final class ReplicaUIController {
     private let previewRegistry = OriginalPreviewWindowRegistry()
     private var previewAnchors: [UUID: WeakReplicaPreviewAnchor] = [:]
     private lazy var previewPopover = makePreviewPopover()
+    var filterBrowserPopover: OriginalFilterBrowserPopover?
     private var preferenceObservation: AnyCancellable?
 
     init(store: ClipboardStore) {
@@ -609,7 +603,7 @@ final class ReplicaUIController {
         }
         if command {
             switch key {
-            case "f": focusSearch(); return true
+            case "f": handleSearchCommand(); return true
             case "n": shift ? createPinboard() : newTextItem(); return true
             case ",": showSettings(); return true
             case "c" where !isEditing: copySelection(plainTextOnly: shift); return true
@@ -637,8 +631,9 @@ final class ReplicaUIController {
     }
 
     func cancelSearchOrPanel() {
-        if !state.query.isEmpty {
+        if !state.query.isEmpty || !state.searchFilters.isEmpty {
             state.query = ""
+            state.searchFilters = []
             state.searchVisible = true
             state.searchFocus = UUID()
             state.normalizeSelection()

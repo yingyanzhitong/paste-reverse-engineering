@@ -160,6 +160,7 @@ public final class ClipboardStore: ObservableObject {
         if local.isMonitoringPaused != base.isMonitoringPaused { result.preferences.isMonitoringPaused = local.isMonitoringPaused }
         if local.pauseUntil != base.pauseUntil { result.preferences.pauseUntil = local.pauseUntil }
         if local.excludedBundleIDs != base.excludedBundleIDs { result.preferences.excludedBundleIDs = local.excludedBundleIDs }
+        if local.ignoredPasteboardTypes != base.ignoredPasteboardTypes { result.preferences.ignoredPasteboardTypes = local.ignoredPasteboardTypes }
         if local.ignoreConcealedContent != base.ignoreConcealedContent { result.preferences.ignoreConcealedContent = local.ignoreConcealedContent }
         if local.playSounds != base.playSounds { result.preferences.playSounds = local.playSounds }
         if local.appearance != base.appearance { result.preferences.appearance = local.appearance }
@@ -179,6 +180,8 @@ public final class ClipboardStore: ObservableObject {
         if local.historyTitle != base.historyTitle { result.preferences.historyTitle = local.historyTitle }
         if local.stackItemIDs != base.stackItemIDs { result.preferences.stackItemIDs = local.stackItemIDs }
         if local.stackReversed != base.stackReversed { result.preferences.stackReversed = local.stackReversed }
+        if local.isDiagnosticsEnabled != base.isDiagnosticsEnabled { result.preferences.isDiagnosticsEnabled = local.isDiagnosticsEnabled }
+        if local.useBinaryPlist != base.useBinaryPlist { result.preferences.useBinaryPlist = local.useBinaryPlist }
         return result
     }
 
@@ -442,7 +445,7 @@ public final class ClipboardStore: ObservableObject {
             let textPrefix = data.starts(with: [0xef, 0xbb, 0xbf]) ? data.dropFirst(3) : data[...]
             let trimmedPrefix = textPrefix.drop(while: { [9, 10, 13, 32].contains($0) })
             if data.starts(with: Data("bplist00".utf8)) || trimmedPrefix.starts(with: Data("<?xml".utf8)) ||
-                trimmedPrefix.first == UInt8(ascii: "[") {
+                trimmedPrefix.first == UInt8(ascii: "[") || OriginalPasteboardDataCodec.decodeIfValid(data) != nil {
                 _ = try importOriginalPasteboardItems(data, sourceName: "导入的剪贴板")
                 return
             }

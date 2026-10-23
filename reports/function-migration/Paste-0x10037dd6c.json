@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037dd6c",
-  "reviewed_at": "2026-10-23T09:48:24.707973+00:00",
+  "reviewed_at": "2026-10-23T10:29:39.995522+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,18 +14,19 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "ObjC init入口：初始化types=[]、dataByType=[:]，调用NSObject super.init并返回同一个接收者。",
-  "review": "build15完整ObjC init体：读取orderedTypes偏移100168ce8和dataByType偏移100168ce0，分别存空数组和空字典后objc_msgSendSuper2。ObjC类方法表100111d30的首entry.imp相对目标1000bf01c，真实init协议绑定。",
+  "review": "build18完整ObjC init d31b4..d3240：从新ivar-offset槽185fa8/185fa0初始化空types数组与dataByType字典，再objc_msgSendSuper2。当前method表129c78的init entry129c80实际指向d31b4。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000bf01c",
-    "end_exclusive": "0x1000bf0a8",
-    "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+    "start": "0x1000d31b4",
+    "end_exclusive": "0x1000d3240",
+    "size": 140,
+    "sha256": "3dffa4b6a58581e56126bb74ce94dffd86fdab63b4fb6abd33953ace106909bf"
   }
 }

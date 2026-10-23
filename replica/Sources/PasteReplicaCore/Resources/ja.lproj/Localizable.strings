@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "取り消し線";
 "edit-item.toolbar.text.underline" = "下線";
 "general.action.cancel" = "キャンセル";
+"general.action.create-pinboard" = "ピンボードの作成";
 "general.action.edit" = "編集";
+"general.action.pin" = "固定";
 "general.action.restart-paste" = "Pasteを再起動";
 "general.action.save" = "保存";
+"general.action.share" = "シェア";
+"general.action.unpin" = "アンピン";
+"search.filters.section.type" = "タイプ";
+"search.filters.section.app" = "アプリ";
+"search.filters.section.pinboard" = "ピンボード";
+"search.filters.section.date" = "日付";
+"search.filters.section.device" = "デバイス";
+"general.more" = "もっと見る";
+"general.less" = "少なく";

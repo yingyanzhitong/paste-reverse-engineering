@@ -10,6 +10,17 @@
 "edit-item.toolbar.text.strikethrough" = "קו חוצה";
 "edit-item.toolbar.text.underline" = "קו תחתון";
 "general.action.cancel" = "ביטול";
+"general.action.create-pinboard" = "צור לוח";
 "general.action.edit" = "ערוך";
+"general.action.pin" = "הצמד אל";
 "general.action.restart-paste" = "הפעל מחדש את Paste";
 "general.action.save" = "שמור";
+"general.action.share" = "שתף";
+"general.action.unpin" = "לְהוֹצִיא סִיכָּה";
+"search.filters.section.type" = "סוג";
+"search.filters.section.app" = "אפליקציה";
+"search.filters.section.pinboard" = "לוח נעיצה";
+"search.filters.section.date" = "תאריך";
+"search.filters.section.device" = "מכשיר";
+"general.more" = "עוד";
+"general.less" = "פחות";
