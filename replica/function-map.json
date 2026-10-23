@@ -24477,7 +24477,7 @@
       "state": "partial",
       "code_ready": true,
       "implementation_origin": "existing_extended",
-      "contract": "非空restore：processor→writer→原captureState更新后changeCount持久到manager同defaults→repo事务→共享Undo→DidRestore。",
+      "contract": "空restore直接返回无save/writer/repo；非空processor→writer（不以Bool门控）→当前count持久→repo recency→共享Undo→DidRestore。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
@@ -24492,8 +24492,8 @@
           "symbol": "var persistChangeCount: ((Int) -> Void)?"
         }
       ],
-      "review": "实际所有Store恢复入口在writer成功后读取已注册captureState的当前count，调用Monitor以同一注入defaults建立的闭包，先保存token再recency/Undo。未混入低层writer；不发无人消费通知。闭包仅持有defaults，不捕获monitor，无self环。",
-      "remaining": "无monitor无原manager时跳过闭包；原writer忽略Bool与现失败throw、空id错误仍不同。CoreData事务与DidRestore→ClosedState/sound/rateApp未完整，不计原父完成。"
+      "review": "dev27按完整原f37a144/f37875c有限体纠正空id和writer Bool分支；沿用真实captureState持久闭包、逆序时间、Undo与通知，不把写入返回或事件发送当成目标接受。",
+      "remaining": "实体/JSON输入适配、完整CoreData事务与错误、缺monitor无manager适配及ClosedState/rateApp全部消费者仍partial；没有功能回归。"
     },
     "Paste:0x10020c980": {
       "state": "migrated",
@@ -29276,6 +29276,45 @@
       "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
       "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
       "migration_evidence": "reports/function-migration/Paste-0x100bfaef0.json"
+    },
+    "Paste:0x10022df78": {
+      "state": "partial",
+      "contract": "选择Cmd分支：已选目标且总数为1时不移除，其余Cmd添加/移除按已有路径。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "guard selection.count > 1 else { return }"
+        }
+      ],
+      "compiled_review": "reports/replica/card-interaction-static-audit.json",
+      "remaining": "完整Shift分组/anchor/order等分支尚未完全恢复。"
+    },
+    "Paste:0x100227cd4": {
+      "state": "partial",
+      "contract": "双击入口强制单clicked并向单item粘贴生产链分发。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": ".onTapGesture(count: 2)"
+        }
+      ],
+      "compiled_review": "reports/replica/card-interaction-static-audit.json",
+      "remaining": "普通按压0.45秒折叠/3pt拖阈及完整modifier偏好仍未恢复。"
+    },
+    "Paste:0x100228128": {
+      "state": "partial",
+      "contract": "右键或Control-left菜单打开前，未选clicked单选、已选保多选和anchor。",
+      "implementation_origin": "existing_corrected_consumer",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaCardContextSelection.swift",
+          "symbol": "struct ReplicaCardContextSelection"
+        }
+      ],
+      "compiled_review": "reports/replica/card-interaction-static-audit.json",
+      "remaining": "SwiftUI菜单/keyboard与accessibility入口、原精确hit-test及事件生命周期尚未运行验收。"
     }
   }
 }

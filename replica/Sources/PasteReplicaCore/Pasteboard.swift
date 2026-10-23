@@ -230,8 +230,8 @@ extension ClipboardStore {
 
     public func writeToPasteboard(ids: [UUID], pasteboard: NSPasteboard,
                                   options: OriginalPasteboardRestore.Options) throws {
+        guard !ids.isEmpty else { return }
         try save()
-        guard !ids.isEmpty else { throw ClipboardStoreError.itemNotFound }
         let selected = try ids.map { id -> ClipboardItem in
             guard let item = items.first(where: { $0.id == id && !$0.isDeleted }) else { throw ClipboardStoreError.itemNotFound }
             return item
@@ -278,7 +278,6 @@ extension ClipboardStore {
         // The original writer clears and writes even when processing produced no representations.
         let writer = OriginalPasteboardWriter(pasteboard: pasteboard)
         writer.f_10037875c(objects)
-        guard writer.lastWriteSucceeded else { throw ClipboardStoreError.pasteboardWriteFailed }
         if let state = OriginalPasteboardCaptureState.current(for: pasteboard) {
             state.persistChangeCount?(state.lastChangeCount)
         }

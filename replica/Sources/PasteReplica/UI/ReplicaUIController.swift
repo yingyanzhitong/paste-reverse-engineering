@@ -131,8 +131,10 @@ final class ReplicaUIState: ObservableObject {
            let end = visibleItems.firstIndex(where: { $0.id == item.id }) {
             selection.formUnion(visibleItems[min(start, end)...max(start, end)].map(\.id))
         } else if modifiers.contains(.command) {
-            if selection.contains(item.id) { selection.remove(item.id) }
-            else { selection.insert(item.id) }
+            if selection.contains(item.id) {
+                guard selection.count > 1 else { return }
+                selection.remove(item.id)
+            } else { selection.insert(item.id) }
             primaryID = item.id
         } else {
             selection = [item.id]

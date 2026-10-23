@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10030f920",
-  "reviewed_at": "2026-10-23T15:16:51.674791+00:00",
+  "reviewed_at": "2026-10-23T15:38:34.830894+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0253.c",
@@ -11,17 +11,29 @@
   "original_pseudocode_sha256": "47122e7d554ea296eb481bbeae367d4266c5ba33ae38654c161ace2d4c6e606d",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalPasteboardDataCodec.swift": "3994f19683c261c6137c9a97f66f89d69b111e8731cc09acb42f6727980a786c",
-    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271"
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "35d4308962d6acb8d27f765cf5ba7637484c8b17a25eda1f8df893b0dd968104"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
+  "compiled_app_binary_sha256": "4fc74f9ed1e5f7f3b113f2c6cb348c5aa3ebb250c64b27304915e0526b57eb35",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "nil输入buffer返回非nil空Data；capacity=max(input.count*2,65536)，C decode0返回nil；非满容量复制结果；满容量且capacity>0x0fffffff返回nil，否则释放后容量倍增继续。",
   "review": "静态核对0x10030f920全部分配、解码、复制、失败、阈值及释放分支；无自造限额或重试。",
-  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+  "source_review": "build49集中审阅：原恢复helper实现保留；关联UI仅修卡片选择和菜单入口，剪贴板适配仅修空输入和writer返回值策略，不替换原格式/属性/异常/搜索helper。真实调用继续存在，稳定编译后刷新当前源码摘要；未运行等价或功能测试。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
+  "caller_review_refs": [
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalPasteboardDataCodec.swift",
+      "symbol": "f_10030f920",
+      "entire_source_unchanged": true
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+      "symbol": "originalPasteboardItems",
+      "entire_source_unchanged": false
+    }
+  ]
 }

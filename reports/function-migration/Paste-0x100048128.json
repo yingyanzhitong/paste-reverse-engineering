@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100048128",
-  "reviewed_at": "2026-10-23T15:16:50.680389+00:00",
+  "reviewed_at": "2026-10-23T15:38:34.821561+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0026.c",
@@ -11,19 +11,41 @@
   "original_pseudocode_sha256": "d87365857ebcdfd24bca9413937f4e8de378dd18b048b57c524dfefcdfb48c57",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchEditing.swift": "de4dbf21b72826fed9c0e9418c842eb8b0f1146a7d7aa9bfe22985af5d7ac73e",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "68957d90e54ebfe5485edb3ee8c22289411515b6a86dfd28eb3b1a03a646e1c1",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "fa228b3dad19b22520f9f4e97f6bb1e62baa692b8a9de63c86fca7ed5bcd80b0",
     "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "6a56456d5b45a28cacd291891380b97414e71c1eaf68bd1d9ee15c3ec1596600",
     "replica/Sources/PasteReplica/UI/SearchEditor.swift": "13ce2f341f2e7aad16ac8083f46575b20b060086cc5a66ebe6399d8740915107"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
+  "compiled_app_binary_sha256": "4fc74f9ed1e5f7f3b113f2c6cb348c5aa3ebb250c64b27304915e0526b57eb35",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "SearchField结束编辑通知入口；主执行器隔离，通知内容不被业务逻辑读取；可选onEndEditing存在则调用一次，不存在则不调用。由原生编辑器结束编辑通知调用。",
   "review": "逐项复审：OriginalSearchEditing的恢复函数体不变；委托在OriginalSearchField创建并保持，Coordinator从field.editingDelegate获取同一对象绑定回调，取代原先桥内构造。构建证据待统一登记；未重跑功能测试。",
-  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+  "source_review": "build49集中审阅：原恢复helper实现保留；关联UI仅修卡片选择和菜单入口，剪贴板适配仅修空输入和writer返回值策略，不替换原格式/属性/异常/搜索helper。真实调用继续存在，稳定编译后刷新当前源码摘要；未运行等价或功能测试。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
+  "caller_review_refs": [
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalSearchEditing.swift",
+      "symbol": "f_100048128",
+      "entire_source_unchanged": true
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "symbol": "ReplicaSearchEditor",
+      "entire_source_unchanged": false
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalSearchField.swift",
+      "symbol": "OriginalSearchEditing(textView:",
+      "entire_source_unchanged": true
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/SearchEditor.swift",
+      "symbol": "field.editingDelegate",
+      "entire_source_unchanged": true
+    }
+  ]
 }

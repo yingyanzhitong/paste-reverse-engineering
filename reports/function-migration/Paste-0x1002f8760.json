@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002f8760",
-  "reviewed_at": "2026-10-23T15:31:05.868352+00:00",
+  "reviewed_at": "2026-10-23T15:38:34.832563+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0245.c",
@@ -11,18 +11,18 @@
   "original_pseudocode_sha256": "bb18adf154a3797071050ec78ea3e60aafd4b261a59d5c44c76404563fe34238",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchTextTokens.swift": "ea0bef0b75186bf558f512cd15f5343e1251fb47a9e39791d320fd23248b143f",
-    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "9b5bf9afff865bbcda132d238f4a752103a1e48a484761e3bfb063ad2539ebce"
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "e2f27547c5deeb035e1b3ee729cd9911bdbfb815910a8699a324f58a46c31f36"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "dff514d7007b1a017a38ec7736cc79dc1e389cce0792760a93377fd1fe938c2c",
+  "compiled_app_binary_sha256": "4fc74f9ed1e5f7f3b113f2c6cb348c5aa3ebb250c64b27304915e0526b57eb35",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "非空buffer先把无metadata U+FFFC替换ASCII空格，按Character.isWhitespace是否相同划分连续run（空白run也保留），逐run append .text到既有node数组；最后原buffer.removeAll(keepingCapacity:true)。空buffer不改变node数组。",
   "review": "完整REA part0245及arm64 1002f8760..<1002f89f4核对。原按Unicode Character.isWhitespace分组而非String.split ASCII空格；原保留空白run，后继query builder再trim/drop；实际主UI原String不被改写，只有查询投影分段。",
-  "source_review": "集中差异修正后复核：本函数及真实入口所在完整声明与dev25精确文本相同；关联文件其他方法修改后统一build48通过。只更新编译和源码绑定，不宣称运行等价。",
+  "source_review": "build49集中审阅：原恢复helper实现保留；关联UI仅修卡片选择和菜单入口，剪贴板适配仅修空输入和writer返回值策略，不替换原格式/属性/异常/搜索helper。真实调用继续存在，稳定编译后刷新当前源码摘要；未运行等价或功能测试。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "unchanged_declarations": [
     {
@@ -31,6 +31,18 @@
       "reference": "OriginalSearchTextTokens.f_1002f8760(&buffer, into: &nodes)",
       "declaration_sha256": "f0e3e4eaf91cd1dde9074074a5ff4cebc95aa5049fe0fbe2ee0b819a126bff25",
       "source_declaration_unchanged": true
+    }
+  ],
+  "caller_review_refs": [
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalSearchTextTokens.swift",
+      "symbol": "func f_1002f8760(",
+      "entire_source_unchanged": true
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+      "symbol": "OriginalSearchTextTokens.f_1002f8760(&buffer, into: &nodes)",
+      "entire_source_unchanged": false
     }
   ]
 }

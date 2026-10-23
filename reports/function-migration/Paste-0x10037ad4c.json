@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037ad4c",
-  "reviewed_at": "2026-10-23T15:16:51.213221+00:00",
+  "reviewed_at": "2026-10-23T15:38:34.827624+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0281.c",
@@ -10,17 +10,24 @@
   },
   "original_pseudocode_sha256": "225211fbe6cede8bd5d3f5d62f214d9a9be336fc98ee41fbdd789462f2f6d113",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271"
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "35d4308962d6acb8d27f765cf5ba7637484c8b17a25eda1f8df893b0dd968104"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
+  "compiled_app_binary_sha256": "4fc74f9ed1e5f7f3b113f2c6cb348c5aa3ebb250c64b27304915e0526b57eb35",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "保持管理对象所属captureState在action期间存活，调用动作，再post pasteboardHistoryManagerDidChangeStatus object=管理对象。",
   "review": "完整arm64确认返回为objc_release尾跳，无稳定Int/Optional返回契约；Swift Void恢复。原版构造器已先解析缓存state，现构造器同样先建立唯一state并绑定delegate；本函数使用withExtendedLifetime保证动作期间状态存活。真实start/stop wrapper均调用。",
-  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
-  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+  "source_review": "build49集中审阅：原恢复helper实现保留；关联UI仅修卡片选择和菜单入口，剪贴板适配仅修空输入和writer返回值策略，不替换原格式/属性/异常/搜索helper。真实调用继续存在，稳定编译后刷新当前源码摘要；未运行等价或功能测试。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
+  "caller_review_refs": [
+    {
+      "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+      "symbol": "f_10037ad4c",
+      "entire_source_unchanged": false
+    }
+  ]
 }

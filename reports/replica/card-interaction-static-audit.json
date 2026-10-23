@@ -1,0 +1,84 @@
+{
+  "kind": "concentrated_card_selection_and_restore_static_audit",
+  "version": "0.8.0-dev.27",
+  "generated_at": "2026-10-23T15:39:13.360073+00:00",
+  "original_references": [
+    {
+      "id": "Paste:0x10022df78",
+      "path": "decompiled/Paste/part-0190.c",
+      "line": 1434
+    },
+    {
+      "id": "Paste:0x100227cd4",
+      "path": "decompiled/Paste/part-0188.c",
+      "line": 1269
+    },
+    {
+      "id": "Paste:0x100228128",
+      "path": "decompiled/Paste/part-0188.c",
+      "line": 1454
+    },
+    {
+      "id": "Paste:0x100228a50",
+      "path": "decompiled/Paste/part-0188.c",
+      "line": 1898
+    },
+    {
+      "id": "Paste:0x100075a6c",
+      "path": "decompiled/Paste/part-0037.c",
+      "line": 3442
+    },
+    {
+      "id": "Paste:0x10037a144",
+      "path": "decompiled/Paste/part-0281.c",
+      "line": 1198
+    },
+    {
+      "id": "Paste:0x10037875c",
+      "path": "decompiled/Paste/part-0281.c",
+      "line": 106
+    }
+  ],
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "e2f27547c5deeb035e1b3ee729cd9911bdbfb815910a8699a324f58a46c31f36",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "fa228b3dad19b22520f9f4e97f6bb1e62baa692b8a9de63c86fca7ed5bcd80b0",
+    "replica/Sources/PasteReplica/UI/ReplicaCardContextSelection.swift": "2a5b9aac7f579d6466a8f0c6feff24095609873c348ef99444f95f23aeb7615f",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "35d4308962d6acb8d27f765cf5ba7637484c8b17a25eda1f8df893b0dd968104"
+  },
+  "compiled_sha256": {
+    "replica/.build/release/PasteReplica": "4fc74f9ed1e5f7f3b113f2c6cb348c5aa3ebb250c64b27304915e0526b57eb35",
+    "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+    "replica/.build/release/paste-replica-mcp": "916c1b3827b94bcdf40551aeaa326ad7cda1e6f0d5c74f5bfe0953b8bf86b594"
+  },
+  "build": {
+    "number": 49,
+    "passed": true,
+    "inputs": 159,
+    "input_sha_unchanged": true,
+    "seconds": 21.5
+  },
+  "implemented": [
+    "Cmd最后一个已选项目保持选中；显式取消全选仍保留原入口",
+    "double单clicked选择并只粘clicked，不批量粘原多选项",
+    "右键/Control-left菜单打开前按clicked已选状态同步选区，不在菜单动作后补选",
+    "local monitor按同window/hidden祖先/visibleRect过滤，原样透传事件；被动hitTest nil及dismantle/deinit清理，不替换DND链",
+    "空restore在save之前直接返回",
+    "原writer Bool不门控后续count持久、recency、Undo和DidRestore；不宣称目标接受"
+  ],
+  "reused": [
+    "多选按显示序进入既有格式组合processor",
+    "底层writer、captureState token、recency/Undo/真实通知保持生产路径",
+    "文件callout/动态文字颜色/两行label及NSTextField父类已补证，直接复用无重写"
+  ],
+  "remaining": [
+    "原0.45秒按压/3pt拖阈、完整Shift分组/anchor/顺序",
+    "双击原modifier偏好映射及完整keyboard/accessibility菜单入口",
+    "SwiftUI菜单事件、精确hit-test和最终运行交互",
+    "独立JSON实体适配、CoreData/错误及全部恢复后消费者"
+  ],
+  "functional_tests_executed": false,
+  "product_executed": false,
+  "mcp_tests_executed": false,
+  "new_complete_source_functions": 0,
+  "full_equivalence_verified": false
+}

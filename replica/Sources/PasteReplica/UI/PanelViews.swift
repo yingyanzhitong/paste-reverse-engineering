@@ -250,10 +250,13 @@ struct ReplicaClipboardCard: View {
         .shadow(color: .black.opacity(0.10), radius: 3, y: 2)
         .contentShape(RoundedRectangle(cornerRadius: cardCornerRadius, style: cardCornerStyle))
         .onTapGesture(count: 2) {
-            prepareSelection()
-            state.controller?.pasteSelection(plainTextOnly: NSEvent.modifierFlags.contains(.shift))
+            state.select(item)
+            state.controller?.paste(item: item, plainTextOnly: NSEvent.modifierFlags.contains(.shift))
         }
         .onTapGesture { state.select(item, modifiers: NSEvent.modifierFlags) }
+        .background(ReplicaCardContextSelection(onContextMenu: {
+            if !selected { state.select(item) }
+        }))
         .contextMenu { contextMenu }
         .onDrag { cardDragProvider() }
         .onDrop(of: [ReplicaLocalItemDrag.typeIdentifier], isTargeted: nil) { providers, location in
@@ -453,13 +456,13 @@ struct ReplicaClipboardCard: View {
 
     @ViewBuilder private var contextMenu: some View {
         if item.isDeleted {
-            Button("恢复") { prepareSelection(); state.perform { try state.store.restore(ids: state.selection) } }
+            Button("恢复") { state.perform { try state.store.restore(ids: state.selection) } }
         } else {
-            Button("拷贝") { prepareSelection(); state.controller?.copySelection(plainTextOnly: false) }
-            Button("复制为纯文本") { prepareSelection(); state.controller?.copySelection(plainTextOnly: true) }
+            Button("拷贝") { state.controller?.copySelection(plainTextOnly: false) }
+            Button("复制为纯文本") { state.controller?.copySelection(plainTextOnly: true) }
                 .disabled(item.plainText == nil && item.recognizedText == nil)
-            Button("粘贴") { prepareSelection(); state.controller?.pasteSelection(plainTextOnly: false) }
-            Button("以纯文本粘贴") { prepareSelection(); state.controller?.pasteSelection(plainTextOnly: true) }
+            Button("粘贴") { state.controller?.pasteSelection(plainTextOnly: false) }
+            Button("以纯文本粘贴") { state.controller?.pasteSelection(plainTextOnly: true) }
                 .disabled(item.plainText == nil && item.recognizedText == nil)
             Divider()
             Button("预览") { state.controller?.showPreview(item: item) }
@@ -482,29 +485,27 @@ struct ReplicaClipboardCard: View {
             }
             Menu("添加到 Pinboard") {
                 ForEach(state.store.pinboards) { board in
-                    Button(board.name) { prepareSelection(); state.assignSelection(to: board.id) }
+                    Button(board.name) { state.assignSelection(to: board.id) }
                 }
                 Divider()
-                Button("新建 Pinboard…") { prepareSelection(); state.controller?.createPinboard(assignSelection: true) }
+                Button("新建 Pinboard…") { state.controller?.createPinboard(assignSelection: true) }
             }
             if !item.pinboardIDs.isEmpty {
                 if let board = state.pinboardID {
                     Button("从此 Pinboard 移除") {
-                        prepareSelection()
                         state.perform { try state.store.unassign(ids: state.selection, from: board) }
                     }
                 }
-                Button("从所有 Pinboard 移除") { prepareSelection(); state.assignSelection(to: nil) }
+                Button("从所有 Pinboard 移除") { state.assignSelection(to: nil) }
             }
             Button("添加到 Paste Stack") {
-                prepareSelection()
                 for selected in state.selectedItems { state.addToStack(selected) }
                 state.controller?.showStack()
             }
             Button("全选") { state.selectAll() }
             Button("取消全选") { state.deselectAll() }
             Divider()
-            Button("删除", role: .destructive) { prepareSelection(); state.deleteSelection() }
+            Button("删除", role: .destructive) { state.deleteSelection() }
         }
     }
 
