@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1003d8588",
-  "reviewed_at": "2026-10-23T15:50:32.781094+00:00",
+  "reviewed_at": "2026-10-23T16:26:01.160765+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0306.c",
@@ -11,18 +11,18 @@
   "original_pseudocode_sha256": "f3a94f212c10e31c12f3ce8a49f18b534c6c358d00f726d4b62dacbd0bfa5737",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalCardPresentation.swift": "acb4df601c1f35cf1e8767bc8a66140c99ec082c8c82f79acd49fc316a5d09cf",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "7c404a24c932f69261dd812c3cc84c7bc60d0e5b28b32779e00e9f5d85d0f229"
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "d4c309dff7876c90c5c2fe5abe915a4d6f60d778f89df3e2e0dd253adf06419a"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cffddfcf7bb53d8bb29eaf4af782ebc6047acf2491cc030525e565483950abd9",
+  "compiled_app_binary_sha256": "24d03e58202ea2930b5bf302202a1920f4550c8b82550459fcb5d045ed9d7bbb",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "Completepure3constraintvalues forrawUInt8sizeclass,fullsize andOSbool; actualbodyTop/HeaderHeightconsumer. Lockvalueexactreturned,nativeLockViewparentpartial.",
   "review": "Bound to final46 actual155inputs; finitecompletegeometrybody/table andactualcanonical/privacyconsumers. WholeUI/Config/ABIparentsnotpromoted.",
-  "source_review": "build51集中审阅：既有搜索、权限、焦点与几何helper保留；仅已证选择算法、modifier消费者与files图像布局修正。真实调用继续存在，稳定编译后刷新关联源码绑定，未运行产品或等价测试。",
+  "source_review": "dev31集中源码复核：现有格式读取/写入/编解码、搜索编辑器、Stack与图片文字消费及age谓词实现保留；捕获仅增可选来源快照参数及add透传，不改变原多格式转换/校验合同。Header图标读取与独立Store共享模型不据此提升原父函数。绑定build54。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "caller_review_refs": [
     {

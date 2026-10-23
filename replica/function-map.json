@@ -27813,6 +27813,10 @@
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
           "symbol": "private var cardTitle: String"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "struct SourceAppIcon: View"
         }
       ],
       "implementation_origin": "existing_real_card_consumer_corrected",
@@ -27821,8 +27825,8 @@
         "line": 1385,
         "fragment_sha256": "29f9af765c3aecf2c3a2bab6d344b62eb7dba5b7f5e039710bdf6d1010f74d60"
       },
-      "review": "已核原REA/arm64及实际Source入口；主智能体最终build41通过，147输入SHA一致。未运行产品/功能/单测/UI/MCP；所有父保持partial。",
-      "remaining": "完整多style/原生Header对象/精确总尺寸圆角和模型身份仍partial，不以共享字体子组冒充父完整。"
+      "review": "已核原REA/arm64及实际Source入口；主智能体最终build41通过，147输入SHA一致。未运行产品/功能/单测/UI/MCP；所有父保持partial。 dev31：Header实际消费共享应用记录rawIcon，缺/坏为空图，无实体走独立unknown占位；build54，原完整父仍partial。",
+      "remaining": "完整多style/原生Header对象/精确总尺寸圆角和模型身份仍partial，不以共享字体子组冒充父完整。 rawColor与原未知应用资产像素仍有差异。"
     },
     "Paste:0x100308ea0": {
       "state": "migrated",
@@ -29453,6 +29457,34 @@
       },
       "implementation_origin": "explicit_user_scope_exclusion",
       "remaining": "不计已实现，不减81134总分母。"
+    },
+    "Paste:0x100310fb8": {
+      "state": "partial",
+      "contract": "按bundleIdentifier共享应用实体；旧空name填入；逻辑128图标规范编码比较后更新图标与rawColor。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "private static func upsertSourceApplication"
+        }
+      ],
+      "review": "基于完整原有限体与真实捕获/持久/读取链集中修复；不把独立兼容数据模型计完整函数。",
+      "remaining": "共享图标JSON适配已接，rawColor及原CoreData/KVO/Undo/context和错误仍未完整恢复。"
+    },
+    "Paste:0x100311e3c": {
+      "state": "partial",
+      "contract": "NSRunningApplication的bundleIdentifier、localizedName和icon均非nil才交工厂；否则无来源实体。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSourceApplication.swift",
+          "symbol": "public static func snapshot"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+          "symbol": "sourceApplication: OriginalSourceApplication.snapshot(app)"
+        }
+      ],
+      "review": "基于完整原有限体与真实捕获/持久/读取链集中修复；不把独立兼容数据模型计完整函数。",
+      "remaining": "已证字段验证/128/PNG及真实采集消费；快照+JSON工厂适配不是原CoreData实体和context ABI。"
     }
   }
 }

@@ -422,7 +422,7 @@ struct ReplicaClipboardCard: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading, 12)
             .padding(.trailing, sizeClass == 3 ? 30 : sourceIconSide - 14)
-            SourceAppIcon(item: item)
+            SourceAppIcon(item: item, store: state.store)
                 .frame(width: sourceIconSide, height: sourceIconSide)
                 .opacity(sizeClass == 3 ? 0.9 : 1)
                 .offset(x: sizeClass == 3 ? -8 : 14)
@@ -519,10 +519,14 @@ struct ReplicaClipboardCard: View {
 @MainActor
 struct SourceAppIcon: View {
     let item: ClipboardItem
+    @ObservedObject var store: ClipboardStore
+
     var body: some View {
-        if let id = item.sourceBundleID, let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: id) {
-            Image(nsImage: NSWorkspace.shared.icon(forFile: url.path)).resizable().scaledToFit()
+        if let application = store.sourceApplication(for: item) {
+            let image = application.rawIcon.flatMap(NSImage.init(data:)) ?? NSImage()
+            Image(nsImage: image).resizable().scaledToFit()
         } else {
+            // Independent unknown-application placeholder; the original private asset is not copied.
             Image(systemName: "doc.on.clipboard.fill")
                 .resizable().scaledToFit().padding(4).foregroundStyle(.gray)
         }

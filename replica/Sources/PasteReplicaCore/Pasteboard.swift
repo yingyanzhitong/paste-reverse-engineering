@@ -114,7 +114,8 @@ extension ClipboardStore {
 
     @discardableResult
     public func capture(pasteboard: NSPasteboard, sourceName: String, sourceBundleID: String?,
-                        snapshot: [OriginalPasteboardItem]? = nil, respectMonitoringPolicy: Bool = true) throws -> UUID? {
+                        snapshot: [OriginalPasteboardItem]? = nil, respectMonitoringPolicy: Bool = true,
+                        sourceApplication: SourceApplicationRecord? = nil) throws -> UUID? {
         let rawItems = snapshot == nil ? pasteboard.pasteboardItems ?? [] : []
         let types = Set(snapshot?.flatMap { $0.f_10037da6c() } ?? rawItems.flatMap { $0.types.map(\.rawValue) })
         if respectMonitoringPolicy {
@@ -190,7 +191,8 @@ extension ClipboardStore {
             else { kind = .unknown }
         }
         let id = try add(ClipboardItem(title: "", kind: kind, plainText: plainText, sourceName: sourceName,
-                                       sourceBundleID: sourceBundleID, payloads: payloads))
+                                       sourceBundleID: sourceBundleID, payloads: payloads),
+                         sourceApplication: sourceApplication)
         if kind == .image { startBackgroundTextRecognition(id: id) }
         return id
     }
@@ -456,7 +458,8 @@ public final class ClipboardMonitor: NSObject, OriginalPasteboardCaptureDelegate
         let app = NSWorkspace.shared.frontmostApplication
         guard let captured = try store.capture(pasteboard: pasteboard, sourceName: app?.localizedName ?? "未知应用",
                                                sourceBundleID: app?.bundleIdentifier, snapshot: items,
-                                               respectMonitoringPolicy: false) else {
+                                               respectMonitoringPolicy: false,
+                                               sourceApplication: OriginalSourceApplication.snapshot(app)) else {
             throw OriginalPasteboardItemCreationError.unsupportedContent
         }
         onCapture?(captured)

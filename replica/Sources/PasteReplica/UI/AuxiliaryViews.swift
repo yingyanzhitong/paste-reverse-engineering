@@ -17,7 +17,7 @@ struct ReplicaPreviewView: View {
             if let item {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(spacing: 10) {
-                        SourceAppIcon(item: item).frame(width: 32, height: 32)
+                        SourceAppIcon(item: item, store: state.store).frame(width: 32, height: 32)
                         VStack(alignment: .leading, spacing: 3) {
                             Text(item.title.isEmpty ? item.kind.displayName : item.title).font(.headline).lineLimit(2)
                             Text("\(item.sourceName) · \(item.kind.displayName) · \(itemSummary(item))")
@@ -237,7 +237,7 @@ struct ReplicaStackTable: NSViewRepresentable {
         controller.makeCell = { item in
             NSHostingView(rootView:
                 HStack(spacing: 8) {
-                    SourceAppIcon(item: item).frame(width: 24, height: 24)
+                    SourceAppIcon(item: item, store: state.store).frame(width: 24, height: 24)
                     Text(item.plainText ?? item.title).font(.system(size: 12)).lineLimit(2)
                     Spacer(minLength: 0)
                 }.padding(.horizontal, 10).frame(height: 44)

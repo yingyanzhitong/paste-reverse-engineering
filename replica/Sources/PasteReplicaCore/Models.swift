@@ -26,6 +26,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
     public var plainText: String?
     public var sourceName: String
     public var sourceBundleID: String?
+    public var sourceApplicationBundleID: String?
     public var sourceDevice: String
     public var isInHistory: Bool
     public var payloads: [String: Data]
@@ -63,7 +64,8 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
                 payloads: [String: Data] = [:], pinboardIDs: Set<UUID> = [], isDeleted: Bool = false,
                 sourceDevice: String = "此Mac", isInHistory: Bool = true,
                 imagePreviewMetadata: OriginalImagePreviewMetadata? = nil,
-                rawPreview: Data? = nil, hasExplicitTitle: Bool? = nil, pinboardOrder: Int64? = nil) {
+                rawPreview: Data? = nil, hasExplicitTitle: Bool? = nil, pinboardOrder: Int64? = nil,
+                sourceApplicationBundleID: String? = nil) {
         self.id = id
         self.createdAt = createdAt
         self.updatedAt = updatedAt ?? createdAt
@@ -73,6 +75,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
         self.plainText = plainText
         self.sourceName = sourceName
         self.sourceBundleID = sourceBundleID
+        self.sourceApplicationBundleID = sourceApplicationBundleID
         self.payloads = payloads
         self.imagePreviewMetadata = imagePreviewMetadata
         self.rawPreview = rawPreview
@@ -248,7 +251,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
 
 public enum ClipboardStoreError: LocalizedError {
     case itemNotFound, pinboardNotFound, missingPlainText, pasteboardWriteFailed
-    case invalidPinboardName, invalidPinboardOrder, unsupportedArchiveVersion, duplicateIdentifiers
+    case invalidPinboardName, invalidPinboardOrder, unsupportedArchiveVersion, duplicateIdentifiers, invalidSourceApplication
 
     public var errorDescription: String? {
         switch self {
@@ -258,6 +261,7 @@ public enum ClipboardStoreError: LocalizedError {
         case .pasteboardWriteFailed: return "写入剪贴板失败。"
         case .invalidPinboardName: return "Pinboard 名称不能为空。"
         case .invalidPinboardOrder: return "Pinboard 项目移动位置无效。"
+        case .invalidSourceApplication: return "来源应用记录缺失或关联无效。"
         case .unsupportedArchiveVersion: return "不支持此存档版本。"
         case .duplicateIdentifiers: return "存档中包含重复标识符。"
         }

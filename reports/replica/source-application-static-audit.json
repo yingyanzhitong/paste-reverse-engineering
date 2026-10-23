@@ -1,0 +1,135 @@
+{
+  "kind": "shared_source_application_icon_static_audit",
+  "version": "0.8.0-dev.31",
+  "generated_at": "2026-10-23T16:27:26.309402+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_evidence": [
+    {
+      "function_id": "Paste:0x100310fb8",
+      "path": "decompiled/Paste/part-0253.c",
+      "line": 3380,
+      "pseudocode_sha256": "94126411b0fe1e9c27674e5d0e73db437ef953c3735cf1af9095363ba9de75fa"
+    },
+    {
+      "function_id": "Paste:0x100311e3c",
+      "path": "decompiled/Paste/part-0254.c",
+      "line": 338,
+      "pseudocode_sha256": "993189242d38b635d1c9530b7ab3ddc2aae5fbcb8c64744aea8e301d19f73cab"
+    },
+    {
+      "function_id": "Paste:0x10035fbcc",
+      "path": "decompiled/Paste/part-0274.c",
+      "line": 1229,
+      "pseudocode_sha256": "a46d7392de33b84487119e48f77904a091063f2612ea8624f6976d90392d7634"
+    },
+    {
+      "function_id": "Paste:0x10037b204",
+      "path": "decompiled/Paste/part-0281.c",
+      "line": 2038,
+      "pseudocode_sha256": "0636ea17d63475345db6c47ac043dd9fbf5828a65c1e4afb5fdf817e9b2a9b10"
+    },
+    {
+      "function_id": "Paste:0x100310dd0",
+      "path": "decompiled/Paste/part-0253.c",
+      "line": 3270,
+      "pseudocode_sha256": "279c58c18c55b82422ea03a19f80359a373aee058251735d06231cb349c9ab75"
+    },
+    {
+      "function_id": "Paste:0x1003d41b4",
+      "path": "decompiled/Paste/part-0304.c",
+      "line": 1387,
+      "pseudocode_sha256": "476e6a484d63eb64789ddb4abaa355dd4f43d24b75f03d849c2adf6607078c4f"
+    },
+    {
+      "function_id": "Paste:0x1003c89c8",
+      "path": "decompiled/Paste/part-0300.c",
+      "line": 587,
+      "pseudocode_sha256": "aecb29d7c4b2530b0124d6853961a8ef434241dd5f83ea05f71e2d6067330b01"
+    }
+  ],
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSourceApplication.swift": "80ddd43b4d105e47ca4d8dc8f45bb043d3226d12c9d0fa61ea2c7fb224687622",
+    "replica/Sources/PasteReplicaCore/Models.swift": "7382aa2df72203567da7d78c3f419541c4e647786b609265cc4b245cc44355ca",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "668d94d042fa868c42c9db1c7f22d82b5d3aedc30830a4d6f83b3a893f3c693d",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "d4c309dff7876c90c5c2fe5abe915a4d6f60d778f89df3e2e0dd253adf06419a",
+    "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "a65ed038204e1a37e21ad041a81e9de8218ac0790dce6e4a5ed695d5cce669a6"
+  },
+  "implemented": [
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalSourceApplication.swift",
+      "contract": "publicSourceApplicationRecord bundleIdentifier/name/rawIcon; @MainActor.snapshot requiresapp/bundleID/name/icon, sets128x128 thenencodesonceviaexistingOriginalPasteboardImageEncoding.f3c89c8 PNG. normalizedIcon privatecomparisonhelper decodesoldstoredNSImage then sameencoder, nil/badbytes→nilonlyforcomparison; storedrawbytesnotmutatedbythishelper. No liveworkspacequery."
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Models.swift",
+      "contract": "ClipboardItem newoptionalexplicit sourceApplicationBundleID, lastinitializerdefaultnil andsynthesizeddecodeIfPresent compatibility; doesnotinferfromoldsourceBundleID. invalidSourceApplication expliciterrorforbrokenrelation/duplicatedsharedidentifiers."
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+      "contract": "StoreStatesourceApplications missingkey→[]; actualcurrent/publish/Published/private-set state included; sourceApplication(for:item) resolvesexplicitrelationonly. Sameflockmutate adds/upserts recordanditemrelation inonetransaction. adddefaultnil keepssourcecompatibility; explicitrelationwithoutnewrecord acceptedonlyifexistingrecordresolves."
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+      "contract": "SharedrecordupsertbybundleID retainsoldnonemptyname, fillsoldemptyname; onlyoldicondecoded/reencodedPNGcompareswithincomingrawIcon (capturealreadyPNGcanonical), updateifdifferent. Incomingrawoptionalstoredunchanged, includingexplicitArchive/addbadbytes; nosecondincomingencode. Nil/badiconremainspresentrecord, Headeremptyimagebranch. Noolditemretiming; sharedPublishedstate suppliesUIobservation."
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+      "contract": "Threewaymergecompareslocalappfieldswithbaseline: localnameonlychangespreserveremoteicon; localicononlychangespreserveremotename; unchangedlocalrecordpreservesallremoterecord. Existingnonemptyremotenameprotectedbyfactoryupsert. Samebundleconcurrentinsertiononevalue(localiconwinsifconflict), distinctbundleupdatespreserved. Explicititemrelationshipfieldmergesseparately."
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+      "contract": "JSONexportencodesnewsharedstate; importvalidatesarchiveuniqueness/references, upsertsitsapprecordsunderlockbeforeexistingitemtimestamp-prioritymerge. Oldarchives[]/nil cannotmanufacturehistorysnapshots; nocomputerfrontmostlookupduringJSONimport. ExistingPBarchiveadapterremainsdefaultnil."
+    }
+  ],
+  "static_reasoning_cases_not_executed": [
+    "Freshstate[] + validatedappA capture createsoneArecord anditemrelationA; futureAcaptureupdatesAsameidentity; oldAitemsresolveupdatediconwithoutoldtimestampmutation.",
+    "Failedappvalidation snapshotnil: newitemexplicitrelationnil; cannotclaimbundleID aloneexistingrecordlink. Existingdedupincomingnil clearsitsrelationtoexplicitabsent; unrelatedoldAitemsremain.",
+    "ExistingitemexplicitrelationA+addwithoutrecord worksifsharedAexists; danglingA throwsbeforeatomicwrite/publish.",
+    "DuplicateappbundleIDs andarchiveitemnon-nilreferencewithoutrecordreject; oldestformatswithnosourceApplications andnosourceApplicationBundleID decodeas[]/nil.",
+    "Localunrelateditemeditandremoteiconupdate: localappsunchanged, remoteiconretained. Localnamefillandremoteiconupdate: preservebothfields. Localiconchangeandremotenamefill: oldnonemptynamepolicyretainsremotename.",
+    "Appuninstallornewiconoutsidecapturedoesnotcausesharedrecordreplacement; Headerdoesnotlivequeryinthischain. Nooriginalinstalledappwatcherclaimed.",
+    "ExplicitbadrawIconData archive/add input survivesrawstorage/export/import unchanged; getterdecodefails→emptyimage. OnlycapturevalidatedNSRunningApplication inputiscanonicalPNG. Rootpeerremovedredundantincomingreencode, 1lineSourcechange."
+  ],
+  "capture_entry": "Monitor f_10037b034 passes snapshot of its existing frontmostApplication to store.capture, then store.add upserts record and explicit item relation in the same JSON mutation. Synthetic/import capture defaults nil.",
+  "header_consumers": [
+    "cardHeader",
+    "ReplicaPreviewView",
+    "ReplicaStackView"
+  ],
+  "header_contract": "Present application record: persisted rawIcon decode, nil/invalid gives empty NSImage. No record: independent unknown placeholder; no per-render NSWorkspace icon lookup. Published shared records update old related cards without retiming items.",
+  "remaining_partial": [
+    "rawColorfactoryandHeaderappcolor notimplementedthisround byagreement; sourceapplicationCoreDatafactoryparentremainpartial",
+    "OriginalCoreDataentity/KVO/Undo/fullcontexttransactionanderroridentity notclaimedbyJSONadapter",
+    "ArchiveitemupdatedAtprecedence remains existingadapter; missingoldrelationshipnil doesnotreconstructoriginalpresence",
+    "未知应用占位图使用独立图形，尚未核准原unknown-app资源像素一致性。",
+    "PNGsystemrepresentation/OSimagebytes equality notruntime-tested; staticreuseofalreadyverifiedencoder only",
+    "Sourcefunctioncountnotincreased merelyfornewmodel/helper; noABIcompleteclaim",
+    "Archive/addrawData is independent input adapter rather than originalfactoryNSImage parameter; incomingrawData preserved, oldiconcomparison maydetectchanged normalization withoutclaimingoriginalfullfactoryABI.",
+    "Old archives missing source metadata retain nil relationship; historical original entity presence and icon pixels cannot be reconstructed from sourceBundleID alone. Existing fallback placeholder is visibly different from the original unknown-app asset.",
+    "共享应用name保留非空旧值；副本原有item.sourceName及索引投影仍为独立兼容模型，完整原实体字段提供者未恢复。"
+  ],
+  "compilation": {
+    "build": 54,
+    "passed": true,
+    "inputs": 163,
+    "inputs_unchanged": true,
+    "seconds": 24.12,
+    "compiled_sha256": {
+      "replica/.build/release/PasteReplica": "24d03e58202ea2930b5bf302202a1920f4550c8b82550459fcb5d045ed9d7bbb",
+      "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+      "replica/.build/release/paste-replica-mcp": "d0874902acd3c94770066420f7063b611023c0384cf856bbe15e5530f7790a71"
+    }
+  },
+  "new_complete_functions": 0,
+  "new_partial_parents": 2,
+  "functional_tests_executed": false,
+  "unit_tests_executed": false,
+  "product_executed": false,
+  "mcp_tests_executed": false,
+  "full_equivalence_verified": false,
+  "independent_static_peer_review": {
+    "source_sha256_checked": true,
+    "result": "未发现本轮完整共享图标数据链的确定集成缺陷；已核缺key、共享更新不改旧日期、字段级并发合并、单次incoming编码与三UI消费",
+    "limits": "只静态审阅；原rawColor/未知占位像素/原生事务时序未完成。碰撞导入采用factory规范比较，不承诺无条件用新记录字节覆盖已有记录。"
+  }
+}

@@ -8,6 +8,28 @@ private struct StoreState: Codable, Equatable {
     var items: [ClipboardItem] = []
     var pinboards: [Pinboard] = []
     var preferences = AppPreferences()
+    var sourceApplications: [SourceApplicationRecord] = []
+
+    init(items: [ClipboardItem] = [], pinboards: [Pinboard] = [], preferences: AppPreferences = AppPreferences(),
+         sourceApplications: [SourceApplicationRecord] = []) {
+        self.items = items
+        self.pinboards = pinboards
+        self.preferences = preferences
+        self.sourceApplications = sourceApplications
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case schemaVersion, items, pinboards, preferences, sourceApplications
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        schemaVersion = try values.decode(Int.self, forKey: .schemaVersion)
+        items = try values.decode([ClipboardItem].self, forKey: .items)
+        pinboards = try values.decode([Pinboard].self, forKey: .pinboards)
+        preferences = try values.decode(AppPreferences.self, forKey: .preferences)
+        sourceApplications = try values.decodeIfPresent([SourceApplicationRecord].self, forKey: .sourceApplications) ?? []
+    }
 }
 
 private struct DiskRevision: Equatable {
@@ -20,6 +42,7 @@ private struct DiskRevision: Equatable {
 public final class ClipboardStore: ObservableObject {
     @Published public var items: [ClipboardItem] = []
     @Published public var pinboards: [Pinboard] = []
+    @Published public private(set) var sourceApplications: [SourceApplicationRecord] = []
     public let didRestoreItem = PassthroughSubject<Void, Never>()
     public let preferenceChanges = PassthroughSubject<(old: AppPreferences, new: AppPreferences), Never>()
     @Published public var preferences = AppPreferences() {
@@ -43,11 +66,14 @@ public final class ClipboardStore: ObservableObject {
     }
 
     private var stateURL: URL { directoryURL.appendingPathComponent("clipboard.json") }
-    private var current: StoreState { StoreState(items: items, pinboards: pinboards, preferences: preferences) }
+    private var current: StoreState {
+        StoreState(items: items, pinboards: pinboards, preferences: preferences, sourceApplications: sourceApplications)
+    }
 
     private func publish(_ state: StoreState, persisted: StoreState? = nil) {
         if items != state.items { items = state.items }
         if pinboards != state.pinboards { pinboards = state.pinboards }
+        if sourceApplications != state.sourceApplications { sourceApplications = state.sourceApplications }
         if preferences != state.preferences { preferences = state.preferences }
         baseline = persisted ?? state
     }
@@ -68,6 +94,11 @@ public final class ClipboardStore: ObservableObject {
         guard Set(state.items.map(\.id)).count == state.items.count,
               Set(state.pinboards.map(\.id)).count == state.pinboards.count else {
             throw ClipboardStoreError.duplicateIdentifiers
+        }
+        let applicationIDs = Set(state.sourceApplications.map(\.bundleIdentifier))
+        guard applicationIDs.count == state.sourceApplications.count,
+              state.items.allSatisfy({ $0.sourceApplicationBundleID.map(applicationIDs.contains) ?? true }) else {
+            throw ClipboardStoreError.invalidSourceApplication
         }
     }
 
@@ -145,6 +176,9 @@ public final class ClipboardStore: ObservableObject {
             if local.plainText != base.plainText { value.plainText = local.plainText }
             if local.sourceName != base.sourceName { value.sourceName = local.sourceName }
             if local.sourceBundleID != base.sourceBundleID { value.sourceBundleID = local.sourceBundleID }
+            if local.sourceApplicationBundleID != base.sourceApplicationBundleID {
+                value.sourceApplicationBundleID = local.sourceApplicationBundleID
+            }
             if local.sourceDevice != base.sourceDevice { value.sourceDevice = local.sourceDevice }
             if local.isInHistory != base.isInHistory { value.isInHistory = local.isInHistory }
             if local.payloads != base.payloads {
@@ -173,6 +207,16 @@ public final class ClipboardStore: ObservableObject {
             if local.colorHex != base.colorHex { value.colorHex = local.colorHex }
             if local.sortOrder != base.sortOrder { value.sortOrder = local.sortOrder }
             return value
+        }
+        let oldApplications = Dictionary(uniqueKeysWithValues: baseline.sourceApplications.map { ($0.bundleIdentifier, $0) })
+        for application in local.sourceApplications where oldApplications[application.bundleIdentifier] != application {
+            var changed = application
+            if let old = oldApplications[application.bundleIdentifier],
+               let current = result.sourceApplications.first(where: { $0.bundleIdentifier == application.bundleIdentifier }) {
+                if application.rawIcon == old.rawIcon { changed.rawIcon = current.rawIcon }
+                if application.name == old.name { changed.name = current.name }
+            }
+            Self.upsertSourceApplication(changed, in: &result)
         }
         let local = local.preferences, base = baseline.preferences
         if local.historyLimit != base.historyLimit { result.preferences.historyLimit = local.historyLimit }
@@ -214,6 +258,25 @@ public final class ClipboardStore: ObservableObject {
         }
         state.items.sort { $0.updatedAt == $1.updatedAt ? $0.id.uuidString < $1.id.uuidString : $0.updatedAt > $1.updatedAt }
         state.pinboards.sort { $0.sortOrder == $1.sortOrder ? $0.id.uuidString < $1.id.uuidString : $0.sortOrder < $1.sortOrder }
+        state.sourceApplications.sort { $0.bundleIdentifier < $1.bundleIdentifier }
+    }
+
+    private static func upsertSourceApplication(_ application: SourceApplicationRecord, in state: inout StoreState) {
+        let incomingIcon = application.rawIcon
+        if let index = state.sourceApplications.firstIndex(where: { $0.bundleIdentifier == application.bundleIdentifier }) {
+            if state.sourceApplications[index].name.isEmpty { state.sourceApplications[index].name = application.name }
+            if OriginalSourceApplication.normalizedIcon(state.sourceApplications[index].rawIcon) != incomingIcon {
+                state.sourceApplications[index].rawIcon = incomingIcon
+            }
+        } else {
+            state.sourceApplications.append(SourceApplicationRecord(bundleIdentifier: application.bundleIdentifier,
+                name: application.name, rawIcon: incomingIcon))
+        }
+    }
+
+    public func sourceApplication(for item: ClipboardItem) -> SourceApplicationRecord? {
+        guard let identifier = item.sourceApplicationBundleID else { return nil }
+        return sourceApplications.first { $0.bundleIdentifier == identifier }
     }
 
     private func expireHistory(_ state: inout StoreState) {
@@ -312,10 +375,12 @@ public final class ClipboardStore: ObservableObject {
     }
 
     @discardableResult
-    public func add(_ item: ClipboardItem) throws -> UUID {
-        let item = Self.withPreviewMetadata(item, binaryPropertyList: preferences.useBinaryPlist, preferQuickLookThumbnails: preferences.fileQuickLookThumbnailsEnabled, generateMissingContentPreview: true)
+    public func add(_ item: ClipboardItem, sourceApplication: SourceApplicationRecord? = nil) throws -> UUID {
+        var item = Self.withPreviewMetadata(item, binaryPropertyList: preferences.useBinaryPlist, preferQuickLookThumbnails: preferences.fileQuickLookThumbnailsEnabled, generateMissingContentPreview: true)
+        if let sourceApplication { item.sourceApplicationBundleID = sourceApplication.bundleIdentifier }
         let checksum = try? Self.knownPasteboardChecksum(from: item.payloads)
         return try mutate(historyAction: item.isInHistory) { state in
+            if let sourceApplication { Self.upsertSourceApplication(sourceApplication, in: &state) }
             if let i = state.items.firstIndex(where: { previous in
                 if let checksum, let previousChecksum = try? Self.knownPasteboardChecksum(from: previous.payloads) {
                     return checksum == previousChecksum
@@ -337,6 +402,7 @@ public final class ClipboardStore: ObservableObject {
                 state.items[i].updatedAt = max(Date(), item.updatedAt)
                 state.items[i].sourceName = item.sourceName
                 state.items[i].sourceBundleID = item.sourceBundleID
+                state.items[i].sourceApplicationBundleID = item.sourceApplicationBundleID
                 state.items[i].sourceDevice = item.sourceDevice
                 if item.isInHistory { state.items[i].createdAt = item.createdAt }
                 state.items[i].isInHistory = state.items[i].isInHistory || item.isInHistory
@@ -684,6 +750,7 @@ public final class ClipboardStore: ObservableObject {
         try validate(archive)
         let importedItems = archive.items.map { Self.withPreviewMetadata($0, binaryPropertyList: archive.preferences.useBinaryPlist, preferQuickLookThumbnails: archive.preferences.fileQuickLookThumbnailsEnabled, generateMissingContentPreview: false) }
         try mutate { state in
+            for application in archive.sourceApplications { Self.upsertSourceApplication(application, in: &state) }
             var boards = Dictionary(uniqueKeysWithValues: state.pinboards.map { ($0.id, $0) })
             for board in archive.pinboards { boards[board.id] = board }
             state.pinboards = Array(boards.values)

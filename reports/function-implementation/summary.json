@@ -6,8 +6,8 @@
     "excluded_by_scope": 6,
     "implemented": 0,
     "migrated": 1494,
-    "partial": 271,
-    "pending": 79361,
+    "partial": 273,
+    "pending": 79359,
     "verified": 2
   },
   "targets": [
@@ -20,8 +20,8 @@
         "excluded_by_scope": 6,
         "implemented": 0,
         "migrated": 1390,
-        "partial": 271,
-        "pending": 79036,
+        "partial": 273,
+        "pending": 79034,
         "verified": 2
       },
       "pages": [
