@@ -1,0 +1,110 @@
+{
+  "kind": "text_copy_time_metadata_and_card_static_review",
+  "version": "0.8.0-dev.22",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalTextPreviewMetadata.swift": "7c09e2e2297ef070a792bf8a50e51ab162146d27b516d7e92ac3bd53df36b676",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
+    "replica/Sources/PasteReplicaCore/OriginalPreviewFooter.swift": "97d14915cc4fa873a0d526a42f168ea5487864d0b8327e825bee18e28bd2e25c",
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "08725f484bc3fdde40d056dd5a5dae21d98b4731eef3a2e3b441bf8bba4d8d3b",
+    "replica/Sources/PasteReplicaCore/Models.swift": "06684cbb34bad29d69184de8a2de7ff03c5ff20f2411c4e08ea2ccfdc7596ad5",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "e648705bd890e43d1109f4ba0aadd82eba7d45b11e3a9f7e42688e3b89d38356",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "7f2a54c73efecf8c6f445b293ab8ac7c7b0e40d4f10831afb56949480db59807"
+  },
+  "unified_build": {
+    "name": "gap-build42",
+    "manifest": ".local/gap-build-complete.json",
+    "manifest_sha256": "368d6dd089a9046c229f49ec92895e8b8ac4bc2727bec3621b795c01aeedb2a9",
+    "log": ".local/gap-build-42.log",
+    "seconds": 20.63,
+    "compiler_log_seconds": 18.89,
+    "inputs": 148,
+    "sha_before_after_equal": true,
+    "result": "compiled",
+    "functional_execution": false,
+    "app_sha256": "743d8161736f6a633b75b3f748e13886fbf50d0b08df3559ad42dd2d37b83a54"
+  },
+  "compiled_app_sha256": "743d8161736f6a633b75b3f748e13886fbf50d0b08df3559ad42dd2d37b83a54",
+  "generator_contract": "Original f31a3a8 uses first original item only. Rich priority flatRTFD/rtfd/rtf, removes paragraph textBlocks; otherwise f37c9a8 plain. Exact existing first.f37d33c reused. Missing first/data returns nil; present empty plain/rich returns successful empty metadata. Full NSAttributedString.length is saved as UTF16 units; if length>500 only preview sample is substring(NSRange0,500), preserving full count. Foundation.AttributedString(NSAttributedString) is exact nonthrow imported initializer.",
+  "wire_contract": "Original Stored inverse text writes type=text plus full Int length and sample AttributedString. Forward text projection is DEFAULT, not strict type==text: nil/text/unknown type is text unless type exactly link/image/color/files. Missing length0; missing text AttributedString(). Invalid full Stored decode returns nil before projection.",
+  "card_consumer": "f3dc390 TextItemCell reads canonical ItemPreview enumcase0, bridges metadata.text to NSAttributedString then setAttributedText; count uses metadata.length (UTF16), Int32 exact bounds/traps then original f1e6b38 resource. Missing/bad/nontext raw skips entire update; does not force0 or fallback full payload. Existing successful empty metadata displays0.",
+  "full_preview_consumer": "f3c05d4 reconstructs full NSAttributedString from original item payload with rich priority and paragraph textBlocks removal, failing to empty NSAttributedString. This is independent of metadata500 sample; current editor full-payload chain is reused.",
+  "full_editor_footer": "f211dec takes current editor.attributedText.string, f211e80 uses Swift String.count(Character), whitespace components nonempty words and newline components. Current OriginalPreviewTextMetaView already follows it; do not replace with metadata UTF16 count.",
+  "actual_consumer_peer": {
+    "result": "No concrete text integration defect found in reviewed chain.",
+    "codec": "Exact default text projection and strict exclusions; full13-field decoder reused; raw-only model getter, no nil reconstruction.",
+    "writers": "add/capture explicitly generates missing raw for text/rich; existing raw preserved. text update and rich update generate from actual replacement payload, write raw in same mutation with merged state format preference.",
+    "archive": "generateMissingContentPreview:false leaves missing text/rich copy-time metadata nil.",
+    "card": "Only compact text/rich branch consumes sampled text; absent metadata draws no text and count empty; successful metadata uses Int32(length) exact trap conversion and original f1e6b38.",
+    "full_preview": "Full text payload and editor Character/word/line footer unchanged; do not substitute500 sample or UTF16 length there.",
+    "literal_references": "All implementation.symbol values checked as actual source substrings and line numbers computed."
+  },
+  "compiled_generator_proof": {
+    "function_range": [
+      "0x1001679f8",
+      "0x100167b74"
+    ],
+    "selectors": [
+      {
+        "slot": "0x1001e0008",
+        "selector": "length"
+      },
+      {
+        "slot": "0x1001e0438",
+        "selector": "attributedSubstringFromRange:"
+      }
+    ],
+    "value_contract": "Calls existing f37d33c, length selector ->x21, cmp500/LE; above500 calls attributedSubstringFromRange location0 length500; passes sample to same nonthrow Foundation AttributedString init; stores original full length; emptyitems/missingcontent returns optionalnil.",
+    "original_sdk_symbol": "_$s10Foundation16AttributedStringVyACSo012NSAttributedC0CcfC",
+    "current_sdk_symbol": "_$s10Foundation16AttributedStringVyACSo012NSAttributedC0CcfC",
+    "same_symbol_dylib_weak_and_zero_addend": true,
+    "product_executed": false
+  },
+  "source_complete_candidate": [
+    "0x10031a3a8"
+  ],
+  "parents_partial": [
+    "0x100322504",
+    "0x100315a38",
+    "0x100316004",
+    "0x1003dc390"
+  ],
+  "remaining": [
+    "Full multi-type ItemPreview/CoreData/VM/DI/actor/ABI parents partial",
+    "No original execution/byte equality/functional regression evidence"
+  ],
+  "functional_tests_executed": false,
+  "products_started": false,
+  "equivalence_verified": false,
+  "original_references": [
+    {
+      "address": "0x10031a3a8",
+      "path": "decompiled/Paste/part-0256.c",
+      "line": 1494
+    },
+    {
+      "address": "0x100315a38",
+      "path": "decompiled/Paste/part-0255.c",
+      "line": 946
+    },
+    {
+      "address": "0x1003dc390",
+      "path": "decompiled/Paste/part-0307.c",
+      "line": 700
+    },
+    {
+      "address": "0x1003c05d4",
+      "path": "decompiled/Paste/part-0297.c",
+      "line": 478
+    },
+    {
+      "address": "0x100211dec",
+      "path": "decompiled/Paste/part-0180.c",
+      "line": 896
+    },
+    {
+      "address": "0x100211e80",
+      "path": "decompiled/Paste/part-0180.c",
+      "line": 922
+    }
+  ]
+}

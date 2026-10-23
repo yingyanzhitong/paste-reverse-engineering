@@ -1,11 +1,11 @@
 {
-  "生成时间": "2026-10-23T14:05:25.667688+00:00",
-  "范围": "主面板既有卡片Header静态差分修复；不是全卡片或样式一比一验收",
-  "结论": "恢复非compact原式共用的字体/字重/日期字体/标签间距与居中，以及真实标题与默认文件计数路径；3个父函数仍为partial，0新增完整函数、0新增功能组。",
+  "生成时间": "2026-10-23T14:22:39.861700+00:00",
+  "范围": "主面板既有卡片Header字体/几何/文本metadata消费者静态差分修复；不是整卡片/面板一比一验收",
+  "结论": "恢复Header字体/标题默认、OS圆角、selection扩4、76点来源图标裁剪与metadata500UTF16样本/完整UTF16计数；dev22六父partial，0新增完整函数和功能组。232仍副本当前尺寸，未宣称动态原高度全适配。",
   "源码": [
     {
       "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-      "sha256": "897232397ff21c6e5714b8af596263179dc8652c861720cbab780c77b8b90a1f"
+      "sha256": "7f2a54c73efecf8c6f445b293ab8ac7c7b0e40d4f10831afb56949480db59807"
     }
   ],
   "原证据": {
@@ -116,12 +116,6 @@
       }
     ]
   },
-  "确认合同": [
-    "f3d47ac styles0/1/2: preferred title3 size -> systemFont medium via f1ff904/f1ffa24/f1ffa30; date preferred callout via f1ff934; vertical labelsStack orientation1/alignment5/spacing -1; white title and white date alpha0.8.",
-    "f3d3b74 labels leading=12, labels centerY=appIcon centerY and appIcon centerY=content centerY; original is not top8-padded.",
-    "f3d41b4 title default uses f309008, then actual title uses f308f88. Existing replica Core helpers reused; named card now shows originalTitle, empty/nil -> original localized default. File count now decodedFilePreviewMetadata?.paths.count: decoded files metadata empty paths stays0; missing/nonfiles metadata passesnil to original helper fallback1 (arm64 3091c0 movw0,#1).",
-    "f3d8588 header style0/1/2 heights56/52/48; style3 34 or36 onmacOS26 with fullsize gate. f3d47ac icon84/80/76 and labels trailing-70/-66/-62; exact main current presentation-style mapping not established by this bounded pass."
-  ],
   "实际修改": [
     "Actual ReplicaClipboardCard.cardHeader now uses title3 point size with system medium, preferred callout date, vertical spacing=-1 and HStack center alignment without top8.",
     "Actual cardTitle reuses f309008 and f308f88 with originalTitle; no new standalone wrapper claimed as original function."
@@ -133,12 +127,14 @@
     "behavior": "独立预览Header同步decodedFilePreviewMetadata?.paths.count，nil保原fallback1，不使用??0或itemFileURLs。"
   },
   "未完成或未证实": [
-    "Main panel/card total232x232, radius16, gap24, card background/cutout, selection border/shadow and exact style/mode mapping remain unproved. Existing48header/icon48 retained; style0/1/2 shared typography only restored.",
-    "Original native HeaderView TitleLabel drawing/baselines and SwiftUI text/layout are separate implementations; whole header is partial, no visual pixel equivalence asserted.",
-    "Original date formatter/live subscription, source icon stored entity image vs NSWorkspace adapter, source palette and pinboard hiding remain prior partial contracts.",
-    "File title paths/count now use persisted rawPreview decodedfiles metadata; independent model/codec provenance compatibility remainspartial. No current payload fallback, dedup or filesystemstat used."
+    "Full panel container height/scroll242/offset11, dynamically available card square size and sizeclass transitions/animations still differ from original;232 is current adapter input, not claimed original fixedsize.",
+    "Original style3 compact layout/image fullsize/specialColor/link preferredstyle, live source icon entity assets and pinboard hide policy remain partial.",
+    "Current gray inactive selection, content shadow, sourcepalette, native text baseline/drawing and whole card content constraints remain partial. No runtime pixel equivalence asserted.",
+    "Color/image/file/text content-specific rendering is outside this finite group; no global geometry completion implied.",
+    "TextItemCell full native previewLabel/footer constraints, used-cell prior values on missing metadata, fading theme/source appearance and gradient remainpartial; SwiftUI nil projection does not assert original recycling cleanup."
   ],
-  "验证": {
+  "限制": "只做静态REA/机器码/Source对照与统一编译；未运行原版或复刻产品、功能回归、单测、UI/CUA/MCP，未验证像素一致。",
+  "上轮build41验证": {
     "parent_build": "gap-build41",
     "result": "passed",
     "elapsed_seconds": 19.78,
@@ -159,5 +155,197 @@
     },
     "parent_partial_status_preserved": true
   },
-  "限制": "只做静态REA/机器码/Source对照与统一编译；未运行原版或复刻产品、功能回归、单测、UI/CUA/MCP，未验证像素一致。"
+  "验证": {
+    "parent_build": "gap-build42",
+    "result": "passed",
+    "elapsed_seconds": 20.63,
+    "compiler_log_elapsed_seconds": 18.89,
+    "stable_input_count": 148,
+    "input_sha_before_after_equal": true,
+    "kind": "static_compilation_only",
+    "functional_regression_executed": false,
+    "product_executed": false,
+    "build_log": ".local/gap-build-42.log",
+    "build_log_sha256": "5568b7bdcdb6cd628f9ca8d71f7d1f0467460465e9af73eed22a67d925417426",
+    "source_manifest_file": ".local/gap-build-complete.json",
+    "source_manifest_sha256": "368d6dd089a9046c229f49ec92895e8b8ac4bc2727bec3621b795c01aeedb2a9",
+    "compiled_sha256": {
+      "replica/.build/release/PasteReplica": "743d8161736f6a633b75b3f748e13886fbf50d0b08df3559ad42dd2d37b83a54",
+      "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+      "replica/.build/release/paste-replica-mcp": "9b54514ef52b72d6a8b8b90be0f028a6729cc15ef986d51d0847cd48e9b88644"
+    },
+    "parent_partial_status_preserved": true
+  },
+  "dev22原证据": {
+    "原二进制": {
+      "path": ".local/targets/Paste.arm64",
+      "sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb"
+    },
+    "REA函数片段": [
+      {
+        "function": "Paste:0x10006ccf8",
+        "path": "decompiled/Paste/part-0035.c",
+        "line": 5430,
+        "fragment_sha256": "84c1eedeb0593c879626a8930eaf5e694781b7caa3b5b9a88314d05d8289b4c8"
+      },
+      {
+        "function": "Paste:0x10006d0a0",
+        "path": "decompiled/Paste/part-0035.c",
+        "line": 5597,
+        "fragment_sha256": "35c6ae889215683e52ca2a66145d97e1c4223c9b2447d047963042d8d7700c0f"
+      },
+      {
+        "function": "Paste:0x10006dd84",
+        "path": "decompiled/Paste/part-0036.c",
+        "line": 111,
+        "fragment_sha256": "81b694dc88c8cd9dc85382b60de24381f688bec5e7b4283e6da71efd318d7513"
+      },
+      {
+        "function": "Paste:0x10022b18c",
+        "path": "decompiled/Paste/part-0189.c",
+        "line": 971,
+        "fragment_sha256": "c3f6fdaf8de1181e1927aa407f344ecf8c7e9d9ee978819517789ed134315068"
+      },
+      {
+        "function": "Paste:0x1003f2acc",
+        "path": "decompiled/Paste/part-0315.c",
+        "line": 51,
+        "fragment_sha256": "96b457b64dfaf82cb31afae9cc80683e899101843ab36a88e3c40c8da749425a"
+      },
+      {
+        "function": "Paste:0x1003f2d88",
+        "path": "decompiled/Paste/part-0315.c",
+        "line": 147,
+        "fragment_sha256": "6a7e409a8340a543a2f233021f8e7645be18fc64ef1c0470f65006ac98e5b21e"
+      },
+      {
+        "function": "Paste:0x1003d3484",
+        "path": "decompiled/Paste/part-0304.c",
+        "line": 955,
+        "fragment_sha256": "e45b8f3a7c8b80c7886bfb31492215094855a6a63a829dbd918f0b7ec49558f3"
+      },
+      {
+        "function": "Paste:0x1003d3b74",
+        "path": "decompiled/Paste/part-0304.c",
+        "line": 1182,
+        "fragment_sha256": "cf5001ba07d2f7c79a3260deab01dbe462a3c612e7ff6f8690537bc7206bedc4"
+      },
+      {
+        "function": "Paste:0x1003d47ac",
+        "path": "decompiled/Paste/part-0304.c",
+        "line": 1583,
+        "fragment_sha256": "1a71164352e76673336477287c5bc5fb4a61f8a97dc9bee18f41fb278b5c2164"
+      },
+      {
+        "function": "Paste:0x1003d8588",
+        "path": "decompiled/Paste/part-0306.c",
+        "line": 385,
+        "fragment_sha256": "19112ad7dacd544a2871595e9ec4783a7731daa23416c1b0fffeccf58c4f9e0a"
+      },
+      {
+        "function": "Paste:0x1003dc390",
+        "path": "decompiled/Paste/part-0307.c",
+        "line": 700,
+        "fragment_sha256": "7daa0a5641d49c49b3e8641ce3b1ba93cdab33728ad04a8670e1a0f2aa3d45cb"
+      }
+    ],
+    "arm64片段": [
+      {
+        "path": ".local/window-dev22-basecell-arm64.txt",
+        "sha256": "938854bba1bfba865bf0d0df551633d1b914d7d7a8658a5b61ea2b6309d36a78"
+      },
+      {
+        "path": ".local/window-dev22-effective-size-arm64.txt",
+        "sha256": "32d1d744b8dcd39f1c3434bac55a9f1d1f6e60108753ca43c66718511d7ef077"
+      },
+      {
+        "path": ".local/window-dev22-header-init-arm64.txt",
+        "sha256": "df96169f366bfda1f4c5874d59f4bfe42b1f5af1ee08fc829bab97da1752902f"
+      },
+      {
+        "path": ".local/window-dev22-main-cell-bind-arm64.txt",
+        "sha256": "3ef1252aa72c3c730f5e73909a80d6b4ecf1b543c8c2190d7a1930088f9a75c5"
+      },
+      {
+        "path": ".local/window-dev22-main-layout-arm64.txt",
+        "sha256": "034d32005ac056d41864419be84cee2857957eb0444a73d69925da0c8c70be5d"
+      },
+      {
+        "path": ".local/window-dev22-sizeclass-init-arm64.txt",
+        "sha256": "ca281342835940124926ca5487ae79f9eec9983ccea19da990ffd18869a3f65c"
+      },
+      {
+        "path": ".local/window-dev21-header-style-arm64.txt",
+        "sha256": "dccc30a1440e69d398203ea13a63715cc2030ecd9313bf1d322dc8dbbc238e6f"
+      },
+      {
+        "path": ".local/window-dev21-header-constraints-arm64.txt",
+        "sha256": "141213cf32c12d2635ee2651485de80c346f8c3d9dd870ccfc6bc74733480d77"
+      }
+    ]
+  },
+  "dev22确认几何合同": [
+    {
+      "group": "real_main_collection_style",
+      "contract": "f06ccf8 creates SizeClassTransitionManager using collection.bounds.height-32. f06d0a0 updates from f22b18c; arm64 f22b18c returns bounds.height-(top+bottom), not just CGRectGetHeight as Ghidra body suggests. Main configuration top8/bottom24, leading dynamically sidecarWidth+24, trailing24/gap24. H<200->3;200<=H<240->2;240<=H<280->1;H>=280->0. f06dd84 reads manager+0x10 and passes rawstyle in actual ItemCell virtual configure+0x208."
+    },
+    {
+      "group": "header_geometry",
+      "contract": "Original f3d8588 styles0/1/2 heights56/52/48; f3d47ac icon84/80/76 and labels trailing-70/-66/-62. f3d3b74 makes square icon centered vertically, trailing=Header.trailing+14; labels leading12, centerY=icon.centerY. Hence each icon extends14 beyond top/bottom/right. Current232 card maps raw2; implement76/48/62/+14 without pretending original universally fixed232."
+    },
+    {
+      "group": "clipping_and_background",
+      "contract": "f3d3484 Header.clipsToBounds=false; Header.contentView.clipsToBounds=true. Its contentView contains pinboard/background/icon/labels. Replica clips actual Header content rectangle after positioning large icon. Original NSImageView has imageScaling3. Removed replica-only52x48white background corner cutout; original icon receives stored source image, separately from background palette."
+    },
+    {
+      "group": "content_selection_shape",
+      "contract": "f3f2acc real BaseCell init: OS>=26 content16continuous, selection20continuous; priorOS content10circular, selection14circular. Original f3f2d88 selection edges-4, content edges0, verified through arm64 ivar fc4278 selection vs fc4268 content and original edge helper f1f97b4 sign handling. Actual selection is filled background behind content, not a 1pt unselected black stroke."
+    }
+  ],
+  "dev22实际消费者修改": [
+    "ReplicaClipboardCard uses OS-appropriate cardCornerRadius/cardCornerStyle/selectionCornerRadius for clipping/contentShape and selected filled background expanded4.",
+    "cardHeader actual ZStack positions76x76SourceAppIcon trailing+14, centers labels with leading12/trailing62, fixesHeader48 and clips. Existing originaltitle/font/date reuse unchanged.",
+    "No panel outer geometry rewrite or new feature row; fixed232 current adapter retained. Root controls unifiedbuild.",
+    "Compact text/richText now renders only decodedTextPreviewMetadata.text. Card-specific footer uses original editor.character-count resource f1e6b38(Int32(metadata.length)); Int32 conversion preserves original overflow trap. Nil metadata creates neither text nor numeric fallback. Noncompact/full editor/auxiliary itemSummary stayunchanged."
+  ],
+  "dev22未完成或未证实": [
+    "Full panel container height/scroll242/offset11, dynamically available card square size and sizeclass transitions/animations still differ from original;232 is current adapter input, not claimed original fixedsize.",
+    "Original style3 compact layout/image fullsize/specialColor/link preferredstyle, live source icon entity assets and pinboard hide policy remain partial.",
+    "Current gray inactive selection, content shadow, sourcepalette, native text baseline/drawing and whole card content constraints remain partial. No runtime pixel equivalence asserted.",
+    "Color/image/file/text content-specific rendering is outside this finite group; no global geometry completion implied.",
+    "TextItemCell full native previewLabel/footer constraints, used-cell prior values on missing metadata, fading theme/source appearance and gradient remainpartial; SwiftUI nil projection does not assert original recycling cleanup."
+  ],
+  "text元数据依赖": [
+    {
+      "path": "replica/Sources/PasteReplicaCore/Models.swift",
+      "sha256": "06684cbb34bad29d69184de8a2de7ff03c5ff20f2411c4e08ea2ccfdc7596ad5",
+      "matches_compiled_manifest": true
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalTextPreviewMetadata.swift",
+      "sha256": "7c09e2e2297ef070a792bf8a50e51ab162146d27b516d7e92ac3bd53df36b676",
+      "matches_compiled_manifest": true
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
+      "sha256": "08725f484bc3fdde40d056dd5a5dae21d98b4731eef3a2e3b441bf8bba4d8d3b",
+      "matches_compiled_manifest": true
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+      "sha256": "e648705bd890e43d1109f4ba0aadd82eba7d45b11e3a9f7e42688e3b89d38356",
+      "matches_compiled_manifest": true
+    }
+  ],
+  "text同事复审": {
+    "agent": "image_dev8",
+    "confirmed": "Int32(metadata.length) matches original overflow bounds without nonnegative clamp; metadata.text is500UTF16sample, length is fullsourceUTF16; nil does not imply original reused-cell clearing. Original footer native constraints/offset remainpartial."
+  },
+  "历史dev21确认合同": [
+    "f3d47ac styles0/1/2: preferred title3 size -> systemFont medium via f1ff904/f1ffa24/f1ffa30; date preferred callout via f1ff934; vertical labelsStack orientation1/alignment5/spacing -1; white title and white date alpha0.8.",
+    "f3d3b74 labels leading=12, labels centerY=appIcon centerY and appIcon centerY=content centerY; original is not top8-padded.",
+    "f3d41b4 title default uses f309008, then actual title uses f308f88. Existing replica Core helpers reused; named card now shows originalTitle, empty/nil -> original localized default. File count now decodedFilePreviewMetadata?.paths.count: decoded files metadata empty paths stays0; missing/nonfiles metadata passesnil to original helper fallback1 (arm64 3091c0 movw0,#1).",
+    "f3d8588 header style0/1/2 heights56/52/48; style3 34 or36 onmacOS26 with fullsize gate. f3d47ac icon84/80/76 and labels trailing-70/-66/-62; exact main current presentation-style mapping not established by this bounded pass."
+  ],
+  "历史范围说明": "历史dev21字段只保留上轮证据过程；当前几何/样本合同及剩余差异以dev22字段为准。"
 }

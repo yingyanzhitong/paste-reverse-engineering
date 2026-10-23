@@ -58,13 +58,13 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 ## 并行迁移与现有实现复用
 
-2026-10-23 当前 0.8.0-dev.21 快照为 1,478 / 81,134：源码实现或复用 579 个、实际系统转发 899 个；另有5个已逐地址核定的范围排除，范围内剩余 79,651 个，其中 211 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
+2026-10-23 当前 0.8.0-dev.22 快照为 1,481 / 81,134：源码实现或复用 580 个、实际系统转发 901 个；另有5个已逐地址核定的范围排除，范围内剩余 79,648 个，其中 215 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
 
 按用户最新要求，四智能体改为先集中核对已有功能和完整调用链：已有实现满足契约就直接复用，只补确认缺失或行为不同的部分。系统转发、薄包装、编译器生成代码按证据成组核对，不再以逐个重写地址推进。功能存在、源码契约迁移、功能回归和一比一验收分别记录；不能把一次静态检查说成全部函数已通过。整体目标保持 active，尚未执行本轮新的功能、UI 或 MCP 测试。
 
 此前 0.8.0-dev.4 补共享依赖缓存、一次性配置、剪贴板 MD5 校验及去重接入、日志输出/诊断启动偏好、搜索筛选原符号、快捷键共享服务与错误类型、原生预览按钮和异步文本格式状态。17 个语言资源按已恢复词条接入，并补资源打包。稳定构建前后 88 份源码、配置和资源摘要一致，生成的 bundle accessor 也绑定构建。完整仓库事务、Sentry 本地副作用、actor 析构和部分父级 UI 工厂继续保留 partial。
 
-本轮一页结论见 [concentrated-review.md](../reports/replica/concentrated-review.md)，集中快审明细见 [fast-coverage-audit.md](../reports/replica/fast-coverage-audit.md)：73 个行为单元绑定 91 份源码，32 项列明行为已有代码、38 项有差异或缺证据、1 项缺实现、2 项未核对。这不是原版完整产品的功能百分比，也不提升逐地址台账状态。
+本轮一页结论见 [concentrated-review.md](../reports/replica/concentrated-review.md)，集中快审明细见 [fast-coverage-audit.md](../reports/replica/fast-coverage-audit.md)：73 个行为单元绑定 92 份源码，32 项列明行为已有代码、38 项有差异或缺证据、1 项缺实现、2 项未核对。这不是原版完整产品的功能百分比，也不提升逐地址台账状态。
 
 0.8.0-dev.5 先补确认缺口：真实筛选 Popover、多选同组 OR/跨组 AND、三列分组与胶囊条目、键盘和焦点返回；VisionKit 图片文字拖选与原生滚动缩放/居中；预览 Pin/分享和三项复数计数；原 ItemData 编解码与压缩导入。另修三个偏好保存丢失及多项后续图片不能进入 OCR。26 个偏好字段静态核对均有合并分支。稳定编译前后 112 份输入（78 份 Swift/配置、17 份 strings、17 份 stringsdict）摘要一致。
 
@@ -104,6 +104,8 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 0.8.0-dev.21 将真实权限决策前移writer之前，恢复first modal三态/checkbox与Enable regular真实授权观察、原窗口关闭及1秒成功返回，选择授权结束当次不恢复；原完整图像/私有host仍partial。卡片Header共用字体/字重/间距/居中与真实标题恢复，文件默认计数改canonical files paths：空数组0、缺失fallback1。颜色值生成/UInt64 wire/实际写入与预览相接，纯f308ea0完整当前arm64/selector静态核实后新增Source迁移1；multi-case/VM父不升级。最终build41的147输入一致，17.93秒/19.78秒；SDK新增16/撤回1，撤回记录保留，整产品未运行回归。新增主卡片检查项使清单73项，不用功能行数替代完成率。详见[卡片Header](../reports/replica/card-header-static-audit.json)、[颜色元数据](../reports/replica/color-preview-metadata-static-audit.json)、[权限模态](../reports/function-migration/accessibility-modals-build41.json)、[当前编译器体](../reports/function-migration/compiled-reuse-build41.json)及[异常桥](../reports/function-migration/objc-exception-build41.json)。
 
+0.8.0-dev.22 按完整功能链集中核验，只修确认差异：当前卡片232输入对应原raw2，Header48/icon76/右溢14及内容裁剪；选中背景四边扩4，按OS26分支使用原圆角。卡片text/rich元数据完整UTF16长度和前500UTF16样本真实生成、Stored编码、配对保存并消费；全文预览/编辑及Character动态统计保留完整payload。Enable应用图标80与成功checkmark64/green、旧OS已有visualEffect宿主配置已补；原动态面板高度、OS26完整Glass host及link投影仍partial。最终build42的148输入前后摘要一致，日志18.89秒/包装20.63秒；唯一新增Source完整是text元数据generator，SDK新增3/撤回1，27条合并记录不当27新增。清单仍73项、92源码绑定、状态不变，未执行产品或功能回归。详见[文本元数据审计](../reports/replica/text-preview-metadata-static-audit.json)、[卡片审计](../reports/replica/card-header-static-audit.json)、[权限当前体](../reports/function-migration/accessibility-modals-build42.json)。
+
 原搜索建议/自动 token 化、完整 query 序列化和反解析、Indexable provider、后台 actor/schema/批量恢复、原图片 ViewModel/优选尺寸/错误传播、完整文件布局/VM及元数据实体封装、仓库事务、混合格式恢复及 token/repository/undo/DidRestore 副作用仍有差异。独立 CLI 的 ClipboardStore.search 保持原接口，不代表完整原 SearchService。既有 NSImage 跨 MainActor 异步分析警告仍保留在 partial 范围。四个 OCR 算法方法体未改，但外围图片数据读取使整文件摘要改变，旧验证转为历史；不以重新写摘要冒称当前功能通过。没有运行新的功能、单测、原版动态、UI 或 MCP 测试，尚未一比一验收。
 
 - 搜索输入接入原生 TextKit 2、占位标签、输入属性刷新、选区/布局/聚焦策略及动态颜色/字体访问器。明确区分颜色存储槽地址与颜色值；外层聚焦环坐标传播、附件状态和筛选界面仍有未迁移函数。
@@ -115,7 +117,7 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 ## 纯 SDK 转发复用
 
-899 个当前地址没有生成同名空函数，也没有伪造源码引用；映射采用独立 `sdk_implementation`，逐项指向 `reports/function-migration/sdk-import-reuse.json`。校验器要求原版完整函数体为真实 arm64 `ADRP/LDR/BR x16` 导入跳板，并核对指针槽、间接符号表和实际 `LC_DYLD_CHAINED_FIXUPS` 页链、bind ordinal、零 addend、原始符号、完整 dylib 路径、weak、load-kind 和 ABI。复刻产物必须存在唯一对应的真实导入跳板。
+901 个当前地址没有生成同名空函数，也没有伪造源码引用；映射采用独立 `sdk_implementation`，逐项指向 `reports/function-migration/sdk-import-reuse.json`。校验器要求原版完整函数体为真实 arm64 `ADRP/LDR/BR x16` 导入跳板，并核对指针槽、间接符号表和实际 `LC_DYLD_CHAINED_FIXUPS` 页链、bind ordinal、零 addend、原始符号、完整 dylib 路径、weak、load-kind 和 ABI。复刻产物必须存在唯一对应的真实导入跳板。
 
 `scripts/macho_imports.py` 重新读取本机原版和当前 release 产物，核对原版容器/arm64 摘要、所有相关 Swift 源文件、本地化资源及 `Package.swift`、逐地址伪代码和真实导入绑定。`function_ledger.py --check` 每次运行会重新核对 SDK 报告，并分别输出 `source_functions` 与 `sdk_forwarders_reused`，不会把系统内部函数也计入已迁移数。复刻源码或二进制变化后，旧静态记录不能继续直接使用。
 

@@ -215,7 +215,7 @@ struct ReplicaClipboardCard: View {
                 .clipped()
             HStack(spacing: 4) {
                 if !item.pinboardIDs.isEmpty { Image(systemName: "pin.fill").font(.system(size: 10)) }
-                Text(itemSummary(item)).lineLimit(2).frame(maxWidth: .infinity, alignment: item.kind == .link ? .leading : .center)
+                Text(cardSummary).lineLimit(2).frame(maxWidth: .infinity, alignment: item.kind == .link ? .leading : .center)
             }
             .font(.system(size: 13)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
             .padding(.horizontal, 12).padding(.bottom, 11).padding(.top, 7)
@@ -223,10 +223,16 @@ struct ReplicaClipboardCard: View {
         .frame(width: 232, height: 232)
         .background(ReplicaItemPreviewAnchor(itemID: item.id, controller: state.controller))
         .background(Color(nsColor: .textBackgroundColor))
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 16).stroke(selected ? (activeState == .key ? Color.accentColor : .gray) : .black.opacity(0.08), lineWidth: selected ? 4 : 1).padding(selected ? -2 : 0))
+        .clipShape(RoundedRectangle(cornerRadius: cardCornerRadius, style: cardCornerStyle))
+        .background {
+            if selected {
+                RoundedRectangle(cornerRadius: selectionCornerRadius, style: cardCornerStyle)
+                    .fill(activeState == .key ? Color.accentColor : .gray)
+                    .padding(-4)
+            }
+        }
         .shadow(color: .black.opacity(0.10), radius: 3, y: 2)
-        .contentShape(RoundedRectangle(cornerRadius: 16))
+        .contentShape(RoundedRectangle(cornerRadius: cardCornerRadius, style: cardCornerStyle))
         .onTapGesture(count: 2) {
             prepareSelection()
             state.controller?.pasteSelection(plainTextOnly: NSEvent.modifierFlags.contains(.shift))
@@ -241,9 +247,24 @@ struct ReplicaClipboardCard: View {
         .accessibilityIdentifier("clipboard-card-\(item.id.uuidString)")
     }
 
+    private var cardCornerRadius: CGFloat {
+        if #available(macOS 26, *) { return 16 }
+        return 10
+    }
+
+    private var selectionCornerRadius: CGFloat {
+        if #available(macOS 26, *) { return 20 }
+        return 14
+    }
+
+    private var cardCornerStyle: RoundedCornerStyle {
+        if #available(macOS 26, *) { return .continuous }
+        return .circular
+    }
+
     private var cardHeader: some View {
-        HStack(alignment: .center, spacing: 0) {
-            // ItemCell.HeaderView's noncompact styles share the same label configuration.
+        // A 232-point cell is size class 2: 48-point header and 76-point source icon.
+        ZStack(alignment: .trailing) {
             VStack(alignment: .leading, spacing: -1) {
                 Text(cardTitle)
                     .font(Font(NSFont.systemFont(ofSize: NSFont.preferredFont(forTextStyle: .title3, options: [:]).pointSize, weight: .medium)))
@@ -253,17 +274,23 @@ struct ReplicaClipboardCard: View {
                     .opacity(0.8)
             }
             .foregroundStyle(.white)
-            .padding(.leading, 12)
-            Spacer(minLength: 0)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 12).padding(.trailing, 62)
             SourceAppIcon(item: item)
-                .frame(width: 48, height: 48)
-                .frame(width: 52, height: 48)
-                .background(Color(nsColor: .textBackgroundColor),
-                            in: UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: 24,
-                                                       bottomTrailingRadius: 0, topTrailingRadius: 12))
+                .frame(width: 76, height: 76)
+                .offset(x: 14)
         }
-        .frame(height: 48, alignment: .top)
+        .frame(height: 48)
         .background(sourceColor(item))
+        .clipped()
+    }
+
+    private var cardSummary: String {
+        if item.kind == .text || item.kind == .richText {
+            guard let metadata = item.decodedTextPreviewMetadata else { return "" }
+            return String(localized: OriginalPreviewLocalization.f_1001e6b38(Int32(metadata.length)))
+        }
+        return itemSummary(item)
     }
 
     private var cardTitle: String {
@@ -385,6 +412,12 @@ struct ReplicaItemContent: View {
                     .padding(10).frame(maxWidth: .infinity, minHeight: compact ? 44 : 100)
                     .background(.gray.opacity(0.08), in: RoundedRectangle(cornerRadius: 6))
                     Text(item.plainText ?? item.title).font(.system(size: 14)).lineLimit(compact ? 3 : nil)
+                }
+            } else if compact, item.kind == .text || item.kind == .richText {
+                if let metadata = item.decodedTextPreviewMetadata {
+                    Text(metadata.text)
+                        .lineLimit(7)
+                        .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
             } else if item.kind == .richText, let data = item.payloads["public.rtf"],
                       let attributed = NSAttributedString(rtf: data, documentAttributes: nil) {

@@ -277,7 +277,7 @@ public final class ClipboardStore: ObservableObject {
         var item = item
         guard item.kind == .image else {
             item.imagePreviewMetadata = nil
-            if generateMissingContentPreview, item.kind == .files || item.kind == .color, item.rawPreview == nil,
+            if generateMissingContentPreview, [.files, .color, .text, .richText].contains(item.kind), item.rawPreview == nil,
                let items = try? originalPasteboardItems(from: item.payloads) {
                 if item.kind == .files {
                     let metadata = OriginalFilePreviewMetadataGenerator.generate(items, preferQuickLookThumbnails: preferQuickLookThumbnails)
@@ -285,6 +285,9 @@ public final class ClipboardStore: ObservableObject {
                 } else if item.kind == .color {
                     item.rawPreview = OriginalImagePreviewMetadataCodec.encodeColor(
                         OriginalColorPreviewMetadataGenerator.generate(items), binaryPropertyList: binaryPropertyList)
+                } else {
+                    item.rawPreview = OriginalImagePreviewMetadataCodec.encodeText(
+                        OriginalTextPreviewMetadataGenerator.generate(items), binaryPropertyList: binaryPropertyList)
                 }
             }
             return item
@@ -375,6 +378,10 @@ public final class ClipboardStore: ObservableObject {
                     state.items[i].rawPreview = OriginalImagePreviewMetadataCodec.encodeColor(
                         OriginalColorPreviewMetadataGenerator.generate([OriginalPasteboardItem.f_10037c6d4(text)]),
                         binaryPropertyList: state.preferences.useBinaryPlist)
+                } else if state.items[i].kind == .text {
+                    state.items[i].rawPreview = OriginalImagePreviewMetadataCodec.encodeText(
+                        OriginalTextPreviewMetadataGenerator.generate([OriginalPasteboardItem.f_10037c6d4(text)]),
+                        binaryPropertyList: state.preferences.useBinaryPlist)
                 }
                 if state.items[i].kind == .link,
                    let url = OriginalPasteboardItem.f_10037c6d4(text).f_10037ce0c() {
@@ -401,7 +408,10 @@ public final class ClipboardStore: ObservableObject {
                                        NSPasteboard.PasteboardType.string.rawValue: Data(text.utf8)]
             state.items[i].kind = .richText
             state.items[i].imagePreviewMetadata = nil
-            state.items[i].rawPreview = nil
+            state.items[i].rawPreview = OriginalImagePreviewMetadataCodec.encodeText(
+                (try? Self.originalPasteboardItems(from: state.items[i].payloads))
+                    .flatMap(OriginalTextPreviewMetadataGenerator.generate),
+                binaryPropertyList: state.preferences.useBinaryPlist)
             state.items[i].updatedAt = Date()
         }
     }

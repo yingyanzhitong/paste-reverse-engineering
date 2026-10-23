@@ -7,7 +7,9 @@ import SwiftUI
 @MainActor
 enum OriginalPasteToOtherAppsModal {
     static func run() -> UInt8 {
-        let session = AccessibilityModalSession(initialResult: 2, styleMask: [.titled, .fullSizeContentView])
+        let session = AccessibilityModalSession(initialResult: 2, styleMask: [.titled, .fullSizeContentView],
+                                                animation: 5, material: 6)
+        session.window.backgroundColor = .clear
         let appName = NSWorkspace.shared.menuBarOwningApplication?.localizedName
             ?? OriginalSettingsLocalization.text("general.current-app")
         session.setContent(PasteToOtherAppsContent(appName: appName) { [weak session] in session?.complete($0) })
@@ -19,7 +21,8 @@ enum OriginalPasteToOtherAppsModal {
 enum OriginalEnableAccessibilityModal {
     static func run() -> UInt8 {
         let session = AccessibilityModalSession(initialResult: 1,
-                                                styleMask: [.titled, .closable, .fullSizeContentView])
+                                                styleMask: [.titled, .closable, .fullSizeContentView],
+                                                animation: 3, material: 21)
         let model = EnableAccessibilityModel { [weak session] in session?.complete($0) }
         session.setContent(EnableAccessibilityContent(model: model))
         session.window.setContentSize(NSSize(width: 544, height: 680))
@@ -36,7 +39,7 @@ private final class AccessibilityModalSession: NSObject, NSWindowDelegate {
     let window: NSWindow
     private var result: UInt8
 
-    init(initialResult: UInt8, styleMask: NSWindow.StyleMask) {
+    init(initialResult: UInt8, styleMask: NSWindow.StyleMask, animation: Int, material: Int) {
         result = initialResult
         window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 100, height: 100),
                           styleMask: styleMask, backing: .buffered, defer: false)
@@ -44,6 +47,16 @@ private final class AccessibilityModalSession: NSObject, NSWindowDelegate {
         window.isReleasedWhenClosed = false
         window.isMovableByWindowBackground = true
         window.titleVisibility = .hidden
+        window.titlebarAppearsTransparent = true
+        window.animationBehavior = .init(rawValue: animation)!
+        if #unavailable(macOS 26) {
+            let firstEffect = {
+                self.window.contentView?.superview?.subviews.compactMap { $0 as? NSVisualEffectView }.first
+            }
+            firstEffect()?.material = .init(rawValue: material)!
+            firstEffect()?.blendingMode = .behindWindow
+            firstEffect()?.state = .active
+        }
         window.delegate = self
     }
 
@@ -161,12 +174,21 @@ private struct EnableAccessibilityContent: View {
 
     var body: some View {
         VStack {
-            Text(OriginalSettingsLocalization.text("accessibility-access.enable-accessibility-access.title"))
-                .font(.title.bold())
-            Text(OriginalSettingsLocalization.text("accessibility-access.enable-accessibility-access.subtitle"))
-                .font(.body)
-                .multilineTextAlignment(.center)
-            if !model.isAccessEnabled {
+            Spacer()
+            if model.isAccessEnabled {
+                Image(systemName: "checkmark.circle")
+                    .font(.system(size: 64))
+                    .foregroundStyle(.green)
+            } else {
+                Image(nsImage: NSApp.applicationIconImage)
+                    .resizable(resizingMode: .stretch)
+                    .frame(width: 80, height: 80)
+                    .padding(.bottom, 8)
+                Text(OriginalSettingsLocalization.text("accessibility-access.enable-accessibility-access.title"))
+                    .font(.title.bold())
+                Text(OriginalSettingsLocalization.text("accessibility-access.enable-accessibility-access.subtitle"))
+                    .font(.body)
+                    .multilineTextAlignment(.center)
                 Button(action: model.request) {
                     Text(OriginalSettingsLocalization.text(model.isAccessRequested
                         ? "accessibility-access.enable-accessibility-access.open-system-settings"
@@ -175,6 +197,7 @@ private struct EnableAccessibilityContent: View {
                 }
                 .keyboardShortcut(.defaultAction)
             }
+            Spacer()
         }
         .frame(width: 544, height: 680)
     }

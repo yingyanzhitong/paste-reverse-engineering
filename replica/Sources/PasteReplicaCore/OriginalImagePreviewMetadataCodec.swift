@@ -1,6 +1,6 @@
 import Foundation
 
-/// Image, file and color projections of the original ContentMetadata.Stored wire record.
+/// Text, image, file and color projections of the original ContentMetadata.Stored wire record.
 /// Remaining content projections and the original configuration lookup stay separate.
 public enum OriginalImagePreviewMetadataCodec {
     public static func decode(_ rawPreview: Data?) -> OriginalImagePreviewMetadata? {
@@ -19,6 +19,15 @@ public enum OriginalImagePreviewMetadataCodec {
     public static func decodeColor(_ rawPreview: Data?) -> OriginalColorPreviewMetadata? {
         guard let stored = decodeStored(rawPreview), stored.type == "color" else { return nil }
         return OriginalColorPreviewMetadata(code: stored.colorCode ?? 0)
+    }
+
+    public static func decodeText(_ rawPreview: Data?) -> OriginalTextPreviewMetadata? {
+        guard let stored = decodeStored(rawPreview) else { return nil }
+        switch stored.type {
+        case "link", "image", "color", "files": return nil
+        default: return OriginalTextPreviewMetadata(length: stored.textLength ?? 0,
+                                                    text: stored.text ?? AttributedString())
+        }
     }
 
     private static func decodeStored(_ rawPreview: Data?) -> Stored? {
@@ -51,6 +60,15 @@ public enum OriginalImagePreviewMetadataCodec {
         var stored = Stored()
         stored.type = "color"
         stored.colorCode = metadata.code
+        return encodeStored(stored, binaryPropertyList: binaryPropertyList)
+    }
+
+    public static func encodeText(_ metadata: OriginalTextPreviewMetadata?, binaryPropertyList: Bool) -> Data? {
+        guard let metadata else { return nil }
+        var stored = Stored()
+        stored.type = "text"
+        stored.textLength = metadata.length
+        stored.text = metadata.text
         return encodeStored(stored, binaryPropertyList: binaryPropertyList)
     }
 
