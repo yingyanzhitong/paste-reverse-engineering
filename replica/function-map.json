@@ -29467,8 +29467,8 @@
           "symbol": "private static func upsertSourceApplication"
         }
       ],
-      "review": "基于完整原有限体与真实捕获/持久/读取链集中修复；不把独立兼容数据模型计完整函数。",
-      "remaining": "共享图标JSON适配已接，rawColor及原CoreData/KVO/Undo/context和错误仍未完整恢复。"
+      "review": "基于完整原有限体与真实捕获/持久/读取链集中修复；不把独立兼容数据模型计完整函数。 dev32：47覆盖/精确图标取色/持久rawColor及图色成组更新已接。",
+      "remaining": "原CoreData/KVO/Undo/context身份和错误仍partial；当前snapshot在icon比较之前预计算颜色，原相同icon可先返回，原调度/性能不完全一致。旧缺色仅后续显式写入补值为兼容路径。"
     },
     "Paste:0x100311e3c": {
       "state": "partial",
@@ -29485,6 +29485,107 @@
       ],
       "review": "基于完整原有限体与真实捕获/持久/读取链集中修复；不把独立兼容数据模型计完整函数。",
       "remaining": "已证字段验证/128/PNG及真实采集消费；快照+JSON工厂适配不是原CoreData实体和context ABI。"
+    },
+    "Paste:0x100bfa878": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bfa878",
+        "symbol": "_$ss6HasherV5_hash4seed_S2i_s6UInt64VtFZ"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bfa878.json"
+    },
+    "Paste:0x100308c8c": {
+      "state": "migrated",
+      "contract": "NSColor转deviceRGB必须成功，四个初始零CGFloat输出槽经单次getRed:green:blue:alpha:读取；按A/R/G/B各乘255并执行带原非有限/<=-1/>=2^64 trap的UInt64截断转换，返回A<<24|R<<16|G<<8|B。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSourceApplicationColors.swift",
+          "symbol": "public static func encoded(_ color: NSColor)"
+        }
+      ],
+      "migration_evidence": "reports/function-migration/Paste-0x100308c8c.json",
+      "implementation_origin": "newly_migrated",
+      "review": "完整有限原体、系统selector、最终源码与实际编译入口/真实函数体已静态核，实际采集或Header调用；独立交叉审阅未发现该有限合同缺支路。",
+      "remaining": "只有编译和静态对照，全部迁移完成后统一功能回归；不宣称运行等价、原ABI或完整调用方父已满足。"
+    },
+    "Paste:0x1003c8664": {
+      "state": "migrated",
+      "contract": "任意非optional NSImage输入，原函数内部目标固定128（不限制源图尺寸）：bestRepresentation及原bitmap/context可空路径、按实际宽高全像素统计alpha==1且sat>.25的精确NSColor计数，按count稳定降序保NSSet同票枚举顺序，无候选返回gray，胜者按原sat/B1/B2/hue/alpha读取及IEEE条件调整为calibratedHSB；raster失败返回nil。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSourceApplicationImageColor.swift",
+          "symbol": "public static func prominentColor(_ image: NSImage)"
+        }
+      ],
+      "migration_evidence": "reports/function-migration/Paste-0x1003c8664.json",
+      "implementation_origin": "newly_migrated",
+      "review": "完整有限原体、系统selector、最终源码与实际编译入口/真实函数体已静态核，实际采集或Header调用；独立交叉审阅未发现该有限合同缺支路。",
+      "remaining": "只有编译和静态对照，全部迁移完成后统一功能回归；不宣称运行等价、原ABI或完整调用方父已满足。"
+    },
+    "Paste:0x1003c7c4c": {
+      "state": "partial",
+      "contract": "原通用目标宽高→NSBitmapImageRep绘制。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSourceApplicationImageColor.swift",
+          "symbol": "private static func raster"
+        }
+      ],
+      "review": "本地真实颜色链的有限已证实现；相关父或泛化接口保持partial。",
+      "remaining": "已恢复原调用者固定128的完整有限路径；原任意width/height独立API及其他调用者未全恢复。"
+    },
+    "Paste:0x1003c7f84": {
+      "state": "partial",
+      "contract": "NSColor饱和度/亮度调整与calibratedHSB构造。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSourceApplicationImageColor.swift",
+          "symbol": "let originalSaturation = winner.saturationComponent"
+        }
+      ],
+      "review": "本地真实颜色链的有限已证实现；相关父或泛化接口保持partial。",
+      "remaining": "完整计算及读取轨迹已内联在真实取色函数；原独立任意NSColor调用入口/其他调用者未全恢复。"
+    },
+    "Paste:0x100311f7c": {
+      "state": "partial",
+      "contract": "按bundleIdentifier查47项颜色覆盖，缺失返回nil。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSourceApplicationColors.swift",
+          "symbol": "private static let overrides"
+        }
+      ],
+      "review": "本地真实颜色链的有限已证实现；相关父或泛化接口保持partial。",
+      "remaining": "47真实值及实际页链已核，rawColor生产真实复用；当前公共API合并了取色与编码，不是原可空NSColor getter独立ABI。"
+    },
+    "Paste:0x1003de794": {
+      "state": "partial",
+      "contract": "优先原list颜色，否则sourceApplication持久色与完整ARGB palette。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/SourceAppColor.swift",
+          "symbol": "static func color(application:"
+        }
+      ],
+      "review": "本地真实颜色链的有限已证实现；相关父或泛化接口保持partial。",
+      "remaining": "普通来源色/palette/无来源动态灰已接；原listowner类型与优先分支尚未恢复，不从Set猜owner。"
+    },
+    "Paste:0x1001fe4c8": {
+      "state": "partial",
+      "contract": "共享动态灰颜色的全局存储访问。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/SourceAppColor.swift",
+          "symbol": "private static let fallback"
+        }
+      ],
+      "review": "本地真实颜色链的有限已证实现；相关父或泛化接口保持partial。",
+      "remaining": "原light/dark实际值和appearance provider已恢复；原全局可变指针接口与其他使用方未完整恢复。"
     }
   }
 }

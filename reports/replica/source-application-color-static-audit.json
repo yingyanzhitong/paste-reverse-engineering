@@ -1,0 +1,289 @@
+{
+  "kind": "persistent_source_application_color_static_review",
+  "version": "0.8.0-dev.32",
+  "generated_at": "2026-10-23T16:48:05.573546+00:00",
+  "original_evidence": [
+    {
+      "function_id": "Paste:0x100310fb8",
+      "path": "decompiled/Paste/part-0253.c",
+      "line": 3380,
+      "pseudocode_sha256": "94126411b0fe1e9c27674e5d0e73db437ef953c3735cf1af9095363ba9de75fa"
+    },
+    {
+      "function_id": "Paste:0x100311f7c",
+      "path": "decompiled/Paste/part-0254.c",
+      "line": 405,
+      "pseudocode_sha256": "5c674f9badf4085e9a2cf23b2f76492f0bb62443f94971841cd8b5f44cffe407"
+    },
+    {
+      "function_id": "Paste:0x100311d2c",
+      "path": "decompiled/Paste/part-0254.c",
+      "line": 274,
+      "pseudocode_sha256": "d6b7bde281cce055facef8c827b32ae06258ffbed427a5ca4dc0f6ebf4d49794"
+    },
+    {
+      "function_id": "Paste:0x100308c8c",
+      "path": "decompiled/Paste/part-0251.c",
+      "line": 615,
+      "pseudocode_sha256": "d1db05169de193e26664ea4b0665f639eb4ef7f143dc15917f1e5a7fef899314"
+    },
+    {
+      "function_id": "Paste:0x100308ea0",
+      "path": "decompiled/Paste/part-0251.c",
+      "line": 724,
+      "pseudocode_sha256": "6fa03e91148520377e2db4e581bdc3f321da32dcd3af09a3d40adab27a75a6b6"
+    },
+    {
+      "function_id": "Paste:0x1003c8664",
+      "path": "decompiled/Paste/part-0300.c",
+      "line": 440,
+      "pseudocode_sha256": "842761ec695b0da100cfb74622d3800597ecb26a1e29a13e3dedfb7779c52bac"
+    },
+    {
+      "function_id": "Paste:0x1003c7c4c",
+      "path": "decompiled/Paste/part-0299.c",
+      "line": 2541,
+      "pseudocode_sha256": "d8a656a81a926894d8ad2e135b4cf780f170129b47574a039f98a6826905e6c5"
+    },
+    {
+      "function_id": "Paste:0x1003c7f84",
+      "path": "decompiled/Paste/part-0299.c",
+      "line": 2693,
+      "pseudocode_sha256": "b2508d19a1623cf78c95e6a17f8c69322b5a63ec5bf4ae1bf25af970663d6b41"
+    },
+    {
+      "function_id": "Paste:0x1003de794",
+      "path": "decompiled/Paste/part-0307.c",
+      "line": 2076,
+      "pseudocode_sha256": "f71cdeb487061457c424e48b8d02a9b23516e248bf48586922ae77038671d683"
+    },
+    {
+      "function_id": "Paste:0x1003dead8",
+      "path": "decompiled/Paste/part-0307.c",
+      "line": 2250,
+      "pseudocode_sha256": "684684a95aaa0ac7e924a8fcd939560eb5fef95776fca48460374a9c04aa1f8b"
+    },
+    {
+      "function_id": "Paste:0x1001fe4c8",
+      "path": "decompiled/Paste/part-0167.c",
+      "line": 240,
+      "pseudocode_sha256": "9443fcc4d5eb9040d6beea70add4067dca3229f3f10d73f31aa23626f0a49a89"
+    }
+  ],
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSourceApplicationColors.swift": "4fd75b6d9d2a3eb64e1d361b757e9134bdbb833487911e38b789ea2cad189662",
+    "replica/Sources/PasteReplicaCore/OriginalSourceApplicationImageColor.swift": "c59f458b7f1ec31b2b66e1370aebce4482864299957d4efb9a61934ed8bdcd29",
+    "replica/Sources/PasteReplicaCore/OriginalSourceApplication.swift": "f062fd4c806d1c155e84c80e6ba962500c2f2f195a2fee3b50fe5d864f06478b",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "1e7b5b872c2dacd39e57c5e3719ca5bf18b576d05d4d2950e7cac195a534500b",
+    "replica/Sources/PasteReplica/SourceAppColor.swift": "2759fa7ff01375e4a10281575457d239713444d334291fefef604e81b3f7eccb",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "ae04521de8b74a55d8d75c7c8d18fb27b7b8af135901256dfa949deab9be38b4"
+  },
+  "actual_call_chain": [
+    "真实采集同一个app/icon128→覆盖优先或精确图标取色→ARGB编码→共享record.rawColor",
+    "Store同一事务保存关系，图标/颜色成组更新及三方合并，name-only不覆盖remote图色",
+    "Header按显式sourceApplication关系读持久rawColor→解码→完整ARGB重编码查2项palette→未命中保原色；无来源或旧缺色用已证动态灰"
+  ],
+  "constant_table": {
+    "report": "reports/replica/source-application-color-table.json",
+    "entries": 47,
+    "large_reachable_rebases": 39,
+    "inline_small_strings": 8,
+    "raw_table_sha256": "21d0d7186e0a496181a8c6f9b17d11e857c9eb758b2851c87cb22085b8bcdad0",
+    "static_command": "python3 scripts/source_application_color_audit.py --check"
+  },
+  "raster_and_value_contract": [
+    {
+      "original": "f3c7c4c bestRepresentationForRect:context:hints:",
+      "implementation": "raster image.bestRepresentation(for:128rect,context:nil,hints:nil); nil→nil",
+      "result": "matched"
+    },
+    {
+      "original": "f3c7c4c actual FCMP/FCSEL width0x1003c7ca8/caC,height0x1003c7cf0/cf4",
+      "implementation": "Two size getter reads retained separately; Int(128 < representationWidth ? 128 : representationWidth), height same; checked width*4",
+      "result": "selected dimension follows original MI condition: NaN remains then conversion traps; +infinity selects128; -infinity remains then traps. Not arbitrary input nonfinite trap."
+    },
+    {
+      "original": "f3c7c4c NSBitmapImageRep ctor",
+      "implementation": "deviceRGB/8bits/4samples/alpha true/nonplanar/bytesPerRow width*4/32bits",
+      "result": "matched"
+    },
+    {
+      "original": "f3c7c4c graphics save/set/rep.draw128/flush/restore",
+      "implementation": "NSGraphicsContext(bitmapImageRep:) nilguard; save/deferrestore/current/representation.draw(in:rect)/flush",
+      "result": "matched"
+    },
+    {
+      "original": "f3c8664 full pixel traversal x outer/y inner, alpha==1 && sat>.25",
+      "implementation": "nested integer ranges, identical filters, no extra brightness or weighted quantization",
+      "result": "matched"
+    },
+    {
+      "original": "f3c8664 exact NSCountedSet NSColor count, cast enumeration colors",
+      "implementation": "NSCountedSet.add + distinct enumeration + count(for:object), castNSColor",
+      "result": "matched"
+    },
+    {
+      "original": "f3c7e74+f3c8054/f20123c/f201524 count-only stable descending",
+      "implementation": "counted.sort { $0.count > $1.count }; stable Swift sort preserves equal-count NSSet enumeration",
+      "result": "matched sorting contract; NSSet order is intentionally unspecified, no tie secondary key"
+    },
+    {
+      "original": "f3c8664 raster nil→nil, no admitted colors→grayColor",
+      "implementation": "guardbitmap else nil; counted.first else .gray",
+      "result": "matched"
+    },
+    {
+      "original": "f3c7f84 complete arm0x1003c7f94..0x1003c8040",
+      "implementation": "satgetter once→brightness getter B1→brightness getter B2; upper=B2>.96?.96:B2; lower=upper<=.75?.75:upper; brightness=B1>.4?lower:B2; saturation=sat<=.85?.85:sat; huegetter→alphagetter→calibrated constructor",
+      "result": "explicit GT/HI/LE/LS selection preserves unordered branches and actual repeated getter trajectory; no max/min inference or additional sat/brightness reads"
+    }
+  ],
+  "ieee_and_getter_review": {
+    "dimensions": "按actual FCMP/FCSEL采用128<rep ?128:rep，NaN保原后转换trap，+inf选择128；分别读两次size getter。",
+    "winner": "sat一次→brightness B1/B2两次；GT upper/HI lower/LE gate/LS saturation按完整原arm显式条件；最后hue→alpha，不用泛化min/max猜IEEE。"
+  },
+  "codec": {
+    "original_complete_body": {
+      "start": "0x100308c8c",
+      "end_exclusive": "0x100308ea0",
+      "size": 532,
+      "sha256": "4e549d7714133cb0854667e58f354bba96beced4185c9d07880fee0203f2b098"
+    },
+    "original_getRed_selector": {
+      "stub": "0x100c02f80",
+      "stub_size": 32,
+      "full_stub_hex": "211c00b021f443f9301500d010d640f900021fd6200020d4200020d4200020d4",
+      "stub_sha256": "e8a11c85eaed8ed8c62c21d3380db507d7226888b897ef9928e85aacecea5949",
+      "selref_slot": "0x100f877e8",
+      "selref_raw": "0x10000000decf44",
+      "selref_resolved": "0x100decf44",
+      "selector": "getRed:green:blue:alpha:",
+      "call_at": "0x100308d0c"
+    },
+    "replica_compiled_evidence": {
+      "build": 56,
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OriginalSourceApplicationColors.swift": "4fd75b6d9d2a3eb64e1d361b757e9134bdbb833487911e38b789ea2cad189662"
+      },
+      "compiled_product": "PasteReplica",
+      "compiled_binary_sha256": "391a479532bdd5a41bcfc4b8884c1934cf7db5850d271cbd2080416020ba4ebe",
+      "public_symbol": "_$s16PasteReplicaCore31OriginalSourceApplicationColorsO7encodedys6UInt64VSo7NSColorCFZ",
+      "entry": {
+        "start": "0x10018a1e4",
+        "end_exclusive": "0x10018a1e8",
+        "size": 4,
+        "sha256": "788f1512f26f87f558ccda89030f23036527961be061f31e047ad5b93b8aafe2"
+      },
+      "tail_branch_target": "0x10018a1e8",
+      "complete_body": {
+        "start": "0x10018a1e8",
+        "end_exclusive": "0x10018a400",
+        "size": 536,
+        "sha256": "00c210fd0bdec2857d80a977277d062e452a407dd9f9f7d46d7acde0c359e21b"
+      },
+      "objc_selectors": {
+        "deviceRGBColorSpace": {
+          "slot": "0x100210bc8",
+          "raw": "0x100000001bd9ce",
+          "resolved": "0x1001bd9ce",
+          "selector": "deviceRGBColorSpace"
+        },
+        "colorUsingColorSpace:": {
+          "slot": "0x100210bd0",
+          "raw": "0x100000001bd1e7",
+          "resolved": "0x1001bd1e7",
+          "selector": "colorUsingColorSpace:"
+        },
+        "getRed:green:blue:alpha:": {
+          "slot": "0x100211720",
+          "raw": "0x100000001bdd69",
+          "resolved": "0x1001bdd69",
+          "selector": "getRed:green:blue:alpha:"
+        }
+      },
+      "static_body_review": {
+        "four_zero_slots": "18a25c/260",
+        "single_getRed_call": "18a264..280",
+        "channel_arithmetic": "18a28c..37c: A/R/G/B each*255; finite/greater-than-minus-one/less-than2^64 guards then fcvtzu",
+        "pack_return": "18a398..3c4 ARGBshift24/16/8/or; optimizer reorders pure fcvtzu instructions only after allguards",
+        "error_exits": "18a3c8..3f8 brk for each conversion guard and color conversion nil; 18a3fc stack canary failure"
+      },
+      "runtime_tests_executed": false,
+      "original_code_executed": false
+    },
+    "full_contract": "deviceRGB必须成功，4初始0槽，单getRed，A/R/G/B乘255后checked UInt64截断含全部trap，再完整ARGB位或。"
+  },
+  "prominent_color_compiled_evidence": {
+    "build": 56,
+    "source_sha256": {
+      "replica/Sources/PasteReplicaCore/OriginalSourceApplicationImageColor.swift": "c59f458b7f1ec31b2b66e1370aebce4482864299957d4efb9a61934ed8bdcd29"
+    },
+    "compiled_binary_sha256": "391a479532bdd5a41bcfc4b8884c1934cf7db5850d271cbd2080416020ba4ebe",
+    "public_symbol": "_$s16PasteReplicaCore35OriginalSourceApplicationImageColorO09prominentH0ySo7NSColorCSgSo7NSImageCFZ",
+    "entry": {
+      "start": "0x10018a558",
+      "end_exclusive": "0x10018a55c",
+      "size": 4,
+      "sha256": "8b5279fc00bb27c83e722918116bc188ff02bcfcab5a2d8134818230f25e0abc"
+    },
+    "complete_body": {
+      "start": "0x10018b3ec",
+      "end_exclusive": "0x10018b8a4",
+      "size": 1208,
+      "sha256": "1fdc7b49501a4d52388b7c34bf85b9b67a0256894e5da287baab41721421d860"
+    },
+    "original_complete_body": {
+      "start": "0x1003c8664",
+      "end_exclusive": "0x1003c89c8",
+      "size": 868,
+      "sha256": "edd783ba07bad674f8c56b9354aab71a457f9bdab9c454db11463e6341cabb7c"
+    },
+    "product_executed": false,
+    "functional_tests_executed": false
+  },
+  "header_original_contract": {
+    "Header": "f3d41b4 calls f3de794; nil result falls back f1fe4c8 -> f1fe354 dynamic gray.",
+    "ordinary": "When original list-owner branch is not active, f3de794 reads sourceApplication, nil returnsnil. Existing app calls f310f10 decode rawColor then f308c8c encode completeARGB and looks up f3dead8 dictionary, miss decodes original rawColor again.",
+    "palette": "Complete f3dead8 initializer constructs exactly2 UInt64 keys:0x62a9f5 (movw22 a9f5+movk62<<16 at3deaec..af0) ->f1fe5e0/systemBlueColor, and0xf0554d (movw21 554d+movkf0<<16 at3deb7c..80) ->f1fe66c/systemRedColor.",
+    "key_comparison": "f3de81c calls f308c8c, passes entire x0 to f16f9fc, f71554 loads8-byte key and cmp x12,x8. No RGBmask/truncate before lookup. Alpha<<24 proven f308e34..50.",
+    "fallback": "f1fe354 light NSColor RGB142/255,142/255,147/255 alpha1; dark152/255,152/255,157/255 alpha1; named dynamic provider dispatches existing f1ff49c.",
+    "list_boundary": "f31bc94 owner and f3293c4==1 choose f3de9a0 listcolor before ordinary sourceapp. Current item.pinboardIDs Set is not enough evidence for original owner choice; deliberately not guessed."
+  },
+  "header_static_reasoning_not_execution": [
+    "Opaque decoded color alpha1 encodesFF alpha byte; original24bit palette keys generally do not match. This apparent dead normal path is preserved; do not strip alpha or addFF keys to manufacture hit.",
+    "Unusual rawhighbits can make original decode alpha0 when raw>>24 nonzero but its lowalpha byte0; dictionary decision still depends exact final encoded key. No API was run to assert any deviceRGB roundtrip result.",
+    "RawColor JSONUInt64 adapter can represent values beyond original nonnegative CoreDataInt64 domain; original f310f10 trapsnegativeInt64. No fullABI/domain equivalence claim."
+  ],
+  "remaining_partial": [
+    "Full f3de794 is partial because original list-owner priority/color branch not implemented from Setguess.",
+    "NilrawColor is old-record compatibility extension; original entity getter nonoptional rawColor default semantics not retroactively fabricated.",
+    "CoreData/KVO/Undo/rawColor factory identity, original Header native color propagation and runtime pixel parity remain partial.",
+    "No whole-address candidate/new feature count added for this consumer subset.",
+    "原通用任意目标尺寸raster接口及独立任意NSColor调整入口不因此整体迁移；本次完整NSImage取色原函数自身固有固定128目标，不限定源图尺寸。",
+    "原factory只在icon改变后取色；当前snapshot在Store比较icon前预计算，存储输出相同但调度/性能仍不同。",
+    "旧record缺rawColor只在后续真实capture或显式Archive写入时补值，不在render伪造历史色；原CoreData/KVO/Undo/事务身份仍partial。"
+  ],
+  "compilation": {
+    "build": 56,
+    "passed": true,
+    "inputs": 165,
+    "inputs_unchanged": true,
+    "seconds": 11.15,
+    "intermediate_historical_build": 55,
+    "intermediate_seconds": 21.48
+  },
+  "new_complete_source_functions": [
+    "Paste:0x100308c8c",
+    "Paste:0x1003c8664"
+  ],
+  "new_partial_parents": 5,
+  "independent_static_peer_review": {
+    "codec_and_integrated_chain": "Window独立完整有限体审阅；最终Source与build56一致，未发现该有限合同缺支路",
+    "raster_and_hsb": "Pasteboard独立原完整体/selector/稳定sort/IEEE/最终getter轨迹复核；未执行原程序"
+  },
+  "functional_tests_executed": false,
+  "unit_tests_executed": false,
+  "product_executed": false,
+  "mcp_tests_executed": false,
+  "full_equivalence_verified": false
+}

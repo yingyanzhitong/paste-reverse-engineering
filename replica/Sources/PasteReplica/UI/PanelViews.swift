@@ -428,7 +428,7 @@ struct ReplicaClipboardCard: View {
                 .offset(x: sizeClass == 3 ? -8 : 14)
         }
         .frame(height: headerHeight)
-        .background(sizeClass == 3 ? Color.clear : sourceColor(item))
+        .background(sizeClass == 3 ? Color.clear : sourceColor(item, store: state.store))
         .clipped()
     }
 
@@ -653,8 +653,8 @@ func parseColor(_ text: String) -> Color? {
 }
 
 @MainActor
-func sourceColor(_ item: ClipboardItem) -> Color {
-    Color(nsColor: SourceAppColor.color(bundleID: item.sourceBundleID, name: item.sourceName))
+func sourceColor(_ item: ClipboardItem, store: ClipboardStore) -> Color {
+    Color(nsColor: SourceAppColor.color(application: store.sourceApplication(for: item)))
 }
 
 func itemSummary(_ item: ClipboardItem) -> String {

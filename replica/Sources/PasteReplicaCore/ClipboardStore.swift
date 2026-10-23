@@ -97,6 +97,7 @@ public final class ClipboardStore: ObservableObject {
         }
         let applicationIDs = Set(state.sourceApplications.map(\.bundleIdentifier))
         guard applicationIDs.count == state.sourceApplications.count,
+              state.sourceApplications.allSatisfy({ $0.rawColor.map { $0 < (UInt64(1) << 63) } ?? true }),
               state.items.allSatisfy({ $0.sourceApplicationBundleID.map(applicationIDs.contains) ?? true }) else {
             throw ClipboardStoreError.invalidSourceApplication
         }
@@ -213,7 +214,10 @@ public final class ClipboardStore: ObservableObject {
             var changed = application
             if let old = oldApplications[application.bundleIdentifier],
                let current = result.sourceApplications.first(where: { $0.bundleIdentifier == application.bundleIdentifier }) {
-                if application.rawIcon == old.rawIcon { changed.rawIcon = current.rawIcon }
+                if application.rawIcon == old.rawIcon, application.rawColor == old.rawColor {
+                    changed.rawIcon = current.rawIcon
+                    changed.rawColor = current.rawColor
+                }
                 if application.name == old.name { changed.name = current.name }
             }
             Self.upsertSourceApplication(changed, in: &result)
@@ -267,10 +271,14 @@ public final class ClipboardStore: ObservableObject {
             if state.sourceApplications[index].name.isEmpty { state.sourceApplications[index].name = application.name }
             if OriginalSourceApplication.normalizedIcon(state.sourceApplications[index].rawIcon) != incomingIcon {
                 state.sourceApplications[index].rawIcon = incomingIcon
+                state.sourceApplications[index].rawColor = application.rawColor
+            } else if state.sourceApplications[index].rawColor == nil, let color = application.rawColor {
+                // Records saved before source-app colors existed gain one on an explicit later write.
+                state.sourceApplications[index].rawColor = color
             }
         } else {
             state.sourceApplications.append(SourceApplicationRecord(bundleIdentifier: application.bundleIdentifier,
-                name: application.name, rawIcon: incomingIcon))
+                name: application.name, rawIcon: incomingIcon, rawColor: application.rawColor))
         }
     }
 

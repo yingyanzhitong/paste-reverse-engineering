@@ -1,0 +1,393 @@
+{
+  "kind": "static_source_application_color_constant_comparison",
+  "parser_sha256": "46ca95d89d1a79641cf9361287c9d75741fc0eccd9b4dcf0676ac4ae4ddac3d4",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSourceApplicationColors.swift": "4fd75b6d9d2a3eb64e1d361b757e9134bdbb833487911e38b789ea2cad189662"
+  },
+  "raw_table_sha256": "21d0d7186e0a496181a8c6f9b17d11e857c9eb758b2851c87cb22085b8bcdad0",
+  "entry_count": 47,
+  "large_reachable_rebases": 39,
+  "inline_small_strings": 8,
+  "entries": [
+    {
+      "slot": "0x100fbefb8",
+      "bundle_identifier": "com.wiheads.paste",
+      "raw_color": "0xf8b92e",
+      "small_inline": false,
+      "second_word": "0x30080000d97ae0",
+      "entry_sha256": "367342f0f1f4440e0100a95948813c5145b0eacfbd5ef588986e59ee16ddbf50"
+    },
+    {
+      "slot": "0x100fbefd0",
+      "bundle_identifier": "com.wiheads.paste-direct",
+      "raw_color": "0xf8b92e",
+      "small_inline": false,
+      "second_word": "0x30080000da1d60",
+      "entry_sha256": "447354304f0a0a00088ddfda0e82a40a576dae33ea936aebf89ca396e152eb46"
+    },
+    {
+      "slot": "0x100fbefe8",
+      "bundle_identifier": "com.wiheads.paste-setapp",
+      "raw_color": "0xf8b92e",
+      "small_inline": false,
+      "second_word": "0x30080000da1d80",
+      "entry_sha256": "a3066e41d7d0b97a0fb69ebd09e253f9c1c4342ab9632bb1bc698935b6e0baa3"
+    },
+    {
+      "slot": "0x100fbf000",
+      "bundle_identifier": "com.adobe.Acrobat",
+      "raw_color": "0x9b0a00",
+      "small_inline": false,
+      "second_word": "0x30080000da1da0",
+      "entry_sha256": "bc9493af48c4622e00a642da3d6a2c76a4629abe6fed1ca2be67087381348b4d"
+    },
+    {
+      "slot": "0x100fbf018",
+      "bundle_identifier": "com.adobe.AfterEffects",
+      "raw_color": "0x3b3b92",
+      "small_inline": false,
+      "second_word": "0x30080000da1dc0",
+      "entry_sha256": "003db2b627374d9c997cca71bcf72856850f1d24439c8b8e5cddf3c4411f106d"
+    },
+    {
+      "slot": "0x100fbf030",
+      "bundle_identifier": "com.adobe.Dreamweaver",
+      "raw_color": "0x285c28",
+      "small_inline": false,
+      "second_word": "0x90080000da1de0",
+      "entry_sha256": "eb2064605aff77992004c92b1ca72784e4221e36bde018da4a39936c43b84d99"
+    },
+    {
+      "slot": "0x100fbf048",
+      "bundle_identifier": "com.adobe.flash",
+      "raw_color": "0x901313",
+      "small_inline": true,
+      "second_word": "0xef6873616c662e65",
+      "entry_sha256": "8640d5a64eab83356033cc2eaccd6063a499cbe24afa090e063b41b61d738128"
+    },
+    {
+      "slot": "0x100fbf060",
+      "bundle_identifier": "com.adobe.Fonts",
+      "raw_color": "0x34363a",
+      "small_inline": true,
+      "second_word": "0xef73746e6f462e65",
+      "entry_sha256": "366aa727e3fa8d3fb6c321c52d1f076d2b32e373a21386140510b2daaa683b24"
+    },
+    {
+      "slot": "0x100fbf078",
+      "bundle_identifier": "com.adobe.illustrator",
+      "raw_color": "0xe58b00",
+      "small_inline": false,
+      "second_word": "0x30080000da1e00",
+      "entry_sha256": "90196a6afeaf0c96a0dffd88125d574f92542fa6c89b92278bfa86b56e510ba0"
+    },
+    {
+      "slot": "0x100fbf090",
+      "bundle_identifier": "com.adobe.InDesign",
+      "raw_color": "0xc0264d",
+      "small_inline": false,
+      "second_word": "0x60080000da1e20",
+      "entry_sha256": "9ef76a2211835dcaf9e1abb9be2bc537940d50d36ada5538949b7e4db2f403f3"
+    },
+    {
+      "slot": "0x100fbf0a8",
+      "bundle_identifier": "com.adobe.Lean",
+      "raw_color": "0x74528f",
+      "small_inline": true,
+      "second_word": "0xee006e61654c2e65",
+      "entry_sha256": "87ce5a3c85feb6c62c69b7ed4c2a6982c04950e722977678d2267748e833dfde"
+    },
+    {
+      "slot": "0x100fbf0c0",
+      "bundle_identifier": "com.adobe.Photoshop",
+      "raw_color": "0x5c90",
+      "small_inline": false,
+      "second_word": "0x30080000da1e40",
+      "entry_sha256": "a3d6cee624be47c962ca834070ea6ad40c67289cf366ead2fb46dad33d7e04c2"
+    },
+    {
+      "slot": "0x100fbf0d8",
+      "bundle_identifier": "com.adobe.RoboHelp",
+      "raw_color": "0xa957c",
+      "small_inline": false,
+      "second_word": "0x60080000da1e60",
+      "entry_sha256": "67a5fe2feb4387eb3fdf0bd20ee4794829ecabdd452667e8a644680b2b44393e"
+    },
+    {
+      "slot": "0x100fbf0f0",
+      "bundle_identifier": "com.adobe.XD",
+      "raw_color": "0x85156b",
+      "small_inline": true,
+      "second_word": "0xec00000044582e65",
+      "entry_sha256": "26a81380cf6d5fb0b82344c42c7e07805540d5ec142b6854788d4393a325b625"
+    },
+    {
+      "slot": "0x100fbf108",
+      "bundle_identifier": "com.agilebits.onepassword7",
+      "raw_color": "0x299de6",
+      "small_inline": false,
+      "second_word": "0x30080000da1a90",
+      "entry_sha256": "31bfa22014feb87a641aa4feff7868f9a84c9a1f9419a8f6878e4dd36a154039"
+    },
+    {
+      "slot": "0x100fbf120",
+      "bundle_identifier": "com.apple.AddressBook",
+      "raw_color": "0xab8248",
+      "small_inline": false,
+      "second_word": "0x30080000da1e80",
+      "entry_sha256": "80aa854f37cfc600dadf14d1bdd56c94660bbbedb2d077c6be77c0d843f58896"
+    },
+    {
+      "slot": "0x100fbf138",
+      "bundle_identifier": "com.apple.AppStore",
+      "raw_color": "0x62a9f5",
+      "small_inline": false,
+      "second_word": "0x30080000da1ea0",
+      "entry_sha256": "2cb6d428f1391a68972c3622c232c9ae95d193605f2e41880dee8d74a5056189"
+    },
+    {
+      "slot": "0x100fbf150",
+      "bundle_identifier": "com.apple.calculator",
+      "raw_color": "0x5b5f61",
+      "small_inline": false,
+      "second_word": "0x30080000da1ec0",
+      "entry_sha256": "3747cae0d4def000cbdbe82439a51f0fe547ca14a4d975d15b41f4cde649ac67"
+    },
+    {
+      "slot": "0x100fbf168",
+      "bundle_identifier": "com.apple.dt.Xcode",
+      "raw_color": "0x62a9f5",
+      "small_inline": false,
+      "second_word": "0x30080000da1ee0",
+      "entry_sha256": "1cc126a1b776e91a2d9731d34bc0ab1299a38f63aefa2d42f1222634268d9fc5"
+    },
+    {
+      "slot": "0x100fbf180",
+      "bundle_identifier": "com.apple.finder",
+      "raw_color": "0x62a9f5",
+      "small_inline": false,
+      "second_word": "0x60080000da1f00",
+      "entry_sha256": "46cded02a83378562dae51ee3261aec6e269790241968e81bf446c34327dd8f1"
+    },
+    {
+      "slot": "0x100fbf198",
+      "bundle_identifier": "com.apple.iCal",
+      "raw_color": "0xf0554d",
+      "small_inline": true,
+      "second_word": "0xee006c6143692e65",
+      "entry_sha256": "fcf611c541c206751bbca89d0cb569a31e612e180c41ebdcc8dffb54e8387313"
+    },
+    {
+      "slot": "0x100fbf1b0",
+      "bundle_identifier": "com.apple.iBooksX",
+      "raw_color": "0xfa9214",
+      "small_inline": false,
+      "second_word": "0x30080000da1f20",
+      "entry_sha256": "a0e5432720df4412aa4e2dec1d12e982ea729785e991a9046f143bf32c4b388d"
+    },
+    {
+      "slot": "0x100fbf1c8",
+      "bundle_identifier": "com.apple.iWork.Keynote",
+      "raw_color": "0x62a9f5",
+      "small_inline": false,
+      "second_word": "0x30080000da1f40",
+      "entry_sha256": "d57eca570c734f1bc9e84615ce8ce979ea39badc463205f798cf7e6a7461f2fb"
+    },
+    {
+      "slot": "0x100fbf1e0",
+      "bundle_identifier": "com.apple.iWork.Numbers",
+      "raw_color": "0x52cc64",
+      "small_inline": false,
+      "second_word": "0x30080000da1f60",
+      "entry_sha256": "426395cff4b3fff6336ca040ab69200c82e0e0647bdf1e2003e3c712df05e600"
+    },
+    {
+      "slot": "0x100fbf1f8",
+      "bundle_identifier": "com.apple.iWork.Pages",
+      "raw_color": "0xfa9214",
+      "small_inline": false,
+      "second_word": "0x60080000da1f80",
+      "entry_sha256": "f9ccbb132766f33f0e71fd55058ef6793207c9a35ac2b858293cf2a24d7bb52e"
+    },
+    {
+      "slot": "0x100fbf210",
+      "bundle_identifier": "com.apple.mail",
+      "raw_color": "0x62a9f5",
+      "small_inline": true,
+      "second_word": "0xee006c69616d2e65",
+      "entry_sha256": "bef5436ef1fd4a4bde21cac5ef9ae96ac4851cd9e8eefea0b6a100ce90bd9fe8"
+    },
+    {
+      "slot": "0x100fbf228",
+      "bundle_identifier": "com.apple.Photos",
+      "raw_color": "0xf0554d",
+      "small_inline": false,
+      "second_word": "0x30080000da1fa0",
+      "entry_sha256": "9c2024bb71efe35e02a2f5c7bd0724a29afc89c9f25651efb057934cbdc64baa"
+    },
+    {
+      "slot": "0x100fbf240",
+      "bundle_identifier": "com.apple.reminders",
+      "raw_color": "0xf0554d",
+      "small_inline": false,
+      "second_word": "0x30080000da1fc0",
+      "entry_sha256": "93c896e2573a6457030ae370747444984d3e48238bd47566c33180d25d5e2568"
+    },
+    {
+      "slot": "0x100fbf258",
+      "bundle_identifier": "com.apple.Safari",
+      "raw_color": "0x62a9f5",
+      "small_inline": false,
+      "second_word": "0x30080000da1fe0",
+      "entry_sha256": "8c05c6afe511d996bc859b04222345031f69acbe7af0ca2fcea069aa8688b8f3"
+    },
+    {
+      "slot": "0x100fbf270",
+      "bundle_identifier": "com.apple.Terminal",
+      "raw_color": "0x454d4d",
+      "small_inline": false,
+      "second_word": "0x30080000da2000",
+      "entry_sha256": "36ce009952ce225047e15f06aa3368beba9c101b3ddfb2512982ae8092d7cf6e"
+    },
+    {
+      "slot": "0x100fbf288",
+      "bundle_identifier": "com.apple.TextEdit",
+      "raw_color": "0x9c9c9c",
+      "small_inline": false,
+      "second_word": "0x30080000da2020",
+      "entry_sha256": "301d024bbf3150678092211f9fb6c53bb2a4e456b17e12f4904270b584677fe0"
+    },
+    {
+      "slot": "0x100fbf2a0",
+      "bundle_identifier": "com.bohemiancoding.sketch3",
+      "raw_color": "0xff8d00",
+      "small_inline": false,
+      "second_word": "0x30080000da2040",
+      "entry_sha256": "8e34df48026bb210ef6cac466b521f400a2cb57deeebcabef6dba44050005da7"
+    },
+    {
+      "slot": "0x100fbf2b8",
+      "bundle_identifier": "com.figma.Desktop",
+      "raw_color": "0x18a0fb",
+      "small_inline": false,
+      "second_word": "0x30080000da2060",
+      "entry_sha256": "c71cf08dade9aecee36504d6bed18283e4e16de1285ebb536813cecf19351ba1"
+    },
+    {
+      "slot": "0x100fbf2d0",
+      "bundle_identifier": "com.framer.electron",
+      "raw_color": "0x2983da",
+      "small_inline": false,
+      "second_word": "0x30080000da2080",
+      "entry_sha256": "c990a7afde169a07bed52b81fbcc15b504a083ebc119bfecf9aca3cb963eb136"
+    },
+    {
+      "slot": "0x100fbf2e8",
+      "bundle_identifier": "com.google.Chrome",
+      "raw_color": "0x4285f4",
+      "small_inline": false,
+      "second_word": "0x60080000da20a0",
+      "entry_sha256": "a35462b02c6f9a46c9f1262efa48152a0d5da0072b85453857e1f4455ca5a386"
+    },
+    {
+      "slot": "0x100fbf300",
+      "bundle_identifier": "com.linear",
+      "raw_color": "0xf1011",
+      "small_inline": true,
+      "second_word": "0xea00000000007261",
+      "entry_sha256": "e5df954a2ab03e9e0578e20846ba3accd5c904a672b1c73350918cbf756cf3d6"
+    },
+    {
+      "slot": "0x100fbf318",
+      "bundle_identifier": "com.microsoft.Excel",
+      "raw_color": "0x107c41",
+      "small_inline": false,
+      "second_word": "0x30080000da20c0",
+      "entry_sha256": "80659599180523f66092648668b325873e273d2fade2db6fef2b232d30248307"
+    },
+    {
+      "slot": "0x100fbf330",
+      "bundle_identifier": "com.microsoft.onenote.mac",
+      "raw_color": "0x963cba",
+      "small_inline": false,
+      "second_word": "0x30080000da20e0",
+      "entry_sha256": "e82bf35dd7c331634add848f2e8bb3fe12206e9cb33129a4220bb93fe510f8ce"
+    },
+    {
+      "slot": "0x100fbf348",
+      "bundle_identifier": "com.microsoft.Outlook",
+      "raw_color": "0x78d4",
+      "small_inline": false,
+      "second_word": "0x30080000da2100",
+      "entry_sha256": "53755e679eb112b8809b59cf3f7d241b7e8977c609a23163cb0ebf9c0d2fdc71"
+    },
+    {
+      "slot": "0x100fbf360",
+      "bundle_identifier": "com.microsoft.Powerpoint",
+      "raw_color": "0xcf4d2b",
+      "small_inline": false,
+      "second_word": "0x30080000da2120",
+      "entry_sha256": "b19a89ca1156a323f4a4ec633d40aeb866fddf7787ce0bdcdc24c6d2313e049c"
+    },
+    {
+      "slot": "0x100fbf378",
+      "bundle_identifier": "com.microsoft.teams",
+      "raw_color": "0x4650c2",
+      "small_inline": false,
+      "second_word": "0x30080000da2140",
+      "entry_sha256": "ddd63c1eb78d68646a078b0dc3ecb7ac8d7165041bff90475d56f8041e765210"
+    },
+    {
+      "slot": "0x100fbf390",
+      "bundle_identifier": "com.microsoft.Word",
+      "raw_color": "0x185abd",
+      "small_inline": false,
+      "second_word": "0x30080000da2160",
+      "entry_sha256": "7b12edeaea9f8736abf03e88a6d9ed1a60915fe05874a34f3d2adb37eb33b454"
+    },
+    {
+      "slot": "0x100fbf3a8",
+      "bundle_identifier": "com.microsoft.VSCode",
+      "raw_color": "0xd76bd",
+      "small_inline": false,
+      "second_word": "0x30080000da2180",
+      "entry_sha256": "92c7c9602df2eda6655ea54a6adf7d1897dd6596602c212dd2b4e786e8f67c90"
+    },
+    {
+      "slot": "0x100fbf3c0",
+      "bundle_identifier": "com.tinyspeck.slackmacgap",
+      "raw_color": "0x611f69",
+      "small_inline": false,
+      "second_word": "0x60080000da21a0",
+      "entry_sha256": "f6e58e6c93b6ec7a8c329e9e67f6fbdacbc00644a57719cc4d97b7d9f5dcd492"
+    },
+    {
+      "slot": "0x100fbf3d8",
+      "bundle_identifier": "notion.id",
+      "raw_color": "0x0",
+      "small_inline": true,
+      "second_word": "0xe900000000000064",
+      "entry_sha256": "40729289c1033f1753a10203cf852c00be4fec2152baec304f0728952cee4e97"
+    },
+    {
+      "slot": "0x100fbf3f0",
+      "bundle_identifier": "ru.keepcoder.Telegram",
+      "raw_color": "0x50a5df",
+      "small_inline": false,
+      "second_word": "0x30080000da21c0",
+      "entry_sha256": "0dd4c6040ddc882c3984c6a6ecb1480f3fce795224d44b84a528ac3eef656714"
+    },
+    {
+      "slot": "0x100fbf408",
+      "bundle_identifier": "com.tdesktop.Telegram",
+      "raw_color": "0x50a5df",
+      "small_inline": false,
+      "second_word": "0x40080000da21e0",
+      "entry_sha256": "0d99597a63ab4cbe8beddc2338421ff7510086288cf606d1df6a4455c91026cb"
+    }
+  ],
+  "limits": "只核固定原表、实际页链与源码常量，不验证取色算法、原函数ABI或运行行为。",
+  "functional_tests_executed": false,
+  "product_executed": false
+}

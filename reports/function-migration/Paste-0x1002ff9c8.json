@@ -11,18 +11,18 @@
   "original_pseudocode_sha256": "a4a24d74878bc0d2b3702e504770dc329f2471783a133cdace88c700def24729",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalObjCExceptionBridge.swift": "83c6a0735223b544a2d156b9ea26f9aff8896ca6f16c4d8a6c39ae550ac39c88",
-    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "668d94d042fa868c42c9db1c7f22d82b5d3aedc30830a4d6f83b3a893f3c693d"
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "1e7b5b872c2dacd39e57c5e3719ca5bf18b576d05d4d2950e7cac195a534500b"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "24d03e58202ea2930b5bf302202a1920f4550c8b82550459fcb5d045ed9d7bbb",
+  "compiled_app_binary_sha256": "391a479532bdd5a41bcfc4b8884c1934cf7db5850d271cbd2080416020ba4ebe",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "同步执行throws Void操作，Result?初值nil，正常写.success(())，Swift Error写.failure且最终原样throw；优先把ObjC异常转换为保存name:String/reason:String?的独立Swift Error；无异常且Result未写则trap；operation不逃逸。",
   "review": "part-0249.c:927..1031完整体区分local_58=-1未写/1 failure/0 success，异常name/reason优先；新Void包装实际覆盖已有archive导出保存+JSON编码+写盘路径，非无人调用壳。",
-  "source_review": "dev31集中源码复核：现有格式读取/写入/编解码、搜索编辑器、Stack与图片文字消费及age谓词实现保留；捕获仅增可选来源快照参数及add透传，不改变原多格式转换/校验合同。Header图标读取与独立Store共享模型不据此提升原父函数。绑定build54。",
+  "source_review": "dev32：当前改动仅Header持久色/共享应用图色记录。既有SearchEditor、查询空判断、卡片bodyTop及导出异常桥实际实现/消费者保留，已逐项静态核对；绑定最终build56，不把完整Header/Store父升等价。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "unchanged_declarations": [
     {
