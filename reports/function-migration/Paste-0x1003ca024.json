@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1003ca024",
-  "reviewed_at": "2026-10-23T15:16:51.945051+00:00",
+  "reviewed_at": "2026-10-23T17:11:56.698806+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0300.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "65483e97bf9f4aa9a30b0868c02f81435049d54869006364cfa6551759b161b7",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "2c08314bd0e63ada540371d2a856cd277d814997cd97ae5fbc3f1bfc676893e9"
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "90bfbfd6d413e25d446b47346935f15c53d80dc44028d6630d19331b06908ffa"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "24dcfc9f7c9d3a4f249b17158cef4da0282ca222dda0971955810395b885bf7f",
+  "compiled_app_binary_sha256": "c84dfbf972fdc5e84d1ef09f50ec173f73535129fd3c1b173e10d50fce95a369",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "isValid and positive dimensions; bestRepresentation; NSImage lockFocus/draw copy/1/flipped/nil/unlockFocus.",
   "review": "Complete original REA and full arm64 recovered with exact selector decoding; actual add/capture/import/update-image writer consumes generator and preview consumes persisted optional logical size. Root final build37 compiled; no runtime equivalence claim.",
-  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
+  "source_review": "dev34逐项静态复审：现有图像元数据/缩略图/重采样/JPEG/透明采样函数体保持，只有重采样访问级公开；搜索委托/查询空值/卡片纯值几何方法与调用段保持。真实Header重采样复用既有函数，非新增实现，绑定build58。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

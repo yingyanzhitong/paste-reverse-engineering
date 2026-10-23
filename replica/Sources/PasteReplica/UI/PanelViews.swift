@@ -348,7 +348,8 @@ struct ReplicaClipboardCard: View {
         case .image, .color, .files:
             ReplicaCanonicalCardContent(item: item, sizeClass: UInt8(sizeClass))
         default:
-            ReplicaItemContent(item: item, compact: true, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled)
+            ReplicaItemContent(item: item, compact: true, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled,
+                               cardSizeClass: UInt8(sizeClass))
                 .padding(.horizontal, item.kind == .link ? 0 : 12).padding(.top, item.kind == .link ? 0 : 11)
         }
     }
@@ -465,7 +466,8 @@ struct ReplicaClipboardCard: View {
                         .offset(x: sizeClass == 3 ? -12 : 8)
                 }
             } else {
-                SourceAppIcon(item: item, store: state.store)
+                SourceAppIcon(item: item, store: state.store,
+                              rasterSize: NSSize(width: sourceIconSide, height: sourceIconSide))
                     .frame(width: sourceIconSide, height: sourceIconSide)
                     .opacity(sizeClass == 3 ? 0.9 : 1)
                     .offset(x: sizeClass == 3 ? -8 : 14)
@@ -565,11 +567,19 @@ struct ReplicaClipboardCard: View {
 struct SourceAppIcon: View {
     let item: ClipboardItem
     @ObservedObject var store: ClipboardStore
+    var rasterSize: NSSize? = nil
 
     var body: some View {
         if let application = store.sourceApplication(for: item) {
             let image = application.rawIcon.flatMap(NSImage.init(data:)) ?? NSImage()
-            Image(nsImage: image).resizable().scaledToFit()
+            if let rasterSize {
+                if let raster = OriginalImagePreviewMetadataGenerator.f_1003ca024(
+                    image, width: rasterSize.width, height: rasterSize.height) {
+                    Image(nsImage: raster).resizable().scaledToFit()
+                }
+            } else {
+                Image(nsImage: image).resizable().scaledToFit()
+            }
         } else {
             // Independent unknown-application placeholder; the original private asset is not copied.
             Image(systemName: "doc.on.clipboard.fill")
@@ -583,6 +593,7 @@ struct ReplicaItemContent: View {
     let item: ClipboardItem
     let compact: Bool
     var linkPreviewsEnabled = true
+    var cardSizeClass: UInt8? = nil
     var body: some View {
         Group {
             if item.kind == .image, let image = itemImage(item) {
@@ -600,7 +611,8 @@ struct ReplicaItemContent: View {
                 }
             } else if item.kind == .link {
                 if let metadata = item.decodedLinkPreviewMetadata {
-                    ReplicaLinkMetadataContent(metadata: metadata, compact: compact, linkPreviewsEnabled: linkPreviewsEnabled)
+                    ReplicaLinkMetadataContent(metadata: metadata, compact: compact, linkPreviewsEnabled: linkPreviewsEnabled,
+                                               cardSizeClass: cardSizeClass)
                 }
             } else if compact, item.kind == .text || item.kind == .richText {
                 if let metadata = item.decodedTextPreviewMetadata {

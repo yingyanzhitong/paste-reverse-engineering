@@ -8,6 +8,7 @@ struct ReplicaLinkMetadataContent: View {
     let metadata: OriginalLinkPreviewMetadata
     let compact: Bool
     let linkPreviewsEnabled: Bool
+    var cardSizeClass: UInt8? = nil
 
     var body: some View {
         let image = metadata.imageData.flatMap(NSImage.init(data:))
@@ -15,7 +16,12 @@ struct ReplicaLinkMetadataContent: View {
             if linkPreviewsEnabled {
                 Group {
                     if let image, image.size.width != image.size.height {
-                        Image(nsImage: image).resizable().scaledToFit()
+                        if let cardSizeClass {
+                            ReplicaAdaptiveScalingImage(image: image,
+                                scaleToFillRatio: cardSizeClass == 3 ? 0 : 0.7)
+                        } else {
+                            Image(nsImage: image).resizable().scaledToFit()
+                        }
                     } else if let icon = image ?? metadata.iconData.flatMap(NSImage.init(data:)) ?? fallbackIcon() {
                         Image(nsImage: icon).resizable().scaledToFit()
                             .frame(width: 42, height: 42)

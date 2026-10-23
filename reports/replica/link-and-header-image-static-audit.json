@@ -1,0 +1,329 @@
+{
+  "version": "0.8.0-dev.34",
+  "kind": "static_call_chain_review",
+  "reviewed_at": "2026-10-23T17:11:56.698806+00:00",
+  "build": 58,
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/OriginalAdaptiveScalingImageView.swift": "0002845178a53c2617885f40fcfad92f679c1123a095340aa1037450914730d6",
+    "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "265cb37883c42488ca63076b9c8ebfa5dfd1a57462730f992cf97ad657721f52",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "c598495dc66d4cdbc087b1b86ce192ddf64997ecb1b677cf956928052ba10cb4",
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "90bfbfd6d413e25d446b47346935f15c53d80dc44028d6630d19331b06908ffa"
+  },
+  "existing_functions_reused": [
+    "Paste:0x1003ca024"
+  ],
+  "new_complete_functions": 0,
+  "scope": [
+    "仅已有本地link metadata主图使用真实卡片class阈值0/0.7；图片卡片默认0.8，非卡片nil保既有fit。",
+    "普通来源Header按84/80/76/20复用已实现resample；只公开原private函数，不复制绘制器。"
+  ],
+  "remaining": [
+    "Link完整native层次、裁剪、fadingView及动画/布局仍partial。",
+    "unknown-app资产与nilasset边界仍partial；当前Header重复绘制计算与原配置回调生命周期不等价。",
+    "selected press0.45/任意drag取消/严格>3pt启动拖拽的原事件合同尚未完整接原生委托。SwiftUI默认timing未运行验证，不能据此称实测错误。"
+  ],
+  "validation": {
+    "release_compile": true,
+    "source_snapshot_unchanged": true,
+    "product_executed": false,
+    "functional_tests_executed": false,
+    "equivalence_verified": false
+  },
+  "peer_reviews": {
+    "window-link-adaptive-peer": {
+      "review": "independent Link adaptive main-image producer-to-wrapper consumer peer",
+      "created_at": "2026-10-23T17:10:37.707927+00:00",
+      "mode": "readonlystatic; no Source/public/map/build/product/test/UI/MCP changes or execution",
+      "conclusion": "No confirmed integration defect found in the bounded adaptive-ratio consumer path; wholeLink/clipping/animations remainpartial.",
+      "source_sha256": {
+        "replica/Sources/PasteReplica/UI/OriginalAdaptiveScalingImageView.swift": "0002845178a53c2617885f40fcfad92f679c1123a095340aa1037450914730d6",
+        "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift": "265cb37883c42488ca63076b9c8ebfa5dfd1a57462730f992cf97ad657721f52",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "c598495dc66d4cdbc087b1b86ce192ddf64997ecb1b677cf956928052ba10cb4",
+        "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift": "a65ed038204e1a37e21ad041a81e9de8218ac0790dce6e4a5ed695d5cce669a6",
+        "replica/Sources/PasteReplica/UI/ReplicaReadOnlyPreviewContent.swift": "75c71b7c823ac6dfe3e59a033db183419afd55dca88b37941f4a35eb9021d36b",
+        "replica/Sources/PasteReplica/UI/ReplicaCanonicalCardContent.swift": "ae15319786af4a6becda29a55e849ddda42fe38e5a9de525900b57e182f0e24d"
+      },
+      "checks": [
+        {
+          "boundary": "actualcardclassproducer",
+          "result": "pass",
+          "details": "ReplicaClipboardCard.cardContent defaultbranchpassesUInt8(sizeClass) toReplicaItemContent.cardSizeClass; sizeClass isexistingcomputedactualcard0..3 basedonsideLength. RatioisnotderivedfromcompactBool."
+        },
+        {
+          "boundary": "classpassthrough",
+          "result": "pass",
+          "details": "ReplicaItemContent optionalcardSizeClassdefaultnil isforwardedunchanged toReplicaLinkMetadataContent onlylinkcanonicalmetadata branch; no reinterpretationofcompact or forceddefaultclass."
+        },
+        {
+          "boundary": "onlymainimageadaptive",
+          "result": "pass",
+          "details": "LinkpreviewsEnabled gateouter; metadata.imageData decoded nonsquareimage andnonnullclass→ReplicaAdaptiveScalingImage(scaleToFillRatio:class==3?0:0.7). Squareicon oriconData/fallback pathsstay42×42fit, no ratio injection."
+        },
+        {
+          "boundary": "noncard nil keepspreviousfit",
+          "result": "pass",
+          "details": "AuxiliaryViews independentpreview andReplicaReadOnlyPreviewContent callReplicaItemContent(compact:false,...) withoutcardSizeClass. Optionalnilpropagates→nonsquarelinkImage.resizable.scaledToFit oldbehavior; not falselyclassifiedasclass3."
+        },
+        {
+          "boundary": "wrapper make/update",
+          "result": "pass",
+          "details": "ReplicaAdaptiveScalingImage exposesscaleToFillRatio default0.8; bothmakeNSView andupdateNSView assignactualviewproperty. didSetneedsDisplay existingNSViewproperty retained. Canonicalimagecard image-onlyinitializer stilldefault0.8."
+        },
+        {
+          "boundary": "directtargetthreshold",
+          "result": "pass",
+          "details": "Originalf3db698 w0class lowbyte==3 comparison at0x1003db6ec; FCSELd8=0/.7 at0x1003db724; setterf1f2144 at0x1003db73c. Progressd8 usedearlier onlyiconcenterYinterpolation. Currentclassswitch setsratio directly; no progress interpolator/compactguess introduced."
+        },
+        {
+          "boundary": "drawbodyunchanged",
+          "result": "pass",
+          "details": "GitHEAD currentOriginalAdaptiveScalingImageView classprefixthroughbeforerepresentable isbyte-identical. Onlyrepresentableparameter+2assignments added. Nilimage/orderedNaNbranches/CGRectIntegral/no bounds.origin/.copy/fraction1/drawgetters unchanged.",
+          "class_body_equal_to_HEAD": true,
+          "class_body_sha256": "0977693e187d7d448c1b278c601b8a75521a73b8ca6ff25aafb2f164300a2491"
+        },
+        {
+          "boundary": "othermetadata/footer/clip",
+          "result": "pass scoped",
+          "details": "Linkmetadata priority/nameoptionalempty/URLformatter/footerlines/preference/safari42unchanged. Existingcardcontent.clipped androundedouterclip unchanged; no newNSViewclipflag. OriginalfadingView/nativehierarchyclip remainspartial, no pixelparity claim."
+        }
+      ],
+      "original_evidence": [
+        ".local/image-link-adaptive-final-plan.json",
+        ".local/image-link-adaptive-implementation-review.json",
+        ".local/image-link-adaptive-threshold-producer-arm64.txt",
+        ".local/image-link-adaptive-configure-arm64.txt",
+        ".local/image-link-adaptive-setter-arm64.txt",
+        ".local/image-dev26-adaptive-draw-arm64.txt"
+      ],
+      "nativepress_followup": {
+        "plan": ".local/window-native-press-drag-final-plan.json",
+        "fact": "0.45 selectednormal timer andanydragcancel/hypot>3 contract is evidenced; pureselection/context/double/localreorder alreadyreusable.",
+        "remaining": "ActualnativeCollectionView delegate+0x10 writerfactory/output→NSDraggingItempreview/session/sourceoperation fullhandoff stillnotcomplete. MouseUp/superclass scheduling policy also notclosed.",
+        "do_not_claim": "CurrentSwiftUI defaulttiming/threshold hasnotbeenmeasured andisnotaprovenuserbug; no newnativepressSourceimplementedinthisLinkpatch."
+      },
+      "blocking_findings": [],
+      "remaining_partial": [
+        "Original fullLinkVM/cellconstraints/animationfade/nativeclip/hitdispatch remainpartial.",
+        "No functionalunit/runtime/visual/invalidratio examplesexecuted.",
+        "Peerdoesnotclaimbuildsuccess; Rootownsfinalunifiedcompiler."
+      ],
+      "source_changes": 0,
+      "public_map_changes": 0,
+      "builds": 0,
+      "tests": 0,
+      "runs": 0,
+      "new_features_or_complete_count": 0
+    },
+    "pasteboard-header-resample-final-plan": {
+      "scope": "Reuse existing complete f3ca024; no new function count",
+      "original_function": {
+        "start": "0x1003ca024",
+        "end_exclusive": "0x1003ca118",
+        "size": 244,
+        "sha256": "25cbf5423e02e17a96c27fd2ef4b1c3e2aed94a8c44dea16cbacd11e9ba6a87f",
+        "full_machine_code_hex": "ff0301d1e923016df44f02a9fd7b03a9fdc30091281ca14e091ca04ee00314aa4fef2094e80300aa000080d2a80500342821601e6d0500540821601e2d05005400e4006f01e4006fe00314aa221da94e031da84e020080d2030080d258d12094fd031daac3c72094c00300b4f30300aa085e00f0005d43f970c72094201da94e011da84ee6ea2094f40300aa3cf1209408fee7d2e80300f900e4006f01e4006f04e4006f05e4006f06e4006f07e4006fe00313aa221da94e031da84e2200805223008052040080d28ddd2094e00314aa531b2194e00313aa9ac72094e00314aafd7b43a9f44f42a9e923416dff030191c0035fd6"
+      },
+      "evidence": [
+        "decompiled/Paste/part-0300.c:1815",
+        ".local/image-next-header-icon-resample-arm64.txt",
+        "decompiled/Paste/part-0304.c f3d41b4",
+        ".local/pasteboard-pinboard-renderer-peer.json compact_nil_branch_correction"
+      ],
+      "finite_contract": [
+        "isValid false returns nil.",
+        "width>0 and height>0; FCMP/b.le rejects NaN/nonpositive/-inf, permits +inf into AppKit without new finite guard.",
+        "bestRepresentation rect(0,0,w,h), context/hints nil; missing rep returns nil.",
+        "Allocate exact NSImage(size:w,h), lockFocus, representation.draw target rect/from.zero, operation.copy raw1, fraction1, respectFlipped true, hints nil, unlockFocus, return image."
+      ],
+      "original_header_parameters": {
+        "table_address": "0x100c45cc8",
+        "bytes_hex": "0000000000005540000000000000544000000000000053400000000000003440",
+        "sha256": "79f262e929ee4010d20525ab13393642c4066d9554e2294f7df510636c6cc91a",
+        "class_0_to_3": [
+          84.0,
+          80.0,
+          76.0,
+          20.0
+        ],
+        "caller": "f3d41b4 indexes same size-class table for width and height; not fixed128/frame getter/scaleFactor.",
+        "current": "sourceIconSide=class3?20:headerHeight+28 gives84/80/76/20."
+      },
+      "existing_reuse": {
+        "symbol": "OriginalImagePreviewMetadataGenerator.f_1003ca024(_:width:height:)",
+        "existing_consumer": "f3c9f3c in same file genuinely calls it. Already migrated; reuse complete primitive.",
+        "owned_source_change": "Only private static -> public static; function body unchanged.",
+        "source_frozen": true
+      },
+      "header_difference_and_plan": {
+        "before": "SourceAppIcon decodes rawIcon or NSImage(), then only SwiftUI resizable/scaledToFit; display-frame scaling does not invoke original exact-size raster.",
+        "root_integration": "Root adds optional rasterSize:NSSize? defaultnil to SourceAppIcon. Ordinary card app branch passes sourceIconSide square and calls existing public helper. Non-card caller defaultnil preserves existing behavior.",
+        "nil_result": "Render no image; do not fallback to unknown and do not change stored decoded image or headerTrailing.",
+        "parent_partial": [
+          "SwiftUI vs original NSImageView layout/pixel behavior not dynamically verified.",
+          "Original private unknown asset is independently substituted SF symbol; nil asset path not proved ordinary reachable.",
+          "Other Header/entity/constraint/event contracts remain partial."
+        ]
+      },
+      "stored_property_correction": [
+        "f3d41b4 first stores raw getter or imageNamed result in Header.sourceAppIcon.",
+        "Existing sourceapp with nil/bad rawIcon: f310dd0 returns nonnil NSImage().",
+        "Only ordinary branch resamples and sets NSImageView.image; result never overwrites stored sourceAppIcon.",
+        "Compact layout checks stored image property; resample nil does not imply compact inset12."
+      ],
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "90bfbfd6d413e25d446b47346935f15c53d80dc44028d6630d19331b06908ffa",
+        "replica/Sources/PasteReplica/UI/PanelViews.swift": "c598495dc66d4cdbc087b1b86ce192ddf64997ecb1b677cf956928052ba10cb4"
+      },
+      "consumer_status": "Root actual integration read-only peer confirmed: ordinary card app branch passes sourceIconSide square; record branch decodes stored image separately; optional raster nil yields no Image and no unknown fallback. Default rasterSize nil preserves non-card callers. Unknown SF asset branch remains independent partial.",
+      "validation": {
+        "source_change": "one access-level token only",
+        "build": false,
+        "product_run": false,
+        "unit_or_functional_tests": false,
+        "ui_mcp": false,
+        "public_or_map_change": false,
+        "spawn": false,
+        "new_complete_counts": 0
+      }
+    },
+    "image-header-raster-consumer-peer": {
+      "stage": "independent read-only final Header raster and card-only Link sizeclass consumer peer",
+      "created_at": "2026-10-23T17:12:04.220889+00:00",
+      "result": "no confirmed integration defect in reviewed positive card-size consumer paths",
+      "source_changed": false,
+      "public_or_map_changed": false,
+      "compiled_or_executed": false,
+      "tests_run": false,
+      "counts": {
+        "new_features": 0,
+        "new_completed_addresses": 0
+      },
+      "checks": [
+        {
+          "contract": "Link card-only sizeclass",
+          "status": "matched",
+          "source": "PanelViews.swift:351-352 ReplicaItemContent(...cardSizeClass: UInt8(sizeClass)); declaration at596 defaults nil and passes through at615; ReplicaLinkMetadataContent.swift:11,19-25 nonnil class3 ratio0/others0.7, nil scaledToFit.",
+          "boundary": "AuxiliaryViews.swift:37 and ReplicaReadOnlyPreviewContent.swift:27 do not pass cardSizeClass, so full previews retain nil rather than fabricating original card class."
+        },
+        {
+          "contract": "Header ordinary application rasterization",
+          "status": "matched for actual positive logical-size caller",
+          "source": "PanelViews.swift:391-393 sourceIconSide class3=20 otherwise headerHeight+28 (84/80/76); cardHeader owner-else at468-470 passes explicit square rasterSize; SourceAppIcon.swift-equivalent declaration lives PanelViews.swift:567-589. At576-578 the actual public OriginalImagePreviewMetadataGenerator.f_1003ca024 result is consumed.",
+          "boundary": "The existing image helper is reused rather than rewritten. Peer does not elevate its entire arbitrary numeric input domain or original Header parent to complete."
+        },
+        {
+          "contract": "Pinboard app-icon hidden gate",
+          "status": "matched",
+          "source": "PanelViews.swift:395-399 explicit owner resolver plus rawType==2; cardHeader:463-468 branches on owner presence before SourceAppIcon, so valid owner with invalid attributes still suppresses application raster. Valid attributes alone control board icon/color."
+        },
+        {
+          "contract": "present application with nil/corrupt stored icon",
+          "status": "matched",
+          "source": "PanelViews.swift:573-578 application.rawIcon.flatMap(NSImage.init(data:)) ?? NSImage(); rasterSize branch only draws if raster exists. There is no fallback from nil raster to unknown symbol.",
+          "boundary": "The original source image object remains conceptually present even when its resampled result is nil. This is distinct from absence of the SourceApplication record."
+        },
+        {
+          "contract": "compact title trailing reserve",
+          "status": "matched for current present-image/independent-placeholder object paths",
+          "source": "PanelViews.swift:406-409 returns30 for class3 independent of raster result; larger owner hidden returns12, ordinary sourceIconSide-14.",
+          "boundary": "Do not infer title reserve from raster success; original absent unknown-asset object failure is not closed by the independent placeholder."
+        },
+        {
+          "contract": "non-card Header icon callers",
+          "status": "matched adapter boundary",
+          "source": "PanelViews.swift:570 rasterSize defaults nil; AuxiliaryViews.swift:20 and240 retain nil with32/24 outer frames, invoking direct decoded image path at580-581 rather than card resampling."
+        }
+      ],
+      "helper_contract_correction": {
+        "historical_text": ".local/image-next-header-icon-review.json actual_original_chain.render formerly described CGImage at proposed rect.",
+        "correction": "f3ca024 uses NSImage.bestRepresentation(for:context:nil,hints:nil), then NSImage(size:), lockFocus, representation.draw(in:from:.zero,operation:.copy,fraction:1,respectFlipped:true,hints:nil), unlockFocus. Current Core lines50-63 express this pipeline. No CGImage extraction is used by this helper. Existing image metadata alpha/encoding CGImage calls are separate."
+      },
+      "remaining_partial": [
+        "Absent SourceApplication still displays independently chosen SF symbol with padding4; original private icon.unknown-app pixels are not copied and are not equivalent.",
+        "Original native Header/layout hierarchy, SourceApplication persistence/update scheduling and full parent DI/ABI contracts remain independently partial.",
+        "Only static source and saved original evidence reviewed; no runtime pixel comparison or functional regression has occurred.",
+        "Existing arbitrary-value helper numerical edge contract is not expanded by this positive-size consumer review."
+      ],
+      "sources": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "sha256": "c598495dc66d4cdbc087b1b86ce192ddf64997ecb1b677cf956928052ba10cb4"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+          "sha256": "a65ed038204e1a37e21ad041a81e9de8218ac0790dce6e4a5ed695d5cce669a6"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaReadOnlyPreviewContent.swift",
+          "sha256": "75c71b7c823ac6dfe3e59a033db183419afd55dca88b37941f4a35eb9021d36b"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+          "sha256": "265cb37883c42488ca63076b9c8ebfa5dfd1a57462730f992cf97ad657721f52"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAdaptiveScalingImageView.swift",
+          "sha256": "0002845178a53c2617885f40fcfad92f679c1123a095340aa1037450914730d6"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift",
+          "sha256": "90bfbfd6d413e25d446b47346935f15c53d80dc44028d6630d19331b06908ffa"
+        }
+      ],
+      "original_and_prior_evidence": [
+        {
+          "path": ".local/image-next-header-icon-consumer-arm64.txt",
+          "sha256": "25eafcb8c043f38a69f986b4a203e11aae09913c30663c3516adb6ebaf4e4a04"
+        },
+        {
+          "path": ".local/image-next-header-icon-rawicon-getter-arm64.txt",
+          "sha256": "125d445abb680b51c100b5dea18d561714c7bee42e1aebfae07b24bab6bebfd7"
+        },
+        {
+          "path": ".local/image-next-header-icon-resample-arm64.txt",
+          "sha256": "054c0aae2ce55f469f0fd760e884f801b91afc95fa8ee032cf9151e7c4adc209"
+        },
+        {
+          "path": ".local/image-link-adaptive-final-plan.json",
+          "sha256": "4e06e395e02b8d93a97da1904a55c022bf1d32d1d2a1a1df237b1c4c37d58ef9"
+        },
+        {
+          "path": ".local/image-pinboard-header-icon-review.json",
+          "sha256": "5f1a2e0f8ee5545a353dd334296f1c4928b18169ffc80d5b9dd822dd1a3ab68b"
+        }
+      ]
+    }
+  },
+  "original_functions": [
+    {
+      "function_id": "Paste:0x1003ca024",
+      "path": "decompiled/Paste/part-0300.c",
+      "line": 1817,
+      "sha256": "65483e97bf9f4aa9a30b0868c02f81435049d54869006364cfa6551759b161b7"
+    },
+    {
+      "function_id": "Paste:0x1003d41b4",
+      "path": "decompiled/Paste/part-0304.c",
+      "line": 1387,
+      "sha256": "476e6a484d63eb64789ddb4abaa355dd4f43d24b75f03d849c2adf6607078c4f"
+    },
+    {
+      "function_id": "Paste:0x1003da1fc",
+      "path": "decompiled/Paste/part-0306.c",
+      "line": 1489,
+      "sha256": "6288ae07424f7fce2d5b1e180836a438b7b426d0050248e3e0fa94e8eb38054d"
+    },
+    {
+      "function_id": "Paste:0x1003db698",
+      "path": "decompiled/Paste/part-0307.c",
+      "line": 181,
+      "sha256": "509ff741d4d183b8a4320dccc2d5f15e45a56725dd39bf8d04ec0138bd6b8030"
+    },
+    {
+      "function_id": "Paste:0x1001f32fc",
+      "path": "decompiled/Paste/part-0161.c",
+      "line": 424,
+      "sha256": "98e682b3b81432b5d424c807070d6dcdcafe1b4fc158735e961833cc6964c1e0"
+    }
+  ]
+}

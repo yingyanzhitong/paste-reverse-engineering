@@ -43,14 +43,17 @@ final class OriginalAdaptiveScalingImageView: NSView {
 @MainActor
 struct ReplicaAdaptiveScalingImage: NSViewRepresentable {
     let image: NSImage
+    var scaleToFillRatio: CGFloat = 0.8
 
     func makeNSView(context: Context) -> OriginalAdaptiveScalingImageView {
         let view = OriginalAdaptiveScalingImageView(frame: .zero)
         view.image = image
+        view.scaleToFillRatio = scaleToFillRatio
         return view
     }
 
     func updateNSView(_ nsView: OriginalAdaptiveScalingImageView, context: Context) {
         nsView.image = image
+        nsView.scaleToFillRatio = scaleToFillRatio
     }
 }

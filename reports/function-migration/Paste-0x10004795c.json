@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10004795c",
-  "reviewed_at": "2026-10-23T17:05:47.444400+00:00",
+  "reviewed_at": "2026-10-23T17:11:56.698806+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0026.c",
@@ -11,20 +11,20 @@
   "original_pseudocode_sha256": "7393ec8473823cef96a36e4ae9c74c705081ea81040c15730e6ed013df6eb71b",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchEditing.swift": "de4dbf21b72826fed9c0e9418c842eb8b0f1146a7d7aa9bfe22985af5d7ac73e",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "c80c2e5bd1091744fd2357125be3f90e7aec00e7605504a1a281a200317e994d",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "c598495dc66d4cdbc087b1b86ce192ddf64997ecb1b677cf956928052ba10cb4",
     "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "6a56456d5b45a28cacd291891380b97414e71c1eaf68bd1d9ee15c3ec1596600",
     "replica/Sources/PasteReplica/UI/SearchEditor.swift": "13ce2f341f2e7aad16ac8083f46575b20b060086cc5a66ebe6399d8740915107"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "afff00ec2649141bd8342330d59e12d0015bf8731ad64e6a7ac1cf8816a77207",
+  "compiled_app_binary_sha256": "c84dfbf972fdc5e84d1ef09f50ec173f73535129fd3c1b173e10d50fce95a369",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "SearchField文本修改检查：没有textStorage返回false；nil替换串按空串处理；逐Character读取首Unicode标量检测换行，仅在提案中把LF和CR替换为空格；删除单字符附件时，未选中该范围则先选中并返回false；复制富文本后替换指定UTF-16范围，光标为范围起点加替换串NSString.length；存在onTextShouldChange则返回回调结果，否则true。函数本身不修改textStorage。",
   "review": "逐项复审：OriginalSearchEditing的恢复函数体不变；委托在OriginalSearchField创建并保持，Coordinator从field.editingDelegate获取同一对象绑定回调，取代原先桥内构造。构建证据待统一登记；未重跑功能测试。",
-  "source_review": "dev33逐项复核既有方法与实际调用段：Stack/搜索/首响应者/选择/卡片几何/导出异常桥未被本轮Pinboard关系及Header改动替换。绑定build57；不新增实现或运行验收。",
+  "source_review": "dev34逐项静态复审：现有图像元数据/缩略图/重采样/JPEG/透明采样函数体保持，只有重采样访问级公开；搜索委托/查询空值/卡片纯值几何方法与调用段保持。真实Header重采样复用既有函数，非新增实现，绑定build58。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "caller_review_refs": [
     {

@@ -47,7 +47,7 @@ public enum OriginalImagePreviewMetadataGenerator {
         return f_1003ca024(image, width: targetWidth, height: targetHeight)
     }
 
-    private static func f_1003ca024(_ image: NSImage, width: CGFloat, height: CGFloat) -> NSImage? {
+    public static func f_1003ca024(_ image: NSImage, width: CGFloat, height: CGFloat) -> NSImage? {
         guard image.isValid, width > 0, height > 0,
               let representation = image.bestRepresentation(for: NSRect(x: 0, y: 0, width: width, height: height),
                                                               context: nil, hints: nil) else { return nil }

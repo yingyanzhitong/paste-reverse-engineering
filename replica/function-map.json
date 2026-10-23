@@ -27825,8 +27825,8 @@
         "line": 1385,
         "fragment_sha256": "29f9af765c3aecf2c3a2bab6d344b62eb7dba5b7f5e039710bdf6d1010f74d60"
       },
-      "review": "已核原REA/arm64及实际Source入口；主智能体最终build41通过，147输入SHA一致。未运行产品/功能/单测/UI/MCP；所有父保持partial。 dev31：Header实际消费共享应用记录rawIcon，缺/坏为空图，无实体走独立unknown占位；build54，原完整父仍partial。",
-      "remaining": "完整多style/原生Header对象/精确总尺寸圆角和模型身份仍partial，不以共享字体子组冒充父完整。 rawColor与原未知应用资产像素仍有差异。"
+      "review": "已核原REA/arm64及实际Source入口；主智能体最终build41通过，147输入SHA一致。未运行产品/功能/单测/UI/MCP；所有父保持partial。 dev31：Header实际消费共享应用记录rawIcon，缺/坏为空图，无实体走独立unknown占位；build54，原完整父仍partial。 dev34普通来源Header按原表84/80/76/20方形复用已有f3ca024重采样，坏rawIcon仍为非nil stored空图，而nilraster不回填占位、不改变compact30。",
+      "remaining": "完整多style/原生Header对象、KVO与模型身份、未知应用asset像素及nil边界仍partial；共享图色/owner优先已接但不等整体运行验收。"
     },
     "Paste:0x100308ea0": {
       "state": "migrated",
@@ -28560,7 +28560,7 @@
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact, linkPreviewsEnabled: linkPreviewsEnabled)",
+          "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact,",
           "line": 457
         }
       ],
@@ -28568,8 +28568,8 @@
         "path": "decompiled/Paste/part-0306.c",
         "line": 1487
       },
-      "review": "Finite original full function/arm64 and actual card/readOnly Source consumer. Bound to final unified build44. dev24真实调用新增持久化linkPreviewsEnabled参数，图像优先级与fallback实现复用；更新实际消费者引用，父仍partial。",
-      "remaining": "Original fullsize URL formatter/config/outer layout/typography and runtime functional regression remain unclosed; no whole-address candidate.",
+      "review": "Finite original full function/arm64 and actual card/readOnly Source consumer. Bound to final unified build44. dev24真实调用新增持久化linkPreviewsEnabled参数，图像优先级与fallback实现复用；更新实际消费者引用，父仍partial。 dev34实际cardSizeClass透传并复用既有AdaptiveView，class3阈值0/其它0.7；独立预览nil保留既有fit。",
+      "remaining": "完整Link原生层次/viewport裁剪/fadingView与转场位置、错误及运行回归仍partial；不能以复用绘制器宣称整个LinkCell完成。",
       "implementation_origin": "newly_migrated"
     },
     "Paste:0x1003db7cc": {
@@ -28583,7 +28583,7 @@
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact, linkPreviewsEnabled: linkPreviewsEnabled)",
+          "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact,",
           "line": 457
         }
       ],
@@ -28591,7 +28591,7 @@
         "path": "decompiled/Paste/part-0307.c",
         "line": 296
       },
-      "review": "Finite original full function/arm64 and actual card/readOnly Source consumer. Bound to final unified build44. dev24真实调用新增持久化linkPreviewsEnabled参数，图像优先级与fallback实现复用；更新实际消费者引用，父仍partial。",
+      "review": "Finite original full function/arm64 and actual card/readOnly Source consumer. Bound to final unified build44. dev24真实调用新增持久化linkPreviewsEnabled参数，图像优先级与fallback实现复用；更新实际消费者引用，父仍partial。 dev34仅调用签名增加真实cardSizeClass，现有fallbackIcon函数体保持，实际消费者引用已刷新；父仍partial。",
       "remaining": "Original fullsize URL formatter/config/outer layout/typography and runtime functional regression remain unclosed; no whole-address candidate.",
       "implementation_origin": "newly_migrated"
     },
@@ -29690,6 +29690,34 @@
       ],
       "review": "dev33集中功能链核对，已满足处复用，仅修原证据明确差异；详见reports/replica/pinboard-header-static-audit.json。",
       "remaining": "完整有限源码已审并有实际Header消费者，未新增完整逐地址编译体证明；共享父metadata与运行图形仍partial。"
+    },
+    "Paste:0x1003db698": {
+      "state": "partial",
+      "contract": "Link卡片目标sizeClass3用scaleToFillRatio0，其它用0.7；转场progress不插值ratio。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+          "symbol": "scaleToFillRatio: cardSizeClass == 3 ? 0 : 0.7"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "cardSizeClass: UInt8(sizeClass)"
+        }
+      ],
+      "review": "dev34集中功能链/实际arm64及当前Source交叉核查，详见reports/replica/link-and-header-image-static-audit.json。",
+      "remaining": "目标阈值已真实消费；原iconY插值、fadingView与完整原配置方法仍partial。"
+    },
+    "Paste:0x1001f32fc": {
+      "state": "partial",
+      "contract": "可选图片按view/image aspect相似度与阈值切换fill/fit，居中CGRectIntegral并copy绘制。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalAdaptiveScalingImageView.swift",
+          "symbol": "override func draw(_ dirtyRect: NSRect)"
+        }
+      ],
+      "review": "dev34集中功能链/实际arm64及当前Source交叉核查，详见reports/replica/link-and-header-image-static-audit.json。",
+      "remaining": "既有完整绘制代码直接复用，未为地址计数扩展实际编译函数体证明；原动态property wrapper/类层次、裁剪与运行绘制未验收。"
     }
   }
 }
