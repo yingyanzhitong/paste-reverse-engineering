@@ -1,30 +1,60 @@
 {
   "kind": "image_metadata_real_pipeline_static_review",
-  "version": "0.8.0-dev.18",
+  "version": "0.8.0-dev.19",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "2c08314bd0e63ada540371d2a856cd277d814997cd97ae5fbc3f1bfc676893e9",
-    "replica/Sources/PasteReplicaCore/Models.swift": "b3fb43c969c28f1e69055d6d024508f5c4edd40bdbfc5533a5dc5cf2a9093d31",
-    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "87c1f5e184053dd8ea4e47846a241adc5d8a213a5d09bc959c42049f754ffb21",
-    "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "c59ebf5ae5909590684b2002964b7e78868b6616d6a078661330fab27bc6471c"
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "ec8feb01389213a4eb57fb584269bcf67228630d4540d7ae1f777434f73e73ae",
+    "replica/Sources/PasteReplicaCore/Models.swift": "e9f5529bfd6036c3d287803d806af61a6ad45c8612c7f161032e832047f885e2",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "61aa87e36513900392e1f314c9558900a3e22c843d17d9ee631b25dbc073573d",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "5db4a39608e0b52d1355589d3c1187390f0ae1b566f2d989f8e0b51611e01c4c",
+    "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2"
   },
-  "compiled_app_sha256": "7a5f5d3e990210fc9985e313603622fc457ffe1163364244cb355483e88b4f6d",
+  "compiled_app_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced",
   "connected_calls": [
-    "add/capture/import/deduplicate -> original ordered item decode -> f313548",
-    "image update -> new payload and new metadata in same mutate",
-    "field merge -> payload and metadata kept paired",
-    "preview preferredSize -> persisted optional logical size or zero"
+    "add/capture/original-import/deduplicate/image-update -> ordered items -> generator -> selected binary PropertyList/JSON image Stored -> canonical rawPreview",
+    "archive add/import preserves existing generic raw wire; nonnil image raw decodes without regeneration",
+    "payload merge keeps rawPreview and compatibility typed metadata paired",
+    "preview preferredSize -> decodedImagePreviewMetadata: canonical nonnil raw exclusively; raw nil permits old typed compatibility; absent value -> zero"
   ],
   "restored_contract": [
     "280x230 bestRepresentation aspect-fit, FRINTA",
     "32x32 alpha<250 sampling ratio>=0.05 -> PNG, otherwise JPEG0.6",
     "encoding success gates metadata, dimensions are original unscaled NSImage.size",
-    "existing JPEG body shared with edit-save compression0.5"
+    "existing JPEG body shared with edit-save compression0.5",
+    "Stored13 optional names/types recovered from original Swift field descriptor, CodingKeys and symbolic imported type references",
+    "decode tries full Stored PropertyList then JSON on error; both fail nil; image projection type must equal image",
+    "imageSize missing -> zero; imageData missing -> empty Data; malformed present unrelated field still causes complete Stored decode failure",
+    "image encoder sets only type/imageSize/imageData; binaryPropertyList Bool explicitly selects format200(binary) or JSON; error -> nil",
+    "nonimage import preserves generic wire bytes; only actual changed-content writers discard old payload-derived raw values"
   ],
   "remaining": [
-    "typed Codable storage is not original rawPreview byte format",
-    "legacy nil records are not forcibly regenerated",
-    "full VM actor/background/DI and functional regression unverified"
+    "all-content ContentMetadata enum projections, CoreData getter/setter ABI and parent f316490/f3168a8/f31ebc8 remain partial; image wire schema recovery is not byte-for-byte runtime equivalence",
+    "binary-vs-JSON flag uses replica own preferences adapter; original Config lookup/default remains unproven",
+    "raw-nil old typed metadata is an explicit compatibility fallback; both-nil records are not forcibly regenerated or assigned a version",
+    "complete original legacy-generation timing, VM actor/background/DI and functional regression unverified"
   ],
   "functional_tests_executed": false,
-  "products_started": false
+  "products_started": false,
+  "unified_build": {
+    "name": "gap-build39",
+    "manifest": ".local/gap-build-complete.json",
+    "manifest_sha256": "d3d9bc89de2fc42c0c418a6f2c877724dc78b78a9c9618d4bfe0b2d5d753b9d3",
+    "log": ".local/gap-build-39.log",
+    "seconds": 8.63,
+    "compiler_log_seconds": 7.85,
+    "inputs": 142,
+    "sha_before_after_equal": true,
+    "result": "compiled",
+    "functional_execution": false,
+    "app_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced"
+  },
+  "original_parent_status": {
+    "0x100316490": "partial",
+    "0x1003168a8": "partial",
+    "0x10031ebc8": "partial",
+    "0x10031ed94": "partial",
+    "0x100315a38": "partial",
+    "0x100316004": "partial"
+  },
+  "new_complete_functions": 0
 }

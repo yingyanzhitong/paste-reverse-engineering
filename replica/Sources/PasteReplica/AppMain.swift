@@ -22,6 +22,8 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
     private var monitor: ClipboardMonitor?
     private var diagnostics: OriginalDiagnosticsManager?
     private var diagnosticsObservation: AnyCancellable?
+    private let accessibilityService = OriginalAccessibilityService()
+    private var accessibilityObservation: AnyCancellable?
     private let hotKey = GlobalHotKey()
     private let stackHotKey = GlobalHotKey()
     private let stackPasteHotKey = GlobalHotKey()
@@ -155,12 +157,14 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
                 if self.ui.state.stackItems.isEmpty { self.ui.hideStack() }
             }
             configureGlobalHotKeys(force: true)
+            accessibilityObservation = accessibilityService.f_100ae5e90().sink { [weak self] _ in
+                MainActor.assumeIsolated { self?.configureStackPasteShortcut() }
+            }
             refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
                 Task { @MainActor in
                     guard let self else { return }
                     do { try self.store.reload() }
                     catch { self.statusItem.button?.toolTip = "无法刷新历史：\(error.localizedDescription)" }
-                    self.configureStackPasteShortcut()
                 }
             }
             updateStatus()
@@ -258,7 +262,7 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
     private func configureStackPasteShortcut() {
         let enabled = ui.isStackVisible && !ui.state.stackItems.isEmpty && !isRecordingHotKey
             && !arguments.contains("--no-global-hotkey") && pasteboard.name == NSPasteboard.general.name
-            && AXIsProcessTrusted()
+            && accessibilityService.f_100ae5e74()
         guard enabled != stackPasteRegistered else { return }
         stackPasteHotKey.unregister()
         stackPasteRegistered = false
@@ -423,7 +427,7 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
         }
         guard let target = targetApplication, !target.isTerminated,
               target.processIdentifier != ProcessInfo.processInfo.processIdentifier else { return false }
-        guard AXIsProcessTrusted() else {
+        guard accessibilityService.f_100ae5e74() else {
             let alert = NSAlert()
             alert.messageText = "已拷贝到剪贴板"
             alert.informativeText = "直接粘贴需要辅助功能权限。你可以按 ⌘V 粘贴，或在系统设置中允许 Paste Replica 控制电脑。"
@@ -477,6 +481,7 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
         pasteGeneration = UUID()
         hotKeyObservation?.cancel()
         diagnosticsObservation?.cancel()
+        accessibilityObservation?.cancel()
         pausePreferencesObservation?.cancel()
         pauseResumeTimer?.invalidate()
         pauseResumeTimer = nil

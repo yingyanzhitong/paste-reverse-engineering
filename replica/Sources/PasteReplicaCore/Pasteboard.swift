@@ -189,11 +189,7 @@ extension ClipboardStore {
             else if !types.isDisjoint(with: richTypes) { kind = .richText }
             else { kind = .unknown }
         }
-        let linkTitle = kind == .link
-            ? capturedItems.first?.f_10037d210()?.trimmingCharacters(in: .whitespacesAndNewlines)
-            : nil
-        let title = String((linkTitle ?? plainText?.split(whereSeparator: \.isNewline).first.map(String.init) ?? kind.displayName).prefix(100))
-        let id = try add(ClipboardItem(title: title, kind: kind, plainText: plainText, sourceName: sourceName,
+        let id = try add(ClipboardItem(title: "", kind: kind, plainText: plainText, sourceName: sourceName,
                                        sourceBundleID: sourceBundleID, payloads: payloads))
         if kind == .image { startBackgroundTextRecognition(id: id) }
         return id

@@ -126,7 +126,7 @@ final class ReplicaImagePreviewContent: NSView, OriginalPreviewEditableContent, 
     }
 
     private func replaceDisplayedItem(_ item: ClipboardItem, force: Bool = false) {
-        imageMetadataSize = item.imagePreviewMetadata?.size ?? .zero
+        imageMetadataSize = item.decodedImagePreviewMetadata?.size ?? .zero
         let payloads = item.payloads.filter { !$0.key.hasPrefix("com.pastereplica.internal.recognized-") }
         guard force || payloads != sourcePayloads else { return }
         sourcePayloads = payloads

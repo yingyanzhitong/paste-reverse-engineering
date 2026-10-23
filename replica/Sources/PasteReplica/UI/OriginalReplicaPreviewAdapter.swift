@@ -37,8 +37,7 @@ func makeOriginalReplicaPreview(state: ReplicaUIState, item: ClipboardItem) -> O
                             height: screenSize.height * 0.25)
         metadata = nil
     }
-    let header = ReplicaInlinePreviewHeader(state: state, item: item,
-                                           canEdit: content is OriginalPreviewEditableContent)
+    let header = ReplicaInlinePreviewHeader(state: state, item: item)
     let editorHeader = ReplicaInlinePreviewEditorHeader()
     let footer = OriginalPreviewFooterView()
     if let metadata { footer.f_1003df0b0(metadata) }
@@ -340,14 +339,13 @@ private final class ReplicaInlinePreviewHeader: NSView {
     private var pinButton: OriginalToolbarButton?
     private var sharingPicker: NSSharingServicePicker?
 
-    init(state: ReplicaUIState, item: ClipboardItem, canEdit: Bool = true) {
+    init(state: ReplicaUIState, item: ClipboardItem) {
         self.state = state
         itemID = item.id
         super.init(frame: .zero)
         let close = NSButton()
         f_1000123d4(close)
         let edit = OriginalToolbarButton(title: String(localized: OriginalPreviewLocalization.f_1001c1688())) { [weak self] _ in self?.onEdit?() }
-        edit.isEnabled = canEdit
         let pin = OriginalToolbarButton(symbol: "circle.dashed", toolTip: String(localized: OriginalPreviewLocalization.f_1001c2a08())) { [weak self] button in
             self?.showPinMenu(from: button)
         }

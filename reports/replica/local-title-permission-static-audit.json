@@ -1,0 +1,153 @@
+{
+  "kind": "local_title_and_permission_consumer_static_review",
+  "version": "0.8.0-dev.19",
+  "build": "gap-build39",
+  "compiled_app_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced",
+  "input_count": 142,
+  "source_sha256": {
+    "replica/Sources/PasteReplica/AppMain.swift": "41e3031850a43ec18c0294922150aceb3a2df9660cb4d16b63e137d3a468e230",
+    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "be0c5c82058601f9cbf5fc910a1e8866ad4ae5101aef3e9c48f6d36e53d37a75",
+    "replica/Sources/PasteReplica/UI/ReplicaSearchIndex.swift": "e78958178276341efacbc2a1d240fbef049827fa836337e0ef1584cfa9dc5695",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "61aa87e36513900392e1f314c9558900a3e22c843d17d9ee631b25dbc073573d",
+    "replica/Sources/PasteReplicaCore/Models.swift": "e9f5529bfd6036c3d287803d806af61a6ad45c8612c7f161032e832047f885e2",
+    "replica/Sources/PasteReplicaCore/OriginalAccessibilityService.swift": "e015554a40a64837f284fb9a0dc08a2639e8606b4e34b5930234cf1751e40073",
+    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "5db4a39608e0b52d1355589d3c1187390f0ae1b566f2d989f8e0b51611e01c4c"
+  },
+  "original_title_and_local_permission_references": [
+    {
+      "function": "Paste:0x100360d9c",
+      "path": "decompiled/Paste/part-0275.c",
+      "line": 225,
+      "fragment_sha256": "5c15814ae0adde613a29c2c12af933e6826c839c99574797a01e42d2b4630197"
+    },
+    {
+      "function": "Paste:0x100360ff8",
+      "path": "decompiled/Paste/part-0275.c",
+      "line": 306,
+      "fragment_sha256": "7bfc2226d6d3631065fda7cdf5a1eb16eb56aa5ad3b69ff875b2588dfbc2c90b"
+    },
+    {
+      "function": "Paste:0x1003b4444",
+      "path": "decompiled/Paste/part-0292.c",
+      "line": 1720,
+      "fragment_sha256": "a7dedbbdd61b2a839ff371ef73f9d3defe305a3ab8e8ce0f16c29706403e3709"
+    },
+    {
+      "function": "Paste:0x10037c494",
+      "path": "decompiled/Paste/part-0282.c",
+      "line": 94,
+      "fragment_sha256": "0d65c3a57f2984b64f702e19aef4fd8856d4d1f0448b0ccb8a4fb9cb1f3f9dbd"
+    },
+    {
+      "function": "Paste:0x100328f38",
+      "path": "decompiled/Paste/part-0261.c",
+      "line": 985,
+      "fragment_sha256": "782ea704762f35d1d00d01f5d5f90e6d64ddb4ca13aa6e340c7b91005fd41386"
+    },
+    {
+      "function": "Paste:0x10031f040",
+      "path": "decompiled/Paste/part-0257.c",
+      "line": 2992,
+      "fragment_sha256": "370c6678542d145da69f0b42fdf54f8424a0cfe310db5ea84977e160ca4145af"
+    },
+    {
+      "function": "Paste:0x100364ab4",
+      "path": "decompiled/Paste/part-0276.c",
+      "line": 78,
+      "fragment_sha256": "1283f361433cbedb65016c8c51c57a312ced2222f13ac6858ecbfc51e65d0a65"
+    },
+    {
+      "function": "Paste:0x1003250f0",
+      "path": "decompiled/Paste/part-0259.c",
+      "line": 498,
+      "fragment_sha256": "b7f9236193814353d669093f868e089567e9bcc0a121eb16fb0da2034535ec7d"
+    },
+    {
+      "function": "Paste:0x10037b034",
+      "path": "decompiled/Paste/part-0281.c",
+      "line": 1973,
+      "fragment_sha256": "560571b18d6808ef121bda1c4aa80f5cd92b8562c38432bda64fbcdc6c5567c8"
+    },
+    {
+      "function": "Paste:0x10037b204",
+      "path": "decompiled/Paste/part-0281.c",
+      "line": 2036,
+      "fragment_sha256": "84a92b001ffa9f97b0f52727857e94cbe0049cd512bb766d4c84396b809b691b"
+    },
+    {
+      "function": "Paste:0x100011e00",
+      "path": "decompiled/Paste/part-0007.c",
+      "line": 1282,
+      "fragment_sha256": "9c7227d734a2b8155c6ad27e4ffba23c85f996803250a7d8ccc504f1ad0ebec9"
+    },
+    {
+      "function": "Paste:0x100371998",
+      "path": "decompiled/Paste/part-0279.c",
+      "line": 1917,
+      "fragment_sha256": "c3684db465beeceeefe0bde04a47225970aded2bc9e99e5971fba1d3a6958b63"
+    },
+    {
+      "function": "Paste:0x10007be8c",
+      "path": "decompiled/Paste/part-0041.c",
+      "line": 143,
+      "fragment_sha256": "84bbbecfe4205451ab853bee2bcb5f1ef2f919fc280d296fc76df59ea3e65aa1"
+    }
+  ],
+  "restored_consumer_contracts": [
+    "普通捕获不setTitle；新捕获表达nil，不固化首行或链接title。",
+    "Indexable仅nil用固定英文rawKind，显式空串保留；Header nil/empty使用本地化默认值。",
+    "显式rename设置title及marker；合并成对更新，去重保留既有值，旧非空title不清洗。",
+    "无共享的离线列表不依内容Editable禁用Header；实际内容入口负责是否可编辑。",
+    "权限发布初始AX快照加1秒main/common Timer，merge/removeDuplicates，真实Stack快捷键注册消费者持有并订阅。",
+    "粘贴检查走同一getter；终止cancel；不从设置Bool推断自动权限申请。"
+  ],
+  "compiled_permission_map_review": {
+    "functions": {
+      "_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e907Combine12AnyPublisherVySbs5NeverOGyFSb10Foundation4DateVcfU_": {
+        "start": "0x1000fbc28",
+        "end_exclusive": "0x1000fbc90",
+        "size": 104,
+        "sha256": "a8f321eca0355a7b248a53be7935fcebdbc339167e88bf8af2a2ba4d2f949bfd",
+        "full_machine_code_hex": "ff0301d1f44f02a9fd7b03a9fdc30091f30308aa34400091e1230091e00314aa020080d2030080d2a8e30194e00314aa87e40194f40300aa28e40194b40000b49de201941f000071e8079f1a020000140800805268020039fd7b43a9f44f42a9ff030191c0035fd6",
+        "symbol": "_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e907Combine12AnyPublisherVySbs5NeverOGyFSb10Foundation4DateVcfU_",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000fbc28 <_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e907Combine12AnyPublisherVySbs5NeverOGyFSb10Foundation4DateVcfU_>:\n1000fbc28:     \tsub\tsp, sp, #0x40\n1000fbc2c:     \tstp\tx20, x19, [sp, #0x20]\n1000fbc30:     \tstp\tx29, x30, [sp, #0x30]\n1000fbc34:     \tadd\tx29, sp, #0x30\n1000fbc38:     \tmov\tx19, x8\n1000fbc3c:     \tadd\tx20, x1, #0x10\n1000fbc40:     \tadd\tx1, sp, #0x8\n1000fbc44:     \tmov\tx0, x20\n1000fbc48:     \tmov\tx2, #0x0                ; =0\n1000fbc4c:     \tmov\tx3, #0x0                ; =0\n1000fbc50:     \tbl\t0x100174af0 <_swift_willThrowTypedImpl+0x100174af0>\n1000fbc54:     \tmov\tx0, x20\n1000fbc58:     \tbl\t0x100174e74 <_swift_willThrowTypedImpl+0x100174e74>\n1000fbc5c:     \tmov\tx20, x0\n1000fbc60:     \tbl\t0x100174d00 <_swift_willThrowTypedImpl+0x100174d00>\n1000fbc64:     \tcbz\tx20, 0x1000fbc78 <_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e907Combine12AnyPublisherVySbs5NeverOGyFSb10Foundation4DateVcfU_+0x50>\n1000fbc68:     \tbl\t0x1001746dc <_swift_willThrowTypedImpl+0x1001746dc>\n1000fbc6c:     \tcmp\tw0, #0x0\n1000fbc70:     \tcset\tw8, ne\n1000fbc74:     \tb\t0x1000fbc7c <_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e907Combine12AnyPublisherVySbs5NeverOGyFSb10Foundation4DateVcfU_+0x54>\n1000fbc78:     \tmov\tw8, #0x0                ; =0\n1000fbc7c:     \tstrb\tw8, [x19]\n1000fbc80:     \tldp\tx29, x30, [sp, #0x30]\n1000fbc84:     \tldp\tx20, x19, [sp, #0x20]\n1000fbc88:     \tadd\tsp, sp, #0x40\n1000fbc8c:     \tret\n"
+      },
+      "_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e907Combine12AnyPublisherVySbs5NeverOGyFSb10Foundation4DateVcfU_TA": {
+        "start": "0x1000fbc90",
+        "end_exclusive": "0x1000fbc98",
+        "size": 8,
+        "sha256": "4461902a91342496c37f8e60c31f6dff9b6e2bf877b99983736cf010fece9b8d",
+        "full_machine_code_hex": "e10314aae5ffff17",
+        "symbol": "_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e907Combine12AnyPublisherVySbs5NeverOGyFSb10Foundation4DateVcfU_TA",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000fbc90 <_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e907Combine12AnyPublisherVySbs5NeverOGyFSb10Foundation4DateVcfU_TA>:\n1000fbc90:     \tmov\tx1, x20\n1000fbc94:     \tb\t0x1000fbc28 <_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e907Combine12AnyPublisherVySbs5NeverOGyFSb10Foundation4DateVcfU_>\n"
+      }
+    },
+    "runtime_stubs": {
+      "0x100174af0": "_swift_beginAccess",
+      "0x100174e74": "_swift_weakLoadStrong",
+      "0x100174d00": "_swift_release",
+      "0x1001746dc": "_AXIsProcessTrusted"
+    },
+    "review": {
+      "build": 39,
+      "release_before_ax": true,
+      "start": "0x1000fbc28",
+      "end_exclusive": "0x1000fbc90",
+      "size": 104,
+      "order": "weakLoadStrong174e74 -> swift_release174d00 -> nil check -> AXIsProcessTrusted1746dc on nonnil; nil returns false",
+      "nil_release": "swift_release(nil) precedes nil branch; no side effect, unlike original branch-before-release; no owner held across AX",
+      "new_function_count": 0,
+      "source_modified_during_review": false
+    }
+  },
+  "remaining": [
+    "现有String title以optional Bool兼容原NSString?；旧缺标记空值按nil读取不能证明原实体历史意图。",
+    "完整原CoreData对象身份/事务/元数据及Indexable schema不等同JSON provider。",
+    "原共享权限、完整GeneralSettings/EnableAccessibilityAccess VM及三态模态/DI未恢复。",
+    "最终只有编译及静态对照，未执行功能回归。"
+  ],
+  "functional_tests_executed": false,
+  "equivalence_verified": false,
+  "new_complete_functions": 0
+}

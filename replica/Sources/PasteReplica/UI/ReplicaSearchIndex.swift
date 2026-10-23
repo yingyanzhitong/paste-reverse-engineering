@@ -20,7 +20,16 @@ final class ReplicaSearchIndex: NSObject, CSSearchableIndexDelegate {
 
         init(_ item: ClipboardItem) {
             id = item.id
-            title = item.title
+            let defaultTitle: String
+            switch item.kind {
+            case .image: defaultTitle = "Image"
+            case .color: defaultTitle = "Color"
+            case .files: defaultTitle = "File"
+            case .link: defaultTitle = "Link"
+            case .text, .richText: defaultTitle = "Text"
+            case .unknown: defaultTitle = "Unknown"
+            }
+            title = item.originalTitle ?? defaultTitle
             text = String([item.plainText, item.recognizedText].compactMap { $0 }.joined(separator: "\n").prefix(5000))
             modified = item.updatedAt
             app = item.sourceName

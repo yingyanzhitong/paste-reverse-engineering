@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037e44c",
-  "reviewed_at": "2026-10-23T13:15:30.205696+00:00",
+  "reviewed_at": "2026-10-23T13:37:26.189443+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "7a5f5d3e990210fc9985e313603622fc457ffe1163364244cb355483e88b4f6d",
+  "compiled_app_binary_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "Decodable协议构造witness：分配对象并调用Decoder初始化，成功才向返回缓冲写实例，错误时不写。",
-  "review": "最终build37完整Decodable witness10e4dc..10e528，76字节：conformance17875c+24绑定10e4dc；10e510 cbnz x21跳10e518，跳过10e514结果写入。",
+  "review": "最终build39完整Decodable witness112330..11237c（76B）：conformance17c0dc+24绑定112330；112364 cbnz x21跳11236c，跳过112368结果写入。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x10010e4dc",
-    "end_exclusive": "0x10010e528",
+    "start": "0x100112330",
+    "end_exclusive": "0x10011237c",
     "size": 76,
-    "sha256": "fddb29df73f1fcff9de9677b14c6eda77d06a42d5699bf646cc9d3cbb216e955",
-    "binary_sha256": "7a5f5d3e990210fc9985e313603622fc457ffe1163364244cb355483e88b4f6d",
+    "sha256": "c82ec9f329a60f88f3b6c2c21e857e4bcad5f1b11ac8e7d5bfd0fb265fdac67f",
+    "binary_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced",
     "lc_function_starts_verified": true
   }
 }

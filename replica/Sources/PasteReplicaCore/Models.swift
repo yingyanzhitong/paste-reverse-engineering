@@ -21,6 +21,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
     public var createdAt: Date
     public var updatedAt: Date
     public var title: String
+    public var hasExplicitTitle: Bool?
     public var kind: ClipboardKind
     public var plainText: String?
     public var sourceName: String
@@ -29,6 +30,17 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
     public var isInHistory: Bool
     public var payloads: [String: Data]
     public var imagePreviewMetadata: OriginalImagePreviewMetadata?
+    public var rawPreview: Data?
+
+    public var originalTitle: String? {
+        if hasExplicitTitle == false || (hasExplicitTitle == nil && title.isEmpty) { return nil }
+        return title
+    }
+
+    public var decodedImagePreviewMetadata: OriginalImagePreviewMetadata? {
+        if let rawPreview { return OriginalImagePreviewMetadataCodec.decode(rawPreview) }
+        return imagePreviewMetadata
+    }
     public var pinboardIDs: Set<UUID>
     public var isDeleted: Bool
 
@@ -37,17 +49,20 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
                 sourceName: String = "Paste Replica", sourceBundleID: String? = nil,
                 payloads: [String: Data] = [:], pinboardIDs: Set<UUID> = [], isDeleted: Bool = false,
                 sourceDevice: String = "此Mac", isInHistory: Bool = true,
-                imagePreviewMetadata: OriginalImagePreviewMetadata? = nil) {
+                imagePreviewMetadata: OriginalImagePreviewMetadata? = nil,
+                rawPreview: Data? = nil, hasExplicitTitle: Bool? = nil) {
         self.id = id
         self.createdAt = createdAt
         self.updatedAt = updatedAt ?? createdAt
         self.title = title
+        self.hasExplicitTitle = hasExplicitTitle ?? !title.isEmpty
         self.kind = kind
         self.plainText = plainText
         self.sourceName = sourceName
         self.sourceBundleID = sourceBundleID
         self.payloads = payloads
         self.imagePreviewMetadata = imagePreviewMetadata
+        self.rawPreview = rawPreview
         self.pinboardIDs = pinboardIDs
         self.isDeleted = isDeleted
         self.sourceDevice = sourceDevice

@@ -1,0 +1,28 @@
+{
+  "start": "0x1000fb718",
+  "end_exclusive": "0x1000fb734",
+  "size": 28,
+  "sha256": "d8d32fdef2f966b5f0b9ceaf0460e8aa6c43df92fb60195ec9b7bb5b758c4748",
+  "full_machine_code_hex": "fd7bbfa9fd030091efe301941f000071e0079f1afd7bc1a8c0035fd6",
+  "symbol": "_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e74SbyF",
+  "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001000fb718 <_$s16PasteReplicaCore28OriginalAccessibilityServiceC11f_100ae5e74SbyF>:\n1000fb718:     \tstp\tx29, x30, [sp, #-0x10]!\n1000fb71c:     \tmov\tx29, sp\n1000fb720:     \tbl\t0x1001746dc <_swift_willThrowTypedImpl+0x1001746dc>\n1000fb724:     \tcmp\tw0, #0x0\n1000fb728:     \tcset\tw0, ne\n1000fb72c:     \tldp\tx29, x30, [sp], #0x10\n1000fb730:     \tret\n",
+  "binary_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced",
+  "current_ax_stub": {
+    "0x1001746dc": "_AXIsProcessTrusted"
+  },
+  "original": {
+    "start": "0x100ae5e74",
+    "end_exclusive": "0x100ae5e90",
+    "size": 28,
+    "sha256": "859c85b86e238e00251862b1d22762580d97ef6da09986d5e8021e39985e92ca",
+    "full_machine_code_hex": "fd7bbfa9fd0300913f5304941f000071e0079f1afd7bc1a8c0035fd6"
+  },
+  "original_ax_stub": {
+    "0x100bfab78": "_AXIsProcessTrusted"
+  },
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalAccessibilityService.swift": "e015554a40a64837f284fb9a0dc08a2639e8606b4e34b5930234cf1751e40073",
+    "replica/Sources/PasteReplica/AppMain.swift": "41e3031850a43ec18c0294922150aceb3a2df9660cb4d16b63e137d3a468e230"
+  },
+  "functional_tests_executed": false
+}
