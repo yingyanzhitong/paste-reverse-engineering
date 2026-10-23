@@ -30,3 +30,5 @@
 "general.action.open-in" = "Apri in %@";
 "item-type.multiple-files" = "File multipli";
 "preview.reveal-in-finder.title" = "Rivela in Finder";
+
+"general.copied" = "Copiato";

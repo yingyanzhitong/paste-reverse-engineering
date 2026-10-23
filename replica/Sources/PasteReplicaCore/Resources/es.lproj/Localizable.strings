@@ -30,3 +30,5 @@
 "general.action.open-in" = "Abrir en %@";
 "item-type.multiple-files" = "Varios archivos";
 "preview.reveal-in-finder.title" = "Revelar en Finder";
+
+"general.copied" = "Copiado";

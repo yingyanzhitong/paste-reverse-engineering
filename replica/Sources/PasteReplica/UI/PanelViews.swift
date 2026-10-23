@@ -59,7 +59,7 @@ struct ReplicaPanelView: View {
         .accessibilityIdentifier("clipboard-panel")
     }
 
-    private var searching: Bool { searchFocused || state.searchVisible || !state.query.isEmpty || !state.searchFilters.isEmpty }
+    private var searching: Bool { searchFocused || state.searchVisible || !state.isSearchQueryEmpty }
 
     private var header: some View {
         ZStack {

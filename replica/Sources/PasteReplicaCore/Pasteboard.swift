@@ -237,16 +237,20 @@ extension ClipboardStore {
         if plainTextOnly {
             for item in selected {
                 let representations = (try? Self.originalPasteboardItems(from: item.payloads)) ?? []
-                let projected = OriginalPasteboardRestore.f_10031bcdc(representations)
-                if !projected.isEmpty {
-                    objects.append(contentsOf: projected)
-                } else if let text = item.plainText {
-                    objects.append(OriginalPasteboardItem.f_10037c6d4(text))
-                } else if let text = item.recognizedText, !text.isEmpty {
-                    objects.append(OriginalPasteboardItem.f_10037c6d4(text))
-                } else {
-                    throw ClipboardStoreError.missingPlainText
+                var projected = OriginalPasteboardRestore.f_10031bcdc(representations)
+                if projected.isEmpty {
+                    if let text = item.plainText {
+                        projected = [OriginalPasteboardItem.f_10037c6d4(text)]
+                    } else if let text = item.recognizedText, !text.isEmpty {
+                        projected = [OriginalPasteboardItem.f_10037c6d4(text)]
+                    } else {
+                        throw ClipboardStoreError.missingPlainText
+                    }
                 }
+                for object in projected {
+                    object.f_10037c4a8(item.sourceBundleID ?? "", forType: "org.nspasteboard.source")
+                }
+                objects.append(contentsOf: projected)
             }
             if selected.count > 1 {
                 let text = OriginalPasteboardRestore.f_100383a0c(separator: "\n", contents:
@@ -274,20 +278,22 @@ extension ClipboardStore {
                 }
             }
           }
-          if selected.count > 1, selected.allSatisfy({ [.text, .richText, .link].contains($0.kind) }) {
+          // Original grouping switches the entire multi-selection to attributed-text
+          // projection as soon as any entity is text/link, including mixed selections.
+          if selected.count > 1, selected.contains(where: { [.text, .richText, .link].contains($0.kind) }) {
               let content = objects.compactMap { $0.f_10037d33c() }
-              if content.count == objects.count {
-                  let combined = OriginalPasteboardRestore.f_100383a0c(separator: "\n", contents: content)
-                  if combined.length > 0 {
-                      let aggregate = OriginalPasteboardItem()
-                      aggregate.f_1003838bc()
-                      if let data = OriginalPasteboardRestore.f_100381fdc(combined) {
-                          aggregate.f_10037d8c8(data, forType: NSPasteboard.PasteboardType.rtf.rawValue)
-                      } else {
-                          aggregate.f_10037c4a8(combined.string, forType: NSPasteboard.PasteboardType.string.rawValue)
-                      }
-                      objects = [aggregate]
+              let combined = OriginalPasteboardRestore.f_100383a0c(separator: "\n", contents: content)
+              if combined.length > 0 {
+                  let aggregate = OriginalPasteboardItem()
+                  aggregate.f_1003838bc()
+                  if let data = OriginalPasteboardRestore.f_100381fdc(combined) {
+                      aggregate.f_10037d8c8(data, forType: NSPasteboard.PasteboardType.rtf.rawValue)
+                  } else {
+                      aggregate.f_10037c4a8(combined.string, forType: NSPasteboard.PasteboardType.string.rawValue)
                   }
+                  objects = [aggregate]
+              } else {
+                  objects = []
               }
           }
         }

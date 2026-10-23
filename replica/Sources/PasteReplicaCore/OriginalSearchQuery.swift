@@ -6,6 +6,17 @@ public enum OriginalSearchQueryNode: Equatable, Sendable {
 }
 
 public enum OriginalSearchQuery {
+    public static func f_1002ddcf0(_ nodes: [OriginalSearchQueryNode]) -> Bool {
+        nodes.allSatisfy { node in
+            let value: String
+            switch node {
+            case let .text(text): value = text
+            case let .filter(_, filter): value = filter
+            }
+            return value.trimmingCharacters(in: .whitespaces).isEmpty
+        }
+    }
+
     private static func escaped(_ value: String) -> String {
         value.replacingOccurrences(of: "\\", with: "\\\\")
             .replacingOccurrences(of: "\"", with: "\\\"")

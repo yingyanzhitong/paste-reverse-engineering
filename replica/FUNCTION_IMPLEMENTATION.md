@@ -58,13 +58,13 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 ## 并行迁移与现有实现复用
 
-2026-10-23 当前 0.8.0-dev.9 快照为 1,378 / 81,134：源码实现或复用 538 个、实际系统转发 840 个；剩余 79,756 个，其中 132 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
+2026-10-23 当前 0.8.0-dev.10 快照为 1,390 / 81,134：源码实现或复用 545 个、实际系统转发 845 个；剩余 79,744 个，其中 140 个 partial。两个地址保留摘要仍有效的历史差分记录。这些是逐地址证据数量，不是产品功能完成率；大量已有产品功能尚未获得原版全函数等价证据，不能据此说产品只实现了这一比例。
 
 按用户最新要求，四智能体改为先集中核对已有功能和完整调用链：已有实现满足契约就直接复用，只补确认缺失或行为不同的部分。系统转发、薄包装、编译器生成代码按证据成组核对，不再以逐个重写地址推进。功能存在、源码契约迁移、功能回归和一比一验收分别记录；不能把一次静态检查说成全部函数已通过。整体目标保持 active，尚未执行本轮新的功能、UI 或 MCP 测试。
 
 此前 0.8.0-dev.4 补共享依赖缓存、一次性配置、剪贴板 MD5 校验及去重接入、日志输出/诊断启动偏好、搜索筛选原符号、快捷键共享服务与错误类型、原生预览按钮和异步文本格式状态。17 个语言资源按已恢复词条接入，并补资源打包。稳定构建前后 88 份源码、配置和资源摘要一致，生成的 bundle accessor 也绑定构建。完整仓库事务、Sentry 本地副作用、actor 析构和部分父级 UI 工厂继续保留 partial。
 
-本轮集中快审报告见 [fast-coverage-audit.md](../reports/replica/fast-coverage-audit.md)：72 个行为单元绑定 73 份源码，32 项列明行为已有代码、37 项有差异或缺证据、1 项缺实现、2 项未核对。这不是原版完整产品的功能百分比，也不提升逐地址台账状态。
+本轮集中快审报告见 [fast-coverage-audit.md](../reports/replica/fast-coverage-audit.md)：72 个行为单元绑定 75 份源码，32 项列明行为已有代码、37 项有差异或缺证据、1 项缺实现、2 项未核对。这不是原版完整产品的功能百分比，也不提升逐地址台账状态。
 
 0.8.0-dev.5 先补确认缺口：真实筛选 Popover、多选同组 OR/跨组 AND、三列分组与胶囊条目、键盘和焦点返回；VisionKit 图片文字拖选与原生滚动缩放/居中；预览 Pin/分享和三项复数计数；原 ItemData 编解码与压缩导入。另修三个偏好保存丢失及多项后续图片不能进入 OCR。26 个偏好字段静态核对均有合并分支。稳定编译前后 112 份输入（78 份 Swift/配置、17 份 strings、17 份 stringsdict）摘要一致。
 
@@ -75,6 +75,8 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 0.8.0-dev.8 根据完整 arm64 中 FRINTM/FRINTP 修正日期编码的下界向下/上界向上取整，恢复相对日期标签重新匹配和原 medium 格式 fallback。图片补透明棋盘，文件补 Quick Look 非抢焦点子类、底栏和 Finder 按钮；图像恢复接临时文件 URL 及 24 小时清理。全部复用原已有 LayerBackedView、动态颜色、预览外壳和类型数据访问。稳定构建 124 份输入摘要一致，日志 18.83 秒、包装用时 20.85 秒；最新编译器完整体重审见 [compiled-reuse-build25.json](../reports/function-migration/compiled-reuse-build25.json)。
 
 0.8.0-dev.9 新增 Objective-C 异常桥并接入实际锁内存储及归档读写，原 Swift Error、异常 name/reason 与无结果 trap 分开处理；原 LSDA、实际异常类型绑定及新桥 ARC/对象生命周期均经静态核对，见 [objc-exception-build26.json](../reports/function-migration/objc-exception-build26.json)。诊断菜单确认启动后复用原重启，停止后先建历史文件条目再恢复剪贴板；六个已有本地化方法直接复用，成功 toast 与完整实体仓库链保留缺口。依据真实协议 witness 修正文件/链接半屏、颜色四分之一屏、图片同比缩小，以及共用动态边框和圆角。最终编译 128 份输入（含 ObjC .m/.h）摘要一致，日志 19.09 秒、包装 20.82 秒；最新八项编译器复用完整体见 [compiled-reuse-build26.json](../reports/function-migration/compiled-reuse-build26.json)。未执行菜单重启、剪贴板写入或异常注入。
+
+0.8.0-dev.10 补原 Character.isWhitespace 连续文本片段和空查询判断，接实际主界面查询、显示与 Escape/resign。恢复混合多选包含文本/链接时的 compactMap 聚合分支和纯文本来源元表示；普通复制及停止诊断的真实成功分支共用 copied-only 原生 OSD。快速旋转没有找到完整实际触发链，仍保留缺口，不增添推测 Header 按钮。最终构建 130 份输入摘要一致，日志 16.63 秒、包装 18.30 秒；最新编译器及异常捕获证明分别见 [compiled-reuse-build27.json](../reports/function-migration/compiled-reuse-build27.json) 与 [objc-exception-build27.json](../reports/function-migration/objc-exception-build27.json)。没有执行真实剪贴板、OSD、动画或功能回归。
 
 原搜索建议/自动 token 化、完整 query 序列化和反解析、Indexable provider、后台 actor/schema/批量恢复、原图片 ViewModel/优选尺寸/错误传播、原复制时文件大小及完整文件布局/VM、仓库事务、混合格式恢复及 token/repository/undo/DidRestore 副作用仍有差异。独立 CLI 的 ClipboardStore.search 保持原接口，不代表完整原 SearchService。既有 NSImage 跨 MainActor 异步分析警告仍保留在 partial 范围。四个 OCR 算法方法体未改，但外围图片数据读取使整文件摘要改变，旧验证转为历史；不以重新写摘要冒称当前功能通过。没有运行新的功能、单测、原版动态、UI 或 MCP 测试，尚未一比一验收。
 
@@ -87,7 +89,7 @@ OCR 已增加词级位置框和持久化，尚未因此宣称原版图片文字�
 
 ## 纯 SDK 转发复用
 
-840 个当前地址没有生成同名空函数，也没有伪造源码引用；映射采用独立 `sdk_implementation`，逐项指向 `reports/function-migration/sdk-import-reuse.json`。校验器要求原版完整函数体为真实 arm64 `ADRP/LDR/BR x16` 导入跳板，并核对指针槽、间接符号表和实际 `LC_DYLD_CHAINED_FIXUPS` 页链、bind ordinal、零 addend、原始符号、完整 dylib 路径、weak、load-kind 和 ABI。复刻产物必须存在唯一对应的真实导入跳板。
+845 个当前地址没有生成同名空函数，也没有伪造源码引用；映射采用独立 `sdk_implementation`，逐项指向 `reports/function-migration/sdk-import-reuse.json`。校验器要求原版完整函数体为真实 arm64 `ADRP/LDR/BR x16` 导入跳板，并核对指针槽、间接符号表和实际 `LC_DYLD_CHAINED_FIXUPS` 页链、bind ordinal、零 addend、原始符号、完整 dylib 路径、weak、load-kind 和 ABI。复刻产物必须存在唯一对应的真实导入跳板。
 
 `scripts/macho_imports.py` 重新读取本机原版和当前 release 产物，核对原版容器/arm64 摘要、所有相关 Swift 源文件、本地化资源及 `Package.swift`、逐地址伪代码和真实导入绑定。`function_ledger.py --check` 每次运行会重新核对 SDK 报告，并分别输出 `source_functions` 与 `sdk_forwarders_reused`，不会把系统内部函数也计入已迁移数。复刻源码或二进制变化后，旧静态记录不能继续直接使用。
 

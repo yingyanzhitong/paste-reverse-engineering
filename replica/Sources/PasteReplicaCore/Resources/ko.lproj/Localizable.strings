@@ -30,3 +30,5 @@
 "general.action.open-in" = "%@에서 열기";
 "item-type.multiple-files" = "여러 파일";
 "preview.reveal-in-finder.title" = "Finder에 공개";
+
+"general.copied" = "복사됨";

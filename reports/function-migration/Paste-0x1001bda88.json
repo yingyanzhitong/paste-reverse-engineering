@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001bda88",
-  "reviewed_at": "2026-10-23T11:32:09.023407+00:00",
+  "reviewed_at": "2026-10-23T11:40:50.486090+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0148.c",
@@ -10,18 +10,18 @@
   },
   "original_pseudocode_sha256": "9705b64572b0922403c0e7666b4647a25b9b9a1e0de0d0c4d4dae7371b965e7c",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift": "dcb3a1ad08674643535ed080fff48e37bf34524a66d7e2084c04371a34360360",
-    "replica/Sources/PasteReplica/AppMain.swift": "bff61e223e9397aa00f9a06bced12ae38132166bc03e57807fcb500fdc8ccd7f"
+    "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift": "dcb18ed8df8fbf02857263b999ca54156152a24c838711f0f8e26552e1984bf2",
+    "replica/Sources/PasteReplica/AppMain.swift": "497effc01dba02153f298dc4d668a77315e5bfd98752c4a821d5a1ae600299f6"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "079de8ff8313e7fbe6e5db4de92e1cdd390b799f45504e27c3b675eec0f89b00",
+  "compiled_app_binary_sha256": "1e3578b657dbb26e780a90d285985e02f849d386d7eaddae2deba3afecfbb1e1",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_source_reused",
   "contract": "原 LocalizedStringResource键diagnostics.action.stop-and-copy-logs，table=Localizable/current locale/实际资源bundle；真实诊断确认alert消费。",
   "review": "直接复用此前已存在但缺诊断消费者的helper；完整原REA键及17locale全部逐值静态比对，诊断7key共119值无差异，不为计数重写资源或函数。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

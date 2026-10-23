@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002f8760",
+  "reviewed_at": "2026-10-23T11:40:50.501003+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0245.c",
+    "line": 1322
+  },
+  "original_pseudocode_sha256": "bb18adf154a3797071050ec78ea3e60aafd4b261a59d5c44c76404563fe34238",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchTextTokens.swift": "ea0bef0b75186bf558f512cd15f5343e1251fb47a9e39791d320fd23248b143f",
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "28457f6cccc77a6991a27c884c4278e41654b08f674ac260aefa052a15da7ecc"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "1e3578b657dbb26e780a90d285985e02f849d386d7eaddae2deba3afecfbb1e1",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "非空buffer先把无metadata U+FFFC替换ASCII空格，按Character.isWhitespace是否相同划分连续run（空白run也保留），逐run append .text到既有node数组；最后原buffer.removeAll(keepingCapacity:true)。空buffer不改变node数组。",
+  "review": "完整REA part0245及arm64 1002f8760..<1002f89f4核对。原按Unicode Character.isWhitespace分组而非String.split ASCII空格；原保留空白run，后继query builder再trim/drop；实际主UI原String不被改写，只有查询投影分段。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

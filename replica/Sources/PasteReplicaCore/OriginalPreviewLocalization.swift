@@ -14,6 +14,10 @@ public enum OriginalPreviewLocalization {
                                 bundle: .atURL(resourceBundle.bundleURL))
     }
 
+    public static func f_1001c482c() -> LocalizedStringResource {
+        resource("general.copied")
+    }
+
     public static func f_1001bf288() -> LocalizedStringResource {
         resource("edit-item.toolbar.text.bold")
     }

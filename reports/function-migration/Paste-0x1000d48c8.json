@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d48c8",
-  "reviewed_at": "2026-10-23T11:32:08.557586+00:00",
+  "reviewed_at": "2026-10-23T11:40:50.084191+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "079de8ff8313e7fbe6e5db4de92e1cdd390b799f45504e27c3b675eec0f89b00",
+  "compiled_app_binary_sha256": "1e3578b657dbb26e780a90d285985e02f849d386d7eaddae2deba3afecfbb1e1",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "按 lock→name→optional logger 顺序释放字段，再释放类实例。",
-  "review": "最终build26完整deallocating-deinit efe7c..efeb0：相同顺序释放lock/name/cached，再swift_deallocClassInstance(self,0x50,7)；metadata1b40a0前destroy slot1b4090绑定efe7c。",
+  "review": "最终build27完整deallocating-deinit eef28..eef5c：相同顺序释放lock/name/cached，再swift_deallocClassInstance(self,0x50,7)；metadata1b4110前destroy slot1b4100绑定eef28。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000efe7c",
-    "end_exclusive": "0x1000efeb0",
+    "start": "0x1000eef28",
+    "end_exclusive": "0x1000eef5c",
     "size": 52,
-    "sha256": "2ac831f37512c2f1f55e066f83fe7cd297b5a36844d0d051a7387b669f082739",
-    "binary_sha256": "079de8ff8313e7fbe6e5db4de92e1cdd390b799f45504e27c3b675eec0f89b00",
+    "sha256": "020bbc3daaaffb6f02519eb80735a042d483adb4e4f456e6f0f8f6decfdac4e1",
+    "binary_sha256": "1e3578b657dbb26e780a90d285985e02f849d386d7eaddae2deba3afecfbb1e1",
     "lc_function_starts_verified": true
   }
 }

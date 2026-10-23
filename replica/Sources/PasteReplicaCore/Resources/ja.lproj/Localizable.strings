@@ -30,3 +30,5 @@
 "general.action.open-in" = "%@を開く";
 "item-type.multiple-files" = "複数のファイル";
 "preview.reveal-in-finder.title" = "Finderで表示";
+
+"general.copied" = "コピー済み";

@@ -90,6 +90,10 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
             ui.pasteboard = pasteboard
             ui.pasteHandler = { [weak self] id, plain in self?.paste(id: id, plain: plain) }
             ui.pasteItemsHandler = { [weak self] ids, plain in self?.paste(ids: ids, plain: plain) }
+            ui.copiedItemsHandler = {
+                ReplicaCopiedOSD.showCopied()
+                NSApp.deactivate()
+            }
             ui.hotKeyConfigurationChanged = { [weak self] in self?.configureGlobalHotKeys() }
             ui.stackDidChange = { [weak self] in self?.configureStackPasteShortcut() }
             ui.hotKeyRecordingChanged = { [weak self] recording in
@@ -301,7 +305,11 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
         guard alert.runModal() == .alertFirstButtonReturn else { return }
         if wasEnabled {
             diagnostics.f_1002fe72c(false)
-            do { _ = try diagnostics.f_1002fef28(store: store, pasteboard: pasteboard) }
+            do {
+                if try diagnostics.f_1002fef28(store: store, pasteboard: pasteboard) != nil {
+                    ReplicaCopiedOSD.showCopied()
+                }
+            }
             catch { ui.presentError(error) }
         } else {
             diagnostics.f_1002fe72c(true)

@@ -30,3 +30,5 @@
 "general.action.open-in" = "פתח ב- %@";
 "item-type.multiple-files" = "מספר קבצים";
 "preview.reveal-in-finder.title" = "לחשוף ב Finder";
+
+"general.copied" = "הועתק";

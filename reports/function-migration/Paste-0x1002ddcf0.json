@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002ddcf0",
+  "reviewed_at": "2026-10-23T11:40:50.504360+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0237.c",
+    "line": 2520
+  },
+  "original_pseudocode_sha256": "09bdce56a949683f34ac8f5253af866467f40c216d4e1bbf42c9590dc2779c65",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchQuery.swift": "4c828b16c6342387d375e6b5a3f24d28b37bbffa1c377e4cdb064ad27b5d1b28",
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "28457f6cccc77a6991a27c884c4278e41654b08f674ac260aefa052a15da7ecc",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "f14b383d0767617211651fdce9d7d98c44782cbf184b5dc11a1e3d4f2623ba6d"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "1e3578b657dbb26e780a90d285985e02f849d386d7eaddae2deba3afecfbb1e1",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "查询数组为空返回true；依次读取每个text或filter的字符串值，trimmingCharacters(.whitespaces)后非空立即false，否则继续；不把.whitespacesAndNewlines扩大为条件。",
+  "review": "完整part0237+arm64 1002ddcf0..<1002dde30，全部value trim的短路allSatisfy直接恢复。实际搜索可见性和Esc条件消费，空白查询resign按原SearchBar f40054清全局empty模型；不标原父协调器完整。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

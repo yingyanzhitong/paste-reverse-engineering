@@ -30,3 +30,5 @@
 "general.action.open-in" = "Открыть в %@";
 "item-type.multiple-files" = "Несколько файлов";
 "preview.reveal-in-finder.title" = "Показать в Finder";
+
+"general.copied" = "Скопировано";

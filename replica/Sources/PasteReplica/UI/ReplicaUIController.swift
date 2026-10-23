@@ -47,8 +47,10 @@ final class ReplicaUIState: ObservableObject {
         }
     }
 
-    private func refreshSearch() {
-        var nodes: [OriginalSearchQueryNode] = [.text(query)]
+    private var searchQueryNodes: [OriginalSearchQueryNode] {
+        var buffer = query
+        var nodes: [OriginalSearchQueryNode] = []
+        OriginalSearchTextTokens.f_1002f8760(&buffer, into: &nodes)
         nodes += searchFilters.map { selection in
             let value: String
             switch selection {
@@ -60,7 +62,13 @@ final class ReplicaUIState: ObservableObject {
             }
             return .filter(selection.group, value)
         }
-        searchIndex.update(items: store.items, nodes: nodes)
+        return nodes
+    }
+
+    var isSearchQueryEmpty: Bool { OriginalSearchQuery.f_1002ddcf0(searchQueryNodes) }
+
+    private func refreshSearch() {
+        searchIndex.update(items: store.items, nodes: searchQueryNodes)
     }
 
     var searchFailed: Bool { !searchIndex.queryString.isEmpty && searchIndex.error != nil }
@@ -234,6 +242,7 @@ final class ReplicaUIController {
     let panel: NSPanel
     var pasteHandler: ((UUID, Bool) -> Void)?
     var pasteItemsHandler: (([UUID], Bool) -> Void)?
+    var copiedItemsHandler: (() -> Void)?
     var pasteboard: NSPasteboard = .general
     var hotKeyConfigurationChanged: (() -> Void)?
     var hotKeyRecordingChanged: ((Bool) -> Void)?
@@ -390,8 +399,10 @@ final class ReplicaUIController {
     }
 
     func copy(ids: [UUID], plainTextOnly: Bool) {
-        state.perform { try store.writeToPasteboard(ids: ids, pasteboard: pasteboard,
-                                                    plainTextOnly: plainTextOnly) }
+        state.perform {
+            try store.writeToPasteboard(ids: ids, pasteboard: pasteboard, plainTextOnly: plainTextOnly)
+            copiedItemsHandler?()
+        }
     }
 
     func pasteSelection(plainTextOnly: Bool) {
@@ -663,13 +674,15 @@ final class ReplicaUIController {
     }
 
     func cancelSearchOrPanel() {
-        if !state.query.isEmpty || !state.searchFilters.isEmpty {
+        if !state.isSearchQueryEmpty {
             state.query = ""
             state.searchFilters = []
             state.searchVisible = true
             state.searchFocus = UUID()
             state.normalizeSelection()
         } else if state.searchVisible || panel.firstResponder is NSTextView {
+            state.query = ""
+            state.searchFilters = []
             state.searchVisible = false
             panel.makeFirstResponder(nil)
         } else { hidePanel() }

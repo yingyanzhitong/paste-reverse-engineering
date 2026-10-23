@@ -30,3 +30,5 @@
 "general.action.open-in" = "Otevřít v %@";
 "item-type.multiple-files" = "Více souborů";
 "preview.reveal-in-finder.title" = "Ukázat ve Finderu";
+
+"general.copied" = "Zkopírováno";

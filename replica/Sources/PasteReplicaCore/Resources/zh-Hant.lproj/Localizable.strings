@@ -30,3 +30,5 @@
 "general.action.open-in" = "在%@中打開";
 "item-type.multiple-files" = "多個文件";
 "preview.reveal-in-finder.title" = "在Finder中顯示";
+
+"general.copied" = "已複製";
