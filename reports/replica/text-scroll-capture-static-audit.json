@@ -1,0 +1,80 @@
+{
+  "kind": "concentrated_text_scroll_capture_static_review",
+  "version": "0.8.0-dev.38",
+  "reviewed_at": "2026-10-23T18:05:39.625157+00:00",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "1470f0470aa78914c47051d6b29825f980184db923243bb37187651660e799fa",
+    "replica/Sources/PasteReplica/UI/OriginalCompactTextContent.swift": "0e6dddc05e659a563e004cf0536bdc253f82245921ea9c465b02bb9f02fa9dda",
+    "replica/Sources/PasteReplica/UI/ReplicaNativeCardCollection.swift": "043cc0f70a0cc52f4f7d0db4bbacc5af0a55c084af6a74f136461d60844141a7",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "0f5ba3cb157a77612f9b1cbc447d835571d64858ddf82948d2d88f6a5b4fbca2"
+  },
+  "build_log": ".local/gap-build-63.log",
+  "compiled_sha256": {
+    "replica/.build/release/PasteReplica": "8ded736a226949c2e1f3f099b83466c8e14de42d0043e5c084f3aa99f0f3d8db",
+    "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+    "replica/.build/release/paste-replica-mcp": "f07b7d2dafba4a306d4d141fd38f8ce84fc89402da56124ea75e809fe36f4848"
+  },
+  "new_complete_functions": 0,
+  "state": "partial",
+  "product_executed": false,
+  "functional_tests_executed": false,
+  "mcp_tests_executed": false,
+  "checks": [
+    {
+      "feature": "紧凑文字",
+      "original_functions": [
+        "Paste:0x1003dbddc",
+        "Paste:0x1003dc07c",
+        "Paste:0x1003dc390"
+      ],
+      "before": "SwiftUI Text(metadata.text).lineLimit(7)，普通top11。",
+      "after": "真实NSTextField(labelWithAttributedString:) maximumNumberOfLines0/natural，直接复用现bodyfont/primarycolor；保原AttributedString与500UTF16样本；左右外12/内0，top外class3=0/其余10且内0，bottom<=wrapper.bottom+10。",
+      "evidence": "原field类别实际LC绑定NSTextField而非邻近NSTextView，setAttributedText转setAttributedStringValue，setNumberOfLines转setMaximumNumberOfLines。",
+      "remaining": "原Footer32点gradient/18点opaque、class3隐藏与完整theme、原nilmetadata复用状态、像素/段落/RTL运行回归仍partial。"
+    },
+    {
+      "feature": "横向列表滚轮",
+      "original_functions": [
+        "Paste:0x100236978"
+      ],
+      "before": "plain NSScrollView默认elasticities，缺少原明确竖轮整数轴转换。",
+      "after": "仅X0且Y非0且有CGEvent时，axis2=Int64(scrollingDeltaY)、axis1=0；重建NSEvent nil用原event，super一次。responsive scrolling true；vertical.none/horizontal.allowed。",
+      "evidence": "基本横向wheel/clip/tiling直接复用系统，新增class及两个属性后反向删除精确复原dev37 native整文件875d529339eee5d49162f7eab0199bf57d15828e51d29649e46266e2b2617d31。",
+      "remaining": "原30点drag边缘自定义步长、完整source/periodic/accept区域、primary额外60margin与动画仍partial，未用通用scrollToVisible冒等价。"
+    },
+    {
+      "feature": "采集初始状态及释放",
+      "original_functions": [
+        "Paste:0x10037b778",
+        "Paste:0x10037aa3c",
+        "Paste:0x10037abbc",
+        "Paste:0x100378ac0",
+        "Paste:0x100378bc8"
+      ],
+      "before": "构造token0直到回调才持久化；runloop Timer强持manager，使原deinit清理可不达。",
+      "after": "构造defaults token0立即写resolved系统token；两selectorTimer通过弱manager proxy转回既有callbacks；deinit清弱delegate后调用stop，依次日志/invalidate并清双timer/DidChangeStatus(object:self)。",
+      "evidence": "原constructor主动调用capturestate lazygetter，所以旧“原lazy现立即创建”的时点gap已纠正；五组限定修改反向替换精确回dev37 Core整文件00a4fe03327bb6a3360a952a647eb944fda0a92f64ae5819337fbc0effa438bb，restore/drag等逐字保持。",
+      "remaining": "独立state/typedDI/对象关系仍适配。MainActor.assumeIsolated只检查执行器而不切换线程，原完整析构executor/ABI/错误与通知运行边界不声明等价。"
+    }
+  ],
+  "cross_review": "Root负责Panel接线；Image复核真实field/布局/类别，Window复核完整wheel条件及fallback，PB复核五组Source及六个既有drag核心方法逐字不变。构建后独立编译符号peer另绑定当前产物。",
+  "validation": "Release build63 successful, 24.07 seconds, 173 Source inputs unchanged before/after. No application, unit, functional, UI or MCP tests run.",
+  "compiled_static_cross_review": {
+    "binary_sha256": "8ded736a226949c2e1f3f099b83466c8e14de42d0043e5c084f3aa99f0f3d8db",
+    "native_text_init": "0x10004153c..<0x100041970 includes labelWithAttributedString and maximumNumberOfLines0/natural4",
+    "native_text_witnesses": [
+      "0x100041dc4",
+      "0x100041ec4"
+    ],
+    "attributed_string_bridge": "actual Foundation import stub0x1001bfb94, both make/update consumer calls",
+    "actual_card_body": "0x10006ffd0..<0x100071e88 contains metadata branch and native content projection",
+    "wheel_swift_boundary": "0x10009cd0c..<0x10009ce6c",
+    "wheel_objc_boundary": "0x10009ce6c..<0x10009cebc",
+    "scroll_elasticity_call_sites": [
+      "0x100096170 vertical raw1",
+      "0x100096184 horizontal raw2"
+    ],
+    "capture": "13 complete current body boundaries and 7 selector slots checked; weakInit/Assign/LoadStrong/Destroy, actual proxy targets, zero-default setInteger and clear delegate -> inline stop -> notification verified. Original destructor executor equivalence not proven.",
+    "scope": "Three independent domain peers; compiled presence/calls only, zero new complete counts, no runtime tests."
+  }
+}

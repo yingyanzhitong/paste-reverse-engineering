@@ -25,7 +25,7 @@ struct ReplicaNativeCollection: NSViewRepresentable {
 
 @MainActor
 final class ReplicaNativeCollectionHost: NSView, NSDraggingSource {
-    private let scrollView = NSScrollView(frame: .zero)
+    private let scrollView = ReplicaNativeHorizontalScrollView(frame: .zero)
     private let document = ReplicaNativeCardDocument(frame: .zero)
     private weak var state: ReplicaUIState?
     private var items: [ClipboardItem] = []
@@ -50,6 +50,8 @@ final class ReplicaNativeCollectionHost: NSView, NSDraggingSource {
         scrollView.contentView.drawsBackground = false
         scrollView.hasHorizontalScroller = false
         scrollView.hasVerticalScroller = false
+        scrollView.verticalScrollElasticity = .none
+        scrollView.horizontalScrollElasticity = .allowed
         scrollView.documentView = document
         addSubview(scrollView)
         scrollView.contentView.postsBoundsChangedNotifications = true
@@ -453,5 +455,21 @@ private final class ReplicaNativeLocalDragWriter: NSObject, NSPasteboardWriting 
     func pasteboardPropertyList(forType type: NSPasteboard.PasteboardType) -> Any? {
         if type == Self.markerType { return marker }
         return writer.pasteboardPropertyList(forType: type)
+    }
+}
+
+/// Original NoShiftHorizontalScrollView remaps only the integer wheel axes.
+@MainActor
+private final class ReplicaNativeHorizontalScrollView: NSScrollView {
+    override class var isCompatibleWithResponsiveScrolling: Bool { true }
+
+    override func scrollWheel(with event: NSEvent) {
+        var forwarded = event
+        if event.scrollingDeltaX == 0, event.scrollingDeltaY != 0, let cgEvent = event.cgEvent {
+            cgEvent.setIntegerValueField(.scrollWheelEventDeltaAxis2, value: Int64(event.scrollingDeltaY))
+            cgEvent.setIntegerValueField(.scrollWheelEventDeltaAxis1, value: 0)
+            forwarded = NSEvent(cgEvent: cgEvent) ?? event
+        }
+        super.scrollWheel(with: forwarded)
     }
 }

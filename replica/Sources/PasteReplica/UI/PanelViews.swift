@@ -341,7 +341,15 @@ struct ReplicaClipboardCard: View {
         default:
             ReplicaItemContent(item: item, compact: true, linkPreviewsEnabled: state.store.preferences.linkPreviewsEnabled,
                                cardSizeClass: UInt8(sizeClass))
-                .padding(.horizontal, item.kind == .link ? 0 : 12).padding(.top, item.kind == .link ? 0 : 11)
+                .padding(.horizontal, item.kind == .link ? 0 : 12).padding(.top, contentTopInset)
+        }
+    }
+
+    private var contentTopInset: CGFloat {
+        switch item.kind {
+        case .link: return 0
+        case .text, .richText: return sizeClass == 3 ? 0 : 10
+        default: return 11
         }
     }
 
@@ -638,9 +646,7 @@ struct ReplicaItemContent: View {
                 }
             } else if compact, item.kind == .text || item.kind == .richText {
                 if let metadata = item.decodedTextPreviewMetadata {
-                    Text(metadata.text)
-                        .lineLimit(7)
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                    OriginalCompactTextContent(text: metadata.text)
                 }
             } else if item.kind == .richText, let data = item.payloads["public.rtf"],
                       let attributed = NSAttributedString(rtf: data, documentAttributes: nil) {

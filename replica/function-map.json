@@ -28161,13 +28161,11 @@
       "implementations": [
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "Text(metadata.text)",
-          "line": 418
+          "symbol": "OriginalCompactTextContent(text: metadata.text)"
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "OriginalPreviewLocalization.f_1001e6b38(Int32(metadata.length))",
-          "line": 291
+          "symbol": "OriginalPreviewLocalization.f_1001e6b38(Int32(metadata.length))"
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
@@ -28175,7 +28173,7 @@
         },
         {
           "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
-          "symbol": "Text(metadata.text)"
+          "symbol": "private var contentTopInset: CGFloat"
         }
       ],
       "source": {
@@ -28183,8 +28181,9 @@
         "line": 700
       },
       "review": "Actual compact-only card branch updated by window agent; full editor and its Character footer remain unchanged and independently reused. 已核REA/有限完整arm64及实际Source消费者；最终build42通过，148输入SHA一致。只做静态编译，不运行产品/功能/单测/UI/MCP，六父保持partial。",
-      "remaining": "Complete original native TextItemCell/layout/animation/reuse/VM/ABI not promoted.",
-      "implementation_origin": "newly_migrated"
+      "remaining": "dev38紧凑原生field与class3=0/其余10顶部已接，metadata/Int32资源复用；完整native footer/渐变/theme、对象/动画/复用/VM/ABI和实际像素仍partial。",
+      "implementation_origin": "newly_migrated",
+      "compiled_review": "reports/replica/text-scroll-capture-static-audit.json"
     },
     "Paste:0x10031a3a8": {
       "state": "migrated",
@@ -29314,7 +29313,7 @@
           "symbol": "if event.clickCount == 2 {"
         }
       ],
-      "compiled_review": "reports/replica/native-collection-static-audit.json",
+      "compiled_review": "reports/replica/text-scroll-capture-static-audit.json",
       "remaining": "dev37已接真实双击单选clicked、actual event modifier子集及单item粘贴入口；0.45秒按压与严格3pt拖阈亦已接。完整原delegate/applier/实体/事件时序与运行回归仍未验收。"
     },
     "Paste:0x100228128": {
@@ -29818,6 +29817,45 @@
       "implementation_origin": "explicit_user_scope_exclusion",
       "review": "完整原体/实际typed DI到Paywall链和所有直接调用逐项核定，PB独立机器码及实际witness核准。通用被调函数不排除，不更改原版授权。",
       "remaining": "不计已实现，不减少81134总分母。"
+    },
+    "Paste:0x1003dbddc": {
+      "state": "partial",
+      "contract": "紧凑文本原生field有限配置与实际卡片消费者。",
+      "implementation_origin": "newly_integrated_finite_behavior",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalCompactTextContent.swift",
+          "symbol": "final class OriginalCompactTextContentView"
+        }
+      ],
+      "compiled_review": "reports/replica/text-scroll-capture-static-audit.json",
+      "remaining": "无限行/natural/bodyfont与直接AttributedString已接；原lazy对象身份、完整父/footer/像素回归仍partial。"
+    },
+    "Paste:0x100236978": {
+      "state": "partial",
+      "contract": "NoShiftHorizontalScrollView的竖向整数滚轮轴转换、nil重建fallback及super转发。",
+      "implementation_origin": "newly_integrated_finite_behavior",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaNativeCardCollection.swift",
+          "symbol": "override func scrollWheel(with event: NSEvent)"
+        }
+      ],
+      "compiled_review": "reports/replica/text-scroll-capture-static-audit.json",
+      "remaining": "有限native逻辑已接，完整原对象/继承/拖动边缘滚动与实际设备回归仍partial。"
+    },
+    "Paste:0x10037b778": {
+      "state": "partial",
+      "contract": "historymanager构造创建capturestate并在defaults token0时写回系统token。",
+      "implementation_origin": "newly_integrated_finite_behavior",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+          "symbol": "public init(store: ClipboardStore,"
+        }
+      ],
+      "compiled_review": "reports/replica/text-scroll-capture-static-audit.json",
+      "remaining": "首次token写回与weakproxy清理已接；原typedDI/state对象、完整constructor/析构executor仍partial。"
     }
   }
 }

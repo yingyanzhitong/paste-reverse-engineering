@@ -317,6 +317,25 @@ extension ClipboardStore {
 
 @MainActor
 public final class ClipboardMonitor: NSObject, OriginalPasteboardCaptureDelegate {
+    @MainActor
+    private final class TimerTarget: NSObject {
+        weak var monitor: ClipboardMonitor?
+
+        init(_ monitor: ClipboardMonitor) {
+            self.monitor = monitor
+            super.init()
+        }
+
+        @objc func handlePollTimer(_ timer: Timer) {
+            monitor?.handlePollTimer(timer)
+        }
+
+        @objc func handleSyncTimer(_ timer: Timer) {
+            monitor?.handleSyncTimer(timer)
+        }
+    }
+
+    private lazy var timerTarget = TimerTarget(self)
     private let store: ClipboardStore
     private let captureState: OriginalPasteboardCaptureState
     private let defaults: UserDefaults
@@ -360,6 +379,9 @@ public final class ClipboardMonitor: NSObject, OriginalPasteboardCaptureDelegate
         captureState.persistChangeCount = { [defaults] count in
             defaults.set(count, forKey: "pasteboard-change-token")
         }
+        if defaults.integer(forKey: "pasteboard-change-token") == 0 {
+            defaults.set(captureState.lastChangeCount, forKey: "pasteboard-change-token")
+        }
         OriginalPasteboardCaptureState.register(captureState)
     }
 
@@ -380,8 +402,8 @@ public final class ClipboardMonitor: NSObject, OriginalPasteboardCaptureDelegate
         recordMonitoring("Start monitoring pasteboard")
         guard timer == nil else { return }
         lastChangeCount = pasteboard.changeCount
-        timer = Timer.scheduledTimer(timeInterval: 0.25, target: self,
-                                     selector: #selector(handlePollTimer(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.25, target: timerTarget,
+                                     selector: #selector(TimerTarget.handlePollTimer(_:)), userInfo: nil, repeats: true)
         timer?.tolerance = 0.025
     }
 
@@ -415,8 +437,8 @@ public final class ClipboardMonitor: NSObject, OriginalPasteboardCaptureDelegate
         recordMonitoring("Pasteboard change detected, starting sync timer")
         lastChangeCount = pasteboard.changeCount
         syncTimer?.invalidate()
-        syncTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self,
-                                         selector: #selector(handleSyncTimer(_:)), userInfo: nil, repeats: false)
+        syncTimer = Timer.scheduledTimer(timeInterval: 0.3, target: timerTarget,
+                                         selector: #selector(TimerTarget.handleSyncTimer(_:)), userInfo: nil, repeats: false)
     }
 
     @objc private func handleSyncTimer(_ timer: Timer) {
@@ -553,8 +575,8 @@ public final class ClipboardMonitor: NSObject, OriginalPasteboardCaptureDelegate
 
     deinit {
         MainActor.assumeIsolated {
-            timer?.invalidate()
-            syncTimer?.invalidate()
+            captureState.delegate = nil
+            f_10037ad14()
         }
     }
 }
