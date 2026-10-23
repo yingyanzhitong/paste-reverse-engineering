@@ -1,5 +1,17 @@
 # 更新日志
 
+## 0.8.0-dev.23 - 2026-10-23
+
+- 按完整已有功能链集中修确认差异，继续复用捕获、多选、Stack、颜色/文件与全文编辑路径；73行为项绑定95源码，状态仍32已有列明行为/38差异或缺证据/1缺失/2未审，不算产品完成率。
+- 主面板以真实根bounds动态计算卡片：toolbar60，OS26底距8/旧0，collection上8下24、gap24；移除固定242scroll/232card/offset11/额外透明24及外top8。默认332时旧卡片240、新232，sizeclass真实联动Header56/52/48及icon84/80/76；通用compact已接，内容特化与完整布局/动画仍partial。
+- 主窗口恢复canBecomeMain值、hasShadowfalse/isMovablefalse、nil焦点回退initialFirstResponder再contentView并返回super结果。两个资格getter当前ObjC入口缺原actor执行器检查，明确保留partial，不把返回true当完整；焦点完整小body及双方NSPanel父类已核后新增迁移1。
+- 链接本地首item URL与trim后的可选name实际进入Stored四字段、Models、add/capture/编辑及卡片/预览。缺URL解码用原example.com；编辑保旧canonical name nil与空串，缺metadata用空串。旧archive缺raw不补生成；不加入HTTP/同步。
+- 链接卡片按canonical name/url与storedimage优先级显示：imageData非方主图、方图标；image解码失败才iconData，再safari点42/secondary。图标42×42约束与原raw3等比放大/缩小独立证实后接入；原fullsizeformatter/config/外布局与niltrap适配仍partial。
+- 声音从过早capture writer内移到真实DidCapture通知，恢复DidRestore播放链，通知时读取当前playSounds。仅使用副本自身bundle资源；缺资源/创建失败继续实际Pop fallback，未复制原声音，音色差异明确保留，4声音父无完整计数。
+- 最终build44 release成功，151输入SHA前后一致，日志9.08秒/包装9.87秒。前置43编译成功后，因发现已证图标尺寸差异修两行再编译；8既有编译器体、缓存、异常桥、权限getter/map/modal及声音有限当前体全部静态复审。未运行产品、单测、功能、原版动态、UI/MCP、重启或异常注入。
+- 当前逐地址证据1,488 / 81,134（源码581、SDK907），排除5，范围内剩余79,641，其中232部分实现；SDK新增7/撤回1、源码新增1，净增7。37合并记录不是37新增完整。
+- 源码与公开对照报告同步，未打包安装，安装仍0.7.0；整体一比一验收未完成。
+
 ## 0.8.0-dev.22 - 2026-10-23
 
 - 按已有功能与完整调用链集中检查，符合原证据的实现直接复用；73项行为清单绑定92份源码，状态仍32项已有列明行为、38项有差异或缺证据、1项缺失、2项未审，不当产品完成率。

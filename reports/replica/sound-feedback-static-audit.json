@@ -1,0 +1,476 @@
+{
+  "kind": "dev23_sound_feedback_real_event_consumers",
+  "reviewed_at": "2026-10-23T14:38:03.785949+00:00",
+  "functions": {
+    "Paste:0x100076884": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "independent_rewrite",
+      "contract": "自身bundle Copy/Paste aiff资源建SystemSoundID；真实持有事件播放器。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSoundEffects.swift",
+          "symbol": "public final class OriginalSoundEffects"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "soundEffects = OriginalSoundEffects(store: store, monitor: monitor)"
+        }
+      ],
+      "remaining": "原Copy.aiff/Paste.aiff未验证可公开复用许可且未随项目分发；当前缺资源/创建失败实际播放系统Pop，音色不等价。原settings DI/通知身份/失败ID0播放及无dispose析构不按ABI复刻，父partial。",
+      "compiled_review": "reports/replica/sound-feedback-static-audit.json"
+    },
+    "Paste:0x100076ca0": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "independent_rewrite",
+      "contract": "weak订阅实际DidCapture通知及store.didRestoreItem，事件时读取同playSounds，不在create中提前播放。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSoundEffects.swift",
+          "symbol": "public final class OriginalSoundEffects"
+        },
+        {
+          "path": "replica/Sources/PasteReplica/AppMain.swift",
+          "symbol": "soundEffects = OriginalSoundEffects(store: store, monitor: monitor)"
+        }
+      ],
+      "remaining": "原Copy.aiff/Paste.aiff未验证可公开复用许可且未随项目分发；当前缺资源/创建失败实际播放系统Pop，音色不等价。原settings DI/通知身份/失败ID0播放及无dispose析构不按ABI复刻，父partial。",
+      "compiled_review": "reports/replica/sound-feedback-static-audit.json"
+    },
+    "Paste:0x100076ebc": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "independent_rewrite",
+      "contract": "DidCapture发生在capture成功及共享Undo清理后，实时开关true才播放Copy或独立Pop fallback。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSoundEffects.swift",
+          "symbol": "NotificationCenter.default.publisher(for: ClipboardMonitor.didCaptureItemNotification, object: monitor)"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+          "symbol": "public func f_10037ae9c("
+        }
+      ],
+      "remaining": "原Copy.aiff/Paste.aiff未验证可公开复用许可且未随项目分发；当前缺资源/创建失败实际播放系统Pop，音色不等价。原settings DI/通知身份/失败ID0播放及无dispose析构不按ABI复刻，父partial。",
+      "compiled_review": "reports/replica/sound-feedback-static-audit.json"
+    },
+    "Paste:0x100076fc8": {
+      "state": "partial",
+      "code_ready": true,
+      "implementation_origin": "independent_rewrite",
+      "contract": "write完成、token/recency事务/共享Undo清理后真实DidRestore，实时开关true才播放Paste或独立Pop fallback。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSoundEffects.swift",
+          "symbol": "store.didRestoreItem.sink"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+          "symbol": "didRestoreItem.send()"
+        }
+      ],
+      "remaining": "原Copy.aiff/Paste.aiff未验证可公开复用许可且未随项目分发；当前缺资源/创建失败实际播放系统Pop，音色不等价。原settings DI/通知身份/失败ID0播放及无dispose析构不按ABI复刻，父partial。",
+      "compiled_review": "reports/replica/sound-feedback-static-audit.json"
+    }
+  },
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSoundEffects.swift": "9fea7bd27a0f354737883e390ecc1eb6cef885725a7f1768ea697c7d6471b79e",
+    "replica/Sources/PasteReplica/AppMain.swift": "8762250faf72f69c6f3f4be7cecbb1627909481726f02be5ec38bf593339b6d8",
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "d198581e1e6dadc9d04ddf773391f79ccc94823b19700b174c1e61080c76d271"
+  },
+  "summary": {
+    "source_ready": true,
+    "source_frozen": true,
+    "compiled": true,
+    "full_contract_candidates": 0,
+    "partial_functions": 4,
+    "new_function_count": 0,
+    "functional_tests_executed": false,
+    "products_started": false,
+    "independent_build_executed": false
+  },
+  "original_evidence": [
+    "decompiled/Paste/part-0039.c:238",
+    "decompiled/Paste/part-0039.c:364",
+    "decompiled/Paste/part-0039.c:434",
+    "decompiled/Paste/part-0039.c:484",
+    "decompiled/Paste/part-0281.c:1923",
+    ".local/pasteboard-dev23-sounds-arm64.txt",
+    ".local/pasteboard-dev12-audit.json"
+  ],
+  "original_contract": {
+    "constructor": "76884: Copy ID+10/Paste ID+14 initially0; mainBundle URL absent leaves0; AudioServicesCreateSystemSoundID return status ignored.",
+    "subscription": "76CA0: firstgetter37A75C/DidCapture; secondgetter37A7EC/DidRestore; weak owner and storedcancellables.",
+    "sink": "76F7C/77088 load setting byte; cmp1; only equal calls AudioServicesPlaySystemSound at76FA0/770AC with +10/+14.",
+    "setting": "771AC/77164 keyisSoundEffectsEnabled Bool defaulttrue; current playSounds default/decodefallback true already satisfied.",
+    "capture_order": "37AE9C error path returns withoutnotification; success clears sharedUndo, optionalDidCreate, thenDidCapture. Duplicate-ID returnfalse stillDidCapture.",
+    "restore_order": "existing writer success guard then capturetoken/save reverse recency transaction/sharedUndo removeAllActions/didRestoreItem.send; no sound on earlier failure.",
+    "deinit": "original770D4 releases subscriptions/settings only; does not dispose SystemSoundID."
+  },
+  "independent_adaptations": {
+    "bundles": "Only replica Bundle.main then Core Bundle.module; no reference to installedPaste, no custom userdirectory option.",
+    "missing_or_invalid_asset": "SystemPop fallback retained and shifted to real post-event location; same fallback now also servesrestore. No ID0 pretend playback.",
+    "lifecycle": "AppMain strongly owns service; subscriptions weakself/weakstore; termination stop drops all AnyCancellable then releases service; deinit disposes successful IDs.",
+    "scheduling": "Both publishers currently emit on main actor; assumeIsolated retains synchronous event timing; no added delayedqueue."
+  },
+  "resource_review": {
+    "open_license_verified": false,
+    "original_audio_copied": false,
+    "assets_added": false,
+    "basis": "Earlier local asset/source review recorded no verified open redistributable license; this batch copies no originalaudio and claims no legal determination.",
+    "audible_equivalence": false
+  },
+  "static_checks": {
+    "source_consumer_symbols_present": true,
+    "git_diff_check_passed": true,
+    "compiled_pending_root_build": null,
+    "compiled_final_root_build": 44
+  },
+  "source_scope": "Only ownedAppMain/Pasteboard/newCore sound service changed; other agents working tree edits untouched; no publicreport/ledger modified.",
+  "prior_objc_catcher_revalidation": {
+    "binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+    "function": "Paste:0x1002d2b54",
+    "replica_symbol": "+[PRObjCExceptionCatcher catchExceptionIn:]",
+    "start": "0x1001828c0",
+    "end_exclusive": "0x100182910",
+    "size": 80,
+    "full_machine_code_hex": "f44fbea9fd7b01a9fd430091e00302aacd090094f30300aa080840f900013fd6140080d2e00313aac4090094e00314aafd7b41a9f44fc2a8ae090014b0090094c7090094f40300aab0090094f6ffff17",
+    "sha256": "b85b2b0d4f398a1837da253accb223c7cc4d7e666b9fb8bc586aca51fb76934a",
+    "boundary_proof": "last LC_FUNCTION_STARTS entry through __TEXT,__text section end; next __stubs begins at endpoint",
+    "arc_enabled_in_actual_swiftpm_clang_command": true,
+    "compile_flags_confirmed": [
+      "-fobjc-arc",
+      "-O2",
+      "-fblocks",
+      "-target arm64-apple-macosx14.0"
+    ],
+    "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n00000001001828c0 <+[PRObjCExceptionCatcher catchExceptionIn:]>:\n1001828c0:     \tstp\tx20, x19, [sp, #-0x20]!\n1001828c4:     \tstp\tx29, x30, [sp, #0x10]\n1001828c8:     \tadd\tx29, sp, #0x10\n1001828cc:     \tmov\tx0, x2\n1001828d0:     \tbl\t0x100185004 <_swift_willThrowTypedImpl+0x100185004>\n1001828d4:     \tmov\tx19, x0\n1001828d8:     \tldr\tx8, [x0, #0x10]\n1001828dc:     \tblr\tx8\n1001828e0:     \tmov\tx20, #0x0               ; =0\n1001828e4:     \tmov\tx0, x19\n1001828e8:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n1001828ec:     \tmov\tx0, x20\n1001828f0:     \tldp\tx29, x30, [sp, #0x10]\n1001828f4:     \tldp\tx20, x19, [sp], #0x20\n1001828f8:     \tb\t0x100184fb0 <_swift_willThrowTypedImpl+0x100184fb0>\n1001828fc:     \tbl\t0x100184fbc <_swift_willThrowTypedImpl+0x100184fbc>\n100182900:     \tbl\t0x10018501c <_swift_willThrowTypedImpl+0x10018501c>\n100182904:     \tmov\tx20, x0\n100182908:     \tbl\t0x100184fc8 <_swift_willThrowTypedImpl+0x100184fc8>\n10018290c:     \tb\t0x1001828e4 <+[PRObjCExceptionCatcher catchExceptionIn:]+0x24>\n",
+    "objc_method_table": {
+      "table": "0x1001864f0",
+      "flags": "0x8000000c",
+      "stride": 12,
+      "count": 1,
+      "methods": [
+        {
+          "entry": "0x1001864f8",
+          "name": "catchExceptionIn:",
+          "imp": "0x1001828c0"
+        }
+      ]
+    },
+    "lsda": {
+      "start": "0x1001c43e0",
+      "bytes": "ff9b15010c001c00001c043c01203000000100003ce80000",
+      "indirect_type_pointer_slot": "0x1001d2c30",
+      "type_binding": {
+        "import_index": 1295,
+        "import_table_slice_file_offset": 2069692,
+        "symbol": "_OBJC_EHTYPE_$_NSException",
+        "dylib_ordinal": 7,
+        "dylib": {
+          "install_name": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+          "load_command": "0xc",
+          "current_version": 210239488,
+          "current_version_string": "3208.0.0",
+          "compatibility_version": 9830400,
+          "compatibility_version_string": "150.0.0"
+        },
+        "weak_import": false,
+        "import_addend": 0,
+        "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+        "fixups_header_slice_file_offset": 2064384,
+        "pointer_format": 6,
+        "imports_format": 1,
+        "segment_index": 2,
+        "page_index": 0,
+        "page_start": 0,
+        "pointer_slice_file_offset": 1911856,
+        "pointer_raw_value": "0x801000000000050f",
+        "pointer_addend": 0,
+        "effective_addend": 0
+      }
+    },
+    "runtime_stubs": {
+      "0x100185004": "_objc_retain",
+      "0x100184ff8": "_objc_release",
+      "0x100184fb0": "_objc_autoreleaseReturnValue",
+      "0x100184fbc": "_objc_begin_catch",
+      "0x10018501c": "_objc_retainAutoreleasedReturnValue",
+      "0x100184fc8": "_objc_end_catch"
+    },
+    "ownership_review": "Normal: retain block→invoke→nil→release block→autoreleaseReturnValue(nil). Catch: objc_begin_catch→objc_retainAutoreleasedReturnValue(exception)→preserve x20→objc_end_catch→release block→objc_autoreleaseReturnValue(exception). Thus exception stays retained across end_catch and returned +0, original catch object identity preserved; original used objc_retain rather than retained-return optimization.",
+    "functional_tests_executed": false,
+    "compiled_build": 44,
+    "revalidation_only": true,
+    "new_function_count": 0
+  },
+  "compiled_build": 44,
+  "binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+  "compiled_manifest": ".local/gap-build-complete.json",
+  "compiler_lifecycle_revalidation": {
+    "path": ".local/interaction-build44-compiled-reuse-review.json",
+    "old_functions_kept": 8,
+    "new_function_count": 0
+  },
+  "permissions_current_binary_review": {
+    "path": ".local/pasteboard-dev23-permissions-build44.json",
+    "getter_preserved": true,
+    "map_release_before_ax": true,
+    "action_stubs_selectors_and_strings_verified": true
+  },
+  "pure_getter_current_review": {
+    "start": "0x10010640c",
+    "end_exclusive": "0x100106428",
+    "size": 28,
+    "sha256": "58fbe8e67dfe8a3a4d4e708bafa6ade9c0eef76e58161ba7fed1b15a4906c632",
+    "binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+    "decision": "preserve_existing_migrated"
+  },
+  "sound_current_binary_review": {
+    "compiled_build": 44,
+    "binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+    "functions": {
+      "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_": {
+        "start": "0x100169cb4",
+        "end_exclusive": "0x100169d20",
+        "size": 108,
+        "sha256": "4394659c9f000c808784dcdae3cb14eaeb0c7e9422d2b558eca625d6bba3b38c",
+        "full_machine_code_hex": "ff8301d1f65703a9f44f04a9fd7b05a9fd430191f30302aaf40301aa000080d2cc690094e60300aaf44f01a9000000b000301c91620100d042802791e1030091630580524400805265028052f40306aa150080d29344fc97fd7b45a9f44f44a9f65743a9ff830191c0035fd6",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n0000000100169cb4 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_>:\n100169cb4:     \tsub\tsp, sp, #0x60\n100169cb8:     \tstp\tx22, x21, [sp, #0x30]\n100169cbc:     \tstp\tx20, x19, [sp, #0x40]\n100169cc0:     \tstp\tx29, x30, [sp, #0x50]\n100169cc4:     \tadd\tx29, sp, #0x50\n100169cc8:     \tmov\tx19, x2\n100169ccc:     \tmov\tx20, x1\n100169cd0:     \tmov\tx0, #0x0                ; =0\n100169cd4:     \tbl\t0x100184404 <_swift_willThrowTypedImpl+0x100184404>\n100169cd8:     \tmov\tx6, x0\n100169cdc:     \tstp\tx20, x19, [sp, #0x10]\n100169ce0:     \tadrp\tx0, 0x10016a000 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_+0x94>\n100169ce4:     \tadd\tx0, x0, #0x70c\n100169ce8:     \tadrp\tx2, 0x100197000 <_swift_willThrowTypedImpl+0x100197000>\n100169cec:     \tadd\tx2, x2, #0x9e0\n100169cf0:     \tmov\tx1, sp\n100169cf4:     \tmov\tw3, #0x2b               ; =43\n100169cf8:     \tmov\tw4, #0x2                ; =2\n100169cfc:     \tmov\tw5, #0x13               ; =19\n100169d00:     \tmov\tx20, x6\n100169d04:     \tmov\tx21, #0x0               ; =0\n100169d08:     \tbl\t0x10007af54 <_$sScM14assumeIsolated_4file4linexxyKScMYcXE_s12StaticStringVSutKs8SendableRzlFZyt_Tg5>\n100169d0c:     \tldp\tx29, x30, [sp, #0x50]\n100169d10:     \tldp\tx20, x19, [sp, #0x40]\n100169d14:     \tldp\tx22, x21, [sp, #0x30]\n100169d18:     \tadd\tsp, sp, #0x60\n100169d1c:     \tret\n",
+        "runtime_stubs": {
+          "0x100184404": "_$sScMMa"
+        }
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_": {
+        "start": "0x100169d20",
+        "end_exclusive": "0x100169f00",
+        "size": 480,
+        "sha256": "582fb294221df994e524cefbff6d0071955530cf88cad41f2b6f4507052fda4b",
+        "full_machine_code_hex": "fa0f1bf8f96301a9f75b02a9f44f03a9fd7b04a9fd030191ff0301d1f30315aaf80301aaf40300aa000080d26d32fe97f60300aa08805ff8082140f9e90308aa500300b0104646f900023fd6e9030091083d009108ed7c92370108cbff02009194420091a16301d1e00314aa020080d2030080d2c96c0094e00314aaa86d0094000a00b4f40300aa18430091a1c301d1e00318aa020080d2030080d2bf6c0094e00318aa9e6d0094800800b4f80300aa200100b000a02091036d0094f90300aa200100b000402191ff6c0094fa0300aae80317aae00318aae10319aae2031aaa0d650094e00318aa306d0094e00319aa2e6d0094e0031aaa2c6d0094c82a80b9f66a6838e00317aa7c98fd977605003688524039e804003608ea8d52080ea0720960fcd2a82738a941030090216c47f942030090428c47f943030090637c47f9a00302d12c690094f60301aac1680094f70300aae00316aa936c0094e8030090002543f95a6c0094e803009001bd40f9e20317aa506c0094fd031daa606c0094f60300aae00317aa546c0094e803009001c140f9e00316aa476c0094e00314aa026d0094e00316aa4c6c009405000014801240b96b6b0094e00314aafb6c0094f50313aabf0301d1fd7b44a9f44f43a9f75b42a9f96341a9fa0745f8c0035fd6",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n0000000100169d20 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_>:\n100169d20:     \tstr\tx26, [sp, #-0x50]!\n100169d24:     \tstp\tx25, x24, [sp, #0x10]\n100169d28:     \tstp\tx23, x22, [sp, #0x20]\n100169d2c:     \tstp\tx20, x19, [sp, #0x30]\n100169d30:     \tstp\tx29, x30, [sp, #0x40]\n100169d34:     \tadd\tx29, sp, #0x40\n100169d38:     \tsub\tsp, sp, #0x40\n100169d3c:     \tmov\tx19, x21\n100169d40:     \tmov\tx24, x1\n100169d44:     \tmov\tx20, x0\n100169d48:     \tmov\tx0, #0x0                ; =0\n100169d4c:     \tbl\t0x1000f6700 <_$s16PasteReplicaCore14AppPreferencesVMa>\n100169d50:     \tmov\tx22, x0\n100169d54:     \tldur\tx8, [x0, #-0x8]\n100169d58:     \tldr\tx8, [x8, #0x40]\n100169d5c:     \tmov\tx9, x8\n100169d60:     \tadrp\tx16, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n100169d64:     \tldr\tx16, [x16, #0xc88]\n100169d68:     \tblr\tx16\n100169d6c:     \tmov\tx9, sp\n100169d70:     \tadd\tx8, x8, #0xf\n100169d74:     \tand\tx8, x8, #0xfffffffffffffff0\n100169d78:     \tsub\tx23, x9, x8\n100169d7c:     \tmov\tsp, x23\n100169d80:     \tadd\tx20, x20, #0x10\n100169d84:     \tsub\tx1, x29, #0x58\n100169d88:     \tmov\tx0, x20\n100169d8c:     \tmov\tx2, #0x0                ; =0\n100169d90:     \tmov\tx3, #0x0                ; =0\n100169d94:     \tbl\t0x1001850b8 <_swift_willThrowTypedImpl+0x1001850b8>\n100169d98:     \tmov\tx0, x20\n100169d9c:     \tbl\t0x10018543c <_swift_willThrowTypedImpl+0x10018543c>\n100169da0:     \tcbz\tx0, 0x100169ee0 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_+0x1c0>\n100169da4:     \tmov\tx20, x0\n100169da8:     \tadd\tx24, x24, #0x10\n100169dac:     \tsub\tx1, x29, #0x70\n100169db0:     \tmov\tx0, x24\n100169db4:     \tmov\tx2, #0x0                ; =0\n100169db8:     \tmov\tx3, #0x0                ; =0\n100169dbc:     \tbl\t0x1001850b8 <_swift_willThrowTypedImpl+0x1001850b8>\n100169dc0:     \tmov\tx0, x24\n100169dc4:     \tbl\t0x10018543c <_swift_willThrowTypedImpl+0x10018543c>\n100169dc8:     \tcbz\tx0, 0x100169ed8 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_+0x1b8>\n100169dcc:     \tmov\tx24, x0\n100169dd0:     \tadrp\tx0, 0x10018e000 <_$s16PasteReplicaCore25OriginalShortcutCodingKeyOs23CustomStringConvertibleAAMc+0x14>\n100169dd4:     \tadd\tx0, x0, #0x828\n100169dd8:     \tbl\t0x1001851e4 <_swift_willThrowTypedImpl+0x1001851e4>\n100169ddc:     \tmov\tx25, x0\n100169de0:     \tadrp\tx0, 0x10018e000 <_$s16PasteReplicaCore25OriginalShortcutCodingKeyOs23CustomStringConvertibleAAMc+0x14>\n100169de4:     \tadd\tx0, x0, #0x850\n100169de8:     \tbl\t0x1001851e4 <_swift_willThrowTypedImpl+0x1001851e4>\n100169dec:     \tmov\tx26, x0\n100169df0:     \tmov\tx8, x23\n100169df4:     \tmov\tx0, x24\n100169df8:     \tmov\tx1, x25\n100169dfc:     \tmov\tx2, x26\n100169e00:     \tbl\t0x100183234 <_swift_willThrowTypedImpl+0x100183234>\n100169e04:     \tmov\tx0, x24\n100169e08:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169e0c:     \tmov\tx0, x25\n100169e10:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169e14:     \tmov\tx0, x26\n100169e18:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169e1c:     \tldrsw\tx8, [x22, #0x28]\n100169e20:     \tldrb\tw22, [x23, x8]\n100169e24:     \tmov\tx0, x23\n100169e28:     \tbl\t0x1000d0018 <_$s16PasteReplicaCore14AppPreferencesVWOh>\n100169e2c:     \ttbz\tw22, #0x0, 0x100169ed8 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_+0x1b8>\n100169e30:     \tldrb\tw8, [x20, #0x14]\n100169e34:     \ttbz\tw8, #0x0, 0x100169ed0 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_+0x1b0>\n100169e38:     \tmov\tw8, #0x6f50             ; =28496\n100169e3c:     \tmovk\tw8, #0x70, lsl #16\n100169e40:     \tmov\tx9, #-0x1d00000000000000 ; =-2089670227099910144\n100169e44:     \tstp\tx8, x9, [x29, #-0x80]\n100169e48:     \tadrp\tx1, 0x1001d1000 <_swift_willThrowTypedImpl+0x1001d1000>\n100169e4c:     \tldr\tx1, [x1, #0xed8]\n100169e50:     \tadrp\tx2, 0x1001d1000 <_swift_willThrowTypedImpl+0x1001d1000>\n100169e54:     \tldr\tx2, [x2, #0xf18]\n100169e58:     \tadrp\tx3, 0x1001d1000 <_swift_willThrowTypedImpl+0x1001d1000>\n100169e5c:     \tldr\tx3, [x3, #0xef8]\n100169e60:     \tsub\tx0, x29, #0x80\n100169e64:     \tbl\t0x100184314 <_swift_willThrowTypedImpl+0x100184314>\n100169e68:     \tmov\tx22, x1\n100169e6c:     \tbl\t0x100184170 <_swift_willThrowTypedImpl+0x100184170>\n100169e70:     \tmov\tx23, x0\n100169e74:     \tmov\tx0, x22\n100169e78:     \tbl\t0x1001850c4 <_swift_willThrowTypedImpl+0x1001850c4>\n100169e7c:     \tadrp\tx8, 0x1001e5000 <_swift_willThrowTypedImpl+0x1001e5000>\n100169e80:     \tldr\tx0, [x8, #0x648]\n100169e84:     \tbl\t0x100184fec <_swift_willThrowTypedImpl+0x100184fec>\n100169e88:     \tadrp\tx8, 0x1001e5000 <_swift_willThrowTypedImpl+0x1001e5000>\n100169e8c:     \tldr\tx1, [x8, #0x178]\n100169e90:     \tmov\tx2, x23\n100169e94:     \tbl\t0x100184fd4 <_swift_willThrowTypedImpl+0x100184fd4>\n100169e98:     \tmov\tx29, x29\n100169e9c:     \tbl\t0x10018501c <_swift_willThrowTypedImpl+0x10018501c>\n100169ea0:     \tmov\tx22, x0\n100169ea4:     \tmov\tx0, x23\n100169ea8:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n100169eac:     \tadrp\tx8, 0x1001e5000 <_swift_willThrowTypedImpl+0x1001e5000>\n100169eb0:     \tldr\tx1, [x8, #0x180]\n100169eb4:     \tmov\tx0, x22\n100169eb8:     \tbl\t0x100184fd4 <_swift_willThrowTypedImpl+0x100184fd4>\n100169ebc:     \tmov\tx0, x20\n100169ec0:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169ec4:     \tmov\tx0, x22\n100169ec8:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n100169ecc:     \tb\t0x100169ee0 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_+0x1c0>\n100169ed0:     \tldr\tw0, [x20, #0x10]\n100169ed4:     \tbl\t0x100184c80 <_swift_willThrowTypedImpl+0x100184c80>\n100169ed8:     \tmov\tx0, x20\n100169edc:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169ee0:     \tmov\tx21, x19\n100169ee4:     \tsub\tsp, x29, #0x40\n100169ee8:     \tldp\tx29, x30, [sp, #0x40]\n100169eec:     \tldp\tx20, x19, [sp, #0x30]\n100169ef0:     \tldp\tx23, x22, [sp, #0x20]\n100169ef4:     \tldp\tx25, x24, [sp, #0x10]\n100169ef8:     \tldr\tx26, [sp], #0x50\n100169efc:     \tret\n",
+        "runtime_stubs": {
+          "0x1001850b8": "_swift_beginAccess",
+          "0x10018543c": "_swift_weakLoadStrong",
+          "0x1001851e4": "_swift_getKeyPath",
+          "0x100183234": "_$s7Combine9PublishedV18_enclosingInstance7wrapped7storagexqd___s24ReferenceWritableKeyPathCyqd__xGAHyqd__ACyxGGtcRld__CluigZ",
+          "0x1001852c8": "_swift_release",
+          "0x100184314": "_$sSSySSxcs25LosslessStringConvertibleRzSTRzSJ7ElementSTRtzlufC",
+          "0x100184170": "_$sSS10FoundationE19_bridgeToObjectiveCSo8NSStringCyF",
+          "0x1001850c4": "_swift_bridgeObjectRelease",
+          "0x100184fec": "_objc_opt_self",
+          "0x100184fd4": "_objc_msgSend",
+          "0x10018501c": "_objc_retainAutoreleasedReturnValue",
+          "0x100184ff8": "_objc_release",
+          "0x100184c80": "_AudioServicesPlaySystemSound"
+        }
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_": {
+        "start": "0x100169f00",
+        "end_exclusive": "0x100169f6c",
+        "size": 108,
+        "sha256": "5153f1335352be2541c752870aa31b328566d0a852522d6baba428638dbd68eb",
+        "full_machine_code_hex": "ff8301d1f65703a9f44f04a9fd7b05a9fd430191f30302aaf40301aa000080d239690094e60300aaf44f01a9000000b000b01c91620100d042802791e1030091630580524400805245038052f40306aa150080d20044fc97fd7b45a9f44f44a9f65743a9ff830191c0035fd6",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n0000000100169f00 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_>:\n100169f00:     \tsub\tsp, sp, #0x60\n100169f04:     \tstp\tx22, x21, [sp, #0x30]\n100169f08:     \tstp\tx20, x19, [sp, #0x40]\n100169f0c:     \tstp\tx29, x30, [sp, #0x50]\n100169f10:     \tadd\tx29, sp, #0x50\n100169f14:     \tmov\tx19, x2\n100169f18:     \tmov\tx20, x1\n100169f1c:     \tmov\tx0, #0x0                ; =0\n100169f20:     \tbl\t0x100184404 <_swift_willThrowTypedImpl+0x100184404>\n100169f24:     \tmov\tx6, x0\n100169f28:     \tstp\tx20, x19, [sp, #0x10]\n100169f2c:     \tadrp\tx0, 0x10016a000 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_+0x94>\n100169f30:     \tadd\tx0, x0, #0x72c\n100169f34:     \tadrp\tx2, 0x100197000 <_swift_willThrowTypedImpl+0x100197000>\n100169f38:     \tadd\tx2, x2, #0x9e0\n100169f3c:     \tmov\tx1, sp\n100169f40:     \tmov\tw3, #0x2b               ; =43\n100169f44:     \tmov\tw4, #0x2                ; =2\n100169f48:     \tmov\tw5, #0x1a               ; =26\n100169f4c:     \tmov\tx20, x6\n100169f50:     \tmov\tx21, #0x0               ; =0\n100169f54:     \tbl\t0x10007af54 <_$sScM14assumeIsolated_4file4linexxyKScMYcXE_s12StaticStringVSutKs8SendableRzlFZyt_Tg5>\n100169f58:     \tldp\tx29, x30, [sp, #0x50]\n100169f5c:     \tldp\tx20, x19, [sp, #0x40]\n100169f60:     \tldp\tx22, x21, [sp, #0x30]\n100169f64:     \tadd\tsp, sp, #0x60\n100169f68:     \tret\n",
+        "runtime_stubs": {
+          "0x100184404": "_$sScMMa"
+        }
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_": {
+        "start": "0x100169f6c",
+        "end_exclusive": "0x10016a14c",
+        "size": 480,
+        "sha256": "797ebe418d9bb32b643d579c6f4e7707f6c7e99d1688f70cc8d17331f4d79a02",
+        "full_machine_code_hex": "fa0f1bf8f96301a9f75b02a9f44f03a9fd7b04a9fd030191ff0301d1f30315aaf80301aaf40300aa000080d2da31fe97f60300aa08805ff8082140f9e90308aa500300b0104646f900023fd6e9030091083d009108ed7c92370108cbff02009194420091a16301d1e00314aa020080d2030080d2366c0094e00314aa156d0094000a00b4f40300aa18430091a1c301d1e00318aa020080d2030080d22c6c0094e00318aa0b6d0094800800b4f80300aa2001009000a02091706c0094f90300aa20010090004021916c6c0094fa0300aae80317aae00318aae10319aae2031aaa7a640094e00318aa9d6c0094e00319aa9b6c0094e0031aaa996c0094c82a80b9f66a6838e00317aae997fd977605003688724039e804003608ea8d52080ea0720960fcd2a82738a9210300f0216c47f9220300f0428c47f9230300f0637c47f9a00302d199680094f60301aa2e680094f70300aae00316aa006c0094c80300f0002543f9c76b0094c80300f001bd40f9e20317aabd6b0094fd031daacd6b0094f60300aae00317aac16b0094c80300f001c140f9e00316aab46b0094e00314aa6f6c0094e00316aab96b009405000014801a40b9d86a0094e00314aa686c0094f50313aabf0301d1fd7b44a9f44f43a9f75b42a9f96341a9fa0745f8c0035fd6",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n0000000100169f6c <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_>:\n100169f6c:     \tstr\tx26, [sp, #-0x50]!\n100169f70:     \tstp\tx25, x24, [sp, #0x10]\n100169f74:     \tstp\tx23, x22, [sp, #0x20]\n100169f78:     \tstp\tx20, x19, [sp, #0x30]\n100169f7c:     \tstp\tx29, x30, [sp, #0x40]\n100169f80:     \tadd\tx29, sp, #0x40\n100169f84:     \tsub\tsp, sp, #0x40\n100169f88:     \tmov\tx19, x21\n100169f8c:     \tmov\tx24, x1\n100169f90:     \tmov\tx20, x0\n100169f94:     \tmov\tx0, #0x0                ; =0\n100169f98:     \tbl\t0x1000f6700 <_$s16PasteReplicaCore14AppPreferencesVMa>\n100169f9c:     \tmov\tx22, x0\n100169fa0:     \tldur\tx8, [x0, #-0x8]\n100169fa4:     \tldr\tx8, [x8, #0x40]\n100169fa8:     \tmov\tx9, x8\n100169fac:     \tadrp\tx16, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n100169fb0:     \tldr\tx16, [x16, #0xc88]\n100169fb4:     \tblr\tx16\n100169fb8:     \tmov\tx9, sp\n100169fbc:     \tadd\tx8, x8, #0xf\n100169fc0:     \tand\tx8, x8, #0xfffffffffffffff0\n100169fc4:     \tsub\tx23, x9, x8\n100169fc8:     \tmov\tsp, x23\n100169fcc:     \tadd\tx20, x20, #0x10\n100169fd0:     \tsub\tx1, x29, #0x58\n100169fd4:     \tmov\tx0, x20\n100169fd8:     \tmov\tx2, #0x0                ; =0\n100169fdc:     \tmov\tx3, #0x0                ; =0\n100169fe0:     \tbl\t0x1001850b8 <_swift_willThrowTypedImpl+0x1001850b8>\n100169fe4:     \tmov\tx0, x20\n100169fe8:     \tbl\t0x10018543c <_swift_willThrowTypedImpl+0x10018543c>\n100169fec:     \tcbz\tx0, 0x10016a12c <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_+0x1c0>\n100169ff0:     \tmov\tx20, x0\n100169ff4:     \tadd\tx24, x24, #0x10\n100169ff8:     \tsub\tx1, x29, #0x70\n100169ffc:     \tmov\tx0, x24\n10016a000:     \tmov\tx2, #0x0                ; =0\n10016a004:     \tmov\tx3, #0x0                ; =0\n10016a008:     \tbl\t0x1001850b8 <_swift_willThrowTypedImpl+0x1001850b8>\n10016a00c:     \tmov\tx0, x24\n10016a010:     \tbl\t0x10018543c <_swift_willThrowTypedImpl+0x10018543c>\n10016a014:     \tcbz\tx0, 0x10016a124 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_+0x1b8>\n10016a018:     \tmov\tx24, x0\n10016a01c:     \tadrp\tx0, 0x10018e000 <_$s16PasteReplicaCore25OriginalShortcutCodingKeyOs23CustomStringConvertibleAAMc+0x14>\n10016a020:     \tadd\tx0, x0, #0x828\n10016a024:     \tbl\t0x1001851e4 <_swift_willThrowTypedImpl+0x1001851e4>\n10016a028:     \tmov\tx25, x0\n10016a02c:     \tadrp\tx0, 0x10018e000 <_$s16PasteReplicaCore25OriginalShortcutCodingKeyOs23CustomStringConvertibleAAMc+0x14>\n10016a030:     \tadd\tx0, x0, #0x850\n10016a034:     \tbl\t0x1001851e4 <_swift_willThrowTypedImpl+0x1001851e4>\n10016a038:     \tmov\tx26, x0\n10016a03c:     \tmov\tx8, x23\n10016a040:     \tmov\tx0, x24\n10016a044:     \tmov\tx1, x25\n10016a048:     \tmov\tx2, x26\n10016a04c:     \tbl\t0x100183234 <_swift_willThrowTypedImpl+0x100183234>\n10016a050:     \tmov\tx0, x24\n10016a054:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n10016a058:     \tmov\tx0, x25\n10016a05c:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n10016a060:     \tmov\tx0, x26\n10016a064:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n10016a068:     \tldrsw\tx8, [x22, #0x28]\n10016a06c:     \tldrb\tw22, [x23, x8]\n10016a070:     \tmov\tx0, x23\n10016a074:     \tbl\t0x1000d0018 <_$s16PasteReplicaCore14AppPreferencesVWOh>\n10016a078:     \ttbz\tw22, #0x0, 0x10016a124 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_+0x1b8>\n10016a07c:     \tldrb\tw8, [x20, #0x1c]\n10016a080:     \ttbz\tw8, #0x0, 0x10016a11c <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_+0x1b0>\n10016a084:     \tmov\tw8, #0x6f50             ; =28496\n10016a088:     \tmovk\tw8, #0x70, lsl #16\n10016a08c:     \tmov\tx9, #-0x1d00000000000000 ; =-2089670227099910144\n10016a090:     \tstp\tx8, x9, [x29, #-0x80]\n10016a094:     \tadrp\tx1, 0x1001d1000 <_swift_willThrowTypedImpl+0x1001d1000>\n10016a098:     \tldr\tx1, [x1, #0xed8]\n10016a09c:     \tadrp\tx2, 0x1001d1000 <_swift_willThrowTypedImpl+0x1001d1000>\n10016a0a0:     \tldr\tx2, [x2, #0xf18]\n10016a0a4:     \tadrp\tx3, 0x1001d1000 <_swift_willThrowTypedImpl+0x1001d1000>\n10016a0a8:     \tldr\tx3, [x3, #0xef8]\n10016a0ac:     \tsub\tx0, x29, #0x80\n10016a0b0:     \tbl\t0x100184314 <_swift_willThrowTypedImpl+0x100184314>\n10016a0b4:     \tmov\tx22, x1\n10016a0b8:     \tbl\t0x100184170 <_swift_willThrowTypedImpl+0x100184170>\n10016a0bc:     \tmov\tx23, x0\n10016a0c0:     \tmov\tx0, x22\n10016a0c4:     \tbl\t0x1001850c4 <_swift_willThrowTypedImpl+0x1001850c4>\n10016a0c8:     \tadrp\tx8, 0x1001e5000 <_swift_willThrowTypedImpl+0x1001e5000>\n10016a0cc:     \tldr\tx0, [x8, #0x648]\n10016a0d0:     \tbl\t0x100184fec <_swift_willThrowTypedImpl+0x100184fec>\n10016a0d4:     \tadrp\tx8, 0x1001e5000 <_swift_willThrowTypedImpl+0x1001e5000>\n10016a0d8:     \tldr\tx1, [x8, #0x178]\n10016a0dc:     \tmov\tx2, x23\n10016a0e0:     \tbl\t0x100184fd4 <_swift_willThrowTypedImpl+0x100184fd4>\n10016a0e4:     \tmov\tx29, x29\n10016a0e8:     \tbl\t0x10018501c <_swift_willThrowTypedImpl+0x10018501c>\n10016a0ec:     \tmov\tx22, x0\n10016a0f0:     \tmov\tx0, x23\n10016a0f4:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n10016a0f8:     \tadrp\tx8, 0x1001e5000 <_swift_willThrowTypedImpl+0x1001e5000>\n10016a0fc:     \tldr\tx1, [x8, #0x180]\n10016a100:     \tmov\tx0, x22\n10016a104:     \tbl\t0x100184fd4 <_swift_willThrowTypedImpl+0x100184fd4>\n10016a108:     \tmov\tx0, x20\n10016a10c:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n10016a110:     \tmov\tx0, x22\n10016a114:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n10016a118:     \tb\t0x10016a12c <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_+0x1c0>\n10016a11c:     \tldr\tw0, [x20, #0x18]\n10016a120:     \tbl\t0x100184c80 <_swift_willThrowTypedImpl+0x100184c80>\n10016a124:     \tmov\tx0, x20\n10016a128:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n10016a12c:     \tmov\tx21, x19\n10016a130:     \tsub\tsp, x29, #0x40\n10016a134:     \tldp\tx29, x30, [sp, #0x40]\n10016a138:     \tldp\tx20, x19, [sp, #0x30]\n10016a13c:     \tldp\tx23, x22, [sp, #0x20]\n10016a140:     \tldp\tx25, x24, [sp, #0x10]\n10016a144:     \tldr\tx26, [sp], #0x50\n10016a148:     \tret\n",
+        "runtime_stubs": {
+          "0x1001850b8": "_swift_beginAccess",
+          "0x10018543c": "_swift_weakLoadStrong",
+          "0x1001851e4": "_swift_getKeyPath",
+          "0x100183234": "_$s7Combine9PublishedV18_enclosingInstance7wrapped7storagexqd___s24ReferenceWritableKeyPathCyqd__xGAHyqd__ACyxGGtcRld__CluigZ",
+          "0x1001852c8": "_swift_release",
+          "0x100184314": "_$sSSySSxcs25LosslessStringConvertibleRzSTRzSJ7ElementSTRtzlufC",
+          "0x100184170": "_$sSS10FoundationE19_bridgeToObjectiveCSo8NSStringCyF",
+          "0x1001850c4": "_swift_bridgeObjectRelease",
+          "0x100184fec": "_objc_opt_self",
+          "0x100184fd4": "_objc_msgSend",
+          "0x10018501c": "_objc_retainAutoreleasedReturnValue",
+          "0x100184ff8": "_objc_release",
+          "0x100184c80": "_AudioServicesPlaySystemSound"
+        }
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n": {
+        "start": "0x10016a20c",
+        "end_exclusive": "0x10016a5f0",
+        "size": 996,
+        "sha256": "c55b3d98056e2757092696dffdcacb1c432f2ba70f962b8b4d74741e80b9c689",
+        "full_machine_code_hex": "fc6fbaa9fa6701a9f85f02a9f65703a9f44f04a9fd7b05a9fd430191ffc300d1f50301aaf90300aa48030090085146f9080140f9a8831af8000400d000802a915499fa9708805ff8082140f9e90308aa50030090104646f900023fd6e90300910a3d00914ced7c9229010ccba98319f83f010091e90308aa50030090104646f900023fd6e903009136010ccbdf020091e90308aa50030090104646f900023fd6e803009114010ccb9f020091000080d2ac620094f30300aa17805ff8e82240f9e90308aa50030090104646f900023fd6e90300910a3d00914ced7c923a010ccb5f030091e90308aa50030090104646f900023fd6e803009108010ccba88318f81f010091c80300f000b541f9356b0094c80300b0013947f92c6b0094fd031daa3c6b0094fc0300aae00319aab50319f8e10315aa8c670094f50300aa202c8d52c0ccac720180fcd287670094f80300aac80300f001c540f9e0031caae20315aae30318aa196b0094fd031daa296b0094fb0300aae0031caa1d6b0094e00315aa1b6b0094e00318aa196b00945b0400b4e8031aaae0031baa63620094e0031baa136b0094f81240f9e00316aae1031aaae20313aa00033fd6fb1e40f9e00316aa0100805222008052e30313aa60033fd6f51a40f9e00316aa21008052e20313aaa0023fd61f04007120020054e00314aae10316aae20313aa00033fd6e00314aa0100805222008052e30313aa60033fd638000014fb1e40f9e00316aa2100805222008052e30313aa60033fd62804009008cd40f91f0500b1810c0054880400f0158d43f9e00319aaa10359f846670094f90300aa202c8d52c0ccac720180fcd241670094fa0300aac80300f001c540f9e00315aae20319aae3031aaad36a0094fd031daae36a0094f80300aae00319aad76a0094e0031aaad56a0094380100b4b58359f8e80315aae00318aa1e620094e00318aace6a0094010080520300001421008052b58359f8e00315aa22008052e30313aa60033fd6e00315aae10314aad341fc97e00316aaa293fd97f51a40f9e00314aa21008052e20313aaa0023fd61f04007181000054e00314aa9993fd971b000014e81240f9b68358f8e00316aae10314aae20313aa00013fd6bf431ab8f40316aae7610094f40300aaa17301d1c7690094f50300aae00314aaa86a009400630094f40300aae80640f9e00316aae10313aa00013fd6bf02146b8100005409008052a8435ab803000014080080d229008052a9031a38291d0012aa835af84b0300906b5146f96b0140f97f010aeb01020054008109aabf4301d1fd7b45a9f44f44a9f65743a9f85f42a9fa6741a9fc6fc6a8c0035fd62004009000600691c100009021901891336b009498ffff17356a0094",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n000000010016a20c <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n>:\n10016a20c:     \tstp\tx28, x27, [sp, #-0x60]!\n10016a210:     \tstp\tx26, x25, [sp, #0x10]\n10016a214:     \tstp\tx24, x23, [sp, #0x20]\n10016a218:     \tstp\tx22, x21, [sp, #0x30]\n10016a21c:     \tstp\tx20, x19, [sp, #0x40]\n10016a220:     \tstp\tx29, x30, [sp, #0x50]\n10016a224:     \tadd\tx29, sp, #0x50\n10016a228:     \tsub\tsp, sp, #0x30\n10016a22c:     \tmov\tx21, x1\n10016a230:     \tmov\tx25, x0\n10016a234:     \tadrp\tx8, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n10016a238:     \tldr\tx8, [x8, #0xca0]\n10016a23c:     \tldr\tx8, [x8]\n10016a240:     \tstur\tx8, [x29, #-0x58]\n10016a244:     \tadrp\tx0, 0x1001ec000 <_$sSS_SStMD>\n10016a248:     \tadd\tx0, x0, #0xaa0\n10016a24c:     \tbl\t0x10001079c <___swift_instantiateConcreteTypeFromMangledName>\n10016a250:     \tldur\tx8, [x0, #-0x8]\n10016a254:     \tldr\tx8, [x8, #0x40]\n10016a258:     \tmov\tx9, x8\n10016a25c:     \tadrp\tx16, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n10016a260:     \tldr\tx16, [x16, #0xc88]\n10016a264:     \tblr\tx16\n10016a268:     \tmov\tx9, sp\n10016a26c:     \tadd\tx10, x8, #0xf\n10016a270:     \tand\tx12, x10, #0xfffffffffffffff0\n10016a274:     \tsub\tx9, x9, x12\n10016a278:     \tstur\tx9, [x29, #-0x68]\n10016a27c:     \tmov\tsp, x9\n10016a280:     \tmov\tx9, x8\n10016a284:     \tadrp\tx16, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n10016a288:     \tldr\tx16, [x16, #0xc88]\n10016a28c:     \tblr\tx16\n10016a290:     \tmov\tx9, sp\n10016a294:     \tsub\tx22, x9, x12\n10016a298:     \tmov\tsp, x22\n10016a29c:     \tmov\tx9, x8\n10016a2a0:     \tadrp\tx16, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n10016a2a4:     \tldr\tx16, [x16, #0xc88]\n10016a2a8:     \tblr\tx16\n10016a2ac:     \tmov\tx8, sp\n10016a2b0:     \tsub\tx20, x8, x12\n10016a2b4:     \tmov\tsp, x20\n10016a2b8:     \tmov\tx0, #0x0                ; =0\n10016a2bc:     \tbl\t0x100182d6c <_swift_willThrowTypedImpl+0x100182d6c>\n10016a2c0:     \tmov\tx19, x0\n10016a2c4:     \tldur\tx23, [x0, #-0x8]\n10016a2c8:     \tldr\tx8, [x23, #0x40]\n10016a2cc:     \tmov\tx9, x8\n10016a2d0:     \tadrp\tx16, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n10016a2d4:     \tldr\tx16, [x16, #0xc88]\n10016a2d8:     \tblr\tx16\n10016a2dc:     \tmov\tx9, sp\n10016a2e0:     \tadd\tx10, x8, #0xf\n10016a2e4:     \tand\tx12, x10, #0xfffffffffffffff0\n10016a2e8:     \tsub\tx26, x9, x12\n10016a2ec:     \tmov\tsp, x26\n10016a2f0:     \tmov\tx9, x8\n10016a2f4:     \tadrp\tx16, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n10016a2f8:     \tldr\tx16, [x16, #0xc88]\n10016a2fc:     \tblr\tx16\n10016a300:     \tmov\tx8, sp\n10016a304:     \tsub\tx8, x8, x12\n10016a308:     \tstur\tx8, [x29, #-0x78]\n10016a30c:     \tmov\tsp, x8\n10016a310:     \tadrp\tx8, 0x1001e5000 <_swift_willThrowTypedImpl+0x1001e5000>\n10016a314:     \tldr\tx0, [x8, #0x368]\n10016a318:     \tbl\t0x100184fec <_swift_willThrowTypedImpl+0x100184fec>\n10016a31c:     \tadrp\tx8, 0x1001e3000 <__IVARS__TtC16PasteReplicaCore25OriginalShortcutTelemetry+0x8>\n10016a320:     \tldr\tx1, [x8, #0xe70]\n10016a324:     \tbl\t0x100184fd4 <_swift_willThrowTypedImpl+0x100184fd4>\n10016a328:     \tmov\tx29, x29\n10016a32c:     \tbl\t0x10018501c <_swift_willThrowTypedImpl+0x10018501c>\n10016a330:     \tmov\tx28, x0\n10016a334:     \tmov\tx0, x25\n10016a338:     \tstur\tx21, [x29, #-0x70]\n10016a33c:     \tmov\tx1, x21\n10016a340:     \tbl\t0x100184170 <_swift_willThrowTypedImpl+0x100184170>\n10016a344:     \tmov\tx21, x0\n10016a348:     \tmov\tw0, #0x6961             ; =26977\n10016a34c:     \tmovk\tw0, #0x6666, lsl #16\n10016a350:     \tmov\tx1, #-0x1c00000000000000 ; =-2017612633061982208\n10016a354:     \tbl\t0x100184170 <_swift_willThrowTypedImpl+0x100184170>\n10016a358:     \tmov\tx24, x0\n10016a35c:     \tadrp\tx8, 0x1001e5000 <_swift_willThrowTypedImpl+0x1001e5000>\n10016a360:     \tldr\tx1, [x8, #0x188]\n10016a364:     \tmov\tx0, x28\n10016a368:     \tmov\tx2, x21\n10016a36c:     \tmov\tx3, x24\n10016a370:     \tbl\t0x100184fd4 <_swift_willThrowTypedImpl+0x100184fd4>\n10016a374:     \tmov\tx29, x29\n10016a378:     \tbl\t0x10018501c <_swift_willThrowTypedImpl+0x10018501c>\n10016a37c:     \tmov\tx27, x0\n10016a380:     \tmov\tx0, x28\n10016a384:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n10016a388:     \tmov\tx0, x21\n10016a38c:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n10016a390:     \tmov\tx0, x24\n10016a394:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n10016a398:     \tcbz\tx27, 0x10016a420 <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x214>\n10016a39c:     \tmov\tx8, x26\n10016a3a0:     \tmov\tx0, x27\n10016a3a4:     \tbl\t0x100182d30 <_swift_willThrowTypedImpl+0x100182d30>\n10016a3a8:     \tmov\tx0, x27\n10016a3ac:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n10016a3b0:     \tldr\tx24, [x23, #0x20]\n10016a3b4:     \tmov\tx0, x22\n10016a3b8:     \tmov\tx1, x26\n10016a3bc:     \tmov\tx2, x19\n10016a3c0:     \tblr\tx24\n10016a3c4:     \tldr\tx27, [x23, #0x38]\n10016a3c8:     \tmov\tx0, x22\n10016a3cc:     \tmov\tw1, #0x0                ; =0\n10016a3d0:     \tmov\tw2, #0x1                ; =1\n10016a3d4:     \tmov\tx3, x19\n10016a3d8:     \tblr\tx27\n10016a3dc:     \tldr\tx21, [x23, #0x30]\n10016a3e0:     \tmov\tx0, x22\n10016a3e4:     \tmov\tw1, #0x1                ; =1\n10016a3e8:     \tmov\tx2, x19\n10016a3ec:     \tblr\tx21\n10016a3f0:     \tcmp\tw0, #0x1\n10016a3f4:     \tb.eq\t0x10016a438 <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x22c>\n10016a3f8:     \tmov\tx0, x20\n10016a3fc:     \tmov\tx1, x22\n10016a400:     \tmov\tx2, x19\n10016a404:     \tblr\tx24\n10016a408:     \tmov\tx0, x20\n10016a40c:     \tmov\tw1, #0x0                ; =0\n10016a410:     \tmov\tw2, #0x1                ; =1\n10016a414:     \tmov\tx3, x19\n10016a418:     \tblr\tx27\n10016a41c:     \tb\t0x10016a4fc <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x2f0>\n10016a420:     \tldr\tx27, [x23, #0x38]\n10016a424:     \tmov\tx0, x22\n10016a428:     \tmov\tw1, #0x1                ; =1\n10016a42c:     \tmov\tw2, #0x1                ; =1\n10016a430:     \tmov\tx3, x19\n10016a434:     \tblr\tx27\n10016a438:     \tadrp\tx8, 0x1001ee000 <_$s16PasteReplicaCore31OriginalShortcutCarbonIDCounter33_FF12C32D7752329F090BA739325DC8F9LLC6shared_Wz>\n10016a43c:     \tldr\tx8, [x8, #0x198]\n10016a440:     \tcmn\tx8, #0x1\n10016a444:     \tb.ne\t0x10016a5d4 <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x3c8>\n10016a448:     \tadrp\tx8, 0x1001fd000 <_$s16PasteReplicaCore39OriginalShortcutRecorderValidationErrorO10Foundation09LocalizedH0AAMcMK+0x40>\n10016a44c:     \tldr\tx21, [x8, #0x718]\n10016a450:     \tmov\tx0, x25\n10016a454:     \tldur\tx1, [x29, #-0x70]\n10016a458:     \tbl\t0x100184170 <_swift_willThrowTypedImpl+0x100184170>\n10016a45c:     \tmov\tx25, x0\n10016a460:     \tmov\tw0, #0x6961             ; =26977\n10016a464:     \tmovk\tw0, #0x6666, lsl #16\n10016a468:     \tmov\tx1, #-0x1c00000000000000 ; =-2017612633061982208\n10016a46c:     \tbl\t0x100184170 <_swift_willThrowTypedImpl+0x100184170>\n10016a470:     \tmov\tx26, x0\n10016a474:     \tadrp\tx8, 0x1001e5000 <_swift_willThrowTypedImpl+0x1001e5000>\n10016a478:     \tldr\tx1, [x8, #0x188]\n10016a47c:     \tmov\tx0, x21\n10016a480:     \tmov\tx2, x25\n10016a484:     \tmov\tx3, x26\n10016a488:     \tbl\t0x100184fd4 <_swift_willThrowTypedImpl+0x100184fd4>\n10016a48c:     \tmov\tx29, x29\n10016a490:     \tbl\t0x10018501c <_swift_willThrowTypedImpl+0x10018501c>\n10016a494:     \tmov\tx24, x0\n10016a498:     \tmov\tx0, x25\n10016a49c:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n10016a4a0:     \tmov\tx0, x26\n10016a4a4:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n10016a4a8:     \tcbz\tx24, 0x10016a4cc <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x2c0>\n10016a4ac:     \tldur\tx21, [x29, #-0x68]\n10016a4b0:     \tmov\tx8, x21\n10016a4b4:     \tmov\tx0, x24\n10016a4b8:     \tbl\t0x100182d30 <_swift_willThrowTypedImpl+0x100182d30>\n10016a4bc:     \tmov\tx0, x24\n10016a4c0:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n10016a4c4:     \tmov\tw1, #0x0                ; =0\n10016a4c8:     \tb\t0x10016a4d4 <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x2c8>\n10016a4cc:     \tmov\tw1, #0x1                ; =1\n10016a4d0:     \tldur\tx21, [x29, #-0x68]\n10016a4d4:     \tmov\tx0, x21\n10016a4d8:     \tmov\tw2, #0x1                ; =1\n10016a4dc:     \tmov\tx3, x19\n10016a4e0:     \tblr\tx27\n10016a4e4:     \tmov\tx0, x21\n10016a4e8:     \tmov\tx1, x20\n10016a4ec:     \tbl\t0x10007ac38 <_$s10Foundation3URLVSgWOb>\n10016a4f0:     \tmov\tx0, x22\n10016a4f4:     \tbl\t0x1000cf37c <_$s10Foundation3URLVSgWOh>\n10016a4f8:     \tldr\tx21, [x23, #0x30]\n10016a4fc:     \tmov\tx0, x20\n10016a500:     \tmov\tw1, #0x1                ; =1\n10016a504:     \tmov\tx2, x19\n10016a508:     \tblr\tx21\n10016a50c:     \tcmp\tw0, #0x1\n10016a510:     \tb.ne\t0x10016a520 <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x314>\n10016a514:     \tmov\tx0, x20\n10016a518:     \tbl\t0x1000cf37c <_$s10Foundation3URLVSgWOh>\n10016a51c:     \tb\t0x10016a588 <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x37c>\n10016a520:     \tldr\tx8, [x23, #0x20]\n10016a524:     \tldur\tx22, [x29, #-0x78]\n10016a528:     \tmov\tx0, x22\n10016a52c:     \tmov\tx1, x20\n10016a530:     \tmov\tx2, x19\n10016a534:     \tblr\tx8\n10016a538:     \tstur\twzr, [x29, #-0x5c]\n10016a53c:     \tmov\tx20, x22\n10016a540:     \tbl\t0x100182cdc <_swift_willThrowTypedImpl+0x100182cdc>\n10016a544:     \tmov\tx20, x0\n10016a548:     \tsub\tx1, x29, #0x5c\n10016a54c:     \tbl\t0x100184c68 <_swift_willThrowTypedImpl+0x100184c68>\n10016a550:     \tmov\tx21, x0\n10016a554:     \tmov\tx0, x20\n10016a558:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n10016a55c:     \tbl\t0x10018315c <_swift_willThrowTypedImpl+0x10018315c>\n10016a560:     \tmov\tx20, x0\n10016a564:     \tldr\tx8, [x23, #0x8]\n10016a568:     \tmov\tx0, x22\n10016a56c:     \tmov\tx1, x19\n10016a570:     \tblr\tx8\n10016a574:     \tcmp\tw21, w20\n10016a578:     \tb.ne\t0x10016a588 <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x37c>\n10016a57c:     \tmov\tw9, #0x0                ; =0\n10016a580:     \tldur\tw8, [x29, #-0x5c]\n10016a584:     \tb\t0x10016a590 <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x384>\n10016a588:     \tmov\tx8, #0x0                ; =0\n10016a58c:     \tmov\tw9, #0x1                ; =1\n10016a590:     \tsturb\tw9, [x29, #-0x60]\n10016a594:     \tand\tw9, w9, #0xff\n10016a598:     \tldur\tx10, [x29, #-0x58]\n10016a59c:     \tadrp\tx11, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n10016a5a0:     \tldr\tx11, [x11, #0xca0]\n10016a5a4:     \tldr\tx11, [x11]\n10016a5a8:     \tcmp\tx11, x10\n10016a5ac:     \tb.ne\t0x10016a5ec <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x3e0>\n10016a5b0:     \torr\tx0, x8, x9, lsl #32\n10016a5b4:     \tsub\tsp, x29, #0x50\n10016a5b8:     \tldp\tx29, x30, [sp, #0x50]\n10016a5bc:     \tldp\tx20, x19, [sp, #0x40]\n10016a5c0:     \tldp\tx22, x21, [sp, #0x30]\n10016a5c4:     \tldp\tx24, x23, [sp, #0x20]\n10016a5c8:     \tldp\tx26, x25, [sp, #0x10]\n10016a5cc:     \tldp\tx28, x27, [sp], #0x60\n10016a5d0:     \tret\n10016a5d4:     \tadrp\tx0, 0x1001ee000 <_$s16PasteReplicaCore31OriginalShortcutCarbonIDCounter33_FF12C32D7752329F090BA739325DC8F9LLC6shared_Wz>\n10016a5d8:     \tadd\tx0, x0, #0x198\n10016a5dc:     \tadrp\tx1, 0x100182000 <_$ss12_ArrayBufferV13_copyContents8subRange12initializingSpyxGSnySiG_AFtF16PasteReplicaCore26OriginalSearchInputHistoryC8SnapshotV_Tg5Tf4nng_n+0x70>\n10016a5e0:     \tadd\tx1, x1, #0x624\n10016a5e4:     \tbl\t0x1001852b0 <_swift_willThrowTypedImpl+0x1001852b0>\n10016a5e8:     \tb\t0x10016a448 <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n+0x23c>\n10016a5ec:     \tbl\t0x100184ec0 <_swift_willThrowTypedImpl+0x100184ec0>\n",
+        "runtime_stubs": {
+          "0x100182d6c": "_$s10Foundation3URLVMa",
+          "0x100184fec": "_objc_opt_self",
+          "0x100184fd4": "_objc_msgSend",
+          "0x10018501c": "_objc_retainAutoreleasedReturnValue",
+          "0x100184170": "_$sSS10FoundationE19_bridgeToObjectiveCSo8NSStringCyF",
+          "0x100184ff8": "_objc_release",
+          "0x100182d30": "_$s10Foundation3URLV36_unconditionallyBridgeFromObjectiveCyACSo5NSURLCSgFZ",
+          "0x100182cdc": "_$s10Foundation3URLV19_bridgeToObjectiveCSo5NSURLCyF",
+          "0x100184c68": "_AudioServicesCreateSystemSoundID",
+          "0x10018315c": "_$s6Darwin5noErrs5Int32Vvg",
+          "0x1001852b0": "_swift_once",
+          "0x100184ec0": "___stack_chk_fail"
+        }
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_TA": {
+        "start": "0x10016a618",
+        "end_exclusive": "0x10016a620",
+        "size": 8,
+        "sha256": "acb586b374c3de66ab088bdb88f943e0a09779764c42f384adb744e6e18f6b21",
+        "full_machine_code_hex": "810a41a939feff17",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_TA",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n000000010016a618 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_TA>:\n10016a618:     \tldp\tx1, x2, [x20, #0x10]\n10016a61c:     \tb\t0x100169f00 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_>\n",
+        "runtime_stubs": {}
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_TA": {
+        "start": "0x10016a69c",
+        "end_exclusive": "0x10016a6a4",
+        "size": 8,
+        "sha256": "68e412bdaf65916dd10cfb6afedd95d8d53d1a7a8e65ba4185b40707e32e78f8",
+        "full_machine_code_hex": "810a41a985fdff17",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_TA",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n000000010016a69c <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_TA>:\n10016a69c:     \tldp\tx1, x2, [x20, #0x10]\n10016a6a0:     \tb\t0x100169cb4 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_>\n",
+        "runtime_stubs": {}
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_TA": {
+        "start": "0x10016a70c",
+        "end_exclusive": "0x10016a724",
+        "size": 24,
+        "sha256": "5ee2835a1b10eff19eba593ae6fdba26132f2ccc4c0535288029c90cc8416961",
+        "full_machine_code_hex": "fd7bbfa9fd030091800641a982fdff97fd7bc1a8c0035fd6",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_TA",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n000000010016a70c <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_TA>:\n10016a70c:     \tstp\tx29, x30, [sp, #-0x10]!\n10016a710:     \tmov\tx29, sp\n10016a714:     \tldp\tx0, x1, [x20, #0x10]\n10016a718:     \tbl\t0x100169d20 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcy10Foundation12NotificationVcfU_yyScMYcXEfU_>\n10016a71c:     \tldp\tx29, x30, [sp], #0x10\n10016a720:     \tret\n",
+        "runtime_stubs": {}
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_TA": {
+        "start": "0x10016a72c",
+        "end_exclusive": "0x10016a744",
+        "size": 24,
+        "sha256": "baafc72cb31c748cc929ab1b41a2b90a240c9341b84dc39612f609a217b29dc7",
+        "full_machine_code_hex": "fd7bbfa9fd030091800641a90dfeff97fd7bc1a8c0035fd6",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_TA",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n000000010016a72c <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_TA>:\n10016a72c:     \tstp\tx29, x30, [sp, #-0x10]!\n10016a730:     \tmov\tx29, sp\n10016a734:     \tldp\tx0, x1, [x20, #0x10]\n10016a738:     \tbl\t0x100169f6c <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_>\n10016a73c:     \tldp\tx29, x30, [sp], #0x10\n10016a740:     \tret\n",
+        "runtime_stubs": {}
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfc": {
+        "start": "0x100169964",
+        "end_exclusive": "0x100169cb4",
+        "size": 848,
+        "sha256": "61e35be5e8cb3cfd5d8a73b837121e10ff1273d9ac7b74aa4640237fb250d48f",
+        "full_machine_code_hex": "fc6fbaa9fa6701a9f85f02a9f65703a9f44f04a9fd7b05a9fd430191ff8300d1f30314aaf50301aaf60300aa000080d2086b0094f80300aa14805ff8882240f9e90308aa500300b0104646f900023fd6e9030091083d009108ed7c92390108cb3f030091480300b0086d46f9f70313aae80e02f860e88d52002eaf720180fcd20a020094e0021fb8088060d3e8421f38002a8cd2608eaef2a00cc0f201a0fcd202020094e0821fb8088060d3e8c21f38350b00b4b40319f8e8030090004142f9726d0094fa0300aae00315aa756d0094f40300aac80300f0019143f9e0031aaa646d0094fd031daa746d0094fb0300aa280400b008c940f91f0500b1e1110054a804009008411c911c0140f9e00314aa646d0094fa0300aae80319aae0031caae10315aaf4031baacd6a0094e0031baa596d0094e0031aaa576d0094800300d000a0119101038052e2008052706d0094f40300aa00400091e10313aa5c6e0094800300d00040129101038052e2008052676d0094fb0300aa00400091e10316aa536e0094800300d00080139101048052e20080525e6d0094fc0300aa146c01a9e8020094e30300aa000000b000701a91e1031caae20318aaf40319aae3650094f40300aae0031caae76d0094a80359f8080540f9e00319aae10318aa00013fd6a1a301d1e00317aa22048052030080d2596d0094e00317aa83650094a0a301d1856d0094e0031aaa236d0094e00314aad56d0094a804009008011a91080140f9d46a68f8b48319f8800300d000a0119101038052e2008052356d0094f80300aa00400091e10313aa216e0094800300d00040129101038052e20080522c6d0094f90300aa00400091e10316aa186e0094800300d000e0129101048052e2008052236d0094fa0300aa186401a9e00314aabb6d00942004009000a02691e79afa97f80300aa86020094e30300aa000000b000601891b4a301d1e1031aaae20318aaa2650094f40300aae0031aaaa66d0094a08359f8a46d0094a1a301d1e00317aa22048052030080d21b6d0094e00317aa45650094a0a301d1476d0094e00314aa996d0094e00316aa976d0094e00315aae16c0094e00313aabf4301d1fd7b45a9f44f44a9f65743a9f85f42a9fa6741a9fc6fc6a8c0035fd6200400b000400691610000d021d02e91816d00946dffff17",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfc",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n0000000100169964 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfc>:\n100169964:     \tstp\tx28, x27, [sp, #-0x60]!\n100169968:     \tstp\tx26, x25, [sp, #0x10]\n10016996c:     \tstp\tx24, x23, [sp, #0x20]\n100169970:     \tstp\tx22, x21, [sp, #0x30]\n100169974:     \tstp\tx20, x19, [sp, #0x40]\n100169978:     \tstp\tx29, x30, [sp, #0x50]\n10016997c:     \tadd\tx29, sp, #0x50\n100169980:     \tsub\tsp, sp, #0x20\n100169984:     \tmov\tx19, x20\n100169988:     \tmov\tx21, x1\n10016998c:     \tmov\tx22, x0\n100169990:     \tmov\tx0, #0x0                ; =0\n100169994:     \tbl\t0x1001845b4 <_swift_willThrowTypedImpl+0x1001845b4>\n100169998:     \tmov\tx24, x0\n10016999c:     \tldur\tx20, [x0, #-0x8]\n1001699a0:     \tldr\tx8, [x20, #0x40]\n1001699a4:     \tmov\tx9, x8\n1001699a8:     \tadrp\tx16, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n1001699ac:     \tldr\tx16, [x16, #0xc88]\n1001699b0:     \tblr\tx16\n1001699b4:     \tmov\tx9, sp\n1001699b8:     \tadd\tx8, x8, #0xf\n1001699bc:     \tand\tx8, x8, #0xfffffffffffffff0\n1001699c0:     \tsub\tx25, x9, x8\n1001699c4:     \tmov\tsp, x25\n1001699c8:     \tadrp\tx8, 0x1001d2000 <_swift_willThrowTypedImpl+0x1001d2000>\n1001699cc:     \tldr\tx8, [x8, #0xcd8]\n1001699d0:     \tmov\tx23, x19\n1001699d4:     \tstr\tx8, [x23, #0x20]!\n1001699d8:     \tmov\tw0, #0x6f43             ; =28483\n1001699dc:     \tmovk\tw0, #0x7970, lsl #16\n1001699e0:     \tmov\tx1, #-0x1c00000000000000 ; =-2017612633061982208\n1001699e4:     \tbl\t0x10016a20c <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n>\n1001699e8:     \tstur\tw0, [x23, #-0x10]\n1001699ec:     \tubfx\tx8, x0, #32, #1\n1001699f0:     \tsturb\tw8, [x23, #-0xc]\n1001699f4:     \tmov\tx0, #0x6150             ; =24912\n1001699f8:     \tmovk\tx0, #0x7473, lsl #16\n1001699fc:     \tmovk\tx0, #0x65, lsl #32\n100169a00:     \tmov\tx1, #-0x1b00000000000000 ; =-1945555039024054272\n100169a04:     \tbl\t0x10016a20c <_$s16PasteReplicaCore20OriginalSoundEffectsC04loadE033_BBA7EC61BA3B7DEAA0E2209ADD730733LL5nameds6UInt32VSgSS_tFZTf4nd_n>\n100169a08:     \tstur\tw0, [x23, #-0x8]\n100169a0c:     \tubfx\tx8, x0, #32, #1\n100169a10:     \tsturb\tw8, [x23, #-0x4]\n100169a14:     \tcbz\tx21, 0x100169b78 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfc+0x214>\n100169a18:     \tstur\tx20, [x29, #-0x70]\n100169a1c:     \tadrp\tx8, 0x1001e5000 <_swift_willThrowTypedImpl+0x1001e5000>\n100169a20:     \tldr\tx0, [x8, #0x480]\n100169a24:     \tbl\t0x100184fec <_swift_willThrowTypedImpl+0x100184fec>\n100169a28:     \tmov\tx26, x0\n100169a2c:     \tmov\tx0, x21\n100169a30:     \tbl\t0x100185004 <_swift_willThrowTypedImpl+0x100185004>\n100169a34:     \tmov\tx20, x0\n100169a38:     \tadrp\tx8, 0x1001e4000 <_swift_willThrowTypedImpl+0x1001e4000>\n100169a3c:     \tldr\tx1, [x8, #0x720]\n100169a40:     \tmov\tx0, x26\n100169a44:     \tbl\t0x100184fd4 <_swift_willThrowTypedImpl+0x100184fd4>\n100169a48:     \tmov\tx29, x29\n100169a4c:     \tbl\t0x10018501c <_swift_willThrowTypedImpl+0x10018501c>\n100169a50:     \tmov\tx27, x0\n100169a54:     \tadrp\tx8, 0x1001ee000 <_$s16PasteReplicaCore31OriginalShortcutCarbonIDCounter33_FF12C32D7752329F090BA739325DC8F9LLC6shared_Wz>\n100169a58:     \tldr\tx8, [x8, #0x190]\n100169a5c:     \tcmn\tx8, #0x1\n100169a60:     \tb.ne\t0x100169c9c <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfc+0x338>\n100169a64:     \tadrp\tx8, 0x1001fd000 <_$s16PasteReplicaCore39OriginalShortcutRecorderValidationErrorO10Foundation09LocalizedH0AAMcMK+0x40>\n100169a68:     \tadd\tx8, x8, #0x710\n100169a6c:     \tldr\tx28, [x8]\n100169a70:     \tmov\tx0, x20\n100169a74:     \tbl\t0x100185004 <_swift_willThrowTypedImpl+0x100185004>\n100169a78:     \tmov\tx26, x0\n100169a7c:     \tmov\tx8, x25\n100169a80:     \tmov\tx0, x28\n100169a84:     \tmov\tx1, x21\n100169a88:     \tmov\tx20, x27\n100169a8c:     \tbl\t0x1001845c0 <_swift_willThrowTypedImpl+0x1001845c0>\n100169a90:     \tmov\tx0, x27\n100169a94:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n100169a98:     \tmov\tx0, x26\n100169a9c:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n100169aa0:     \tadrp\tx0, 0x1001db000 <_$s16PasteReplicaCore24OriginalShortcutRecorderC6$state7Combine9PublishedV9PublisherVyAA0deF5StateO_GvpMV+0x8>\n100169aa4:     \tadd\tx0, x0, #0x468\n100169aa8:     \tmov\tw1, #0x18               ; =24\n100169aac:     \tmov\tw2, #0x7                ; =7\n100169ab0:     \tbl\t0x100185070 <_swift_willThrowTypedImpl+0x100185070>\n100169ab4:     \tmov\tx20, x0\n100169ab8:     \tadd\tx0, x0, #0x10\n100169abc:     \tmov\tx1, x19\n100169ac0:     \tbl\t0x100185430 <_swift_willThrowTypedImpl+0x100185430>\n100169ac4:     \tadrp\tx0, 0x1001db000 <_$s16PasteReplicaCore24OriginalShortcutRecorderC6$state7Combine9PublishedV9PublisherVyAA0deF5StateO_GvpMV+0x8>\n100169ac8:     \tadd\tx0, x0, #0x490\n100169acc:     \tmov\tw1, #0x18               ; =24\n100169ad0:     \tmov\tw2, #0x7                ; =7\n100169ad4:     \tbl\t0x100185070 <_swift_willThrowTypedImpl+0x100185070>\n100169ad8:     \tmov\tx27, x0\n100169adc:     \tadd\tx0, x0, #0x10\n100169ae0:     \tmov\tx1, x22\n100169ae4:     \tbl\t0x100185430 <_swift_willThrowTypedImpl+0x100185430>\n100169ae8:     \tadrp\tx0, 0x1001db000 <_$s16PasteReplicaCore24OriginalShortcutRecorderC6$state7Combine9PublishedV9PublisherVyAA0deF5StateO_GvpMV+0x8>\n100169aec:     \tadd\tx0, x0, #0x4e0\n100169af0:     \tmov\tw1, #0x20               ; =32\n100169af4:     \tmov\tw2, #0x7                ; =7\n100169af8:     \tbl\t0x100185070 <_swift_willThrowTypedImpl+0x100185070>\n100169afc:     \tmov\tx28, x0\n100169b00:     \tstp\tx20, x27, [x0, #0x10]\n100169b04:     \tbl\t0x10016a6a4 <_$sSo20NSNotificationCenterC10FoundationE9PublisherVAE7CombineAdCWl>\n100169b08:     \tmov\tx3, x0\n100169b0c:     \tadrp\tx0, 0x10016a000 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_+0x94>\n100169b10:     \tadd\tx0, x0, #0x69c\n100169b14:     \tmov\tx1, x28\n100169b18:     \tmov\tx2, x24\n100169b1c:     \tmov\tx20, x25\n100169b20:     \tbl\t0x1001832ac <_swift_willThrowTypedImpl+0x1001832ac>\n100169b24:     \tmov\tx20, x0\n100169b28:     \tmov\tx0, x28\n100169b2c:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169b30:     \tldur\tx8, [x29, #-0x70]\n100169b34:     \tldr\tx8, [x8, #0x8]\n100169b38:     \tmov\tx0, x25\n100169b3c:     \tmov\tx1, x24\n100169b40:     \tblr\tx8\n100169b44:     \tsub\tx1, x29, #0x68\n100169b48:     \tmov\tx0, x23\n100169b4c:     \tmov\tw2, #0x21               ; =33\n100169b50:     \tmov\tx3, #0x0                ; =0\n100169b54:     \tbl\t0x1001850b8 <_swift_willThrowTypedImpl+0x1001850b8>\n100169b58:     \tmov\tx0, x23\n100169b5c:     \tbl\t0x100183168 <_swift_willThrowTypedImpl+0x100183168>\n100169b60:     \tsub\tx0, x29, #0x68\n100169b64:     \tbl\t0x100185178 <_swift_willThrowTypedImpl+0x100185178>\n100169b68:     \tmov\tx0, x26\n100169b6c:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n100169b70:     \tmov\tx0, x20\n100169b74:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169b78:     \tadrp\tx8, 0x1001fd000 <_$s16PasteReplicaCore39OriginalShortcutRecorderValidationErrorO10Foundation09LocalizedH0AAMcMK+0x40>\n100169b7c:     \tadd\tx8, x8, #0x680\n100169b80:     \tldr\tx8, [x8]\n100169b84:     \tldr\tx20, [x22, x8]\n100169b88:     \tstur\tx20, [x29, #-0x68]\n100169b8c:     \tadrp\tx0, 0x1001db000 <_$s16PasteReplicaCore24OriginalShortcutRecorderC6$state7Combine9PublishedV9PublisherVyAA0deF5StateO_GvpMV+0x8>\n100169b90:     \tadd\tx0, x0, #0x468\n100169b94:     \tmov\tw1, #0x18               ; =24\n100169b98:     \tmov\tw2, #0x7                ; =7\n100169b9c:     \tbl\t0x100185070 <_swift_willThrowTypedImpl+0x100185070>\n100169ba0:     \tmov\tx24, x0\n100169ba4:     \tadd\tx0, x0, #0x10\n100169ba8:     \tmov\tx1, x19\n100169bac:     \tbl\t0x100185430 <_swift_willThrowTypedImpl+0x100185430>\n100169bb0:     \tadrp\tx0, 0x1001db000 <_$s16PasteReplicaCore24OriginalShortcutRecorderC6$state7Combine9PublishedV9PublisherVyAA0deF5StateO_GvpMV+0x8>\n100169bb4:     \tadd\tx0, x0, #0x490\n100169bb8:     \tmov\tw1, #0x18               ; =24\n100169bbc:     \tmov\tw2, #0x7                ; =7\n100169bc0:     \tbl\t0x100185070 <_swift_willThrowTypedImpl+0x100185070>\n100169bc4:     \tmov\tx25, x0\n100169bc8:     \tadd\tx0, x0, #0x10\n100169bcc:     \tmov\tx1, x22\n100169bd0:     \tbl\t0x100185430 <_swift_willThrowTypedImpl+0x100185430>\n100169bd4:     \tadrp\tx0, 0x1001db000 <_$s16PasteReplicaCore24OriginalShortcutRecorderC6$state7Combine9PublishedV9PublisherVyAA0deF5StateO_GvpMV+0x8>\n100169bd8:     \tadd\tx0, x0, #0x4b8\n100169bdc:     \tmov\tw1, #0x20               ; =32\n100169be0:     \tmov\tw2, #0x7                ; =7\n100169be4:     \tbl\t0x100185070 <_swift_willThrowTypedImpl+0x100185070>\n100169be8:     \tmov\tx26, x0\n100169bec:     \tstp\tx24, x25, [x0, #0x10]\n100169bf0:     \tmov\tx0, x20\n100169bf4:     \tbl\t0x1001852e0 <_swift_willThrowTypedImpl+0x1001852e0>\n100169bf8:     \tadrp\tx0, 0x1001ed000 <_$s7SwiftUI15ModifiedContentVy12PasteReplica17NativeFilePreviewVAA16_FlexFrameLayoutVGMD>\n100169bfc:     \tadd\tx0, x0, #0x9a8\n100169c00:     \tbl\t0x10001079c <___swift_instantiateConcreteTypeFromMangledName>\n100169c04:     \tmov\tx24, x0\n100169c08:     \tbl\t0x10016a620 <_$s7Combine18PassthroughSubjectCyyts5NeverOGACyxq_GAA9PublisherAAWl>\n100169c0c:     \tmov\tx3, x0\n100169c10:     \tadrp\tx0, 0x10016a000 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfcyyt_tcfU0_yyScMYcXEfU_+0x94>\n100169c14:     \tadd\tx0, x0, #0x618\n100169c18:     \tsub\tx20, x29, #0x68\n100169c1c:     \tmov\tx1, x26\n100169c20:     \tmov\tx2, x24\n100169c24:     \tbl\t0x1001832ac <_swift_willThrowTypedImpl+0x1001832ac>\n100169c28:     \tmov\tx20, x0\n100169c2c:     \tmov\tx0, x26\n100169c30:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169c34:     \tldur\tx0, [x29, #-0x68]\n100169c38:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169c3c:     \tsub\tx1, x29, #0x68\n100169c40:     \tmov\tx0, x23\n100169c44:     \tmov\tw2, #0x21               ; =33\n100169c48:     \tmov\tx3, #0x0                ; =0\n100169c4c:     \tbl\t0x1001850b8 <_swift_willThrowTypedImpl+0x1001850b8>\n100169c50:     \tmov\tx0, x23\n100169c54:     \tbl\t0x100183168 <_swift_willThrowTypedImpl+0x100183168>\n100169c58:     \tsub\tx0, x29, #0x68\n100169c5c:     \tbl\t0x100185178 <_swift_willThrowTypedImpl+0x100185178>\n100169c60:     \tmov\tx0, x20\n100169c64:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169c68:     \tmov\tx0, x22\n100169c6c:     \tbl\t0x1001852c8 <_swift_willThrowTypedImpl+0x1001852c8>\n100169c70:     \tmov\tx0, x21\n100169c74:     \tbl\t0x100184ff8 <_swift_willThrowTypedImpl+0x100184ff8>\n100169c78:     \tmov\tx0, x19\n100169c7c:     \tsub\tsp, x29, #0x50\n100169c80:     \tldp\tx29, x30, [sp, #0x50]\n100169c84:     \tldp\tx20, x19, [sp, #0x40]\n100169c88:     \tldp\tx22, x21, [sp, #0x30]\n100169c8c:     \tldp\tx24, x23, [sp, #0x20]\n100169c90:     \tldp\tx26, x25, [sp, #0x10]\n100169c94:     \tldp\tx28, x27, [sp], #0x60\n100169c98:     \tret\n100169c9c:     \tadrp\tx0, 0x1001ee000 <_$s16PasteReplicaCore31OriginalShortcutCarbonIDCounter33_FF12C32D7752329F090BA739325DC8F9LLC6shared_Wz>\n100169ca0:     \tadd\tx0, x0, #0x190\n100169ca4:     \tadrp\tx1, 0x100177000 <_$s16PasteReplicaCore14ClipboardStoreC17writeToPasteboard3ids10pasteboard7optionsySay10Foundation4UUIDVG_So12NSPasteboardCAA08OriginalH7RestoreO7OptionsVtKFAO9SelectionVAA0D4ItemVKXEfU0_+0x4e0>\n100169ca8:     \tadd\tx1, x1, #0xbb4\n100169cac:     \tbl\t0x1001852b0 <_swift_willThrowTypedImpl+0x1001852b0>\n100169cb0:     \tb\t0x100169a64 <_$s16PasteReplicaCore20OriginalSoundEffectsC5store7monitorAcA14ClipboardStoreC_AA0I7MonitorCSgtcfc+0x100>\n",
+        "runtime_stubs": {
+          "0x1001845b4": "_$sSo20NSNotificationCenterC10FoundationE9PublisherVMa",
+          "0x100184fec": "_objc_opt_self",
+          "0x100185004": "_objc_retain",
+          "0x100184fd4": "_objc_msgSend",
+          "0x10018501c": "_objc_retainAutoreleasedReturnValue",
+          "0x1001845c0": "_$sSo20NSNotificationCenterC10FoundationE9publisher3for6objectAbCE9PublisherVSo0A4Namea_yXlSgtF",
+          "0x100184ff8": "_objc_release",
+          "0x100185070": "_swift_allocObject",
+          "0x100185430": "_swift_weakInit",
+          "0x1001832ac": "_$s7Combine9PublisherPAAs5NeverO7FailureRtzrlE4sink12receiveValueAA14AnyCancellableCy6OutputQzc_tF",
+          "0x1001852c8": "_swift_release",
+          "0x1001850b8": "_swift_beginAccess",
+          "0x100183168": "_$s7Combine14AnyCancellableC5store2inyShyACGz_tF",
+          "0x100185178": "_swift_endAccess",
+          "0x1001852e0": "_swift_retain",
+          "0x1001852b0": "_swift_once"
+        }
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsCfD": {
+        "start": "0x10016a188",
+        "end_exclusive": "0x10016a1cc",
+        "size": 68,
+        "sha256": "7f5a4db64d73ee16baf4c03add05536cc6739be434f9d96575449cc06dd51f9d",
+        "full_machine_code_hex": "fd7bbfa9fd0300918852403968000037801240b9b66a00948872403968000037801a40b9b26a0094801240f9c46b0094e00314aa01058052e2008052fd7bc1a8d46b0014",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsCfD",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n000000010016a188 <_$s16PasteReplicaCore20OriginalSoundEffectsCfD>:\n10016a188:     \tstp\tx29, x30, [sp, #-0x10]!\n10016a18c:     \tmov\tx29, sp\n10016a190:     \tldrb\tw8, [x20, #0x14]\n10016a194:     \ttbnz\tw8, #0x0, 0x10016a1a0 <_$s16PasteReplicaCore20OriginalSoundEffectsCfD+0x18>\n10016a198:     \tldr\tw0, [x20, #0x10]\n10016a19c:     \tbl\t0x100184c74 <_swift_willThrowTypedImpl+0x100184c74>\n10016a1a0:     \tldrb\tw8, [x20, #0x1c]\n10016a1a4:     \ttbnz\tw8, #0x0, 0x10016a1b0 <_$s16PasteReplicaCore20OriginalSoundEffectsCfD+0x28>\n10016a1a8:     \tldr\tw0, [x20, #0x18]\n10016a1ac:     \tbl\t0x100184c74 <_swift_willThrowTypedImpl+0x100184c74>\n10016a1b0:     \tldr\tx0, [x20, #0x20]\n10016a1b4:     \tbl\t0x1001850c4 <_swift_willThrowTypedImpl+0x1001850c4>\n10016a1b8:     \tmov\tx0, x20\n10016a1bc:     \tmov\tw1, #0x28               ; =40\n10016a1c0:     \tmov\tw2, #0x7                ; =7\n10016a1c4:     \tldp\tx29, x30, [sp], #0x10\n10016a1c8:     \tb\t0x100185118 <_swift_willThrowTypedImpl+0x100185118>\n",
+        "runtime_stubs": {
+          "0x100184c74": "_AudioServicesDisposeSystemSoundID",
+          "0x1001850c4": "_swift_bridgeObjectRelease",
+          "0x100185118": "_swift_deallocClassInstance"
+        }
+      },
+      "_$s16PasteReplicaCore20OriginalSoundEffectsCfd": {
+        "start": "0x10016a14c",
+        "end_exclusive": "0x10016a188",
+        "size": 60,
+        "sha256": "5818c04d41e0014725af779accdc629b3229d0a7e4a9b7c9fbc7fa3129f2bd39",
+        "full_machine_code_hex": "fd7bbfa9fd0300918852403968000037801240b9c56a00948872403968000037801a40b9c16a0094801240f9d36b0094e00314aafd7bc1a8c0035fd6",
+        "symbol": "_$s16PasteReplicaCore20OriginalSoundEffectsCfd",
+        "disassembly": "\nreplica/.build/release/PasteReplica:\tfile format mach-o arm64\n\nDisassembly of section __TEXT,__text:\n\n000000010016a14c <_$s16PasteReplicaCore20OriginalSoundEffectsCfd>:\n10016a14c:     \tstp\tx29, x30, [sp, #-0x10]!\n10016a150:     \tmov\tx29, sp\n10016a154:     \tldrb\tw8, [x20, #0x14]\n10016a158:     \ttbnz\tw8, #0x0, 0x10016a164 <_$s16PasteReplicaCore20OriginalSoundEffectsCfd+0x18>\n10016a15c:     \tldr\tw0, [x20, #0x10]\n10016a160:     \tbl\t0x100184c74 <_swift_willThrowTypedImpl+0x100184c74>\n10016a164:     \tldrb\tw8, [x20, #0x1c]\n10016a168:     \ttbnz\tw8, #0x0, 0x10016a174 <_$s16PasteReplicaCore20OriginalSoundEffectsCfd+0x28>\n10016a16c:     \tldr\tw0, [x20, #0x18]\n10016a170:     \tbl\t0x100184c74 <_swift_willThrowTypedImpl+0x100184c74>\n10016a174:     \tldr\tx0, [x20, #0x20]\n10016a178:     \tbl\t0x1001850c4 <_swift_willThrowTypedImpl+0x1001850c4>\n10016a17c:     \tmov\tx0, x20\n10016a180:     \tldp\tx29, x30, [sp], #0x10\n10016a184:     \tret\n",
+        "runtime_stubs": {
+          "0x100184c74": "_AudioServicesDisposeSystemSoundID",
+          "0x1001850c4": "_swift_bridgeObjectRelease"
+        }
+      }
+    },
+    "selectors": {
+      "0x1001e4230": {
+        "target": "0x10019bea4",
+        "selector": "setTitlebarAppearsTransparent:"
+      },
+      "0x1001e4238": {
+        "target": "0x10019b425",
+        "selector": "setAnimationBehavior:"
+      },
+      "0x1001e4240": {
+        "target": "0x10019bdc5",
+        "selector": "setState:"
+      },
+      "0x1001e4248": {
+        "target": "0x10019b638",
+        "selector": "setBlendingMode:"
+      },
+      "0x1001e4250": {
+        "target": "0x10019bbbc",
+        "selector": "setMaterial:"
+      },
+      "0x1001e4278": {
+        "target": "0x100198f07",
+        "selector": "applicationIconImage"
+      },
+      "0x1001e5178": {
+        "target": "0x10019c0bd",
+        "selector": "soundNamed:"
+      },
+      "0x1001e5180": {
+        "target": "0x10019ac42",
+        "selector": "play"
+      }
+    },
+    "new_function_count": 0,
+    "functional_tests_executed": false,
+    "original_resources_copied": false,
+    "audible_equivalence": false,
+    "review": {
+      "capture_sink": "169d20..169f00 480B: weakself/store nil paths; Published preferences read at event; false skip; optionalCopy nil selects actual soundNamed:Pop/play selectors1e5178/1e5180; present ID+10 callsAudioServices184c80.",
+      "restore_sink": "169f6c..16a14c 480B: same realtimepreference gate; optionalPaste ID+18/nilflag+1c selects actualPop fallback orAudioServices184c80.",
+      "loader": "16a20c..16a5f0 996B: mainBundle then moduleBundle aiff lookup, noURL→nil; createsID via184c68, comparesOSStatus toDarwin.noErr, mismatch→nil; no originalinstalledapp path.",
+      "lifecycle": "16a14c..16a18860B: each optionalIDflag checked beforeDispose184c74; subscriptionssetbridgeRelease; actualCfD68B samecleanup+dealloc. AppMainterminate stop thennil.",
+      "timing": "Source+manifest bind actual existing synchronousDidCaptureafterUndo anddidRestoreItemafterwriter/token/recency/Undo; service sinkinit subscribesboth. No runtimeaudio verification and no claim of samewaveform.",
+      "original_status": "4 original addresses remainpartial, 0 newcomplete; safeOSStatus/fallback/dispose are independentadaptations."
+    }
+  },
+  "modal_current_binary_review": {
+    "path": ".local/pasteboard-dev23-modal-build44.json",
+    "source_unchanged": true
+  }
+}

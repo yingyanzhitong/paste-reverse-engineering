@@ -44,6 +44,9 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
     public var decodedTextPreviewMetadata: OriginalTextPreviewMetadata? {
         OriginalImagePreviewMetadataCodec.decodeText(rawPreview)
     }
+    public var decodedLinkPreviewMetadata: OriginalLinkPreviewMetadata? {
+        OriginalImagePreviewMetadataCodec.decodeLink(rawPreview)
+    }
     public var decodedColorPreviewMetadata: OriginalColorPreviewMetadata? {
         OriginalImagePreviewMetadataCodec.decodeColor(rawPreview)
     }

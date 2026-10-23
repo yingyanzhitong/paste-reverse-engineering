@@ -1,25 +1,25 @@
 # Paste 离线复刻集中审阅
 
-2026-10-23，0.8.0-dev.22。改用已有功能和完整调用链集中检查：已有实现直接复用，只修有原版证据的差异。73个行为单元是检查清单，不是产品完成率；完整引用见[集中核对明细](fast-coverage-audit.md)。
+2026-10-23，0.8.0-dev.23。改用已有功能和完整调用链集中检查：已有实现直接复用，只修有原版证据的差异。73个行为单元是检查清单，不是产品完成率；完整引用见[集中核对明细](fast-coverage-audit.md)。
 
-最终build42 release编译通过，148份输入前后摘要一致，编译日志18.89秒、包装20.63秒。现有权限getter/map和新增系统动作均按当前完整机器码复核。本轮只做编译及静态源码/REA/机器码对照，没有启动产品、执行功能回归或UI/MCP测试，不能据此宣称一比一通过。安装版本仍为0.7.0。
+最终build44 release编译通过，151份输入前后摘要一致，编译日志9.08秒、包装9.87秒。现有权限getter/map和新增系统动作均按当前完整机器码复核。本轮只做编译及静态源码/REA/机器码对照，没有启动产品、执行功能回归或UI/MCP测试，不能据此宣称一比一通过。安装版本仍为0.7.0。
 
 ## 已有路径直接复用
 
 | 功能链 | 已有实际实现 | 仍需确认或修复 |
 | --- | --- | --- |
-| 主面板与卡片 | 横向卡片、来源Header、重命名/默认标题及共用字体/间距/居中 | 已证Header及选中背景差异已修；原动态面板高度、完整style映射及像素效果仍待核 |
+| 主面板与卡片 | 横向卡片、来源Header、重命名/默认标题及共用字体/间距/居中 | 根bounds动态卡片与通用Header尺寸已修；原窗口高度限制/resize、内容特化style及像素效果仍待核 |
 | 捕获、历史、多选与恢复 | 类型及有序表示读写、去重、增删恢复、共享Undo、change token、创建/恢复事件及复制OSD | 原实体身份、完整事务/错误传播、混合格式全部分支与目标应用实际接受；事件发送不代表接受 |
 | Pinboard、Stack | 本地Pinboard CRUD、多选操作、队列反转、先消费后发送、空队列关窗 | 完整原路由、权限和仓库观察时序 |
 | 搜索与筛选 | 原属性文本节点/附件、归一化、建议与键盘菜单、应用名筛选、日期、Spotlight索引、闭窗10秒保留查询 | 完整query编码、整query建议分支、原实体provider/排序及所有焦点异步边界 |
-| 图片、文本、颜色、文件及链接预览 | 原生缩放/滚动、棋盘背景、离线OCR/Live Text、旋转保存、文字/颜色/链接编辑、Quick Look、分享内容门槛及预览尺寸 | 完整VM对象图、异步生命周期、完整文件VM、其余内容metadata投影及编辑失败边界 |
-| 快捷键与设置 | 全局快捷键、冲突检查、录制、当前布局粘贴键码、暂停/恢复监控及权限观察 | 三态模态决策与有限视觉已接；OS26完整Glass宿主、设置布局、音效播放及完整helper/DI仍待核 |
+| 图片、文本、颜色、文件及链接预览 | 原生缩放/滚动、棋盘背景、离线OCR/Live Text、旋转保存、文字/颜色/链接编辑、Quick Look、分享内容门槛及预览尺寸 | 五种本地metadata投影已接；完整VM/异步生命周期、链接fullsize格式化/布局及编辑失败边界仍待核 |
+| 快捷键与设置 | 全局快捷键、冲突检查、录制、当前布局粘贴键码、暂停/恢复监控及权限观察 | 三态模态决策与有限视觉已接；OS26完整Glass宿主、设置布局、原音色及完整helper/DI仍待核 |
 
 ## 集中检查已修正的差异
 
 - 普通捕获不再把首行、链接标题或类型默认值写成显式标题。显式空标题与nil分开表示，去重保留现有标题；不清洗旧非空数据。索引只在nil时使用固定英文类型名；Header另按原规则对nil/empty使用本地化默认值。
 - 本地Header不再按内容是否实现Editable额外禁用编辑入口。实际编辑能力继续由对应内容入口处理；完整共享权限仍单列缺口。
-- 图片元数据接入原Stored的13个可选字段及PropertyList优先、JSON后备解码，图片投影实际写入/读取rawPreview并与payload配对。坏raw不回退旧typed值；非图片的通用原始wire数据保留，内容变更才丢弃旧派生值。现已接图片/文件/颜色/文本投影；link投影、原配置查找和CoreData封装仍为partial，见[图片审计](image-preview-metadata-static-audit.json)。
+- 图片元数据接入原Stored的13个可选字段及PropertyList优先、JSON后备解码，图片投影实际写入/读取rawPreview并与payload配对。坏raw不回退旧typed值；非图片的通用原始wire数据保留，内容变更才丢弃旧派生值。现已接图片/文件/颜色/文本投影；原配置查找、provider与CoreData封装仍为partial，见[图片审计](image-preview-metadata-static-audit.json)。
 - 权限状态采用初始快照加主RunLoop common模式1秒观察、去重发布，真实刷新Stack快捷键注册；粘贴检查走同一服务。终止取消订阅，不自动弹权限申请。最终完整机器码已核实临时owner先释放再读取AX；三态模态决策已接，完整原视觉/宿主仍未等同。
 
 dev.20 在同页一次复用28个原本地化资源键、17种语言476值，覆盖已显示的设置标签与确认文案；只记录3个完整恢复的资源helper，不逐标签灌数。[设置文案审计](settings-localization-static-audit.json)保留原key、消费者与当前源码证据。音效默认true已修正，已存false保持；原声音资源和完整播放链仍缺。
@@ -37,6 +37,10 @@ dev.21 将权限询问移到writer之前。原first modal中，0/1表示仅复�
 dev.22 集中检查补回已证卡片几何：当前232输入对应原raw2，Header48/icon76/右溢14、标签内距与内容裁剪；按系统分支恢复内容/选中圆角和选中背景四边扩4。原按可用高度变化的方形卡片、完整style与布局仍有差异，不以固定232宣称相同。
 
 文本元数据链真实接入生成、存储与卡片：完整长度使用UTF16，卡片样本仅前500UTF16，缺失/坏raw不回填全文；完整预览、编辑和Character动态统计保持全文。[文本审计](text-preview-metadata-static-audit.json)记录原地址、当前Source及build42真实绑定。权限模态补应用图标80、成功checkmark64/green及旧OS宿主材质，OS26完整Glass仍partial，见[当前模态审阅](../function-migration/accessibility-modals-build42.json)。
+
+dev.23 已将根bounds→toolbar60→集合可用高度→卡片边长/sizeclass接成一条真实布局链，删除固定242/232和offset11。原系统底距新8旧0，集合上8下24；默认332对应旧240、新232，Header/icon随档位变化。窗口的空焦点回退恢复；资格getter值已修但缺原执行器检查仍partial，不为新增计数放宽条件。[主窗口审阅](main-window-static-audit.json)及[卡片审阅](card-header-static-audit.json)保留高度限制、内容特化、动画与原生渲染缺口。
+
+链接的本地生成、Stored、配对保存和canonical卡片/预览已闭合有限值链。名称保nil/empty、图像按非方主图/方icon优先级、fallback safari及独立42×42等比缩放恢复；不联网。原fullsizeformatter、provider及完整布局仍partial，见[链接审阅](link-preview-metadata-static-audit.json)。声音按真实捕获/恢复事件及实时开关播放，原Copy/Paste音色未分发、实际Pop fallback明确不同，见[声音审阅](sound-feedback-static-audit.json)。
 
 ## 检查结果如何使用
 

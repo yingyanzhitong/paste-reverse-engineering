@@ -20,6 +20,7 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
     private var store: ClipboardStore!
     private var ui: ReplicaUIController!
     private var monitor: ClipboardMonitor?
+    private var soundEffects: OriginalSoundEffects?
     private var diagnostics: OriginalDiagnosticsManager?
     private var diagnosticsObservation: AnyCancellable?
     private let accessibilityService = OriginalAccessibilityService()
@@ -122,6 +123,7 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
                 monitor = ClipboardMonitor(store: store, pasteboard: pasteboard)
                 monitor?.onCapture = { [weak self] id in self?.ui.captureIntoStack(id: id) }
             }
+            soundEffects = OriginalSoundEffects(store: store, monitor: monitor)
             ReplicaCopiedOSD.pauseStatus = { [weak self] in
                 guard let self, self.monitor != nil,
                       let capture = OriginalPasteboardCaptureState.current(for: self.pasteboard) else { return nil }
@@ -488,6 +490,8 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
         hotKeyObservation?.cancel()
         diagnosticsObservation?.cancel()
         accessibilityObservation?.cancel()
+        soundEffects?.stop()
+        soundEffects = nil
         pausePreferencesObservation?.cancel()
         pauseResumeTimer?.invalidate()
         pauseResumeTimer = nil

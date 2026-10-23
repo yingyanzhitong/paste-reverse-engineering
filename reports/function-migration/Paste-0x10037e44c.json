@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037e44c",
-  "reviewed_at": "2026-10-23T14:27:56.998957+00:00",
+  "reviewed_at": "2026-10-23T14:42:38.602392+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "743d8161736f6a633b75b3f748e13886fbf50d0b08df3559ad42dd2d37b83a54",
+  "compiled_app_binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "Decodable协议构造witness：分配对象并调用Decoder初始化，成功才向返回缓冲写实例，错误时不写。",
-  "review": "最终build42完整0x10011e758..0x10011e7a4（76B）：conformance1898ac+24绑定11e758；11e78c cbnz x21→11e794跳过11e790输出写入。",
+  "review": "最终build44完整0x10012179c..0x1001217e8（76B）：conformance18cc3c+24绑定12179c；1217d0 cbnz x21→1217d8跳过1217d4输出写入。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x10011e758",
-    "end_exclusive": "0x10011e7a4",
+    "start": "0x10012179c",
+    "end_exclusive": "0x1001217e8",
     "size": 76,
-    "sha256": "7d90a646827d4f3ba5e0f17b3e899022752d1e16204087e9bbf05979164248c4",
-    "binary_sha256": "743d8161736f6a633b75b3f748e13886fbf50d0b08df3559ad42dd2d37b83a54",
+    "sha256": "d9089f20c66e43eb90b4c9ed87eb9757309157d225259da5d0cd993d8e4884e3",
+    "binary_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
     "lc_function_starts_verified": true
   }
 }

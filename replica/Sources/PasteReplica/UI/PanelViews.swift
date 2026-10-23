@@ -10,53 +10,64 @@ struct ReplicaPanelView: View {
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
-        VStack(spacing: 0) {
-            header
-                .frame(height: 44)
-            if state.visibleItems.isEmpty {
-                VStack {
-                    Spacer()
-                    Text(state.searchFailed ? "本地搜索暂不可用" : "无结果")
-                        .font(.system(size: 26, weight: .medium))
-                        .foregroundStyle(Color(red: 185 / 255, green: 185 / 255, blue: 185 / 255))
-                    if state.searchFailed { Button("重试") { state.retrySearch() } }
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .accessibilityLabel(state.searchFailed ? "本地搜索暂不可用" : "无结果")
-            } else {
-                ScrollViewReader { reader in
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHStack(spacing: 24) {
-                            ForEach(state.visibleItems) { item in
-                                ReplicaClipboardCard(state: state, item: item)
-                                    .id(item.id)
+        GeometryReader { geometry in
+            let collectionHeight = max(0, geometry.size.height - 60 - backgroundInset)
+            let cardSide = max(0, collectionHeight - 32)
+            VStack(spacing: 0) {
+                header.frame(height: 60)
+                if state.visibleItems.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text(state.searchFailed ? "本地搜索暂不可用" : "无结果")
+                            .font(.system(size: 26, weight: .medium))
+                            .foregroundStyle(Color(red: 185 / 255, green: 185 / 255, blue: 185 / 255))
+                        if state.searchFailed { Button("重试") { state.retrySearch() } }
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity, minHeight: collectionHeight, maxHeight: collectionHeight)
+                    .accessibilityLabel(state.searchFailed ? "本地搜索暂不可用" : "无结果")
+                } else {
+                    ScrollViewReader { reader in
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHStack(spacing: 24) {
+                                ForEach(state.visibleItems) { item in
+                                    ReplicaClipboardCard(state: state, item: item, sideLength: cardSide)
+                                        .id(item.id)
+                                }
                             }
+                            .padding(.horizontal, 24)
+                            .padding(.top, 8).padding(.bottom, 24)
                         }
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 5)
+                        .onChange(of: state.primaryID) { _, id in
+                            if let id { reader.scrollTo(id) }
+                        }
                     }
-                    .onChange(of: state.primaryID) { _, id in
-                        if let id { reader.scrollTo(id) }
-                    }
+                    .frame(height: collectionHeight)
                 }
-                .frame(height: 242).offset(y: 11)
-                Spacer(minLength: 0)
             }
-            Color.clear.frame(height: 24).accessibilityHidden(true)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(colorScheme == .dark ? Color(red: 0.13, green: 0.13, blue: 0.14)
+                        : Color(red: 250 / 255, green: 250 / 255, blue: 250 / 255))
+            .clipShape(RoundedRectangle(cornerRadius: backgroundRadius, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: backgroundRadius).strokeBorder(.white.opacity(0.22), lineWidth: 1))
+            .padding(.horizontal, backgroundInset).padding(.bottom, backgroundInset)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(colorScheme == .dark ? Color(red: 0.13, green: 0.13, blue: 0.14)
-                    : Color(red: 250 / 255, green: 250 / 255, blue: 250 / 255))
-        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 24).strokeBorder(.white.opacity(0.22), lineWidth: 1))
-        .padding(8)
         .preferredColorScheme(state.preferredScheme)
         .onChange(of: state.query) { _, _ in state.normalizeSelection() }
         .onChange(of: state.searchFilters) { _, _ in state.normalizeSelection() }
         .onChange(of: state.searchFocus) { _, _ in searchFocused = true }
         .onChange(of: state.searchVisible) { _, visible in if !visible { searchFocused = false } }
         .accessibilityIdentifier("clipboard-panel")
+    }
+
+    private var backgroundInset: CGFloat {
+        if #available(macOS 26, *) { return 8 }
+        return 0
+    }
+
+    private var backgroundRadius: CGFloat {
+        if #available(macOS 26, *) { return 26 }
+        return 0
     }
 
     private var searching: Bool { searchFocused || state.searchVisible || !state.isSearchQueryEmpty }
@@ -203,6 +214,7 @@ struct ReplicaPanelView: View {
 struct ReplicaClipboardCard: View {
     @ObservedObject var state: ReplicaUIState
     let item: ClipboardItem
+    let sideLength: CGFloat
     private var selected: Bool { state.selection.contains(item.id) }
     @Environment(\.controlActiveState) private var activeState
 
@@ -220,7 +232,7 @@ struct ReplicaClipboardCard: View {
             .font(.system(size: 13)).foregroundStyle(Color(nsColor: .secondaryLabelColor))
             .padding(.horizontal, 12).padding(.bottom, 11).padding(.top, 7)
         }
-        .frame(width: 232, height: 232)
+        .frame(width: sideLength, height: sideLength)
         .background(ReplicaItemPreviewAnchor(itemID: item.id, controller: state.controller))
         .background(Color(nsColor: .textBackgroundColor))
         .clipShape(RoundedRectangle(cornerRadius: cardCornerRadius, style: cardCornerStyle))
@@ -262,26 +274,60 @@ struct ReplicaClipboardCard: View {
         return .circular
     }
 
-    private var cardHeader: some View {
-        // A 232-point cell is size class 2: 48-point header and 76-point source icon.
-        ZStack(alignment: .trailing) {
-            VStack(alignment: .leading, spacing: -1) {
-                Text(cardTitle)
-                    .font(Font(NSFont.systemFont(ofSize: NSFont.preferredFont(forTextStyle: .title3, options: [:]).pointSize, weight: .medium)))
-                    .lineLimit(1)
-                Text(relativeTime(item.createdAt))
-                    .font(Font(NSFont.preferredFont(forTextStyle: .callout, options: [:])))
-                    .opacity(0.8)
-            }
-            .foregroundStyle(.white)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, 12).padding(.trailing, 62)
-            SourceAppIcon(item: item)
-                .frame(width: 76, height: 76)
-                .offset(x: 14)
+    private var sizeClass: Int {
+        if sideLength < 200 { return 3 }
+        if sideLength < 240 { return 2 }
+        if sideLength < 280 { return 1 }
+        return 0
+    }
+
+    private var headerHeight: CGFloat {
+        switch sizeClass {
+        case 0: return 56
+        case 1: return 52
+        case 2: return 48
+        default:
+            if #available(macOS 26, *) { return 36 }
+            return 34
         }
-        .frame(height: 48)
-        .background(sourceColor(item))
+    }
+
+    private var sourceIconSide: CGFloat {
+        sizeClass == 3 ? 20 : headerHeight + 28
+    }
+
+    private var headerLabels: some View {
+        Group {
+            Text(cardTitle)
+                .font(Font(NSFont.systemFont(ofSize: NSFont.preferredFont(forTextStyle: sizeClass == 3 ? .headline : .title3, options: [:]).pointSize,
+                                            weight: sizeClass == 3 ? .semibold : .medium)))
+                .lineLimit(1)
+            Text(relativeTime(item.createdAt))
+                .font(Font(NSFont.preferredFont(forTextStyle: sizeClass == 3 ? .body : .callout, options: [:])))
+                .foregroundStyle(sizeClass == 3 ? Color(nsColor: .secondaryLabelColor) : .white.opacity(0.8))
+        }
+    }
+
+    private var cardHeader: some View {
+        ZStack(alignment: .trailing) {
+            Group {
+                if sizeClass == 3 {
+                    HStack(spacing: 0) { headerLabels }
+                } else {
+                    VStack(alignment: .leading, spacing: -1) { headerLabels }
+                }
+            }
+            .foregroundStyle(sizeClass == 3 ? Color(nsColor: .labelColor) : .white)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 12)
+            .padding(.trailing, sizeClass == 3 ? 30 : sourceIconSide - 14)
+            SourceAppIcon(item: item)
+                .frame(width: sourceIconSide, height: sourceIconSide)
+                .opacity(sizeClass == 3 ? 0.9 : 1)
+                .offset(x: sizeClass == 3 ? -8 : 14)
+        }
+        .frame(height: headerHeight)
+        .background(sizeClass == 3 ? Color.clear : sourceColor(item))
         .clipped()
     }
 
@@ -404,14 +450,8 @@ struct ReplicaItemContent: View {
                     Text(item.plainText ?? item.title).font(.system(size: 14)).lineLimit(compact ? 4 : nil)
                 }
             } else if item.kind == .link {
-                VStack(alignment: .leading, spacing: 9) {
-                    HStack {
-                        Image(systemName: "link").font(.system(size: compact ? 26 : 40)).foregroundStyle(.secondary)
-                        Spacer()
-                    }
-                    .padding(10).frame(maxWidth: .infinity, minHeight: compact ? 44 : 100)
-                    .background(.gray.opacity(0.08), in: RoundedRectangle(cornerRadius: 6))
-                    Text(item.plainText ?? item.title).font(.system(size: 14)).lineLimit(compact ? 3 : nil)
+                if let metadata = item.decodedLinkPreviewMetadata {
+                    ReplicaLinkMetadataContent(metadata: metadata, compact: compact)
                 }
             } else if compact, item.kind == .text || item.kind == .richText {
                 if let metadata = item.decodedTextPreviewMetadata {

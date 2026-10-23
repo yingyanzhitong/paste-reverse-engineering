@@ -1,7 +1,7 @@
 import Foundation
 
-/// Text, image, file and color projections of the original ContentMetadata.Stored wire record.
-/// Remaining content projections and the original configuration lookup stay separate.
+/// Local content projections of the original ContentMetadata.Stored wire record.
+/// The original configuration lookup stays separate.
 public enum OriginalImagePreviewMetadataCodec {
     public static func decode(_ rawPreview: Data?) -> OriginalImagePreviewMetadata? {
         guard let stored = decodeStored(rawPreview), stored.type == "image" else { return nil }
@@ -19,6 +19,13 @@ public enum OriginalImagePreviewMetadataCodec {
     public static func decodeColor(_ rawPreview: Data?) -> OriginalColorPreviewMetadata? {
         guard let stored = decodeStored(rawPreview), stored.type == "color" else { return nil }
         return OriginalColorPreviewMetadata(code: stored.colorCode ?? 0)
+    }
+
+    public static func decodeLink(_ rawPreview: Data?) -> OriginalLinkPreviewMetadata? {
+        guard let stored = decodeStored(rawPreview), stored.type == "link" else { return nil }
+        return OriginalLinkPreviewMetadata(url: stored.url ?? URL(string: "example.com")!,
+                                           name: stored.urlName, iconData: stored.urlIconData,
+                                           imageData: stored.urlImageData)
     }
 
     public static func decodeText(_ rawPreview: Data?) -> OriginalTextPreviewMetadata? {
@@ -69,6 +76,17 @@ public enum OriginalImagePreviewMetadataCodec {
         stored.type = "text"
         stored.textLength = metadata.length
         stored.text = metadata.text
+        return encodeStored(stored, binaryPropertyList: binaryPropertyList)
+    }
+
+    public static func encodeLink(_ metadata: OriginalLinkPreviewMetadata?, binaryPropertyList: Bool) -> Data? {
+        guard let metadata else { return nil }
+        var stored = Stored()
+        stored.type = "link"
+        stored.url = metadata.url
+        stored.urlName = metadata.name
+        stored.urlIconData = metadata.iconData
+        stored.urlImageData = metadata.imageData
         return encodeStored(stored, binaryPropertyList: binaryPropertyList)
     }
 

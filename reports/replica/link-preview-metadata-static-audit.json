@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-10-23T14:33:29.045015+00:00",
+  "scope": "dev23 concentrated local link copy-time metadata canonical chain",
+  "source_changed": true,
+  "source_frozen": true,
+  "owned_sources": [
+    "replica/Sources/PasteReplicaCore/OriginalLinkPreviewMetadata.swift",
+    "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift",
+    "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift"
+  ],
+  "verification": "Original REA/arm64, current Source/actual consumers plus finite compiled44 generator and SDK binding; unified build44 successful151 unchanged inputs9.87s wrapper/9.08s log. No product/tests/UI/MCP execution.",
+  "unified_build": {
+    "name": "gap-build44",
+    "manifest": ".local/gap-build-complete.json",
+    "manifest_sha256": "36207d2c37131b167240a3843f2627d9fbdefad6fe01f74592365e8166c6ae13",
+    "log": ".local/gap-build-44.log",
+    "seconds": 9.87,
+    "compiler_log_seconds": 9.08,
+    "inputs": 151,
+    "sha_before_after_equal": true,
+    "result": "compiled",
+    "functional_execution": false,
+    "app_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306"
+  },
+  "new_complete_original_addresses": 0,
+  "local_helper_contract": "Local initial link metadata: first item URL only; missing item/URL nil; public.url-name trimmed whitespacesAndNewlines while nil and empty remain distinct; initial icon/image nil. Original function also invokes conditional asynchronous provider, so whole address stays partial.",
+  "pure_local_helper_status": "Complete local initial-value extraction is separately reusable; original f319778 includes async branch and stays partial, not a migrated whole-address candidate.",
+  "wire_contract": "All five local Stored value projections reused: strict image/files/color/link and default text excluding those four. Link URL absent defaults URL(string:\"example.com\")!, name/icon/image retain optional values. Full13-field decoding remains shared.",
+  "consumer": "Canonical link raw supplies URL; no payload/plainText fallback. Replica optional UI leaves missing/bad/nonlink metadata empty; original VM traps at nil/nonlink, so this address cannot be complete.",
+  "edit_name_proof": {
+    "path": ".local/image-dev23-link-edit-arm64.txt",
+    "valid_link": "1003bfaec..1003bfaf4 loads optional name pair from LinkMetadata offset0x14; 1003bfb30 stores pair without nil coalescing.",
+    "missing_or_wrong_case": "1003bfb24/28 loads x21=0/x20=0xe000000000000000 = some empty String.",
+    "exact_expression": "let previous = item.decodedLinkPreviewMetadata; let name: String? = previous == nil ? \"\" : previous!.name",
+    "peer_defect": "Root corrected item.title to previous canonical optional name, with explicit missing-metadata empty String branch; actual source peer confirmed."
+  },
+  "actual_consumers": [
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalLinkPreviewMetadata.swift",
+      "symbol": "public static func generate(",
+      "line": 19,
+      "sha256": "cf30ef0714e8f3bfa31c11765ce3a0493b3228013c3d4096cc5c32e851c2be00"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+      "symbol": "OriginalLinkPreviewMetadataGenerator.generate(items)",
+      "line": 290,
+      "sha256": "1aa4aa65d88069fbdb29cf3f1d801bc8405216a7fd40d40a85dbea8ef505caf5"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
+      "symbol": "public static func decodeLink(",
+      "line": 24,
+      "sha256": "1620a024a011c19294f16680ae2a8d6e92afac426d4ebbe1dd4e1fac1e364ca0"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift",
+      "symbol": "public static func encodeLink(",
+      "line": 82,
+      "sha256": "1620a024a011c19294f16680ae2a8d6e92afac426d4ebbe1dd4e1fac1e364ca0"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Models.swift",
+      "symbol": "public var decodedLinkPreviewMetadata:",
+      "line": 47,
+      "sha256": "c883bcc272ebb72558ab0eb14408de3efc5787efa425e56a9ef036583a011dad"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift",
+      "symbol": "item.decodedLinkPreviewMetadata?.url",
+      "line": 109,
+      "sha256": "1d9ad12dc1f5b46c40b8ee4f06ab8362693d22e0d099625cde7209f0bd62db37"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "symbol": "ReplicaLinkMetadataContent(metadata: metadata, compact: compact)",
+      "line": 454,
+      "sha256": "4bcf7d00baa7a8d907c4ee14cc22a5af62ba71eee6b580ec4b9cd8a3147ea3df"
+    }
+  ],
+  "evidence_sha256": {
+    ".local/image-dev23-link-generation-arm64.txt": "9a61f6f4d2713f54427629ad7efb05f200ef4b76c304cba0dc1fa42f2ddbf9fd",
+    ".local/image-dev23-link-getter-arm64.txt": "cf84ac52e124a26fc149f18f1bb689adbd119356c0a7be173bb91df6b1fd1f2b",
+    ".local/image-dev23-link-edit-arm64.txt": "853e4a8807b48abc225542a5f325540c441b7e26056576cced28d7fbeabcaa09",
+    ".local/image-dev22-stored-text-projection-arm64.txt": "c74ffc3266aa3fc2207eb96c9f7da5d029ddb5c0f3d07a4bd73d94a1f9e2c64c",
+    ".local/image-dev23-compiled-link44-arm64.txt": "d2750dad58ea911a8859ffcad55cdfffd3db865d952225e547356299bae4703d",
+    ".local/image-dev23-compiled-link44-binding.json": "a59990886f3d0c7c2aa9e321fb0e6dab71310137f86a6c48f787ab75524b0fc8",
+    ".local/image-dev23-link-icon-constraints-arm64.txt": "550c03c17a845b00844e509d5f66e45d462ccaa203aad91c970935ab89f5d127",
+    ".local/image-dev23-link-size-helper-arm64.txt": "d90fb55989671718b32e629ba1edc60ae15d3a9e658fff73f185ef3510714119"
+  },
+  "remaining": [
+    "Original async provider/config/DI/CoreData/ABI parent is not restored; no functional/runtime regression.",
+    "Original nil/nonlink VM traps explicitly adapted to optional UI; no all-VM equivalence claim.",
+    "ReadOnlyView lifecycle and async provider not restored by this patch.",
+    "Archive missing raw stays nil; getter never rebuilds from current payload/FS.",
+    "Linkcard original fullsize formatter, outerlayout/compactprovider/style/font parent remains partial."
+  ],
+  "network": "No HTTP preview/account/sync added; local URL/name initial value remains included, original enclosing function is not wholly excluded as network.",
+  "five_case_peer": "No concrete mismatch found in current five local value projections against prior per-type original evidence: image size0/dataempty; files paths[]/size0/dataempty; color code0; link URLexample.com/name-icon-image optionals; default text excluding four recognized types length0/textempty. Whole parent still partial.",
+  "visual_contract": ".local/image-dev23-link-visual-contract.json",
+  "visual_source_refs": [
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+      "symbol": "struct ReplicaLinkMetadataContent: View",
+      "line": 7,
+      "sha256": "62b27bad20c21046ac63100c3c7776f360ad3e06c8ec66d3570c1c089f6636be"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+      "symbol": "if let image, image.size.width != image.size.height",
+      "line": 14,
+      "sha256": "62b27bad20c21046ac63100c3c7776f360ad3e06c8ec66d3570c1c089f6636be"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaLinkMetadataContent.swift",
+      "symbol": "private func fallbackIcon() -> NSImage?",
+      "line": 32,
+      "sha256": "62b27bad20c21046ac63100c3c7776f360ad3e06c8ec66d3570c1c089f6636be"
+    }
+  ],
+  "visual_partial": [
+    "MainImage.scaledToFit is existing SwiftUI host layout adaptation, not exact original ImageView drawing/layout equivalence.",
+    "Original compact provider/style/fullsize state is documented, not equated to replica compact argument; exact outer constraints/heights remainpartial.",
+    "Title original font further transforms f1ffa18 and URLfontf1ff934 not fully mirrored; typographyparentpartial.",
+    "Original fullsize URLf3189b0 prettifier absent in current Core; usesabsoluteString, explicitpartial.",
+    "No functional regression/UI/running product validation."
+  ],
+  "visual_consumer_status": "Window actual PanelViews canonical guard and new View call confirmed; compact and readOnly paths reuse same linked view.",
+  "bound_at": "2026-10-23T14:41:02.804164+00:00",
+  "icon_layout_correction": "Original f3da848 independently enforces icon42x42 via f1f9e3c; constructor scalingraw3 isproportionallyUpOrDown. Root fixed build43 natural icon toresizable.scaledToFit.frame42 in final44; this is compile/static evidence only. Original outercentering, OS-dependent corners and parentlayout remainpartial.",
+  "compiled_local_generator": {
+    "body": ".local/image-dev23-compiled-link44-arm64.txt",
+    "binding": ".local/image-dev23-compiled-link44-binding.json",
+    "range": [
+      "0x10011b518",
+      "0x10011b8d4"
+    ],
+    "fact": "Actual body calls first item.f37ce0c, literal public.url-name, optional branch then whitespace/newline set and trimming; initial icon/image nil. Same exact original SDK symbols/installname/nonweak/zeroaddend for CharacterSet.whitespacesAndNewlines and StringProtocol.trimmingCharacters.",
+    "app_sha256": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306"
+  }
+}

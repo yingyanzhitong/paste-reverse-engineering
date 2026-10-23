@@ -460,7 +460,6 @@ public final class ClipboardMonitor: NSObject, OriginalPasteboardCaptureDelegate
                                                respectMonitoringPolicy: false) else {
             throw OriginalPasteboardItemCreationError.unsupportedContent
         }
-        if store.preferences.playSounds { NSSound(named: .init("Pop"))?.play() }
         onCapture?(captured)
         return !identifiers.contains(captured)
     }

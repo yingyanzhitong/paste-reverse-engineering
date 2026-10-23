@@ -1,0 +1,353 @@
+{
+  "生成时间": "2026-10-23T14:41:45.252233+00:00",
+  "范围": "现主剪贴板窗口的完整小访问器/焦点回退与有限原生flags；不是整个主窗口/面板验收",
+  "源码": [
+    {
+      "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+      "sha256": "007eb4f293e043dfb9b45d759274fdd9789d5d569ce4d5bfe233d53039250d8e"
+    },
+    {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "sha256": "4bcf7d00baa7a8d907c4ee14cc22a5af62ba71eee6b580ec4b9cd8a3147ea3df"
+    }
+  ],
+  "原证据": {
+    "二进制": {
+      "path": ".local/targets/Paste.arm64",
+      "sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb"
+    },
+    "REA": [
+      {
+        "function": "Paste:0x100077828",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 961,
+        "fragment_sha256": "7c1821fdbd5aea227a891d9f4387755c9b258519904d99c50116d80faeda269f"
+      },
+      {
+        "function": "Paste:0x100077830",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 977,
+        "fragment_sha256": "d9941bcf4d996be3358085073e9f561247464fcc7be6f7d90b2f0ae196769698"
+      },
+      {
+        "function": "Paste:0x100077838",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 993,
+        "fragment_sha256": "3b92fa8726ad12ccb65e4e6560788bea2dd344bd2c57b7b110e7f8b096427cd7"
+      },
+      {
+        "function": "Paste:0x1000778c0",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 1020,
+        "fragment_sha256": "8f621d4c7c1bf37f8623a19253e4f7848a473ee8b64be8bff109a01fc821ec82"
+      },
+      {
+        "function": "Paste:0x10007796c",
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 1049,
+        "fragment_sha256": "c5cf50cce3c445d3718866b91e5a6dc79149948e55681c256e7f6a13cff7b4c5"
+      },
+      {
+        "function": "Paste:0x1000187d0",
+        "path": "decompiled/Paste/part-0010.c",
+        "line": 833,
+        "fragment_sha256": "ea5776b93a6b03cd3a252d8e1304dad4c9b5f11f46be8321594547596f3f01e5"
+      }
+    ],
+    "arm64": [
+      {
+        "path": ".local/window-fast-next-main-key-arm64.txt",
+        "sha256": "d4d84bdee19714e0a5a9a9267a6919ab98243dd141121eac76ca680a11c4463b"
+      },
+      {
+        "path": ".local/window-dev23-first-responder-arm64.txt",
+        "sha256": "26f6be1f789b9e3814faf015e016afa46f1115a72927045cc5b92ee18969145e"
+      },
+      {
+        "path": ".local/window-dev23-main-init-arm64.txt",
+        "sha256": "c0e198bff67b1b62f151f8faf51380f31cb105b31d846e2932e926f3b996b19a"
+      }
+    ]
+  },
+  "有限父修复": {
+    "function": "Paste:0x1000187d0",
+    "contract": "原主windowinit setMovablefalse/setHasShadowfalse。现真实panelinit只补isMovablefalse/hasShadowfalse。原level24=现mainMenu已满足直接复用；default332已满足，未重复改动。",
+    "remaining": "完整MainWindowController/window初始化、mask0x88/defer1、screenplacement、frameautosave、resize252...412、delegate/callback、transitionGeneration/resign suppression仍partial。"
+  },
+  "复用消费边界": "Only ReplicaPanel (main clipboard panel), not ReplicaEditorWindow/ReplicaStackPanel or independent preview windows. Existing showPanel/hidePanel/menu/search first-responder callers reuse override. No extra focus traversal, async callback or payload change.",
+  "未改动": [
+    "未改Panel高度min300/screenheight-80、autosave/gesture/screenplacement/styleMask/defer；这些仍与原不同。",
+    "PanelViews已按完整有限约束链改动态实际bounds，不使用windowHeight=cardHeight假设。",
+    "未运行产品、UI/MCP、功能/单测；仅主智能体统一静态编译。"
+  ],
+  "限制": [
+    "Foundation superclass dispatch is current NSPanel; original whole native class/controller identity remains partial, candidate status only covers specified small override behavior.",
+    "@MainActor/compiler supplies isolation on replacement class; no attempt to recreate original Swift runtime ABI/source-location diagnostic identity.",
+    "Static successful compilation cannot establish target-app focus interactions, mouse/pixel behavior or regression acceptance.",
+    "原MainWindow与副本ReplicaPanel父类均NSPanel已通过original/final44ObjCmetadata核实；focushelper完整合同可保候选，原actorObjCwrapper和整window父不因此升满。"
+  ],
+  "静态审阅状态": {
+    "candidate": 1,
+    "partial": 8,
+    "new_feature_rows": 0,
+    "whole_window_complete": false,
+    "compilation": "passed_final44",
+    "source_frozen": true
+  },
+  "动态高度与卡片几何": {
+    "generated_at": "2026-10-23T14:38:57.946766+00:00",
+    "mode": "完整有限MainView约束→collectionbounds→cardH→sizeclass→Header几何链；Source已接真实动态bounds",
+    "original_functions": [
+      {
+        "function": "Paste:0x100036318",
+        "path": "decompiled/Paste/part-0020.c",
+        "line": 943,
+        "fragment_sha256": "10af828ecba42b42b05a51faf42dfbe7522d7063018ae136fb504d4043c3532f"
+      },
+      {
+        "function": "Paste:0x100036104",
+        "path": "decompiled/Paste/part-0020.c",
+        "line": 839,
+        "fragment_sha256": "05ef968bcf4bb236d9ea84c2c96ccf63b3787306abbf93969ffb9d3ef6c2040d"
+      },
+      {
+        "function": "Paste:0x1000368a4",
+        "path": "decompiled/Paste/part-0020.c",
+        "line": 1118,
+        "fragment_sha256": "4194882a6143f48eec0f488dd87a48d30a36090ed6c653cbaf6ab8f23e9f9e65"
+      },
+      {
+        "function": "Paste:0x1000369fc",
+        "path": "decompiled/Paste/part-0020.c",
+        "line": 1179,
+        "fragment_sha256": "ba55a94b7ecbf09238a46072dd4c77a1ca9ab63e32a8eb674564f2b00eeda7da"
+      },
+      {
+        "function": "Paste:0x1001f9678",
+        "path": "decompiled/Paste/part-0164.c",
+        "line": 1854,
+        "fragment_sha256": "ec6f364973a154fecd619a97bf711c7a392f4ee5bcf552e931626f0695ea2ccd"
+      },
+      {
+        "function": "Paste:0x10006ccf8",
+        "path": "decompiled/Paste/part-0035.c",
+        "line": 5430,
+        "fragment_sha256": "84c1eedeb0593c879626a8930eaf5e694781b7caa3b5b9a88314d05d8289b4c8"
+      },
+      {
+        "function": "Paste:0x10006d0a0",
+        "path": "decompiled/Paste/part-0035.c",
+        "line": 5597,
+        "fragment_sha256": "35c6ae889215683e52ca2a66145d97e1c4223c9b2447d047963042d8d7700c0f"
+      },
+      {
+        "function": "Paste:0x10006dd84",
+        "path": "decompiled/Paste/part-0036.c",
+        "line": 111,
+        "fragment_sha256": "81b694dc88c8cd9dc85382b60de24381f688bec5e7b4283e6da71efd318d7513"
+      },
+      {
+        "function": "Paste:0x10022b18c",
+        "path": "decompiled/Paste/part-0189.c",
+        "line": 971,
+        "fragment_sha256": "c3f6fdaf8de1181e1927aa407f344ecf8c7e9d9ee978819517789ed134315068"
+      },
+      {
+        "function": "Paste:0x1003d47ac",
+        "path": "decompiled/Paste/part-0304.c",
+        "line": 1583,
+        "fragment_sha256": "1a71164352e76673336477287c5bc5fb4a61f8a97dc9bee18f41fb278b5c2164"
+      },
+      {
+        "function": "Paste:0x1003d8588",
+        "path": "decompiled/Paste/part-0306.c",
+        "line": 385,
+        "fragment_sha256": "19112ad7dacd544a2871595e9ec4783a7731daa23416c1b0fffeccf58c4f9e0a"
+      }
+    ],
+    "arm64": [
+      {
+        "path": ".local/window-dev23-mainview-constraints-arm64.txt",
+        "sha256": "1c7ca752e2ee932ce338d74c555cab8dd00686b5cec6bbe13e0614d733ce43d7"
+      },
+      {
+        "path": ".local/window-dev23-mainview-background-arm64.txt",
+        "sha256": "3cf8bb8e3563ef68937105a98e2d0977632f0a9737f2cf149fcd8bb82fd2ab95"
+      },
+      {
+        "path": ".local/window-dev22-main-layout-arm64.txt",
+        "sha256": "034d32005ac056d41864419be84cee2857957eb0444a73d69925da0c8c70be5d"
+      },
+      {
+        "path": ".local/window-dev22-effective-size-arm64.txt",
+        "sha256": "32d1d744b8dcd39f1c3434bac55a9f1d1f6e60108753ca43c66718511d7ef077"
+      },
+      {
+        "path": ".local/window-dev22-main-cell-bind-arm64.txt",
+        "sha256": "3ef1252aa72c3c730f5e73909a80d6b4ecf1b543c8c2190d7a1930088f9a75c5"
+      },
+      {
+        "path": ".local/window-dev21-header-style-arm64.txt",
+        "sha256": "dccc30a1440e69d398203ea13a63715cc2030ecd9313bf1d322dc8dbbc238e6f"
+      }
+    ],
+    "embedding": "f0187d0主窗口setContentView(MainView实例)。MainView f036318将背景作为直接子view、toolbar和collection作为背景contentView子view。f0369fc纵向约束直接跨祖先引用MainView，不把window.frame.height无条件当卡片高度。副本GeometryReader直接读取实际NSHostingView根bounds，保留窗口当前size决定权。",
+    "constraints": [
+      "f0368a4背景与MainView边缘：top0、leading/bottom/trailing新macOS26=8，旧=0；f036104背景cornerRadius新26旧0（材料/Glass渲染仍未等同）。",
+      "f0369fc六组：toolbar.top=MainView.top；toolbar.height=60；toolbar.leading/trailing=背景content.leading/trailing；collection.top=toolbar.bottom；collection.bottom=MainView.bottom-OSInset（该约束priority250，f1f9678 verified setPriority）；collection.leading/trailing=背景content.leading/trailing。",
+      "f06d0a0实际collection配置top8/bottom24/trailing24/gap24，leading=sidecarwidth+24。f22b18c arm64计算cardSide=collection.bounds.height-(top+bottom)，f06ccf8首次布局用bounds.height-32同义。",
+      "稳定且bottompriority250约束可满足时：collectionH=mainViewH-60-OSBottomInset；cardH=collectionH-32=mainViewH-92(旧OS)/mainViewH-100(26+)。MainView332时旧card240/raw1，新card232/raw2。动态不等价window.frameH直接减常数，视图真实bounds才输入。",
+      "cardH<200raw3；[200,240)raw2；[240,280)raw1；>=280raw0。f06dd84从真实SizeClassTransitionManager+0x10读取raw并传ItemCell虚configure+0x208。",
+      "Header raw0/1/2 heights56/52/48，icon84/80/76，trailing+14/labelstrailing-70/-66/-62；raw3通用非fullsizeheight34(旧)/36(26+)、icon20/trailing-8/labelstrailing-30、水平spacing0、headline.semibold/body。"
+    ],
+    "current_source": {
+      "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+      "sha256": "4bcf7d00baa7a8d907c4ee14cc22a5af62ba71eee6b580ec4b9cd8a3147ea3df",
+      "entry": "GeometryReader { geometry in",
+      "consumer": "ReplicaClipboardCard(state: state, item: item, sideLength: cardSide)"
+    },
+    "actual_changes": [
+      "移除固定242scroll/232card/offset11/额外透明24，root无外top8padding，toolbar60，collectiontop8/bottom24/gap24，根bounds变化直接联动卡片正方形。",
+      "原0..3通用sizeclass现真实headerHeight/sourceIconSide/headerLabels消费者；当前原有view状态/selection/previewanchor/textmetadata直接复用。",
+      "link实际分支guardcanonical后调用imageagent独立ReplicaLinkMetadataContent，不重复title/URL/image规则，nil无payload回填。"
+    ],
+    "remaining": [
+      "原panelheightmin252/max412/resizegesture/framesave/screen目标与副本min300/screenheight-80仍不同，没有把高度限制说满足。",
+      "原低priority约束动画/冲突解决与SwiftUImax0保护、sizeclasstransitionManager动画对象仍partial。",
+      "Style3内容特化fullsize：Color/image/link preferredCompactHeaderStyle及图像比例/背景gradient/完全覆盖Header仍partial，未猜imagefullsize。通用非fullsize样式不等于完整所有分支。",
+      "原sidecarwidth对leading的动态偏移未实现，现collectionleading24；素材blur/Glass/background/native约束对象及文字基线仍partial。"
+    ],
+    "validation": {
+      "compilation": "passed_final44",
+      "source_frozen": true,
+      "product_tests_ui_mcp": false,
+      "new_feature_rows": 0
+    },
+    "compilation_review": {
+      "parent_build": "gap-build44",
+      "result": "passed",
+      "elapsed_seconds": 9.87,
+      "compiler_log_elapsed_seconds": 9.08,
+      "stable_input_count": 151,
+      "input_sha_before_after_equal": true,
+      "kind": "static_compilation_only",
+      "functional_regression_executed": false,
+      "product_executed": false,
+      "build_log": ".local/gap-build-44.log",
+      "build_log_sha256": "96aba11958a4826822f5363eeab4c6c13036d3207cfa1982ed6a41a5b0945e58",
+      "source_manifest_file": ".local/gap-build-complete.json",
+      "source_manifest_sha256": "36207d2c37131b167240a3843f2627d9fbdefad6fe01f74592365e8166c6ae13",
+      "compiled_sha256": {
+        "replica/.build/release/PasteReplica": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+        "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+        "replica/.build/release/paste-replica-mcp": "99a8736532ab15a36b386a57126435ab3bb85c902bd51d15b58f79d30a1951c2"
+      },
+      "parent_partial_status_preserved": true
+    }
+  },
+  "小行为逐项状态": [
+    {
+      "function": "Paste:0x100077828",
+      "source_symbol": "override var canBecomeMain: Bool { true }",
+      "contract": "原wrapper尾调用f077838(line27)，其完整body MainActor isolation guard后返回1；现真实@MainActor ReplicaPanel原生override返回true。",
+      "state": "partial",
+      "remaining": "原f077838MainActor.isCurrentExecutor/reportUnexpectedExecutor副作用缺失；源码@MainActor不等于实际ObjC入口有检查。"
+    },
+    {
+      "function": "Paste:0x100077830",
+      "source_symbol": "override var canBecomeKey: Bool { true }",
+      "contract": "原wrapper尾调用同f077838(line31)，返回1。当前该override原已存在且满足，直接复用，不重复改写/抽helper。",
+      "state": "partial",
+      "remaining": "原f077838MainActor.isCurrentExecutor/reportUnexpectedExecutor副作用缺失；源码@MainActor不等于实际ObjC入口有检查。"
+    },
+    {
+      "function": "Paste:0x1000778c0",
+      "source_symbol": "override func makeFirstResponder(_ responder: NSResponder?) -> Bool",
+      "contract": "nonnil直接super.makeFirstResponder同对象；nil先initialFirstResponder，nil再contentView，允许两者nil，再super且原样返回BOOL。现同一个override覆盖show/hide/search等已有nil调用。",
+      "state": "candidate"
+    }
+  ],
+  "编译实际入口审阅": {
+    "build": "final44",
+    "getters": {
+      "key_entry": "0x1000aa17c..0x1000aa184",
+      "main_entry": "0x1000aa184..0x1000aa18c",
+      "each_complete_instructions": "movw0,#1;ret",
+      "state": "partial",
+      "remaining": "原f077838MainActor.isCurrentExecutor/reportUnexpectedExecutor副作用缺失；源码@MainActor不等于实际ObjC入口有检查。"
+    },
+    "focus": {
+      "entry": "0x1000aa18c..0x1000aa260",
+      "state": "candidate",
+      "original_function": "Paste:0x1000778c0",
+      "full_branches": "swift_getObjectType;non-nil direct;nil initialFirstResponder thencontentView;objc_msgSendSuper2;balancedARC;unmodifiedBOOLreturn",
+      "superclass_proof": {
+        "original_class": "MainWindow objcclassVM0x100f91838",
+        "original_parent": "_OBJC_CLASS_$_NSPanel",
+        "compiled_class": "ReplicaPanel",
+        "compiled_parent": "_OBJC_CLASS_$_NSPanel"
+      },
+      "not_claimed": "原ObjCMainActorwrapper f07796c未计完整，完整window/controller仍partial。"
+    },
+    "artifacts": [
+      {
+        "path": ".local/window-dev23-original-objc-metadata.txt",
+        "sha256": "4e7d2877eb26e97812a189d4db7b164d5d7c456d8b1850714c914be1ccaf7728"
+      },
+      {
+        "path": ".local/window-dev23-build44-objc-metadata.txt",
+        "sha256": "76b017d98e265278c9924842d23aae22fba3c8054254d5689db66a34c17a6a58"
+      },
+      {
+        "path": ".local/window-dev23-build44-indirect-symbols.txt",
+        "sha256": "972ef9e5c7add50edf50dd0e0ad0ec90d28ecd7616f6eb530ee70fa6c43f99fb"
+      },
+      {
+        "path": ".local/window-dev23-build44-panel-entry-arm64.txt",
+        "sha256": "b7abcb105a8effc603ab95f03b7f6265b6fb0dc2f9f71a805da758f7461ddff2"
+      }
+    ],
+    "compilation_review": {
+      "parent_build": "gap-build44",
+      "result": "passed",
+      "elapsed_seconds": 9.87,
+      "compiler_log_elapsed_seconds": 9.08,
+      "stable_input_count": 151,
+      "input_sha_before_after_equal": true,
+      "kind": "static_compilation_only",
+      "functional_regression_executed": false,
+      "product_executed": false,
+      "build_log": ".local/gap-build-44.log",
+      "build_log_sha256": "96aba11958a4826822f5363eeab4c6c13036d3207cfa1982ed6a41a5b0945e58",
+      "source_manifest_file": ".local/gap-build-complete.json",
+      "source_manifest_sha256": "36207d2c37131b167240a3843f2627d9fbdefad6fe01f74592365e8166c6ae13",
+      "compiled_sha256": {
+        "replica/.build/release/PasteReplica": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+        "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+        "replica/.build/release/paste-replica-mcp": "99a8736532ab15a36b386a57126435ab3bb85c902bd51d15b58f79d30a1951c2"
+      },
+      "parent_partial_status_preserved": true
+    }
+  },
+  "验证": {
+    "parent_build": "gap-build44",
+    "result": "passed",
+    "elapsed_seconds": 9.87,
+    "compiler_log_elapsed_seconds": 9.08,
+    "stable_input_count": 151,
+    "input_sha_before_after_equal": true,
+    "kind": "static_compilation_only",
+    "functional_regression_executed": false,
+    "product_executed": false,
+    "build_log": ".local/gap-build-44.log",
+    "build_log_sha256": "96aba11958a4826822f5363eeab4c6c13036d3207cfa1982ed6a41a5b0945e58",
+    "source_manifest_file": ".local/gap-build-complete.json",
+    "source_manifest_sha256": "36207d2c37131b167240a3843f2627d9fbdefad6fe01f74592365e8166c6ae13",
+    "compiled_sha256": {
+      "replica/.build/release/PasteReplica": "a95fe513b4390bcd9b50fb7a55c565adb6a2c056c53cac071c4430be61e86306",
+      "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+      "replica/.build/release/paste-replica-mcp": "99a8736532ab15a36b386a57126435ab3bb85c902bd51d15b58f79d30a1951c2"
+    },
+    "parent_partial_status_preserved": true
+  }
+}

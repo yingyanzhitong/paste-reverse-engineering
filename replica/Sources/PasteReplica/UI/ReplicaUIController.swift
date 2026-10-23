@@ -232,7 +232,10 @@ final class ReplicaUIState: ObservableObject {
 private final class ReplicaPanel: NSPanel {
     var keyHandler: ((NSEvent) -> Bool)?
     override var canBecomeKey: Bool { true }
-    override var canBecomeMain: Bool { false }
+    override var canBecomeMain: Bool { true }
+    override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
+        super.makeFirstResponder(responder ?? initialFirstResponder ?? contentView)
+    }
     override func sendEvent(_ event: NSEvent) {
         if event.type == .keyDown, keyHandler?(event) == true { return }
         super.sendEvent(event)
@@ -293,7 +296,8 @@ final class ReplicaUIController {
         panel.title = "Paste Replica"
         panel.isOpaque = false
         panel.backgroundColor = .clear
-        panel.hasShadow = true
+        panel.hasShadow = false
+        panel.isMovable = false
         panel.isFloatingPanel = true
         panel.level = .mainMenu
         panel.hidesOnDeactivate = false

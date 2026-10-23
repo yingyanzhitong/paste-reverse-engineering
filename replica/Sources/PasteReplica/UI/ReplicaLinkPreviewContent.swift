@@ -104,9 +104,9 @@ final class ReplicaLinkPreviewContent: NSView, OriginalPreviewEditableContent, N
     }
 
     private static func itemURL(_ item: ClipboardItem) -> URL? {
-        if let items = try? ClipboardStore.originalPasteboardItems(from: item.payloads),
-           let url = items.first?.f_10037ce0c() { return url }
-        return item.plainText.flatMap(URL.init(string:))
+        // The original VM requires canonical link metadata and traps if it is absent.
+        // This optional UI adapter leaves missing metadata empty rather than rebuilding it from payloads.
+        item.decodedLinkPreviewMetadata?.url
     }
 
     private func updateMetadata(_ url: URL?) {
