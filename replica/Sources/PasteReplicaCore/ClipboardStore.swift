@@ -213,27 +213,16 @@ public final class ClipboardStore: ObservableObject {
             if state.items[i].pinboardIDs.isEmpty { state.items[i].pinboardOrder = nil }
         }
         state.items.sort { $0.updatedAt == $1.updatedAt ? $0.id.uuidString < $1.id.uuidString : $0.updatedAt > $1.updatedAt }
-        var count = 0
-        var removed: Set<UUID> = []
-        if state.preferences.historyRetentionDays > 0 {
-            let cutoff = Date().addingTimeInterval(-Double(state.preferences.historyRetentionDays) * 86_400)
-            for item in state.items where item.isInHistory && item.pinboardIDs.isEmpty && item.createdAt < cutoff {
-                removed.insert(item.id)
-            }
-        }
-        for i in state.items.indices where !state.items[i].isDeleted && state.items[i].isInHistory {
-            if removed.contains(state.items[i].id) { continue }
-            count += 1
-            if count > max(1, state.preferences.historyLimit) {
-                if state.items[i].pinboardIDs.isEmpty { removed.insert(state.items[i].id) }
-                else { state.items[i].isInHistory = false }
-            }
-        }
-        state.items.removeAll { removed.contains($0.id) }
         state.pinboards.sort { $0.sortOrder == $1.sortOrder ? $0.id.uuidString < $1.id.uuidString : $0.sortOrder < $1.sortOrder }
     }
 
-    private func mutate<T>(_ change: (inout StoreState) throws -> T) throws -> T {
+    private func expireHistory(_ state: inout StoreState) {
+        guard state.preferences.historyRetentionDays > 0 else { return }
+        let cutoff = Date().addingTimeInterval(-Double(state.preferences.historyRetentionDays) * 86_400)
+        state.items.removeAll { $0.isInHistory && $0.pinboardIDs.isEmpty && $0.createdAt < cutoff }
+    }
+
+    private func mutate<T>(historyAction: Bool = false, _ change: (inout StoreState) throws -> T) throws -> T {
         let local = current
         try validate(local)
         return try withLock {
@@ -242,6 +231,9 @@ public final class ClipboardStore: ObservableObject {
             let result = try change(&state)
             try validate(state)
             normalize(&state)
+            if historyAction || state.preferences.historyRetentionDays != remote.preferences.historyRetentionDays {
+                expireHistory(&state)
+            }
             if state != remote || !FileManager.default.fileExists(atPath: stateURL.path) {
                 let encoder = JSONEncoder()
                 encoder.outputFormatting = [.sortedKeys]
@@ -255,7 +247,7 @@ public final class ClipboardStore: ObservableObject {
 
     /// Restore promotes the selected content in reverse order, as the original history repository does.
     func recordRestoredItems(ids: [UUID]) throws {
-        try mutate { state in
+        try mutate(historyAction: true) { state in
             for id in ids.reversed() {
                 guard let index = state.items.firstIndex(where: { $0.id == id && !$0.isDeleted }) else {
                     throw ClipboardStoreError.itemNotFound
@@ -323,7 +315,7 @@ public final class ClipboardStore: ObservableObject {
     public func add(_ item: ClipboardItem) throws -> UUID {
         let item = Self.withPreviewMetadata(item, binaryPropertyList: preferences.useBinaryPlist, preferQuickLookThumbnails: preferences.fileQuickLookThumbnailsEnabled, generateMissingContentPreview: true)
         let checksum = try? Self.knownPasteboardChecksum(from: item.payloads)
-        return try mutate { state in
+        return try mutate(historyAction: item.isInHistory) { state in
             if let i = state.items.firstIndex(where: { previous in
                 if let checksum, let previousChecksum = try? Self.knownPasteboardChecksum(from: previous.payloads) {
                     return checksum == previousChecksum
@@ -346,7 +338,7 @@ public final class ClipboardStore: ObservableObject {
                 state.items[i].sourceName = item.sourceName
                 state.items[i].sourceBundleID = item.sourceBundleID
                 state.items[i].sourceDevice = item.sourceDevice
-                if !state.items[i].isInHistory && item.isInHistory { state.items[i].createdAt = item.createdAt }
+                if item.isInHistory { state.items[i].createdAt = item.createdAt }
                 state.items[i].isInHistory = state.items[i].isInHistory || item.isInHistory
                 state.items[i].isDeleted = false
                 if state.items[i].pinboardIDs == item.pinboardIDs, let order = item.pinboardOrder {

@@ -1,6 +1,7 @@
 import AppKit
 import Combine
 import CryptoKit
+import QuartzCore
 import SwiftUI
 import UniformTypeIdentifiers
 import PasteReplicaCore
@@ -234,8 +235,12 @@ final class ReplicaUIState: ObservableObject {
 }
 
 @MainActor
-private final class ReplicaPanel: NSPanel {
+private final class ReplicaPanel: NSPanel, NSWindowDelegate {
     var keyHandler: ((NSEvent) -> Bool)?
+    var didResignKey: (() -> Void)?
+    var closeRequested: (() -> Void)?
+    func windowDidResignKey(_ notification: Notification) { didResignKey?() }
+    override func performClose(_ sender: Any?) { closeRequested?() }
     override var canBecomeKey: Bool { true }
     override var canBecomeMain: Bool { true }
     override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
@@ -279,6 +284,10 @@ final class ReplicaUIController {
     private let sharingPolicy: WindowSharingPolicy
     private let panelFrameAutosaveName: String
     private var isPanelResizing = false
+    private var panelTransitionGeneration = 0
+    private var isPanelClosing = false
+    private var pendingResignKeyCloseSuppression = false
+    private weak var originalPanelScreen: NSScreen?
     private var settingsWindow: NSWindow?
     private var closedSearchTimer: Timer?
     private var closedCreateObserver: NSObjectProtocol?
@@ -314,7 +323,15 @@ final class ReplicaUIController {
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
         panel.isReleasedWhenClosed = false
         sharingPolicy.apply(to: panel)
-        panel.contentView = NSHostingView(rootView: ReplicaPanelView(state: state))
+        let content = ReplicaPanelContentView(frame: NSRect(origin: .zero, size: panel.frame.size))
+        let hosting = NSHostingView(rootView: ReplicaPanelView(state: state))
+        hosting.frame = content.bounds
+        hosting.autoresizingMask = [.width, .height]
+        content.addSubview(hosting)
+        panel.contentView = content
+        panel.delegate = panel
+        panel.didResignKey = { [weak self] in self?.panelDidResignKey() }
+        panel.closeRequested = { [weak self] in self?.hidePanel() }
         restorePanelFrame()
         installPanelResizeHandle()
         state.controller = self
@@ -330,19 +347,74 @@ final class ReplicaUIController {
     }
 
     func showPanel() {
-        cancelClosedState()
-        if !panel.isVisible { panel.makeFirstResponder(nil) }
-        state.normalizeSelection()
+        guard NSApp.modalWindow == nil else {
+            NSApp.activate(ignoringOtherApps: true)
+            return
+        }
+        guard let screen = NSScreen.main, let content = panel.contentView else { return }
+        panelTransitionGeneration += 1
+        let generation = panelTransitionGeneration
+        isPanelClosing = false
+        panel.backgroundColor = .clear
         positionPanel()
+        panel.makeFirstResponder(nil)
+        cancelClosedState()
+        state.normalizeSelection()
         panel.makeKeyAndOrderFront(nil)
+        originalPanelScreen = screen
+        content.superview?.clipsToBounds = true
+        content.frame = NSRect(origin: NSPoint(x: 0, y: -panel.frame.height), size: panel.frame.size)
         NSApp.activate(ignoringOtherApps: true)
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.15
+            context.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.8, 0.2, 1)
+            context.allowsImplicitAnimation = true
+            content.animator().frame = NSRect(origin: .zero, size: content.frame.size)
+        } completionHandler: { [weak self, weak content] in
+            MainActor.assumeIsolated {
+                guard let self, let content, generation == self.panelTransitionGeneration else { return }
+                if #available(macOS 26, *) {} else { self.panel.backgroundColor = .windowBackgroundColor }
+                content.superview?.clipsToBounds = true
+            }
+        }
+    }
+
+    private func panelDidResignKey() {
+        if pendingResignKeyCloseSuppression {
+            pendingResignKeyCloseSuppression = false
+            return
+        }
+        guard panel.sheets.isEmpty, NSApp.modalWindow == nil else { return }
+        hidePanel()
     }
 
     func hidePanel() {
-        guard panel.isVisible else { return }
+        guard panel.isVisible, !isPanelClosing, let content = panel.contentView else { return }
+        panelTransitionGeneration += 1
+        let generation = panelTransitionGeneration
+        if #available(macOS 26, *) {} else { panel.backgroundColor = .clear }
         panel.makeFirstResponder(nil)
+        beginClosedState()
+        isPanelClosing = true
         NotificationCenter.default.post(name: OriginalPreviewPopover.mainWindowWillCloseNotification, object: nil)
-        panel.orderOut(nil)
+        content.superview?.clipsToBounds = false
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.2
+            context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            context.allowsImplicitAnimation = true
+            content.animator().frame = NSRect(origin: NSPoint(x: 0, y: -content.frame.height), size: content.frame.size)
+        } completionHandler: { [weak self, weak content] in
+            MainActor.assumeIsolated {
+                guard let self, let content, generation == self.panelTransitionGeneration else { return }
+                self.panel.close()
+                self.originalPanelScreen = nil
+                self.isPanelClosing = false
+                content.superview?.clipsToBounds = true
+            }
+        }
+    }
+
+    private func beginClosedState() {
         cancelClosedState()
         closedCreateObserver = NotificationCenter.default.addObserver(
             forName: ClipboardMonitor.didCreateItemNotification, object: nil, queue: .main) { [weak self] _ in
@@ -376,7 +448,7 @@ final class ReplicaUIController {
         closedRestoreObservation?.cancel()
         closedRestoreObservation = nil
     }
-    func togglePanel() { panel.isVisible ? hidePanel() : showPanel() }
+    func togglePanel() { panel.isVisible && !isPanelClosing ? hidePanel() : showPanel() }
     func focusSearch() { showPanel(); state.searchVisible = true; state.searchFocus = UUID() }
     func showError(message: String) {
         presentError(NSError(domain: "PasteReplica", code: 1,
@@ -450,6 +522,10 @@ final class ReplicaUIController {
     }
 
     func clearHistory() {
+        guard store.items.contains(where: { $0.isInHistory && !$0.isDeleted }) else {
+            state.perform { try store.eraseHistory() }
+            return
+        }
         let alert = NSAlert()
         sharingPolicy.apply(to: alert.window)
         alert.messageText = "您确定要删除剪贴板历史记录吗？"

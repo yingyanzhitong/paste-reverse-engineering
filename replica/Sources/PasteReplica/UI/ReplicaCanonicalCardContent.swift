@@ -16,7 +16,7 @@ struct ReplicaCanonicalCardContent: View {
                     ZStack(alignment: .bottom) {
                         ReplicaCardCheckerboard()
                         if let image = NSImage(data: metadata.previewData) {
-                            Image(nsImage: image).resizable().scaledToFit()
+                            ReplicaAdaptiveScalingImage(image: image)
                         }
                         if sizeClass != 3 {
                             Text(String(format: "%d × %d", Int(metadata.width), Int(metadata.height)))
@@ -47,9 +47,7 @@ struct ReplicaCanonicalCardContent: View {
                             } else {
                                 Color.clear.frame(maxWidth: .infinity, maxHeight: .infinity)
                             }
-                            Text(metadata.paths[0])
-                                .truncationMode(.head)
-                                .lineLimit(1)
+                            ReplicaHeadTruncatedPath(path: metadata.paths[0])
                         } else {
                             if let image = NSImage(named: NSImage.multipleDocumentsName) {
                                 Image(nsImage: image).resizable().scaledToFit()

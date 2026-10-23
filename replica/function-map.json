@@ -28750,10 +28750,10 @@
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
-          "symbol": "for item in state.items where item.isInHistory && item.pinboardIDs.isEmpty && item.createdAt < cutoff"
+          "symbol": "private func expireHistory(_ state: inout StoreState)"
         }
       ],
-      "remaining": "本轮只修确证age谓词，原historyattributes全部case/清理链及当前额外historyLimit count策略未证明全等，父partial。",
+      "remaining": "年龄谓词及已证采集/恢复/策略变更入口已接入；原CoreData错误、Undo及全部全局触发尚未等价，保留partial。",
       "compiled_review": "reports/replica/pinboard-ownership-static-audit.json"
     },
     "Paste:0x1000775a8": {
@@ -28920,21 +28920,21 @@
     },
     "Paste:0x1000192b0": {
       "state": "partial",
-      "contract": "原NSScreen.main原点/全宽定位、高度不强加300/screenH-80；完整show/transition/screenchanged仍partial。",
+      "contract": "Show increments generation, cancels closed state, moves complete content from negative height to zero using original duration and timing.",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
-          "symbol": "private func positionPanel()"
+          "symbol": "func showPanel()"
         }
       ],
-      "implementation_origin": "one_visible_height_resize_group_existing_consumer_correction",
+      "implementation_origin": "one_existing_main_window_transition_group",
       "original_evidence": {
         "path": "decompiled/Paste/part-0010.c",
         "line": 1394,
         "fragment_sha256": "a716eba438f0127cd8b51f96bc6c8608d11a12e2ed0ffb7924f9c90fe958a357"
       },
-      "review": "Final45 passed,153 source inputs unchanged. Complete finite boundaries/current Objective-C entries and live/end/reset machine code reviewed. Zero new complete claims; no product or functional tests.",
-      "remaining": "原完整actor/cursor/对象身份/positiontransition和独立namespaced持久层/JSON兼容/erroridentity仍partial。"
+      "review": "Unified parent build47 passed; frozen inputs verified. Concentrated static Source/original evidence review; no runtime tests; parent remains partial.",
+      "remaining": "Original MainView/NSWindowController identity, Published visibility/coordinator callbacks, actor diagnostics, native material and full dynamic event behavior remain partial. Handoff setter excluded."
     },
     "Paste:0x1003189b0": {
       "state": "migrated",
@@ -29178,6 +29178,104 @@
       "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
       "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
       "migration_evidence": "reports/function-migration/Paste-0x100bf6d74.json"
+    },
+    "Paste:0x100018c84": {
+      "state": "partial",
+      "contract": "Native self-delegate resign callback consumes one-shot flag before sheets/global-modal guards and unified close.",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "private func panelDidResignKey()"
+        }
+      ],
+      "implementation_origin": "one_existing_main_window_transition_group",
+      "original_evidence": {
+        "path": "decompiled/Paste/part-0010.c",
+        "line": 985,
+        "fragment_sha256": "9ee23762f230a0298b2195bee1332ff0901a9496cb400b5c893d7f195884a5e4"
+      },
+      "review": "Unified parent build47 passed; frozen inputs verified. Concentrated static Source/original evidence review; no runtime tests; parent remains partial.",
+      "remaining": "Original MainView/NSWindowController identity, Published visibility/coordinator callbacks, actor diagnostics, native material and full dynamic event behavior remain partial. Handoff setter excluded."
+    },
+    "Paste:0x100019a84": {
+      "state": "partial",
+      "contract": "Guard visible/nonclosing; generation, clear background, first responder, closed subscriptions, closing flag, notification then original content animation.",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "func hidePanel()"
+        }
+      ],
+      "implementation_origin": "one_existing_main_window_transition_group",
+      "original_evidence": {
+        "path": "decompiled/Paste/part-0010.c",
+        "line": 1672,
+        "fragment_sha256": "c1617051b9bf3354c65691239c388000c4f620a22cade7a079258bb36209c37e"
+      },
+      "review": "Unified parent build47 passed; frozen inputs verified. Concentrated static Source/original evidence review; no runtime tests; parent remains partial.",
+      "remaining": "Original MainView/NSWindowController identity, Published visibility/coordinator callbacks, actor diagnostics, native material and full dynamic event behavior remain partial. Handoff setter excluded."
+    },
+    "Paste:0x100019e2c": {
+      "state": "partial",
+      "contract": "Only matching-generation completion closes window and clears original screen/closing; stale completion does nothing.",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "self.panel.close()"
+        }
+      ],
+      "implementation_origin": "one_existing_main_window_transition_group",
+      "original_evidence": {
+        "path": "decompiled/Paste/part-0010.c",
+        "line": 1797,
+        "fragment_sha256": "0af50462decb02f6ed6cc2bb4916c3f13dcbed93b96aaf251d80e65250628e6d"
+      },
+      "review": "Unified parent build47 passed; frozen inputs verified. Concentrated static Source/original evidence review; no runtime tests; parent remains partial.",
+      "remaining": "Original MainView/NSWindowController identity, Published visibility/coordinator callbacks, actor diagnostics, native material and full dynamic event behavior remain partial. Handoff setter excluded."
+    },
+    "Paste:0x100077a38": {
+      "state": "partial",
+      "contract": "Native performClose enters the same weak controller close callback instead of immediate orderOut.",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "override func performClose(_ sender: Any?)"
+        }
+      ],
+      "implementation_origin": "one_existing_main_window_transition_group",
+      "original_evidence": {
+        "path": "decompiled/Paste/part-0039.c",
+        "line": 1082,
+        "fragment_sha256": "5b3d90a8d2a854161770b76b673776d470b1f245b4cd4a703fd8fb4492f74213"
+      },
+      "review": "Unified parent build47 passed; frozen inputs verified. Concentrated static Source/original evidence review; no runtime tests; parent remains partial.",
+      "remaining": "Original MainView/NSWindowController identity, Published visibility/coordinator callbacks, actor diagnostics, native material and full dynamic event behavior remain partial. Handoff setter excluded."
+    },
+    "Paste:0x100bf90cc": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf90cc",
+        "symbol": "_$sSo8NSStringC10FoundationE13stringLiteralABs12StaticStringV_tcfC"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf90cc.json"
+    },
+    "Paste:0x100bfaef0": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bfaef0",
+        "symbol": "_CGRectIntegral"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bfaef0.json"
     }
   }
 }
