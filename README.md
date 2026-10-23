@@ -15,6 +15,8 @@ open 'replica/dist/Paste Replica.app'
 
 按用户要求，复刻免费使用，不依赖原厂账号，不实现联网同步和付费解锁。现改为[逐函数实现与验证](replica/FUNCTION_IMPLEMENTATION.md)：[完整地址台账](reports/function-implementation/summary.json)覆盖 81,134 个本地地址，单独记录待处理、部分实现、已有实现、双端等价验证及有理由的范围排除。现有模块或反编译成功不自动计为逐函数完成。
 
+目前九个函数通过原版机器码直接差分的 168 个用例，81,125 个地址仍待处理。测试脚本、ABI 恢复说明与逐地址两端结果均已保存；这仍不是全函数或完整一比一验收通过。
+
 ## REA 静态研究
 
 使用 [REA](https://github.com/morluto/rea) 6.7.0 和 Ghidra 12.1.4，对本机安装的 Paste 6.6.6（29766850）进行 arm64 静态分析和批量反编译。

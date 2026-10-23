@@ -51,6 +51,14 @@ guard board.writeObjects([item]) else { exit(1) }
                                        stdout=log, stderr=log)
             try:
                 wait_for(lambda: state.exists(), process)
+                # Store creation precedes UI/menu setup and monitor construction. Confirm
+                # actual timer activity instead of racing the monitor's initial changeCount.
+                def monitor_ready():
+                    if json.loads(state.read_text())["items"]:
+                        return True
+                    subprocess.run([str(writer), board, "Synthetic monitor warm-up " + str(uuid.uuid4())], check=True)
+                    return False
+                wait_for(monitor_ready, process)
                 text = "Timer acceptance 中文 😀 " + str(uuid.uuid4())
                 subprocess.run([str(writer), board, text], check=True)
                 def captured():

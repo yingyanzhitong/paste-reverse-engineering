@@ -2,7 +2,7 @@
   "reference": "Paste 6.6.6 (29766850), macOS arm64",
   "environment": "macOS 26.2, Swift 6.0.3 Command Line Tools",
   "date": "2026-10-23",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "full_one_to_one_acceptance": false,
   "core": {
     "failure_count": 0,
@@ -11,127 +11,127 @@
     "test_count": 21,
     "tests": [
       {
-        "duration_seconds": 0.005905032157897949,
+        "duration_seconds": 0.019389986991882324,
         "failures": [],
         "name": "unicode-search-deduplication",
         "passed": true
       },
       {
-        "duration_seconds": 0.008412003517150879,
+        "duration_seconds": 0.010747909545898438,
         "failures": [],
         "name": "pinboards-edit-trash-restore",
         "passed": true
       },
       {
-        "duration_seconds": 0.0030690431594848633,
+        "duration_seconds": 0.004163980484008789,
         "failures": [],
         "name": "history-limit-preserves-pins",
         "passed": true
       },
       {
-        "duration_seconds": 0.006764054298400879,
+        "duration_seconds": 0.010709047317504883,
         "failures": [],
         "name": "stale-store-three-way-merge",
         "passed": true
       },
       {
-        "duration_seconds": 0.005420088768005371,
+        "duration_seconds": 0.009180903434753418,
         "failures": [],
         "name": "archive-corruption-safety",
         "passed": true
       },
       {
-        "duration_seconds": 0.038691043853759766,
+        "duration_seconds": 0.060778021812438965,
         "failures": [],
         "name": "rtf-html-plain-text-write-loop",
         "passed": true
       },
       {
-        "duration_seconds": 0.0033379793167114258,
+        "duration_seconds": 0.007031083106994629,
         "failures": [],
         "name": "rich-text-edit-format-reopen",
         "passed": true
       },
       {
-        "duration_seconds": 0.001771092414855957,
+        "duration_seconds": 0.004499077796936035,
         "failures": [],
         "name": "rtf-only-text-extraction",
         "passed": true
       },
       {
-        "duration_seconds": 0.002519965171813965,
+        "duration_seconds": 0.004472970962524414,
         "failures": [],
         "name": "multiple-file-urls",
         "passed": true
       },
       {
-        "duration_seconds": 0.1083909273147583,
+        "duration_seconds": 0.13036000728607178,
         "failures": [],
         "name": "real-large-png-binary-roundtrip",
         "passed": true
       },
       {
-        "duration_seconds": 0.005357027053833008,
+        "duration_seconds": 0.013350963592529297,
         "failures": [],
         "name": "privacy-pause-exclusion",
         "passed": true
       },
       {
-        "duration_seconds": 0.0048580169677734375,
+        "duration_seconds": 0.006070971488952637,
         "failures": [],
         "name": "history-retention-age-boundaries",
         "passed": true
       },
       {
-        "duration_seconds": 0.016466975212097168,
+        "duration_seconds": 0.02630901336669922,
         "failures": [],
         "name": "refresh-pending-edits-no-op-io",
         "passed": true
       },
       {
-        "duration_seconds": 0.06589198112487793,
+        "duration_seconds": 0.10395300388336182,
         "failures": [],
         "name": "two-independent-process-writers",
         "passed": true
       },
       {
-        "duration_seconds": 0.008707046508789062,
+        "duration_seconds": 0.014487981796264648,
         "failures": [],
         "name": "multiple-selection-raw-and-text-order",
         "passed": true
       },
       {
-        "duration_seconds": 0.0059239864349365234,
+        "duration_seconds": 0.012207984924316406,
         "failures": [],
         "name": "pinboard-reorder-duplicate-removal",
         "passed": true
       },
       {
-        "duration_seconds": 0.2227489948272705,
+        "duration_seconds": 0.4692620038986206,
         "failures": [],
         "name": "local-vision-ocr-real-pixels",
         "passed": true
       },
       {
-        "duration_seconds": 0.0020560026168823242,
+        "duration_seconds": 0.003556966781616211,
         "failures": [],
         "name": "transient-opt-out-loop-guard",
         "passed": true
       },
       {
-        "duration_seconds": 0.006148099899291992,
+        "duration_seconds": 0.006404995918273926,
         "failures": [],
         "name": "history-erasure-queue-persistence-merge",
         "passed": true
       },
       {
-        "duration_seconds": 1.2040138244628906e-05,
+        "duration_seconds": 0.030218005180358887,
         "failures": [],
         "name": "address-stack-array-window-contracts",
         "passed": true
       },
       {
-        "duration_seconds": 0.08980691432952881,
+        "duration_seconds": 0.09534895420074463,
         "failures": [],
         "name": "address-ocr-preparation-word-geometry",
         "passed": true
@@ -157,8 +157,8 @@
     "check_groups": 12,
     "scope": "Replica MCP executable end-to-end; fixture-only. Not an original-vs-replica semantic equivalence claim.",
     "system_clipboard_used": false,
-    "binary_sha256": "e9c360822e99e2b8350f60eb738e2e6e87908bf497e6590543666e4707a5024e",
-    "elapsed_seconds": 1.03
+    "binary_sha256": "9724ee66f351e884c0283846f37bf7c6ec2c1ddf11435ffc0969223558b0741c",
+    "elapsed_seconds": 1.016
   },
   "hotkey": {
     "callbacks": {
@@ -235,12 +235,12 @@
   "historical_visual_note": "Measurement predates current UI; not current-version pixel acceptance.",
   "bundle": {
     "identifier": "com.yingyanzhitong.paste-replica",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "signature": "ad-hoc; codesign --verify --deep --strict passed; not notarized",
     "binaries_sha256": {
-      "PasteReplica": "b951149cc9fc27c1c621ec371b5a9d6976192514d7180114b469e186cfe78f0b",
-      "paste-replica-mcp": "e9c360822e99e2b8350f60eb738e2e6e87908bf497e6590543666e4707a5024e",
-      "PasteReplicaHelper": "0a749e978c8d7499c64d389c130b21df7fccf77bcb85d8c646390c0524a31946"
+      "PasteReplica": "932148085dc0d1cc69cd6e08dc57c0ffb6b49af2880c00ca8f9c3a98855fd1a2",
+      "paste-replica-mcp": "9724ee66f351e884c0283846f37bf7c6ec2c1ddf11435ffc0969223558b0741c",
+      "PasteReplicaHelper": "706271d2d136a20f584a3f5aa3102186e513c3014cd8c12096cc07fbf6c21aa5"
     }
   },
   "unresolved_local": [
@@ -248,9 +248,9 @@
     "辅助功能授权后的跨应用粘贴/Stack全流程",
     "SMAppService production registration remains unverified; isolated helper crash/quit lifecycle passes",
     "原版私有归档格式兼容",
-    "文件promise及不同接收App的拖放与粘贴",
+    "不同接收App的拖放与粘贴；不能从单一NSItemProvider路径推断所有文件格式分支",
     "来源应用图标颜色后备算法未证明与原版相同",
-    "OCR word geometry now persists; original text-selection UI and all String.Index paths remain unverified",
+    "Original OCR text-selection UI and untested languages/error branches remain unverified; listed token and preprocessing cases pass direct original comparison",
     "Original history capacity and OCR caller maximum-dimension defaults remain unconfirmed"
   ],
   "excluded_network_features": [
@@ -296,13 +296,32 @@
     "total_functions": 81134,
     "states": {
       "excluded_by_scope": 0,
-      "implemented": 3,
-      "partial": 3,
-      "pending": 81128,
-      "verified": 0
+      "implemented": 0,
+      "partial": 0,
+      "pending": 81125,
+      "verified": 9
     },
     "full_function_equivalence": false,
     "summary": "reports/function-implementation/summary.json",
-    "contracts": "reports/replica/function-contracts.json"
+    "contracts": "reports/replica/function-contracts.json",
+    "equivalence_reports": "reports/function-equivalence/"
+  },
+  "original_function_differential": {
+    "passed": true,
+    "functions": 9,
+    "cases": 168,
+    "original_text_sha256": "0ab1b64642a68d0829b929d2483e855022c14e7713ea35683e0f898a49db5c12",
+    "scope": "Nine recovered function contracts, finite synthetic cases; exact original machine-code execution. Not all inputs or the whole app."
+  },
+  "function_ledger_validation": {
+    "passed": true,
+    "test_count": 14
+  },
+  "regression_resolution": {
+    "test": "app-monitor",
+    "initial_result": "failed",
+    "cause": "Test wrote before monitor construction; persisted store creation is earlier than monitor readiness.",
+    "fix": "Wait for actual timer capture of changing synthetic warm-up values, then publish the assertion payload.",
+    "retest_passed": true
   }
 }

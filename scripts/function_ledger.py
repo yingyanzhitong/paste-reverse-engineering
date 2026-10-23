@@ -44,7 +44,7 @@ def validate_review(root, key, review):
             digest = hashlib.sha256(relative_file(root, reference["path"]).read_bytes()).hexdigest()
             if result["source_sha256"].get(reference["path"]) != digest:
                 raise ValueError("Source changed since contract test; rerun tests: " + key)
-    if review["state"] == "implemented" and (not contract_test or not review.get("tests")):
+    if review["state"] in {"implemented", "verified"} and (not contract_test or not review.get("tests")):
         raise ValueError("A tested implementation needs explicit contract evidence: " + key)
     if review["state"] == "verified":
         evidence = review.get("equivalence_evidence")
@@ -55,6 +55,25 @@ def validate_review(root, key, review):
             raise ValueError("Function-specific equivalence result required: " + key)
         if not result.get("original_inputs") or not result.get("replica_inputs") or not result.get("comparison"):
             raise ValueError("Original/replica comparison provenance required: " + key)
+        manifest = json.loads((root / "reports/target-manifest.json").read_text())
+        binary = next((row for row in manifest["binaries"] if row["name"].replace(" ", "-") == key.split(":")[0]), None)
+        if not binary or result.get("original_binary_sha256") != binary["arm64_sha256"]:
+            raise ValueError("Comparison must bind the analyzed original binary: " + key)
+        if result.get("kind") != "original_machine_code_differential" or result.get("original_binary_executed") is not True:
+            raise ValueError("Original machine-code execution required: " + key)
+        section = result.get("original_text_section", {})
+        if not re.fullmatch(r"[0-9a-f]{64}", section.get("sha256", "")) or section.get("size", 0) <= 0:
+            raise ValueError("Original code-section integrity evidence required: " + key)
+        cases = result.get("cases", [])
+        if not cases or result.get("case_count") != len(cases) or any(case.get("equal") is not True for case in cases):
+            raise ValueError("All recorded original/replica cases must pass: " + key)
+        sources = result.get("source_sha256", {})
+        references = review.get("implementations", []) + review.get("tests", [])
+        if not {reference["path"] for reference in references}.issubset(sources):
+            raise ValueError("Comparison must bind implementation and test sources: " + key)
+        for path, digest in sources.items():
+            if hashlib.sha256(relative_file(root, path).read_bytes()).hexdigest() != digest:
+                raise ValueError("Source changed since original comparison; rerun differential tests: " + key)
     if review["state"] == "excluded_by_scope" and not review.get("user_scope_reason"):
         raise ValueError("Exclusion needs an explicit user scope reason: " + key)
 

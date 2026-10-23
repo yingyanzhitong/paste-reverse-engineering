@@ -99,5 +99,59 @@ class FunctionLedgerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Source changed"):
             ledger.validate_review(self.root, "Tiny:0x1", review)
 
+    def differential_fixture(self):
+        source = "decompiled/Tiny/part-0000.c"
+        digest = hashlib.sha256(self.source.read_bytes()).hexdigest()
+        self.write("reports/contract.json", {"functions": {"Tiny:0x1": {
+            "passed": True, "case": "fixture", "source_sha256": {source: digest}}}})
+        review = {"state": "verified", "contract": "returns zero",
+                  "implementations": [{"path": source, "symbol": "first"}],
+                  "tests": [{"path": source, "symbol": "first"}],
+                  "contract_test": {"report": "reports/contract.json", "case": "fixture"},
+                  "equivalence_evidence": "reports/differential.json"}
+        report = {"kind": "original_machine_code_differential", "function_id": "Tiny:0x1", "passed": True,
+                  "original_binary_executed": True, "original_binary_sha256": "a" * 64,
+                  "original_text_section": {"sha256": "b" * 64, "size": 4},
+                  "original_inputs": "fixture", "replica_inputs": "fixture", "comparison": "equal",
+                  "source_sha256": {source: digest}, "case_count": 1, "cases": [{"equal": True}]}
+        self.write("reports/differential.json", report)
+        return review, report
+
+    def test_bound_native_comparison_accepts_verified(self):
+        review, _ = self.differential_fixture()
+        ledger.validate_review(self.root, "Tiny:0x1", review)
+
+    def test_comparison_rejects_wrong_original_binary(self):
+        review, report = self.differential_fixture()
+        report["original_binary_sha256"] = "c" * 64
+        self.write("reports/differential.json", report)
+        with self.assertRaisesRegex(ValueError, "analyzed original binary"):
+            ledger.validate_review(self.root, "Tiny:0x1", review)
+
+    def test_comparison_rejects_failed_case_even_when_summary_passes(self):
+        review, report = self.differential_fixture()
+        report["cases"][0]["equal"] = False
+        self.write("reports/differential.json", report)
+        with self.assertRaisesRegex(ValueError, "cases must pass"):
+            ledger.validate_review(self.root, "Tiny:0x1", review)
+
+    def test_comparison_rejects_missing_source_binding(self):
+        review, report = self.differential_fixture()
+        report["source_sha256"] = {}
+        self.write("reports/differential.json", report)
+        with self.assertRaisesRegex(ValueError, "implementation and test sources"):
+            ledger.validate_review(self.root, "Tiny:0x1", review)
+
+    def test_comparison_is_invalidated_when_runner_changes(self):
+        review, report = self.differential_fixture()
+        runner = self.root / "runner.swift"
+        runner.write_text("original() == replica()")
+        report["source_sha256"]["runner.swift"] = hashlib.sha256(runner.read_bytes()).hexdigest()
+        self.write("reports/differential.json", report)
+        ledger.validate_review(self.root, "Tiny:0x1", review)
+        runner.write_text("true")
+        with self.assertRaisesRegex(ValueError, "Source changed since original comparison"):
+            ledger.validate_review(self.root, "Tiny:0x1", review)
+
 
 if __name__ == "__main__": unittest.main()

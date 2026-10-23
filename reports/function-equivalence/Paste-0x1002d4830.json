@@ -1,0 +1,563 @@
+{
+  "schema_version": 1,
+  "kind": "original_machine_code_differential",
+  "function_id": "Paste:0x1002d4830",
+  "passed": true,
+  "tested_at": "2026-10-23T02:48:23.261336+00:00",
+  "original_binary_executed": true,
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_text_section": {
+    "address": "0x100002b98",
+    "size": 12521684,
+    "offset": 11160,
+    "sha256": "0ab1b64642a68d0829b929d2483e855022c14e7713ea35683e0f898a49db5c12"
+  },
+  "loader_changes": [
+    "MH_EXECUTE to MH_BUNDLE header",
+    "ad-hoc signature"
+  ],
+  "original_entry_point_executed": false,
+  "original_user_data_access": false,
+  "sandbox_network_denied": true,
+  "sandbox_profile_sha256": "68bf9843b9108984194aec81f9144e2ffb2051b1bc1f4df3d7eebc67100993a4",
+  "runner_sha256": "0963253b6abcd07a2df08319b62a4b30658b69a53dff62c191d686a97d7f74b4",
+  "replica_object_sha256": {
+    "ClipboardStore.swift.o": "0859d658bb849d27d7f3f13b5df1bdfa5c881e7f3f97a63cee73ca60ba8c8dc3",
+    "KeyboardShortcut.swift.o": "a80191286d7fdbe5cf6c7cedbc1a7ce42328eaa84dc9d4fb16a2479d9abc9592",
+    "Models.swift.o": "2fab3bcd0948dc206da61cb32b2e21e9806b7846ba69c310647bc0d88ecc5914",
+    "OCR.swift.o": "9d4066ce22c3c026674aae6b8efa0756dae3c1ebec96bb8a0d765bbd187643ae",
+    "OriginalStackFunctions.swift.o": "346c7437b131434c9aecc003061d1f252f7a3bd45833d5cc6bc7ddb7fb506d16",
+    "Pasteboard.swift.o": "72b5b1a2138180585982d2054c43e0264189add70aabdc53f13cad2100f051f5"
+  },
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OCR.swift": "606da37c9929143b5577c8246ac3d1bb1d9830a680dbb1a4f4cd0c8190792083",
+    "replica/Tests/Original/FunctionOracle.swift": "be9ee1bd6e15efe2ede5f915d4435417162721044531c24ebb99790b01760b0c",
+    "replica/Tests/Original/OracleABI.h": "f5e21d67ec585de5a5a9e93c5947c2316c2b7ffb9278d3d801f61dccbbd04a07",
+    "replica/Tests/Original/OracleABI.s": "b811ac3afdcb9328676b7b65bab601e70e49958d90f64a68676adfa301027e7a",
+    "replica/Tests/Original/OracleObjects.m": "99c27c9ba9ed522becb4fa80bab93467f8a0a96b23fb6e6f313a2645a340e5a7",
+    "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382",
+    "replica/scripts/test-original-functions.py": "406cae7c6b1f71a4c564763e2f38845e5b3befbfb3e90231672e4677500c5fa3"
+  },
+  "original_inputs": "cases[].input; synthetic images/objects only; same values supplied to original code",
+  "replica_inputs": "cases[].input; same synthetic data or same Vision observations",
+  "comparison": "Exact Data bytes, token strings/Float confidence/CGRect?, NSError domain/code/userInfo; array identity/order/COW and boolean value as applicable",
+  "environment": {
+    "macos": "Version 26.2 (Build 25C56)",
+    "architecture": "arm64",
+    "word_layout": {
+      "size": 57,
+      "stride": 64
+    }
+  },
+  "case_count": 13,
+  "cases": [
+    {
+      "equal": true,
+      "input": {
+        "fixture": "empty",
+        "maximum": 9223372036854775807,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "original": [],
+      "replica": []
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "corrupt",
+        "maximum": 9223372036854775807,
+        "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+      },
+      "original": [],
+      "replica": []
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "10x11",
+        "maximum": 9223372036854775807,
+        "sha256": "51b1b385501c326196919261cf4559b40cd607dafd47341828f81e4f98aba979"
+      },
+      "original": [],
+      "replica": []
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x10",
+        "maximum": 9223372036854775807,
+        "sha256": "ad5bb1e411d5fc3a5473ac9024b30c9ebb8f38f39520c637be3bed1cb574ef5e"
+      },
+      "original": [],
+      "replica": []
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x11",
+        "maximum": 9223372036854775807,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "original": [],
+      "replica": []
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "12x48",
+        "maximum": 9223372036854775807,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "original": [],
+      "replica": []
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "256x1400",
+        "maximum": 9223372036854775807,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "original": [],
+      "replica": []
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-0",
+        "maximum": 9223372036854775807,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "original": [
+        {
+          "box": [
+            0.025,
+            0.3111111049859058,
+            0.15401785714285715,
+            0.2666666764479416
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.18517857142857144,
+            0.31153846153846154,
+            0.2033035714285714,
+            0.26538461538461533
+          ],
+          "confidence": 1,
+          "text": "REPLICA"
+        },
+        {
+          "box": [
+            0.39464285795182813,
+            0.3111111049859058,
+            0.13869046892438613,
+            0.2666666764479416
+          ],
+          "confidence": 1,
+          "text": "8426"
+        }
+      ],
+      "replica": [
+        {
+          "box": [
+            0.025,
+            0.3111111049859058,
+            0.15401785714285715,
+            0.2666666764479416
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.18517857142857144,
+            0.31153846153846154,
+            0.2033035714285714,
+            0.26538461538461533
+          ],
+          "confidence": 1,
+          "text": "REPLICA"
+        },
+        {
+          "box": [
+            0.39464285795182813,
+            0.3111111049859058,
+            0.13869046892438613,
+            0.2666666764479416
+          ],
+          "confidence": 1,
+          "text": "8426"
+        }
+      ]
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-1",
+        "maximum": 9223372036854775807,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "original": [
+        {
+          "box": [
+            0.0250000014583333,
+            0.24444444655730424,
+            0.16124999999999998,
+            0.33333332355205825
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.19392857142857142,
+            0.24615384615384617,
+            0.16892857142857146,
+            0.3307692307692307
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.3705357153493149,
+            0.24444444655730424,
+            0.137797611781529,
+            0.33333332355205825
+          ],
+          "confidence": 1,
+          "text": "8426"
+        }
+      ],
+      "replica": [
+        {
+          "box": [
+            0.0250000014583333,
+            0.24444444655730424,
+            0.16124999999999998,
+            0.33333332355205825
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.19392857142857142,
+            0.24615384615384617,
+            0.16892857142857146,
+            0.3307692307692307
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.3705357153493149,
+            0.24444444655730424,
+            0.137797611781529,
+            0.33333332355205825
+          ],
+          "confidence": 1,
+          "text": "8426"
+        }
+      ]
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-2",
+        "maximum": 9223372036854775807,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "original": [
+        {
+          "box": [
+            0.027616281612370903,
+            0.2961538454081075,
+            0.12961585998535158,
+            0.2663461538461539
+          ],
+          "confidence": 0.5,
+          "text": "Hello"
+        },
+        {
+          "box": [
+            0.181875,
+            0.2961538461538461,
+            0.11848214285714287,
+            0.26538461538461544
+          ],
+          "confidence": 0.5,
+          "text": "hello"
+        },
+        {
+          "box": [
+            0.3036607128923136,
+            0.2961538454081075,
+            0.1977927725655692,
+            0.2663461538461539
+          ],
+          "confidence": 0.5,
+          "text": "中文测试"
+        }
+      ],
+      "replica": [
+        {
+          "box": [
+            0.027616281612370903,
+            0.2961538454081075,
+            0.12961585998535158,
+            0.2663461538461539
+          ],
+          "confidence": 0.5,
+          "text": "Hello"
+        },
+        {
+          "box": [
+            0.181875,
+            0.2961538461538461,
+            0.11848214285714287,
+            0.26538461538461544
+          ],
+          "confidence": 0.5,
+          "text": "hello"
+        },
+        {
+          "box": [
+            0.3036607128923136,
+            0.2961538454081075,
+            0.1977927725655692,
+            0.2663461538461539
+          ],
+          "confidence": 0.5,
+          "text": "中文测试"
+        }
+      ]
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-3",
+        "maximum": 9223372036854775807,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "original": [
+        {
+          "box": [
+            0.820012464779101,
+            0.45312476332144647,
+            0.14946428571428572,
+            0.21093780811016372
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.6078696114247012,
+            0.4531248349237619,
+            0.20732142857142866,
+            0.20769241039569564
+          ],
+          "confidence": 1,
+          "text": "REPLICA"
+        },
+        {
+          "box": [
+            0.46947674588971805,
+            0.4531249390993731,
+            0.13357143947056355,
+            0.2109375586876503
+          ],
+          "confidence": 1,
+          "text": "8426"
+        }
+      ],
+      "replica": [
+        {
+          "box": [
+            0.820012464779101,
+            0.45312476332144647,
+            0.14946428571428572,
+            0.21093780811016372
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.6078696114247012,
+            0.4531248349237619,
+            0.20732142857142866,
+            0.20769241039569564
+          ],
+          "confidence": 1,
+          "text": "REPLICA"
+        },
+        {
+          "box": [
+            0.46947674588971805,
+            0.4531249390993731,
+            0.13357143947056355,
+            0.2109375586876503
+          ],
+          "confidence": 1,
+          "text": "8426"
+        }
+      ]
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-6",
+        "maximum": 9223372036854775807,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "original": [
+        {
+          "box": [
+            0.28888886344088816,
+            0.8209821423116176,
+            0.2666667938232422,
+            0.1540178571428571
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.2901709612181402,
+            0.6115178571289801,
+            0.2653846740722657,
+            0.20330357142857136
+          ],
+          "confidence": 1,
+          "text": "REPLICA"
+        },
+        {
+          "box": [
+            0.28888888573181,
+            0.4666666736554339,
+            0.2666667057917668,
+            0.1386904689243862
+          ],
+          "confidence": 1,
+          "text": "8426"
+        }
+      ],
+      "replica": [
+        {
+          "box": [
+            0.28888886344088816,
+            0.8209821423116176,
+            0.2666667938232422,
+            0.1540178571428571
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.2901709612181402,
+            0.6115178571289801,
+            0.2653846740722657,
+            0.20330357142857136
+          ],
+          "confidence": 1,
+          "text": "REPLICA"
+        },
+        {
+          "box": [
+            0.28888888573181,
+            0.4666666736554339,
+            0.2666667057917668,
+            0.1386904689243862
+          ],
+          "confidence": 1,
+          "text": "8426"
+        }
+      ]
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-8",
+        "maximum": 9223372036854775807,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "original": [
+        {
+          "box": [
+            0.45312496990282664,
+            0.0290697705930415,
+            0.2031250293438251,
+            0.15321428571428575
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.45312497568926957,
+            0.186926915283536,
+            0.20000004401573768,
+            0.20428569248744421
+          ],
+          "confidence": 1,
+          "text": "REPLICA"
+        },
+        {
+          "box": [
+            0.45312494170777257,
+            0.3958554689979379,
+            0.2031250880314754,
+            0.13321429661342088
+          ],
+          "confidence": 1,
+          "text": "8426"
+        }
+      ],
+      "replica": [
+        {
+          "box": [
+            0.45312496990282664,
+            0.0290697705930415,
+            0.2031250293438251,
+            0.15321428571428575
+          ],
+          "confidence": 1,
+          "text": "PASTE"
+        },
+        {
+          "box": [
+            0.45312497568926957,
+            0.186926915283536,
+            0.20000004401573768,
+            0.20428569248744421
+          ],
+          "confidence": 1,
+          "text": "REPLICA"
+        },
+        {
+          "box": [
+            0.45312494170777257,
+            0.3958554689979379,
+            0.2031250880314754,
+            0.13321429661342088
+          ],
+          "confidence": 1,
+          "text": "8426"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Only listed cases and recovered source-level contracts; not proof over every possible input",
+    "Replica has its own Swift types and symbols; binary ABI/type identity is not promised",
+    "OCR wrapper comparison checks original word-array contract; replica also retains line text",
+    "No original UI entry point or private application state is executed"
+  ]
+}

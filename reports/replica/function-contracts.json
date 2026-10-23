@@ -1,6 +1,6 @@
 {
   "kind": "replica_contract_tests_only",
-  "native_runner_sha256": "5b1156ea29524e5455c298821afa7cffdec019481324abf543eb5821ae8d7548",
+  "native_runner_sha256": "cbcae85e6a1c8dbd2e5fb1176a4bfbb6841bcf7917627f845a22a87beb26a28e",
   "core_test_count": 21,
   "original_binary_executed": false,
   "function_equivalence_verified": false,
@@ -9,48 +9,75 @@
       "case": "address-stack-array-window-contracts",
       "passed": true,
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "be6e6ee12ad53b4c1fcd60d688ca5ac1ee0fd1f344ca0ef2eba2238d73d28d7f",
-        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+        "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "e408e508e9bc0bf2b7477ab142e29e4b1c1087daa63cd402c312f145e6cf16a4",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382"
       }
     },
     "Paste:0x10008468c": {
       "case": "address-stack-array-window-contracts",
       "passed": true,
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "be6e6ee12ad53b4c1fcd60d688ca5ac1ee0fd1f344ca0ef2eba2238d73d28d7f",
-        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+        "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "e408e508e9bc0bf2b7477ab142e29e4b1c1087daa63cd402c312f145e6cf16a4",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382"
       }
     },
     "Paste:0x1002d4738": {
       "case": "address-ocr-preparation-word-geometry",
       "passed": true,
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/OCR.swift": "c7341e6d52eb07139ef1131f05ecbc75e35748c3a51d0a3e1cf99d3cd3dc354c",
-        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+        "replica/Sources/PasteReplicaCore/OCR.swift": "606da37c9929143b5577c8246ac3d1bb1d9830a680dbb1a4f4cd0c8190792083",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382"
       }
     },
     "Paste:0x1002d4830": {
       "case": "address-ocr-preparation-word-geometry",
       "passed": true,
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/OCR.swift": "c7341e6d52eb07139ef1131f05ecbc75e35748c3a51d0a3e1cf99d3cd3dc354c",
-        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+        "replica/Sources/PasteReplicaCore/OCR.swift": "606da37c9929143b5577c8246ac3d1bb1d9830a680dbb1a4f4cd0c8190792083",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382"
       }
     },
     "Paste:0x1002d4ba0": {
       "case": "address-ocr-preparation-word-geometry",
       "passed": true,
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/OCR.swift": "c7341e6d52eb07139ef1131f05ecbc75e35748c3a51d0a3e1cf99d3cd3dc354c",
-        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+        "replica/Sources/PasteReplicaCore/OCR.swift": "606da37c9929143b5577c8246ac3d1bb1d9830a680dbb1a4f4cd0c8190792083",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382"
       }
     },
     "Paste:0x1002d576c": {
       "case": "address-ocr-preparation-word-geometry",
       "passed": true,
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/OCR.swift": "c7341e6d52eb07139ef1131f05ecbc75e35748c3a51d0a3e1cf99d3cd3dc354c",
-        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+        "replica/Sources/PasteReplicaCore/OCR.swift": "606da37c9929143b5577c8246ac3d1bb1d9830a680dbb1a4f4cd0c8190792083",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382"
+      }
+    },
+    "Paste:0x1000114ec": {
+      "case": "address-stack-array-window-contracts",
+      "passed": true,
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "e408e508e9bc0bf2b7477ab142e29e4b1c1087daa63cd402c312f145e6cf16a4",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "c82633964deb900c85a4d2be5dd2851d6fc57bb1ec68f6c482d64440eedd02c4",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382"
+      }
+    },
+    "Paste:0x1000114f4": {
+      "case": "address-stack-array-window-contracts",
+      "passed": true,
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "e408e508e9bc0bf2b7477ab142e29e4b1c1087daa63cd402c312f145e6cf16a4",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "c82633964deb900c85a4d2be5dd2851d6fc57bb1ec68f6c482d64440eedd02c4",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382"
+      }
+    },
+    "Paste:0x100011138": {
+      "case": "address-stack-array-window-contracts",
+      "passed": true,
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "e408e508e9bc0bf2b7477ab142e29e4b1c1087daa63cd402c312f145e6cf16a4",
+        "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "c82633964deb900c85a4d2be5dd2851d6fc57bb1ec68f6c482d64440eedd02c4",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382"
       }
     }
   }

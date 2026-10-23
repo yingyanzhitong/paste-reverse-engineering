@@ -4,10 +4,10 @@
   "total_functions": 81134,
   "states": {
     "excluded_by_scope": 0,
-    "implemented": 3,
-    "partial": 3,
-    "pending": 81128,
-    "verified": 0
+    "implemented": 0,
+    "partial": 0,
+    "pending": 81125,
+    "verified": 9
   },
   "targets": [
     {
@@ -17,10 +17,10 @@
       "local_thunks": 12935,
       "states": {
         "excluded_by_scope": 0,
-        "implemented": 3,
-        "partial": 3,
-        "pending": 80699,
-        "verified": 0
+        "implemented": 0,
+        "partial": 0,
+        "pending": 80696,
+        "verified": 9
       },
       "pages": [
         {

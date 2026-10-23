@@ -16,6 +16,15 @@ public struct RecognizedTextDocument: Codable, Equatable, Sendable {
     public var words: [RecognizedWord]
 }
 
+/// NSError bridging contract recovered by executing the original empty-input path.
+public enum OCRError: Error, CustomNSError {
+    case invalidImageData
+
+    public static var errorDomain: String { "PasteRecognition.OCRError" }
+    public var errorCode: Int { 0 }
+    public var errorUserInfo: [String: Any] { [:] }
+}
+
 extension ClipboardItem {
     public var recognizedText: String? {
         payloads[ClipboardStore.recognizedTextPayloadKey].flatMap { String(data: $0, encoding: .utf8) }
@@ -49,7 +58,7 @@ public enum ImageTextRecognizer {
 
     /// REA 0x1002d4738: reject empty Data, execute recognition inside an autorelease pool.
     public static func f_1002d4738(imageData: Data, maximumDimension: Int) throws -> RecognizedTextDocument {
-        guard !imageData.isEmpty else { throw CocoaError(.fileReadCorruptFile) }
+        guard !imageData.isEmpty else { throw OCRError.invalidImageData }
         return try autoreleasepool { try f_1002d4830(imageData: imageData, maximumDimension: maximumDimension) }
     }
 
@@ -62,8 +71,9 @@ public enum ImageTextRecognizer {
               let height = properties[kCGImagePropertyPixelHeight] as? Int,
               width > 10, height > 10 else { return nil }
         if max(width, height) <= maximumDimension { return imageData }
-        guard maximumDimension > 0,
-              let thumbnail = CGImageSourceCreateThumbnailAtIndex(source, 0, [
+        // The original passes zero/negative values through to ImageIO; zero does
+        // not mean failure. Direct original-function comparison covers this edge.
+        guard let thumbnail = CGImageSourceCreateThumbnailAtIndex(source, 0, [
                 kCGImageSourceCreateThumbnailFromImageAlways: true,
                 kCGImageSourceCreateThumbnailWithTransform: true,
                 kCGImageSourceThumbnailMaxPixelSize: maximumDimension
@@ -93,7 +103,7 @@ public enum ImageTextRecognizer {
 
     /// REA 0x1002d576c: first candidate, split on whitespace/newlines plus punctuation,
     /// omit empty components, retain per-token confidence and optional Vision rectangle.
-    /// The original optimized String.Index progression still needs direct differential validation.
+    /// Forward ranges are also compared with the original machine code on synthetic observations.
     public static func f_1002d576c(observations: [VNRecognizedTextObservation]) -> [RecognizedWord] {
         let separators = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
         var words: [RecognizedWord] = []

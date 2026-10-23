@@ -1,0 +1,2023 @@
+{
+  "schema_version": 1,
+  "kind": "original_machine_code_differential",
+  "function_id": "Paste:0x1002d4ba0",
+  "passed": true,
+  "tested_at": "2026-10-23T02:48:23.261336+00:00",
+  "original_binary_executed": true,
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_text_section": {
+    "address": "0x100002b98",
+    "size": 12521684,
+    "offset": 11160,
+    "sha256": "0ab1b64642a68d0829b929d2483e855022c14e7713ea35683e0f898a49db5c12"
+  },
+  "loader_changes": [
+    "MH_EXECUTE to MH_BUNDLE header",
+    "ad-hoc signature"
+  ],
+  "original_entry_point_executed": false,
+  "original_user_data_access": false,
+  "sandbox_network_denied": true,
+  "sandbox_profile_sha256": "68bf9843b9108984194aec81f9144e2ffb2051b1bc1f4df3d7eebc67100993a4",
+  "runner_sha256": "0963253b6abcd07a2df08319b62a4b30658b69a53dff62c191d686a97d7f74b4",
+  "replica_object_sha256": {
+    "ClipboardStore.swift.o": "0859d658bb849d27d7f3f13b5df1bdfa5c881e7f3f97a63cee73ca60ba8c8dc3",
+    "KeyboardShortcut.swift.o": "a80191286d7fdbe5cf6c7cedbc1a7ce42328eaa84dc9d4fb16a2479d9abc9592",
+    "Models.swift.o": "2fab3bcd0948dc206da61cb32b2e21e9806b7846ba69c310647bc0d88ecc5914",
+    "OCR.swift.o": "9d4066ce22c3c026674aae6b8efa0756dae3c1ebec96bb8a0d765bbd187643ae",
+    "OriginalStackFunctions.swift.o": "346c7437b131434c9aecc003061d1f252f7a3bd45833d5cc6bc7ddb7fb506d16",
+    "Pasteboard.swift.o": "72b5b1a2138180585982d2054c43e0264189add70aabdc53f13cad2100f051f5"
+  },
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OCR.swift": "606da37c9929143b5577c8246ac3d1bb1d9830a680dbb1a4f4cd0c8190792083",
+    "replica/Tests/Original/FunctionOracle.swift": "be9ee1bd6e15efe2ede5f915d4435417162721044531c24ebb99790b01760b0c",
+    "replica/Tests/Original/OracleABI.h": "f5e21d67ec585de5a5a9e93c5947c2316c2b7ffb9278d3d801f61dccbbd04a07",
+    "replica/Tests/Original/OracleABI.s": "b811ac3afdcb9328676b7b65bab601e70e49958d90f64a68676adfa301027e7a",
+    "replica/Tests/Original/OracleObjects.m": "99c27c9ba9ed522becb4fa80bab93467f8a0a96b23fb6e6f313a2645a340e5a7",
+    "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "3922bbbac6c080f3829534b62f217a384d7d76512de9344ab0d7181f11104382",
+    "replica/scripts/test-original-functions.py": "406cae7c6b1f71a4c564763e2f38845e5b3befbfb3e90231672e4677500c5fa3"
+  },
+  "original_inputs": "cases[].input; synthetic images/objects only; same values supplied to original code",
+  "replica_inputs": "cases[].input; same synthetic data or same Vision observations",
+  "comparison": "Exact Data bytes, token strings/Float confidence/CGRect?, NSError domain/code/userInfo; array identity/order/COW and boolean value as applicable",
+  "environment": {
+    "macos": "Version 26.2 (Build 25C56)",
+    "architecture": "arm64",
+    "word_layout": {
+      "size": 57,
+      "stride": 64
+    }
+  },
+  "case_count": 117,
+  "cases": [
+    {
+      "equal": true,
+      "input": {
+        "fixture": "empty",
+        "maximum": -9223372036854775808,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "empty",
+        "maximum": -1,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "empty",
+        "maximum": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "empty",
+        "maximum": 1,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "empty",
+        "maximum": 10,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "empty",
+        "maximum": 11,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "empty",
+        "maximum": 128,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "empty",
+        "maximum": 1400,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "empty",
+        "maximum": 9223372036854775807,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "corrupt",
+        "maximum": -9223372036854775808,
+        "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "corrupt",
+        "maximum": -1,
+        "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "corrupt",
+        "maximum": 0,
+        "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "corrupt",
+        "maximum": 1,
+        "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "corrupt",
+        "maximum": 10,
+        "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "corrupt",
+        "maximum": 11,
+        "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "corrupt",
+        "maximum": 128,
+        "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "corrupt",
+        "maximum": 1400,
+        "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "corrupt",
+        "maximum": 9223372036854775807,
+        "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "10x11",
+        "maximum": -9223372036854775808,
+        "sha256": "51b1b385501c326196919261cf4559b40cd607dafd47341828f81e4f98aba979"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "10x11",
+        "maximum": -1,
+        "sha256": "51b1b385501c326196919261cf4559b40cd607dafd47341828f81e4f98aba979"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "10x11",
+        "maximum": 0,
+        "sha256": "51b1b385501c326196919261cf4559b40cd607dafd47341828f81e4f98aba979"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "10x11",
+        "maximum": 1,
+        "sha256": "51b1b385501c326196919261cf4559b40cd607dafd47341828f81e4f98aba979"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "10x11",
+        "maximum": 10,
+        "sha256": "51b1b385501c326196919261cf4559b40cd607dafd47341828f81e4f98aba979"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "10x11",
+        "maximum": 11,
+        "sha256": "51b1b385501c326196919261cf4559b40cd607dafd47341828f81e4f98aba979"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "10x11",
+        "maximum": 128,
+        "sha256": "51b1b385501c326196919261cf4559b40cd607dafd47341828f81e4f98aba979"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "10x11",
+        "maximum": 1400,
+        "sha256": "51b1b385501c326196919261cf4559b40cd607dafd47341828f81e4f98aba979"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "10x11",
+        "maximum": 9223372036854775807,
+        "sha256": "51b1b385501c326196919261cf4559b40cd607dafd47341828f81e4f98aba979"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x10",
+        "maximum": -9223372036854775808,
+        "sha256": "ad5bb1e411d5fc3a5473ac9024b30c9ebb8f38f39520c637be3bed1cb574ef5e"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x10",
+        "maximum": -1,
+        "sha256": "ad5bb1e411d5fc3a5473ac9024b30c9ebb8f38f39520c637be3bed1cb574ef5e"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x10",
+        "maximum": 0,
+        "sha256": "ad5bb1e411d5fc3a5473ac9024b30c9ebb8f38f39520c637be3bed1cb574ef5e"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x10",
+        "maximum": 1,
+        "sha256": "ad5bb1e411d5fc3a5473ac9024b30c9ebb8f38f39520c637be3bed1cb574ef5e"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x10",
+        "maximum": 10,
+        "sha256": "ad5bb1e411d5fc3a5473ac9024b30c9ebb8f38f39520c637be3bed1cb574ef5e"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x10",
+        "maximum": 11,
+        "sha256": "ad5bb1e411d5fc3a5473ac9024b30c9ebb8f38f39520c637be3bed1cb574ef5e"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x10",
+        "maximum": 128,
+        "sha256": "ad5bb1e411d5fc3a5473ac9024b30c9ebb8f38f39520c637be3bed1cb574ef5e"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x10",
+        "maximum": 1400,
+        "sha256": "ad5bb1e411d5fc3a5473ac9024b30c9ebb8f38f39520c637be3bed1cb574ef5e"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x10",
+        "maximum": 9223372036854775807,
+        "sha256": "ad5bb1e411d5fc3a5473ac9024b30c9ebb8f38f39520c637be3bed1cb574ef5e"
+      },
+      "original": {
+        "nil": true
+      },
+      "replica": {
+        "nil": true
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x11",
+        "maximum": -9223372036854775808,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "original": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "67c2b80de81bf02f1adba5410c688d5f821639867d8b4bd183dedd18a7f5bd07"
+      },
+      "replica": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "67c2b80de81bf02f1adba5410c688d5f821639867d8b4bd183dedd18a7f5bd07"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x11",
+        "maximum": -1,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "original": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "67c2b80de81bf02f1adba5410c688d5f821639867d8b4bd183dedd18a7f5bd07"
+      },
+      "replica": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "67c2b80de81bf02f1adba5410c688d5f821639867d8b4bd183dedd18a7f5bd07"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x11",
+        "maximum": 0,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "original": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "67c2b80de81bf02f1adba5410c688d5f821639867d8b4bd183dedd18a7f5bd07"
+      },
+      "replica": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "67c2b80de81bf02f1adba5410c688d5f821639867d8b4bd183dedd18a7f5bd07"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x11",
+        "maximum": 1,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "original": {
+        "bytes": 161,
+        "nil": false,
+        "sha256": "2ece59a1ef84ba744decbe118ff059c254371f13f55bd48e875825ea9043ec97"
+      },
+      "replica": {
+        "bytes": 161,
+        "nil": false,
+        "sha256": "2ece59a1ef84ba744decbe118ff059c254371f13f55bd48e875825ea9043ec97"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x11",
+        "maximum": 10,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "original": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "ddf055559a0efcf536969e4000cfc07d39d98862790aa5fdd302d37a21f76c76"
+      },
+      "replica": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "ddf055559a0efcf536969e4000cfc07d39d98862790aa5fdd302d37a21f76c76"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x11",
+        "maximum": 11,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "original": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "replica": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x11",
+        "maximum": 128,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "original": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "replica": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x11",
+        "maximum": 1400,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "original": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "replica": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "11x11",
+        "maximum": 9223372036854775807,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "original": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      },
+      "replica": {
+        "bytes": 177,
+        "nil": false,
+        "sha256": "d53f0b364de11224dd642eb12a46197b0648f839c924b7bae3a1b2fdd089b0b8"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "12x48",
+        "maximum": -9223372036854775808,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "original": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "88be62c8afbd7b020ac8169e96407b9d41138034b397686d21507f0e2b599bc8"
+      },
+      "replica": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "88be62c8afbd7b020ac8169e96407b9d41138034b397686d21507f0e2b599bc8"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "12x48",
+        "maximum": -1,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "original": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "88be62c8afbd7b020ac8169e96407b9d41138034b397686d21507f0e2b599bc8"
+      },
+      "replica": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "88be62c8afbd7b020ac8169e96407b9d41138034b397686d21507f0e2b599bc8"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "12x48",
+        "maximum": 0,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "original": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "88be62c8afbd7b020ac8169e96407b9d41138034b397686d21507f0e2b599bc8"
+      },
+      "replica": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "88be62c8afbd7b020ac8169e96407b9d41138034b397686d21507f0e2b599bc8"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "12x48",
+        "maximum": 1,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "original": {
+        "bytes": 161,
+        "nil": false,
+        "sha256": "2ece59a1ef84ba744decbe118ff059c254371f13f55bd48e875825ea9043ec97"
+      },
+      "replica": {
+        "bytes": 161,
+        "nil": false,
+        "sha256": "2ece59a1ef84ba744decbe118ff059c254371f13f55bd48e875825ea9043ec97"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "12x48",
+        "maximum": 10,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "original": {
+        "bytes": 170,
+        "nil": false,
+        "sha256": "e9e22f89bce49da6d92e0554fd1d0d394a5d1c1c7d23c31436f8271391e0ca16"
+      },
+      "replica": {
+        "bytes": 170,
+        "nil": false,
+        "sha256": "e9e22f89bce49da6d92e0554fd1d0d394a5d1c1c7d23c31436f8271391e0ca16"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "12x48",
+        "maximum": 11,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "original": {
+        "bytes": 171,
+        "nil": false,
+        "sha256": "2e517c2edcba13ba128f8ca1845e34cc7e164933662ec891377ad3077a7b800a"
+      },
+      "replica": {
+        "bytes": 171,
+        "nil": false,
+        "sha256": "2e517c2edcba13ba128f8ca1845e34cc7e164933662ec891377ad3077a7b800a"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "12x48",
+        "maximum": 128,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "original": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "replica": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "12x48",
+        "maximum": 1400,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "original": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "replica": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "12x48",
+        "maximum": 9223372036854775807,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "original": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      },
+      "replica": {
+        "bytes": 214,
+        "nil": false,
+        "sha256": "f4b6d95c62482b8870ffb172a9943cfc9a1f943fd0b0a55bce8d976054e32af2"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "256x1400",
+        "maximum": -9223372036854775808,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "original": {
+        "bytes": 8842,
+        "nil": false,
+        "sha256": "f4376caa5973393364ab30befc557add9b64c3495df2784d8af7de05f2634412"
+      },
+      "replica": {
+        "bytes": 8842,
+        "nil": false,
+        "sha256": "f4376caa5973393364ab30befc557add9b64c3495df2784d8af7de05f2634412"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "256x1400",
+        "maximum": -1,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "original": {
+        "bytes": 8842,
+        "nil": false,
+        "sha256": "f4376caa5973393364ab30befc557add9b64c3495df2784d8af7de05f2634412"
+      },
+      "replica": {
+        "bytes": 8842,
+        "nil": false,
+        "sha256": "f4376caa5973393364ab30befc557add9b64c3495df2784d8af7de05f2634412"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "256x1400",
+        "maximum": 0,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "original": {
+        "bytes": 8842,
+        "nil": false,
+        "sha256": "f4376caa5973393364ab30befc557add9b64c3495df2784d8af7de05f2634412"
+      },
+      "replica": {
+        "bytes": 8842,
+        "nil": false,
+        "sha256": "f4376caa5973393364ab30befc557add9b64c3495df2784d8af7de05f2634412"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "256x1400",
+        "maximum": 1,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "original": {
+        "bytes": 161,
+        "nil": false,
+        "sha256": "2ece59a1ef84ba744decbe118ff059c254371f13f55bd48e875825ea9043ec97"
+      },
+      "replica": {
+        "bytes": 161,
+        "nil": false,
+        "sha256": "2ece59a1ef84ba744decbe118ff059c254371f13f55bd48e875825ea9043ec97"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "256x1400",
+        "maximum": 10,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "original": {
+        "bytes": 170,
+        "nil": false,
+        "sha256": "e9e22f89bce49da6d92e0554fd1d0d394a5d1c1c7d23c31436f8271391e0ca16"
+      },
+      "replica": {
+        "bytes": 170,
+        "nil": false,
+        "sha256": "e9e22f89bce49da6d92e0554fd1d0d394a5d1c1c7d23c31436f8271391e0ca16"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "256x1400",
+        "maximum": 11,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "original": {
+        "bytes": 170,
+        "nil": false,
+        "sha256": "2a4af909f75ff9500235ea24eb195dbc52670fcf4bece72917f2f45ab55374bc"
+      },
+      "replica": {
+        "bytes": 170,
+        "nil": false,
+        "sha256": "2a4af909f75ff9500235ea24eb195dbc52670fcf4bece72917f2f45ab55374bc"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "256x1400",
+        "maximum": 128,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "original": {
+        "bytes": 298,
+        "nil": false,
+        "sha256": "6ac749c4aad8a0704ddfe8f1c5b6049a0cdf728c2805bfd0710e983c1534f6ae"
+      },
+      "replica": {
+        "bytes": 298,
+        "nil": false,
+        "sha256": "6ac749c4aad8a0704ddfe8f1c5b6049a0cdf728c2805bfd0710e983c1534f6ae"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "256x1400",
+        "maximum": 1400,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "original": {
+        "bytes": 8842,
+        "nil": false,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "replica": {
+        "bytes": 8842,
+        "nil": false,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "256x1400",
+        "maximum": 9223372036854775807,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "original": {
+        "bytes": 8842,
+        "nil": false,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      },
+      "replica": {
+        "bytes": 8842,
+        "nil": false,
+        "sha256": "96169745d57ad6d7cef585725952d8e5a661aefb2766be6121f24326bef48cd2"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-0",
+        "maximum": -9223372036854775808,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "original": {
+        "bytes": 19725,
+        "nil": false,
+        "sha256": "62458cb45d889b200c5d3437b40511de7574e42a21d5b3e595998ac67522a88c"
+      },
+      "replica": {
+        "bytes": 19725,
+        "nil": false,
+        "sha256": "62458cb45d889b200c5d3437b40511de7574e42a21d5b3e595998ac67522a88c"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-0",
+        "maximum": -1,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "original": {
+        "bytes": 19725,
+        "nil": false,
+        "sha256": "62458cb45d889b200c5d3437b40511de7574e42a21d5b3e595998ac67522a88c"
+      },
+      "replica": {
+        "bytes": 19725,
+        "nil": false,
+        "sha256": "62458cb45d889b200c5d3437b40511de7574e42a21d5b3e595998ac67522a88c"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-0",
+        "maximum": 0,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "original": {
+        "bytes": 19725,
+        "nil": false,
+        "sha256": "62458cb45d889b200c5d3437b40511de7574e42a21d5b3e595998ac67522a88c"
+      },
+      "replica": {
+        "bytes": 19725,
+        "nil": false,
+        "sha256": "62458cb45d889b200c5d3437b40511de7574e42a21d5b3e595998ac67522a88c"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-0",
+        "maximum": 1,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "original": {
+        "bytes": 163,
+        "nil": false,
+        "sha256": "c8f7f1c02b8ed41a28caf6a873c41f5eff2ac34f9aa87c45c6019f1aaf68ea16"
+      },
+      "replica": {
+        "bytes": 163,
+        "nil": false,
+        "sha256": "c8f7f1c02b8ed41a28caf6a873c41f5eff2ac34f9aa87c45c6019f1aaf68ea16"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-0",
+        "maximum": 10,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "original": {
+        "bytes": 204,
+        "nil": false,
+        "sha256": "73aaba77c75ccd0ccde99f4bb6097490f64203b9c38cbbab5c81f400c5567bb1"
+      },
+      "replica": {
+        "bytes": 204,
+        "nil": false,
+        "sha256": "73aaba77c75ccd0ccde99f4bb6097490f64203b9c38cbbab5c81f400c5567bb1"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-0",
+        "maximum": 11,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "original": {
+        "bytes": 203,
+        "nil": false,
+        "sha256": "d4087531d234876f364191fce9a5dbc7bf058a8261b5bc9f783d28964c6256b8"
+      },
+      "replica": {
+        "bytes": 203,
+        "nil": false,
+        "sha256": "d4087531d234876f364191fce9a5dbc7bf058a8261b5bc9f783d28964c6256b8"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-0",
+        "maximum": 128,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "original": {
+        "bytes": 1567,
+        "nil": false,
+        "sha256": "f12c760c6457674ee69a4be201aa599dceb484e0ab8dd29152b6faf1e415d6d7"
+      },
+      "replica": {
+        "bytes": 1567,
+        "nil": false,
+        "sha256": "f12c760c6457674ee69a4be201aa599dceb484e0ab8dd29152b6faf1e415d6d7"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-0",
+        "maximum": 1400,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "original": {
+        "bytes": 19725,
+        "nil": false,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "replica": {
+        "bytes": 19725,
+        "nil": false,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-0",
+        "maximum": 9223372036854775807,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "original": {
+        "bytes": 19725,
+        "nil": false,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      },
+      "replica": {
+        "bytes": 19725,
+        "nil": false,
+        "sha256": "7dfa0065e62c6b67c9c86b996c5e39b961192fabd08f0c100708ed16cae33d7b"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-1",
+        "maximum": -9223372036854775808,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "original": {
+        "bytes": 18438,
+        "nil": false,
+        "sha256": "cc99999267962a8e26dc63df69cb6bec75d1b07552d84d2e40945c5fb655c983"
+      },
+      "replica": {
+        "bytes": 18438,
+        "nil": false,
+        "sha256": "cc99999267962a8e26dc63df69cb6bec75d1b07552d84d2e40945c5fb655c983"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-1",
+        "maximum": -1,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "original": {
+        "bytes": 18438,
+        "nil": false,
+        "sha256": "cc99999267962a8e26dc63df69cb6bec75d1b07552d84d2e40945c5fb655c983"
+      },
+      "replica": {
+        "bytes": 18438,
+        "nil": false,
+        "sha256": "cc99999267962a8e26dc63df69cb6bec75d1b07552d84d2e40945c5fb655c983"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-1",
+        "maximum": 0,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "original": {
+        "bytes": 18438,
+        "nil": false,
+        "sha256": "cc99999267962a8e26dc63df69cb6bec75d1b07552d84d2e40945c5fb655c983"
+      },
+      "replica": {
+        "bytes": 18438,
+        "nil": false,
+        "sha256": "cc99999267962a8e26dc63df69cb6bec75d1b07552d84d2e40945c5fb655c983"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-1",
+        "maximum": 1,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "original": {
+        "bytes": 163,
+        "nil": false,
+        "sha256": "c8f7f1c02b8ed41a28caf6a873c41f5eff2ac34f9aa87c45c6019f1aaf68ea16"
+      },
+      "replica": {
+        "bytes": 163,
+        "nil": false,
+        "sha256": "c8f7f1c02b8ed41a28caf6a873c41f5eff2ac34f9aa87c45c6019f1aaf68ea16"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-1",
+        "maximum": 10,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "original": {
+        "bytes": 202,
+        "nil": false,
+        "sha256": "34be3e9d1514d01052acf6a2fe5a410aa7559abdc496cba2d647d5a1ac885ed9"
+      },
+      "replica": {
+        "bytes": 202,
+        "nil": false,
+        "sha256": "34be3e9d1514d01052acf6a2fe5a410aa7559abdc496cba2d647d5a1ac885ed9"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-1",
+        "maximum": 11,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "original": {
+        "bytes": 206,
+        "nil": false,
+        "sha256": "c74c7c48b8e8ee1be2bd6f15bafeda777adac427c6d3a3bd276b8888cb56b0aa"
+      },
+      "replica": {
+        "bytes": 206,
+        "nil": false,
+        "sha256": "c74c7c48b8e8ee1be2bd6f15bafeda777adac427c6d3a3bd276b8888cb56b0aa"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-1",
+        "maximum": 128,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "original": {
+        "bytes": 1535,
+        "nil": false,
+        "sha256": "b49720b9f416fd125d456e267f34f3c61804f80cb720227c9af025ea9fd51bf2"
+      },
+      "replica": {
+        "bytes": 1535,
+        "nil": false,
+        "sha256": "b49720b9f416fd125d456e267f34f3c61804f80cb720227c9af025ea9fd51bf2"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-1",
+        "maximum": 1400,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "original": {
+        "bytes": 18438,
+        "nil": false,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "replica": {
+        "bytes": 18438,
+        "nil": false,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-1",
+        "maximum": 9223372036854775807,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "original": {
+        "bytes": 18438,
+        "nil": false,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      },
+      "replica": {
+        "bytes": 18438,
+        "nil": false,
+        "sha256": "6a980532c01e9dd328b515b5d3f6f35119b05a01ad6e7a5a25b2efb674e96763"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-2",
+        "maximum": -9223372036854775808,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "original": {
+        "bytes": 18722,
+        "nil": false,
+        "sha256": "e72b8cebc1368c9a65c2d42d27774437302bbccbc26507f7697df9ae9e42c433"
+      },
+      "replica": {
+        "bytes": 18722,
+        "nil": false,
+        "sha256": "e72b8cebc1368c9a65c2d42d27774437302bbccbc26507f7697df9ae9e42c433"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-2",
+        "maximum": -1,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "original": {
+        "bytes": 18722,
+        "nil": false,
+        "sha256": "e72b8cebc1368c9a65c2d42d27774437302bbccbc26507f7697df9ae9e42c433"
+      },
+      "replica": {
+        "bytes": 18722,
+        "nil": false,
+        "sha256": "e72b8cebc1368c9a65c2d42d27774437302bbccbc26507f7697df9ae9e42c433"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-2",
+        "maximum": 0,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "original": {
+        "bytes": 18722,
+        "nil": false,
+        "sha256": "e72b8cebc1368c9a65c2d42d27774437302bbccbc26507f7697df9ae9e42c433"
+      },
+      "replica": {
+        "bytes": 18722,
+        "nil": false,
+        "sha256": "e72b8cebc1368c9a65c2d42d27774437302bbccbc26507f7697df9ae9e42c433"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-2",
+        "maximum": 1,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "original": {
+        "bytes": 163,
+        "nil": false,
+        "sha256": "f0e1e01d07d849196c9477b9f2963f4427580e05e25f0dc593528a6340939cff"
+      },
+      "replica": {
+        "bytes": 163,
+        "nil": false,
+        "sha256": "f0e1e01d07d849196c9477b9f2963f4427580e05e25f0dc593528a6340939cff"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-2",
+        "maximum": 10,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "original": {
+        "bytes": 204,
+        "nil": false,
+        "sha256": "2b81110d76391fe7a5aa056c24a2ecf8c6568ab68114a986ab09661dab2e0e3f"
+      },
+      "replica": {
+        "bytes": 204,
+        "nil": false,
+        "sha256": "2b81110d76391fe7a5aa056c24a2ecf8c6568ab68114a986ab09661dab2e0e3f"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-2",
+        "maximum": 11,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "original": {
+        "bytes": 204,
+        "nil": false,
+        "sha256": "8d434ae8eb3247f7db1395c4081a30ed60035f9ba3c9ba1f045550e881bd2649"
+      },
+      "replica": {
+        "bytes": 204,
+        "nil": false,
+        "sha256": "8d434ae8eb3247f7db1395c4081a30ed60035f9ba3c9ba1f045550e881bd2649"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-2",
+        "maximum": 128,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "original": {
+        "bytes": 1522,
+        "nil": false,
+        "sha256": "23923d57767143be5a1b0479020956fe0226f23c26d21915a3247a667a61276c"
+      },
+      "replica": {
+        "bytes": 1522,
+        "nil": false,
+        "sha256": "23923d57767143be5a1b0479020956fe0226f23c26d21915a3247a667a61276c"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-2",
+        "maximum": 1400,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "original": {
+        "bytes": 18722,
+        "nil": false,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "replica": {
+        "bytes": 18722,
+        "nil": false,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "text-2",
+        "maximum": 9223372036854775807,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "original": {
+        "bytes": 18722,
+        "nil": false,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      },
+      "replica": {
+        "bytes": 18722,
+        "nil": false,
+        "sha256": "33bbb42e718348f9e6d9737f4c888cda53ac0dd45bcc12a9d2f5483451efef03"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-3",
+        "maximum": -9223372036854775808,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "original": {
+        "bytes": 36600,
+        "nil": false,
+        "sha256": "b7aa42572c8dc33b4ea9c4a95196ff103ebb0ee17c56385a1f778da6c19b6fc2"
+      },
+      "replica": {
+        "bytes": 36600,
+        "nil": false,
+        "sha256": "b7aa42572c8dc33b4ea9c4a95196ff103ebb0ee17c56385a1f778da6c19b6fc2"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-3",
+        "maximum": -1,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "original": {
+        "bytes": 36600,
+        "nil": false,
+        "sha256": "b7aa42572c8dc33b4ea9c4a95196ff103ebb0ee17c56385a1f778da6c19b6fc2"
+      },
+      "replica": {
+        "bytes": 36600,
+        "nil": false,
+        "sha256": "b7aa42572c8dc33b4ea9c4a95196ff103ebb0ee17c56385a1f778da6c19b6fc2"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-3",
+        "maximum": 0,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "original": {
+        "bytes": 36600,
+        "nil": false,
+        "sha256": "b7aa42572c8dc33b4ea9c4a95196ff103ebb0ee17c56385a1f778da6c19b6fc2"
+      },
+      "replica": {
+        "bytes": 36600,
+        "nil": false,
+        "sha256": "b7aa42572c8dc33b4ea9c4a95196ff103ebb0ee17c56385a1f778da6c19b6fc2"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-3",
+        "maximum": 1,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "original": {
+        "bytes": 162,
+        "nil": false,
+        "sha256": "7ffa93f63abeed157b9d4eef41847fb041fe5aaad45b923fff4f0d5334cac098"
+      },
+      "replica": {
+        "bytes": 162,
+        "nil": false,
+        "sha256": "7ffa93f63abeed157b9d4eef41847fb041fe5aaad45b923fff4f0d5334cac098"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-3",
+        "maximum": 10,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "original": {
+        "bytes": 201,
+        "nil": false,
+        "sha256": "c719749a6bd1256903b412e44e5133d34bbf2c7896e552fe0ffe54eb7fdfad5c"
+      },
+      "replica": {
+        "bytes": 201,
+        "nil": false,
+        "sha256": "c719749a6bd1256903b412e44e5133d34bbf2c7896e552fe0ffe54eb7fdfad5c"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-3",
+        "maximum": 11,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "original": {
+        "bytes": 192,
+        "nil": false,
+        "sha256": "a6e11e35b374dad8bc0c7692e49f501d7a86de7b2491838fe3c39507b6d23ac4"
+      },
+      "replica": {
+        "bytes": 192,
+        "nil": false,
+        "sha256": "a6e11e35b374dad8bc0c7692e49f501d7a86de7b2491838fe3c39507b6d23ac4"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-3",
+        "maximum": 128,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "original": {
+        "bytes": 1304,
+        "nil": false,
+        "sha256": "39aff190f56d3a7cc29f206bac07617ccc7d247682f81cde42cce582432d6c67"
+      },
+      "replica": {
+        "bytes": 1304,
+        "nil": false,
+        "sha256": "39aff190f56d3a7cc29f206bac07617ccc7d247682f81cde42cce582432d6c67"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-3",
+        "maximum": 1400,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "original": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "replica": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-3",
+        "maximum": 9223372036854775807,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "original": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      },
+      "replica": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "790a82902d20805febfec850f32ce21c948119dc6eeca5acadc41298a4553699"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-6",
+        "maximum": -9223372036854775808,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "original": {
+        "bytes": 42697,
+        "nil": false,
+        "sha256": "cbf08c7ea222ffc98e7257106ea59e37063d2a074e94d320360e5649a03ff30a"
+      },
+      "replica": {
+        "bytes": 42697,
+        "nil": false,
+        "sha256": "cbf08c7ea222ffc98e7257106ea59e37063d2a074e94d320360e5649a03ff30a"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-6",
+        "maximum": -1,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "original": {
+        "bytes": 42697,
+        "nil": false,
+        "sha256": "cbf08c7ea222ffc98e7257106ea59e37063d2a074e94d320360e5649a03ff30a"
+      },
+      "replica": {
+        "bytes": 42697,
+        "nil": false,
+        "sha256": "cbf08c7ea222ffc98e7257106ea59e37063d2a074e94d320360e5649a03ff30a"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-6",
+        "maximum": 0,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "original": {
+        "bytes": 42697,
+        "nil": false,
+        "sha256": "cbf08c7ea222ffc98e7257106ea59e37063d2a074e94d320360e5649a03ff30a"
+      },
+      "replica": {
+        "bytes": 42697,
+        "nil": false,
+        "sha256": "cbf08c7ea222ffc98e7257106ea59e37063d2a074e94d320360e5649a03ff30a"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-6",
+        "maximum": 1,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "original": {
+        "bytes": 162,
+        "nil": false,
+        "sha256": "7ffa93f63abeed157b9d4eef41847fb041fe5aaad45b923fff4f0d5334cac098"
+      },
+      "replica": {
+        "bytes": 162,
+        "nil": false,
+        "sha256": "7ffa93f63abeed157b9d4eef41847fb041fe5aaad45b923fff4f0d5334cac098"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-6",
+        "maximum": 10,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "original": {
+        "bytes": 206,
+        "nil": false,
+        "sha256": "6d33018be1d60302ac8e1bb289e669e8e69bd038166df13cec29833a7c7d9fd0"
+      },
+      "replica": {
+        "bytes": 206,
+        "nil": false,
+        "sha256": "6d33018be1d60302ac8e1bb289e669e8e69bd038166df13cec29833a7c7d9fd0"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-6",
+        "maximum": 11,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "original": {
+        "bytes": 196,
+        "nil": false,
+        "sha256": "e324d6b0badd1d408b3d84e56d3cc1a6f8761b666cb00006e5bc9eec2a061bf6"
+      },
+      "replica": {
+        "bytes": 196,
+        "nil": false,
+        "sha256": "e324d6b0badd1d408b3d84e56d3cc1a6f8761b666cb00006e5bc9eec2a061bf6"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-6",
+        "maximum": 128,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "original": {
+        "bytes": 1578,
+        "nil": false,
+        "sha256": "4934b07bd107048740d6e1226c15a0cf9b513cb89300b0b61e1dcfc21f9536ff"
+      },
+      "replica": {
+        "bytes": 1578,
+        "nil": false,
+        "sha256": "4934b07bd107048740d6e1226c15a0cf9b513cb89300b0b61e1dcfc21f9536ff"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-6",
+        "maximum": 1400,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "original": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "replica": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-6",
+        "maximum": 9223372036854775807,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "original": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      },
+      "replica": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "782efeb47ea63594b05249384b8f8869719f7551ad92bfffd543a7eefe17f265"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-8",
+        "maximum": -9223372036854775808,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "original": {
+        "bytes": 42599,
+        "nil": false,
+        "sha256": "08a4276a1c5cac7730611fd0cd29489996d615d876a9ad83f5c2e7c74058dbe0"
+      },
+      "replica": {
+        "bytes": 42599,
+        "nil": false,
+        "sha256": "08a4276a1c5cac7730611fd0cd29489996d615d876a9ad83f5c2e7c74058dbe0"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-8",
+        "maximum": -1,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "original": {
+        "bytes": 42599,
+        "nil": false,
+        "sha256": "08a4276a1c5cac7730611fd0cd29489996d615d876a9ad83f5c2e7c74058dbe0"
+      },
+      "replica": {
+        "bytes": 42599,
+        "nil": false,
+        "sha256": "08a4276a1c5cac7730611fd0cd29489996d615d876a9ad83f5c2e7c74058dbe0"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-8",
+        "maximum": 0,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "original": {
+        "bytes": 42599,
+        "nil": false,
+        "sha256": "08a4276a1c5cac7730611fd0cd29489996d615d876a9ad83f5c2e7c74058dbe0"
+      },
+      "replica": {
+        "bytes": 42599,
+        "nil": false,
+        "sha256": "08a4276a1c5cac7730611fd0cd29489996d615d876a9ad83f5c2e7c74058dbe0"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-8",
+        "maximum": 1,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "original": {
+        "bytes": 162,
+        "nil": false,
+        "sha256": "7ffa93f63abeed157b9d4eef41847fb041fe5aaad45b923fff4f0d5334cac098"
+      },
+      "replica": {
+        "bytes": 162,
+        "nil": false,
+        "sha256": "7ffa93f63abeed157b9d4eef41847fb041fe5aaad45b923fff4f0d5334cac098"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-8",
+        "maximum": 10,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "original": {
+        "bytes": 201,
+        "nil": false,
+        "sha256": "27ded6b1faa61582b55599e8a3ccba03f338335ae37adc60f445156e87f1bb90"
+      },
+      "replica": {
+        "bytes": 201,
+        "nil": false,
+        "sha256": "27ded6b1faa61582b55599e8a3ccba03f338335ae37adc60f445156e87f1bb90"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-8",
+        "maximum": 11,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "original": {
+        "bytes": 195,
+        "nil": false,
+        "sha256": "ae8fc3adefc0c8037391df7efbac32dd045d5a7adac866505e3030c42e97a4d3"
+      },
+      "replica": {
+        "bytes": 195,
+        "nil": false,
+        "sha256": "ae8fc3adefc0c8037391df7efbac32dd045d5a7adac866505e3030c42e97a4d3"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-8",
+        "maximum": 128,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "original": {
+        "bytes": 1572,
+        "nil": false,
+        "sha256": "10c031d0b8393e0092227d2b5be9b77cd20d6522c022ea42c81a9d5efc718596"
+      },
+      "replica": {
+        "bytes": 1572,
+        "nil": false,
+        "sha256": "10c031d0b8393e0092227d2b5be9b77cd20d6522c022ea42c81a9d5efc718596"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-8",
+        "maximum": 1400,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "original": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "replica": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      }
+    },
+    {
+      "equal": true,
+      "input": {
+        "fixture": "jpeg-orientation-8",
+        "maximum": 9223372036854775807,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "original": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      },
+      "replica": {
+        "bytes": 23147,
+        "nil": false,
+        "sha256": "2fbf6a7b23e9e3713ec2b6e1270f15879ea346480cd6b85503c36312124d557b"
+      }
+    }
+  ],
+  "limits": [
+    "Only listed cases and recovered source-level contracts; not proof over every possible input",
+    "Replica has its own Swift types and symbols; binary ABI/type identity is not promised",
+    "OCR wrapper comparison checks original word-array contract; replica also retains line text",
+    "No original UI entry point or private application state is executed"
+  ]
+}

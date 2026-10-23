@@ -576,7 +576,21 @@ final class ClipboardStoreTests {
             OriginalStackFunctions.f_10008468c(&mutable)
             expectEqual(mutable, original)
         }
-        await MainActor.run { expectFalse(OriginalStackFunctions.f_1000114fc()) }
+        await MainActor.run {
+            expectFalse(OriginalStackFunctions.f_1000114fc())
+            expectFalse(OriginalStackFunctions.f_1000114ec())
+            expectFalse(OriginalStackFunctions.f_1000114f4())
+            let window = NSWindow(contentRect: .init(x: 0, y: 0, width: 264, height: 76),
+                                  styleMask: .borderless, backing: .buffered, defer: false)
+            let controller = OriginalStackWindowController(window: window)
+            controller.f_100011138()
+            expectEqual(window.level.rawValue, 25)
+            expectEqual(window.collectionBehavior.rawValue, 257)
+            expectTrue(window.isMovableByWindowBackground)
+            expectEqual(window.frameAutosaveName, "com.wiheads.paste.paste-stack-frame")
+            expectFalse(window.isVisible)
+            OriginalStackWindowController(window: nil).f_100011138()
+        }
     }
 
     func testAddressOCRPreparationAndWordGeometry() async throws {
@@ -588,7 +602,10 @@ final class ClipboardStoreTests {
         expectEqual(properties[kCGImagePropertyPixelWidth] as? Int, 128)
         expectTrue((properties[kCGImagePropertyPixelHeight] as? Int ?? 0) <= 128)
         expectEqual(CGImageSourceGetType(source) as String?, "public.png")
-        expectNil(ImageTextRecognizer.f_1002d4ba0(imageData: image, maximumDimension: 0))
+        let zeroLimit = try requireValue(ImageTextRecognizer.f_1002d4ba0(imageData: image, maximumDimension: 0))
+        let zeroSource = try requireValue(CGImageSourceCreateWithData(zeroLimit as CFData, nil))
+        let zeroProperties = try requireValue(CGImageSourceCopyPropertiesAtIndex(zeroSource, 0, nil) as? [CFString: Any])
+        expectEqual(zeroProperties[kCGImagePropertyPixelWidth] as? Int, 1400)
         expectNil(ImageTextRecognizer.f_1002d4ba0(imageData: Data([0, 1]), maximumDimension: 128))
         try await MainActor.run {
             for width in [10, 11] {
@@ -602,7 +619,15 @@ final class ClipboardStoreTests {
         let empty = try ImageTextRecognizer.f_1002d4830(imageData: Data([0, 1]), maximumDimension: 128)
         expectEqual(empty.words, [])
         expectEqual(empty.text, "")
-        expectThrows(try ImageTextRecognizer.f_1002d4738(imageData: Data(), maximumDimension: 128))
+        do {
+            _ = try ImageTextRecognizer.f_1002d4738(imageData: Data(), maximumDimension: 128)
+            expectTrue(false)
+        } catch {
+            expectEqual((error as NSError).domain, "PasteRecognition.OCRError")
+            expectEqual((error as NSError).code, 0)
+            expectTrue((error as NSError).userInfo.isEmpty)
+            expectTrue(error is OCRError)
+        }
         let document = try await ImageTextRecognizer.recognizeDocument(imageData: image)
         let repeated = document.words.filter { $0.text.uppercased() == "PASTE" }
         expectEqual(repeated.count, 2)

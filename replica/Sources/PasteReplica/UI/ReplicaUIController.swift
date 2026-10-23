@@ -195,8 +195,8 @@ private final class ReplicaEditorWindow: NSWindow {
 
 @MainActor
 private final class ReplicaStackPanel: NSPanel {
-    override var canBecomeKey: Bool { OriginalStackFunctions.f_1000114fc() }
-    override var canBecomeMain: Bool { OriginalStackFunctions.f_1000114fc() }
+    override var canBecomeKey: Bool { OriginalStackFunctions.f_1000114f4() }
+    override var canBecomeMain: Bool { OriginalStackFunctions.f_1000114ec() }
 }
 
 @MainActor
@@ -282,18 +282,17 @@ final class ReplicaUIController {
             let window = ReplicaStackPanel(contentRect: .init(x: 0, y: 0, width: 264, height: 76),
                                            styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
             window.title = "Paste Stack"
-            window.level = .statusBar
-            window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
-            window.isMovableByWindowBackground = true
             window.isReleasedWhenClosed = false
             window.isOpaque = false; window.backgroundColor = .clear; window.hasShadow = true
             window.contentView = NSHostingView(rootView: ReplicaStackView(state: state))
             sharingPolicy.apply(to: window)
-            if !window.setFrameUsingName("PasteReplicaStack") {
+            if !window.setFrameUsingName(OriginalStackWindowController.stackFrameAutosaveName),
+               !window.setFrameUsingName("PasteReplicaStack") {
                 let frame = NSScreen.main?.visibleFrame ?? .init(x: 0, y: 0, width: 1200, height: 800)
                 window.setFrameOrigin(.init(x: frame.maxX - 284, y: frame.maxY - 96))
             }
-            window.setFrameAutosaveName("PasteReplicaStack")
+            let controller = OriginalStackWindowController(window: window)
+            controller.f_100011138()
             stackWindow = window
         }
         hidePanel()

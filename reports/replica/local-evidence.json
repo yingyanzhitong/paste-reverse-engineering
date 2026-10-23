@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "reference": {
     "version": "6.6.6",
     "build": "29766850",
@@ -30,8 +30,8 @@
         "0x1002d576c"
       ],
       "observation": "Vision识别、自动语言、纠错、后台处理；候选文字提取",
-      "validation": "Real pixels: text plus token confidence/normalized rectangles, repeated words, persistence, raw payload isolation; explicit thumbnail dimensions, PNG encoding and 10/11-pixel boundaries.",
-      "limitation": "Per-address states in function-map.json: original error type, caller defaults, optimized String.Index paths and text-selection UI are not fully matched."
+      "validation": "Direct original machine-code differential: byte-identical image preparation including zero/negative limits, 10/11-pixel boundaries and EXIF orientation; same token strings/Float confidence/CGRect? or NSError domain/code. Per-address reports in reports/function-equivalence/.",
+      "limitation": "Finite listed cases, not all inputs/languages or original text-selection UI. Original caller maximum-dimension defaults remain unconfirmed; replica preserves original-size compatibility default."
     },
     {
       "feature": "多选原始表示写回",
@@ -65,7 +65,7 @@
         "0x10008413c"
       ],
       "observation": "不能成为key/main，level25，全空间与全屏辅助；行44，1至10行夹取；反转、禁止行选择、取队首、空时关闭",
-      "validation": "Nib解析78对象/15连接；隐藏UI验证队列去重、反转持久化及队首消费",
+      "validation": "Nib解析78对象/15连接；隐藏UI验证队列去重、反转持久化及队首消费; direct original differential for controller windowDidLoad properties, main/key selector wrappers and array identity/COW reverse.",
       "limitation": "尚未完成辅助功能授权后的跨应用CmdV及全部窗口视觉对照"
     },
     {
@@ -106,5 +106,12 @@
     "远程共享Pinboard",
     "联网链接预览"
   ],
-  "function_implementation_summary": "reports/function-implementation/summary.json"
+  "function_implementation_summary": "reports/function-implementation/summary.json",
+  "original_function_differential": {
+    "functions": 9,
+    "cases": 168,
+    "passed": true,
+    "reports": "reports/function-equivalence/",
+    "all_functions_complete": false
+  }
 }
