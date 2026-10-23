@@ -13,6 +13,8 @@ open 'replica/dist/Paste Replica.app'
 
 当前交付是可运行的独立实现，**尚未达到全功能一比一验收**。原厂 iCloud 跨设备服务、订阅账号、系统直接粘贴授权后的完整跨应用矩阵等尚未通过对照；不能用反编译覆盖率或测试通过数替代等价性结论。运行与验证方法见 [replica/README.md](replica/README.md) 和 [测试范围](replica/TESTING.md)。
 
+按用户要求，复刻免费使用，不依赖原厂账号，不实现联网同步和付费解锁。现改为[逐函数实现与验证](replica/FUNCTION_IMPLEMENTATION.md)：[完整地址台账](reports/function-implementation/summary.json)覆盖 81,134 个本地地址，单独记录待处理、部分实现、已有实现、双端等价验证及有理由的范围排除。现有模块或反编译成功不自动计为逐函数完成。
+
 ## REA 静态研究
 
 使用 [REA](https://github.com/morluto/rea) 6.7.0 和 Ghidra 12.1.4，对本机安装的 Paste 6.6.6（29766850）进行 arm64 静态分析和批量反编译。

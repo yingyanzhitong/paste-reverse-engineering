@@ -6,6 +6,7 @@ import json
 import pathlib
 import re
 import subprocess
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 EXCLUDED = {".local", ".git", "__pycache__"}
@@ -108,8 +109,13 @@ def main():
         raise SystemExit("\n".join(issues))
     manifest = json.loads((ROOT / "reports/target-manifest.json").read_text())
     totals = [verify_target(binary) for binary in manifest["binaries"]]
+    function_ledger = None
+    if (ROOT / "reports/function-implementation/summary.json").exists():
+        function_ledger = json.loads(subprocess.check_output(
+            [sys.executable, str(ROOT / "scripts/function_ledger.py"), "--check"], cwd=ROOT, text=True))
     print(json.dumps({"verified": True, "public_text_files": len(files),
-                      "known_secret_values_checked": len(secrets), "targets": totals}, indent=2))
+                      "known_secret_values_checked": len(secrets), "targets": totals,
+                      "function_implementation_ledger": function_ledger}, indent=2))
 
 
 if __name__ == "__main__":

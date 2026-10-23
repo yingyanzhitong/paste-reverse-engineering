@@ -1,6 +1,7 @@
 import AppKit
 import Foundation
 import Combine
+import ImageIO
 import PasteReplicaCore
 
 final class ClipboardStoreTests {
@@ -16,7 +17,7 @@ final class ClipboardStoreTests {
     }
 
     @MainActor
-    private func textImageFixture() throws -> Data {
+    private func textImageFixture(text: String = "PASTE REPLICA 8426") throws -> Data {
         let bitmap = try requireValue(NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: 1400, pixelsHigh: 260,
                                                        bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true,
                                                        isPlanar: false, colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0))
@@ -25,7 +26,7 @@ final class ClipboardStoreTests {
         NSGraphicsContext.current = context
         NSColor.white.setFill()
         NSRect(x: 0, y: 0, width: 1400, height: 260).fill()
-        ("PASTE REPLICA 8426" as NSString).draw(with: NSRect(x: 40, y: 90, width: 1320, height: 110), attributes: [
+        (text as NSString).draw(with: NSRect(x: 40, y: 90, width: 1320, height: 110), attributes: [
             .font: NSFont.boldSystemFont(ofSize: 86), .foregroundColor: NSColor.black
         ])
         NSGraphicsContext.restoreGraphicsState()
@@ -559,8 +560,77 @@ final class ClipboardStoreTests {
             try reopened.writeToPasteboard(id: fixture.1, pasteboard: pasteboard, plainTextOnly: true)
             expectEqual(pasteboard.string(forType: .string), recognized)
         }
-        do { _ = try await ImageTextRecognizer.recognize(imageData: Data([0, 1, 2, 3])); expectTrue(false, "Invalid image data must throw") }
+        let invalid = try await ImageTextRecognizer.recognize(imageData: Data([0, 1, 2, 3]))
+        expectEqual(invalid, "", "REA image preprocessing returns no results for nonempty undecodable image data")
+        do { _ = try await ImageTextRecognizer.recognize(imageData: Data()); expectTrue(false, "Original public wrapper rejects empty input") }
         catch { }
+    }
+
+    func testAddressStackArrayAndWindowContracts() async throws {
+        for original in [[], [1], [1, 2], [1, 2, 3], [1, 2, 2, 4]] {
+            let alias = original
+            var mutable = original
+            OriginalStackFunctions.f_10008468c(&mutable)
+            expectEqual(mutable, Array(original.reversed()))
+            expectEqual(alias, original, "In-place reverse must preserve independent Array storage")
+            OriginalStackFunctions.f_10008468c(&mutable)
+            expectEqual(mutable, original)
+        }
+        await MainActor.run { expectFalse(OriginalStackFunctions.f_1000114fc()) }
+    }
+
+    func testAddressOCRPreparationAndWordGeometry() async throws {
+        let image = try await MainActor.run { try textImageFixture(text: "PASTE, PASTE! 8426") }
+        expectEqual(ImageTextRecognizer.f_1002d4ba0(imageData: image, maximumDimension: 1400), image)
+        let resized = try requireValue(ImageTextRecognizer.f_1002d4ba0(imageData: image, maximumDimension: 128))
+        let source = try requireValue(CGImageSourceCreateWithData(resized as CFData, nil))
+        let properties = try requireValue(CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any])
+        expectEqual(properties[kCGImagePropertyPixelWidth] as? Int, 128)
+        expectTrue((properties[kCGImagePropertyPixelHeight] as? Int ?? 0) <= 128)
+        expectEqual(CGImageSourceGetType(source) as String?, "public.png")
+        expectNil(ImageTextRecognizer.f_1002d4ba0(imageData: image, maximumDimension: 0))
+        expectNil(ImageTextRecognizer.f_1002d4ba0(imageData: Data([0, 1]), maximumDimension: 128))
+        try await MainActor.run {
+            for width in [10, 11] {
+                let bitmap = try requireValue(NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: width, pixelsHigh: 20,
+                    bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
+                    colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0))
+                let data = try requireValue(bitmap.representation(using: .png, properties: [:]))
+                expectEqual(ImageTextRecognizer.f_1002d4ba0(imageData: data, maximumDimension: 20), width == 10 ? nil : data)
+            }
+        }
+        let empty = try ImageTextRecognizer.f_1002d4830(imageData: Data([0, 1]), maximumDimension: 128)
+        expectEqual(empty.words, [])
+        expectEqual(empty.text, "")
+        expectThrows(try ImageTextRecognizer.f_1002d4738(imageData: Data(), maximumDimension: 128))
+        let document = try await ImageTextRecognizer.recognizeDocument(imageData: image)
+        let repeated = document.words.filter { $0.text.uppercased() == "PASTE" }
+        expectEqual(repeated.count, 2)
+        expectTrue(document.words.contains { $0.text == "8426" })
+        for word in document.words {
+            expectTrue(word.confidence >= 0 && word.confidence <= 1)
+            let box = try requireValue(word.boundingBox)
+            expectTrue(box.minX >= 0 && box.minY >= 0 && box.maxX <= 1.001 && box.maxY <= 1.001)
+            expectTrue(box.width > 0 && box.height > 0)
+        }
+        if repeated.count == 2 {
+            expectGreaterThan(try requireValue(repeated[1].boundingBox).minX,
+                              try requireValue(repeated[0].boundingBox).minX)
+        }
+        let directory = try temporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let store = try await MainActor.run { try ClipboardStore(directoryURL: directory) }
+        let id = try await MainActor.run { try store.add(ClipboardItem(kind: .image, payloads: ["public.png": image])) }
+        let stored = try await store.recognizeImageDocument(id: id)
+        try await MainActor.run {
+            let reopened = try ClipboardStore(directoryURL: directory)
+            expectEqual(reopened.items.first?.recognizedTextDocument, stored)
+            let board = privatePasteboard()
+            defer { board.releaseGlobally() }
+            try reopened.writeToPasteboard(id: id, pasteboard: board)
+            expectNil(board.data(forType: .init("com.pastereplica.internal.recognized-document+json")))
+            expectEqual(board.data(forType: .png), image)
+        }
     }
 
     func testTransientOptOutStillRejectsReplicaWriteBack() async throws {

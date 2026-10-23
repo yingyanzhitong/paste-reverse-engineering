@@ -24,11 +24,14 @@
     {
       "feature": "离线OCR",
       "functions": [
+        "0x1002d4738",
         "0x1002d4830",
+        "0x1002d4ba0",
         "0x1002d576c"
       ],
       "observation": "Vision识别、自动语言、纠错、后台处理；候选文字提取",
-      "validation": "合成真实PNG像素识别、检索、重开、原始图片表示不受内部索引影响"
+      "validation": "Real pixels: text plus token confidence/normalized rectangles, repeated words, persistence, raw payload isolation; explicit thumbnail dimensions, PNG encoding and 10/11-pixel boundaries.",
+      "limitation": "Per-address states in function-map.json: original error type, caller defaults, optimized String.Index paths and text-selection UI are not fully matched."
     },
     {
       "feature": "多选原始表示写回",
@@ -78,8 +81,8 @@
         "0x10000413c"
       ],
       "observation": "主App用SMAppService.loginItem；辅助进程观察运行程序，只在共享运行标志为真且主进程消失时后台重启",
-      "validation": "Isolated real helper/target processes: false marker, 3-second initial delay, no duplicate, SIGKILL triggers new PID, graceful exit does not relaunch. Only temporary app and suite identifiers substituted; no system service registration.",
-      "limitation": "SMAppService system registration and the launch-error retry branch remain unverified.",
+      "validation": "Real isolated helper/target processes include forced executable-unavailable launch failure and verified 10+3 second retry, as well as crash and graceful exit.",
+      "limitation": "SMAppService production registration remains unverified.",
       "retry_timing": "Each attempt waits 3 seconds; failed launch increments retryCount and waits retryCount * 10 seconds before rechecking and the next 3-second wait."
     },
     {
@@ -102,5 +105,6 @@
     "原厂账号与订阅",
     "远程共享Pinboard",
     "联网链接预览"
-  ]
+  ],
+  "function_implementation_summary": "reports/function-implementation/summary.json"
 }

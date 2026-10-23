@@ -128,14 +128,33 @@ import Foundation
                 assert len(launches()) == 2, "Graceful exit must not be restarted"
                 assert helper_process.poll() is None
                 active_pid = None
-                result = {"passed": True, "launch_count": 2,
+                # Force an actual launch error without touching the installed app.
+                helper_process.terminate(); helper_process.wait(timeout=5)
+                control.unlink()
+                subprocess.run([str(target), "--mark"], check=True, capture_output=True)
+                unavailable = target.with_suffix(".unavailable")
+                target.rename(unavailable)
+                try:
+                    helper_process = subprocess.Popen([str(helper_binary)], stdout=log, stderr=log)
+                    wait_for(lambda: "background launch failed" in (root / "helper.log").read_text(errors="replace"))
+                    failure_seen_at = time.time()
+                finally:
+                    unavailable.rename(target)
+                third = wait_for(lambda: launches()[2] if len(launches()) >= 3 else None, timeout=20)
+                active_pid = third["pid"]
+                assert third["time"] - failure_seen_at >= 12.6, "First failed attempt waits ten seconds, then three before retry"
+                control.touch()
+                wait_for(lambda: not process_exists(active_pid))
+                active_pid = None
+                result = {"passed": True, "launch_count": 3,
                           "checks": ["false shared marker prevents startup launch",
                                      "marked missing target opens after recovered three-second wait",
                                      "running target is not duplicated",
                                      "real SIGKILL triggers workspace observation and new target PID",
-                                     "graceful exit clears marker and prevents relaunch"],
+                                     "graceful exit clears marker and prevents relaunch",
+                                     "real missing-executable launch error retries after ten plus three seconds"],
                           "scope": "Real AppKit helper process and NSWorkspace runningApplications KVO; only the two identity literals are replaced in a temporary helper source copy. Disposable signed target app, isolated defaults suite; no service registration, production clipboard, or user data.",
-                          "limits": ["SMAppService registration is not exercised", "Launch failure retry branch not exercised"]}
+                          "limits": ["SMAppService registration is not exercised"]}
         except Exception as error:
             if args.report:
                 args.report.parent.mkdir(parents=True, exist_ok=True)

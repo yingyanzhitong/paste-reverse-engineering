@@ -1,0 +1,53 @@
+{
+  "scope": "免费、无需原厂账号；逐地址实现和验证本地功能。联网同步、远程共享、原厂账号与付费解锁路径按用户要求排除，但只有逐函数审阅并记录理由后才允许标记排除。所有本地跳板、运行库及反编译失败地址保留在分母中，不自动忽略。",
+  "functions": {
+    "Paste:0x1000114fc": {
+      "state": "implemented",
+      "contract": "主执行器隔离检查后返回false，供Stack窗口canBecomeKey/canBecomeMain共同使用。Swift复刻保留MainActor隔离和相同布尔结果，不承诺机器码ABI一致。",
+      "implementations": [{"path": "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift", "symbol": "f_1000114fc"}],
+      "tests": [{"path": "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift", "symbol": "testAddressStackArrayAndWindowContracts"}],
+      "contract_test": {"report": "reports/replica/function-contracts.json", "case": "address-stack-array-window-contracts"},
+      "remaining": "尚无原版函数与复刻函数的直接差分执行记录，因此不是verified。"
+    },
+    "Paste:0x10008468c": {
+      "state": "implemented",
+      "contract": "原地反转Swift数组，空/单项不变，交换首尾，遵守写时复制。原版伪代码ulong返回值无法用来恢复未被调用者消费的源级返回契约；复刻采用Void并记录这一ABI限制。",
+      "implementations": [{"path": "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift", "symbol": "f_10008468c"}],
+      "tests": [{"path": "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift", "symbol": "testAddressStackArrayAndWindowContracts"}],
+      "contract_test": {"report": "reports/replica/function-contracts.json", "case": "address-stack-array-window-contracts"},
+      "remaining": "已测试0/1/2/3/4项、重复值和数组别名；原始二进制差分仍待做。"
+    },
+    "Paste:0x1002d4738": {
+      "state": "partial",
+      "contract": "拒绝空Data，非空数据在autoreleasepool内委托OCR请求。",
+      "implementations": [{"path": "replica/Sources/PasteReplicaCore/OCR.swift", "symbol": "f_1002d4738"}],
+      "tests": [{"path": "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift", "symbol": "testAddressOCRPreparationAndWordGeometry"}],
+      "contract_test": {"report": "reports/replica/function-contracts.json", "case": "address-ocr-preparation-word-geometry"},
+      "remaining": "原版空输入使用自定义错误类型，当前为CocoaError；原版源级错误类型和调用方配置默认值尚未恢复。"
+    },
+    "Paste:0x1002d4830": {
+      "state": "partial",
+      "contract": "先准备图像，准备失败返回空结果；VNRecognizeTextRequest自动语言/纠错/后台均开启，执行错误向上传播，处理首候选。",
+      "implementations": [{"path": "replica/Sources/PasteReplicaCore/OCR.swift", "symbol": "f_1002d4830"}],
+      "tests": [{"path": "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift", "symbol": "testAddressOCRPreparationAndWordGeometry"}],
+      "contract_test": {"report": "reports/replica/function-contracts.json", "case": "address-ocr-preparation-word-geometry"},
+      "remaining": "原版返回词数组，复刻文档额外保留行文本；全部Vision错误场景和原版调用方最大尺寸参数尚未双端核对。"
+    },
+    "Paste:0x1002d4ba0": {
+      "state": "implemented",
+      "contract": "读取第一张图像元数据，宽高必须均大于10；最大边不超过传入上限时保留原字节，否则总是生成带方向变换的缩略图，并编码PNG。失败返回nil。",
+      "implementations": [{"path": "replica/Sources/PasteReplicaCore/OCR.swift", "symbol": "f_1002d4ba0"}],
+      "tests": [{"path": "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift", "symbol": "testAddressOCRPreparationAndWordGeometry"}],
+      "contract_test": {"report": "reports/replica/function-contracts.json", "case": "address-ocr-preparation-word-geometry"},
+      "remaining": "已验证原字节保留、缩放到显式上限、PNG输出、损坏数据、无效上限和10/11像素边界；EXIF方向及全部ImageIO失败分支仍待扩展，尚非verified。"
+    },
+    "Paste:0x1002d576c": {
+      "state": "partial",
+      "contract": "每个观察取topCandidates(1)的第一项；以空白/换行/标点联合字符集分词并丢弃空项；保存候选置信度和各词可选归一化位置框。",
+      "implementations": [{"path": "replica/Sources/PasteReplicaCore/OCR.swift", "symbol": "f_1002d576c"}],
+      "tests": [{"path": "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift", "symbol": "testAddressOCRPreparationAndWordGeometry"}],
+      "contract_test": {"report": "reports/replica/function-contracts.json", "case": "address-ocr-preparation-word-geometry"},
+      "remaining": "优化后的原版String.Index推进、缺失/抛错位置框分支与各语言分词尚未直接差分；当前前向范围搜索已测试重复英文词、标点、数字和框坐标。"
+    }
+  }
+}

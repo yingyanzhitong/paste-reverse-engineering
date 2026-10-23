@@ -1,0 +1,57 @@
+{
+  "kind": "replica_contract_tests_only",
+  "native_runner_sha256": "5b1156ea29524e5455c298821afa7cffdec019481324abf543eb5821ae8d7548",
+  "core_test_count": 21,
+  "original_binary_executed": false,
+  "function_equivalence_verified": false,
+  "functions": {
+    "Paste:0x1000114fc": {
+      "case": "address-stack-array-window-contracts",
+      "passed": true,
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "be6e6ee12ad53b4c1fcd60d688ca5ac1ee0fd1f344ca0ef2eba2238d73d28d7f",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+      }
+    },
+    "Paste:0x10008468c": {
+      "case": "address-stack-array-window-contracts",
+      "passed": true,
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OriginalStackFunctions.swift": "be6e6ee12ad53b4c1fcd60d688ca5ac1ee0fd1f344ca0ef2eba2238d73d28d7f",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+      }
+    },
+    "Paste:0x1002d4738": {
+      "case": "address-ocr-preparation-word-geometry",
+      "passed": true,
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OCR.swift": "c7341e6d52eb07139ef1131f05ecbc75e35748c3a51d0a3e1cf99d3cd3dc354c",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+      }
+    },
+    "Paste:0x1002d4830": {
+      "case": "address-ocr-preparation-word-geometry",
+      "passed": true,
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OCR.swift": "c7341e6d52eb07139ef1131f05ecbc75e35748c3a51d0a3e1cf99d3cd3dc354c",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+      }
+    },
+    "Paste:0x1002d4ba0": {
+      "case": "address-ocr-preparation-word-geometry",
+      "passed": true,
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OCR.swift": "c7341e6d52eb07139ef1131f05ecbc75e35748c3a51d0a3e1cf99d3cd3dc354c",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+      }
+    },
+    "Paste:0x1002d576c": {
+      "case": "address-ocr-preparation-word-geometry",
+      "passed": true,
+      "source_sha256": {
+        "replica/Sources/PasteReplicaCore/OCR.swift": "c7341e6d52eb07139ef1131f05ecbc75e35748c3a51d0a3e1cf99d3cd3dc354c",
+        "replica/Tests/PasteReplicaCoreTests/ClipboardStoreTests.swift": "7e8d5eab7fc7c09c51453302989e66809e4ff211dc6bb0e6d74215df2f7e4529"
+      }
+    }
+  }
+}

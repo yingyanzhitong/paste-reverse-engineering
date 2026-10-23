@@ -395,11 +395,12 @@ public final class ClipboardStore: ObservableObject {
         }
     }
 
-    func saveRecognizedText(id: UUID, text: String, expectedImageData: Data) throws {
+    func saveRecognizedDocument(id: UUID, document: RecognizedTextDocument, expectedImageData: Data) throws {
         try mutate { state in
             guard let i = state.items.firstIndex(where: { $0.id == id && !$0.isDeleted }),
                   state.items[i].kind == .image, state.items[i].imageData == expectedImageData else { return }
-            state.items[i].payloads[Self.recognizedTextPayloadKey] = Data(text.utf8)
+            state.items[i].payloads[Self.recognizedTextPayloadKey] = Data(document.text.utf8)
+            state.items[i].payloads[Self.recognizedDocumentPayloadKey] = try JSONEncoder().encode(document)
         }
     }
 

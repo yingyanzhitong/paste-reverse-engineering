@@ -139,7 +139,7 @@ final class ReplicaUIState: ObservableObject {
     }
 
     func reverseStack() {
-        stackIDs.reverse()
+        OriginalStackFunctions.f_10008468c(&stackIDs)
         store.preferences.stackReversed.toggle()
         perform { try store.save() }
     }
@@ -195,8 +195,8 @@ private final class ReplicaEditorWindow: NSWindow {
 
 @MainActor
 private final class ReplicaStackPanel: NSPanel {
-    override var canBecomeKey: Bool { false }
-    override var canBecomeMain: Bool { false }
+    override var canBecomeKey: Bool { OriginalStackFunctions.f_1000114fc() }
+    override var canBecomeMain: Bool { OriginalStackFunctions.f_1000114fc() }
 }
 
 @MainActor

@@ -92,6 +92,8 @@ struct ValidationMain {
             ,("local-vision-ocr-real-pixels", suite.testLocalVisionOCRSearchPersistenceAndOriginalPayloadIsolation)
             ,("transient-opt-out-loop-guard", suite.testTransientOptOutStillRejectsReplicaWriteBack)
             ,("history-erasure-queue-persistence-merge", suite.testHistoryErasureAndQueuePreferencesSurviveReopenAndMerge)
+            ,("address-stack-array-window-contracts", suite.testAddressStackArrayAndWindowContracts)
+            ,("address-ocr-preparation-word-geometry", suite.testAddressOCRPreparationAndWordGeometry)
         ]
         var results: [[String: Any]] = []
         for (name, run) in tests {

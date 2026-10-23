@@ -1,0 +1,547 @@
+{
+  "schema_version": 1,
+  "scope": "免费、无需原厂账号；逐地址实现和验证本地功能。联网同步、远程共享、原厂账号与付费解锁路径按用户要求排除，但只有逐函数审阅并记录理由后才允许标记排除。所有本地跳板、运行库及反编译失败地址保留在分母中，不自动忽略。",
+  "total_functions": 81134,
+  "states": {
+    "excluded_by_scope": 0,
+    "implemented": 3,
+    "partial": 3,
+    "pending": 81128,
+    "verified": 0
+  },
+  "targets": [
+    {
+      "target": "Paste",
+      "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+      "count": 80705,
+      "local_thunks": 12935,
+      "states": {
+        "excluded_by_scope": 0,
+        "implemented": 3,
+        "partial": 3,
+        "pending": 80699,
+        "verified": 0
+      },
+      "pages": [
+        {
+          "path": "Paste/part-0000.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100002b98",
+          "last": "Paste:0x100028a14"
+        },
+        {
+          "path": "Paste/part-0001.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100028a40",
+          "last": "Paste:0x10005abc8"
+        },
+        {
+          "path": "Paste/part-0002.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10005abd0",
+          "last": "Paste:0x100090b9c"
+        },
+        {
+          "path": "Paste/part-0003.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100090c28",
+          "last": "Paste:0x1000c9f10"
+        },
+        {
+          "path": "Paste/part-0004.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1000c9ff0",
+          "last": "Paste:0x1000f08dc"
+        },
+        {
+          "path": "Paste/part-0005.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1000f0914",
+          "last": "Paste:0x10011deb4"
+        },
+        {
+          "path": "Paste/part-0006.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10011deb8",
+          "last": "Paste:0x100162e70"
+        },
+        {
+          "path": "Paste/part-0007.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100162e9c",
+          "last": "Paste:0x10018a618"
+        },
+        {
+          "path": "Paste/part-0008.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10018a628",
+          "last": "Paste:0x1001af2e0"
+        },
+        {
+          "path": "Paste/part-0009.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1001af310",
+          "last": "Paste:0x1001f0ed4"
+        },
+        {
+          "path": "Paste/part-0010.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1001f0f24",
+          "last": "Paste:0x10020ced8"
+        },
+        {
+          "path": "Paste/part-0011.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10020cef0",
+          "last": "Paste:0x1002337e0"
+        },
+        {
+          "path": "Paste/part-0012.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1002338bc",
+          "last": "Paste:0x10026e16c"
+        },
+        {
+          "path": "Paste/part-0013.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10026e178",
+          "last": "Paste:0x1002aa3e0"
+        },
+        {
+          "path": "Paste/part-0014.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1002aa420",
+          "last": "Paste:0x1002e357c"
+        },
+        {
+          "path": "Paste/part-0015.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1002e35d4",
+          "last": "Paste:0x10031877c"
+        },
+        {
+          "path": "Paste/part-0016.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1003187b8",
+          "last": "Paste:0x100358ba4"
+        },
+        {
+          "path": "Paste/part-0017.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100358bc4",
+          "last": "Paste:0x1003a26ec"
+        },
+        {
+          "path": "Paste/part-0018.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1003a2730",
+          "last": "Paste:0x1003d20a0"
+        },
+        {
+          "path": "Paste/part-0019.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1003d2174",
+          "last": "Paste:0x100400d98"
+        },
+        {
+          "path": "Paste/part-0020.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100400dbc",
+          "last": "Paste:0x100424764"
+        },
+        {
+          "path": "Paste/part-0021.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100424778",
+          "last": "Paste:0x10044e51c"
+        },
+        {
+          "path": "Paste/part-0022.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10044e544",
+          "last": "Paste:0x100482abc"
+        },
+        {
+          "path": "Paste/part-0023.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100482ae4",
+          "last": "Paste:0x1004bb2a8"
+        },
+        {
+          "path": "Paste/part-0024.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1004bb2f4",
+          "last": "Paste:0x1004e7210"
+        },
+        {
+          "path": "Paste/part-0025.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1004e7360",
+          "last": "Paste:0x1005263b4"
+        },
+        {
+          "path": "Paste/part-0026.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1005263c8",
+          "last": "Paste:0x10054e4dc"
+        },
+        {
+          "path": "Paste/part-0027.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10054e504",
+          "last": "Paste:0x10056bae8"
+        },
+        {
+          "path": "Paste/part-0028.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10056baec",
+          "last": "Paste:0x1005828e0"
+        },
+        {
+          "path": "Paste/part-0029.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100582920",
+          "last": "Paste:0x1005a8a48"
+        },
+        {
+          "path": "Paste/part-0030.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1005a8a88",
+          "last": "Paste:0x1005be36c"
+        },
+        {
+          "path": "Paste/part-0031.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1005be370",
+          "last": "Paste:0x1005e0260"
+        },
+        {
+          "path": "Paste/part-0032.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1005e0264",
+          "last": "Paste:0x10060d124"
+        },
+        {
+          "path": "Paste/part-0033.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10060d1ac",
+          "last": "Paste:0x100627c90"
+        },
+        {
+          "path": "Paste/part-0034.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100627dec",
+          "last": "Paste:0x100643020"
+        },
+        {
+          "path": "Paste/part-0035.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10064311c",
+          "last": "Paste:0x100662830"
+        },
+        {
+          "path": "Paste/part-0036.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100662860",
+          "last": "Paste:0x10066fa68"
+        },
+        {
+          "path": "Paste/part-0037.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10066fa74",
+          "last": "Paste:0x100688388"
+        },
+        {
+          "path": "Paste/part-0038.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10068839c",
+          "last": "Paste:0x1006a96b0"
+        },
+        {
+          "path": "Paste/part-0039.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1006a96c4",
+          "last": "Paste:0x1006caac4"
+        },
+        {
+          "path": "Paste/part-0040.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1006cad5c",
+          "last": "Paste:0x1006f2db0"
+        },
+        {
+          "path": "Paste/part-0041.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1006f2db4",
+          "last": "Paste:0x100724efc"
+        },
+        {
+          "path": "Paste/part-0042.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100725130",
+          "last": "Paste:0x100761aec"
+        },
+        {
+          "path": "Paste/part-0043.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100761af8",
+          "last": "Paste:0x1007a8f10"
+        },
+        {
+          "path": "Paste/part-0044.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1007a8fac",
+          "last": "Paste:0x1007e0de0"
+        },
+        {
+          "path": "Paste/part-0045.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1007e0f9c",
+          "last": "Paste:0x10080a444"
+        },
+        {
+          "path": "Paste/part-0046.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10080a448",
+          "last": "Paste:0x1008476b8"
+        },
+        {
+          "path": "Paste/part-0047.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100847730",
+          "last": "Paste:0x1008717a8"
+        },
+        {
+          "path": "Paste/part-0048.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1008717e8",
+          "last": "Paste:0x1008a4e90"
+        },
+        {
+          "path": "Paste/part-0049.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1008a4ec4",
+          "last": "Paste:0x1008c8bf8"
+        },
+        {
+          "path": "Paste/part-0050.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1008c8bfc",
+          "last": "Paste:0x1008f8988"
+        },
+        {
+          "path": "Paste/part-0051.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1008f89d8",
+          "last": "Paste:0x1009095b0"
+        },
+        {
+          "path": "Paste/part-0052.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1009095c0",
+          "last": "Paste:0x100932108"
+        },
+        {
+          "path": "Paste/part-0053.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100932184",
+          "last": "Paste:0x10095eed4"
+        },
+        {
+          "path": "Paste/part-0054.jsonl",
+          "count": 1024,
+          "first": "Paste:0x10095ef78",
+          "last": "Paste:0x100983144"
+        },
+        {
+          "path": "Paste/part-0055.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100983148",
+          "last": "Paste:0x1009a3020"
+        },
+        {
+          "path": "Paste/part-0056.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1009a3030",
+          "last": "Paste:0x1009cb560"
+        },
+        {
+          "path": "Paste/part-0057.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1009cb5c4",
+          "last": "Paste:0x1009ffc44"
+        },
+        {
+          "path": "Paste/part-0058.jsonl",
+          "count": 1024,
+          "first": "Paste:0x1009ffc80",
+          "last": "Paste:0x100a321a0"
+        },
+        {
+          "path": "Paste/part-0059.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100a32388",
+          "last": "Paste:0x100a52594"
+        },
+        {
+          "path": "Paste/part-0060.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100a525e4",
+          "last": "Paste:0x100a70848"
+        },
+        {
+          "path": "Paste/part-0061.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100a70924",
+          "last": "Paste:0x100aa2d68"
+        },
+        {
+          "path": "Paste/part-0062.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100aa2de4",
+          "last": "Paste:0x100ae5d90"
+        },
+        {
+          "path": "Paste/part-0063.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100ae5dd4",
+          "last": "Paste:0x100b12b58"
+        },
+        {
+          "path": "Paste/part-0064.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100b12b60",
+          "last": "Paste:0x100b37a60"
+        },
+        {
+          "path": "Paste/part-0065.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100b37d94",
+          "last": "Paste:0x100b5bfb8"
+        },
+        {
+          "path": "Paste/part-0066.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100b5bfc0",
+          "last": "Paste:0x100b75c6c"
+        },
+        {
+          "path": "Paste/part-0067.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100b75c78",
+          "last": "Paste:0x100b8b1b0"
+        },
+        {
+          "path": "Paste/part-0068.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100b8b1d8",
+          "last": "Paste:0x100b9c030"
+        },
+        {
+          "path": "Paste/part-0069.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100b9c050",
+          "last": "Paste:0x100bb3bb0"
+        },
+        {
+          "path": "Paste/part-0070.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100bb3bc4",
+          "last": "Paste:0x100bc73dc"
+        },
+        {
+          "path": "Paste/part-0071.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100bc73fc",
+          "last": "Paste:0x100be0b20"
+        },
+        {
+          "path": "Paste/part-0072.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100be0b48",
+          "last": "Paste:0x100bf4350"
+        },
+        {
+          "path": "Paste/part-0073.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100bf435c",
+          "last": "Paste:0x100bf7350"
+        },
+        {
+          "path": "Paste/part-0074.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100bf735c",
+          "last": "Paste:0x100bfa350"
+        },
+        {
+          "path": "Paste/part-0075.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100bfa35c",
+          "last": "Paste:0x100bfdc60"
+        },
+        {
+          "path": "Paste/part-0076.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100bfdc80",
+          "last": "Paste:0x100c05c80"
+        },
+        {
+          "path": "Paste/part-0077.jsonl",
+          "count": 1024,
+          "first": "Paste:0x100c05ca0",
+          "last": "Paste:0x100c0dc80"
+        },
+        {
+          "path": "Paste/part-0078.jsonl",
+          "count": 833,
+          "first": "Paste:0x100c0dca0",
+          "last": "Paste:0x101362700"
+        }
+      ]
+    },
+    {
+      "target": "paste-mcp-stdio",
+      "original_binary_sha256": "cb868953a620e4343464bd80e1f55603eca23e462a6cfac100895b249977cd00",
+      "count": 221,
+      "local_thunks": 121,
+      "states": {
+        "excluded_by_scope": 0,
+        "implemented": 0,
+        "partial": 0,
+        "pending": 221,
+        "verified": 0
+      },
+      "pages": [
+        {
+          "path": "paste-mcp-stdio/part-0000.jsonl",
+          "count": 221,
+          "first": "paste-mcp-stdio:0x1000010b0",
+          "last": "paste-mcp-stdio:0x10001ee00"
+        }
+      ]
+    },
+    {
+      "target": "Paste-Helper",
+      "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
+      "count": 208,
+      "local_thunks": 114,
+      "states": {
+        "excluded_by_scope": 0,
+        "implemented": 0,
+        "partial": 0,
+        "pending": 208,
+        "verified": 0
+      },
+      "pages": [
+        {
+          "path": "Paste-Helper/part-0000.jsonl",
+          "count": 208,
+          "first": "Paste-Helper:0x100001410",
+          "last": "Paste-Helper:0x10001f200"
+        }
+      ]
+    }
+  ],
+  "full_function_equivalence": false,
+  "counting_rule": "Exported pseudocode, partial implementation, contract tests, SDK delegation and scope exclusions are not verified function equivalence."
+}
