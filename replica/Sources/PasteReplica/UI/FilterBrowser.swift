@@ -31,11 +31,7 @@ enum ReplicaFilterMatching {
                     return equal(item.sourceBundleID ?? item.sourceName, source)
                 case let .device(device):
                     return item.sourceDevice.range(of: device, options: [.caseInsensitive, .diacriticInsensitive]) != nil
-                case let .date(days):
-                    let today = Calendar.current.startOfDay(for: Date())
-                    let start = Calendar.current.date(byAdding: .day, value: -max(0, days - 1), to: today)!
-                    let end = Calendar.current.date(byAdding: .day, value: 1, to: today)!
-                    return start <= item.updatedAt && item.updatedAt < end
+                case let .date(filter): return filter.range.contains(item.updatedAt)
                 case let .pinboard(id): return item.pinboardIDs.contains(id)
                 }
             }
@@ -56,7 +52,7 @@ enum ReplicaFilterMatching {
             image = item?.sourceBundleID.flatMap { NSWorkspace.shared.urlForApplication(withBundleIdentifier: $0) }
                 .map { NSWorkspace.shared.icon(forFile: $0.path) }
         case let .device(device): title = device
-        case let .date(days): title = [1: "今天", 7: "过去一周", 30: "过去一个月"][days] ?? "\(days) 天"
+        case let .date(filter): title = filter.title
         case let .pinboard(id): title = store.pinboards.first { $0.id == id }?.name ?? "Pinboard"
         }
         if image == nil {
@@ -284,7 +280,7 @@ extension ReplicaUIController {
             .init(id: 0, title: OriginalSearchLocalization.text("search.filters.section.app"), choices: sources.map { .source($0) }),
             .init(id: 5, title: OriginalSearchLocalization.text("search.filters.section.pinboard"),
                   choices: store.pinboards.sorted { $0.sortOrder < $1.sortOrder }.map { .pinboard($0.id) }),
-            .init(id: 3, title: OriginalSearchLocalization.text("search.filters.section.date"), choices: [1, 7, 30].map { .date($0) }),
+            .init(id: 3, title: OriginalSearchLocalization.text("search.filters.section.date"), choices: OriginalSearchDateRanges.f_1002d8ce0().map { .date($0) }),
             .init(id: 4, title: OriginalSearchLocalization.text("search.filters.section.device"), choices: devices.map { .device($0) })
         ]
         let content = ReplicaFilterBrowser(state: state, sections: sections,

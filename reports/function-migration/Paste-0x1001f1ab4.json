@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001f1ab4",
-  "reviewed_at": "2026-10-23T10:29:39.722067+00:00",
+  "reviewed_at": "2026-10-23T10:38:37.881385+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0160.c",
@@ -11,17 +11,17 @@
   "original_pseudocode_sha256": "02432336a1d139940aa24c09aa0cf8c4e97c4c64b3dec51d40e1fdc75619cfbe",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "ba907c942f91fe336506e9a47576051f285bfce47ccd43315cb111aedbd237f2",
-    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorderView.swift": "3473a4b0c156365087e9527f73389b75e1e8a41adb5bbeaf5abf5581754ff16b"
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorderView.swift": "881691562e6378fbadd64502b3ec893c821a1e0a463f8b0c6a5ddbdef7dd6330"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
+  "compiled_app_binary_sha256": "4ab837ffc64e31c3d5bcaae9809e73fbd6828cee6cf109ed2addb27b8d69b746",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "结构比较完整三态：状态种类不同false；assigned比较key/modifier；recording分别比较previous及candidate可选值；none与none为true。",
-  "review": "完整Int/UInt关联值的三态结构比较；SwiftUI id(state)实际通过Hashable/Equatable调用，不再依赖已删除的Native同步辅助方法。",
-  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
+  "review": "完整Int/UInt关联值的三态结构比较；SwiftUI id(state)实际通过Hashable/Equatable调用，不再依赖已删除的Native同步辅助方法。 本轮只在body的App适配层加拒绝Binding回读观察；本文件public var body之前全部字节与HEAD一致，具名原函数体/原Binding onChange路径未改。新增观察复用f1ee19c，不作为新原函数。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

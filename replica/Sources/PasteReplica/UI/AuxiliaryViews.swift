@@ -83,7 +83,7 @@ struct ReplicaPreviewView: View {
 }
 
 @MainActor
-private struct NativeFilePreview: NSViewRepresentable {
+struct NativeFilePreview: NSViewRepresentable {
     let url: URL
     func makeNSView(context: Context) -> QLPreviewView {
         let view = QLPreviewView(frame: .zero, style: .normal)!

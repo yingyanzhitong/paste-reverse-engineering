@@ -4,7 +4,7 @@ import PasteReplicaCore
 
 struct ReplicaSearchFilterChip {
     enum Selection: Hashable {
-        case kind(ClipboardKind), source(String), device(String), date(Int), pinboard(UUID)
+        case kind(ClipboardKind), source(String), device(String), date(OriginalSearchDateFilter), pinboard(UUID)
     }
     let selection: Selection
     let title: String

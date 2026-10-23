@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d489c",
-  "reviewed_at": "2026-10-23T10:29:40.010845+00:00",
+  "reviewed_at": "2026-10-23T10:38:38.637543+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,19 +14,19 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "d5b29e7a832526d8a76304ac6dfeeea0e684391c82d84db8ab99be3a62036133",
+  "compiled_app_binary_sha256": "4ab837ffc64e31c3d5bcaae9809e73fbd6828cee6cf109ed2addb27b8d69b746",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "非释放实例的析构核心：按顺序释放 lock、name 和 optional logger 字段。",
-  "review": "build18完整非deallocating-deinit d2814..d2840按lock0x10→String.bridge0x20→cached Optional sink0x28释放，返回self不free；d2840..d2880完整helper经ValueWitness destroy；不是fD片段。",
+  "review": "build19完整非deallocating-deinit d0f34..d0f60按lock0x10→String.bridge0x20→cached Optional sink0x28释放，返回self不free；d0f60..d0fa0完整helper经ValueWitness destroy；不是fD片段。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000d2814",
-    "end_exclusive": "0x1000d2840",
+    "start": "0x1000d0f34",
+    "end_exclusive": "0x1000d0f60",
     "size": 44,
-    "sha256": "3f28efcfedd63033c23c508f48c829cca36514d309446786d4e9121c25dfb829"
+    "sha256": "4753c520938967f958afccc19f23fa16ea52607e5d5c570aa1bd301858392aa4"
   }
 }

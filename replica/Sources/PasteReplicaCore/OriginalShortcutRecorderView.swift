@@ -44,6 +44,13 @@ public struct OriginalShortcutRecorderView: View {
     public var body: some View {
         f_1001ecbc4()
             .onChange(of: model.state.isRecording, initial: false) { _, value in recordingChanged(value) }
+            .onChange(of: model.state, initial: false) { _, state in
+                // An application binding may reject a conflicting assignment.
+                // Keep the label consistent with the preference it actually kept.
+                if case let .assigned(detected) = state, shortcut != detected {
+                    model.f_1001ee19c(shortcut)
+                }
+            }
             .onReceive(model.$validationError) { value in errorChanged(value?.localizedDescription ?? "") }
     }
 }

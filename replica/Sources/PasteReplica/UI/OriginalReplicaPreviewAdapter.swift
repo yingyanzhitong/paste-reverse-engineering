@@ -2,6 +2,25 @@ import AppKit
 import Combine
 import PasteReplicaCore
 
+/// Shares the recovered preview chrome without claiming the nontext editing protocols.
+@MainActor
+func makeOriginalReplicaPreview(state: ReplicaUIState, item: ClipboardItem) -> OriginalItemPreviewView {
+    if let textPreview = makeOriginalReplicaTextPreview(state: state, item: item) { return textPreview }
+    let content = makeReplicaReadOnlyPreviewContent(store: state.store, item: item)
+    let header = ReplicaInlinePreviewHeader(state: state, item: item, canEdit: false)
+    let footer = OriginalPreviewFooterView()
+    let emptyMetadata = NSView()
+    emptyMetadata.heightAnchor.constraint(equalToConstant: 0).isActive = true
+    footer.f_1003df0b0(emptyMetadata)
+    let screenSize = NSScreen.main?.frame.size ?? NSSize(width: 1520, height: 960)
+    let view = ReplicaInlinePreviewContainer(previewHeader: header, editorHeader: NSView(),
+                                            contentView: content, footer: footer,
+                                            contentSize: NSSize(width: max(380, screenSize.width * 0.25),
+                                                                height: max(240, screenSize.height * 0.25)))
+    connectReplicaPreviewHeader(header, view: view, state: state, item: item)
+    return view
+}
+
 /// Connects recovered preview mode transitions to the replica's local text model.
 /// Color, image, and link editing require their separate recovered content adapters.
 @MainActor
@@ -14,15 +33,7 @@ func makeOriginalReplicaTextPreview(state: ReplicaUIState, item: ClipboardItem) 
     let view = ReplicaInlinePreviewContainer(previewHeader: header, editorHeader: editorHeader,
                                             contentView: content, footer: footer,
                                             contentSize: content.preferredPreviewSize)
-    header.onEdit = { [weak view] in view?.f_10007be8c() }
-    header.onClose = { [weak header, weak view] in
-        header?.titleLabel.f_100011d28()
-        view?.window?.performClose(nil)
-    }
-    header.titleLabel.onCommitEditing = { [weak state] title in
-        guard let state else { return }
-        state.perform { try state.store.updateItem(id: item.id, title: title, text: nil) }
-    }
+    connectReplicaPreviewHeader(header, view: view, state: state, item: item)
     editorHeader.onCancel = { [weak view] in view?.f_10007c1fc() }
     editorHeader.onSave = { [weak view] in view?.f_10007c080() }
     view.setCanCommitEditing = { [weak editorHeader] enabled in editorHeader?.setCanCommit(enabled) }
@@ -35,10 +46,26 @@ func makeOriginalReplicaTextPreview(state: ReplicaUIState, item: ClipboardItem) 
 }
 
 @MainActor
+private func connectReplicaPreviewHeader(_ header: ReplicaInlinePreviewHeader,
+                                         view: OriginalItemPreviewView,
+                                         state: ReplicaUIState, item: ClipboardItem) {
+    header.onEdit = { [weak view] in view?.f_10007be8c() }
+    header.onClose = { [weak header, weak view] in
+        header?.titleLabel.f_100011d28()
+        view?.window?.performClose(nil)
+    }
+    header.titleLabel.onCommitEditing = { [weak state] title in
+        guard let state else { return }
+        state.perform { try state.store.updateItem(id: item.id, title: title, text: nil) }
+    }
+}
+
+@MainActor
 private final class ReplicaInlinePreviewContainer: OriginalItemPreviewView {
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
         let modifiers = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
         if modifiers == .command, event.charactersIgnoringModifiers == "e", editorHeader.isHidden {
+            guard itemContentView is OriginalPreviewEditableContent else { return super.performKeyEquivalent(with: event) }
             f_10007be8c()
             return true
         }
@@ -259,13 +286,14 @@ private final class ReplicaInlinePreviewHeader: NSView {
     private var pinButton: OriginalToolbarButton?
     private var sharingPicker: NSSharingServicePicker?
 
-    init(state: ReplicaUIState, item: ClipboardItem) {
+    init(state: ReplicaUIState, item: ClipboardItem, canEdit: Bool = true) {
         self.state = state
         itemID = item.id
         super.init(frame: .zero)
         let close = NSButton()
         f_1000123d4(close)
         let edit = OriginalToolbarButton(title: String(localized: OriginalPreviewLocalization.f_1001c1688())) { [weak self] _ in self?.onEdit?() }
+        edit.isEnabled = canEdit
         let pin = OriginalToolbarButton(symbol: "circle.dashed", toolTip: String(localized: OriginalPreviewLocalization.f_1001c2a08())) { [weak self] button in
             self?.showPinMenu(from: button)
         }

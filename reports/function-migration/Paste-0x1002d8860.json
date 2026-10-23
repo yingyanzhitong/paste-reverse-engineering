@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002d8860",
+  "reviewed_at": "2026-10-23T10:38:39.940460+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0236.c",
+    "line": 1435
+  },
+  "original_pseudocode_sha256": "617a1a3e03e817adbddf7179794bbfc64b692b2012f7a0130eac812fc87c8da9",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchDateRanges.swift": "dff8c099cdc52948c2e4d8d11404d892622e877a77fbdb3226446c2bbdfa9020",
+    "replica/Sources/PasteReplica/UI/FilterBrowser.swift": "31ead38ca8b40c8cced3d4af8e1d73837ce6a0189bb194a89082c29d94bf881a"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "4ab837ffc64e31c3d5bcaae9809e73fbd6828cee6cf109ed2addb27b8d69b746",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "当前日历当天起点；当前日历day -30为下界，另当前日历对同一天起点day +1为上界，均强解包；严格递增半开范围。原语义包含今天及此前30日，不擅自改成-29。",
+  "review": "REA part0236全函数、原arm64同日历组件/偏移/strict less与forced optional分支核；last30原8ab0/8b4c两次x2均x22，确认上下界同一startOfDay基准。原五英文title由8ce0小String常量直接恢复；原本地化资源无对应key，不自行替换标签。搜索chip保存实际范围，匹配item.updatedAt的上下界，不在每次渲染时重算相对天数。原完整索引/query父仍partial。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

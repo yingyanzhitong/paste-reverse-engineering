@@ -424,10 +424,7 @@ final class ReplicaUIController {
     }
 
     private func makePreviewContent(for item: ClipboardItem) -> NSView {
-        if let view = makeOriginalReplicaTextPreview(state: state, item: item) { return view }
-        let view = NSHostingView(rootView: ReplicaPreviewView(state: state, itemID: item.id))
-        view.frame.size = .init(width: 620, height: 480)
-        return view
+        makeOriginalReplicaPreview(state: state, item: item)
     }
 
     private func makePreviewPopover() -> OriginalPreviewPopover {
@@ -440,7 +437,7 @@ final class ReplicaUIController {
             visibilityChanges: changes)
         popover.makeContentView = { [weak self] _, identifier in
             guard let self, let item = self.store.items.first(where: { $0.id.uuidString == identifier }) else { return nil }
-            return makeOriginalReplicaTextPreview(state: self.state, item: item)
+            return makeOriginalReplicaPreview(state: self.state, item: item)
         }
         return popover
     }
