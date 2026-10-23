@@ -231,6 +231,21 @@ public final class ClipboardStore: ObservableObject {
         }
     }
 
+    /// Restore promotes the selected content in reverse order, as the original history repository does.
+    func recordRestoredItems(ids: [UUID]) throws {
+        try mutate { state in
+            for id in ids.reversed() {
+                guard let index = state.items.firstIndex(where: { $0.id == id && !$0.isDeleted }) else {
+                    throw ClipboardStoreError.itemNotFound
+                }
+                let timestamp = Date()
+                state.items[index].createdAt = timestamp
+                state.items[index].updatedAt = timestamp
+                state.items[index].isInHistory = true
+            }
+        }
+    }
+
     public func save() throws { try mutate { _ in } }
     public func reload() throws {
         let local = current

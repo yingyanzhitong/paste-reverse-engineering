@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037e44c",
-  "reviewed_at": "2026-10-23T12:00:07.437981+00:00",
+  "reviewed_at": "2026-10-23T12:12:01.951620+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "82560709ba6afa4f79a633a0d3a63e6911e854ee3e47b6544112df5b33354ee1",
+  "compiled_app_binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "Decodable协议构造witness：分配对象并调用Decoder初始化，成功才向返回缓冲写实例，错误时不写。",
-  "review": "最终build29完整Decodable witness f9784..f97d0：当前conformance15f5ec+24相对指针绑定f9784；f97b8在x21错误非零时跳f97c0，跳过f97bc输出写入。",
+  "review": "最终build30完整Decodable witness fb5f0..fb63c：当前conformance162dac+24相对指针绑定fb5f0；fb624在x21错误非零时跳fb62c，跳过fb628输出写入。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000f9784",
-    "end_exclusive": "0x1000f97d0",
+    "start": "0x1000fb5f0",
+    "end_exclusive": "0x1000fb63c",
     "size": 76,
-    "sha256": "99e33b9bca74c3e5f2764ce37da1f516d73f90c0c5c65e68d7cec2a00cfa6ea9",
-    "binary_sha256": "82560709ba6afa4f79a633a0d3a63e6911e854ee3e47b6544112df5b33354ee1",
+    "sha256": "c97e6fabd18b10e8d4150dc79c3a429fe63e217fa3766cc7887a5f3cbbdc6485",
+    "binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
     "lc_function_starts_verified": true
   }
 }

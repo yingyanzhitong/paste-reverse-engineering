@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d48c8",
-  "reviewed_at": "2026-10-23T12:00:07.472312+00:00",
+  "reviewed_at": "2026-10-23T12:12:01.967632+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "82560709ba6afa4f79a633a0d3a63e6911e854ee3e47b6544112df5b33354ee1",
+  "compiled_app_binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "按 lock→name→optional logger 顺序释放字段，再释放类实例。",
-  "review": "最终build29完整deallocating-deinit f56a0..f56d4：相同顺序释放lock/name/cached，再swift_deallocClassInstance(self,0x50,7)；metadata1bc280前destroy slot1bc270绑定f56a0。",
+  "review": "最终build30完整deallocating-deinit f750c..f7540：相同顺序释放lock/name/cached，再swift_deallocClassInstance(self,0x50,7)；metadata1c0460前destroy slot1c0450绑定f750c。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000f56a0",
-    "end_exclusive": "0x1000f56d4",
+    "start": "0x1000f750c",
+    "end_exclusive": "0x1000f7540",
     "size": 52,
-    "sha256": "a6a66a40ade5bc6b6e8341a5b1ec0de34c9b0fdb7fdaf5bdd3d3380278cbee44",
-    "binary_sha256": "82560709ba6afa4f79a633a0d3a63e6911e854ee3e47b6544112df5b33354ee1",
+    "sha256": "006a7d38bff8408960a20193f05468e51de88bcd3a4dcee8d8fc235343a7e74c",
+    "binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
     "lc_function_starts_verified": true
   }
 }

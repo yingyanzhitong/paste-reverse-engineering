@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037df40",
-  "reviewed_at": "2026-10-23T12:00:07.432714+00:00",
+  "reviewed_at": "2026-10-23T12:12:01.947402+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "82560709ba6afa4f79a633a0d3a63e6911e854ee3e47b6544112df5b33354ee1",
+  "compiled_app_binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "ObjC ivar析构：释放types数组与dataByType字典的Swift桥接对象，无其他状态写入。",
-  "review": "最终build29完整.cxx_destruct f974c..f9784：按当前1bc308/1bc300两ivar-offset依次swift_bridgeObjectRelease；当前method entry1593bc绑定f974c。",
+  "review": "最终build30完整.cxx_destruct fb5b8..fb5f0：按当前1c04e8/1c04e0两ivar-offset依次swift_bridgeObjectRelease；当前method entry15cb5c绑定fb5b8。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x1000f974c",
-    "end_exclusive": "0x1000f9784",
+    "start": "0x1000fb5b8",
+    "end_exclusive": "0x1000fb5f0",
     "size": 56,
-    "sha256": "733ba66712f3fb5236fcba89a0f785289051ffd8bdd8e7f8d94d62e52082f003",
-    "binary_sha256": "82560709ba6afa4f79a633a0d3a63e6911e854ee3e47b6544112df5b33354ee1",
+    "sha256": "4102a64e084755ba37631744f19fdf6faf3176d455e9ae870bc7277d5b95d98b",
+    "binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
     "lc_function_starts_verified": true
   }
 }

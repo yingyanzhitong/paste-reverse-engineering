@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000f733c",
-  "reviewed_at": "2026-10-23T12:00:06.531502+00:00",
+  "reviewed_at": "2026-10-23T12:12:01.361744+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0084.c",
@@ -10,18 +10,17 @@
   },
   "original_pseudocode_sha256": "65da2a5b3792d4b39f42164e1d3fe8e2d3726df75c7075269906f31ad57a0709",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalSearchTextValue.swift": "4edef55597ad4d0a131adee7674cb682ec8c34f422fdef61f8e83dc62e8a2d9b",
-    "replica/Sources/PasteReplica/UI/SearchEditor.swift": "88f9bce056d3f58d9666dfe7921b21f7b2a856eaa20261e1139ab5cf987bde8c"
+    "replica/Sources/PasteReplicaCore/OriginalSearchTextValue.swift": "4edef55597ad4d0a131adee7674cb682ec8c34f422fdef61f8e83dc62e8a2d9b"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "82560709ba6afa4f79a633a0d3a63e6911e854ee3e47b6544112df5b33354ee1",
+  "compiled_app_binary_sha256": "01b2a1140c96d8639500b05f5e487b87cd34ea796266b6382f47f92066c6f0cf",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "Swift NSTextView.text setter：把输入Swift String桥接为NSString，以setString写入同一接收者并返回0，无额外清空/手动didChangeText/格式分支。",
-  "review": "原版part0084/0x1000f733c仅原生setString与返回0；旧SearchEditor赋值子串被新附件拼装移除，显式恢复薄setter并从无附件的普通文本更新实际调用，附加选择/布局在调用方处理，不计getter/setter内部行为。",
-  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
+  "review": "原版part0084/0x1000f733c薄setter的独立源码方法保持不变：NSTextView.string=value并返回0。当前输入协调器改为原属性文本回调setAttributedString路径，因此移除旧SearchEditor普通文本调用引用；本条只证明仍存在的独立setter源码契约，不再证明主输入链实际使用它，也不重复计数。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

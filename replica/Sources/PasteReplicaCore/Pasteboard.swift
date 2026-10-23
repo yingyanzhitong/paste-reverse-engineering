@@ -29,6 +29,7 @@ public enum OriginalPasteboardItemCreationError: Error {
 
 extension ClipboardStore {
     public nonisolated static let orderedPasteboardTypesPayloadKey = "com.pastereplica.internal.types+json"
+    private static let restoreUndoManager = OriginalDependency(\OriginalDependencyValues.pasteboardUndoManager)
     private static let imageRestore = OriginalPasteboardImageRestore(
         temporaryRoot: FileManager.default.temporaryDirectory.appendingPathComponent("PasteReplica", isDirectory: true))
 
@@ -281,6 +282,8 @@ extension ClipboardStore {
         let writer = OriginalPasteboardWriter(pasteboard: pasteboard)
         writer.f_10037875c(objects)
         guard writer.lastWriteSucceeded else { throw ClipboardStoreError.pasteboardWriteFailed }
+        try recordRestoredItems(ids: ids)
+        Self.restoreUndoManager.f_1000da768().removeAllActions()
     }
 }
 
