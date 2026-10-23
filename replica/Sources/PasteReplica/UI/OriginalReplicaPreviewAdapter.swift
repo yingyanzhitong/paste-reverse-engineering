@@ -372,12 +372,14 @@ private final class ReplicaInlinePreviewHeader: NSView {
             row.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             row.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
-        itemObservation = state.store.$items.sink { [weak self] items in
+        itemObservation = state.store.$items.sink { [weak self, weak share] items in
             MainActor.assumeIsolated {
                 guard let self, let current = items.first(where: { $0.id == item.id }) else { return }
                 let field = self.titleLabel.f_100013084()
                 field.f_10023b600(current.kind.displayName)
                 field.f_10023b214(current.title)
+                share?.isEnabled = (try? Self.sharingContent(current))
+                    .map { OriginalPreviewSharing.f_100320cc0($0) } ?? false
                 self.refreshPinAppearance(current)
             }
         }
@@ -453,22 +455,24 @@ private final class ReplicaInlinePreviewHeader: NSView {
         }
     }
 
+    private static func sharingContent(_ item: ClipboardItem) throws -> OriginalPreviewSharing.Content {
+        let content = try ClipboardStore.originalPasteboardItems(from: item.payloads)
+        let kind: OriginalPasteboardContentKind
+        switch item.kind {
+        case .image: kind = .image
+        case .files: kind = .files
+        case .link: kind = .link
+        case .color: kind = .color
+        case .text, .richText: kind = .text
+        case .unknown: kind = .unknown
+        }
+        return .init(items: content, rawType: Int(kind.rawValue))
+    }
+
     private func showSharingPicker(from button: NSButton) {
         guard let state, let item = state.store.items.first(where: { $0.id == itemID }) else { return }
         do {
-            let content = try ClipboardStore.originalPasteboardItems(from: item.payloads)
-            let kind: OriginalPasteboardContentKind
-            switch item.kind {
-            case .image: kind = .image
-            case .files: kind = .files
-            case .link: kind = .link
-            case .color: kind = .color
-            case .text, .richText: kind = .text
-            case .unknown: kind = .unknown
-            }
-            let picker = OriginalPreviewSharing.f_1000183e0([
-                .init(items: content, rawType: Int(kind.rawValue))
-            ])
+            let picker = OriginalPreviewSharing.f_1000183e0([try Self.sharingContent(item)])
             sharingPicker = picker
             picker.show(relativeTo: .zero, of: button, preferredEdge: .minY)
         } catch { state.controller?.presentError(error) }

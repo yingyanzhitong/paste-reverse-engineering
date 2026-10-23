@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d48c8",
-  "reviewed_at": "2026-10-23T12:49:58.899746+00:00",
+  "reviewed_at": "2026-10-23T13:00:10.582421+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "f0fe4f4368f0921734aca37321612fd2245e2f3145923ef1589cfdfd0861382e",
+  "compiled_app_binary_sha256": "20f4454a7041c7dcf2ef95d5bb5ba1400bb0a1660bb1babda72d478a6bfd75c9",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "按 lock→name→optional logger 顺序释放字段，再释放类实例。",
-  "review": "最终build35完整deallocating-deinit107838..10786c：同顺序释放后deallocClassInstance(self,50,7)；metadata1d5430前destroy slot1d5420绑定107838。",
+  "review": "最终build36完整deallocating-deinit106ec0..106ef4：同顺序释放后deallocClassInstance(self,50,7)；metadata1d5430前destroy slot1d5420绑定106ec0。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x100107838",
-    "end_exclusive": "0x10010786c",
+    "start": "0x100106ec0",
+    "end_exclusive": "0x100106ef4",
     "size": 52,
-    "sha256": "9d57e8dc0180b2eb40f611695aed49c79368f5cfb76c5d52445d847f38916aeb",
-    "binary_sha256": "f0fe4f4368f0921734aca37321612fd2245e2f3145923ef1589cfdfd0861382e",
+    "sha256": "8426c56ee132d405fa9fcdac60d6164063532ac3c51ddceff08a96b0720df1de",
+    "binary_sha256": "20f4454a7041c7dcf2ef95d5bb5ba1400bb0a1660bb1babda72d478a6bfd75c9",
     "lc_function_starts_verified": true
   }
 }

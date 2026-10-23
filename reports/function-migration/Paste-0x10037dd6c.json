@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x10037dd6c",
-  "reviewed_at": "2026-10-23T12:49:58.873305+00:00",
+  "reviewed_at": "2026-10-23T13:00:10.554440+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0282.c",
@@ -14,21 +14,21 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "f0fe4f4368f0921734aca37321612fd2245e2f3145923ef1589cfdfd0861382e",
+  "compiled_app_binary_sha256": "20f4454a7041c7dcf2ef95d5bb5ba1400bb0a1660bb1babda72d478a6bfd75c9",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "ObjC init入口：初始化types=[]、dataByType=[:]，调用NSObject super.init并返回同一个接收者。",
-  "review": "最终build35完整ObjC init 108c2c..108cb8：ivar槽1d54b8/1d54b0写空orderedTypes/dataByType；当前typed dictionaryLiteral<String,Data>7975c后objc_msgSendSuper2；method表16ecc0 init entry16ecc8绑定108c2c。",
+  "review": "最终build36完整ObjC init 108590..10861c：ivar槽1d54b8/1d54b0写空orderedTypes/dataByType；当前typed dictionaryLiteral<String,Data>78de4后objc_msgSendSuper2；method表16ebd0 init entry16ebd8绑定108590。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
-    "start": "0x100108c2c",
-    "end_exclusive": "0x100108cb8",
+    "start": "0x100108590",
+    "end_exclusive": "0x10010861c",
     "size": 140,
-    "sha256": "815474514a382b9c474676a0ea295aea0f586a8be761c3ea4e75a7a44c9122c2",
-    "binary_sha256": "f0fe4f4368f0921734aca37321612fd2245e2f3145923ef1589cfdfd0861382e",
+    "sha256": "738dd76336926e2214304731a74d9dff21d66d2c20c593b2e906acf6bedbb861",
+    "binary_sha256": "20f4454a7041c7dcf2ef95d5bb5ba1400bb0a1660bb1babda72d478a6bfd75c9",
     "lc_function_starts_verified": true
   }
 }

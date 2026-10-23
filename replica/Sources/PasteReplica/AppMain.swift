@@ -433,9 +433,10 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
     private func waitForTarget(_ target: NSRunningApplication, deadline: Date, generation: UUID, changeCount: Int) {
         guard generation == pasteGeneration, !target.isTerminated, pasteboard.changeCount == changeCount else { return }
         if NSWorkspace.shared.frontmostApplication?.processIdentifier == target.processIdentifier {
-            guard let source = CGEventSource(stateID: .combinedSessionState),
-                  let down = CGEvent(keyboardEventSource: source, virtualKey: 9, keyDown: true),
-                  let up = CGEvent(keyboardEventSource: source, virtualKey: 9, keyDown: false) else { return }
+            guard let keyCode = OriginalPasteKeyTranslation.pasteKeyCode(),
+                  let source = CGEventSource(stateID: .combinedSessionState),
+                  let down = CGEvent(keyboardEventSource: source, virtualKey: keyCode, keyDown: true),
+                  let up = CGEvent(keyboardEventSource: source, virtualKey: keyCode, keyDown: false) else { return }
             down.flags = .maskCommand; up.flags = .maskCommand
             down.postToPid(target.processIdentifier); up.postToPid(target.processIdentifier)
         } else if Date() < deadline {

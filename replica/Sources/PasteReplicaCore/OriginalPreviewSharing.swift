@@ -28,6 +28,21 @@ public enum OriginalPreviewSharing {
         }
     }
 
+    /// Paste 0x100320cc0: file sharing additionally requires reachable local URLs.
+    public static func f_100320cc0(_ content: Content) -> Bool {
+        switch content.rawType {
+        case 1, 2, 4, 5:
+            return !f_1003202f0(items: content.items, rawType: content.rawType).isEmpty
+        case 3:
+            let urls = f_1003202f0(items: content.items, rawType: content.rawType).compactMap { $0 as? URL }
+            return !urls.isEmpty && urls.allSatisfy {
+                $0.isFileURL && (try? $0.checkResourceIsReachable()) == true
+            }
+        default:
+            return false
+        }
+    }
+
     /// The picker consumes a flattened sequence, without starting any network work.
     public static func f_1000183e0(_ contents: [Content]) -> NSSharingServicePicker {
         NSSharingServicePicker(items: contents.flatMap { f_1003202f0(items: $0.items, rawType: $0.rawType) })

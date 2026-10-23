@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "kind": "explicit_cloud_network_scope_exclusions",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "functions": {
+    "Paste:0x100bf6eb8": {
+      "function_id": "Paste:0x100bf6eb8",
+      "state": "excluded_by_scope",
+      "user_scope_reason": "向CloudKit发送同步变更；属于用户明确排除的联网同步。",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-1182.c",
+        "line": 463
+      },
+      "original_pseudocode_sha256": "455f688402734fcbc637e203b2a44247840bed8d2d528d328277a9c56ded3604",
+      "original_stub": {
+        "address": "0x100bf6eb8",
+        "file_offset": 12545720,
+        "container_file_offset": 32681656,
+        "section": "__TEXT,__stubs",
+        "body_size": 12,
+        "body_hex": "901500f010f640f900021fd6",
+        "instruction_words": [
+          "0xf0001590",
+          "0xf940f610",
+          "0xd61f0200"
+        ],
+        "instructions": [
+          "adrp x16, PAGE(symbol_pointer)",
+          "ldr x16, [x16, PAGEOFF(symbol_pointer)]",
+          "br x16"
+        ],
+        "pointer_address": "0x100ea91e8",
+        "pointer_section": "__DATA_CONST,__got",
+        "pointer_file_offset": 15372776,
+        "pointer_container_file_offset": 35508712,
+        "pointer_raw_value": "0x8010000000000551",
+        "dyld_binding": {
+          "import_index": 1361,
+          "import_table_slice_file_offset": 17094268,
+          "symbol": "_$s8CloudKit12CKSyncEngineC11sendChangesyyAC04SendF7OptionsVYaKF",
+          "dylib_ordinal": 12,
+          "dylib": {
+            "install_name": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+            "load_command": "0xc",
+            "current_version": 154695682,
+            "current_version_string": "2360.120.2",
+            "compatibility_version": 65536,
+            "compatibility_version_string": "1.0.0"
+          },
+          "weak_import": false,
+          "import_addend": 0,
+          "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+          "fixups_header_slice_file_offset": 17088512,
+          "pointer_format": 6,
+          "imports_format": 1,
+          "segment_index": 2,
+          "page_index": 1,
+          "page_start": 0,
+          "pointer_slice_file_offset": 15372776,
+          "pointer_raw_value": "0x8010000000000551",
+          "pointer_addend": 0,
+          "effective_addend": 0
+        },
+        "indirect_symbol_index": 2045,
+        "pointer_indirect_symbol_index": 2045,
+        "symbol": "_$s8CloudKit12CKSyncEngineC11sendChangesyyAC04SendF7OptionsVYaKF",
+        "dylib_ordinal": 12,
+        "n_type": 1,
+        "n_sect": 0,
+        "n_desc": 3072,
+        "weak_import": false,
+        "dylib": {
+          "install_name": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+          "load_command": "0xc",
+          "current_version": 154695682,
+          "current_version_string": "2360.120.2",
+          "compatibility_version": 65536,
+          "compatibility_version_string": "1.0.0"
+        },
+        "cpu_type": "0x100000c",
+        "cpu_subtype": "0x0"
+      }
+    },
+    "Paste:0x100bf6ec4": {
+      "function_id": "Paste:0x100bf6ec4",
+      "state": "excluded_by_scope",
+      "user_scope_reason": "从CloudKit拉取同步变更；属于用户明确排除的联网同步。",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-1182.c",
+        "line": 478
+      },
+      "original_pseudocode_sha256": "5943a3ce980df2e740bd68b8c404ed2e7480a090c8daba5681c12ceafcad3a41",
+      "original_stub": {
+        "address": "0x100bf6ec4",
+        "file_offset": 12545732,
+        "container_file_offset": 32681668,
+        "section": "__TEXT,__stubs",
+        "body_size": 12,
+        "body_hex": "901500f010fe40f900021fd6",
+        "instruction_words": [
+          "0xf0001590",
+          "0xf940fe10",
+          "0xd61f0200"
+        ],
+        "instructions": [
+          "adrp x16, PAGE(symbol_pointer)",
+          "ldr x16, [x16, PAGEOFF(symbol_pointer)]",
+          "br x16"
+        ],
+        "pointer_address": "0x100ea91f8",
+        "pointer_section": "__DATA_CONST,__got",
+        "pointer_file_offset": 15372792,
+        "pointer_container_file_offset": 35508728,
+        "pointer_raw_value": "0x8010000000000553",
+        "dyld_binding": {
+          "import_index": 1363,
+          "import_table_slice_file_offset": 17094276,
+          "symbol": "_$s8CloudKit12CKSyncEngineC12fetchChangesyyAC05FetchF7OptionsVYaKF",
+          "dylib_ordinal": 12,
+          "dylib": {
+            "install_name": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+            "load_command": "0xc",
+            "current_version": 154695682,
+            "current_version_string": "2360.120.2",
+            "compatibility_version": 65536,
+            "compatibility_version_string": "1.0.0"
+          },
+          "weak_import": false,
+          "import_addend": 0,
+          "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+          "fixups_header_slice_file_offset": 17088512,
+          "pointer_format": 6,
+          "imports_format": 1,
+          "segment_index": 2,
+          "page_index": 1,
+          "page_start": 0,
+          "pointer_slice_file_offset": 15372792,
+          "pointer_raw_value": "0x8010000000000553",
+          "pointer_addend": 0,
+          "effective_addend": 0
+        },
+        "indirect_symbol_index": 2047,
+        "pointer_indirect_symbol_index": 2047,
+        "symbol": "_$s8CloudKit12CKSyncEngineC12fetchChangesyyAC05FetchF7OptionsVYaKF",
+        "dylib_ordinal": 12,
+        "n_type": 1,
+        "n_sect": 0,
+        "n_desc": 3072,
+        "weak_import": false,
+        "dylib": {
+          "install_name": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+          "load_command": "0xc",
+          "current_version": 154695682,
+          "current_version_string": "2360.120.2",
+          "compatibility_version": 65536,
+          "compatibility_version_string": "1.0.0"
+        },
+        "cpu_type": "0x100000c",
+        "cpu_subtype": "0x0"
+      }
+    },
+    "Paste:0x100bf8a60": {
+      "function_id": "Paste:0x100bf8a60",
+      "state": "excluded_by_scope",
+      "user_scope_reason": "在远程CloudKit数据库保存或删除记录；不属于离线仓库事务。",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-1191.c",
+        "line": 701
+      },
+      "original_pseudocode_sha256": "e6107ee693e74bb244052ba39469b5c83b66684c6b7f4473efc81e923cd72d4e",
+      "original_stub": {
+        "address": "0x100bf8a60",
+        "file_offset": 12552800,
+        "container_file_offset": 32688736,
+        "section": "__TEXT,__stubs",
+        "body_size": 12,
+        "body_hex": "901500b0105e42f900021fd6",
+        "instruction_words": [
+          "0xb0001590",
+          "0xf9425e10",
+          "0xd61f0200"
+        ],
+        "instructions": [
+          "adrp x16, PAGE(symbol_pointer)",
+          "ldr x16, [x16, PAGEOFF(symbol_pointer)]",
+          "br x16"
+        ],
+        "pointer_address": "0x100ea94b8",
+        "pointer_section": "__DATA_CONST,__got",
+        "pointer_file_offset": 15373496,
+        "pointer_container_file_offset": 35509432,
+        "pointer_raw_value": "0x80100000000005ab",
+        "dyld_binding": {
+          "import_index": 1451,
+          "import_table_slice_file_offset": 17094628,
+          "symbol": "_$sSo10CKDatabaseC8CloudKitE13modifyRecords6saving8deleting10savePolicy10atomicallySDySo10CKRecordIDCs6ResultOySo0K0Cs5Error_pGG0H7Results_SDyAjLyytsAO_pGG06deleteO0tSayANG_SayAJGSo0k4SaveI0VSbtYaKF",
+          "dylib_ordinal": 12,
+          "dylib": {
+            "install_name": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+            "load_command": "0xc",
+            "current_version": 154695682,
+            "current_version_string": "2360.120.2",
+            "compatibility_version": 65536,
+            "compatibility_version_string": "1.0.0"
+          },
+          "weak_import": false,
+          "import_addend": 0,
+          "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+          "fixups_header_slice_file_offset": 17088512,
+          "pointer_format": 6,
+          "imports_format": 1,
+          "segment_index": 2,
+          "page_index": 1,
+          "page_start": 0,
+          "pointer_slice_file_offset": 15373496,
+          "pointer_raw_value": "0x80100000000005ab",
+          "pointer_addend": 0,
+          "effective_addend": 0
+        },
+        "indirect_symbol_index": 3034,
+        "pointer_indirect_symbol_index": 3034,
+        "symbol": "_$sSo10CKDatabaseC8CloudKitE13modifyRecords6saving8deleting10savePolicy10atomicallySDySo10CKRecordIDCs6ResultOySo0K0Cs5Error_pGG0H7Results_SDyAjLyytsAO_pGG06deleteO0tSayANG_SayAJGSo0k4SaveI0VSbtYaKF",
+        "dylib_ordinal": 12,
+        "n_type": 1,
+        "n_sect": 0,
+        "n_desc": 3072,
+        "weak_import": false,
+        "dylib": {
+          "install_name": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+          "load_command": "0xc",
+          "current_version": 154695682,
+          "current_version_string": "2360.120.2",
+          "compatibility_version": 65536,
+          "compatibility_version_string": "1.0.0"
+        },
+        "cpu_type": "0x100000c",
+        "cpu_subtype": "0x0"
+      }
+    },
+    "Paste:0x100bf8ad8": {
+      "function_id": "Paste:0x100bf8ad8",
+      "state": "excluded_by_scope",
+      "user_scope_reason": "执行CloudKit远程记录查询；保留本地搜索，不实现该联网入口。",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-1191.c",
+        "line": 893
+      },
+      "original_pseudocode_sha256": "86c02acd3913fb4248f23f8b6dcec644d40b653c7049e7e6ff97cb8d45a4ceae",
+      "original_stub": {
+        "address": "0x100bf8ad8",
+        "file_offset": 12552920,
+        "container_file_offset": 32688856,
+        "section": "__TEXT,__stubs",
+        "body_size": 12,
+        "body_hex": "901500b0109642f900021fd6",
+        "instruction_words": [
+          "0xb0001590",
+          "0xf9429610",
+          "0xd61f0200"
+        ],
+        "instructions": [
+          "adrp x16, PAGE(symbol_pointer)",
+          "ldr x16, [x16, PAGEOFF(symbol_pointer)]",
+          "br x16"
+        ],
+        "pointer_address": "0x100ea9528",
+        "pointer_section": "__DATA_CONST,__got",
+        "pointer_file_offset": 15373608,
+        "pointer_container_file_offset": 35509544,
+        "pointer_raw_value": "0x80100000000005b9",
+        "dyld_binding": {
+          "import_index": 1465,
+          "import_table_slice_file_offset": 17094684,
+          "symbol": "_$sSo10CKDatabaseC8CloudKitE7records8matching10inZoneWith11desiredKeys12resultsLimitSaySo10CKRecordIDC_s6ResultOySo0M0Cs5Error_pGtG12matchResults_So13CKQueryCursorCSg05queryT0tSo0S0C_So0mgN0CSgSaySSGSgSitYaKF",
+          "dylib_ordinal": 12,
+          "dylib": {
+            "install_name": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+            "load_command": "0xc",
+            "current_version": 154695682,
+            "current_version_string": "2360.120.2",
+            "compatibility_version": 65536,
+            "compatibility_version_string": "1.0.0"
+          },
+          "weak_import": false,
+          "import_addend": 0,
+          "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+          "fixups_header_slice_file_offset": 17088512,
+          "pointer_format": 6,
+          "imports_format": 1,
+          "segment_index": 2,
+          "page_index": 1,
+          "page_start": 0,
+          "pointer_slice_file_offset": 15373608,
+          "pointer_raw_value": "0x80100000000005b9",
+          "pointer_addend": 0,
+          "effective_addend": 0
+        },
+        "indirect_symbol_index": 3048,
+        "pointer_indirect_symbol_index": 3048,
+        "symbol": "_$sSo10CKDatabaseC8CloudKitE7records8matching10inZoneWith11desiredKeys12resultsLimitSaySo10CKRecordIDC_s6ResultOySo0M0Cs5Error_pGtG12matchResults_So13CKQueryCursorCSg05queryT0tSo0S0C_So0mgN0CSgSaySSGSgSitYaKF",
+        "dylib_ordinal": 12,
+        "n_type": 1,
+        "n_sect": 0,
+        "n_desc": 3072,
+        "weak_import": false,
+        "dylib": {
+          "install_name": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+          "load_command": "0xc",
+          "current_version": 154695682,
+          "current_version_string": "2360.120.2",
+          "compatibility_version": 65536,
+          "compatibility_version_string": "1.0.0"
+        },
+        "cpu_type": "0x100000c",
+        "cpu_subtype": "0x0"
+      }
+    },
+    "Paste:0x100bf8af0": {
+      "function_id": "Paste:0x100bf8af0",
+      "state": "excluded_by_scope",
+      "user_scope_reason": "接受CloudKit远程共享邀请；不属于离线Pinboard整理。",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-1191.c",
+        "line": 936
+      },
+      "original_pseudocode_sha256": "c7779ca97df4dc19cf405f5da68947cc65d0558f0640d2a385a12c4035fa7da4",
+      "original_stub": {
+        "address": "0x100bf8af0",
+        "file_offset": 12552944,
+        "container_file_offset": 32688880,
+        "section": "__TEXT,__stubs",
+        "body_size": 12,
+        "body_hex": "901500b010a242f900021fd6",
+        "instruction_words": [
+          "0xb0001590",
+          "0xf942a210",
+          "0xd61f0200"
+        ],
+        "instructions": [
+          "adrp x16, PAGE(symbol_pointer)",
+          "ldr x16, [x16, PAGEOFF(symbol_pointer)]",
+          "br x16"
+        ],
+        "pointer_address": "0x100ea9540",
+        "pointer_section": "__DATA_CONST,__got",
+        "pointer_file_offset": 15373632,
+        "pointer_container_file_offset": 35509568,
+        "pointer_raw_value": "0x80100000000005bc",
+        "dyld_binding": {
+          "import_index": 1468,
+          "import_table_slice_file_offset": 17094696,
+          "symbol": "_$sSo11CKContainerC8CloudKitE6acceptySDySo15CKShareMetadataCs6ResultOySo0E0Cs5Error_pGGSayAFGYaKF",
+          "dylib_ordinal": 12,
+          "dylib": {
+            "install_name": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+            "load_command": "0xc",
+            "current_version": 154695682,
+            "current_version_string": "2360.120.2",
+            "compatibility_version": 65536,
+            "compatibility_version_string": "1.0.0"
+          },
+          "weak_import": false,
+          "import_addend": 0,
+          "mechanism": "LC_DYLD_CHAINED_FIXUPS",
+          "fixups_header_slice_file_offset": 17088512,
+          "pointer_format": 6,
+          "imports_format": 1,
+          "segment_index": 2,
+          "page_index": 1,
+          "page_start": 0,
+          "pointer_slice_file_offset": 15373632,
+          "pointer_raw_value": "0x80100000000005bc",
+          "pointer_addend": 0,
+          "effective_addend": 0
+        },
+        "indirect_symbol_index": 3051,
+        "pointer_indirect_symbol_index": 3051,
+        "symbol": "_$sSo11CKContainerC8CloudKitE6acceptySDySo15CKShareMetadataCs6ResultOySo0E0Cs5Error_pGGSayAFGYaKF",
+        "dylib_ordinal": 12,
+        "n_type": 1,
+        "n_sect": 0,
+        "n_desc": 3072,
+        "weak_import": false,
+        "dylib": {
+          "install_name": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+          "load_command": "0xc",
+          "current_version": 154695682,
+          "current_version_string": "2360.120.2",
+          "compatibility_version": 65536,
+          "compatibility_version_string": "1.0.0"
+        },
+        "cpu_type": "0x100000c",
+        "cpu_subtype": "0x0"
+      }
+    }
+  },
+  "count_as_implemented": false,
+  "remove_from_total_denominator": false,
+  "functional_tests_executed": false,
+  "scope_boundary": "仅五个完整12字节网络入口跳板；不排除CloudKit类型/元数据、取消任务、本地状态、日志或任意调用方。"
+}

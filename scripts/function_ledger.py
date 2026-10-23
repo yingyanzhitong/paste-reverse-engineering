@@ -140,8 +140,19 @@ def validate_review(root, key, review, sdk_cache=None):
         for path, digest in sources.items():
             if hashlib.sha256(relative_file(root, path).read_bytes()).hexdigest() != digest:
                 raise ValueError("Source changed since original comparison; rerun differential tests: " + key)
-    if review["state"] == "excluded_by_scope" and not review.get("user_scope_reason"):
-        raise ValueError("Exclusion needs an explicit user scope reason: " + key)
+    if review["state"] == "excluded_by_scope":
+        evidence = review.get("scope_evidence", {})
+        if not review.get("user_scope_reason") or evidence.get("entry_key") != key:
+            raise ValueError("Exclusion needs an explicit per-address user scope reason: " + key)
+        report = evidence.get("report", "")
+        relative_file(root, report)
+        scope_key = ("scope_exclusions", report)
+        if scope_key not in cache:
+            from scope_exclusions import verify_scope_report
+            cache[scope_key] = verify_scope_report(root, report)
+        entry = cache[scope_key].get(key)
+        if not entry or review["user_scope_reason"] != entry["user_scope_reason"]:
+            raise ValueError("Address-specific scope exclusion evidence is invalid: " + key)
 
 
 def source_fragments(path):
