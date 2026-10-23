@@ -207,12 +207,33 @@ final class ReplicaUIState: ObservableObject {
     }
 
     func deleteSelection() {
+        let before = visibleItems
         let ids = selection.isEmpty ? Set(primaryItem.map { [$0.id] } ?? []) : selection
-        perform {
+        let indexes = before.indices.filter { ids.contains(before[$0].id) }
+        var neighborID: UUID?
+        if let first = indexes.min(), let last = indexes.max() {
+            neighborID = [last + 1, first - 1].first {
+                before.indices.contains($0) && !ids.contains(before[$0].id)
+            }.map { before[$0].id }
+        }
+        do {
             if showDeleted || !isSearchQueryEmpty { try store.permanentlyDelete(ids: ids) }
             else { try store.delete(ids: ids, contextPinboardID: pinboardID) }
+        } catch {
+            controller?.presentError(error)
+            return
         }
-        normalizeSelection()
+        let items = visibleItems
+        guard items.map(\.id) != before.map(\.id) else { return }
+        let visible = Set(items.map(\.id))
+        let remaining = orderedSelectionIDs.filter { selection.contains($0) && visible.contains($0) }
+        if remaining.isEmpty { allowsEmptySelection = true }
+        applyOrderedSelection(remaining,
+            anchor: rangeAnchorID.flatMap { visible.contains($0) ? $0 : nil },
+            primary: primaryID.flatMap { remaining.contains($0) ? $0 : nil })
+        if let neighborID, let index = items.firstIndex(where: { $0.id == neighborID }) {
+            selectIndex(index, mode: 0, items: items)
+        }
     }
 
     func assignSelection(to id: UUID?) {

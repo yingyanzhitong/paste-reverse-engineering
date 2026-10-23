@@ -1,0 +1,187 @@
+{
+  "kind": "concentrated_delete_neighbor_static_review",
+  "version": "0.8.0-dev.30",
+  "original_arm64_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "276489a78c975a5b5b9d1435030649d370f02a8ac057821bfaea92239559ad97"
+  },
+  "original_contract": {
+    "entry": "f069778明确backspace/delete/deleteForward分支通向f068db8；另f06e95c弱owner回调调用同删除入口，未扩追完整菜单构造。",
+    "permission": "f068db8顺原ordered indexes compactMap实体，f3ba464 allSatisfy权限不允许则beep/return，不计算候选；不把原list权限/实体对象等同JSON模型。",
+    "candidate": {
+      "function": "0x1000691c8",
+      "input": "删除时当前选中indexes与当前applier dataset",
+      "algorithm": [
+        "转Set<Int>；空Set则nil。",
+        "求minSelected/maxSelected。依次尝试[maxSelected+1,minSelected-1]，加减为checked Int。",
+        "候选必须在旧applier bounds且不属于selected Set。",
+        "第一个有效index解析当前实体identifier；若解析为nil立即返回nil，不继续左候选。",
+        "两个索引都无效则nil；不扫描选区内部空洞。"
+      ],
+      "identity": "保存实体identifier String?，并非旧index/primary/anchor。"
+    },
+    "producer_timing": "f068db8候选计算→f3ba5c4确认/实际删除路径→f3baac8调用f2ff310 performAndWait事务→callback f0765a4→f069158弱owner写pending。取消确认不执行此实际删除callback。",
+    "error_boundary": "f3baac8完整arm64:事务返回检查x21，非零释放error后仍继续可选callback；不能把pending生产限制为仅成功，也不能据JSON throw语义重造原错误消费。",
+    "consumer_install": "f067c84创建applier后把+0x18/+0x20回调设置为f0765b8/weak-owner；f0765b8直接调用f0684f8。",
+    "consumer_trigger": "原SnapshotApplier接items publisher，f1b912c接收/合并数据，f1b9214在guard允许时main async处理；f1b9b78调用collection apply函数，返回后调用+0x18 onUpdate槽。不是每次store.save/show，不泛称原动画completion。",
+    "consumer_order": [
+      "f0684f8先f06d620，再f06753c（Handoff父能力排除/未迁移部分）。",
+      "pending nil立即return；非nil先清pending（一次性）。",
+      "通过当前applier+viewModel实体序列，f1b9830/predicate f06cb4c按identifier查当前新index。",
+      "找到调用f228c78(newIndex,0,0)；未找到不造first fallback。"
+    ],
+    "bounds": "仅该真实删除触发与onUpdate消费完整有限链；原CoreData事务/Undo/权限、全部publisher合流/动画/原生CollectionView生命周期仍partial。"
+  },
+  "original_pseudocode": [
+    {
+      "path": "decompiled/Paste/part-0035.c",
+      "address": "0x100067c84",
+      "line": 2224,
+      "fragment_sha256": "1ad1ded2bb2a35db08aafc88678b7905e62fa4df2adadc22b893e949f64b02e7"
+    },
+    {
+      "path": "decompiled/Paste/part-0035.c",
+      "address": "0x1000684f8",
+      "line": 2485,
+      "fragment_sha256": "9123703e3eaf53ae6b9ea621091666784900db1d4587f9a802900f3110f21519"
+    },
+    {
+      "path": "decompiled/Paste/part-0035.c",
+      "address": "0x100068db8",
+      "line": 2879,
+      "fragment_sha256": "8f8231afa1c6b0f5d4d1c3c63c99dd7f4cefce0e8b9d0a77e1ee7aa1057b5af2"
+    },
+    {
+      "path": "decompiled/Paste/part-0035.c",
+      "address": "0x100069158",
+      "line": 3021,
+      "fragment_sha256": "961d73098a7f4d765934a47f5b288ed2a8fb2615b7b9538c1c7b91e3a7b78c99"
+    },
+    {
+      "path": "decompiled/Paste/part-0035.c",
+      "address": "0x1000691c8",
+      "line": 3047,
+      "fragment_sha256": "284ff4c8b6e8339f21f7fa933fd7b3aed3a9ed98c6002d3c2313d804eeca96c9"
+    },
+    {
+      "path": "decompiled/Paste/part-0035.c",
+      "address": "0x100069558",
+      "line": 3216,
+      "fragment_sha256": "d57b080eb6b8df1878f46ac82fa48511230dd6938cc9714d98b207e52a346399"
+    },
+    {
+      "path": "decompiled/Paste/part-0035.c",
+      "address": "0x100069668",
+      "line": 3309,
+      "fragment_sha256": "776550299211fcd1b85ef70a7ef7508fab1d7e461d92a27997f756b6a8954c09"
+    },
+    {
+      "path": "decompiled/Paste/part-0035.c",
+      "address": "0x100069778",
+      "line": 3403,
+      "fragment_sha256": "3558a5ce4ec36c0e9c96eaf740df9f3339f5e124bd5aa6589d97340b55eef350"
+    },
+    {
+      "path": "decompiled/Paste/part-0036.c",
+      "address": "0x10006e95c",
+      "line": 722,
+      "fragment_sha256": "17d10860e79c41b2465bdb6dcf6c704a1edbbc51ba1590032e9d2903820fe9a3"
+    },
+    {
+      "path": "decompiled/Paste/part-0038.c",
+      "address": "0x1000765a4",
+      "line": 462,
+      "fragment_sha256": "c0a06fb717c8a4021642ebc61439cebc02b131215ccac795d7f58241f6d4eac2"
+    },
+    {
+      "path": "decompiled/Paste/part-0038.c",
+      "address": "0x1000765b8",
+      "line": 489,
+      "fragment_sha256": "9194a45f0d6979fec338859edef42c1570952239fd845d6e3f9fa26ebf3ae0ec"
+    },
+    {
+      "path": "decompiled/Paste/part-0294.c",
+      "address": "0x1003ba5c4",
+      "line": 1659,
+      "fragment_sha256": "0281ddfc2353a310f56813534138a3201b0fe27da78d7634087500c49bcf5762"
+    },
+    {
+      "path": "decompiled/Paste/part-0294.c",
+      "address": "0x1003baac8",
+      "line": 1840,
+      "fragment_sha256": "f236c5bd1156998baccbb44bd7d38ef716008faf4761d027027f9f104c0b13f9"
+    },
+    {
+      "path": "decompiled/Paste/part-0249.c",
+      "address": "0x1002ff310",
+      "line": 624,
+      "fragment_sha256": "a045d88a3dc93158145b84688bb89b609a8d098a3f5b89dfe421ab37e1dcfb32"
+    },
+    {
+      "path": "decompiled/Paste/part-0147.c",
+      "address": "0x1001b9b78",
+      "line": 110,
+      "fragment_sha256": "6fea53515ea47ecee180e9234f327100ea37125b48075a87a5f53eaa3b4ba670"
+    }
+  ],
+  "implemented": [
+    "仅deleteSelection快照旧visibleItems与本次删除IDs。",
+    "selected index极值候选顺序为[max+1,min-1]；合法旧index转UUID identity。",
+    "保留showDeleted/非空search永久删除、普通Pinboard/history contextdelete实际数据入口。",
+    "成功返回后仅实际visible ID序列变化才处理选择；无变化及throw不应用候选。",
+    "过滤旧ordered selection中仍可见成员；只有实际空选才置allowsEmptySelection=true，避免后续observer normalize补首项。",
+    "候选UUID在当前visibleItems重解析；存在则复用selectIndex(mode:0)，恢复allowsEmptySelection=false。",
+    "候选nil/消失不产生first fallback；没有给normalize/show/save挂pending动作。"
+  ],
+  "static_cases_not_executed": [
+    {
+      "before": "A B C D E F",
+      "delete": "C D",
+      "candidate": "E",
+      "baseline_before_fix_after_normalize": "A"
+    },
+    {
+      "before": "A B C D E F",
+      "delete": "E F",
+      "candidate": "D",
+      "baseline_before_fix_after_normalize": "A"
+    },
+    {
+      "before": "A B C D E F",
+      "delete": "B D",
+      "candidate": "E (不选内部C)",
+      "baseline_before_fix_after_normalize": "A"
+    },
+    {
+      "before": "A B C",
+      "delete": "A B C",
+      "candidate": null,
+      "note": "无邻项，不依据此合同增加first fallback。"
+    }
+  ],
+  "remaining_partial": [
+    "同步JSON mutation之后比较实际visible ID变化，不冒原SnapshotApplier main-async/coalesced update/apply后pending消费。",
+    "原确认/权限/CoreData/Undo及事务错误后pending、动画/native collection selection生命周期仍partial。",
+    "现selection为空时使用primaryItem兜底delete是既有副本行为，本轮保留；不从原selectedIndexes空输入推广证明。",
+    "原f06d620/Handoff前置效果未在本轮重写。"
+  ],
+  "build": {
+    "number": 53,
+    "succeeded": true,
+    "source_inputs_unchanged": 162,
+    "seconds": 12.13,
+    "compiled_sha256": {
+      "replica/.build/release/PasteReplica": "7969dff0714b1b4f7d362c37f14a82a29b91bb0082ea3edbade50cb7ed41445a",
+      "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+      "replica/.build/release/paste-replica-mcp": "91fa6469673d44236a46ebb249c5976d6686a53fbbf0fc3b7c5e4f9125a8b783"
+    }
+  },
+  "functional_tests_executed": false,
+  "product_run": false,
+  "new_complete_functions": 0,
+  "independent_static_peer_review": {
+    "source_sha256_matches": true,
+    "result": "未发现本轮有限修复内的确定缺陷；候选、失效、全删和异步normalize已静态复核，不作运行通过",
+    "remaining": "原事务错误后pending与原applier时序未恢复"
+  }
+}

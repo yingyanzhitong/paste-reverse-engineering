@@ -11,11 +11,11 @@
   "original_pseudocode_sha256": "a23baf096ca61bb47cff4cb1b42f750293cfedfd2b0c0704d754988b7aac4bed",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalOrderedSelection.swift": "b3631aed0222167f88c16329c76483f807d20af3baaf3a90ab4d214e8d9cb9f8",
-    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "f934aeb77929af5420a5b7a96090762fea6810f4a4f7a92be9fb19a1b8fbad9b"
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "276489a78c975a5b5b9d1435030649d370f02a8ac057821bfaea92239559ad97"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "0daea5ae8876420c5d9d2ce4e03518b4c24188fe17e67a7e251a66867d6a911b",
+  "compiled_app_binary_sha256": "7969dff0714b1b4f7d362c37f14a82a29b91bb0082ea3edbade50cb7ed41445a",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
@@ -23,5 +23,5 @@
   "contract": "有序selectedIndexes、只读itemCount、可空anchor：越界clicked不变；mode0单选并更新anchor；mode1保最后1项、删除后anchor=剩余最后项或追加clicked；其它mode在anchor非nil时按原数组相邻绝对差1分组，保与闭区间不相交的整组，再追加anchor朝clicked定向连续range，不改变anchor。",
   "review": "完整原有限体、实际分组/disjoint/reverse/append辅助链及独立peer均静态核对；当前helper覆盖完整值合同并由真实鼠标/键盘入口消费。build51通过且161输入摘要一致；不冒原整个CollectionView、原生事件或运行ABI等价。",
   "regression_policy": "全部范围内迁移完成后统一功能回归；本轮不运行产品或测试。",
-  "source_review": "build52集中复审：既有搜索/焦点/纯有序选择helper及入口保留，只修已证selectAll anchor与copy/quick有限生产链。当前编译稳定并刷新关联文件摘要，不把编译当运行等价。"
+  "source_review": "dev30：唯一源码差异限deleteSelection函数体；本条实现及其既有调用源码逐字保持，绑定build53。删除父及异步applier不因此提升。"
 }
