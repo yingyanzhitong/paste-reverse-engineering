@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""核验逐地址排除证据：五个纯CloudKit跳板和一个完整付费提示入口。"""
+"""核验逐地址排除证据：五个纯CloudKit跳板和四个付费专用完整入口。"""
 import argparse
 import json
 from pathlib import Path
@@ -83,6 +83,8 @@ def main():
             result = capture(ROOT)
             (ROOT / report).write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
             entries.update(result['functions'])
+    if len(entries) != 9:
+        raise ValueError('逐地址scope必须为CloudKit五项与Paywall四项，不计完成且不改分母')
     print(json.dumps({'checked': args.check, 'excluded_addresses': len(entries),
                       'added_complete_functions': 0, 'total_denominator_unchanged': True}))
 

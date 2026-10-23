@@ -32,6 +32,221 @@
           "start": "0x100f8f6f8",
           "end_exclusive": "0x100f8f720",
           "sha256": "794509779a62f11c0fe96284da09dfef7b823e3cf8dd0f65764fa53fb683cce5"
+        },
+        "ended_paywall_delegate": {
+          "start": "0x10006edc4",
+          "end_exclusive": "0x10006f278",
+          "sha256": "43dec5683b5f48813199cb3eee8e60f4892e461d67090b61ddfb2f8b7f47f890",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0036.c",
+            "line": 934
+          },
+          "original_pseudocode_sha256": "1c7b546e5b6e5f7e11a76f0a2b177d175dc3918c89435802e68594581a4ecc4f"
+        },
+        "dedicated_paywall_router": {
+          "start": "0x1003bb23c",
+          "end_exclusive": "0x1003bb280",
+          "sha256": "9cedcbd66370cb8a46cba4436d6e845f63f4a9caaf19c889a4e6184fcab9589d",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0294.c",
+            "line": 2183
+          },
+          "original_pseudocode_sha256": "af68b389ae2725d210d4c893f157847a70b5964ce50f6a5b6474b93c493c044a"
+        },
+        "dedicated_license_check": {
+          "start": "0x1003b9128",
+          "end_exclusive": "0x1003b9188",
+          "sha256": "50ae799278aa7efc806e1b820e7415ae5499cb665e31059ad8362dea07c17b48",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0294.c",
+            "line": 813
+          },
+          "original_pseudocode_sha256": "6c1f2eb850f06c1d349586a7ccb23e0dd4279e68dfee2c8433f81b9dc738eb9b"
+        },
+        "actual_router_injection_evidence_only": {
+          "start": "0x100052734",
+          "end_exclusive": "0x100052960",
+          "sha256": "43c2445eab5a80a31413da5afd1131d34c831b6acea05c12541ab57c890842ae",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0029.c",
+            "line": 651
+          },
+          "original_pseudocode_sha256": "d561222f03153c7bf94b5c4d1bdea02eb1785aa76a58cca3bada1878c6e0181b"
+        },
+        "vm_injected_storage_evidence_only": {
+          "start": "0x1003bb7bc",
+          "end_exclusive": "0x1003bb968",
+          "sha256": "2f96be3599fd46f30bf441a4d19f394a2d49e9045f9e91a541078f45b34e1e8d",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0295.c",
+            "line": 281
+          },
+          "original_pseudocode_sha256": "1aab9de73a3ee4c971b064130cbe8d1451b31d5402a05faf2bd7b3896e766f4f"
+        },
+        "router_witness_evidence_only": {
+          "start": "0x100018398",
+          "end_exclusive": "0x10001839c",
+          "sha256": "1e1616a3679022b9288860ef71ef89ef27beea03f3c116abb3e9dd6ba9c1e2cd",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 580
+          },
+          "original_pseudocode_sha256": "bd341fab1ff34dccc7c2694d1aa0890dba5537e25dd390fbc19d1d4de318bd63"
+        },
+        "concrete_route4_evidence_only": {
+          "start": "0x1000177a0",
+          "end_exclusive": "0x1000177ac",
+          "sha256": "8997e1c94061c948ac81809d6328961107415f0085d3a8f7d7d9a8fb21176de9",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0009.c",
+            "line": 1271
+          },
+          "original_pseudocode_sha256": "5a211d489cff9314d6409bbf144b2ec93f815f8cd13e43ed7ce91915f04e9e10"
+        },
+        "generic_route_wrapper_evidence_only": {
+          "start": "0x100017784",
+          "end_exclusive": "0x1000177a0",
+          "sha256": "36eae1be3d4e741a9c3a876ade78982731c6c342a2909a45ab4418bcded61518",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0009.c",
+            "line": 1260
+          },
+          "original_pseudocode_sha256": "245e884ce4bd47833ee85dec1e6209990c3be6ca65255c0d6988f17315ce8102"
+        },
+        "route_witness_evidence_only": {
+          "start": "0x100017d40",
+          "end_exclusive": "0x100017d4c",
+          "sha256": "5749f841fbc27b3211f52ad044737c7a9fa8b7d09dac7ddc0e5e1101413021e7",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 286
+          },
+          "original_pseudocode_sha256": "c90795085cf5b4183b03a8d59b1ea06f09d9342053963cdf39d173c687b4ec5e"
+        },
+        "generic_window_presenter_evidence_only": {
+          "start": "0x1000177bc",
+          "end_exclusive": "0x100017a74",
+          "sha256": "1ca5d181e11fb6f670cabd5061eda0844ac4c3f5c0509d76ffbf9373149919af",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 6
+          },
+          "original_pseudocode_sha256": "16aa3d1dffa2c83eec1f6548f5c414a7b04014ce756f93b5ce9926f1932a536b"
+        },
+        "optional_license_evidence_only": {
+          "start": "0x1001a15c4",
+          "end_exclusive": "0x1001a168c",
+          "sha256": "ce6bd7a9845e8573695835db8e84e3b794b723b5c3d0b0693773b0d05a4383d4",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0137.c",
+            "line": 617
+          },
+          "original_pseudocode_sha256": "f07eff933b2cff55694d4da1fa29973634a9f121b540442e5e426b4cae87b8a5"
+        },
+        "current_license_evidence_only": {
+          "start": "0x1001a4730",
+          "end_exclusive": "0x1001a4768",
+          "sha256": "e51563e7a987fb9627ead5e17b48796599861154284dfe3264ad55c2c9a0ab1b",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0137.c",
+            "line": 2836
+          },
+          "original_pseudocode_sha256": "575c317e74e0256a331367c4e45d5807343dfb4753cd8a8378d85941185cb17c"
+        },
+        "license_keypath_thunk_evidence_only": {
+          "start": "0x1003bbbec",
+          "end_exclusive": "0x1003bbbf0",
+          "sha256": "0f6a285ef79c6adc2065e33e6a4a793b63a8600bf385a03d4f0436dc22642ebc",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0295.c",
+            "line": 590
+          },
+          "original_pseudocode_sha256": "1ca917d3ffaee2281ab639da4dad1573e0edd730553d8818875f272c575c60f4"
+        },
+        "license_keypath_trampoline_evidence_only": {
+          "start": "0x100242728",
+          "end_exclusive": "0x10024272c",
+          "sha256": "24c06578f18cc3f1fc4517a2bd74f1baf37f92b986b02c3a35d854de54e37d39",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0197.c",
+            "line": 1465
+          },
+          "original_pseudocode_sha256": "5cae898baf0048e9fa296c576898483f5b757d3ef5a6779fa52d67ec75b04a09"
+        },
+        "license_di_registration_evidence_only": {
+          "start": "0x10019fbf0",
+          "end_exclusive": "0x10019fc10",
+          "sha256": "db3c04e41a4e884908d1a702778abe53f1f6b83f86e739e8d28957fc6a79f81b",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2026
+          },
+          "original_pseudocode_sha256": "b53c35974a6bfb8c613db2d1eb4c6f96d150a346e3168e68508849ab7d1df4c3"
+        },
+        "generic_di_registration_evidence_only": {
+          "start": "0x10019fcf4",
+          "end_exclusive": "0x10019fd5c",
+          "sha256": "af9b9297141b4f44bf734f91babc01172032e2e1c483d8782de34c0f3e047261",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2080
+          },
+          "original_pseudocode_sha256": "c1cfb41a74c43bbb93fb2da9d37cbff68ddb84323321e18d6a783098f257546e"
+        },
+        "license_factory_evidence_only": {
+          "start": "0x10019fc10",
+          "end_exclusive": "0x10019fcd4",
+          "sha256": "563ccc0724d9adcfd6ec0e1422eebd5b3a7ef9c10b3ac8cd81205ff9de34ffa5",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2037
+          },
+          "original_pseudocode_sha256": "e54c1ded2d449d02b89e35bf1b9869ea32afb95be5efa70a0eef9c8e0c884c61"
+        },
+        "router_witness_table_evidence_only": {
+          "start": "0x100eafe58",
+          "end_exclusive": "0x100eafe78",
+          "sha256": "f8a954759297d0cb70aeb728e488df26d10573a9d632e35b9eac0eada429866b"
+        },
+        "route4_witness_table_evidence_only": {
+          "start": "0x100eb06b0",
+          "end_exclusive": "0x100eb06c0",
+          "sha256": "c5a3a023ca4777d992a0a05a4f0e027dbe77f229fedccc52e8d4cd9f02f5be84"
+        },
+        "license_witness_table_evidence_only": {
+          "start": "0x100ebdaf8",
+          "end_exclusive": "0x100ebdb18",
+          "sha256": "02935d4fc834afb790c6edf0d5cac3d540b9194588af046a7e1855c9840facd2"
+        },
+        "license_type_evidence_only": {
+          "start": "0x100ca6a14",
+          "end_exclusive": "0x100ca6a40",
+          "sha256": "98c513aaebd7de4d2c1d9490d23fa40470d285a9d634c49f602bf258ca85f476"
+        },
+        "license_protocol_evidence_only": {
+          "start": "0x100ca6a60",
+          "end_exclusive": "0x100ca6a78",
+          "sha256": "62e17a34b21fb86a875fb136cfb22afb71cff66cce436072b36188603b2a5af6"
+        },
+        "router_protocol_evidence_only": {
+          "start": "0x100cad768",
+          "end_exclusive": "0x100cad780",
+          "sha256": "9b98a48a809b438f2f9852addcd7ed3b6b614ed27612b07a66155832987131a5"
+        },
+        "router_conformance_evidence_only": {
+          "start": "0x100c22d68",
+          "end_exclusive": "0x100c22d7c",
+          "sha256": "b2c20ff0131b2057fad019750a6387365a0d28ae09d27b1b13fd065a491a2e91"
+        },
+        "license_conformance_evidence_only": {
+          "start": "0x100c32464",
+          "end_exclusive": "0x100c32478",
+          "sha256": "b75a396debdb491d27c13b79c8bf8d4d17e03998cfbb97efd3eed4f615c78b4f"
+        },
+        "vm_license_keypath_evidence_only": {
+          "start": "0x100c44a18",
+          "end_exclusive": "0x100c44a50",
+          "sha256": "3efdfabb1666aecaad0c577a6f457820b2b0ab744a4a247d413af432a8902e9b"
         }
       },
       "controller_class": {
@@ -41,10 +256,969 @@
         "name": "_TtC5PasteP33_0834BD6CB1CDAA1FA46B007E7F71175821PaywallViewController"
       },
       "review": "完整presenter只激活已存在付费窗口或通过已核factory创建并呈现该控制器；factory仅作证据，不计入排除。"
+    },
+    "Paste:0x10006edc4": {
+      "function_id": "Paste:0x10006edc4",
+      "state": "excluded_by_scope",
+      "user_scope_reason": "真实已选实体中至少一个identifier不含onboarding、无License、operation含copy位1、窗口存在且屏幕落点在窗口外时，仅调用已核Paywall路由；不删除、移动或写剪贴板。 用户要求免费离线独立复刻，排除该具体付费门槛/提示，不修改原版授权。",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0036.c",
+        "line": 934
+      },
+      "original_pseudocode_sha256": "1c7b546e5b6e5f7e11a76f0a2b177d175dc3918c89435802e68594581a4ecc4f",
+      "complete_static_evidence": {
+        "presenter": {
+          "start": "0x100064afc",
+          "end_exclusive": "0x100064da0",
+          "sha256": "8ae243a67c5fdc1188f82d3873a902a5fb981d89bcb3b508fcb91639d863fbbb"
+        },
+        "controller_factory_evidence_only": {
+          "start": "0x100017bb0",
+          "end_exclusive": "0x100017bd0",
+          "sha256": "9b6489a336e6ad0caf5c4778894a4e0acfb499323a7936f52d39e9a459a277e4"
+        },
+        "class_metadata": {
+          "start": "0x100f8f758",
+          "end_exclusive": "0x100f8f780",
+          "sha256": "cd6d2c48e4f43910e4938bf8d77ad5df66f5b0a7e32f1833905f655ca0413b30"
+        },
+        "class_ro_metadata": {
+          "start": "0x100f8f6f8",
+          "end_exclusive": "0x100f8f720",
+          "sha256": "794509779a62f11c0fe96284da09dfef7b823e3cf8dd0f65764fa53fb683cce5"
+        },
+        "ended_paywall_delegate": {
+          "start": "0x10006edc4",
+          "end_exclusive": "0x10006f278",
+          "sha256": "43dec5683b5f48813199cb3eee8e60f4892e461d67090b61ddfb2f8b7f47f890",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0036.c",
+            "line": 934
+          },
+          "original_pseudocode_sha256": "1c7b546e5b6e5f7e11a76f0a2b177d175dc3918c89435802e68594581a4ecc4f"
+        },
+        "dedicated_paywall_router": {
+          "start": "0x1003bb23c",
+          "end_exclusive": "0x1003bb280",
+          "sha256": "9cedcbd66370cb8a46cba4436d6e845f63f4a9caaf19c889a4e6184fcab9589d",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0294.c",
+            "line": 2183
+          },
+          "original_pseudocode_sha256": "af68b389ae2725d210d4c893f157847a70b5964ce50f6a5b6474b93c493c044a"
+        },
+        "dedicated_license_check": {
+          "start": "0x1003b9128",
+          "end_exclusive": "0x1003b9188",
+          "sha256": "50ae799278aa7efc806e1b820e7415ae5499cb665e31059ad8362dea07c17b48",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0294.c",
+            "line": 813
+          },
+          "original_pseudocode_sha256": "6c1f2eb850f06c1d349586a7ccb23e0dd4279e68dfee2c8433f81b9dc738eb9b"
+        },
+        "actual_router_injection_evidence_only": {
+          "start": "0x100052734",
+          "end_exclusive": "0x100052960",
+          "sha256": "43c2445eab5a80a31413da5afd1131d34c831b6acea05c12541ab57c890842ae",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0029.c",
+            "line": 651
+          },
+          "original_pseudocode_sha256": "d561222f03153c7bf94b5c4d1bdea02eb1785aa76a58cca3bada1878c6e0181b"
+        },
+        "vm_injected_storage_evidence_only": {
+          "start": "0x1003bb7bc",
+          "end_exclusive": "0x1003bb968",
+          "sha256": "2f96be3599fd46f30bf441a4d19f394a2d49e9045f9e91a541078f45b34e1e8d",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0295.c",
+            "line": 281
+          },
+          "original_pseudocode_sha256": "1aab9de73a3ee4c971b064130cbe8d1451b31d5402a05faf2bd7b3896e766f4f"
+        },
+        "router_witness_evidence_only": {
+          "start": "0x100018398",
+          "end_exclusive": "0x10001839c",
+          "sha256": "1e1616a3679022b9288860ef71ef89ef27beea03f3c116abb3e9dd6ba9c1e2cd",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 580
+          },
+          "original_pseudocode_sha256": "bd341fab1ff34dccc7c2694d1aa0890dba5537e25dd390fbc19d1d4de318bd63"
+        },
+        "concrete_route4_evidence_only": {
+          "start": "0x1000177a0",
+          "end_exclusive": "0x1000177ac",
+          "sha256": "8997e1c94061c948ac81809d6328961107415f0085d3a8f7d7d9a8fb21176de9",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0009.c",
+            "line": 1271
+          },
+          "original_pseudocode_sha256": "5a211d489cff9314d6409bbf144b2ec93f815f8cd13e43ed7ce91915f04e9e10"
+        },
+        "generic_route_wrapper_evidence_only": {
+          "start": "0x100017784",
+          "end_exclusive": "0x1000177a0",
+          "sha256": "36eae1be3d4e741a9c3a876ade78982731c6c342a2909a45ab4418bcded61518",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0009.c",
+            "line": 1260
+          },
+          "original_pseudocode_sha256": "245e884ce4bd47833ee85dec1e6209990c3be6ca65255c0d6988f17315ce8102"
+        },
+        "route_witness_evidence_only": {
+          "start": "0x100017d40",
+          "end_exclusive": "0x100017d4c",
+          "sha256": "5749f841fbc27b3211f52ad044737c7a9fa8b7d09dac7ddc0e5e1101413021e7",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 286
+          },
+          "original_pseudocode_sha256": "c90795085cf5b4183b03a8d59b1ea06f09d9342053963cdf39d173c687b4ec5e"
+        },
+        "generic_window_presenter_evidence_only": {
+          "start": "0x1000177bc",
+          "end_exclusive": "0x100017a74",
+          "sha256": "1ca5d181e11fb6f670cabd5061eda0844ac4c3f5c0509d76ffbf9373149919af",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 6
+          },
+          "original_pseudocode_sha256": "16aa3d1dffa2c83eec1f6548f5c414a7b04014ce756f93b5ce9926f1932a536b"
+        },
+        "optional_license_evidence_only": {
+          "start": "0x1001a15c4",
+          "end_exclusive": "0x1001a168c",
+          "sha256": "ce6bd7a9845e8573695835db8e84e3b794b723b5c3d0b0693773b0d05a4383d4",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0137.c",
+            "line": 617
+          },
+          "original_pseudocode_sha256": "f07eff933b2cff55694d4da1fa29973634a9f121b540442e5e426b4cae87b8a5"
+        },
+        "current_license_evidence_only": {
+          "start": "0x1001a4730",
+          "end_exclusive": "0x1001a4768",
+          "sha256": "e51563e7a987fb9627ead5e17b48796599861154284dfe3264ad55c2c9a0ab1b",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0137.c",
+            "line": 2836
+          },
+          "original_pseudocode_sha256": "575c317e74e0256a331367c4e45d5807343dfb4753cd8a8378d85941185cb17c"
+        },
+        "license_keypath_thunk_evidence_only": {
+          "start": "0x1003bbbec",
+          "end_exclusive": "0x1003bbbf0",
+          "sha256": "0f6a285ef79c6adc2065e33e6a4a793b63a8600bf385a03d4f0436dc22642ebc",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0295.c",
+            "line": 590
+          },
+          "original_pseudocode_sha256": "1ca917d3ffaee2281ab639da4dad1573e0edd730553d8818875f272c575c60f4"
+        },
+        "license_keypath_trampoline_evidence_only": {
+          "start": "0x100242728",
+          "end_exclusive": "0x10024272c",
+          "sha256": "24c06578f18cc3f1fc4517a2bd74f1baf37f92b986b02c3a35d854de54e37d39",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0197.c",
+            "line": 1465
+          },
+          "original_pseudocode_sha256": "5cae898baf0048e9fa296c576898483f5b757d3ef5a6779fa52d67ec75b04a09"
+        },
+        "license_di_registration_evidence_only": {
+          "start": "0x10019fbf0",
+          "end_exclusive": "0x10019fc10",
+          "sha256": "db3c04e41a4e884908d1a702778abe53f1f6b83f86e739e8d28957fc6a79f81b",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2026
+          },
+          "original_pseudocode_sha256": "b53c35974a6bfb8c613db2d1eb4c6f96d150a346e3168e68508849ab7d1df4c3"
+        },
+        "generic_di_registration_evidence_only": {
+          "start": "0x10019fcf4",
+          "end_exclusive": "0x10019fd5c",
+          "sha256": "af9b9297141b4f44bf734f91babc01172032e2e1c483d8782de34c0f3e047261",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2080
+          },
+          "original_pseudocode_sha256": "c1cfb41a74c43bbb93fb2da9d37cbff68ddb84323321e18d6a783098f257546e"
+        },
+        "license_factory_evidence_only": {
+          "start": "0x10019fc10",
+          "end_exclusive": "0x10019fcd4",
+          "sha256": "563ccc0724d9adcfd6ec0e1422eebd5b3a7ef9c10b3ac8cd81205ff9de34ffa5",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2037
+          },
+          "original_pseudocode_sha256": "e54c1ded2d449d02b89e35bf1b9869ea32afb95be5efa70a0eef9c8e0c884c61"
+        },
+        "router_witness_table_evidence_only": {
+          "start": "0x100eafe58",
+          "end_exclusive": "0x100eafe78",
+          "sha256": "f8a954759297d0cb70aeb728e488df26d10573a9d632e35b9eac0eada429866b"
+        },
+        "route4_witness_table_evidence_only": {
+          "start": "0x100eb06b0",
+          "end_exclusive": "0x100eb06c0",
+          "sha256": "c5a3a023ca4777d992a0a05a4f0e027dbe77f229fedccc52e8d4cd9f02f5be84"
+        },
+        "license_witness_table_evidence_only": {
+          "start": "0x100ebdaf8",
+          "end_exclusive": "0x100ebdb18",
+          "sha256": "02935d4fc834afb790c6edf0d5cac3d540b9194588af046a7e1855c9840facd2"
+        },
+        "license_type_evidence_only": {
+          "start": "0x100ca6a14",
+          "end_exclusive": "0x100ca6a40",
+          "sha256": "98c513aaebd7de4d2c1d9490d23fa40470d285a9d634c49f602bf258ca85f476"
+        },
+        "license_protocol_evidence_only": {
+          "start": "0x100ca6a60",
+          "end_exclusive": "0x100ca6a78",
+          "sha256": "62e17a34b21fb86a875fb136cfb22afb71cff66cce436072b36188603b2a5af6"
+        },
+        "router_protocol_evidence_only": {
+          "start": "0x100cad768",
+          "end_exclusive": "0x100cad780",
+          "sha256": "9b98a48a809b438f2f9852addcd7ed3b6b614ed27612b07a66155832987131a5"
+        },
+        "router_conformance_evidence_only": {
+          "start": "0x100c22d68",
+          "end_exclusive": "0x100c22d7c",
+          "sha256": "b2c20ff0131b2057fad019750a6387365a0d28ae09d27b1b13fd065a491a2e91"
+        },
+        "license_conformance_evidence_only": {
+          "start": "0x100c32464",
+          "end_exclusive": "0x100c32478",
+          "sha256": "b75a396debdb491d27c13b79c8bf8d4d17e03998cfbb97efd3eed4f615c78b4f"
+        },
+        "vm_license_keypath_evidence_only": {
+          "start": "0x100c44a18",
+          "end_exclusive": "0x100c44a50",
+          "sha256": "3efdfabb1666aecaad0c577a6f457820b2b0ab744a4a247d413af432a8902e9b"
+        }
+      },
+      "complete_function": {
+        "start": "0x10006edc4",
+        "end_exclusive": "0x10006f278",
+        "sha256": "43dec5683b5f48813199cb3eee8e60f4892e461d67090b61ddfb2f8b7f47f890"
+      },
+      "all_direct_callees_evidence_only": [
+        {
+          "address": "0x1000037f0",
+          "identity": "Generic metadata cache; not paid-only",
+          "classification": "Generic metadata cache; not paid-only"
+        },
+        {
+          "address": "0x100003a00",
+          "identity": "Generic protocol conformance witness cache; not paid-only",
+          "classification": "Generic protocol conformance witness cache; not paid-only"
+        },
+        {
+          "address": "0x100016eac",
+          "identity": "Generic conformance witness acquisition; not paid-only",
+          "classification": "Generic conformance witness acquisition; not paid-only"
+        },
+        {
+          "address": "0x1001b9698",
+          "identity": "Safe applier index-to-optional mapping. Bounds miss yields nil; valid index delegates existing element projection, no mutation command",
+          "classification": "Safe applier index-to-optional mapping. Bounds miss yields nil; valid index delegates existing element projection, no mutation command"
+        },
+        {
+          "address": "0x10030cc3c",
+          "identity": "Entity identifier.contains(\"onboarding\"); reused by another original caller in part0044, not paid-only",
+          "classification": "Entity identifier.contains(\"onboarding\"); reused by another original caller in part0044, not paid-only"
+        },
+        {
+          "address": "0x1003b8bfc",
+          "identity": "Existing VM lazy context/repository adapter getter; may populate its cache, not a persistent delete/move operation. Not paid-only",
+          "classification": "Existing VM lazy context/repository adapter getter; may populate its cache, not a persistent delete/move operation. Not paid-only"
+        },
+        {
+          "address": "0x1003b9128",
+          "identity": "Concrete VM hasLicense getter below",
+          "classification": "Concrete VM hasLicense getter below"
+        },
+        {
+          "address": "0x1003bb23c",
+          "identity": "Concrete VM router+0x18 dedicated Paywall dispatch below",
+          "classification": "Concrete VM router+0x18 dedicated Paywall dispatch below"
+        },
+        {
+          "address": "0x100bf8124",
+          "identity": "_$sSa034_makeUniqueAndReserveCapacityIfNotB0yyFyXl_Ts5",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bf819c",
+          "identity": "_$sSa16_createNewBuffer14bufferIsUnique15minimumCapacity13growForAppendySb_SiSbtFyXl_Ts5",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bf81e4",
+          "identity": "_$sSa37_appendElementAssumeUniqueAndCapacity_03newB0ySi_xntFyXl_Ts5",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bf82b0",
+          "identity": "_$sScA15unownedExecutorScevgTj",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bf8394",
+          "identity": "_$sScM6sharedScMvgZ",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bf83a0",
+          "identity": "_$sScMMa",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bf97e0",
+          "identity": "_$ss12_ArrayBufferV19_getElementSlowPathyyXlSiFyXl_Ts5",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bf9d44",
+          "identity": "_$ss18_CocoaArrayWrapperV8endIndexSivg",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bfae78",
+          "identity": "_CGRectContainsPoint",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bfbf64",
+          "identity": "_objc_release",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bfbf70",
+          "identity": "_objc_retain",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bfbf94",
+          "identity": "_objc_retainAutoreleasedReturnValue",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bfc594",
+          "identity": "_swift_bridgeObjectRelease",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bfc9c0",
+          "identity": "_swift_release",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bfc9d8",
+          "identity": "_swift_retain",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bfcad4",
+          "identity": "_swift_task_isCurrentExecutor",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100bfcb04",
+          "identity": "_swift_task_reportUnexpectedExecutor",
+          "classification": "Runtime array/ownership/actor/geometry helper; not itself excluded"
+        },
+        {
+          "address": "0x100c02a60",
+          "identity": "Original Objective-C frame getter selector stub",
+          "classification": "Original Objective-C frame getter selector stub"
+        },
+        {
+          "address": "0x100c11500",
+          "identity": "Original Objective-C window getter selector stub",
+          "classification": "Original Objective-C window getter selector stub"
+        }
+      ],
+      "indirect_call_sites": [
+        "0x10006ee40"
+      ],
+      "typed_di_and_paywall": {
+        "router_protocol": "ItemCollectionViewModelRouter",
+        "injection": "完整f052734注入witness100eafe58，完整f3bb7bc存于VM+58；f3bb23c调用witness+18。",
+        "route": "100eafe58+18→f018398→f0177a0→f017784(route4,0,0)→100eb06b0+8=f017d40→f0177bc；后两通用体仅证据。",
+        "paywall_class": "_TtC5PasteP33_0834BD6CB1CDAA1FA46B007E7F71175821PaywallViewController",
+        "class_address": "0x100f8f758",
+        "license": "完整f3bb7bc在VM+30建keypath100c44a18；其+28relativegetter→f3bbbec→f242728→f19fbf0；后者传metadata f1a1b7c、witness100ebdaf8、key11、factoryf19fc10到f19fcf4。100ebdaf8+8=f1a4730读取CurrentValueSubject<License?>，f1a15c4检查非nil。",
+        "native_session_retained": "f227808的本地ended/窗口内1秒后activate与moved/source-mask/reorder不排除。"
+      },
+      "review": "真实已选实体中至少一个identifier不含onboarding、无License、operation含copy位1、窗口存在且屏幕落点在窗口外时，仅调用已核Paywall路由；不删除、移动或写剪贴板。 临时数组、读取、惰性依赖缓存及actor/不变量检查仅支撑此契约；通用被调函数不计入排除。"
+    },
+    "Paste:0x1003bb23c": {
+      "function_id": "Paste:0x1003bb23c",
+      "state": "excluded_by_scope",
+      "user_scope_reason": "打开VM中真实注入的ItemCollectionViewModelRouter，调用witness+0x18；实际callee固定到route4的Paywall呈现。 用户要求免费离线独立复刻，排除该具体付费门槛/提示，不修改原版授权。",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0294.c",
+        "line": 2183
+      },
+      "original_pseudocode_sha256": "af68b389ae2725d210d4c893f157847a70b5964ce50f6a5b6474b93c493c044a",
+      "complete_static_evidence": {
+        "presenter": {
+          "start": "0x100064afc",
+          "end_exclusive": "0x100064da0",
+          "sha256": "8ae243a67c5fdc1188f82d3873a902a5fb981d89bcb3b508fcb91639d863fbbb"
+        },
+        "controller_factory_evidence_only": {
+          "start": "0x100017bb0",
+          "end_exclusive": "0x100017bd0",
+          "sha256": "9b6489a336e6ad0caf5c4778894a4e0acfb499323a7936f52d39e9a459a277e4"
+        },
+        "class_metadata": {
+          "start": "0x100f8f758",
+          "end_exclusive": "0x100f8f780",
+          "sha256": "cd6d2c48e4f43910e4938bf8d77ad5df66f5b0a7e32f1833905f655ca0413b30"
+        },
+        "class_ro_metadata": {
+          "start": "0x100f8f6f8",
+          "end_exclusive": "0x100f8f720",
+          "sha256": "794509779a62f11c0fe96284da09dfef7b823e3cf8dd0f65764fa53fb683cce5"
+        },
+        "ended_paywall_delegate": {
+          "start": "0x10006edc4",
+          "end_exclusive": "0x10006f278",
+          "sha256": "43dec5683b5f48813199cb3eee8e60f4892e461d67090b61ddfb2f8b7f47f890",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0036.c",
+            "line": 934
+          },
+          "original_pseudocode_sha256": "1c7b546e5b6e5f7e11a76f0a2b177d175dc3918c89435802e68594581a4ecc4f"
+        },
+        "dedicated_paywall_router": {
+          "start": "0x1003bb23c",
+          "end_exclusive": "0x1003bb280",
+          "sha256": "9cedcbd66370cb8a46cba4436d6e845f63f4a9caaf19c889a4e6184fcab9589d",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0294.c",
+            "line": 2183
+          },
+          "original_pseudocode_sha256": "af68b389ae2725d210d4c893f157847a70b5964ce50f6a5b6474b93c493c044a"
+        },
+        "dedicated_license_check": {
+          "start": "0x1003b9128",
+          "end_exclusive": "0x1003b9188",
+          "sha256": "50ae799278aa7efc806e1b820e7415ae5499cb665e31059ad8362dea07c17b48",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0294.c",
+            "line": 813
+          },
+          "original_pseudocode_sha256": "6c1f2eb850f06c1d349586a7ccb23e0dd4279e68dfee2c8433f81b9dc738eb9b"
+        },
+        "actual_router_injection_evidence_only": {
+          "start": "0x100052734",
+          "end_exclusive": "0x100052960",
+          "sha256": "43c2445eab5a80a31413da5afd1131d34c831b6acea05c12541ab57c890842ae",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0029.c",
+            "line": 651
+          },
+          "original_pseudocode_sha256": "d561222f03153c7bf94b5c4d1bdea02eb1785aa76a58cca3bada1878c6e0181b"
+        },
+        "vm_injected_storage_evidence_only": {
+          "start": "0x1003bb7bc",
+          "end_exclusive": "0x1003bb968",
+          "sha256": "2f96be3599fd46f30bf441a4d19f394a2d49e9045f9e91a541078f45b34e1e8d",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0295.c",
+            "line": 281
+          },
+          "original_pseudocode_sha256": "1aab9de73a3ee4c971b064130cbe8d1451b31d5402a05faf2bd7b3896e766f4f"
+        },
+        "router_witness_evidence_only": {
+          "start": "0x100018398",
+          "end_exclusive": "0x10001839c",
+          "sha256": "1e1616a3679022b9288860ef71ef89ef27beea03f3c116abb3e9dd6ba9c1e2cd",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 580
+          },
+          "original_pseudocode_sha256": "bd341fab1ff34dccc7c2694d1aa0890dba5537e25dd390fbc19d1d4de318bd63"
+        },
+        "concrete_route4_evidence_only": {
+          "start": "0x1000177a0",
+          "end_exclusive": "0x1000177ac",
+          "sha256": "8997e1c94061c948ac81809d6328961107415f0085d3a8f7d7d9a8fb21176de9",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0009.c",
+            "line": 1271
+          },
+          "original_pseudocode_sha256": "5a211d489cff9314d6409bbf144b2ec93f815f8cd13e43ed7ce91915f04e9e10"
+        },
+        "generic_route_wrapper_evidence_only": {
+          "start": "0x100017784",
+          "end_exclusive": "0x1000177a0",
+          "sha256": "36eae1be3d4e741a9c3a876ade78982731c6c342a2909a45ab4418bcded61518",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0009.c",
+            "line": 1260
+          },
+          "original_pseudocode_sha256": "245e884ce4bd47833ee85dec1e6209990c3be6ca65255c0d6988f17315ce8102"
+        },
+        "route_witness_evidence_only": {
+          "start": "0x100017d40",
+          "end_exclusive": "0x100017d4c",
+          "sha256": "5749f841fbc27b3211f52ad044737c7a9fa8b7d09dac7ddc0e5e1101413021e7",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 286
+          },
+          "original_pseudocode_sha256": "c90795085cf5b4183b03a8d59b1ea06f09d9342053963cdf39d173c687b4ec5e"
+        },
+        "generic_window_presenter_evidence_only": {
+          "start": "0x1000177bc",
+          "end_exclusive": "0x100017a74",
+          "sha256": "1ca5d181e11fb6f670cabd5061eda0844ac4c3f5c0509d76ffbf9373149919af",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 6
+          },
+          "original_pseudocode_sha256": "16aa3d1dffa2c83eec1f6548f5c414a7b04014ce756f93b5ce9926f1932a536b"
+        },
+        "optional_license_evidence_only": {
+          "start": "0x1001a15c4",
+          "end_exclusive": "0x1001a168c",
+          "sha256": "ce6bd7a9845e8573695835db8e84e3b794b723b5c3d0b0693773b0d05a4383d4",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0137.c",
+            "line": 617
+          },
+          "original_pseudocode_sha256": "f07eff933b2cff55694d4da1fa29973634a9f121b540442e5e426b4cae87b8a5"
+        },
+        "current_license_evidence_only": {
+          "start": "0x1001a4730",
+          "end_exclusive": "0x1001a4768",
+          "sha256": "e51563e7a987fb9627ead5e17b48796599861154284dfe3264ad55c2c9a0ab1b",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0137.c",
+            "line": 2836
+          },
+          "original_pseudocode_sha256": "575c317e74e0256a331367c4e45d5807343dfb4753cd8a8378d85941185cb17c"
+        },
+        "license_keypath_thunk_evidence_only": {
+          "start": "0x1003bbbec",
+          "end_exclusive": "0x1003bbbf0",
+          "sha256": "0f6a285ef79c6adc2065e33e6a4a793b63a8600bf385a03d4f0436dc22642ebc",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0295.c",
+            "line": 590
+          },
+          "original_pseudocode_sha256": "1ca917d3ffaee2281ab639da4dad1573e0edd730553d8818875f272c575c60f4"
+        },
+        "license_keypath_trampoline_evidence_only": {
+          "start": "0x100242728",
+          "end_exclusive": "0x10024272c",
+          "sha256": "24c06578f18cc3f1fc4517a2bd74f1baf37f92b986b02c3a35d854de54e37d39",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0197.c",
+            "line": 1465
+          },
+          "original_pseudocode_sha256": "5cae898baf0048e9fa296c576898483f5b757d3ef5a6779fa52d67ec75b04a09"
+        },
+        "license_di_registration_evidence_only": {
+          "start": "0x10019fbf0",
+          "end_exclusive": "0x10019fc10",
+          "sha256": "db3c04e41a4e884908d1a702778abe53f1f6b83f86e739e8d28957fc6a79f81b",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2026
+          },
+          "original_pseudocode_sha256": "b53c35974a6bfb8c613db2d1eb4c6f96d150a346e3168e68508849ab7d1df4c3"
+        },
+        "generic_di_registration_evidence_only": {
+          "start": "0x10019fcf4",
+          "end_exclusive": "0x10019fd5c",
+          "sha256": "af9b9297141b4f44bf734f91babc01172032e2e1c483d8782de34c0f3e047261",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2080
+          },
+          "original_pseudocode_sha256": "c1cfb41a74c43bbb93fb2da9d37cbff68ddb84323321e18d6a783098f257546e"
+        },
+        "license_factory_evidence_only": {
+          "start": "0x10019fc10",
+          "end_exclusive": "0x10019fcd4",
+          "sha256": "563ccc0724d9adcfd6ec0e1422eebd5b3a7ef9c10b3ac8cd81205ff9de34ffa5",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2037
+          },
+          "original_pseudocode_sha256": "e54c1ded2d449d02b89e35bf1b9869ea32afb95be5efa70a0eef9c8e0c884c61"
+        },
+        "router_witness_table_evidence_only": {
+          "start": "0x100eafe58",
+          "end_exclusive": "0x100eafe78",
+          "sha256": "f8a954759297d0cb70aeb728e488df26d10573a9d632e35b9eac0eada429866b"
+        },
+        "route4_witness_table_evidence_only": {
+          "start": "0x100eb06b0",
+          "end_exclusive": "0x100eb06c0",
+          "sha256": "c5a3a023ca4777d992a0a05a4f0e027dbe77f229fedccc52e8d4cd9f02f5be84"
+        },
+        "license_witness_table_evidence_only": {
+          "start": "0x100ebdaf8",
+          "end_exclusive": "0x100ebdb18",
+          "sha256": "02935d4fc834afb790c6edf0d5cac3d540b9194588af046a7e1855c9840facd2"
+        },
+        "license_type_evidence_only": {
+          "start": "0x100ca6a14",
+          "end_exclusive": "0x100ca6a40",
+          "sha256": "98c513aaebd7de4d2c1d9490d23fa40470d285a9d634c49f602bf258ca85f476"
+        },
+        "license_protocol_evidence_only": {
+          "start": "0x100ca6a60",
+          "end_exclusive": "0x100ca6a78",
+          "sha256": "62e17a34b21fb86a875fb136cfb22afb71cff66cce436072b36188603b2a5af6"
+        },
+        "router_protocol_evidence_only": {
+          "start": "0x100cad768",
+          "end_exclusive": "0x100cad780",
+          "sha256": "9b98a48a809b438f2f9852addcd7ed3b6b614ed27612b07a66155832987131a5"
+        },
+        "router_conformance_evidence_only": {
+          "start": "0x100c22d68",
+          "end_exclusive": "0x100c22d7c",
+          "sha256": "b2c20ff0131b2057fad019750a6387365a0d28ae09d27b1b13fd065a491a2e91"
+        },
+        "license_conformance_evidence_only": {
+          "start": "0x100c32464",
+          "end_exclusive": "0x100c32478",
+          "sha256": "b75a396debdb491d27c13b79c8bf8d4d17e03998cfbb97efd3eed4f615c78b4f"
+        },
+        "vm_license_keypath_evidence_only": {
+          "start": "0x100c44a18",
+          "end_exclusive": "0x100c44a50",
+          "sha256": "3efdfabb1666aecaad0c577a6f457820b2b0ab744a4a247d413af432a8902e9b"
+        }
+      },
+      "complete_function": {
+        "start": "0x1003bb23c",
+        "end_exclusive": "0x1003bb280",
+        "sha256": "9cedcbd66370cb8a46cba4436d6e845f63f4a9caaf19c889a4e6184fcab9589d"
+      },
+      "all_direct_callees_evidence_only": [
+        {
+          "address": "0x100004640",
+          "identity": "Open boxed existential helper; not paid-only",
+          "classification": "Open boxed existential helper; not paid-only"
+        }
+      ],
+      "indirect_call_sites": [
+        "0x1003bb26c"
+      ],
+      "typed_di_and_paywall": {
+        "router_protocol": "ItemCollectionViewModelRouter",
+        "injection": "完整f052734注入witness100eafe58，完整f3bb7bc存于VM+58；f3bb23c调用witness+18。",
+        "route": "100eafe58+18→f018398→f0177a0→f017784(route4,0,0)→100eb06b0+8=f017d40→f0177bc；后两通用体仅证据。",
+        "paywall_class": "_TtC5PasteP33_0834BD6CB1CDAA1FA46B007E7F71175821PaywallViewController",
+        "class_address": "0x100f8f758",
+        "license": "完整f3bb7bc在VM+30建keypath100c44a18；其+28relativegetter→f3bbbec→f242728→f19fbf0；后者传metadata f1a1b7c、witness100ebdaf8、key11、factoryf19fc10到f19fcf4。100ebdaf8+8=f1a4730读取CurrentValueSubject<License?>，f1a15c4检查非nil。",
+        "native_session_retained": "f227808的本地ended/窗口内1秒后activate与moved/source-mask/reorder不排除。"
+      },
+      "review": "打开VM中真实注入的ItemCollectionViewModelRouter，调用witness+0x18；实际callee固定到route4的Paywall呈现。 临时数组、读取、惰性依赖缓存及actor/不变量检查仅支撑此契约；通用被调函数不计入排除。"
+    },
+    "Paste:0x1003b9128": {
+      "function_id": "Paste:0x1003b9128",
+      "state": "excluded_by_scope",
+      "user_scope_reason": "从VM+0x30依赖获取LicenseManager，检查当前Optional<License>非nil；专供已核拖拽结束付费门槛，不是本地拖拽偏好。 用户要求免费离线独立复刻，排除该具体付费门槛/提示，不修改原版授权。",
+      "original_pseudocode": {
+        "path": "decompiled/Paste/part-0294.c",
+        "line": 813
+      },
+      "original_pseudocode_sha256": "6c1f2eb850f06c1d349586a7ccb23e0dd4279e68dfee2c8433f81b9dc738eb9b",
+      "complete_static_evidence": {
+        "presenter": {
+          "start": "0x100064afc",
+          "end_exclusive": "0x100064da0",
+          "sha256": "8ae243a67c5fdc1188f82d3873a902a5fb981d89bcb3b508fcb91639d863fbbb"
+        },
+        "controller_factory_evidence_only": {
+          "start": "0x100017bb0",
+          "end_exclusive": "0x100017bd0",
+          "sha256": "9b6489a336e6ad0caf5c4778894a4e0acfb499323a7936f52d39e9a459a277e4"
+        },
+        "class_metadata": {
+          "start": "0x100f8f758",
+          "end_exclusive": "0x100f8f780",
+          "sha256": "cd6d2c48e4f43910e4938bf8d77ad5df66f5b0a7e32f1833905f655ca0413b30"
+        },
+        "class_ro_metadata": {
+          "start": "0x100f8f6f8",
+          "end_exclusive": "0x100f8f720",
+          "sha256": "794509779a62f11c0fe96284da09dfef7b823e3cf8dd0f65764fa53fb683cce5"
+        },
+        "ended_paywall_delegate": {
+          "start": "0x10006edc4",
+          "end_exclusive": "0x10006f278",
+          "sha256": "43dec5683b5f48813199cb3eee8e60f4892e461d67090b61ddfb2f8b7f47f890",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0036.c",
+            "line": 934
+          },
+          "original_pseudocode_sha256": "1c7b546e5b6e5f7e11a76f0a2b177d175dc3918c89435802e68594581a4ecc4f"
+        },
+        "dedicated_paywall_router": {
+          "start": "0x1003bb23c",
+          "end_exclusive": "0x1003bb280",
+          "sha256": "9cedcbd66370cb8a46cba4436d6e845f63f4a9caaf19c889a4e6184fcab9589d",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0294.c",
+            "line": 2183
+          },
+          "original_pseudocode_sha256": "af68b389ae2725d210d4c893f157847a70b5964ce50f6a5b6474b93c493c044a"
+        },
+        "dedicated_license_check": {
+          "start": "0x1003b9128",
+          "end_exclusive": "0x1003b9188",
+          "sha256": "50ae799278aa7efc806e1b820e7415ae5499cb665e31059ad8362dea07c17b48",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0294.c",
+            "line": 813
+          },
+          "original_pseudocode_sha256": "6c1f2eb850f06c1d349586a7ccb23e0dd4279e68dfee2c8433f81b9dc738eb9b"
+        },
+        "actual_router_injection_evidence_only": {
+          "start": "0x100052734",
+          "end_exclusive": "0x100052960",
+          "sha256": "43c2445eab5a80a31413da5afd1131d34c831b6acea05c12541ab57c890842ae",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0029.c",
+            "line": 651
+          },
+          "original_pseudocode_sha256": "d561222f03153c7bf94b5c4d1bdea02eb1785aa76a58cca3bada1878c6e0181b"
+        },
+        "vm_injected_storage_evidence_only": {
+          "start": "0x1003bb7bc",
+          "end_exclusive": "0x1003bb968",
+          "sha256": "2f96be3599fd46f30bf441a4d19f394a2d49e9045f9e91a541078f45b34e1e8d",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0295.c",
+            "line": 281
+          },
+          "original_pseudocode_sha256": "1aab9de73a3ee4c971b064130cbe8d1451b31d5402a05faf2bd7b3896e766f4f"
+        },
+        "router_witness_evidence_only": {
+          "start": "0x100018398",
+          "end_exclusive": "0x10001839c",
+          "sha256": "1e1616a3679022b9288860ef71ef89ef27beea03f3c116abb3e9dd6ba9c1e2cd",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 580
+          },
+          "original_pseudocode_sha256": "bd341fab1ff34dccc7c2694d1aa0890dba5537e25dd390fbc19d1d4de318bd63"
+        },
+        "concrete_route4_evidence_only": {
+          "start": "0x1000177a0",
+          "end_exclusive": "0x1000177ac",
+          "sha256": "8997e1c94061c948ac81809d6328961107415f0085d3a8f7d7d9a8fb21176de9",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0009.c",
+            "line": 1271
+          },
+          "original_pseudocode_sha256": "5a211d489cff9314d6409bbf144b2ec93f815f8cd13e43ed7ce91915f04e9e10"
+        },
+        "generic_route_wrapper_evidence_only": {
+          "start": "0x100017784",
+          "end_exclusive": "0x1000177a0",
+          "sha256": "36eae1be3d4e741a9c3a876ade78982731c6c342a2909a45ab4418bcded61518",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0009.c",
+            "line": 1260
+          },
+          "original_pseudocode_sha256": "245e884ce4bd47833ee85dec1e6209990c3be6ca65255c0d6988f17315ce8102"
+        },
+        "route_witness_evidence_only": {
+          "start": "0x100017d40",
+          "end_exclusive": "0x100017d4c",
+          "sha256": "5749f841fbc27b3211f52ad044737c7a9fa8b7d09dac7ddc0e5e1101413021e7",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 286
+          },
+          "original_pseudocode_sha256": "c90795085cf5b4183b03a8d59b1ea06f09d9342053963cdf39d173c687b4ec5e"
+        },
+        "generic_window_presenter_evidence_only": {
+          "start": "0x1000177bc",
+          "end_exclusive": "0x100017a74",
+          "sha256": "1ca5d181e11fb6f670cabd5061eda0844ac4c3f5c0509d76ffbf9373149919af",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0010.c",
+            "line": 6
+          },
+          "original_pseudocode_sha256": "16aa3d1dffa2c83eec1f6548f5c414a7b04014ce756f93b5ce9926f1932a536b"
+        },
+        "optional_license_evidence_only": {
+          "start": "0x1001a15c4",
+          "end_exclusive": "0x1001a168c",
+          "sha256": "ce6bd7a9845e8573695835db8e84e3b794b723b5c3d0b0693773b0d05a4383d4",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0137.c",
+            "line": 617
+          },
+          "original_pseudocode_sha256": "f07eff933b2cff55694d4da1fa29973634a9f121b540442e5e426b4cae87b8a5"
+        },
+        "current_license_evidence_only": {
+          "start": "0x1001a4730",
+          "end_exclusive": "0x1001a4768",
+          "sha256": "e51563e7a987fb9627ead5e17b48796599861154284dfe3264ad55c2c9a0ab1b",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0137.c",
+            "line": 2836
+          },
+          "original_pseudocode_sha256": "575c317e74e0256a331367c4e45d5807343dfb4753cd8a8378d85941185cb17c"
+        },
+        "license_keypath_thunk_evidence_only": {
+          "start": "0x1003bbbec",
+          "end_exclusive": "0x1003bbbf0",
+          "sha256": "0f6a285ef79c6adc2065e33e6a4a793b63a8600bf385a03d4f0436dc22642ebc",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0295.c",
+            "line": 590
+          },
+          "original_pseudocode_sha256": "1ca917d3ffaee2281ab639da4dad1573e0edd730553d8818875f272c575c60f4"
+        },
+        "license_keypath_trampoline_evidence_only": {
+          "start": "0x100242728",
+          "end_exclusive": "0x10024272c",
+          "sha256": "24c06578f18cc3f1fc4517a2bd74f1baf37f92b986b02c3a35d854de54e37d39",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0197.c",
+            "line": 1465
+          },
+          "original_pseudocode_sha256": "5cae898baf0048e9fa296c576898483f5b757d3ef5a6779fa52d67ec75b04a09"
+        },
+        "license_di_registration_evidence_only": {
+          "start": "0x10019fbf0",
+          "end_exclusive": "0x10019fc10",
+          "sha256": "db3c04e41a4e884908d1a702778abe53f1f6b83f86e739e8d28957fc6a79f81b",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2026
+          },
+          "original_pseudocode_sha256": "b53c35974a6bfb8c613db2d1eb4c6f96d150a346e3168e68508849ab7d1df4c3"
+        },
+        "generic_di_registration_evidence_only": {
+          "start": "0x10019fcf4",
+          "end_exclusive": "0x10019fd5c",
+          "sha256": "af9b9297141b4f44bf734f91babc01172032e2e1c483d8782de34c0f3e047261",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2080
+          },
+          "original_pseudocode_sha256": "c1cfb41a74c43bbb93fb2da9d37cbff68ddb84323321e18d6a783098f257546e"
+        },
+        "license_factory_evidence_only": {
+          "start": "0x10019fc10",
+          "end_exclusive": "0x10019fcd4",
+          "sha256": "563ccc0724d9adcfd6ec0e1422eebd5b3a7ef9c10b3ac8cd81205ff9de34ffa5",
+          "original_pseudocode": {
+            "path": "decompiled/Paste/part-0136.c",
+            "line": 2037
+          },
+          "original_pseudocode_sha256": "e54c1ded2d449d02b89e35bf1b9869ea32afb95be5efa70a0eef9c8e0c884c61"
+        },
+        "router_witness_table_evidence_only": {
+          "start": "0x100eafe58",
+          "end_exclusive": "0x100eafe78",
+          "sha256": "f8a954759297d0cb70aeb728e488df26d10573a9d632e35b9eac0eada429866b"
+        },
+        "route4_witness_table_evidence_only": {
+          "start": "0x100eb06b0",
+          "end_exclusive": "0x100eb06c0",
+          "sha256": "c5a3a023ca4777d992a0a05a4f0e027dbe77f229fedccc52e8d4cd9f02f5be84"
+        },
+        "license_witness_table_evidence_only": {
+          "start": "0x100ebdaf8",
+          "end_exclusive": "0x100ebdb18",
+          "sha256": "02935d4fc834afb790c6edf0d5cac3d540b9194588af046a7e1855c9840facd2"
+        },
+        "license_type_evidence_only": {
+          "start": "0x100ca6a14",
+          "end_exclusive": "0x100ca6a40",
+          "sha256": "98c513aaebd7de4d2c1d9490d23fa40470d285a9d634c49f602bf258ca85f476"
+        },
+        "license_protocol_evidence_only": {
+          "start": "0x100ca6a60",
+          "end_exclusive": "0x100ca6a78",
+          "sha256": "62e17a34b21fb86a875fb136cfb22afb71cff66cce436072b36188603b2a5af6"
+        },
+        "router_protocol_evidence_only": {
+          "start": "0x100cad768",
+          "end_exclusive": "0x100cad780",
+          "sha256": "9b98a48a809b438f2f9852addcd7ed3b6b614ed27612b07a66155832987131a5"
+        },
+        "router_conformance_evidence_only": {
+          "start": "0x100c22d68",
+          "end_exclusive": "0x100c22d7c",
+          "sha256": "b2c20ff0131b2057fad019750a6387365a0d28ae09d27b1b13fd065a491a2e91"
+        },
+        "license_conformance_evidence_only": {
+          "start": "0x100c32464",
+          "end_exclusive": "0x100c32478",
+          "sha256": "b75a396debdb491d27c13b79c8bf8d4d17e03998cfbb97efd3eed4f615c78b4f"
+        },
+        "vm_license_keypath_evidence_only": {
+          "start": "0x100c44a18",
+          "end_exclusive": "0x100c44a50",
+          "sha256": "3efdfabb1666aecaad0c577a6f457820b2b0ab744a4a247d413af432a8902e9b"
+        }
+      },
+      "complete_function": {
+        "start": "0x1003b9128",
+        "end_exclusive": "0x1003b9188",
+        "sha256": "50ae799278aa7efc806e1b820e7415ae5499cb665e31059ad8362dea07c17b48"
+      },
+      "all_direct_callees_evidence_only": [
+        {
+          "address": "0x100004594",
+          "identity": "Destroy existential helper; not paid-only",
+          "classification": "Destroy existential helper; not paid-only"
+        },
+        {
+          "address": "0x100004640",
+          "identity": "Open boxed existential helper; not paid-only",
+          "classification": "Open boxed existential helper; not paid-only"
+        },
+        {
+          "address": "0x1000da768",
+          "identity": "Generic lock-protected lazy DI getter with optional cache; not paid-only",
+          "classification": "Generic lock-protected lazy DI getter with optional cache; not paid-only"
+        },
+        {
+          "address": "0x1001a15c4",
+          "identity": "LicenseManager current Optional<License> presence check; generic licensing API itself not included in these candidates",
+          "classification": "LicenseManager current Optional<License> presence check; generic licensing API itself not included in these candidates"
+        }
+      ],
+      "indirect_call_sites": [],
+      "typed_di_and_paywall": {
+        "router_protocol": "ItemCollectionViewModelRouter",
+        "injection": "完整f052734注入witness100eafe58，完整f3bb7bc存于VM+58；f3bb23c调用witness+18。",
+        "route": "100eafe58+18→f018398→f0177a0→f017784(route4,0,0)→100eb06b0+8=f017d40→f0177bc；后两通用体仅证据。",
+        "paywall_class": "_TtC5PasteP33_0834BD6CB1CDAA1FA46B007E7F71175821PaywallViewController",
+        "class_address": "0x100f8f758",
+        "license": "完整f3bb7bc在VM+30建keypath100c44a18；其+28relativegetter→f3bbbec→f242728→f19fbf0；后者传metadata f1a1b7c、witness100ebdaf8、key11、factoryf19fc10到f19fcf4。100ebdaf8+8=f1a4730读取CurrentValueSubject<License?>，f1a15c4检查非nil。",
+        "native_session_retained": "f227808的本地ended/窗口内1秒后activate与moved/source-mask/reorder不排除。"
+      },
+      "review": "从VM+0x30依赖获取LicenseManager，检查当前Optional<License>非nil；专供已核拖拽结束付费门槛，不是本地拖拽偏好。 临时数组、读取、惰性依赖缓存及actor/不变量检查仅支撑此契约；通用被调函数不计入排除。"
     }
   },
   "count_as_implemented": false,
   "remove_from_total_denominator": false,
   "functional_tests_executed": false,
-  "scope_boundary": "仅此一个付费presenter地址；不排除f66068本地恢复、allSatisfy、applier、WindowTransition、窗口通用生命周期或factory证据地址。"
+  "scope_boundary": "仅固定四地址：原presenter及已核拖拽结束付费delegate/专用License检查/具体Paywall路由；不排除f017784、f0177bc、genericDI、f30cc3c、通用session、f66068本地恢复、allSatisfy、applier、WindowTransition或factory证据地址。"
 }

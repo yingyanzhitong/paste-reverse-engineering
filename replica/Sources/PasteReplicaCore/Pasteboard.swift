@@ -239,6 +239,7 @@ extension ClipboardStore {
             return item
         }
         let selections = try selected.map { item -> OriginalPasteboardRestore.Selection in
+            let application = sourceApplication(for: item)
             let kind: OriginalPasteboardContentKind
             switch item.kind {
             case .text, .richText: kind = .text
@@ -267,9 +268,9 @@ extension ClipboardStore {
                 }
             }
             if !plain, kind == .image {
-                representations = Self.imageRestore.prepare(representations, sourceName: item.sourceName, timestamp: item.createdAt)
+                representations = Self.imageRestore.prepare(representations, sourceName: application?.name, timestamp: item.createdAt)
             }
-            return .init(kind: kind, items: representations, sourceBundleID: item.sourceBundleID)
+            return .init(kind: kind, items: representations, sourceBundleID: application?.bundleIdentifier)
         }
         let objects = OriginalPasteboardRestore.f_10038222c(selections, options: options,
             removingTypesContaining: ["com.microsoft.ole.source"]).flatMap { $0 }

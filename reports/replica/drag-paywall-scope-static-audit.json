@@ -1,0 +1,231 @@
+{
+  "kind": "explicit_paid_scope_static_review",
+  "version": "0.8.0-dev.36",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "functions": [
+    "Paste:0x10006edc4",
+    "Paste:0x1003bb23c",
+    "Paste:0x1003b9128"
+  ],
+  "report": "reports/function-migration/paywall-presenter-scope-exclusions.json",
+  "verifier_sha256": {
+    "scripts/paywall_scope_exclusion.py": "953d02b168959c186cc0d726255701de0ee567e865984c197d841b1ab09e2d56",
+    "scripts/scope_exclusions.py": "2cc0a2866763d11a9c427d8a4e78c076c511a658f8c56f5fc7d7df8c49a2ba18"
+  },
+  "count_as_implemented": false,
+  "remove_from_total_denominator": false,
+  "product_executed": false,
+  "original_binary_executed": false,
+  "functional_tests_executed": false,
+  "retained": [
+    "通用DI/窗口路由/原onboarding谓词",
+    "本地拖动session与窗口内延迟activate",
+    "仓库移动/排序/恢复/本地状态逻辑"
+  ],
+  "review": {
+    "stage": "scope static verifier extension frozen for Root report generation",
+    "created_at": "2026-10-23T17:36:08.602827+00:00",
+    "source_frozen": true,
+    "owned_files": [
+      {
+        "path": "scripts/paywall_scope_exclusion.py",
+        "sha256": "953d02b168959c186cc0d726255701de0ee567e865984c197d841b1ab09e2d56"
+      },
+      {
+        "path": "scripts/scope_exclusions.py",
+        "sha256": "2cc0a2866763d11a9c427d8a4e78c076c511a658f8c56f5fc7d7df8c49a2ba18"
+      }
+    ],
+    "implemented": [
+      "Original f064afc report identity/class/factory evidence preserved; original presenter pseudocode now also fixed-hash checked.",
+      "Explicit three-address additions only: f06edc4/f3bb23c/f3b9128, each pinned full function-index next-entry boundary, full raw machine SHA and normalized full pseudocode SHA.",
+      "Decoder checks every AArch64 direct BL target and BLR call site against reviewed fixed inventory (27/1/4 unique direct targets). Generic callees are evidence only; no automatic class/module prefix classification.",
+      "Actual DI witness tables/protocol/type descriptors and class→RO→PaywallViewController name checked against fixed bytes and exact names. Full constructor/injection/thunks/route/optional-license bodies serve evidence only.",
+      "Explicit keypath100c44a18+28relative→3bbbec→242728→19fbf0 retained at machine level; registration passes metadata1a1b7c/witness100ebdaf8/key11/factory19fc10 into generic19fcf4. Middle4B thunk is not elided based on REA naming.",
+      "scope_exclusions only docstring and exact9-count integration check changed; no denominator or implementation completion calculation altered."
+    ],
+    "exclusion_count": {
+      "cloud": 5,
+      "paywall": 4,
+      "total": 9,
+      "added_complete_functions": 0,
+      "total_denominator": 81134,
+      "remove_from_total_denominator": false
+    },
+    "must_remain_unexcluded": [
+      "f017784/f0177bc generic route/window bodies",
+      "genericDI/LicenseManager interface/type/optional/existential helpers",
+      "f30cc3c onboarding predicate",
+      "f227808 native session ended and local delayed activation/moved/source operations",
+      "applier/context/repository/WindowTransition/factory evidence addresses"
+    ],
+    "verification": {
+      "kind": "read-only installed-input static snapshot functions, in memory only",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 importing paywall_scope_exclusion.snapshot(root) and scope_exclusions.snapshot(root)",
+      "result": "passed; actual installed manifest/container+arm64 inputs matched, full boundaries/machine+pseudocode/typed witnesses valid,4Paywall+5Cloud unique9",
+      "final_report_files_written": false,
+      "scope_check_after_root_generation": "Existing saved Paywall snapshot still has prior one-address form until Root generates reports; final scope_exclusions.py --check is Root follow-up after generation, not falsely claimed passed here.",
+      "swift_compiled": false,
+      "products_run": false,
+      "functional_tests_run": false
+    },
+    "review_inputs": [
+      {
+        "path": ".local/window-drag-paywall-scope-candidates.json",
+        "sha256": "14ab06137a5cef4657419fecb92c657dfaf4521020ac3c2706022495a84a349e"
+      },
+      {
+        "path": ".local/window-native-drag-ended-review.json",
+        "sha256": "9aea81870860fd0ac3d774cf6c3efab61c9adfed58d70aed53ac2f4c2c08a0b7"
+      }
+    ],
+    "publication": "No Swift/original binary authorization/source scope map/public reports/Git/version/changelog modified by this task. Root owns final report generation/schema registration/publication.",
+    "limitations": "Evidence exclusion classification only, not proof of runtime parity or migrated parent completion. Generic callee supporting machinery and native session local events remain independently required."
+  },
+  "independent_peer": {
+    "scope": "Independent read-only exact-address business scope review; no Source/table/script edits or execution",
+    "candidate_report": ".local/window-drag-paywall-scope-candidates.json",
+    "candidate_report_sha256": "14ab06137a5cef4657419fecb92c657dfaf4521020ac3c2706022495a84a349e",
+    "candidates": [
+      {
+        "address": "0x10006edc4",
+        "fresh_machine": {
+          "start": "0x10006edc4",
+          "end_exclusive": "0x10006f278",
+          "size": 1204,
+          "sha256": "43dec5683b5f48813199cb3eee8e60f4892e461d67090b61ddfb2f8b7f47f890",
+          "full_machine_code_hex": "ff0303d1e923056dfc6f06a9fa6707a9f85f08a9f65709a9f44f0aa9fd7b0ba9fdc30291f30314aae10700f9281ca14e091ca04ef50300aac87900f008c543f9e81700f9946a68f8e00314aaf2362e94c5280d94e00700b9e00314aae8362e94a80240f90972009029d941f9290140f92801088a088540f9f40315aa00013fd608720090086d40f9e82700f9170840f9f31b00f9b70e00b4c87900f008cd43f9e81300f9f40300aa000080d24c252e94e00f00f9e00314aa08720090086d40f9e80b00f9180480520b000014f4230191e1031aaad3242e94e82740f9e80b00f918230091f70600f1f31b40f9e00316aa600b0054f60300aa1a6878f8f50f40f9f40315aa33252e94fc0300aac079009000c02e9101720090210846f902720090420c46f9c652fe97e10300aaf4031caae00315aaee242e94f40300aafb0301aaf4362e94200100370069009000c03391c103805222008052a3318052e40314aae5031baaf7362e94e81340f97b6a68f81b1a00b4e81740f9746a68f8e00314aaa5362e94e0031baaa3362e942b270d94f30300aae00314aa99362e94f31f00f9f5790090b5420e91e00315aad95d009039c33191e10319aa1d52fe97f40300aac07900f000802091e10315aae20319aa235e009063002b91c49ffe97e30300aae8030191e1e30091e0031aaae20314aaf4031baab8290594e0031caa80362e94e00313aa7e362e94e0031baa7c362e94fa2340f97af6ffb4f423019151242e94e82740f908e17d92002141a91f0448ebe3f4ff541f0500f1e8979f1a01040091f4230191f30300aae00308aa2200805262242e94e00313aa9dffff175d352e94fa0b40f9040000145a352e94fa7100f05a6f40f957e37d9248ff7ed3081100b5f80a40f9080080d2560b42920a000014f4031caaf9760a94f30300aae0031caac0332e94e0031baa55362e942807009113060036f90308aa1f0308eba0050054160500b5e80a40f93f0308eb620e0054480f198b001140f9b5332e94fc0300aa3f0700b1860d0054000080d2bc242e94f30300aaf40300aab6242e94fb0300aaa07900f000c02e91e17100f0210846f9e27100f0420c46f94952fe97e10300aaf4031baae00313aa71242e94f40300aaf50301aa77362e94c0fa0737e06800f000c03391c10380522200805203448052e40314aae50315aa7a362e94cdffff17e00319aae1031aaaad292e94dcffff17e0031aaa17352e94e01b40f9f0882e94fd031daa93332e94400700b4f50300aa000080d292242e94f30300aaf67100f0d60a46f9f40300aa8a242e94f40300aaa07900f000c02e91e27100f0420c46f9e10316aa1e52fe97e10300aae00313aa47242e94f60300aaf70301aa4d362e9420010037e06800f000c03391c10380522200805243448052e40316aae50317aa50362e94e00315aa254e2e94241da94e051da84e282f2e94f60300aae00314aaf7352e94e00315aa5e332e94e80740f91f0140f2e8179f1a1f0319ebe91b40f980010054ea0740b94801082a2801003716010037e81740f9346968f8e00314aaed352e9405300d94e00314aae4352e94fd7b4ba9f44f4aa9f65749a9f85f48a9fa6747a9fc6f46a9e923456dff030391c0035fd6200020d4200020d45f0700b1e0c29a9ab72a2e94f80300aa76ffff17200020d4"
+        },
+        "assessment": "eligible_exact_concrete_paid_scope_candidate_only",
+        "finite_contract": "Input actual collection sender/currentselectedIndexes, end-screenpoint and NSDragOperation. Sample hasLicense once; compactMap indexes through current VM/applier to entity array; scan for first !identifier.contains(onboarding); read window/frame; if at least one real entity, noLicense, operation bitcopy1 and pointoutside, invoke actual Paywall router. Otherwise return. Missing applier in nonempty selection/invariant arithmetic paths trap; MainActor diagnostics/retains/getters remain infrastructure."
+      },
+      {
+        "address": "0x1003bb23c",
+        "fresh_machine": {
+          "start": "0x1003bb23c",
+          "end_exclusive": "0x1003bb280",
+          "size": 68,
+          "sha256": "9cedcbd66370cb8a46cba4436d6e845f63f4a9caaf19c889a4e6184fcab9589d",
+          "full_machine_code_hex": "f657bda9f44f01a9fd7b02a9fd830091935647a980620191e10313aafa24f197a80e40f9f40300aae00313aae10315aa00013fd6fd7b42a9f44f41a9f657c3a8c0035fd6"
+        },
+        "assessment": "eligible_exact_concrete_paid_scope_candidate_only",
+        "finite_contract": "Open stored VM existential+58, metatype+70/witness+78, invoke witness+18, return Void. Actual installed witness100eafe58+18=f018398→f0177a0→f017784 route4→f017d40→f0177bc Paywall presentation."
+      },
+      {
+        "address": "0x1003b9128",
+        "fresh_machine": {
+          "start": "0x1003b9128",
+          "end_exclusive": "0x1003b9188",
+          "size": 96,
+          "sha256": "50ae799278aa7efc806e1b820e7415ae5499cb665e31059ad8362dea07c17b48",
+          "full_machine_code_hex": "ff4301d1f44f03a9fd7b04a9fd030191941a40f9e82300918a85f497f35342a9e0230091e10313aa3c2df197e20300aae00313aae10314aaf40302aa18a1f797f30300aae0230091092df19760020012fd7b44a9f44f43a9ff430191c0035fd6"
+        },
+        "assessment": "eligible_exact_concrete_paid_scope_candidate_only",
+        "finite_contract": "Resolve VM dependency+30 through generic lazy DI getter, open existential, call f1a15c4 LicenseManager current Optional<License> presence check, destroy temporary existential, return bit0 Bool. No clipboard/list/history/preferences write. Cache initialization may occur in dependency machinery."
+      }
+    ],
+    "independently_checked_bindings": {
+      "router_witness_slot": {
+        "address": "0x100eafe70",
+        "raw": "0x10000000018398",
+        "target": "0x100018398",
+        "protocol_name": "ItemCollectionViewModelRouter",
+        "meaning": "Only installed ItemCollectionViewModelRouter method+18 ->f018398. Concrete wrapperf3bb23c opens VM stored existential+58 and invokes this method; not generic DI or router body."
+      },
+      "license_witness_current": {
+        "address": "0x100ebdb00",
+        "raw": "0x100000001a4730",
+        "target": "0x1001a4730",
+        "protocol_name": "LicenseManager",
+        "optional_value_name": "License",
+        "meaning": "Typed LicenseManager current Optional<License> getter witnessf1a4730 only reads CurrentValueSubject.value; f1a15c4 tests optionaltag!=none. VM+30generic DI resolution can initializecache; that DI function is not excluded.",
+        "strict_boundary": "Exact VM+30 keypath registration chain now independently closed against full machinecode. Only concrete finite wrapper is candidate; generic DI and factory remain separate and not excluded.",
+        "DI_registration_proof": {
+          "keypath_address": "0x100c44a18",
+          "bytes48_hex": "98e542000000000031190b00131a0b000000000014000080000000006da22800020000021c142600ac7177ff00000000",
+          "bytes48_sha256": "99c8c478c37ecbdf8ddc8eff116ee9c6e439bb4a586782966e53a451c7b14805",
+          "relative_func_field": "0x100c44a40",
+          "resolved": "0x1003bbbec",
+          "actual_tail_chain": [
+            "0x1003bbbec ->0x100242728 (4B)",
+            "0x100242728 ->0x10019fbf0 (4B)"
+          ],
+          "factory_binding": "f19fbf0 full32B sets x0=f1a1b7c metadata, x1=100ebdaf8 witness, x2=11 DI key, x3=f19fc10 factory then tail19fcf4. f19fcf4 resolves/registers in PasteLicensing/DI+PasteLicensing.swift with typed witness in existential. f19fc10 allocates metadata1a1b7c and initializesf1a4c5c.",
+          "full_bodies": {
+            "0x1003bbbec": {
+              "start": "0x1003bbbec",
+              "end_exclusive": "0x1003bbbf0",
+              "size": 4,
+              "sha256": "0f6a285ef79c6adc2065e33e6a4a793b63a8600bf385a03d4f0436dc22642ebc",
+              "full_machine_code_hex": "cf1afa17"
+            },
+            "0x100242728": {
+              "start": "0x100242728",
+              "end_exclusive": "0x10024272c",
+              "size": 4,
+              "sha256": "24c06578f18cc3f1fc4517a2bd74f1baf37f92b986b02c3a35d854de54e37d39",
+              "full_machine_code_hex": "3275fd17"
+            },
+            "0x10019fbf0": {
+              "start": "0x10019fbf0",
+              "end_exclusive": "0x10019fc10",
+              "size": 32,
+              "sha256": "db3c04e41a4e884908d1a702778abe53f1f6b83f86e739e8d28957fc6a79f81b",
+              "full_machine_code_hex": "000000d000f02d91e16800d021e02b910300009063403091620180523a000014"
+            },
+            "0x10019fcf4": {
+              "start": "0x10019fcf4",
+              "end_exclusive": "0x10019fd5c",
+              "size": 104,
+              "sha256": "af9b9297141b4f44bf734f91babc01172032e2e1c483d8782de34c0f3e047261",
+              "full_machine_code_hex": "f657bda9f44f01a9fd7b02a9fd830091f30303aaf40302aaf50301aae90300aaf60308aa000080d220013fd6e70300aac0d601a9c05f009000402b91e80316aac104805242008052e30314aa64028052e50313aa060080d2fd7b42a9f44f41a9f657c3a8e2e0fc17"
+            },
+            "0x10019fc10": {
+              "start": "0x10019fc10",
+              "end_exclusive": "0x10019fcd4",
+              "size": 196,
+              "sha256": "563ccc0724d9adcfd6ec0e1422eebd5b3a7ef9c10b3ac8cd81205ff9de34ffa5",
+              "full_machine_code_hex": "ff4301d1f65702a9f44f03a9fd7b04a9fd030191f30308aaa870009008fd47f91f0500b141040054c875009014c941f9880240f9163d40f9e8430091c0023fd6e00b40f9c4702994f50f40f9e8030091c0023fd6f60340a94b722994000080d2c3070094010a8052e200805225722994f40300aae00315aae10316aaf4130094f40300aae00315aa3f722994e00316aab1702994740200f9fd7b44a9f44f43a9f65742a9ff430191c0035fd6a070009000e03f910100009021a02d9134732994daffff17"
+            }
+          },
+          "REA_correction": "REA collapses two forwarding thunks into name19fbf0; actual intermediate242728 retained. No dynamicloading/runtimeproof."
+        }
+      },
+      "route4": {
+        "witness_slot": "0x100eb06b8",
+        "target": "0x100017d40",
+        "chain": "f018398->f0177a0->f017784(route4)->witness+8f017d40->f0177bc->f017bb0->PaywallViewController"
+      },
+      "typed_controller": {
+        "class": "0x100f8f758",
+        "classdata_raw": "0x40000000f8f6fa",
+        "ro_mask_low_flags": "0x100f8f6f8",
+        "name_address": "0x100dd3500",
+        "name": "_TtC5PasteP33_0834BD6CB1CDAA1FA46B007E7F71175821PaywallViewController"
+      }
+    },
+    "scope_conclusions": [
+      "f3b9128 finite96B is concrete VM license-existence property wrapper, not general DI/default dependency getter. It returns Bool only; no clipboard/list/history/member/preference mutation. Typed optional contract is licensing-specific even though infrastructure may cache.",
+      "f3bb23c finite68B is concrete already-installed VM router method-forwarder. Scope eligibility relies on actualwitness->typedPaywall chain; arbitrary protocol implementations/general routers are not blanket paid scope.",
+      "f06edc4 complete1204B samples license, reads selection indexes/resolvesentities, checks reusable onboarding identifier predicate, window and end-point/copybit then invokes Paywallwrapper. No direct persistent repo edit/move/delete/restore/write/save command found. Infrastructure array/retains/actor diagnostics/lazycache remain acknowledged, not misreported local feature mutation.",
+      "Omitting dedicated ended-paywall businessdelegate in free scope does not authorize dropping native ended session callback, delayed insidewindowactivate, source-operation masks, outside deactivation/cancel-animation or local Pinboard reorder."
+    ],
+    "must_not_expand": [
+      "generic DI f0da768/keypath/factory machinery",
+      "generic optional/existential helpers f004640/f004594",
+      "LicenseManager module/current getter APIs as a bulk exclusion",
+      "generic onboarding predicate f30cc3c used elsewhere",
+      "generic WindowTransition/f017784/f0177bc router/window infrastructure",
+      "native ended wrapperf227808 and delayedactivatef2260d8",
+      "writer/preparation/native session/Pinboard repos and relation policies"
+    ],
+    "qualification": "Exact three address candidates are licensing/paywall finite business contracts under concrete installed metadata, with VM+30DI registration provenance now independently closed. No runtime proof or blanket parent/SDK/module exclusion; no mapstatus edits/newcompletecount.",
+    "validation": {
+      "source_scripts_public_map_changed": false,
+      "compile_run_tests_ui_mcp": false,
+      "spawn": false,
+      "new_complete_count": 0
+    },
+    "DI_followup": "Window supplied finite path; peer independently decoded keypath rawfield, both machine4B thunks, f19fbf0 arguments and fullfactory bodies. Prior registration caveat superseded by this evidence."
+  }
+}

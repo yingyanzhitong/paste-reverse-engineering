@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002fd5e4",
-  "reviewed_at": "2026-10-23T16:26:01.156275+00:00",
+  "reviewed_at": "2026-10-23T17:29:44.967260+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0248.c",
@@ -10,18 +10,18 @@
   },
   "original_pseudocode_sha256": "880014e6f4ce5782562170d0fb8063c2f521a78882a949f440a9a7dbc02fc29d",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282"
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "24d03e58202ea2930b5bf302202a1920f4550c8b82550459fcb5d045ed9d7bbb",
+  "compiled_app_binary_sha256": "eded1911f847df42266556f63ce4a3ed187b0999efe59f919d54367e9f145597",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "分配并init原生NSUndoManager，返回新实例。",
   "review": "源part0248只allocWithZone/init；作为共享站点首次factory被真实调用，既有removeAllActions通过Dependency首次缓存解析。",
-  "source_review": "dev31集中源码复核：现有格式读取/写入/编解码、搜索编辑器、Stack与图片文字消费及age谓词实现保留；捕获仅增可选来源快照参数及add透传，不改变原多格式转换/校验合同。Header图标读取与独立Store共享模型不据此提升原父函数。绑定build54。",
+  "source_review": "dev36原合同逐项复审：分配并init原生NSUndoManager，返回新实例。 本轮仅恢复消费者三行来源关系查找；上述有限原语及monitor/DI/编码/字符串/清理方法体和调用接口均保持，PB与Image独立反向还原整文件证明其余字节未改。绑定build61，不新增完整实现或运行验收。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "caller_review_refs": [
     {

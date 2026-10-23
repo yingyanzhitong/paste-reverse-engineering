@@ -1,0 +1,192 @@
+{
+  "version": "0.8.0-dev.36",
+  "kind": "static_call_chain_review",
+  "build": 61,
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
+  },
+  "changed_lines": "一次显式来源关系查询、两个字段替换，其他文件字节由独立反向还原证明不变。",
+  "contracts": {
+    "present_record": "实际共享记录的name和bundleIdentifier，rawIcon坏或nil不影响。",
+    "missing_record": "不从legacy字符串或NSWorkspace推断实体；来源marker仍保类型并写空String；图片名称原helper回退Paste。",
+    "unchanged": "timestamp、options、plain/OCR、编码、写入器、历史更新、Undo和通知不变。"
+  },
+  "implementation_review": {
+    "scope": "Authorized minimal actual restore source relationship fix",
+    "source_frozen": true,
+    "source": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+    "before_sha256": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+    "after_sha256": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c",
+    "changes": [
+      "One lookup inside selected.map: let application = sourceApplication(for:item)",
+      "Image prepare sourceName uses application?.name, timestamp:item.createdAt unchanged",
+      "Selection.sourceBundleID uses application?.bundleIdentifier"
+    ],
+    "exact_unchanged_proof": "Reverse the single added line and two string replacements reproduces whole prior file byte-for-byte (asserted). No timestamp/plain/OCR/decoder/options/filter/writer/token/recency/Undo/DidRestore changes.",
+    "original_evidence": ".local/pasteboard-restore-source-relation-review.json",
+    "fallback": "Explicit missing source relation -> processor empty source String; image sourceName nil -> Paste. No legacy-string/live-app fallback.",
+    "validation": {
+      "static_replacement_and_reverse_equality": true,
+      "compile": false,
+      "run": false,
+      "unit_functional_ui_mcp_tests": false,
+      "public_or_map_or_commit": false,
+      "spawn": false,
+      "new_complete_count": 0
+    }
+  },
+  "independent_peer": {
+    "stage": "independent post-change read-only peer of frozen PB relation consumer fix; pending unified build",
+    "created_at": "2026-10-23T17:27:39.795591+00:00",
+    "result": "approve exact proposed two production consumer substitutions; explicit persisted relation takes precedence over legacy strings",
+    "source_changed_by_this_agent": false,
+    "compiled_or_executed": false,
+    "tests_run": false,
+    "new_features": 0,
+    "new_completed_addresses": 0,
+    "planned_fix_landed_in_snapshot": true,
+    "original_contract": {
+      "processor": "f38222c fullbody readsselected.sourceApplication; present readsbundleIdentifier,absentSwiftEmptyString; convertsUTF8andwritesorg.nspasteboard.source. MissingrelationdoesNOTomitmarker. Pseudocodepart0283:1922-1936 andsavedfullarm64independentlyreviewed.",
+      "image_name": "f383df4 fullbody readsselected.sourceApplication; absentliteralPaste (0x6574736150/5characterSwiftSmallString),presentreadname. Thenliteralspace+DateFormatteryyyy-MM-ddHH.mm.ss. Pseudocodepart0283:3060-3077 andsavedfullarm64.",
+      "timestamp": "Separate selected.timestamp optionalDate; nilusesDate.now. Relationshipnameisnotatimestampnorcurrentfrontmostapp. CurrentcreatedAtisexistingindependenttimestampadapterandmuststayunchanged."
+    },
+    "minimal_changes_approved": {
+      "lookup": "Once inside selected.map: let application = sourceApplication(for: item)",
+      "image_consumer": "Self.imageRestore.prepare(representations, sourceName: application?.name, timestamp: item.createdAt)",
+      "marker_consumer": ".init(kind: kind, items: representations, sourceBundleID: application?.bundleIdentifier)",
+      "avoid": "Nolegacyitem.sourceName/sourceBundleIDfallback,noliveWorkspace/frontmostAppquery,nosnapshotcreationduringrestore."
+    },
+    "existing_chain_review": [
+      "Pasteboardmonitorf37b034 readsfrontmostApplicationonceandpassesapp?.localizedName/bundleIdentifier plusOriginalSourceApplication.snapshot(app)intosamecapture. Existingexactfrontmostappselection/nativeDIparentremainsseparatepartial.",
+      "Snapshotrequiresapp,bundleIdentifier,localizedName,icon. Missingrequirediconreturnsnilrecordeveniflegacyname/bundleIDexists;thisisnotreasontofallbackoldstringsonrestore. IfPNGencodingfailsrecordstillpresentwithrawIconnil.",
+      "capture forwardsoptionalSourceApplicationRecordtoadd;addsetsitem.sourceApplicationBundleIDexplicitlyandupsertssharedrecordinsideactualtransaction. Samebundleupdatesresolveoneentitywithoutretimingallolditems.",
+      "Store.sourceApplication(for:) onlyusesitem.sourceApplicationBundleID -> sourceApplications.matchingbundleIdentifier. NooldsourceBundleIDinference. StatevalidationguardsnondanglingexplicitrelationanduniquebundleIDs.",
+      "Currentpreparedvalueprocessor alreadywritesnilSourceBundleIDasemptyString,includingpresentmarkerwithemptybytes. Currentimagehelper alreadyusesnilname??Pasteandniltime??Date.now;donotduplicatefallbacksinwriter."
+    ],
+    "boundary_cases": [
+      {
+        "case": "nil explicit relation + legacy item source strings present",
+        "expected": "PassnilmarkerID/name;processorwritesemptySourcemarker;imagefilenamestartsPaste. Do notinferentityfromlegacystrings."
+      },
+      {
+        "case": "present record name/bundleID differs from legacy item strings",
+        "expected": "Usecurrentpersistedsharedrecordvalues,notitemstalesnapshotstrings;thisispreciseconfirmedconsumerdifference."
+      },
+      {
+        "case": "presentrecord nil/corrupt/empty rawIcon ornilrawColor",
+        "expected": "UseitsbundleIdentifier/nameunchanged. Icondecodabilityirrelevanttorelationpresence;doNOTrequireiconatrestoretime."
+      },
+      {
+        "case": "present record empty name",
+        "expected": "PasspresentemptyString;helper??doesnotsubstitutePaste. Originalnamegetterbridgeisnotemptyfilter."
+      },
+      {
+        "case": "snapshotguardmissingapp/ID/name/icon",
+        "expected": "Norelation;legacystringsdonotpromotetoentity. Capturefactoryfullcompatibilityoutsidecurrentfix."
+      },
+      {
+        "case": "plain projection / OCR fallback / empty decodedpayloadadapter",
+        "expected": "Allunchanged. Source markerrelationstillconsumedbyprocessor;imagefilenamebranchonly!plain&&image."
+      },
+      {
+        "case": "selected order/multiselect/timestamps",
+        "expected": "Mapselecteditemsinexistingorder;lookuponeapplicationperitem;item.createdAtunchanged. Nosorting/newDate/retime."
+      }
+    ],
+    "snapshot_status": "Freshread actualSource confirmsoneapplicationlookupandtwofieldsubstitutionslanded. IndependentreverseofexactthreeeditsrecreatespriorpeerSourceSHAbyte-for-byte;nootherSourcechangesinthisfile.",
+    "remaining_partial": [
+      "OriginalCoreDatarelationobjectidentity/lazyfaulting/DI/ABIandcompleteentityprocessorparentsnotclaimedcomplete.",
+      "Replicaoptionalrecord/createdAtrepresentationandoldlegacydataremaincompatibilityadapters;nohistoricalmigrationinthisfix.",
+      "Noactualpasteboardwrite/imagefilecreationorfunctionalregressionexecuted."
+    ],
+    "source_bindings": [
+      {
+        "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+        "sha256": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+        "sha256": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476"
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/OriginalSourceApplication.swift",
+        "sha256": "f062fd4c806d1c155e84c80e6ba962500c2f2f195a2fee3b50fe5d864f06478b"
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/OriginalPasteboardRestore.swift",
+        "sha256": "bf309c94b15bb4db46acedc6ba535d1f060aa3a8d74257053a773cf7200dd2c6"
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/OriginalPasteboardImageRestore.swift",
+        "sha256": "4c2d234efaf5a3a2d64ce78515fb05e2683e47adfb2aa6b31920428b4cffa1b9"
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Models.swift",
+        "sha256": "1ecb672f4fee301b617d4ce96b24502b406da6552a0323f614937657a4eb9f70"
+      }
+    ],
+    "evidence": [
+      {
+        "path": ".local/image-restore-source-processor-arm64.txt",
+        "sha256": "e6f68da22c1edb7f8d7a779a8990540c8c181e3fd2e88d3862da8591de2c5412"
+      },
+      {
+        "path": ".local/image-restore-source-image-name-arm64.txt",
+        "sha256": "b54239bc01713ea7e411ce7b2183a06ca115f99d44e26502d15002447803dde6"
+      },
+      {
+        "path": ".local/pasteboard-restore-source-relation-review.json",
+        "sha256": "cbf0fd2d431fbd39d810bf3bc6ad7dd2718ab7f5d59610171f8681f179d2e226"
+      },
+      {
+        "path": ".local/pasteboard-restore-source-relation-implementation-review.json",
+        "sha256": "c93dbbffed7dd5cc07a0b06bfe8164bd59f988791d9a4865e7f22f71ee3c0b42"
+      }
+    ],
+    "updated_at": "2026-10-23T17:28:59.618798+00:00",
+    "post_change_static_proof": {
+      "final_sha256": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c",
+      "prior_peer_sha256": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+      "reverse_three_edits_sha256": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+      "reverse_equals_prior_snapshot": true,
+      "literal_counts": [
+        {
+          "literal": "let application = sourceApplication(for: item)",
+          "occurrences": 1
+        },
+        {
+          "literal": "sourceName: application?.name, timestamp: item.createdAt",
+          "occurrences": 1
+        },
+        {
+          "literal": "sourceBundleID: application?.bundleIdentifier",
+          "occurrences": 1
+        }
+      ],
+      "diff_scope": "gitdiffhasexactly3hunks:oneaddedlookup,twoone-linefieldreplacements;timestampitem.createdAtandallotherfilebytesunchanged.",
+      "file_not_executed": true
+    }
+  },
+  "original_functions": [
+    {
+      "function_id": "Paste:0x10038222c",
+      "path": "decompiled/Paste/part-0283.c",
+      "line": 1658,
+      "sha256": "0e533584b50666951b14314072d89c7453463abc73f7c989e4315fe4d29b162d"
+    },
+    {
+      "function_id": "Paste:0x100383df4",
+      "path": "decompiled/Paste/part-0283.c",
+      "line": 2928,
+      "sha256": "78a0df1b56ff2f136c88fbeeaa0f028343bfb1ea68e811138bd932ff629ed7c7"
+    }
+  ],
+  "remaining": [
+    "原CoreData/事务/ItemDataEntity及完整父契约仍partial。",
+    "当前未执行产品、单元或功能运行回归，不能称一比一验收。"
+  ],
+  "new_complete_functions": 0,
+  "functional_tests_executed": false,
+  "product_executed": false,
+  "equivalence_verified": false
+}

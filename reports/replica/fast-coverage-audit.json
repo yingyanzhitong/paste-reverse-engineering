@@ -1,7 +1,7 @@
 {
   "kind": "static_existing_feature_audit",
   "schema_version": 1,
-  "generated_at": "2026-10-23T17:23:55.692308+00:00",
+  "generated_at": "2026-10-23T17:37:53.797916+00:00",
   "policy": "按已有功能和调用链集中复核，只补真实缺口；本报告不修改逐地址台账，不将模块存在或候选匹配记为等价通过。",
   "functional_tests_executed": false,
   "mcp_tests_executed": false,
@@ -13,18 +13,18 @@
   "function_ledger_snapshot": {
     "total_functions": 81134,
     "states": {
-      "excluded_by_scope": 6,
+      "excluded_by_scope": 9,
       "implemented": 0,
       "migrated": 1497,
       "partial": 292,
-      "pending": 79337,
+      "pending": 79334,
       "verified": 2
     },
     "migration": {
       "code_complete": 1499,
       "source_functions": 586,
       "sdk_forwarders_reused": 913,
-      "remaining": 79629,
+      "remaining": 79626,
       "regression_ready": false,
       "policy": "Finish all in-scope code migration before functional regression; retain explicit per-address scope exclusions."
     }
@@ -229,7 +229,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "pinboard",
@@ -382,7 +382,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "multiselect",
@@ -531,7 +531,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "stack",
@@ -649,7 +649,7 @@
           "ledger_state": "verified"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "ocr",
@@ -799,7 +799,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "history-actions",
@@ -878,7 +878,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "main-card-layout",
@@ -1346,7 +1346,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "native-preview-window",
@@ -1409,7 +1409,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "preview-registry",
@@ -1528,7 +1528,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "card-anchor-popover",
@@ -1670,7 +1670,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "preview-title-rename",
@@ -1801,7 +1801,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "preview-header-actions",
@@ -1919,7 +1919,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "preview-mode-transitions",
@@ -2022,7 +2022,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "text-content-persistence",
@@ -2101,7 +2101,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "text-attributed-normalization",
@@ -2251,7 +2251,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "text-formatting-traits",
@@ -2383,7 +2383,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "text-event-owner",
@@ -2480,7 +2480,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "native-toolbar-factories",
@@ -2608,7 +2608,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "text-footer",
@@ -2743,7 +2743,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "preview-other-content",
@@ -3112,7 +3112,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "preview-localization",
@@ -3273,7 +3273,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "screen-sharing-policy",
@@ -3408,7 +3408,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "helper-watchdog",
@@ -3617,7 +3617,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "helper-bootstrap",
@@ -3684,7 +3684,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "background-setting",
@@ -3737,7 +3737,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "settings-overall",
@@ -3875,7 +3875,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "capture.items",
@@ -3918,7 +3918,7 @@
       ],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282"
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
       },
       "original_reference_status": [
         {
@@ -3978,7 +3978,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "capture.content",
@@ -4051,7 +4051,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
         "replica/Sources/PasteReplicaCore/OriginalPasteboardClassification.swift": "120318efac6b9e47b12a415427c830d051338fcbe0257f6f6c6d5bbab6f30614",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c",
         "replica/Sources/PasteReplicaCore/OCR.swift": "862d26c538ee33b527297b973197d609136755e66ab887f5f8eea9d3fad08739",
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476"
       },
@@ -4162,7 +4162,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "capture.timers",
@@ -4172,17 +4172,17 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "f_100378ac0",
-          "line": 345
+          "line": 346
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "f_10037a028",
-          "line": 383
+          "line": 384
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "f_10037ad4c",
-          "line": 345
+          "line": 346
         }
       ],
       "original_functions": [
@@ -4202,7 +4202,7 @@
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282"
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
       },
       "original_reference_status": [
         {
@@ -4248,7 +4248,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "capture.state",
@@ -4263,17 +4263,17 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "public init(store:",
-          "line": 326
+          "line": 327
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "captureState",
-          "line": 295
+          "line": 296
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "deinit",
-          "line": 528
+          "line": 529
         }
       ],
       "original_functions": [
@@ -4295,7 +4295,7 @@
       "reuse_candidates": [],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboardCaptureState.swift": "91f582575946ec8e4238d539ac477be694bb0adc1ce4f9a184747e43ba670f5f",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282"
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
       },
       "original_reference_status": [
         {
@@ -4327,7 +4327,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "capture.policy",
@@ -4472,7 +4472,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "capture.read_sync",
@@ -4482,22 +4482,22 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "synchronizePasteboard",
-          "line": 398
+          "line": 399
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "f_10037b428",
-          "line": 415
+          "line": 416
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "f_10037ae9c",
-          "line": 432
+          "line": 433
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "f_10037b034",
-          "line": 438
+          "line": 439
         }
       ],
       "original_functions": [
@@ -4516,7 +4516,7 @@
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282"
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
       },
       "original_reference_status": [
         {
@@ -4548,7 +4548,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "serialization.item_codable",
@@ -4729,7 +4729,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "serialization.keyed",
@@ -4791,7 +4791,7 @@
       ],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboardArchive.swift": "52c2053221184f1fc32aa997c78a3ef90657610590f0aecf760e13b9e9139e12",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c",
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476"
       },
       "original_reference_status": [
@@ -4803,7 +4803,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "serialization.internal_codec",
@@ -4877,7 +4877,7 @@
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboardDataCodec.swift": "3994f19683c261c6137c9a97f66f89d69b111e8731cc09acb42f6727980a786c",
         "replica/Sources/PasteReplicaCore/OriginalPasteboardArchive.swift": "52c2053221184f1fc32aa997c78a3ef90657610590f0aecf760e13b9e9139e12",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282"
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
       },
       "original_reference_status": [
         {
@@ -4930,7 +4930,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "checksum.md5",
@@ -4991,7 +4991,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "checksum.strategy",
@@ -5038,7 +5038,7 @@
       ],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboardChecksums.swift": "91b10577b3103f2b5e4ad0879dce27b6ed53648531a0265d93d7d9f636fc611f",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c",
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476"
       },
       "original_reference_status": [
@@ -5064,7 +5064,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "repo.dedup",
@@ -5099,7 +5099,7 @@
       "reuse_candidates": [],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282"
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
       },
       "original_reference_status": [
         {
@@ -5131,7 +5131,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "repo.metadata",
@@ -5146,7 +5146,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "f_10037b034",
-          "line": 438
+          "line": 439
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
@@ -5210,7 +5210,7 @@
       ],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c",
         "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2",
         "replica/Sources/PasteReplica/UI/ReplicaLinkPreviewContent.swift": "1d9ad12dc1f5b46c40b8ee4f06ab8362693d22e0d099625cde7209f0bd62db37",
         "replica/Sources/PasteReplica/UI/ReplicaColorPreviewContent.swift": "2d6bd2d25ed3d56897ba22d14ffbcda84f37348cdc15e06a2508fd09dabb7662"
@@ -5231,7 +5231,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "repo.transaction",
@@ -5251,7 +5251,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "f_10037ae9c",
-          "line": 432
+          "line": 433
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Models.swift",
@@ -5315,7 +5315,7 @@
       ],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c",
         "replica/Sources/PasteReplicaCore/Models.swift": "1ecb672f4fee301b617d4ce96b24502b406da6552a0323f614937657a4eb9f70",
         "replica/Sources/PasteReplica/AppMain.swift": "b308daaf3a16487a70df8f99c94786b0cbff2260675e2080f20896a2f7db3b18",
         "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "83f115e2f1f7ba8f057de253dfb60e548a2ec16d035d55f8688e6a5f06c106e8"
@@ -5364,7 +5364,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "repo.objc_exception",
@@ -5435,7 +5435,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "repo.capture_actions",
@@ -5445,12 +5445,12 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "f_10037b034",
-          "line": 438
+          "line": 439
         },
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "f_10037ae9c",
-          "line": 432
+          "line": 433
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
@@ -5493,7 +5493,7 @@
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c",
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
         "replica/Sources/PasteReplicaCore/OriginalSoundEffects.swift": "9fea7bd27a0f354737883e390ecc1eb6cef885725a7f1768ea697c7d6471b79e"
       },
@@ -5541,7 +5541,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "logging.named",
@@ -5651,7 +5651,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "logging.dispatch",
@@ -5839,7 +5839,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "diagnostics.controls",
@@ -5903,7 +5903,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "diagnostics.queries",
@@ -5960,7 +5960,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "diagnostics.menu",
@@ -6062,7 +6062,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "diagnostics.restart",
@@ -6105,7 +6105,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "restore.writer",
@@ -6147,7 +6147,7 @@
       ],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282"
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c"
       },
       "original_reference_status": [
         {
@@ -6158,7 +6158,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "restore.processor",
@@ -6227,7 +6227,8 @@
         "原默认ignore-types静态数组逐word证实只有com.microsoft.ole.source，与现有过滤输入一致。",
         "dev27：空ids在save前无副作用返回；去额外writer Bool guard，按完整原有限体继续count持久/recency/Undo/DidRestore，不据writeObjects或CGEvent声称目标接受。",
         "dev28 modifier真实double/Enter配置完整raw flags子集，零mask匹配，无额外Command强制；global alwaysPlain只OR位2，explicitplain为两bits，实际AppMain调用Store options重用。",
-        "dev29：copy/quick复用原0xff5f0000签名及物理键表，copy不叠全局plain；Enter/double原rawsubset仍独立。高层allSatisfy空分支确为Paywall，免费范围排除该提示，未误写hide；本地restore父不排除。"
+        "dev29：copy/quick复用原0xff5f0000签名及物理键表，copy不叠全局plain；Enter/double原rawsubset仍独立。高层allSatisfy空分支确为Paywall，免费范围排除该提示，未误写hide；本地restore父不排除。",
+        "dev36来源marker和图片临时文件命名改读显式共享来源实体，nil分别由原helper处理为空String/Paste，不回退旧字符串；其余恢复字节保持。"
       ],
       "gaps": [
         "实体f31bcdc只恢复解码后数组值投影；原CoreData ItemEntity.data读取与异常边界仍partial。",
@@ -6238,7 +6239,7 @@
       ],
       "source_sha256": {
         "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c",
         "replica/Sources/PasteReplicaCore/OriginalPasteboardRestore.swift": "bf309c94b15bb4db46acedc6ba535d1f060aa3a8d74257053a773cf7200dd2c6",
         "replica/Sources/PasteReplicaCore/OriginalPasteboardImageRestore.swift": "4c2d234efaf5a3a2d64ce78515fb05e2683e47adfb2aa6b31920428b4cffa1b9"
       },
@@ -6300,7 +6301,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "restore.history",
@@ -6320,7 +6321,7 @@
         {
           "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
           "symbol": "undoManagerDependency",
-          "line": 297
+          "line": 298
         },
         {
           "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
@@ -6380,7 +6381,7 @@
       ],
       "reuse_candidates": [],
       "source_sha256": {
-        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "ac6bee69c9b053740d88fe998b52e5c7ac869284bd42dae1ac02cebaa82d2282",
+        "replica/Sources/PasteReplicaCore/Pasteboard.swift": "cecca58c2dada0d30051df9c9c29974b6f08be6dd05f211b34a342b0e4834f5c",
         "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61",
         "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "0d6dec116f8d99a4920928f2cfbdfc194cf19962abf0bd146976f1e1190e0476",
         "replica/Sources/PasteReplicaCore/OriginalPasteboardCaptureState.swift": "91f582575946ec8e4238d539ac477be694bb0adc1ce4f9a184747e43ba670f5f",
@@ -6418,7 +6419,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "value-coding",
@@ -6503,7 +6504,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "key-translation",
@@ -6675,7 +6676,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "conflict-check",
@@ -6741,7 +6742,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "recorder-state",
@@ -6890,7 +6891,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "recorder-ui",
@@ -7052,7 +7053,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "error-localization",
@@ -7111,7 +7112,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "carbon-register",
@@ -7250,7 +7251,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "monitor-lifetime",
@@ -7332,7 +7333,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "validator-provider",
@@ -7406,7 +7407,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "dependency-cache",
@@ -7577,7 +7578,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "initialized-config",
@@ -7668,7 +7669,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "telemetry-construction",
@@ -7737,7 +7738,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "sentry-local-scope",
@@ -7848,7 +7849,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "actor-destruction",
@@ -7901,7 +7902,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "thin-wrapper-reuse",
@@ -8045,7 +8046,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "coding-description",
@@ -8089,7 +8090,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "native-dictionary-reuse",
@@ -8203,7 +8204,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "unreviewed-generated",
@@ -9647,7 +9648,7 @@
           "ledger_state": "pending"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "native-image-text-selection",
@@ -9715,7 +9716,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "image-exif-analysis",
@@ -9800,7 +9801,7 @@
           "ledger_state": "partial"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "ocr-cache-responsibility",
@@ -9867,7 +9868,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     },
     {
       "id": "native-image-zoom-centering",
@@ -10182,7 +10183,7 @@
           "ledger_state": "migrated"
         }
       ],
-      "reviewer": "root_concentrated_integration_dev35"
+      "reviewer": "root_concentrated_integration_dev36"
     }
   ],
   "findings": [

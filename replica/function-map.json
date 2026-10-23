@@ -22014,8 +22014,8 @@
           "symbol": "options: OriginalPasteboardRestore.Options"
         }
       ],
-      "review": "完整原part-0283.c:1658..2442及dev10 branch/mixed arm64 dump重新核对。bit0/bit1独立条件来自1003825cc..628；原local_1c4=count>1、local_174=!anyRawType4or5控制分组。旧plainTextOnly分支在多选无text/link仍joined与原不符，现统一双bit值processor并保持组。旧first guard使全空不调用writer与原不符，现只在first存在时添加产品防回采marker但无条件调用原writer。返回的二维数组实际flatMap进入系统PB，非新增未消费壳。",
-      "remaining": "完整原父仍依赖ItemEntity rawType/data/sourceApplication/ItemDataEntity getter及临时图片entity分支；本次Selection由JSON ClipboardKind/payload适配，kind unknown/source/OCR缓存输入fallback明确独立产品政策；原默认ignore-types列表已从静态Array100fc17c0逐word和UTF8字节证实仅com.microsoft.ole.source，与当前caller一致。无新增函数完成数。"
+      "review": "完整原part-0283.c:1658..2442及dev10 branch/mixed arm64 dump重新核对。bit0/bit1独立条件来自1003825cc..628；原local_1c4=count>1、local_174=!anyRawType4or5控制分组。旧plainTextOnly分支在多选无text/link仍joined与原不符，现统一双bit值processor并保持组。旧first guard使全空不调用writer与原不符，现只在first存在时添加产品防回采marker但无条件调用原writer。返回的二维数组实际flatMap进入系统PB，非新增未消费壳。 dev36来源marker的真实恢复消费者改读显式共享sourceApplication?.bundleIdentifier，nil仍写空String，不回退legacy字段。",
+      "remaining": "JSON Selection值适配与原ItemEntity/ItemDataEntity/rawType/事务身份仍有差异；独立plain/OCR缓存fallback保持列明边界。显式来源共享关系已真实消费，不再把该接线列缺失。"
     },
     "Paste:0x1003e1724": {
       "state": "partial",
@@ -23411,8 +23411,8 @@
           "symbol": "writeToPasteboard(ids:"
         }
       ],
-      "review": "完整part-0283.c:2926及arm64 100383df4..100384808；原Ghidra漏写失败块，arm64 100384554/558..678证实失败结束本项而非尝试其他格式。相同格式多项共享路径并可能覆盖是原行为，未擅改UUID。",
-      "remaining": "当前是数组值投影；实体data/sourceApplication/timestamp getter及解码异常边界未完整恢复，独立临时root为产品隔离适配，不计父方法完整。",
+      "review": "完整part-0283.c:2926及arm64 100383df4..100384808；原Ghidra漏写失败块，arm64 100384554/558..678证实失败结束本项而非尝试其他格式。相同格式多项共享路径并可能覆盖是原行为，未擅改UUID。 dev36真实恢复消费者改读显式sourceApplication?.name；nil传入既有helper回退Paste，timestamp:item.createdAt不变，坏图标不改变来源实体有效性。",
+      "remaining": "数组值投影、原ItemDataEntity/NSManaged对象身份、timestamp适配和解码异常边界未完整恢复，独立临时root为产品隔离适配；不计父方法完整。",
       "implementation_origin": "newly_migrated"
     },
     "Paste:0x100384824": {
@@ -29782,6 +29782,42 @@
       ],
       "review": "dev35原完整体/机器码/真实ObjC继承表及独立交叉审阅；详见reports/replica/link-native-surface-static-audit.json。",
       "remaining": "原NSStackView/NSTextField intrinsic压缩、对象身份和完整原文本配置仍partial，当前为既有SwiftUI正文实际背景消费者。"
+    },
+    "Paste:0x10006edc4": {
+      "state": "excluded_by_scope",
+      "contract": "真实已选实体中至少一个identifier不含onboarding、无License、operation含copy位1、窗口存在且屏幕落点在窗口外时，仅调用已核Paywall路由；不删除、移动或写剪贴板。 用户要求免费离线独立复刻，排除该具体付费门槛/提示，不修改原版授权。",
+      "user_scope_reason": "真实已选实体中至少一个identifier不含onboarding、无License、operation含copy位1、窗口存在且屏幕落点在窗口外时，仅调用已核Paywall路由；不删除、移动或写剪贴板。 用户要求免费离线独立复刻，排除该具体付费门槛/提示，不修改原版授权。",
+      "scope_evidence": {
+        "report": "reports/function-migration/paywall-presenter-scope-exclusions.json",
+        "entry_key": "Paste:0x10006edc4"
+      },
+      "implementation_origin": "explicit_user_scope_exclusion",
+      "review": "完整原体/实际typed DI到Paywall链和所有直接调用逐项核定，PB独立机器码及实际witness核准。通用被调函数不排除，不更改原版授权。",
+      "remaining": "不计已实现，不减少81134总分母。"
+    },
+    "Paste:0x1003bb23c": {
+      "state": "excluded_by_scope",
+      "contract": "打开VM中真实注入的ItemCollectionViewModelRouter，调用witness+0x18；实际callee固定到route4的Paywall呈现。 用户要求免费离线独立复刻，排除该具体付费门槛/提示，不修改原版授权。",
+      "user_scope_reason": "打开VM中真实注入的ItemCollectionViewModelRouter，调用witness+0x18；实际callee固定到route4的Paywall呈现。 用户要求免费离线独立复刻，排除该具体付费门槛/提示，不修改原版授权。",
+      "scope_evidence": {
+        "report": "reports/function-migration/paywall-presenter-scope-exclusions.json",
+        "entry_key": "Paste:0x1003bb23c"
+      },
+      "implementation_origin": "explicit_user_scope_exclusion",
+      "review": "完整原体/实际typed DI到Paywall链和所有直接调用逐项核定，PB独立机器码及实际witness核准。通用被调函数不排除，不更改原版授权。",
+      "remaining": "不计已实现，不减少81134总分母。"
+    },
+    "Paste:0x1003b9128": {
+      "state": "excluded_by_scope",
+      "contract": "从VM+0x30依赖获取LicenseManager，检查当前Optional<License>非nil；专供已核拖拽结束付费门槛，不是本地拖拽偏好。 用户要求免费离线独立复刻，排除该具体付费门槛/提示，不修改原版授权。",
+      "user_scope_reason": "从VM+0x30依赖获取LicenseManager，检查当前Optional<License>非nil；专供已核拖拽结束付费门槛，不是本地拖拽偏好。 用户要求免费离线独立复刻，排除该具体付费门槛/提示，不修改原版授权。",
+      "scope_evidence": {
+        "report": "reports/function-migration/paywall-presenter-scope-exclusions.json",
+        "entry_key": "Paste:0x1003b9128"
+      },
+      "implementation_origin": "explicit_user_scope_exclusion",
+      "review": "完整原体/实际typed DI到Paywall链和所有直接调用逐项核定，PB独立机器码及实际witness核准。通用被调函数不排除，不更改原版授权。",
+      "remaining": "不计已实现，不减少81134总分母。"
     }
   }
 }
