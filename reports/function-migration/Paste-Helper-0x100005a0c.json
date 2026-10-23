@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste-Helper:0x100005a0c",
-  "reviewed_at": "2026-10-23T16:44:53.382677+00:00",
+  "reviewed_at": "2026-10-23T17:05:47.444400+00:00",
   "original_binary_sha256": "fb580e708dc53433f1f2efc7b2d49811361e174cbc752ce351cdf5871977638f",
   "original_pseudocode": {
     "path": "decompiled/Paste-Helper/part-0002.c",
@@ -15,7 +15,7 @@
     "entry_key": "Paste-Helper:0x100005a0c",
     "symbol": "_swift_unknownObjectWeakInit"
   },
-  "sdk_reuse_report_sha256": "7ec1f8bc48ee96770d2da1e6c45156f3aa355470cc67f85ae04c2801c4f98352",
+  "sdk_reuse_report_sha256": "8f51c6695691933bfb09a7ef6fa15c618334f9d238f8618122b82377d2f8e138",
   "implementation_origin": "existing_sdk_reused",
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",

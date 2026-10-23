@@ -115,8 +115,13 @@ struct ReplicaPanelView: View {
                     .contextMenu {
                         Button("重命名") { state.controller?.renamePinboard(board) }
                         Menu("颜色") {
-                            ForEach(["FF3B30", "FF9500", "FFCC00", "34C759", "00C7BE", "007AFF", "AF52DE", "8E8E93"], id: \.self) { color in
-                                Button(colorName(color)) { state.perform { try state.store.updatePinboard(id: board.id, colorHex: color) } }
+                            ForEach(OriginalPinboardColor.allCases, id: \.rawValue) { color in
+                                Button(colorName(color)) {
+                                    state.perform {
+                                        try state.store.updatePinboard(id: board.id,
+                                            colorHex: String(format: "%06llX", color.canonicalColorCode))
+                                    }
+                                }
                             }
                         }
                         Button("向左移动") { state.movePinboard(board, by: -1) }
@@ -138,14 +143,30 @@ struct ReplicaPanelView: View {
         }.fixedSize()
     }
 
-    private func colorName(_ hex: String) -> String {
-        ["FF3B30":"红色", "FF9500":"橙色", "FFCC00":"黄色", "34C759":"绿色", "00C7BE":"青色", "007AFF":"蓝色", "AF52DE":"紫色", "8E8E93":"灰色"][hex] ?? hex
+    private func colorName(_ color: OriginalPinboardColor) -> String {
+        switch color {
+        case .red: return "红色"
+        case .orange: return "橙色"
+        case .yellow: return "黄色"
+        case .green: return "绿色"
+        case .blue: return "蓝色"
+        case .purple: return "紫色"
+        case .pink: return "粉色"
+        case .gray: return "灰色"
+        }
+    }
+
+    private func boardColor(_ board: Pinboard) -> Color {
+        if let code = OriginalPinboardAttributes.colorCode(from: board.rawAttributes) {
+            return Color(nsColor: OriginalPinboardColor(canonicalColorCode: code).color())
+        }
+        return parseColor(board.colorHex) ?? .red
     }
 
     private func boardButton(_ name: String, board: Pinboard?) -> some View {
         Button { state.chooseBoard(board?.id) } label: {
             HStack(spacing: 6) {
-                if let board { Circle().fill(parseColor(board.colorHex) ?? .red).frame(width: 12, height: 12) }
+                if let board { Circle().fill(boardColor(board)).frame(width: 12, height: 12) }
                 else { Image(systemName: "clock.arrow.circlepath").font(.system(size: 15)) }
                 Text(name).font(.system(size: 13, weight: .medium))
             }
@@ -202,7 +223,7 @@ struct ReplicaPanelView: View {
             .buttonStyle(.plain).accessibilityLabel("返回剪贴板历史")
             ForEach(state.store.pinboards) { board in
                 Button { state.chooseBoard(board.id) } label: {
-                    Circle().fill(parseColor(board.colorHex) ?? .red).frame(width: 12, height: 12).frame(height: 32)
+                    Circle().fill(boardColor(board)).frame(width: 12, height: 12).frame(height: 32)
                 }.buttonStyle(.plain).accessibilityLabel(board.name)
             }
         }.foregroundStyle(Color(nsColor: .labelColor)).fixedSize()
@@ -370,6 +391,22 @@ struct ReplicaClipboardCard: View {
         sizeClass == 3 ? 20 : headerHeight + 28
     }
 
+    private var headerOwner: Pinboard? {
+        guard let owner = state.store.pinboardOwner(for: item), owner.rawType == 2 else { return nil }
+        return owner
+    }
+
+    private var pinboardHeaderColor: NSColor? {
+        guard let owner = headerOwner,
+              let code = OriginalPinboardAttributes.colorCode(from: owner.rawAttributes) else { return nil }
+        return OriginalPinboardColor(canonicalColorCode: code).color()
+    }
+
+    private var headerTrailingInset: CGFloat {
+        if sizeClass == 3 { return 30 }
+        return headerOwner == nil ? sourceIconSide - 14 : 12
+    }
+
     private var headerLabels: some View {
         Group {
             Text(cardTitle)
@@ -421,14 +458,22 @@ struct ReplicaClipboardCard: View {
             .foregroundStyle(sizeClass == 3 ? Color(nsColor: .labelColor) : .white)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading, 12)
-            .padding(.trailing, sizeClass == 3 ? 30 : sourceIconSide - 14)
-            SourceAppIcon(item: item, store: state.store)
-                .frame(width: sourceIconSide, height: sourceIconSide)
-                .opacity(sizeClass == 3 ? 0.9 : 1)
-                .offset(x: sizeClass == 3 ? -8 : 14)
+            .padding(.trailing, headerTrailingInset)
+            if headerOwner != nil {
+                if let color = pinboardHeaderColor {
+                    Image(nsImage: OriginalPinboardHeaderIcon.image(height: 12, shared: false, color: color))
+                        .offset(x: sizeClass == 3 ? -12 : 8)
+                }
+            } else {
+                SourceAppIcon(item: item, store: state.store)
+                    .frame(width: sourceIconSide, height: sourceIconSide)
+                    .opacity(sizeClass == 3 ? 0.9 : 1)
+                    .offset(x: sizeClass == 3 ? -8 : 14)
+            }
         }
         .frame(height: headerHeight)
-        .background(sizeClass == 3 ? Color.clear : sourceColor(item, store: state.store))
+        .background(sizeClass == 3 ? Color.clear
+            : pinboardHeaderColor.map { Color(nsColor: $0) } ?? sourceColor(item, store: state.store))
         .clipped()
     }
 

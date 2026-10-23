@@ -724,7 +724,7 @@ final class ReplicaUIController {
         guard let name = prompt(title: "新建 Pinboard", message: "为这个分组输入名称。", initial: "") else { return }
         let ids = state.visibleItems.filter { state.selection.contains($0.id) }.map(\.id)
         state.perform {
-            let board = try store.createPinboard(name: name, colorHex: "5575D9")
+            let board = try store.createPinboard(name: name)
             if assignSelection { try store.assign(orderedIDs: ids, to: board.id) }
             state.chooseBoard(board.id)
         }

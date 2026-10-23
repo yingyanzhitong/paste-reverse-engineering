@@ -29586,6 +29586,110 @@
       ],
       "review": "本地真实颜色链的有限已证实现；相关父或泛化接口保持partial。",
       "remaining": "原light/dark实际值和appearance provider已恢复；原全局可变指针接口与其他使用方未完整恢复。"
+    },
+    "Paste:0x10031bc94": {
+      "state": "partial",
+      "contract": "仅item显式list且rawType2返回Pinboard owner。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func pinboardOwner("
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "private var headerOwner:"
+        }
+      ],
+      "review": "dev33集中功能链核对，已满足处复用，仅修原证据明确差异；详见reports/replica/pinboard-header-static-audit.json。",
+      "remaining": "独立UUID关系已接；旧归档不推断owner，原CoreData/context/完整实体语义仍未恢复。"
+    },
+    "Paste:0x1003293c4": {
+      "state": "partial",
+      "contract": "rawAttributes JSON解析，仅type为pinboard投影colorCode，缺省0。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPinboardAttributes.swift",
+          "symbol": "public static func colorCode("
+        }
+      ],
+      "review": "dev33集中功能链核对，已满足处复用，仅修原证据明确差异；详见reports/replica/pinboard-header-static-audit.json。",
+      "remaining": "当前为Header投影，原tag0/capacity及tagff完整枚举未作为同一API恢复。"
+    },
+    "Paste:0x100308f38": {
+      "state": "partial",
+      "contract": "有显式owner且rawType2隐藏来源应用图标，不依赖attributes解码成功。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/PanelViews.swift",
+          "symbol": "if headerOwner != nil"
+        }
+      ],
+      "review": "dev33集中功能链核对，已满足处复用，仅修原证据明确差异；详见reports/replica/pinboard-header-static-audit.json。",
+      "remaining": "实际Header消费已接，原对象/观察器、未知应用nilasset与完整布局仍partial。"
+    },
+    "Paste:0x100368560": {
+      "state": "partial",
+      "contract": "Pinboard创建写rawType2与type/colorCode JSON，消费者默认随机原八色。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func createPinboard("
+        },
+        {
+          "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+          "symbol": "let board = try store.createPinboard(name: name)"
+        }
+      ],
+      "review": "dev33集中功能链核对，已满足处复用，仅修原证据明确差异；详见reports/replica/pinboard-header-static-audit.json。",
+      "remaining": "独立JSON适配非原CoreData事务/factory身份；原完整UI创建编辑时序仍partial。"
+    },
+    "Paste:0x100324cb0": {
+      "state": "partial",
+      "contract": "UInt64 canonical RGB24/FF32精确映射八枚举，未识别值回red。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPinboardColor.swift",
+          "symbol": "public init(canonicalColorCode:"
+        }
+      ],
+      "review": "dev33集中功能链核对，已满足处复用，仅修原证据明确差异；详见reports/replica/pinboard-header-static-audit.json。",
+      "remaining": "完整有限源码已静态核；本轮不为计数扩展编译体逐地址证明，保持partial而不冒充完整函数迁移。"
+    },
+    "Paste:0x1003de9a0": {
+      "state": "partial",
+      "contract": "原八色fixedRGB与macOS26动态provider选择，含特殊yellow/gray。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPinboardColor.swift",
+          "symbol": "public func color()"
+        }
+      ],
+      "review": "dev33集中功能链核对，已满足处复用，仅修原证据明确差异；详见reports/replica/pinboard-header-static-audit.json。",
+      "remaining": "provider/可用性已接；原全部对象初始化/ABI和运行appearance未验收。"
+    },
+    "Paste:0x1003ed004": {
+      "state": "partial",
+      "contract": "sRGB转换、amount边界及RGB暗化，所有失败回原CGColor。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalPinboardHeaderIcon.swift",
+          "symbol": "private static func darkened("
+        }
+      ],
+      "review": "dev33集中功能链核对，已满足处复用，仅修原证据明确差异；详见reports/replica/pinboard-header-static-audit.json。",
+      "remaining": "完整有限源码已审；未建立新的逐地址实际编译函数边界证明，保持partial。"
+    },
+    "Paste:0x1003ed158": {
+      "state": "partial",
+      "contract": "按CGRect getter、圆与差集path、填充/描边及无context返回生成图标。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalPinboardHeaderIcon.swift",
+          "symbol": "static func image("
+        }
+      ],
+      "review": "dev33集中功能链核对，已满足处复用，仅修原证据明确差异；详见reports/replica/pinboard-header-static-audit.json。",
+      "remaining": "完整有限源码已审并有实际Header消费者，未新增完整逐地址编译体证明；共享父metadata与运行图形仍partial。"
     }
   }
 }

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100bf65a0",
-  "reviewed_at": "2026-10-23T16:44:53.280387+00:00",
+  "reviewed_at": "2026-10-23T17:05:47.444400+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-1179.c",
@@ -15,11 +15,11 @@
     "entry_key": "Paste:0x100bf65a0",
     "symbol": "_$s7SwiftUI4FontV6system_6design6weightA2C9TextStyleO_AC6DesignOSgAC6WeightVSgtFZ"
   },
-  "sdk_reuse_report_sha256": "7ec1f8bc48ee96770d2da1e6c45156f3aa355470cc67f85ae04c2801c4f98352",
+  "sdk_reuse_report_sha256": "8f51c6695691933bfb09a7ef6fa15c618334f9d238f8618122b82377d2f8e138",
   "implementation_origin": "existing_sdk_reused",
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "391a479532bdd5a41bcfc4b8884c1934cf7db5850d271cbd2080416020ba4ebe",
+  "compiled_app_binary_sha256": "afff00ec2649141bd8342330d59e12d0015bf8731ad64e6a7ac1cf8816a77207",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,

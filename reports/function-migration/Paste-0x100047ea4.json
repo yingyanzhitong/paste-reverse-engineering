@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100047ea4",
-  "reviewed_at": "2026-10-23T16:26:01.148915+00:00",
+  "reviewed_at": "2026-10-23T17:05:47.444400+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0026.c",
@@ -11,20 +11,20 @@
   "original_pseudocode_sha256": "3f7bebec5c73403913510118c393fbc5fc848ad9f7c668a2fdd59e923bf39b13",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchEditing.swift": "de4dbf21b72826fed9c0e9418c842eb8b0f1146a7d7aa9bfe22985af5d7ac73e",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "ae04521de8b74a55d8d75c7c8d18fb27b7b8af135901256dfa949deab9be38b4",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "c80c2e5bd1091744fd2357125be3f90e7aec00e7605504a1a281a200317e994d",
     "replica/Sources/PasteReplicaCore/OriginalSearchField.swift": "6a56456d5b45a28cacd291891380b97414e71c1eaf68bd1d9ee15c3ec1596600",
     "replica/Sources/PasteReplica/UI/SearchEditor.swift": "13ce2f341f2e7aad16ac8083f46575b20b060086cc5a66ebe6399d8740915107"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "391a479532bdd5a41bcfc4b8884c1934cf7db5850d271cbd2080416020ba4ebe",
+  "compiled_app_binary_sha256": "afff00ec2649141bd8342330d59e12d0015bf8731ad64e6a7ac1cf8816a77207",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "SearchField选择变化通知入口；主执行器隔离；回调不存在时不读取选区；存在时读取该SearchField关联输入文本视图的selectedRange并调用onSelectionChange。复刻由原生编辑器注入已创建的同一输入视图，不宣称已恢复尚待迁移的lazy inputView构造函数。",
   "review": "逐项复审：OriginalSearchEditing的恢复函数体不变；委托在OriginalSearchField创建并保持，Coordinator从field.editingDelegate获取同一对象绑定回调，取代原先桥内构造。构建证据待统一登记；未重跑功能测试。",
-  "source_review": "dev32：当前改动仅Header持久色/共享应用图色记录。既有SearchEditor、查询空判断、卡片bodyTop及导出异常桥实际实现/消费者保留，已逐项静态核对；绑定最终build56，不把完整Header/Store父升等价。",
+  "source_review": "dev33逐项复核既有方法与实际调用段：Stack/搜索/首响应者/选择/卡片几何/导出异常桥未被本轮Pinboard关系及Header改动替换。绑定build57；不新增实现或运行验收。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "caller_review_refs": [
     {

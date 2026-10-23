@@ -95,6 +95,10 @@ public final class ClipboardStore: ObservableObject {
               Set(state.pinboards.map(\.id)).count == state.pinboards.count else {
             throw ClipboardStoreError.duplicateIdentifiers
         }
+        let boardIDs = Set(state.pinboards.map(\.id))
+        guard state.items.allSatisfy({ item in
+            item.pinboardOwnerID.map { boardIDs.contains($0) && item.pinboardIDs.contains($0) } ?? true
+        }) else { throw ClipboardStoreError.pinboardNotFound }
         let applicationIDs = Set(state.sourceApplications.map(\.bundleIdentifier))
         guard applicationIDs.count == state.sourceApplications.count,
               state.sourceApplications.allSatisfy({ $0.rawColor.map { $0 < (UInt64(1) << 63) } ?? true }),
@@ -195,9 +199,11 @@ public final class ClipboardStore: ObservableObject {
             // Unchanged legacy memberships retain the latest persisted value.
             if local.pinboardIDs != base.pinboardIDs {
                 value.pinboardIDs = local.pinboardIDs
+                value.pinboardOwnerID = local.pinboardOwnerID
                 value.pinboardOrder = local.pinboardOrder
-            } else if local.pinboardOrder != base.pinboardOrder, remote.pinboardIDs == base.pinboardIDs {
-                value.pinboardOrder = local.pinboardOrder
+            } else if remote.pinboardIDs == base.pinboardIDs, remote.pinboardOwnerID == base.pinboardOwnerID {
+                if local.pinboardOwnerID != base.pinboardOwnerID { value.pinboardOwnerID = local.pinboardOwnerID }
+                if local.pinboardOrder != base.pinboardOrder { value.pinboardOrder = local.pinboardOrder }
             }
             if local.isDeleted != base.isDeleted { value.isDeleted = local.isDeleted }
             return value
@@ -205,7 +211,11 @@ public final class ClipboardStore: ObservableObject {
         result.pinboards = mergedEntities(local.pinboards, baseline.pinboards, remote.pinboards) { local, base, remote in
             var value = remote
             if local.name != base.name { value.name = local.name }
-            if local.colorHex != base.colorHex { value.colorHex = local.colorHex }
+            if local.colorHex != base.colorHex || local.rawType != base.rawType || local.rawAttributes != base.rawAttributes {
+                value.colorHex = local.colorHex
+                value.rawType = local.rawType
+                value.rawAttributes = local.rawAttributes
+            }
             if local.sortOrder != base.sortOrder { value.sortOrder = local.sortOrder }
             return value
         }
@@ -258,6 +268,9 @@ public final class ClipboardStore: ObservableObject {
         let boards = Set(state.pinboards.map(\.id))
         for i in state.items.indices {
             state.items[i].pinboardIDs.formIntersection(boards)
+            if let owner = state.items[i].pinboardOwnerID, !state.items[i].pinboardIDs.contains(owner) {
+                state.items[i].pinboardOwnerID = nil
+            }
             if state.items[i].pinboardIDs.isEmpty { state.items[i].pinboardOrder = nil }
         }
         state.items.sort { $0.updatedAt == $1.updatedAt ? $0.id.uuidString < $1.id.uuidString : $0.updatedAt > $1.updatedAt }
@@ -285,6 +298,11 @@ public final class ClipboardStore: ObservableObject {
     public func sourceApplication(for item: ClipboardItem) -> SourceApplicationRecord? {
         guard let identifier = item.sourceApplicationBundleID else { return nil }
         return sourceApplications.first { $0.bundleIdentifier == identifier }
+    }
+
+    public func pinboardOwner(for item: ClipboardItem) -> Pinboard? {
+        guard let identifier = item.pinboardOwnerID else { return nil }
+        return pinboards.first { $0.id == identifier }
     }
 
     private func expireHistory(_ state: inout StoreState) {
@@ -389,6 +407,10 @@ public final class ClipboardStore: ObservableObject {
         let checksum = try? Self.knownPasteboardChecksum(from: item.payloads)
         return try mutate(historyAction: item.isInHistory) { state in
             if let sourceApplication { Self.upsertSourceApplication(sourceApplication, in: &state) }
+            if let owner = item.pinboardOwnerID,
+               !item.pinboardIDs.contains(owner) || !state.pinboards.contains(where: { $0.id == owner }) {
+                throw ClipboardStoreError.pinboardNotFound
+            }
             if let i = state.items.firstIndex(where: { previous in
                 if let checksum, let previousChecksum = try? Self.knownPasteboardChecksum(from: previous.payloads) {
                     return checksum == previousChecksum
@@ -418,7 +440,18 @@ public final class ClipboardStore: ObservableObject {
                 if state.items[i].pinboardIDs == item.pinboardIDs, let order = item.pinboardOrder {
                     state.items[i].pinboardOrder = order
                 }
-                state.items[i].pinboardIDs.formUnion(item.pinboardIDs)
+                if state.items[i].pinboardOwnerID == nil {
+                    if let owner = item.pinboardOwnerID {
+                        if state.items[i].pinboardIDs.isEmpty {
+                            state.items[i].pinboardIDs = [owner]
+                            state.items[i].pinboardOwnerID = owner
+                        } else if state.items[i].pinboardIDs.contains(owner) {
+                            state.items[i].pinboardOwnerID = owner
+                        }
+                    } else {
+                        state.items[i].pinboardIDs.formUnion(item.pinboardIDs)
+                    }
+                }
                 return state.items[i].id
             }
             state.items.removeAll { $0.id == item.id }
@@ -597,7 +630,10 @@ public final class ClipboardStore: ObservableObject {
     public func delete(ids: Set<UUID>, contextPinboardID: UUID?) throws {
         try mutate { state in
             for i in state.items.indices where ids.contains(state.items[i].id) {
-                if let contextPinboardID { state.items[i].pinboardIDs.remove(contextPinboardID) }
+                if let contextPinboardID {
+                    state.items[i].pinboardIDs.remove(contextPinboardID)
+                    if state.items[i].pinboardOwnerID == contextPinboardID { state.items[i].pinboardOwnerID = nil }
+                }
                 else { state.items[i].isInHistory = false }
             }
             state.items.removeAll { ids.contains($0.id) && !$0.isInHistory && $0.pinboardIDs.isEmpty }
@@ -617,10 +653,22 @@ public final class ClipboardStore: ObservableObject {
     }
 
     @discardableResult
-    public func createPinboard(name: String, colorHex: String = "#FF9500") throws -> Pinboard {
+    public func createPinboard(name: String, colorHex: String? = nil) throws -> Pinboard {
         guard !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { throw ClipboardStoreError.invalidPinboardName }
         return try mutate { state in
-            let board = Pinboard(name: name, colorHex: colorHex, sortOrder: (state.pinboards.map(\.sortOrder).max() ?? -1) + 1)
+            let code: UInt64?
+            let value: String
+            if let colorHex {
+                value = colorHex
+                code = OriginalPinboardAttributes.parsedColorCode(colorHex)
+            } else {
+                let color = OriginalPinboardColor.allCases[Int.random(in: 0..<OriginalPinboardColor.allCases.count)]
+                code = color.canonicalColorCode
+                value = String(format: "#%06llX", color.canonicalColorCode)
+            }
+            let attributes = try code.map { try OriginalPinboardAttributes.encoded(colorCode: $0) }
+            let board = Pinboard(name: name, colorHex: value, sortOrder: (state.pinboards.map(\.sortOrder).max() ?? -1) + 1,
+                                 rawType: 2, rawAttributes: attributes)
             state.pinboards.append(board)
             return board
         }
@@ -636,7 +684,10 @@ public final class ClipboardStore: ObservableObject {
         try mutate { state in
             let affected = Set(state.items.filter { $0.pinboardIDs.contains(id) }.map(\.id))
             state.pinboards.removeAll { $0.id == id }
-            for i in state.items.indices { state.items[i].pinboardIDs.remove(id) }
+            for i in state.items.indices {
+                state.items[i].pinboardIDs.remove(id)
+                if state.items[i].pinboardOwnerID == id { state.items[i].pinboardOwnerID = nil }
+            }
             state.items.removeAll { affected.contains($0.id) && !$0.isInHistory && $0.pinboardIDs.isEmpty }
         }
     }
@@ -668,8 +719,10 @@ public final class ClipboardStore: ObservableObject {
                 if let pinboardID {
                     if !state.items[i].pinboardIDs.contains(pinboardID) { destination.insert(id, at: 0) }
                     state.items[i].pinboardIDs = [pinboardID]
+                    state.items[i].pinboardOwnerID = pinboardID
                 } else {
                     state.items[i].pinboardIDs.removeAll()
+                    state.items[i].pinboardOwnerID = nil
                     state.items[i].pinboardOrder = nil
                 }
             }
@@ -695,7 +748,10 @@ public final class ClipboardStore: ObservableObject {
     }
     public func unassign(ids: Set<UUID>, from pinboardID: UUID) throws {
         try mutate { state in
-            for i in state.items.indices where ids.contains(state.items[i].id) { state.items[i].pinboardIDs.remove(pinboardID) }
+            for i in state.items.indices where ids.contains(state.items[i].id) {
+                state.items[i].pinboardIDs.remove(pinboardID)
+                if state.items[i].pinboardOwnerID == pinboardID { state.items[i].pinboardOwnerID = nil }
+            }
             state.items.removeAll { ids.contains($0.id) && !$0.isInHistory && $0.pinboardIDs.isEmpty }
         }
     }
@@ -703,7 +759,13 @@ public final class ClipboardStore: ObservableObject {
     public func updatePinboard(id: UUID, colorHex: String? = nil, sortOrder: Int? = nil) throws {
         try mutate { state in
             guard let i = state.pinboards.firstIndex(where: { $0.id == id }) else { throw ClipboardStoreError.pinboardNotFound }
-            if let colorHex { state.pinboards[i].colorHex = colorHex }
+            if let colorHex {
+                state.pinboards[i].colorHex = colorHex
+                state.pinboards[i].rawType = 2
+                state.pinboards[i].rawAttributes = try OriginalPinboardAttributes.parsedColorCode(colorHex).map {
+                    try OriginalPinboardAttributes.encoded(colorCode: $0)
+                }
+            }
             if let sortOrder { state.pinboards[i].sortOrder = sortOrder }
         }
     }
@@ -760,12 +822,20 @@ public final class ClipboardStore: ObservableObject {
         try mutate { state in
             for application in archive.sourceApplications { Self.upsertSourceApplication(application, in: &state) }
             var boards = Dictionary(uniqueKeysWithValues: state.pinboards.map { ($0.id, $0) })
-            for board in archive.pinboards { boards[board.id] = board }
+            for var board in archive.pinboards {
+                if board.rawType == nil, board.rawAttributes == nil,
+                   let existing = boards[board.id], existing.colorHex == board.colorHex {
+                    board.rawType = existing.rawType
+                    board.rawAttributes = existing.rawAttributes
+                }
+                boards[board.id] = board
+            }
             state.pinboards = Array(boards.values)
             var items = Dictionary(uniqueKeysWithValues: state.items.map { ($0.id, $0) })
             for var item in importedItems where items[item.id] == nil || items[item.id]!.updatedAt <= item.updatedAt {
-                if item.pinboardOrder == nil, let existing = items[item.id], existing.pinboardIDs == item.pinboardIDs {
-                    item.pinboardOrder = existing.pinboardOrder
+                if let existing = items[item.id], existing.pinboardIDs == item.pinboardIDs {
+                    if item.pinboardOrder == nil { item.pinboardOrder = existing.pinboardOrder }
+                    if item.pinboardOwnerID == nil { item.pinboardOwnerID = existing.pinboardOwnerID }
                 }
                 items[item.id] = item
             }

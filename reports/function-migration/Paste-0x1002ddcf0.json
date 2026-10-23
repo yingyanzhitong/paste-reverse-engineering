@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1002ddcf0",
-  "reviewed_at": "2026-10-23T16:26:01.160522+00:00",
+  "reviewed_at": "2026-10-23T17:05:47.444400+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0237.c",
@@ -11,19 +11,19 @@
   "original_pseudocode_sha256": "09bdce56a949683f34ac8f5253af866467f40c216d4e1bbf42c9590dc2779c65",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchQuery.swift": "4c828b16c6342387d375e6b5a3f24d28b37bbffa1c377e4cdb064ad27b5d1b28",
-    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "276489a78c975a5b5b9d1435030649d370f02a8ac057821bfaea92239559ad97",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "ae04521de8b74a55d8d75c7c8d18fb27b7b8af135901256dfa949deab9be38b4"
+    "replica/Sources/PasteReplica/UI/ReplicaUIController.swift": "83f115e2f1f7ba8f057de253dfb60e548a2ec16d035d55f8688e6a5f06c106e8",
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "c80c2e5bd1091744fd2357125be3f90e7aec00e7605504a1a281a200317e994d"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "391a479532bdd5a41bcfc4b8884c1934cf7db5850d271cbd2080416020ba4ebe",
+  "compiled_app_binary_sha256": "afff00ec2649141bd8342330d59e12d0015bf8731ad64e6a7ac1cf8816a77207",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "查询数组为空返回true；依次读取每个text或filter的字符串值，trimmingCharacters(.whitespaces)后非空立即false，否则继续；不把.whitespacesAndNewlines扩大为条件。",
   "review": "完整part0237+arm64 1002ddcf0..<1002dde30，全部value trim的短路allSatisfy直接恢复。实际搜索可见性和Esc条件消费，空白查询resign按原SearchBar f40054清全局empty模型；不标原父协调器完整。",
-  "source_review": "dev32：当前改动仅Header持久色/共享应用图色记录。既有SearchEditor、查询空判断、卡片bodyTop及导出异常桥实际实现/消费者保留，已逐项静态核对；绑定最终build56，不把完整Header/Store父升等价。",
+  "source_review": "dev33逐项复核既有方法与实际调用段：Stack/搜索/首响应者/选择/卡片几何/导出异常桥未被本轮Pinboard关系及Header改动替换。绑定build57；不新增实现或运行验收。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "unchanged_declarations": [
     {

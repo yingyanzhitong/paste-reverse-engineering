@@ -55,6 +55,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
         OriginalImagePreviewMetadataCodec.decodeFiles(rawPreview)
     }
     public var pinboardIDs: Set<UUID>
+    public var pinboardOwnerID: UUID?
     public var pinboardOrder: Int64?
     public var isDeleted: Bool
 
@@ -65,7 +66,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
                 sourceDevice: String = "此Mac", isInHistory: Bool = true,
                 imagePreviewMetadata: OriginalImagePreviewMetadata? = nil,
                 rawPreview: Data? = nil, hasExplicitTitle: Bool? = nil, pinboardOrder: Int64? = nil,
-                sourceApplicationBundleID: String? = nil) {
+                sourceApplicationBundleID: String? = nil, pinboardOwnerID: UUID? = nil) {
         self.id = id
         self.createdAt = createdAt
         self.updatedAt = updatedAt ?? createdAt
@@ -80,6 +81,7 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
         self.imagePreviewMetadata = imagePreviewMetadata
         self.rawPreview = rawPreview
         self.pinboardIDs = pinboardIDs
+        self.pinboardOwnerID = pinboardOwnerID
         self.pinboardOrder = pinboardOrder
         self.isDeleted = isDeleted
         self.sourceDevice = sourceDevice
@@ -92,12 +94,17 @@ public struct Pinboard: Identifiable, Codable, Equatable, Sendable {
     public var name: String
     public var colorHex: String
     public var sortOrder: Int
+    public var rawType: Int16?
+    public var rawAttributes: Data?
 
-    public init(id: UUID = UUID(), name: String = "新建 Pinboard", colorHex: String = "#FF9500", sortOrder: Int = 0) {
+    public init(id: UUID = UUID(), name: String = "新建 Pinboard", colorHex: String = "#FF9500", sortOrder: Int = 0,
+                rawType: Int16? = nil, rawAttributes: Data? = nil) {
         self.id = id
         self.name = name
         self.colorHex = colorHex
         self.sortOrder = sortOrder
+        self.rawType = rawType
+        self.rawAttributes = rawAttributes
     }
 }
 
