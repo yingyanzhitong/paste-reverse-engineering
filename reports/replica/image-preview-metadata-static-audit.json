@@ -1,15 +1,17 @@
 {
   "kind": "image_metadata_real_pipeline_static_review",
-  "version": "0.8.0-dev.19",
+  "version": "0.8.0-dev.20",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadata.swift": "2c08314bd0e63ada540371d2a856cd277d814997cd97ae5fbc3f1bfc676893e9",
-    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "ec8feb01389213a4eb57fb584269bcf67228630d4540d7ae1f777434f73e73ae",
-    "replica/Sources/PasteReplicaCore/Models.swift": "e9f5529bfd6036c3d287803d806af61a6ad45c8612c7f161032e832047f885e2",
-    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "61aa87e36513900392e1f314c9558900a3e22c843d17d9ee631b25dbc073573d",
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "5e4630eccbc6e093a860e7e6d28ffadbe241221422c0d20f55ccf0fdca752872",
+    "replica/Sources/PasteReplicaCore/Models.swift": "2761f26ca32851bbcc226daf0736f71b6190a8d27dd8e588fe95f43bbf3905c0",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "9f6042833befa700a935624d49960a0ddedf543be8dd2d0d53ddb4dc6730edce",
     "replica/Sources/PasteReplicaCore/Pasteboard.swift": "5db4a39608e0b52d1355589d3c1187390f0ae1b566f2d989f8e0b51611e01c4c",
-    "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2"
+    "replica/Sources/PasteReplica/UI/ReplicaImagePreviewContent.swift": "4b724f56be5d402049e2f4664e306886501f61ee29ba2e68573bc390e1baa8e2",
+    "replica/Sources/PasteReplicaCore/OriginalFilePreviewMetadata.swift": "abf5d495807ef79b7d857eff269f77de1d69c704eafac9130616c7664a6eebe0",
+    "replica/Sources/PasteReplica/UI/ReplicaFilePreviewContent.swift": "e2bd5375e67f5e326d371bf4c07944358d2a47098469a078d8fd086925c2e5ec"
   },
-  "compiled_app_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced",
+  "compiled_app_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
   "connected_calls": [
     "add/capture/original-import/deduplicate/image-update -> ordered items -> generator -> selected binary PropertyList/JSON image Stored -> canonical rawPreview",
     "archive add/import preserves existing generic raw wire; nonnil image raw decodes without regeneration",
@@ -36,17 +38,17 @@
   "functional_tests_executed": false,
   "products_started": false,
   "unified_build": {
-    "name": "gap-build39",
+    "name": "gap-build40",
     "manifest": ".local/gap-build-complete.json",
-    "manifest_sha256": "d3d9bc89de2fc42c0c418a6f2c877724dc78b78a9c9618d4bfe0b2d5d753b9d3",
-    "log": ".local/gap-build-39.log",
-    "seconds": 8.63,
-    "compiler_log_seconds": 7.85,
-    "inputs": 142,
+    "manifest_sha256": "930b16e99a804878a5acf01438b1161a12c2eb52da049354b6d445a6525cbff9",
+    "log": ".local/gap-build-40.log",
+    "seconds": 20.47,
+    "compiler_log_seconds": 18.78,
+    "inputs": 145,
     "sha_before_after_equal": true,
     "result": "compiled",
     "functional_execution": false,
-    "app_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced"
+    "app_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb"
   },
   "original_parent_status": {
     "0x100316490": "partial",
@@ -56,5 +58,10 @@
     "0x100315a38": "partial",
     "0x100316004": "partial"
   },
-  "new_complete_functions": 0
+  "new_complete_functions": 0,
+  "file_extension": {
+    "report": "reports/replica/file-preview-metadata-static-audit.json",
+    "fact": "Shared Stored decoder now supports image and files projections; files uses original copy-time ordered paths, first-file size and optional preview. Existing image generation/codec behavior retained.",
+    "remaining": "Remaining content projections, original Config DI, full CoreData/VM/ABI and regression remain partial."
+  }
 }

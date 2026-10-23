@@ -5,7 +5,6 @@ import QuickLookUI
 import UniformTypeIdentifiers
 
 /// File content, Quick Look, and local Finder action share the existing native preview chrome.
-/// The original copy-time file-size field is not available in ClipboardItem.
 @MainActor
 final class ReplicaFilePreviewContent: NSView {
     var previewMetadataView: NSView? { metadata }
@@ -76,14 +75,21 @@ final class ReplicaFilePreviewContent: NSView {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     private func update(_ item: ClipboardItem) {
-        let urls = itemFileURLs(item)
+        let fileMetadata = item.decodedFilePreviewMetadata
+        let paths = fileMetadata?.paths ?? []
+        let urls = paths.map { URL(fileURLWithPath: $0) }
         let changed = urls != displayedURLs
         displayedURLs = urls
-        multipleFilesView.isHidden = urls.count == 1
-        quickLookView.isHidden = urls.count != 1
-        metadataLabel.stringValue = urls.count == 1
-            ? (urls.first?.path ?? "") : String(localized: OriginalPreviewLocalization.f_1001c6fb0())
-        // The stored original size is unknown, so omit it instead of showing current filesystem size.
+        multipleFilesView.isHidden = paths.count == 1
+        quickLookView.isHidden = paths.count != 1
+        let description = paths.count == 1
+            ? paths[0] : String(localized: OriginalPreviewLocalization.f_1001c6fb0())
+        var fields = [description]
+        if let size = fileMetadata?.totalSize, size > 0 {
+            fields.append(size.formatted(.byteCount(style: .file, allowedUnits: .all,
+                                                   spellsOutZero: false, includesActualByteCount: false)))
+        }
+        metadataLabel.stringValue = fields.joined(separator: "  ·  ")
         if changed { quickLookView.previewItem = nil }
         installPreviewItemIfNeeded()
     }
@@ -96,7 +102,7 @@ final class ReplicaFilePreviewContent: NSView {
     private func installPreviewItemIfNeeded() {
         guard window != nil, quickLookView.previewItem == nil,
               let url = displayedURLs.first else { return }
-        let title = state?.store.items.first(where: { $0.id == itemID })?.title
+        let title = state?.store.items.first(where: { $0.id == itemID })?.originalTitle
         quickLookView.previewItem = ReplicaFilePreviewItem(path: url.path, title: title)
     }
 

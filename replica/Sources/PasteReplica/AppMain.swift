@@ -433,9 +433,8 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValid
             alert.informativeText = "直接粘贴需要辅助功能权限。你可以按 ⌘V 粘贴，或在系统设置中允许 Paste Replica 控制电脑。"
             alert.addButton(withTitle: "好")
             alert.addButton(withTitle: "打开辅助功能设置")
-            if alert.runModal() == .alertSecondButtonReturn,
-               let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
-                NSWorkspace.shared.open(url)
+            if alert.runModal() == .alertSecondButtonReturn {
+                OriginalAccessibilityRequestAction.perform()
             } else { target.activate(options: []) }
             return false
         }

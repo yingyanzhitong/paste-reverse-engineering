@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100bfc828",
-  "reviewed_at": "2026-10-23T13:37:27.310577+00:00",
+  "reviewed_at": "2026-10-23T13:50:05.856251+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-1212.c",
@@ -15,11 +15,11 @@
     "entry_key": "Paste:0x100bfc828",
     "symbol": "_swift_getOpaqueTypeConformance2"
   },
-  "sdk_reuse_report_sha256": "c2bb653e2b5bbfa3cb579d51970db9ee222ee5554b1d8f3560eba73cb60806b6",
+  "sdk_reuse_report_sha256": "fb8d13a64256ef606b26511523c3914cbf3b6f9622d674feac620c10c1282fdd",
   "implementation_origin": "existing_sdk_reused",
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced",
+  "compiled_app_binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,

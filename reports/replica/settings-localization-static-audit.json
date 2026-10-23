@@ -1,0 +1,2958 @@
+{
+  "kind": "settings_localization_static_source_audit",
+  "schema_version": 1,
+  "generated_at": "2026-10-23T13:47:01.819463+00:00",
+  "scope": "28 existing visible local Settings keys,17locales,476 exact values; explicit permission button connection only",
+  "not_whole_settings_acceptance": true,
+  "original_binary": {
+    "product": "Paste arm64",
+    "sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb"
+  },
+  "source_manifest": [
+    {
+      "path": "replica/Sources/PasteReplica/UI/AuxiliaryViews.swift",
+      "sha256": "bfdc9e78198e121826e9595fcfcd5800523f53ce35fb5536de135f1a97787ee8"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/OriginalSettingsLocalization.swift",
+      "sha256": "f9c5663239b8fbd7251b0fdcce5c0d19bbfa2c620642d75bcb61073a37e028a5"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+      "sha256": "e68efc84466b6a5fe9f0a50938ccba680031309bb373669a249d887a8681334f"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+      "sha256": "546b0b312452b3db8ab5b8ff32bd7766317ad886bfb653b5fbe5bed59c300c43"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+      "sha256": "0c095f8e7b0684dc39acb97696a871226d23c3006653dee87882deff52f70dde"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+      "sha256": "52a0e98d308f9d6a9fcdf9dc562706e98094fd69bbc9065d0c4578bd99467827"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+      "sha256": "0e942237df4a92cdce617afb7c242bd5607c67bdba16a3954466781fa1230467"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+      "sha256": "789bd10e560bd20965adb6b6b23170581dfc27fac5c77a2d01385311125306d6"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+      "sha256": "2b80f7e7c301ab7ae864f6eac0490b94ae36393f47804a2333e63d5fbf2750b9"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+      "sha256": "5fe50ca7e643b10aa559ba4315c628bb12329c8009bf092269d1bdfb6a2f36ee"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+      "sha256": "b0041558116ad0d59c8fd34817b918978f96bcc8a2182110e8652bdb7b35b0d1"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+      "sha256": "72159d36c4f7161b134496338af9cfc8cd8a0f83550237510a8952102965cfac"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+      "sha256": "ddf00b0d462033e3ac37eb9c668194459f8d6fe635fbe91caaaba4055e0310b7"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+      "sha256": "201c3550a95ba38871a7ad9d5424e3fd58eae6aca989322f390d3b251a1b3916"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+      "sha256": "2b73c791706d0b751e73b7bbc365b17a41960f1b2528ae311db883f39a27b719"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+      "sha256": "52c985a9686981b99c5267cce1bebb7c491da76fa197a2dbcb93b208046d07db"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+      "sha256": "742877df0954aafabe3591cc600546a222c6eb373908c15526da8253f3a6b6b1"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+      "sha256": "b4b10c4b36aed9ef751b8f3eb4cfea74d429a8ae96a24db435ca8bf6e0aa5fb5"
+    },
+    {
+      "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+      "sha256": "fe9a2d7ac1c0d78d0faa02d6a44f639c98dea0286adef60110ad53b591ec67b7"
+    }
+  ],
+  "actual_entry": {
+    "path": "replica/Sources/PasteReplica/UI/ReplicaUIController.swift",
+    "symbol": "func showSettings()",
+    "sha256": "7f7ba09e89fb546270f68232ddb9112dbfb45da35205208368b7b8a40bedf2ac",
+    "behavior": "showSettings lazily creates window with ReplicaSettingsView(state:) and reuses it; no source mutation by this agent."
+  },
+  "original_exact_key_function_evidence": [
+    {
+      "key": "settings.general.title",
+      "literal_vm": "0x100d9c250",
+      "swift_bridge_bias_pointer": "0x100d9c230",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001dbfd4",
+          "path": "decompiled/Paste/part-0153.c",
+          "line": 878,
+          "fragment_sha256": "e474a6c14bb5bae3f56a39ce0f495ee50516e4be34407d07a34a0e0384d6c2c3"
+        }
+      ]
+    },
+    {
+      "key": "settings.privacy.title",
+      "literal_vm": "0x100d9cbd0",
+      "swift_bridge_bias_pointer": "0x100d9cbb0",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e16d4",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 602,
+          "fragment_sha256": "79de3bbcc13f5c470e4c9425c9306868b038fba27c5b5efc2ce755925990b617"
+        }
+      ]
+    },
+    {
+      "key": "settings.sound-effects.title",
+      "literal_vm": "0x100d9cde0",
+      "swift_bridge_bias_pointer": "0x100d9cdc0",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e28d4",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 1154,
+          "fragment_sha256": "8e691268cd453dc2a4427919a37aa9ff666fdf93fb0553499bc9fa1b5dd9b366"
+        }
+      ]
+    },
+    {
+      "key": "settings.open-at-login.title",
+      "literal_vm": "0x100d9c800",
+      "swift_bridge_bias_pointer": "0x100d9c7e0",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001df754",
+          "path": "decompiled/Paste/part-0153.c",
+          "line": 2580,
+          "fragment_sha256": "512087b756f4d92beaa867410e28652aa8544bed810767f5eb87973ec413d1d8"
+        }
+      ]
+    },
+    {
+      "key": "settings.run-in-background.title",
+      "literal_vm": "0x100d9cbf0",
+      "swift_bridge_bias_pointer": "0x100d9cbd0",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e1854",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 648,
+          "fragment_sha256": "a07bbab4853c694b5675152f6ed75b0b145ade6e5aee55eebaa879813460e626"
+        }
+      ]
+    },
+    {
+      "key": "settings.paste-items.title",
+      "literal_vm": "0x100d9c970",
+      "swift_bridge_bias_pointer": "0x100d9c950",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e0354",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 4,
+          "fragment_sha256": "b0b66263dfb416a9ef473bc5ab5e459e962cec3ad087c19f22021171470aad07"
+        }
+      ]
+    },
+    {
+      "key": "settings.paste-items.active-app.title",
+      "literal_vm": "0x100d9c8b0",
+      "swift_bridge_bias_pointer": "0x100d9c890",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001dfd54",
+          "path": "decompiled/Paste/part-0153.c",
+          "line": 2764,
+          "fragment_sha256": "7ad3588fc7b191a456abde21df139db0d42a6950c7c031d0a3875199f06037ce"
+        }
+      ]
+    },
+    {
+      "key": "settings.paste-items.clipboard.title",
+      "literal_vm": "0x100d9c910",
+      "swift_bridge_bias_pointer": "0x100d9c8f0",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e0054",
+          "path": "decompiled/Paste/part-0153.c",
+          "line": 2856,
+          "fragment_sha256": "34783e3b70e9424dee700afb4a879665f8f20dc29b40d74ad4a80e4d4892de16"
+        }
+      ]
+    },
+    {
+      "key": "settings.paste-items.plain-text.title",
+      "literal_vm": "0x100d9c940",
+      "swift_bridge_bias_pointer": "0x100d9c920",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e01d4",
+          "path": "decompiled/Paste/part-0153.c",
+          "line": 2902,
+          "fragment_sha256": "926fc85106ac58e2f6d4922b18afcad1fc32a4e4d7b8ae9f29a0c5b69aac964f"
+        }
+      ]
+    },
+    {
+      "key": "settings.history.title",
+      "literal_vm": "0x100d9c290",
+      "swift_bridge_bias_pointer": "0x100d9c270",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001dc2d4",
+          "path": "decompiled/Paste/part-0153.c",
+          "line": 970,
+          "fragment_sha256": "dd2933dbb5352ce531236831798e9c636ef42e9aaccf5557d689921da2c9cb6b"
+        }
+      ]
+    },
+    {
+      "key": "settings.history.forever",
+      "literal_vm": "0x100d9c270",
+      "swift_bridge_bias_pointer": "0x100d9c250",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001dc154",
+          "path": "decompiled/Paste/part-0153.c",
+          "line": 924,
+          "fragment_sha256": "36251f9c9892b2368ec33854a90904c1417c0fd3d6ef26e7999646de4d63097c"
+        }
+      ]
+    },
+    {
+      "key": "general.action.erase-history",
+      "literal_vm": "0x100d99080",
+      "swift_bridge_bias_pointer": "0x100d99060",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001c1b08",
+          "path": "decompiled/Paste/part-0148.c",
+          "line": 1982,
+          "fragment_sha256": "87051681be8255df538c4de9bf7a8e8cea150e1cb83a876a433b2c5fb0151888"
+        }
+      ]
+    },
+    {
+      "key": "settings.privacy.screensharing.title",
+      "literal_vm": "0x100d9cba0",
+      "swift_bridge_bias_pointer": "0x100d9cb80",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e1554",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 556,
+          "fragment_sha256": "e4ab0850f3668967d678fd44f55e8afbc626d7f3ea6f39d2acf9aca677ede65c"
+        }
+      ]
+    },
+    {
+      "key": "settings.privacy.confidential-content.title",
+      "literal_vm": "0x100d9cae0",
+      "swift_bridge_bias_pointer": "0x100d9cac0",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e0f54",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 372,
+          "fragment_sha256": "5dbf23eb64206cbca84cf0f362d8091955e0b375d21759975d46871aa852fe2e"
+        }
+      ]
+    },
+    {
+      "key": "settings.privacy.autogenerated-content.title",
+      "literal_vm": "0x100d9ca80",
+      "swift_bridge_bias_pointer": "0x100d9ca60",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e0c54",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 280,
+          "fragment_sha256": "bac36fe0107dd119837e710c180b778b7aa7580a6dfbcc5d69eba68b0a9c5642"
+        }
+      ]
+    },
+    {
+      "key": "settings.privacy.applications-history.title",
+      "literal_vm": "0x100d9ca20",
+      "swift_bridge_bias_pointer": "0x100d9ca00",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e0954",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 188,
+          "fragment_sha256": "175b2368ce4934230fba76c2b6aab353d90a362b86ed80d72a367596b63363e1"
+        }
+      ]
+    },
+    {
+      "key": "settings.shortcuts.title",
+      "literal_vm": "0x100d9cd90",
+      "swift_bridge_bias_pointer": "0x100d9cd70",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e25d4",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 1062,
+          "fragment_sha256": "cdc2720d38d1132b9b214f9c34e327e9dc9895afd6ec53b7942f9f40e9e5dee8"
+        }
+      ]
+    },
+    {
+      "key": "settings.shortcuts.activate-paste.title",
+      "literal_vm": "0x100d9cca0",
+      "swift_bridge_bias_pointer": "0x100d9cc80",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e1e54",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 832,
+          "fragment_sha256": "131c24872baf504c09cd5d26fead23d4c795348568199b75d86f9f8c3c4e45ad"
+        }
+      ]
+    },
+    {
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "literal_vm": "0x100d9cc70",
+      "swift_bridge_bias_pointer": "0x100d9cc50",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e1cd4",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 786,
+          "fragment_sha256": "8a928b5b53571102d4ac24f3f73bd6816e7f3e00befad77439a9e16b6bed0dcc"
+        }
+      ]
+    },
+    {
+      "key": "settings.shortcuts.next-pinboard.title",
+      "literal_vm": "0x100d9ccd0",
+      "swift_bridge_bias_pointer": "0x100d9ccb0",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e1fd4",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 878,
+          "fragment_sha256": "c151374c2ceadb5ecf4f007c2eff8122a96724e3e04335d54f5e3d87dfb3ec4b"
+        }
+      ]
+    },
+    {
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "literal_vm": "0x100d9cd30",
+      "swift_bridge_bias_pointer": "0x100d9cd10",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e22d4",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 970,
+          "fragment_sha256": "ff3f6f406002e7bc74806e47a65cf4a542234a9127065eadb27458d362afb296"
+        }
+      ]
+    },
+    {
+      "key": "settings.shortcuts.quick-paste.title",
+      "literal_vm": "0x100d9cd60",
+      "swift_bridge_bias_pointer": "0x100d9cd40",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e2454",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 1016,
+          "fragment_sha256": "5d2d58c8b55604d91c8b4bfc234d4d792e58547e0064ca2d4ea3bbbad7ef6bb1"
+        }
+      ]
+    },
+    {
+      "key": "settings.shortcuts.plain-text.title",
+      "literal_vm": "0x100d9cd00",
+      "swift_bridge_bias_pointer": "0x100d9cce0",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e2154",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 924,
+          "fragment_sha256": "59b288bc61d773fd79071f1741784dcf1b9c0cc27dcf0913a471c771ea6f0121"
+        }
+      ]
+    },
+    {
+      "key": "settings.shortcuts.action.reset",
+      "literal_vm": "0x100d9cc20",
+      "swift_bridge_bias_pointer": "0x100d9cc00",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e19d4",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 694,
+          "fragment_sha256": "79b06b015eb21285d8e676905b12065e5dab85c57352446d498272352575af40"
+        }
+      ]
+    },
+    {
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "literal_vm": "0x100d9cc40",
+      "swift_bridge_bias_pointer": "0x100d9cc20",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001e1b54",
+          "path": "decompiled/Paste/part-0154.c",
+          "line": 740,
+          "fragment_sha256": "8e6fcb39511ee731cd4674ad0bdc72b03db206b99d07dcc6447f2b49db4f8075"
+        }
+      ]
+    },
+    {
+      "key": "general.action.reset",
+      "literal_vm": "0x100d99270",
+      "swift_bridge_bias_pointer": "0x100d99250",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001c3008",
+          "path": "decompiled/Paste/part-0148.c",
+          "line": 2626,
+          "fragment_sha256": "88988f081476eea21f61d67ee61d108b4e67544cae6088ba0c2bc6baa59e489d"
+        }
+      ]
+    },
+    {
+      "key": "general.action.cancel",
+      "literal_vm": "0x100d98ed0",
+      "swift_bridge_bias_pointer": "0x100d98eb0",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001c0788",
+          "path": "decompiled/Paste/part-0148.c",
+          "line": 1384,
+          "fragment_sha256": "4aa02fd98b673ec0bb3e9a233717f1f371241d9f80ca41c2a140531ffa4fc2f3"
+        }
+      ]
+    },
+    {
+      "key": "settings.paste-items.accessibility-access-request",
+      "literal_vm": "0x100d9c840",
+      "swift_bridge_bias_pointer": "0x100d9c820",
+      "exported_resource_functions": [
+        {
+          "function": "Paste:0x1001dfa54",
+          "path": "decompiled/Paste/part-0153.c",
+          "line": 2672,
+          "fragment_sha256": "94f498d1e419340178d69932a1e75772dd4fff28ba0a252c583c0e595ef5c3a5"
+        }
+      ]
+    }
+  ],
+  "original_page_consumers": [
+    {
+      "function": "Paste:0x10009fed0",
+      "path": "decompiled/Paste/part-0053.c",
+      "line": 124,
+      "fragment_sha256": "d849f38eb9bb5d5c04b3898945ede1208f8806746c2f471ae81f4b9b712bdae6",
+      "callee": "Paste:0x1001dbfd4"
+    },
+    {
+      "function": "Paste:0x1000ae644",
+      "path": "decompiled/Paste/part-0057.c",
+      "line": 1210,
+      "fragment_sha256": "b820b99164b58888b60280aed5f44dbec0ab8519b8ebf8904bc81a945c30dbbf",
+      "callee": "Paste:0x1001e16d4"
+    },
+    {
+      "function": "Paste:0x10005b9c8",
+      "path": "decompiled/Paste/part-0032.c",
+      "line": 582,
+      "fragment_sha256": "8125eaba6b7ba667c6784f1c411596d21c928be3fcd4caf0d7080dcc90fe08c3",
+      "callee": "Paste:0x1001e28d4"
+    }
+  ],
+  "locale_values": [
+    {
+      "locale": "cs",
+      "key": "settings.general.title",
+      "value": "Obecné"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.privacy.title",
+      "value": "Soukromí"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.sound-effects.title",
+      "value": "Zvukové efekty"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.open-at-login.title",
+      "value": "Otevřít při přihlášení"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.run-in-background.title",
+      "value": "Spustit na pozadí"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.paste-items.title",
+      "value": "Vkládání položek"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.paste-items.active-app.title",
+      "value": "K aktivní aplikaci"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "Do schránky"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Vložit jako čistý text"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.history.title",
+      "value": "Uchovávejte historii"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.history.forever",
+      "value": "Navždy"
+    },
+    {
+      "locale": "cs",
+      "key": "general.action.erase-history",
+      "value": "Vymazat historii"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Zobrazit během sdílení obrazovky"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Ignorování důvěrného obsahu"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Ignorovat dočasný obsah"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Ignorování aplikací"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.shortcuts.title",
+      "value": "Zkratky"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Aktivace Paste"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Aktivace Paste Stack"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Zobrazit další Pinboard"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Zobrazit předchozí Pinboard"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Quick Paste"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Textový režim"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Obnovit klávesové zkratky na výchozí"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Jste si jisti, že chcete obnovit všechny zkratky na jejich výchozí hodnoty?"
+    },
+    {
+      "locale": "cs",
+      "key": "general.action.reset",
+      "value": "Obnovit"
+    },
+    {
+      "locale": "cs",
+      "key": "general.action.cancel",
+      "value": "Zrušit"
+    },
+    {
+      "locale": "cs",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Povolit přístupnost Přístup"
+    },
+    {
+      "locale": "da",
+      "key": "settings.general.title",
+      "value": "Generelt"
+    },
+    {
+      "locale": "da",
+      "key": "settings.privacy.title",
+      "value": "Fortrolighed"
+    },
+    {
+      "locale": "da",
+      "key": "settings.sound-effects.title",
+      "value": "Lydeffekter"
+    },
+    {
+      "locale": "da",
+      "key": "settings.open-at-login.title",
+      "value": "Åbn ved login"
+    },
+    {
+      "locale": "da",
+      "key": "settings.run-in-background.title",
+      "value": "Kør i baggrunden"
+    },
+    {
+      "locale": "da",
+      "key": "settings.paste-items.title",
+      "value": "Indsæt elementer"
+    },
+    {
+      "locale": "da",
+      "key": "settings.paste-items.active-app.title",
+      "value": "Til aktiv app"
+    },
+    {
+      "locale": "da",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "Til udklipsholder"
+    },
+    {
+      "locale": "da",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Indsæt som Uformateret Tekst"
+    },
+    {
+      "locale": "da",
+      "key": "settings.history.title",
+      "value": "Behold historik"
+    },
+    {
+      "locale": "da",
+      "key": "settings.history.forever",
+      "value": "For altid"
+    },
+    {
+      "locale": "da",
+      "key": "general.action.erase-history",
+      "value": "Slet historik"
+    },
+    {
+      "locale": "da",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Vis under skærmdeling"
+    },
+    {
+      "locale": "da",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Ignorer fortroligt indhold"
+    },
+    {
+      "locale": "da",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Ignorer midlertidigt indhold"
+    },
+    {
+      "locale": "da",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Ignorer apps"
+    },
+    {
+      "locale": "da",
+      "key": "settings.shortcuts.title",
+      "value": "Genveje"
+    },
+    {
+      "locale": "da",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Aktiver Paste"
+    },
+    {
+      "locale": "da",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Aktiver Paste Stack"
+    },
+    {
+      "locale": "da",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Vis næste Pinboard"
+    },
+    {
+      "locale": "da",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Vis forrige Pinboard"
+    },
+    {
+      "locale": "da",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Quick Paste"
+    },
+    {
+      "locale": "da",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Uformateret tekst-tilstand"
+    },
+    {
+      "locale": "da",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Nulstil genveje til standard"
+    },
+    {
+      "locale": "da",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Er du sikker på, at du vil nulstille alle genveje til deres standardværdier?"
+    },
+    {
+      "locale": "da",
+      "key": "general.action.reset",
+      "value": "Nulstil"
+    },
+    {
+      "locale": "da",
+      "key": "general.action.cancel",
+      "value": "Annuller"
+    },
+    {
+      "locale": "da",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Aktiver tilgængelighedsadgang"
+    },
+    {
+      "locale": "de",
+      "key": "settings.general.title",
+      "value": "Allgemeines"
+    },
+    {
+      "locale": "de",
+      "key": "settings.privacy.title",
+      "value": "Datenschutz"
+    },
+    {
+      "locale": "de",
+      "key": "settings.sound-effects.title",
+      "value": "Soundeffekte"
+    },
+    {
+      "locale": "de",
+      "key": "settings.open-at-login.title",
+      "value": "Beim Login öffnen"
+    },
+    {
+      "locale": "de",
+      "key": "settings.run-in-background.title",
+      "value": "Im Hintergrund ausführen"
+    },
+    {
+      "locale": "de",
+      "key": "settings.paste-items.title",
+      "value": "Einträge einfügen"
+    },
+    {
+      "locale": "de",
+      "key": "settings.paste-items.active-app.title",
+      "value": "In aktive App"
+    },
+    {
+      "locale": "de",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "In die Zwischenablage"
+    },
+    {
+      "locale": "de",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Immer als Klartext einfügen"
+    },
+    {
+      "locale": "de",
+      "key": "settings.history.title",
+      "value": "Verlauf behalten"
+    },
+    {
+      "locale": "de",
+      "key": "settings.history.forever",
+      "value": "Für immer"
+    },
+    {
+      "locale": "de",
+      "key": "general.action.erase-history",
+      "value": "Verlauf löschen"
+    },
+    {
+      "locale": "de",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Bei Bildschirmfreigabe anzeigen"
+    },
+    {
+      "locale": "de",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Ignoriere vertrauliche Inhalte"
+    },
+    {
+      "locale": "de",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Ignoriere flüchtige Inhalte"
+    },
+    {
+      "locale": "de",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Ignoriere Apps"
+    },
+    {
+      "locale": "de",
+      "key": "settings.shortcuts.title",
+      "value": "Kurzbefehle"
+    },
+    {
+      "locale": "de",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Paste aktivieren"
+    },
+    {
+      "locale": "de",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Paste Stack aktivieren"
+    },
+    {
+      "locale": "de",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Nächste Pinnwand anzeigen"
+    },
+    {
+      "locale": "de",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Vorherige Pinnwand anzeigen"
+    },
+    {
+      "locale": "de",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Quick Paste"
+    },
+    {
+      "locale": "de",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Klartext-Modus"
+    },
+    {
+      "locale": "de",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Verknüpfungen auf Standard zurücksetzen"
+    },
+    {
+      "locale": "de",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Bist du sicher, dass du alle Verknüpfungen auf ihre Standardwerte zurücksetzen möchtest?"
+    },
+    {
+      "locale": "de",
+      "key": "general.action.reset",
+      "value": "Zurücksetzen"
+    },
+    {
+      "locale": "de",
+      "key": "general.action.cancel",
+      "value": "Abbrechen"
+    },
+    {
+      "locale": "de",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Barrierefreiheit aktivieren"
+    },
+    {
+      "locale": "en",
+      "key": "settings.general.title",
+      "value": "General"
+    },
+    {
+      "locale": "en",
+      "key": "settings.privacy.title",
+      "value": "Privacy"
+    },
+    {
+      "locale": "en",
+      "key": "settings.sound-effects.title",
+      "value": "Sound effects"
+    },
+    {
+      "locale": "en",
+      "key": "settings.open-at-login.title",
+      "value": "Open at login"
+    },
+    {
+      "locale": "en",
+      "key": "settings.run-in-background.title",
+      "value": "Run in background"
+    },
+    {
+      "locale": "en",
+      "key": "settings.paste-items.title",
+      "value": "Paste Items"
+    },
+    {
+      "locale": "en",
+      "key": "settings.paste-items.active-app.title",
+      "value": "To active app"
+    },
+    {
+      "locale": "en",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "To clipboard"
+    },
+    {
+      "locale": "en",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Always paste as Plain Text"
+    },
+    {
+      "locale": "en",
+      "key": "settings.history.title",
+      "value": "Keep History"
+    },
+    {
+      "locale": "en",
+      "key": "settings.history.forever",
+      "value": "Forever"
+    },
+    {
+      "locale": "en",
+      "key": "general.action.erase-history",
+      "value": "Erase History"
+    },
+    {
+      "locale": "en",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Show During Screen Sharing"
+    },
+    {
+      "locale": "en",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Ignore confidential content"
+    },
+    {
+      "locale": "en",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Ignore transient content"
+    },
+    {
+      "locale": "en",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Ignore Applications"
+    },
+    {
+      "locale": "en",
+      "key": "settings.shortcuts.title",
+      "value": "Shortcuts"
+    },
+    {
+      "locale": "en",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Activate Paste"
+    },
+    {
+      "locale": "en",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Activate Paste Stack"
+    },
+    {
+      "locale": "en",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Show next Pinboard"
+    },
+    {
+      "locale": "en",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Show previous Pinboard"
+    },
+    {
+      "locale": "en",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Quick Paste"
+    },
+    {
+      "locale": "en",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Plain Text mode"
+    },
+    {
+      "locale": "en",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Reset shortcuts to default"
+    },
+    {
+      "locale": "en",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Are you sure you want to reset all shortcuts to their default values?"
+    },
+    {
+      "locale": "en",
+      "key": "general.action.reset",
+      "value": "Reset"
+    },
+    {
+      "locale": "en",
+      "key": "general.action.cancel",
+      "value": "Cancel"
+    },
+    {
+      "locale": "en",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Enable accessibility access"
+    },
+    {
+      "locale": "es",
+      "key": "settings.general.title",
+      "value": "General"
+    },
+    {
+      "locale": "es",
+      "key": "settings.privacy.title",
+      "value": "Privacidad"
+    },
+    {
+      "locale": "es",
+      "key": "settings.sound-effects.title",
+      "value": "Efectos de sonido"
+    },
+    {
+      "locale": "es",
+      "key": "settings.open-at-login.title",
+      "value": "Abrir al iniciar sesión"
+    },
+    {
+      "locale": "es",
+      "key": "settings.run-in-background.title",
+      "value": "Ejecutar en segundo plano"
+    },
+    {
+      "locale": "es",
+      "key": "settings.paste-items.title",
+      "value": "Pegar elementos"
+    },
+    {
+      "locale": "es",
+      "key": "settings.paste-items.active-app.title",
+      "value": "A la app activa"
+    },
+    {
+      "locale": "es",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "Al portapapeles"
+    },
+    {
+      "locale": "es",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Siempre pegar como texto plano"
+    },
+    {
+      "locale": "es",
+      "key": "settings.history.title",
+      "value": "Mantener Historial"
+    },
+    {
+      "locale": "es",
+      "key": "settings.history.forever",
+      "value": "Siempre"
+    },
+    {
+      "locale": "es",
+      "key": "general.action.erase-history",
+      "value": "Borrar historial"
+    },
+    {
+      "locale": "es",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Mostrar durante el uso compartido de pantalla"
+    },
+    {
+      "locale": "es",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Ignorar contenido confidencial"
+    },
+    {
+      "locale": "es",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Ignorar contenido transitorio"
+    },
+    {
+      "locale": "es",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Ignorar aplicaciones"
+    },
+    {
+      "locale": "es",
+      "key": "settings.shortcuts.title",
+      "value": "Atajos de teclado"
+    },
+    {
+      "locale": "es",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Activar Paste"
+    },
+    {
+      "locale": "es",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Activar Paste Stack"
+    },
+    {
+      "locale": "es",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Mostrar siguiente Pinboard"
+    },
+    {
+      "locale": "es",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Mostrar Pinboard anterior"
+    },
+    {
+      "locale": "es",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Pegar rápido"
+    },
+    {
+      "locale": "es",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Modo de texto plano"
+    },
+    {
+      "locale": "es",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Restablecer accesos directos a predeterminados"
+    },
+    {
+      "locale": "es",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "¿Estás seguro de que quieres restablecer todos los atajos a sus valores predeterminados?"
+    },
+    {
+      "locale": "es",
+      "key": "general.action.reset",
+      "value": "Reiniciar"
+    },
+    {
+      "locale": "es",
+      "key": "general.action.cancel",
+      "value": "Cancelar"
+    },
+    {
+      "locale": "es",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Habilitar acceso a accesibilidad"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.general.title",
+      "value": "Général"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.privacy.title",
+      "value": "Confidentialité"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.sound-effects.title",
+      "value": "Effets sonores"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.open-at-login.title",
+      "value": "Ouvrir au démarrage"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.run-in-background.title",
+      "value": "Exécuter en arrière-plan"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.paste-items.title",
+      "value": "Coller des éléments"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.paste-items.active-app.title",
+      "value": "Vers l'application active"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "Vers le presse-papiers"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Toujours coller en texte brut"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.history.title",
+      "value": "Conserver l'historique"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.history.forever",
+      "value": "Toujours"
+    },
+    {
+      "locale": "fr",
+      "key": "general.action.erase-history",
+      "value": "Effacer l'historique"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Afficher pendant le partage d'écran"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Ignorer le contenu confidentiel"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Ignorer les contenus transitoires"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Ignorer les applications"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.shortcuts.title",
+      "value": "Raccourcis"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Activer Paste"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Activer Paste Stack"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Afficher le prochain tableau d'affichage"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Afficher le tableau d'affichage précédent"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Collage rapide"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Mode texte brut"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Réinitialiser les raccourcis par défaut"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Êtes-vous sûr de vouloir réinitialiser tous les raccourcis à leurs valeurs par défaut ?"
+    },
+    {
+      "locale": "fr",
+      "key": "general.action.reset",
+      "value": "Réinitialiser"
+    },
+    {
+      "locale": "fr",
+      "key": "general.action.cancel",
+      "value": "Annuler"
+    },
+    {
+      "locale": "fr",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Activer l'accès d'accessibilité"
+    },
+    {
+      "locale": "he",
+      "key": "settings.general.title",
+      "value": "כללי"
+    },
+    {
+      "locale": "he",
+      "key": "settings.privacy.title",
+      "value": "פרטיות"
+    },
+    {
+      "locale": "he",
+      "key": "settings.sound-effects.title",
+      "value": "אפקטים קוליים"
+    },
+    {
+      "locale": "he",
+      "key": "settings.open-at-login.title",
+      "value": "פתח בכניסה"
+    },
+    {
+      "locale": "he",
+      "key": "settings.run-in-background.title",
+      "value": "הפעל ברקע"
+    },
+    {
+      "locale": "he",
+      "key": "settings.paste-items.title",
+      "value": "הדבק פריטים"
+    },
+    {
+      "locale": "he",
+      "key": "settings.paste-items.active-app.title",
+      "value": "לאפליקציה פעילה"
+    },
+    {
+      "locale": "he",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "ללוח"
+    },
+    {
+      "locale": "he",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "הדבק תמיד כמלל פשוט"
+    },
+    {
+      "locale": "he",
+      "key": "settings.history.title",
+      "value": "שמור היסטוריה"
+    },
+    {
+      "locale": "he",
+      "key": "settings.history.forever",
+      "value": "לָנֶצַח"
+    },
+    {
+      "locale": "he",
+      "key": "general.action.erase-history",
+      "value": "מחק היסטוריה"
+    },
+    {
+      "locale": "he",
+      "key": "settings.privacy.screensharing.title",
+      "value": "הצג במהלך שיתוף מסך"
+    },
+    {
+      "locale": "he",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "התעלם מתוכן סודי"
+    },
+    {
+      "locale": "he",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "התעלם מתוכן חולף"
+    },
+    {
+      "locale": "he",
+      "key": "settings.privacy.applications-history.title",
+      "value": "התעלם מיישומים"
+    },
+    {
+      "locale": "he",
+      "key": "settings.shortcuts.title",
+      "value": "קיצורי דרך"
+    },
+    {
+      "locale": "he",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "הפעל את הדבק"
+    },
+    {
+      "locale": "he",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "הפעל את הדבק מחסנית"
+    },
+    {
+      "locale": "he",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "הצג את הלוח הבא"
+    },
+    {
+      "locale": "he",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "הצג לוח סיכה קודם"
+    },
+    {
+      "locale": "he",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "הדבק מהיר"
+    },
+    {
+      "locale": "he",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "מצב טקסט רגיל"
+    },
+    {
+      "locale": "he",
+      "key": "settings.shortcuts.action.reset",
+      "value": "איפוס קיצורי דרך לברירת המחדל"
+    },
+    {
+      "locale": "he",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "האם אתה בטוח שאתה רוצה לאפס את כל הקיצורים לערכיהם המקוריים?"
+    },
+    {
+      "locale": "he",
+      "key": "general.action.reset",
+      "value": "איפוס"
+    },
+    {
+      "locale": "he",
+      "key": "general.action.cancel",
+      "value": "ביטול"
+    },
+    {
+      "locale": "he",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "אפשר גישה לנגישות"
+    },
+    {
+      "locale": "it",
+      "key": "settings.general.title",
+      "value": "Generale"
+    },
+    {
+      "locale": "it",
+      "key": "settings.privacy.title",
+      "value": "Privacy"
+    },
+    {
+      "locale": "it",
+      "key": "settings.sound-effects.title",
+      "value": "Effetti sonori"
+    },
+    {
+      "locale": "it",
+      "key": "settings.open-at-login.title",
+      "value": "Apri al login"
+    },
+    {
+      "locale": "it",
+      "key": "settings.run-in-background.title",
+      "value": "Esegui in background"
+    },
+    {
+      "locale": "it",
+      "key": "settings.paste-items.title",
+      "value": "Incolla elementi"
+    },
+    {
+      "locale": "it",
+      "key": "settings.paste-items.active-app.title",
+      "value": "All'app attiva"
+    },
+    {
+      "locale": "it",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "Agli appunti"
+    },
+    {
+      "locale": "it",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Incolla come testo non formattato"
+    },
+    {
+      "locale": "it",
+      "key": "settings.history.title",
+      "value": "Conserva cronologia"
+    },
+    {
+      "locale": "it",
+      "key": "settings.history.forever",
+      "value": "Per sempre"
+    },
+    {
+      "locale": "it",
+      "key": "general.action.erase-history",
+      "value": "Cancella cronologia"
+    },
+    {
+      "locale": "it",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Mostra durante la condivisione dello schermo"
+    },
+    {
+      "locale": "it",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Ignora contenuti riservati"
+    },
+    {
+      "locale": "it",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Ignora i contenuti generati automaticamente"
+    },
+    {
+      "locale": "it",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Ignora applicazioni"
+    },
+    {
+      "locale": "it",
+      "key": "settings.shortcuts.title",
+      "value": "Scorciatoie"
+    },
+    {
+      "locale": "it",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Attiva Paste"
+    },
+    {
+      "locale": "it",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Attiva Stack di Paste"
+    },
+    {
+      "locale": "it",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Mostra la bacheca successiva"
+    },
+    {
+      "locale": "it",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Mostra la bacheca precedente"
+    },
+    {
+      "locale": "it",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Incolla velocemente"
+    },
+    {
+      "locale": "it",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Modalità testo semplice"
+    },
+    {
+      "locale": "it",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Reimposta le scorciatoie predefinite"
+    },
+    {
+      "locale": "it",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Sei sicuro di voler ripristinare tutte le scorciatoie ai loro valori predefiniti?"
+    },
+    {
+      "locale": "it",
+      "key": "general.action.reset",
+      "value": "Ripristina"
+    },
+    {
+      "locale": "it",
+      "key": "general.action.cancel",
+      "value": "Annulla"
+    },
+    {
+      "locale": "it",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Abilita accesso all'accessibilità"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.general.title",
+      "value": "一般"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.privacy.title",
+      "value": "プライバシー"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.sound-effects.title",
+      "value": "音響効果"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.open-at-login.title",
+      "value": "ログイン時に開く"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.run-in-background.title",
+      "value": "バックグラウンドで実行"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.paste-items.title",
+      "value": "アイテムを貼り付ける"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.paste-items.active-app.title",
+      "value": "アクティブなアプリへ"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "クリップボードへ"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "常にプレーンテキストとして貼り付ける"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.history.title",
+      "value": "履歴を保持する"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.history.forever",
+      "value": "永遠に"
+    },
+    {
+      "locale": "ja",
+      "key": "general.action.erase-history",
+      "value": "履歴を消去"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.privacy.screensharing.title",
+      "value": "画面共有中に表示"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "機密情報を無視する"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "一時的なコンテンツを無視する"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.privacy.applications-history.title",
+      "value": "次のアプリケーションを無視する"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.shortcuts.title",
+      "value": "ショートカット"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Pasteを有効にする"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Paste Stackを有効にする"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "次のピンボードを表示"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "前のピンボードを表示"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Quick Paste"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "プレーンテキストモード"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.shortcuts.action.reset",
+      "value": "ショートカットをデフォルトにリセット"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "すべてのショートカットをデフォルト値にリセットしてもよろしいですか？"
+    },
+    {
+      "locale": "ja",
+      "key": "general.action.reset",
+      "value": "リセット"
+    },
+    {
+      "locale": "ja",
+      "key": "general.action.cancel",
+      "value": "キャンセル"
+    },
+    {
+      "locale": "ja",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "アクセシビリティへのアクセスを有効にする"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.general.title",
+      "value": "일반"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.privacy.title",
+      "value": "개인 정보 보호"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.sound-effects.title",
+      "value": "음향 효과"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.open-at-login.title",
+      "value": "로그인 시 열기"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.run-in-background.title",
+      "value": "백그라운드에서 실행"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.paste-items.title",
+      "value": "항목 붙여넣기"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.paste-items.active-app.title",
+      "value": "활성 앱에 붙여넣기"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "클립보드에 복사"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "항상 서식을 제외한 텍스트로 붙여넣기"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.history.title",
+      "value": "기록 유지"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.history.forever",
+      "value": "영원히"
+    },
+    {
+      "locale": "ko",
+      "key": "general.action.erase-history",
+      "value": "기록 지우기"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.privacy.screensharing.title",
+      "value": "화면 공유 중 표시"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "기밀 콘텐츠 무시"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "일시적인 콘텐츠 무시"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.privacy.applications-history.title",
+      "value": "애플리케이션 무시"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.shortcuts.title",
+      "value": "바로 가기"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Paste 활성화"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Paste Stack 활성화"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "다음 핀보드 표시"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "이전 핀보드 표시"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "빠른 붙여넣기"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "일반 텍스트 모드"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.shortcuts.action.reset",
+      "value": "단축키를 기본값으로 재설정"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "정말로 모든 단축키를 기본값으로 재설정하시겠습니까?"
+    },
+    {
+      "locale": "ko",
+      "key": "general.action.reset",
+      "value": "재설정"
+    },
+    {
+      "locale": "ko",
+      "key": "general.action.cancel",
+      "value": "취소"
+    },
+    {
+      "locale": "ko",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "접근성 액세스 활성화"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.general.title",
+      "value": "Algemeen"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.privacy.title",
+      "value": "Privacy"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.sound-effects.title",
+      "value": "Geluidseffecten"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.open-at-login.title",
+      "value": "Openen bij inloggen"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.run-in-background.title",
+      "value": "Op de achtergrond uitvoeren"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.paste-items.title",
+      "value": "Items plakken"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.paste-items.active-app.title",
+      "value": "Naar actieve app"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "Naar klembord"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Altijd plakken als Niet-opgemaakte Tekst"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.history.title",
+      "value": "Geschiedenis bewaren"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.history.forever",
+      "value": "Voor altijd"
+    },
+    {
+      "locale": "nl",
+      "key": "general.action.erase-history",
+      "value": "Geschiedenis wissen"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Weergeven tijdens scherm delen"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Vertrouwelijke inhoud negeren"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Tijdelijke inhoud negeren"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Negeer apps"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.shortcuts.title",
+      "value": "Snelkoppelingen"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Activeer Paste"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Activeer Paste Stack"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Volgende prikbord weergeven"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Vorig prikbord weergeven"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Quick Paste"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Modus platte tekst"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Stel snelkoppelingen opnieuw in op standaard"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Weet je zeker dat je alle snelkoppelingen wilt resetten naar hun standaardwaarden?"
+    },
+    {
+      "locale": "nl",
+      "key": "general.action.reset",
+      "value": "Herstellen"
+    },
+    {
+      "locale": "nl",
+      "key": "general.action.cancel",
+      "value": "Annuleren"
+    },
+    {
+      "locale": "nl",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Toegankelijkheid inschakelen"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.general.title",
+      "value": "Ogólne"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.privacy.title",
+      "value": "Zasady"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.sound-effects.title",
+      "value": "Efekty dźwiękowe"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.open-at-login.title",
+      "value": "Otwórz przy logowaniu"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.run-in-background.title",
+      "value": "Uruchom w tle"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.paste-items.title",
+      "value": "Wklej elementy"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.paste-items.active-app.title",
+      "value": "Do aktywnej aplikacji"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "Do schowka"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Zawsze wklejaj jako zwykły tekst"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.history.title",
+      "value": "Zachowaj historię"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.history.forever",
+      "value": "na zawsze"
+    },
+    {
+      "locale": "pl",
+      "key": "general.action.erase-history",
+      "value": "Wymaż historię"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Pokaż podczas udostępniania ekranu"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Ignoruj poufne treści"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Ignoruj zawartość przejściową"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Ignoruj aplikacje"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.shortcuts.title",
+      "value": "Skróty"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Aktywuj Paste"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Aktywuj Paste Stack"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Pokaż następny Pinboard"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Pokaż poprzedni Pinboard"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Szybkie wklejanie"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Tryb zwykłego tekstu"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Zresetuj skróty do domyślnych"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Czy na pewno chcesz zresetować wszystkie skróty do ich domyślnych wartości?"
+    },
+    {
+      "locale": "pl",
+      "key": "general.action.reset",
+      "value": "Zresetuj"
+    },
+    {
+      "locale": "pl",
+      "key": "general.action.cancel",
+      "value": "Anuluj"
+    },
+    {
+      "locale": "pl",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Włącz dostęp do ułatwień dostępu"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.general.title",
+      "value": "Geral"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.privacy.title",
+      "value": "Privacidade"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.sound-effects.title",
+      "value": "Efeitos Sonoros"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.open-at-login.title",
+      "value": "Abrir no Login"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.run-in-background.title",
+      "value": "Executar em segundo plano"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.paste-items.title",
+      "value": "Colar Itens"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.paste-items.active-app.title",
+      "value": "Para Aplicativo Ativo"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "Para a Área de Transferência"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Sempre Colar como Texto Sem Formatação"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.history.title",
+      "value": "Manter Histórico"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.history.forever",
+      "value": "Para Sempre"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "general.action.erase-history",
+      "value": "Apagar Histórico"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Mostrar durante o compartilhamento de tela"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Ignorar Conteúdo Confidencial"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Ignorar Conteúdo Transitório"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Ignorar Aplicativos"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.shortcuts.title",
+      "value": "Atalhos"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Ativar Paste"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Ativar Paste Stack"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Mostrar Próximo Pinboard"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Mostrar Pinboard Anterior"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Colagem Rápida"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Modo de Texto Simples"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Redefinir Atalhos para o Padrão"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Você tem certeza de que deseja redefinir todos os atalhos para seus valores padrão?"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "general.action.reset",
+      "value": "Redefinir"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "general.action.cancel",
+      "value": "Cancelar"
+    },
+    {
+      "locale": "pt-BR",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Ativar Acesso de Acessibilidade"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.general.title",
+      "value": "Geral"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.privacy.title",
+      "value": "Privacidade"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.sound-effects.title",
+      "value": "Efeitos Sonoros"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.open-at-login.title",
+      "value": "Abrir na Inicialização"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.run-in-background.title",
+      "value": "Executar em segundo plano"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.paste-items.title",
+      "value": "Colar Itens"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.paste-items.active-app.title",
+      "value": "Para Aplicativo Ativo"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "Para a Área de Transferência"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Colar Sempre como Texto Simples"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.history.title",
+      "value": "Manter Histórico"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.history.forever",
+      "value": "Para Sempre"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "general.action.erase-history",
+      "value": "Apagar Histórico"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Mostrar durante a partilha de ecrã"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Ignorar Conteúdo Confidencial"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Ignorar Conteúdos Transitórios"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Ignorar Aplicativos"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.shortcuts.title",
+      "value": "Atalhos"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Ativar Paste"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Ativar Paste Stack"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Mostrar Próximo Pinboard"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Mostrar Pinboard Anterior"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Colagem Rápida"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Modo de Texto Simples"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Redefinir Atalhos para o Padrão"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Tem a certeza de que deseja redefinir todos os atalhos para os seus valores padrão?"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "general.action.reset",
+      "value": "Redefinir"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "general.action.cancel",
+      "value": "Cancelar"
+    },
+    {
+      "locale": "pt-PT",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Ativar Acesso de Acessibilidade"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.general.title",
+      "value": "Основные"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.privacy.title",
+      "value": "Конфиденциальность"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.sound-effects.title",
+      "value": "Звуковые эффекты"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.open-at-login.title",
+      "value": "Открывать при входе в систему"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.run-in-background.title",
+      "value": "Работать в фоновом режиме"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.paste-items.title",
+      "value": "Вставка"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.paste-items.active-app.title",
+      "value": "В активное приложение"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "В буфер обмена"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "Всегда вставлять без форматирования"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.history.title",
+      "value": "Сохранять историю"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.history.forever",
+      "value": "Бесконечно"
+    },
+    {
+      "locale": "ru",
+      "key": "general.action.erase-history",
+      "value": "Стереть историю"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.privacy.screensharing.title",
+      "value": "Показывать при совместном использовании экрана"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "Игнорировать конфиденциальное содержимое"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "Игнорировать временное содержимое"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.privacy.applications-history.title",
+      "value": "Игнорировать приложения"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.shortcuts.title",
+      "value": "Сочетания клавиш"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "Активировать Paste"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "Активировать Paste Stack"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "Перейти к следующему пинборду"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "Перейти к предыдущему пинборду"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "Быстрая вставка"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "Режим без форматирования"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.shortcuts.action.reset",
+      "value": "Сбросить ярлыки до настроек по умолчанию"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "Вы уверены, что хотите сбросить все ярлыки до их значений по умолчанию?"
+    },
+    {
+      "locale": "ru",
+      "key": "general.action.reset",
+      "value": "Сброс"
+    },
+    {
+      "locale": "ru",
+      "key": "general.action.cancel",
+      "value": "Отменить"
+    },
+    {
+      "locale": "ru",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "Включить доступ к специальным возможностям"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.general.title",
+      "value": "通用"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.privacy.title",
+      "value": "隐私"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.sound-effects.title",
+      "value": "音效"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.open-at-login.title",
+      "value": "登录时打开"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.run-in-background.title",
+      "value": "后台运行"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.paste-items.title",
+      "value": "粘贴项目"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.paste-items.active-app.title",
+      "value": "到当前活动应用"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "到剪贴板"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "始终以纯文本粘贴"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.history.title",
+      "value": "保留历史"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.history.forever",
+      "value": "永久"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "general.action.erase-history",
+      "value": "删除历史"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.privacy.screensharing.title",
+      "value": "在屏幕共享期间显示"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "忽略机密内容"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "忽略瞬时内容"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.privacy.applications-history.title",
+      "value": "忽略应用程序"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.shortcuts.title",
+      "value": "键盘快捷键"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "启动 Paste"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "启动 Paste Stack"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "显示下一个 Pinboard"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "显示上一个 Pinboard"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "快速粘贴"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "纯文本模式"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.shortcuts.action.reset",
+      "value": "将快捷方式重置为默认"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "您确定要将所有快捷方式重置为默认值吗？"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "general.action.reset",
+      "value": "重置"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "general.action.cancel",
+      "value": "取消"
+    },
+    {
+      "locale": "zh-Hans",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "启用无障碍访问"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.general.title",
+      "value": "一般"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.privacy.title",
+      "value": "隱私"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.sound-effects.title",
+      "value": "聲音效果"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.open-at-login.title",
+      "value": "登錄時打開"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.run-in-background.title",
+      "value": "在背景執行"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.paste-items.title",
+      "value": "粘貼項目"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.paste-items.active-app.title",
+      "value": "激活應用程序"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.paste-items.clipboard.title",
+      "value": "至剪貼板"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.paste-items.plain-text.title",
+      "value": "始終作為純文本粘貼"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.history.title",
+      "value": "保留歷史"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.history.forever",
+      "value": "永遠的"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "general.action.erase-history",
+      "value": "刪除歷史記錄"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.privacy.screensharing.title",
+      "value": "在螢幕共享期間顯示"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.privacy.confidential-content.title",
+      "value": "忽略機密內容"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.privacy.autogenerated-content.title",
+      "value": "忽略瞬時內容"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.privacy.applications-history.title",
+      "value": "忽略應用程序"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.shortcuts.title",
+      "value": "捷徑"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.shortcuts.activate-paste.title",
+      "value": "激活粘貼"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.shortcuts.activate-paste-stack.title",
+      "value": "激活粘貼堆棧"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.shortcuts.next-pinboard.title",
+      "value": "顯示下一個圖釘板"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.shortcuts.previous-pinboard.title",
+      "value": "顯示以前的圖釘板"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.shortcuts.quick-paste.title",
+      "value": "快速粘貼"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.shortcuts.plain-text.title",
+      "value": "純文本模式"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.shortcuts.action.reset",
+      "value": "重設快捷方式為預設值"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.shortcuts.action.reset.confirmation",
+      "value": "您確定要將所有捷徑重置為預設值嗎？"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "general.action.reset",
+      "value": "重設"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "general.action.cancel",
+      "value": "取消"
+    },
+    {
+      "locale": "zh-Hant",
+      "key": "settings.paste-items.accessibility-access-request",
+      "value": "啟用無障礙訪問"
+    }
+  ],
+  "counts": {
+    "keys": 28,
+    "locales": 17,
+    "equal_values": 476,
+    "new_locale_keys": 27,
+    "already_present_reused_key": "general.action.cancel"
+  },
+  "method": [
+    "Resolve exact original UTF8 key literal VM from static MachO, then Swift large-string bridge pointer bias minus0x20.",
+    "Match exact literal reference to exported original LocalizedStringResource function fragment and hash.",
+    "Read original locale resource files as data and compare each replica string value, preserving existing resource entries.",
+    "Trace actual showSettings→ReplicaSettingsView→label and explicit Button consumer. No product execution or dynamic acceptance."
+  ],
+  "peer_review": {
+    "source_manifest": [
+      {
+        "path": "replica/Sources/PasteReplica/AppMain.swift",
+        "sha256": "ed82ac932fa9efe86899259c6e5227b9dba693cd60c7c2c8de1bed3283b7864b"
+      },
+      {
+        "path": "replica/Sources/PasteReplicaCore/Models.swift",
+        "sha256": "2761f26ca32851bbcc226daf0736f71b6190a8d27dd8e588fe95f43bbf3905c0"
+      },
+      {
+        "path": "replica/Sources/PasteReplica/UI/OriginalAccessibilityRequestAction.swift",
+        "sha256": "22fbc993dae45d453bb2c6586a7823b3c633b2a22446c824cb75256b1e011ed0"
+      }
+    ],
+    "confirmed": [
+      "AppMain permission alert second button invokes OriginalAccessibilityRequestAction.perform; other button target activation preserved.",
+      "Settings action occurs only on explicit Button click, not onAppear or preference setter.",
+      "playSounds initializer defaulttrue and decode missing/null fallbacktrue; storedfalse remainsfalse and encode keeps the stored Bool.",
+      "Current28keys×17locales476values rechecked equal after other agents changes."
+    ],
+    "remaining": "Actual original sound payload/restore playback and full Accessibility observation/gesture/view placement remainpartial. This review checks actual explicit action/default compatibility only.",
+    "product_executed": false,
+    "functional_tests_executed": false
+  },
+  "remaining": [
+    "Current Settings is still independent sidebar/Form layout, not original whole-page pixel/layout parity.",
+    "History unit scale labels and slider bounds/default behavior, original metadata controls/defaults/observations not all verified.",
+    "Custom BundleID editor/add/save labels and local stdio MCP page have no confirmed same original UI contract, remainadapted.",
+    "Original permission button placement/availability and modal/accessibility lifecycle are not promoted from one correct explicit action.",
+    "Sound default correction is owned by Root; actual original sound resources/playback remainoutside this localization batch."
+  ],
+  "compilation": {
+    "parent_build": "gap-build40",
+    "result": "passed",
+    "elapsed_seconds": 20.47,
+    "compiler_log_elapsed_seconds": 18.78,
+    "stable_input_count": 145,
+    "input_sha_before_after_equal": true,
+    "kind": "static_compilation_only",
+    "functional_regression_executed": false,
+    "product_executed": false,
+    "build_log": ".local/gap-build-40.log",
+    "build_log_sha256": "26b42f15d9161a39cb2fe59563401cee89cc652b3865a708d3686760b5cbbc91",
+    "source_manifest_file": ".local/gap-build-complete.json",
+    "source_manifest_sha256": "930b16e99a804878a5acf01438b1161a12c2eb52da049354b6d445a6525cbff9",
+    "compiled_sha256": {
+      "replica/.build/release/PasteReplica": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+      "replica/.build/release/PasteReplicaHelper": "22042441e294b84865fd18272857b42949833df6391732d90b06228851aa05e0",
+      "replica/.build/release/paste-replica-mcp": "508692e87e264d73d25967a39f5c04b1deceb8875ced7cf11a9d9ad0c2b6498c"
+    },
+    "parent_partial_status_preserved": true
+  },
+  "functional_tests_executed": false,
+  "product_executed": false,
+  "mcp_tests_executed": false,
+  "original_arm64_resource_factory_fragments": [
+    {
+      "function": "Paste:0x1001dbfd4",
+      "start_address": "0x1001dbfd4",
+      "end_address_exclusive": "0x1001dc154",
+      "path": ".local/window-dev20-1001dbfd4-arm64.txt",
+      "sha256": "9eed6deed614a3250b5fd23854cf3dd5155efa62ad5b1e1cd063a3bf00dacf81"
+    },
+    {
+      "function": "Paste:0x1001e16d4",
+      "start_address": "0x1001e16d4",
+      "end_address_exclusive": "0x1001e1854",
+      "path": ".local/window-dev20-1001e16d4-arm64.txt",
+      "sha256": "dd178456cf1b5df4563b3a85f81127ee4376a365ec99ec27cbb07cc2aa6ea8bc"
+    },
+    {
+      "function": "Paste:0x1001e28d4",
+      "start_address": "0x1001e28d4",
+      "end_address_exclusive": "0x1001e2a54",
+      "path": ".local/window-dev20-1001e28d4-arm64.txt",
+      "sha256": "fe49e0061e9270904f441a5f0f61ae3f17e39d2914101b476c07f14c3101b839"
+    }
+  ]
+}

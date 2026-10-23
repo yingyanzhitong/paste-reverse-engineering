@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100ae5e74",
-  "reviewed_at": "2026-10-23T13:37:25.709260+00:00",
+  "reviewed_at": "2026-10-23T13:50:04.077603+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-1008.c",
@@ -11,18 +11,18 @@
   "original_pseudocode_sha256": "930ecb583f04add5cc88d5d7fa17e84d3b5213446b33c22e19e710ff8b085839",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalAccessibilityService.swift": "e015554a40a64837f284fb9a0dc08a2639e8606b4e34b5930234cf1751e40073",
-    "replica/Sources/PasteReplica/AppMain.swift": "41e3031850a43ec18c0294922150aceb3a2df9660cb4d16b63e137d3a468e230"
+    "replica/Sources/PasteReplica/AppMain.swift": "ed82ac932fa9efe86899259c6e5227b9dba693cd60c7c2c8de1bed3283b7864b"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "295a11737d0dcbe083fbb976fa6e4b4c212d8e6133ef819f666b036f85e24ced",
+  "compiled_app_binary_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "AXIsProcessTrusted normalized Bool only; no request or DirectPaste preference setter.",
   "review": "完整原getter AE5E74..AE5E90与当前FB718..FB734均28B，唯一调用同一AXIsProcessTrusted，随后cmp/cset规范化Bool；除bl重定位外完整指令字节相同，无self字段/DI/logger/请求UI读取。保留既有migrated资格，不新增完成数。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
   "compiled_boundary": {
     "start": "0x1000fb718",

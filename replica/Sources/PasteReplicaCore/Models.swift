@@ -41,6 +41,9 @@ public struct ClipboardItem: Identifiable, Codable, Equatable, Sendable {
         if let rawPreview { return OriginalImagePreviewMetadataCodec.decode(rawPreview) }
         return imagePreviewMetadata
     }
+    public var decodedFilePreviewMetadata: OriginalFilePreviewMetadata? {
+        OriginalImagePreviewMetadataCodec.decodeFiles(rawPreview)
+    }
     public var pinboardIDs: Set<UUID>
     public var isDeleted: Bool
 
@@ -111,10 +114,11 @@ public struct AppPreferences: Codable, Equatable, Sendable {
     public var stackReversed: Bool
     public var isDiagnosticsEnabled: Bool
     public var useBinaryPlist: Bool
+    public var fileQuickLookThumbnailsEnabled: Bool
 
     public init(historyLimit: Int = 1000, isMonitoringPaused: Bool = false, pauseUntil: Date? = nil,
                 excludedBundleIDs: [String] = [], ignoredPasteboardTypes: [String] = [], ignoreConcealedContent: Bool = true,
-                playSounds: Bool = false, appearance: String = "system", panelHeight: Double = 332,
+                playSounds: Bool = true, appearance: String = "system", panelHeight: Double = 332,
                 launchAtLogin: Bool = false, pasteToActiveApp: Bool = true, alwaysPastePlainText: Bool = false,
                 historyRetentionDays: Int = 0,
                 historyShortcut: KeyboardShortcut? = KeyboardShortcut.historyDefault,
@@ -124,7 +128,8 @@ public struct AppPreferences: Codable, Equatable, Sendable {
                 quickPasteModifierRawValue: UInt = 1 << 20, plainTextModifierRawValue: UInt = 1 << 17,
                 showDuringScreenSharing: Bool = true, ignoreTransientContent: Bool = true,
                 historyTitle: String = "剪贴板", stackItemIDs: [UUID] = [], stackReversed: Bool = false,
-                isDiagnosticsEnabled: Bool = false, useBinaryPlist: Bool = false) {
+                isDiagnosticsEnabled: Bool = false, useBinaryPlist: Bool = false,
+                fileQuickLookThumbnailsEnabled: Bool = true) {
         self.historyLimit = historyLimit
         self.isMonitoringPaused = isMonitoringPaused
         self.pauseUntil = pauseUntil
@@ -151,6 +156,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         self.stackReversed = stackReversed
         self.isDiagnosticsEnabled = isDiagnosticsEnabled
         self.useBinaryPlist = useBinaryPlist
+        self.fileQuickLookThumbnailsEnabled = fileQuickLookThumbnailsEnabled
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -158,7 +164,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         case playSounds, appearance, panelHeight, launchAtLogin, pasteToActiveApp, alwaysPastePlainText, historyRetentionDays
         case historyShortcut, stackShortcut, previousPinboardShortcut, nextPinboardShortcut
         case quickPasteModifierRawValue, plainTextModifierRawValue, showDuringScreenSharing, ignoreTransientContent
-        case historyTitle, stackItemIDs, stackReversed, isDiagnosticsEnabled, useBinaryPlist
+        case historyTitle, stackItemIDs, stackReversed, isDiagnosticsEnabled, useBinaryPlist, fileQuickLookThumbnailsEnabled
     }
 
     public init(from decoder: Decoder) throws {
@@ -169,7 +175,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
                   excludedBundleIDs: try values.decodeIfPresent([String].self, forKey: .excludedBundleIDs) ?? [],
                   ignoredPasteboardTypes: try values.decodeIfPresent([String].self, forKey: .ignoredPasteboardTypes) ?? [],
                   ignoreConcealedContent: try values.decodeIfPresent(Bool.self, forKey: .ignoreConcealedContent) ?? true,
-                  playSounds: try values.decodeIfPresent(Bool.self, forKey: .playSounds) ?? false,
+                  playSounds: try values.decodeIfPresent(Bool.self, forKey: .playSounds) ?? true,
                   appearance: try values.decodeIfPresent(String.self, forKey: .appearance) ?? "system",
                   panelHeight: try values.decodeIfPresent(Double.self, forKey: .panelHeight) ?? 332,
                   launchAtLogin: try values.decodeIfPresent(Bool.self, forKey: .launchAtLogin) ?? false,
@@ -188,7 +194,8 @@ public struct AppPreferences: Codable, Equatable, Sendable {
                   stackItemIDs: try values.decodeIfPresent([UUID].self, forKey: .stackItemIDs) ?? [],
                   stackReversed: try values.decodeIfPresent(Bool.self, forKey: .stackReversed) ?? false,
                   isDiagnosticsEnabled: try values.decodeIfPresent(Bool.self, forKey: .isDiagnosticsEnabled) ?? false,
-                  useBinaryPlist: try values.decodeIfPresent(Bool.self, forKey: .useBinaryPlist) ?? false)
+                  useBinaryPlist: try values.decodeIfPresent(Bool.self, forKey: .useBinaryPlist) ?? false,
+                  fileQuickLookThumbnailsEnabled: try values.decodeIfPresent(Bool.self, forKey: .fileQuickLookThumbnailsEnabled) ?? true)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -220,6 +227,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         try values.encode(stackReversed, forKey: .stackReversed)
         try values.encode(isDiagnosticsEnabled, forKey: .isDiagnosticsEnabled)
         try values.encode(useBinaryPlist, forKey: .useBinaryPlist)
+        try values.encode(fileQuickLookThumbnailsEnabled, forKey: .fileQuickLookThumbnailsEnabled)
     }
 }
 

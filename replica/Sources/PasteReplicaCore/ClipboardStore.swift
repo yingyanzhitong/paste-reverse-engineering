@@ -195,6 +195,7 @@ public final class ClipboardStore: ObservableObject {
         if local.stackReversed != base.stackReversed { result.preferences.stackReversed = local.stackReversed }
         if local.isDiagnosticsEnabled != base.isDiagnosticsEnabled { result.preferences.isDiagnosticsEnabled = local.isDiagnosticsEnabled }
         if local.useBinaryPlist != base.useBinaryPlist { result.preferences.useBinaryPlist = local.useBinaryPlist }
+        if local.fileQuickLookThumbnailsEnabled != base.fileQuickLookThumbnailsEnabled { result.preferences.fileQuickLookThumbnailsEnabled = local.fileQuickLookThumbnailsEnabled }
         return result
     }
 
@@ -272,9 +273,17 @@ public final class ClipboardStore: ObservableObject {
         }
     }
 
-    private static func withImagePreviewMetadata(_ item: ClipboardItem, binaryPropertyList: Bool) -> ClipboardItem {
+    private static func withPreviewMetadata(_ item: ClipboardItem, binaryPropertyList: Bool, preferQuickLookThumbnails: Bool, generateFilePreview: Bool) -> ClipboardItem {
         var item = item
-        guard item.kind == .image else { item.imagePreviewMetadata = nil; return item }
+        guard item.kind == .image else {
+            item.imagePreviewMetadata = nil
+            if generateFilePreview, item.kind == .files, item.rawPreview == nil,
+               let items = try? originalPasteboardItems(from: item.payloads) {
+                let metadata = OriginalFilePreviewMetadataGenerator.generate(items, preferQuickLookThumbnails: preferQuickLookThumbnails)
+                item.rawPreview = OriginalImagePreviewMetadataCodec.encodeFiles(metadata, binaryPropertyList: binaryPropertyList)
+            }
+            return item
+        }
         if let rawPreview = item.rawPreview {
             item.imagePreviewMetadata = OriginalImagePreviewMetadataCodec.decode(rawPreview)
         } else {
@@ -292,7 +301,7 @@ public final class ClipboardStore: ObservableObject {
 
     @discardableResult
     public func add(_ item: ClipboardItem) throws -> UUID {
-        let item = Self.withImagePreviewMetadata(item, binaryPropertyList: preferences.useBinaryPlist)
+        let item = Self.withPreviewMetadata(item, binaryPropertyList: preferences.useBinaryPlist, preferQuickLookThumbnails: preferences.fileQuickLookThumbnailsEnabled, generateFilePreview: true)
         let checksum = try? Self.knownPasteboardChecksum(from: item.payloads)
         return try mutate { state in
             if let i = state.items.firstIndex(where: { previous in
@@ -565,7 +574,7 @@ public final class ClipboardStore: ObservableObject {
             throw error
         }
         try validate(archive)
-        let importedItems = archive.items.map { Self.withImagePreviewMetadata($0, binaryPropertyList: archive.preferences.useBinaryPlist) }
+        let importedItems = archive.items.map { Self.withPreviewMetadata($0, binaryPropertyList: archive.preferences.useBinaryPlist, preferQuickLookThumbnails: archive.preferences.fileQuickLookThumbnailsEnabled, generateFilePreview: false) }
         try mutate { state in
             var boards = Dictionary(uniqueKeysWithValues: state.pinboards.map { ($0.id, $0) })
             for board in archive.pinboards { boards[board.id] = board }

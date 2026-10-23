@@ -1,0 +1,86 @@
+{
+  "kind": "files_copy_time_metadata_real_pipeline_static_review",
+  "version": "0.8.0-dev.20",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalFilePreviewMetadata.swift": "abf5d495807ef79b7d857eff269f77de1d69c704eafac9130616c7664a6eebe0",
+    "replica/Sources/PasteReplica/UI/ReplicaFilePreviewContent.swift": "e2bd5375e67f5e326d371bf4c07944358d2a47098469a078d8fd086925c2e5ec",
+    "replica/Sources/PasteReplicaCore/OriginalImagePreviewMetadataCodec.swift": "5e4630eccbc6e093a860e7e6d28ffadbe241221422c0d20f55ccf0fdca752872",
+    "replica/Sources/PasteReplicaCore/Models.swift": "2761f26ca32851bbcc226daf0736f71b6190a8d27dd8e588fe95f43bbf3905c0",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "9f6042833befa700a935624d49960a0ddedf543be8dd2d0d53ddb4dc6730edce"
+  },
+  "unified_build": {
+    "name": "gap-build40",
+    "manifest": ".local/gap-build-complete.json",
+    "manifest_sha256": "930b16e99a804878a5acf01438b1161a12c2eb52da049354b6d445a6525cbff9",
+    "log": ".local/gap-build-40.log",
+    "seconds": 20.47,
+    "compiler_log_seconds": 18.78,
+    "inputs": 145,
+    "sha_before_after_equal": true,
+    "result": "compiled",
+    "functional_execution": false,
+    "app_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb"
+  },
+  "compiled_app_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+  "original_branches": {
+    "original": "f100322504 raw kind3 -> f100312ae4 (part0254:1066); original Stored files enum case4.",
+    "urls": "For each original ordered pasteboard item decode public.file-url UTF8, Foundation.URL(string:); keep valid URLs in order without deduplication or isFileURL gate. Other legacy filename or plainText fields are not extra sources. Reuses existing f10037cc6c.",
+    "paths": "All valid URLs.map(path), preserving duplicates and order.",
+    "size": "Only first valid URL.resourceValues(forKeys:[totalFileSizeKey]).totalFileSize; missing/error ->0. No sum, directory walk or live preview-time filesystem check.",
+    "empty": "No valid URL -> paths[],size0,preview nil; no guard-first returning nil entire value.",
+    "preview": "First URL f100312874: configured true attempts QLThumbnailImageCreate with max128x128, iconMode:true; successful CGImage becomes NSImage(size.zero) -> existing PNG encoder. Successful QL but failed PNG returns nil, no icon fallback. Disabled or QL returns nil -> sharedWorkspace.iconForFile(path), size128x128 -> same PNG.",
+    "config": "f100313344 Bool default1 and key isFileItemQLThumbnailImageEnabled proven; Root adapts its own persisted preference, original dynamic Config DI remains partial."
+  },
+  "read_contract": {
+    "raw": "f1003bc564 calls raw getter then selects only files case4; nil/nonfiles ->nil.",
+    "paths": "f1003bc508 missing metadata -> []; otherwise copied paths.",
+    "size": "f1003bc714 missing metadata ->0; otherwise totalSize.",
+    "projection": "Wire type literal files; Stored absent paths->[],totalSize->0,filesImageData absent->empty Data (non-nil default), while source generator failure is optional nil.",
+    "footer": "f1003e2d64 paths.count==1 uses first stored path, otherwise existing localized generic multi-file label. f1003e2394 size>0 formats ByteCountFormatStyle style.file units.all spellsOutZero=false includesActualByteCount=false; joins nonnil descriptor and optional size with two spaces + middot + two spaces.",
+    "quicklook": "viewDidMoveToWindow first stored path -> URL(fileURLWithPath:); title comes original optional Item.title via f1003bc814, so source now uses originalTitle.",
+    "reveal": "f1003bc874 independently decodes raw pasteboard public.file-url items for Finder activation; it does not use stored paths. Existing reveal branch kept."
+  },
+  "actual_pipeline": {
+    "result": "Actual Root files producer and canonical wire chain present; no concrete mismatch found in reviewed integration.",
+    "writer": "withPreviewMetadata add/capture generates files only if raw nil; canonical raw existing is preserved even invalid/nonfiles. encodeFiles is consumed in same payload-paired persistence.",
+    "archive": "generateFilePreview:false prevents imported absent copy-time raw from being calculated using current filesystem.",
+    "codec": "decodeFiles reuses complete13-field Stored decoder: type strict files, paths absent[],size absent0,preview absent emptyData nonnil. encodeFiles generator nilpreview remains omitted.",
+    "model": "decodedFilePreviewMetadata is raw-only projection, no live FS fallback. Preference default/missing-key true, encode and merge connected.",
+    "source_of_preview_image": "Original FileItemContentView f3e2f54/f3e3034 uses fixed multipleDocuments160; it does not consume f3bc748 stored preview image. Current default multipleDocuments is preserved correctly. f3bc748 external/card consumer not closed, not claimed implemented.",
+    "finder": "Still derives URLs from raw original pasteboard items, independently of metadata paths.",
+    "title": "QL item now reads originalTitle optional, matching f3bc814.",
+    "partial": "No image or files parent/full DI completion claim; candidate pure generator remains separately reviewable."
+  },
+  "original_references": [
+    {
+      "address": "0x100312ae4",
+      "path": "decompiled/Paste/part-0254.c",
+      "line": 1066
+    },
+    {
+      "address": "0x100312874",
+      "path": "decompiled/Paste/part-0254.c",
+      "line": 982
+    },
+    {
+      "address": "0x1003bc564",
+      "path": "decompiled/Paste/part-0295.c",
+      "line": 1087
+    },
+    {
+      "address": "0x1003e2d64",
+      "path": "decompiled/Paste/part-0309.c",
+      "line": 793
+    },
+    {
+      "address": "0x1003e2394",
+      "path": "decompiled/Paste/part-0309.c",
+      "line": 363
+    }
+  ],
+  "functional_tests_executed": false,
+  "products_started": false,
+  "full_vm_equivalence": false,
+  "parent_status": "partial",
+  "source_changed_after_build": false
+}

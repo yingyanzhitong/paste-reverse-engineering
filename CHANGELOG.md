@@ -1,5 +1,16 @@
 # 更新日志
 
+## 0.8.0-dev.20 - 2026-10-23
+
+- 按已有功能集中核对设置页：28个精确原资源键、17语言476值一次复用到现有标签，覆盖通用/隐私/声音/登录/后台/粘贴/历史/快捷键及重置确认。只恢复3个已完整对照的资源helper，不为每个替换标签生成地址包装；完整设置布局和未知单位刻度仍partial。
+- 明确用户点击的权限按钮恢复IOHID PostEvent状态分支：unknown(raw2)时deactivate、AX只读检查、IOHIDRequestAccess；其余状态打开原Accessibility设置URL并激活首个设置进程。Settings和粘贴alert第二按钮接实际动作，无启动或Boolsetter自动prompt；完整三态模态/延迟成功状态仍partial。
+- 音效init及缺key解码默认改为原true，保留用户已保存false；Copy/Paste原声音资源与播放全链仍未一比一恢复。
+- 文件预览从持久rawPreview读取复制时paths/count、首项totalFileSize、Quick Look标题及原byteCount格式；不再以实时payload近似原metadata或无条件省略尺寸。原多个文件图仍用固定MultipleDocuments160。
+- 新捕获/add文件元数据按有序public.file-url保序不去重，尺寸只取首个URL的totalFileSize，失败0；预览按原QL128 iconMode/PNG，QL无图或禁用才文件图标128/PNG。空输入保留[]/0/nil，生成nil预览编码省略，解码缺预览按原emptyData。原QL开关默认true以独立偏好持久化/合并并接真实writer；旧归档缺file raw不重算当时尺寸，getter不补算，其他类型raw保持。
+- 最终build40 release编译通过，145输入前后摘要一致，日志18.78秒/包装20.47秒；8既有编译器/析构与2辅助体、缓存、ObjC异常桥、纯权限getter及map/系统action完整当前机器码/真实绑定已复审。无产品、功能、单测、原版动态、UI/MCP、重启或异常注入。
+- 累计逐地址证据1,462 / 81,134（源码578、SDK884），范围排除5，范围内剩余79,667，其中201部分实现。本批新增源码完整3、SDK11，无撤回；28合并记录不是新增28个完整函数。72行为单元绑定89份源码，状态仍32已有列明行为/37差异或缺证据/1缺失/2未审，不作产品完成率。
+- 源码及公开静态报告更新，未打包安装，安装仍0.7.0；完整CoreData/DI、其余内容metadata和全功能回归仍未一比一验收。
+
 ## 0.8.0-dev.19 - 2026-10-23
 
 - 按已有功能与完整调用链集中核对，保留已满足的生产路径，只修有原证据的差异；一页报告重写为现有功能、确认差异与待核项，72行为条目不作为产品完成率。

@@ -269,9 +269,9 @@ struct ReplicaSettingsView: View {
     var body: some View {
         HStack(spacing: 0) {
             VStack(spacing: 4) {
-                sidebarButton("通用", icon: "gearshape", index: 0)
-                sidebarButton("隐私", icon: "hand.raised", index: 1)
-                sidebarButton("键盘快捷键", icon: "keyboard", index: 4)
+                sidebarButton(String(localized: OriginalSettingsLocalization.f_1001dbfd4()), icon: "gearshape", index: 0)
+                sidebarButton(String(localized: OriginalSettingsLocalization.f_1001e16d4()), icon: "hand.raised", index: 1)
+                sidebarButton(OriginalSettingsLocalization.text("settings.shortcuts.title"), icon: "keyboard", index: 4)
                 sidebarButton("MCP 与 AI 工具", icon: "point.3.connected.trianglepath.dotted", index: 5)
                 Spacer()
             }
@@ -306,24 +306,24 @@ struct ReplicaSettingsView: View {
     private var general: some View {
         Form {
             Section {
-                Toggle("登录时打开", isOn: Binding(get: { state.store.preferences.launchAtLogin },
+                Toggle(OriginalSettingsLocalization.text("settings.open-at-login.title"), isOn: Binding(get: { state.store.preferences.launchAtLogin },
                                               set: { value in setLaunchAtLogin(value) }))
-                Toggle("后台运行", isOn: Binding(get: { backgroundEnabled }, set: { value in
+                Toggle(OriginalSettingsLocalization.text("settings.run-in-background.title"), isOn: Binding(get: { backgroundEnabled }, set: { value in
                     BackgroundService.setEnabled(value)
                 }))
                 .onReceive(BackgroundService.enabledChanges) { backgroundEnabled = $0 }
-                Toggle("音效", isOn: preference(\.playSounds))
+                Toggle(String(localized: OriginalSettingsLocalization.f_1001e28d4()), isOn: preference(\.playSounds))
             }
-            Section("粘贴项目") {
-                Picker("粘贴项目", selection: preference(\.pasteToActiveApp)) {
-                    Text("到当前活动应用").tag(true)
-                    Text("到剪贴板").tag(false)
+            Section(OriginalSettingsLocalization.text("settings.paste-items.title")) {
+                Picker(OriginalSettingsLocalization.text("settings.paste-items.title"), selection: preference(\.pasteToActiveApp)) {
+                    Text(OriginalSettingsLocalization.text("settings.paste-items.active-app.title")).tag(true)
+                    Text(OriginalSettingsLocalization.text("settings.paste-items.clipboard.title")).tag(false)
                 }
                 .pickerStyle(.radioGroup)
                 .labelsHidden()
-                Toggle("始终以纯文本粘贴", isOn: preference(\.alwaysPastePlainText))
+                Toggle(OriginalSettingsLocalization.text("settings.paste-items.plain-text.title"), isOn: preference(\.alwaysPastePlainText))
             }
-            Section("保留历史") {
+            Section(OriginalSettingsLocalization.text("settings.history.title")) {
                 Slider(value: Binding(get: {
                     Double([1, 7, 30, 365, 0].firstIndex(of: state.store.preferences.historyRetentionDays) ?? 4)
                 }, set: { value in
@@ -331,13 +331,13 @@ struct ReplicaSettingsView: View {
                     state.store.preferences.historyRetentionDays = [1, 7, 30, 365, 0][index]
                     state.perform { try state.store.save() }
                 }), in: 0...4, step: 1)
-                .accessibilityLabel("保留历史")
+                .accessibilityLabel(OriginalSettingsLocalization.text("settings.history.title"))
                 HStack {
-                    ForEach(["天", "周", "个月", "年", "永久"], id: \.self) { title in
+                    ForEach(["天", "周", "个月", "年", OriginalSettingsLocalization.text("settings.history.forever")], id: \.self) { title in
                         Text(title).frame(maxWidth: .infinity)
                     }
                 }.font(.caption).foregroundStyle(.secondary)
-                Button("删除历史…") { state.controller?.clearHistory() }
+                Button(OriginalSettingsLocalization.text("general.action.erase-history")) { state.controller?.clearHistory() }
             }
         }
         .formStyle(.grouped)
@@ -346,11 +346,11 @@ struct ReplicaSettingsView: View {
     private var privacy: some View {
         Form {
             Section("内容与窗口") {
-                Toggle("在屏幕共享期间显示", isOn: preference(\.showDuringScreenSharing))
-                Toggle("忽略机密内容", isOn: preference(\.ignoreConcealedContent))
-                Toggle("忽略瞬时内容", isOn: preference(\.ignoreTransientContent))
+                Toggle(OriginalSettingsLocalization.text("settings.privacy.screensharing.title"), isOn: preference(\.showDuringScreenSharing))
+                Toggle(OriginalSettingsLocalization.text("settings.privacy.confidential-content.title"), isOn: preference(\.ignoreConcealedContent))
+                Toggle(OriginalSettingsLocalization.text("settings.privacy.autogenerated-content.title"), isOn: preference(\.ignoreTransientContent))
             }
-            Section("排除来源应用") {
+            Section(OriginalSettingsLocalization.text("settings.privacy.applications-history.title")) {
                 Text("每行输入一个应用 Bundle ID，例如 com.apple.Safari。列表中的应用不会被采集。")
                     .font(.caption).foregroundStyle(.secondary)
                 TextEditor(text: $exclusions).font(.system(.body, design: .monospaced))
@@ -371,10 +371,8 @@ struct ReplicaSettingsView: View {
             Section("系统权限") {
                 Text("直接粘贴需要辅助功能权限。你可以在系统设置中授权或撤销。")
                     .font(.caption).foregroundStyle(.secondary)
-                Button("打开辅助功能设置") {
-                    if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
-                        NSWorkspace.shared.open(url)
-                    }
+                Button(OriginalSettingsLocalization.text("settings.paste-items.accessibility-access-request")) {
+                    OriginalAccessibilityRequestAction.perform()
                 }
             }
         }
@@ -383,24 +381,24 @@ struct ReplicaSettingsView: View {
 
     private var shortcuts: some View {
         Form {
-            Section("键盘快捷键") {
-                shortcutRecorder("启动 Paste", path: \.historyShortcut)
-                shortcutRecorder("启动 Paste Stack", path: \.stackShortcut)
-                shortcutRecorder("显示下一个 Pinboard", path: \.nextPinboardShortcut)
-                shortcutRecorder("显示上一个 Pinboard", path: \.previousPinboardShortcut)
-                Picker("快速粘贴", selection: preference(\.quickPasteModifierRawValue)) {
+            Section(OriginalSettingsLocalization.text("settings.shortcuts.title")) {
+                shortcutRecorder(OriginalSettingsLocalization.text("settings.shortcuts.activate-paste.title"), path: \.historyShortcut)
+                shortcutRecorder(OriginalSettingsLocalization.text("settings.shortcuts.activate-paste-stack.title"), path: \.stackShortcut)
+                shortcutRecorder(OriginalSettingsLocalization.text("settings.shortcuts.next-pinboard.title"), path: \.nextPinboardShortcut)
+                shortcutRecorder(OriginalSettingsLocalization.text("settings.shortcuts.previous-pinboard.title"), path: \.previousPinboardShortcut)
+                Picker(OriginalSettingsLocalization.text("settings.shortcuts.quick-paste.title"), selection: preference(\.quickPasteModifierRawValue)) {
                     Text("⌘ Command + 1…9").tag(NSEvent.ModifierFlags.command.rawValue)
                     Text("⌥ Option + 1…9").tag(NSEvent.ModifierFlags.option.rawValue)
                     Text("⌃ Control + 1…9").tag(NSEvent.ModifierFlags.control.rawValue)
                     Text("未设置").tag(UInt(0))
                 }
-                Picker("纯文本模式", selection: preference(\.plainTextModifierRawValue)) {
+                Picker(OriginalSettingsLocalization.text("settings.shortcuts.plain-text.title"), selection: preference(\.plainTextModifierRawValue)) {
                     Text("⇧ Shift").tag(NSEvent.ModifierFlags.shift.rawValue)
                     Text("⌥ Option").tag(NSEvent.ModifierFlags.option.rawValue)
                     Text("⌃ Control").tag(NSEvent.ModifierFlags.control.rawValue)
                     Text("未设置").tag(UInt(0))
                 }
-                Button("将快捷方式重置为默认…") { resetShortcuts() }
+                Button(OriginalSettingsLocalization.text("settings.shortcuts.action.reset")) { resetShortcuts() }
                 if !shortcutError.isEmpty { Text(shortcutError).foregroundStyle(.red).font(.caption) }
                 if !state.hotKeyStatusMessage.isEmpty {
                     Text(state.hotKeyStatusMessage).font(.caption).foregroundStyle(.secondary)
@@ -411,7 +409,7 @@ struct ReplicaSettingsView: View {
                 shortcut("扩展选择", "⇧←  ⇧→")
                 shortcut("预览", "Space")
                 shortcut("粘贴", "Return")
-                shortcut("快速粘贴", "⌘1…9")
+                shortcut(OriginalSettingsLocalization.text("settings.shortcuts.quick-paste.title"), "⌘1…9")
                 shortcut("纯文本粘贴", "⇧Return / ⌘Return")
                 shortcut("拷贝", "⌘C")
                 shortcut("删除", "Delete")
@@ -443,8 +441,8 @@ struct ReplicaSettingsView: View {
 
     private func resetShortcuts() {
         let alert = NSAlert()
-        alert.messageText = "您确定要将所有快捷方式重置为默认值吗？"
-        alert.addButton(withTitle: "重置"); alert.addButton(withTitle: "取消")
+        alert.messageText = OriginalSettingsLocalization.text("settings.shortcuts.action.reset.confirmation")
+        alert.addButton(withTitle: OriginalSettingsLocalization.text("general.action.reset")); alert.addButton(withTitle: OriginalSettingsLocalization.text("general.action.cancel"))
         guard alert.runModal() == .alertFirstButtonReturn else { return }
         state.store.preferences.historyShortcut = .historyDefault
         state.store.preferences.stackShortcut = .stackDefault

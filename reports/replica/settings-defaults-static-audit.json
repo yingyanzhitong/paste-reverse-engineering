@@ -1,0 +1,45 @@
+{
+  "kind": "settings_default_and_persisted_preference_static_review",
+  "version": "0.8.0-dev.20",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "compiled_app_sha256": "3b2e83a00cbfa21fef50d32738a948363ee63eb94e99d53bb821d3847b8a08cb",
+  "build": "gap-build40",
+  "inputs": 145,
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/Models.swift": "2761f26ca32851bbcc226daf0736f71b6190a8d27dd8e588fe95f43bbf3905c0",
+    "replica/Sources/PasteReplicaCore/ClipboardStore.swift": "9f6042833befa700a935624d49960a0ddedf543be8dd2d0d53ddb4dc6730edce"
+  },
+  "defaults": [
+    {
+      "function": "Paste:0x100077164",
+      "key": "isSoundEffectsEnabled",
+      "default": true,
+      "original_full_boundary": [
+        "0x100077164",
+        "0x1000771ac"
+      ],
+      "replica_field": "playSounds",
+      "source_default_and_absent_key_fallback": true,
+      "existing_explicit_false_preserved": true,
+      "state": "partial",
+      "remaining": "原Config身份与Copy/Paste声音资源/完整播放事件链未恢复。"
+    },
+    {
+      "function": "Paste:0x100313344",
+      "key": "isFileItemQLThumbnailImageEnabled",
+      "default": true,
+      "original_full_boundary": [
+        "0x100313344",
+        "0x10031338c"
+      ],
+      "replica_field": "fileQuickLookThumbnailsEnabled",
+      "source_default_and_absent_key_fallback": true,
+      "encoded_and_merged": true,
+      "actual_consumer": "add -> OriginalFilePreviewMetadataGenerator.generate -> optional QL128/file-icon -> rawPreview; archive missing file metadata is not regenerated",
+      "state": "partial",
+      "remaining": "当前为独立AppPreferences持久化适配，原Config lookup/DI身份未等同。"
+    }
+  ],
+  "functional_tests_executed": false,
+  "new_complete_functions": 0
+}
