@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "Stoppen en logs kopiëren";
+"diagnostics.start.message" = "Paste start opnieuw op om diagnoselogs te verzamelen. Je kunt de diagnose stoppen";
+"diagnostics.start.title" = "Diagnose starten";
+"diagnostics.stop.message" = "Diagnoselogs worden gekopieerd zodat je ze naar support kunt sturen.";
+"diagnostics.stop.title" = "Diagnose stoppen";
+"edit-item.toolbar.discard-changes" = "Wijzigingen verwerpen";
+"edit-item.toolbar.save-changes" = "Wijzigingen opslaan";
+"edit-item.toolbar.text.bold" = "Vet";
+"edit-item.toolbar.text.italic" = "Schuin";
+"edit-item.toolbar.text.strikethrough" = "Doorhalen";
+"edit-item.toolbar.text.underline" = "Onderstreep";
+"general.action.cancel" = "Annuleren";
+"general.action.edit" = "Bewerken";
+"general.action.restart-paste" = "Paste opnieuw starten";
+"general.action.save" = "Opslaan";

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000d468c",
-  "reviewed_at": "2026-10-23T09:13:57.955481+00:00",
+  "reviewed_at": "2026-10-23T09:48:24.295039+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0069.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "76eafec307411ca34fdcc12cc9a205708de495b12a109678731a04967ad8cd55",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift": "b37cc3799b34f0f38f4b91cdec7b0292dc495f7ef4158340dd46db383c7dcb84"
+    "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift": "95baca2d0ee25cb9ca5a7bcbc111a820bbe70d29feecf46e5d8cd0c1f6d5c911"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
-  "contract": "实例unfair锁内检查缓存；未命中时先解析全局唯一惰性factory依赖（全局首次才解析TaskLocal/root），用name建sink并缓存；命中直接返回。",
-  "review": "已核对f0d44e8全局依赖初始化与f0d468c调用顺序；不同namedlogger不再每次直接fda458重新受TaskLocal影响。一个实例缓存锁和全局factory依赖各司其职，非重复缓存同一对象。",
+  "contract": "实例 unfair 锁内检查缓存；miss 时取得全局单次缓存 factory，factory(name)构造 logger 并缓存；hit 直接返回。",
+  "review": "改为单 OSAllocatedUnfairLock<Void> 保护独立缓存，无第二实例锁；全局 factoryDependency 仍 static 惰性、fda768 首次解析缓存。",
   "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

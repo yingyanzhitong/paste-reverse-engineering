@@ -1,4 +1,5 @@
 import AppKit
+import PasteReplicaCore
 import SwiftUI
 
 @MainActor
@@ -10,6 +11,8 @@ final class ReplicaRichTextDocument: NSObject, ObservableObject, NSTextViewDeleg
     @Published private(set) var underlined = false
     @Published private(set) var struck = false
     weak var textView: NSTextView?
+    var usesRecoveredContentEvents = false
+    var onRecoveredTraitsChange: ((Set<OriginalPreviewTextTraits.Trait>) -> Void)?
 
     init(content: NSAttributedString) {
         self.content = NSAttributedString(attributedString: content)
@@ -25,14 +28,18 @@ final class ReplicaRichTextDocument: NSObject, ObservableObject, NSTextViewDeleg
     }
 
     func textDidChange(_ notification: Notification) {
+        guard !usesRecoveredContentEvents else { return }
         guard let view = notification.object as? NSTextView else { return }
         content = NSAttributedString(attributedString: view.attributedString())
         updateFormatting()
     }
 
-    func textViewDidChangeSelection(_ notification: Notification) { updateFormatting() }
+    func textViewDidChangeSelection(_ notification: Notification) {
+        if !usesRecoveredContentEvents { updateFormatting() }
+    }
 
     func updateFormatting() {
+        guard !usesRecoveredContentEvents else { return }
         guard let view = textView else { return }
         let range = view.selectedRange()
         let attributes: [NSAttributedString.Key: Any]
@@ -47,8 +54,31 @@ final class ReplicaRichTextDocument: NSObject, ObservableObject, NSTextViewDeleg
         struck = (attributes[.strikethroughStyle] as? Int ?? 0) != 0
     }
 
+    func applyRecoveredTraits(_ traits: Set<OriginalPreviewTextTraits.Trait>) {
+        bold = OriginalPreviewTextTraits.f_100208290(.bold, in: traits)
+        italic = OriginalPreviewTextTraits.f_100208290(.italic, in: traits)
+        underlined = OriginalPreviewTextTraits.f_100208290(.underline, in: traits)
+        struck = OriginalPreviewTextTraits.f_100208290(.strikethrough, in: traits)
+        onRecoveredTraitsChange?(traits)
+    }
+
+    func receiveRecoveredContent(_ value: NSAttributedString) {
+        content = NSAttributedString(attributedString: value)
+    }
+
     func toggle(_ format: Format) {
         guard let view = textView else { return }
+        if usesRecoveredContentEvents {
+            let trait: OriginalPreviewTextTraits.Trait
+            switch format {
+            case .bold: trait = .bold
+            case .italic: trait = .italic
+            case .underline: trait = .underline
+            case .strikethrough: trait = .strikethrough
+            }
+            OriginalPreviewTextTraits.f_1002072a0(trait, editor: view)
+            return
+        }
         view.window?.makeFirstResponder(view)
         let range = view.selectedRange()
         let enable: Bool
@@ -73,7 +103,7 @@ final class ReplicaRichTextDocument: NSObject, ObservableObject, NSTextViewDeleg
             view.insertText(selection, replacementRange: range)
             view.setSelectedRange(range)
         }
-        content = NSAttributedString(attributedString: view.attributedString())
+        if !usesRecoveredContentEvents { content = NSAttributedString(attributedString: view.attributedString()) }
         updateFormatting()
     }
 

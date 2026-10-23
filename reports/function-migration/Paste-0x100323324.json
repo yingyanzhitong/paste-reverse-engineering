@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100323324",
+  "reviewed_at": "2026-10-23T09:48:24.724522+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0258.c",
+    "line": 1376
+  },
+  "original_pseudocode_sha256": "b0cfaafb3f205067aeb3879feba450f7a0ac71352c5da86c782dd35b349c6d78",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPasteboardChecksums.swift": "91b10577b3103f2b5e4ad0879dce27b6ed53648531a0265d93d7d9f636fc611f"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "按 Data 有效字节范围对传入 MD5 hasher 执行一次 update，保留已有累计状态；空 Data 更新零字节。",
+  "review": "原版手工分支处理 small/storage/slice/empty Data，均调用 HashFunction.update(bufferPointer:)；本机 CryptoKit swiftinterface 332-357 与 Foundation Data.withUnsafeBytes 提供相同有效区间契约。已由所有 checksum 分支真实调用。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

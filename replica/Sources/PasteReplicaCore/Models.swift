@@ -91,6 +91,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
     public var historyTitle: String
     public var stackItemIDs: [UUID]
     public var stackReversed: Bool
+    public var isDiagnosticsEnabled: Bool
 
     public init(historyLimit: Int = 1000, isMonitoringPaused: Bool = false, pauseUntil: Date? = nil,
                 excludedBundleIDs: [String] = [], ignoredPasteboardTypes: [String] = [], ignoreConcealedContent: Bool = true,
@@ -103,7 +104,8 @@ public struct AppPreferences: Codable, Equatable, Sendable {
                 nextPinboardShortcut: KeyboardShortcut? = KeyboardShortcut.nextPinboardDefault,
                 quickPasteModifierRawValue: UInt = 1 << 20, plainTextModifierRawValue: UInt = 1 << 17,
                 showDuringScreenSharing: Bool = true, ignoreTransientContent: Bool = true,
-                historyTitle: String = "剪贴板", stackItemIDs: [UUID] = [], stackReversed: Bool = false) {
+                historyTitle: String = "剪贴板", stackItemIDs: [UUID] = [], stackReversed: Bool = false,
+                isDiagnosticsEnabled: Bool = false) {
         self.historyLimit = historyLimit
         self.isMonitoringPaused = isMonitoringPaused
         self.pauseUntil = pauseUntil
@@ -128,6 +130,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         self.historyTitle = historyTitle
         self.stackItemIDs = stackItemIDs
         self.stackReversed = stackReversed
+        self.isDiagnosticsEnabled = isDiagnosticsEnabled
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -135,7 +138,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         case playSounds, appearance, panelHeight, launchAtLogin, pasteToActiveApp, alwaysPastePlainText, historyRetentionDays
         case historyShortcut, stackShortcut, previousPinboardShortcut, nextPinboardShortcut
         case quickPasteModifierRawValue, plainTextModifierRawValue, showDuringScreenSharing, ignoreTransientContent
-        case historyTitle, stackItemIDs, stackReversed
+        case historyTitle, stackItemIDs, stackReversed, isDiagnosticsEnabled
     }
 
     public init(from decoder: Decoder) throws {
@@ -163,7 +166,8 @@ public struct AppPreferences: Codable, Equatable, Sendable {
                   ignoreTransientContent: try values.decodeIfPresent(Bool.self, forKey: .ignoreTransientContent) ?? true,
                   historyTitle: try values.decodeIfPresent(String.self, forKey: .historyTitle) ?? "剪贴板",
                   stackItemIDs: try values.decodeIfPresent([UUID].self, forKey: .stackItemIDs) ?? [],
-                  stackReversed: try values.decodeIfPresent(Bool.self, forKey: .stackReversed) ?? false)
+                  stackReversed: try values.decodeIfPresent(Bool.self, forKey: .stackReversed) ?? false,
+                  isDiagnosticsEnabled: try values.decodeIfPresent(Bool.self, forKey: .isDiagnosticsEnabled) ?? false)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -193,6 +197,7 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         try values.encode(historyTitle, forKey: .historyTitle)
         try values.encode(stackItemIDs, forKey: .stackItemIDs)
         try values.encode(stackReversed, forKey: .stackReversed)
+        try values.encode(isDiagnosticsEnabled, forKey: .isDiagnosticsEnabled)
     }
 }
 

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001e7d58",
-  "reviewed_at": "2026-10-23T09:13:57.729883+00:00",
+  "reviewed_at": "2026-10-23T09:48:24.065580+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0156.c",
@@ -11,17 +11,17 @@
   "original_pseudocode_sha256": "8db97b0fc6a2f9a0b4dc3a080dece99d40bee1d08317121d3a1ae4c398449a0b",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalShortcutFunctions.swift": "82c57689dfb20e2c4c02cd3c4ca72cf40ee7a3fd650b5fa832d79589761a9058",
-    "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift": "4d9f01435d0b4ff2bcac5724479cc21c2175bba5fc9819a8d2d01d3fd5a8253b"
+    "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift": "0ae87812c59edb65d973f77446ff78971c2c465d990df5b0c110dad76a8e0cae"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "遍历原版四项 AppKit→Carbon 修饰键映射，输入含该位则 OR 对应 UInt32 值，其余位忽略。",
   "review": "part-0156.c:1301；从薄切片静态读取 0x100fb4fc0 表：100000→100，80000→800，40000→1000，20000→200。复用既有注册代码等价四分支，提取具名函数供 RegisterEventHotKey 调用。 本轮逐项复审：Core 原始契约不变；录制入口已改接三态 OriginalShortcutRecorder.f_1001f132c，Carbon 转换通过新注册对象真实使用；旧 ShortcutRecorderButton.record 引用已删除。isValidGlobal 现在严格复用原版谓词，不再额外排除 Escape/大于127键码/其他修饰位。 本批复审后保留原恢复契约；真实入口改为直接SwiftUI StateObject组件，移除Native代理事件/窗口观察；当前候选待统一编译，不沿用旧文件摘要。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

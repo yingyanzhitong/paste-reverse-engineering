@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100321f48",
-  "reviewed_at": "2026-10-23T09:13:58.110326+00:00",
+  "reviewed_at": "2026-10-23T09:48:24.523828+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0258.c",
@@ -14,13 +14,13 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "先按原正则 ^#?[A-Fa-f0-9]{6}$ 进行 Foundation regularExpression range 判断；未匹配 false；以 # 开头 true；否则必须匹配 [A-Fa-f]。不 trim。",
   "review": "伪码与 100da2300 的原始 18 字节正则已核对；真实分类器文本分支调用。原有 isColor 已为六位正则，本轮补无 # 时必须有 A-F 的条件，不声称移除原来不存在的 3 位/rgb。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

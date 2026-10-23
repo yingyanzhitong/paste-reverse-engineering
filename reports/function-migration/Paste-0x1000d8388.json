@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000d8388",
+  "reviewed_at": "2026-10-23T09:48:24.663998+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0071.c",
+    "line": 1223
+  },
+  "original_pseudocode_sha256": "75166b92efa77d41e20b867263f01bb58aaa28906c1d6c564905aec77f759d6c",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalDependencies.swift": "6cccb9750822fd36e8e769bbaf820fc92232446bbde723089032b94a862619a8"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "当前TaskLocal容器持有的独立sharedCache转发同一String键、factory和Value类型，不落到全局共享cache。",
+  "review": "完整REA函数及所需arm64静态核对；typed共享服务已由快捷键validator/monitor真实消费。未执行产品或功能测试，不将其他provider或完整bootstrap标为完成。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "停止してログをコピー";
+"diagnostics.start.message" = "Pasteを再起動して診断ログの収集を開始します。診断はいつでも停止できます";
+"diagnostics.start.title" = "診断を開始";
+"diagnostics.stop.message" = "診断ログをコピーして、サポートに送信できます。";
+"diagnostics.stop.title" = "診断を停止";
+"edit-item.toolbar.discard-changes" = "変更を破棄";
+"edit-item.toolbar.save-changes" = "変更を保存する";
+"edit-item.toolbar.text.bold" = "太字";
+"edit-item.toolbar.text.italic" = "イタリック";
+"edit-item.toolbar.text.strikethrough" = "取り消し線";
+"edit-item.toolbar.text.underline" = "下線";
+"general.action.cancel" = "キャンセル";
+"general.action.edit" = "編集";
+"general.action.restart-paste" = "Pasteを再起動";
+"general.action.save" = "保存";

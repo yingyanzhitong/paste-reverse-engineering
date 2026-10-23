@@ -24,7 +24,7 @@ public enum OriginalPreviewAttributedText {
 
     // The older build SDK imports this selector as nonnull. The recovered binary
     // explicitly checks both returned descriptors for nil, so retain that ObjC ABI.
-    private static func descriptorWithTraits(_ descriptor: NSFontDescriptor,
+    static func descriptorWithTraits(_ descriptor: NSFontDescriptor,
                                              traits: NSFontDescriptor.SymbolicTraits) -> NSFontDescriptor? {
         let selector = NSSelectorFromString("fontDescriptorWithSymbolicTraits:")
         typealias Getter = @convention(c) (NSFontDescriptor, Selector, UInt32) -> Unmanaged<NSFontDescriptor>?

@@ -62,6 +62,16 @@ public struct OriginalShortcutRecorderError: LocalizedError {
     public init(_ message: String) { self.message = message }
 }
 
+public enum OriginalShortcutRecorderValidationError: LocalizedError, Hashable, Sendable {
+    case optionKey
+
+    public var errorDescription: String? { f_1001f12cc() }
+
+    public func f_1001f12cc() -> String {
+        OriginalShortcutMessages.value("shortcut-recorder.error.option-key")
+    }
+}
+
 /// The original recorder's model owns its event monitor and preserves the
 /// previous value separately from the unfinished modifier/key candidate.
 @MainActor
@@ -70,13 +80,14 @@ public final class OriginalShortcutRecorder: ObservableObject {
     @Published public private(set) var validationError: Error?
     public var onDetect: (OriginalShortcutValue?) -> Void
     private var eventMonitor: Any?
-    private let validator: OriginalDependency<@MainActor (OriginalShortcutValue) -> Error?>
+    private let validator: OriginalDependency<OriginalShortcutValidatorService>
 
     public init(shortcut: OriginalShortcutValue?, onDetect: @escaping (OriginalShortcutValue?) -> Void) {
-        state = shortcut.map(OriginalShortcutRecorderState.assigned) ?? .unassigned
         validationError = nil
-        self.onDetect = onDetect
         self.validator = OriginalDependency(\OriginalDependencyValues.shortcutValidator)
+        eventMonitor = nil
+        state = shortcut.map(OriginalShortcutRecorderState.assigned) ?? .unassigned
+        self.onDetect = onDetect
     }
 
     deinit {
@@ -156,23 +167,24 @@ public final class OriginalShortcutRecorder: ObservableObject {
             state = .recording(previous: state.previousShortcut, candidate: shortcut)
             return nil
         }
+        _ = validator.f_1000da768()
         guard OriginalShortcutFunctions.f_1001ebc2c(keyCode: shortcut.keyCode,
                                                   modifierRawValue: shortcut.internalModifiers) else {
             NSSound.beep()
             return event
         }
         let validate = validator.f_1000da768()
-        if let failure = validate(shortcut) {
+        if let failure = validate.validate(shortcut) {
             f_1001eff84()
             validationError = failure
             return nil
         }
         onDetect(shortcut)
         f_1001f1150(newState: .assigned(shortcut))
-        if let warning = OriginalShortcutValidation.optionCompatibilityWarning(
+        if OriginalShortcutValidation.requiresOptionCompatibilityWarning(
             modifierRawValue: shortcut.internalModifiers,
             version: ProcessInfo.processInfo.operatingSystemVersion) {
-            validationError = OriginalShortcutRecorderError(warning)
+            validationError = OriginalShortcutRecorderValidationError.optionKey
         }
         return nil
     }

@@ -1,7 +1,6 @@
 import AppKit
 import Combine
 import PasteReplicaCore
-import SwiftUI
 
 /// Connects recovered preview mode transitions to the replica's local text model.
 /// Color, image, and link editing require their separate recovered content adapters.
@@ -58,6 +57,17 @@ private final class ReplicaInlinePreviewTextView: NSTextView {
     var onSave: (() -> Void)?
     var onCancel: (() -> Void)?
 
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        if item.action == NSSelectorFromString("changeLayoutOrientation:") { return false }
+        return super.validateUserInterfaceItem(item)
+    }
+
+    override func menu(for event: NSEvent) -> NSMenu? {
+        let menu = super.menu(for: event)
+        if let menu { OriginalSearchMenu.f_10021ad80(menu) }
+        return menu
+    }
+
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
         if isEditable, event.modifierFlags.intersection(.deviceIndependentFlagsMask) == .command {
             switch event.charactersIgnoringModifiers {
@@ -85,6 +95,7 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
     private let itemID: UUID
     private var itemObservation: AnyCancellable?
     private var contentObservation: AnyCancellable?
+    private var storageBridge: OriginalPreviewTextStorageBridge?
     private var originalText: NSAttributedString
     private var editingText: NSAttributedString
     private(set) var canCommit = false
@@ -117,17 +128,19 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
         text.maxSize = .init(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
         text.textContainer?.widthTracksTextView = true
         text.textContainer?.containerSize = .init(width: 500, height: CGFloat.greatestFiniteMagnitude)
-        text.textContainerInset = .init(width: 8, height: 8)
         text.usesAdaptiveColorMappingForDarkAppearance = true
+        let bridge = OriginalPreviewTextStorageBridge(editor: text)
         OriginalPreviewAttributedText.f_100212e78(initial, editor: text)
-        if OriginalPreviewAttributedText.f_1003095bc(initial) {
-            text.font = OriginalPreviewAttributedText.f_1000f3e48()
-        }
+        OriginalPreviewTextColors.f_1003eb4a8(original: initial, editor: text)
         text.delegate = document
         text.document = document
         text.onSave = { [weak self] in self?.onSave?() }
         text.onCancel = { [weak self] in self?.onCancel?() }
         document.textView = text
+        document.usesRecoveredContentEvents = true
+        bridge.onTraitsChange = { [weak document] traits in document?.applyRecoveredTraits(traits) }
+        bridge.onAttributedTextChange = { [weak document] value in document?.receiveRecoveredContent(value) }
+        storageBridge = bridge
         documentView = text
         contentObservation = document.$content.sink { [weak self] content in
             MainActor.assumeIsolated {
@@ -152,6 +165,15 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    override func viewDidChangeEffectiveAppearance() {
+        super.viewDidChangeEffectiveAppearance()
+        effectiveAppearance.performAsCurrentDrawingAppearance { self.f_1003ebcd4() }
+    }
+
+    private func f_1003ebcd4() {
+        OriginalPreviewTextColors.f_1003eb4a8(original: originalText, editor: text)
+    }
 
     var preferredPreviewSize: NSSize {
         let screenSize = NSScreen.main?.frame.size
@@ -195,10 +217,7 @@ private final class ReplicaInlineTextPreviewContent: NSScrollView, OriginalPrevi
         originalText = Self.attributedContent(item)
         editingText = OriginalPreviewAttributedText.normalizedEditingText(originalText)
         OriginalPreviewAttributedText.f_1003eb330(original: originalText, editing: editingText, editor: text)
-        if !text.isEditable, OriginalPreviewAttributedText.f_1003095bc(originalText) {
-            text.font = OriginalPreviewAttributedText.f_1000f3e48()
-        }
-        document.textDidChange(Notification(name: NSText.didChangeNotification, object: text))
+        OriginalPreviewTextColors.f_1003eb4a8(original: originalText, editor: text)
     }
 
     private static func attributedContent(_ item: ClipboardItem) -> NSAttributedString {
@@ -226,7 +245,7 @@ private final class ReplicaInlinePreviewHeader: NSView {
         super.init(frame: .zero)
         let close = NSButton()
         f_1000123d4(close)
-        let edit = NSButton(title: "编辑", target: self, action: #selector(editAction))
+        let edit = OriginalToolbarButton(title: String(localized: OriginalPreviewLocalization.f_1001c1688())) { [weak self] _ in self?.onEdit?() }
         let row = NSStackView(views: [edit])
         row.spacing = 8
         row.alignment = .centerY
@@ -270,6 +289,7 @@ private final class ReplicaInlinePreviewHeader: NSView {
 
     @objc private func editAction() { onEdit?() }
     @objc private func closeAction() { onClose?() }
+    override func cancelOperation(_ sender: Any?) { titleLabel.f_100011d28() }
 }
 
 @MainActor
@@ -279,11 +299,12 @@ private final class ReplicaInlinePreviewEditorHeader: NSView {
     private var saveButton: NSButton?
     init(document: ReplicaRichTextDocument) {
         super.init(frame: .zero)
-        let cancel = NSButton(title: "取消", target: self, action: #selector(cancelAction))
-        let save = NSButton(title: "保存", target: self, action: #selector(saveAction))
+        let cancel = OriginalToolbarButton(title: String(localized: OriginalPreviewLocalization.f_1001c0788()), shortcut: .init(keyCode: OriginalShortcutFunctions.f_1001e95fc(), internalModifiers: 0), toolTip: String(localized: OriginalPreviewLocalization.f_1001be988())) { [weak self] _ in self?.onCancel?() }
+        let save = OriginalToolbarButton(title: String(localized: OriginalPreviewLocalization.f_1001c3908()), shortcut: .init(keyCode: Int(OriginalShortcutFunctions.f_1001e94d4("s")), internalModifiers: NSEvent.ModifierFlags.command.rawValue), toolTip: String(localized: OriginalPreviewLocalization.f_1001bf108())) { [weak self] _ in self?.onSave?() }
+        save.isPrimary = true
         save.isEnabled = false
         saveButton = save
-        let toolbar = NSHostingView(rootView: ReplicaInlinePreviewFormatting(document: document))
+        let toolbar = ReplicaInlinePreviewFormatting(document: document)
         for view in [cancel, save, toolbar] { view.translatesAutoresizingMaskIntoConstraints = false; addSubview(view) }
         NSLayoutConstraint.activate([
             cancel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
@@ -301,15 +322,37 @@ private final class ReplicaInlinePreviewEditorHeader: NSView {
 }
 
 @MainActor
-private struct ReplicaInlinePreviewFormatting: View {
-    @ObservedObject var document: ReplicaRichTextDocument
-    var body: some View {
-        HStack(spacing: 18) {
-            Button("B") { document.toggle(.bold) }.fontWeight(.bold)
-            Button("I") { document.toggle(.italic) }.italic()
-            Button("U") { document.toggle(.underline) }.underline()
-            Button("S") { document.toggle(.strikethrough) }.strikethrough()
-        }.buttonStyle(.plain).frame(height: 38)
+private final class ReplicaInlinePreviewFormatting: NSView {
+    private let buttons: [OriginalToolbarButton]
+
+    init(document: ReplicaRichTextDocument) {
+        buttons = [
+            OriginalToolbarButton(symbol: "bold", shortcut: .init(keyCode: Int(OriginalShortcutFunctions.f_1001e94d4("b")), internalModifiers: NSEvent.ModifierFlags.command.rawValue), toolTip: String(localized: OriginalPreviewLocalization.f_1001bf288())) { [weak document] _ in document?.toggle(.bold) },
+            OriginalToolbarButton(symbol: "italic", shortcut: .init(keyCode: Int(OriginalShortcutFunctions.f_1001e94d4("i")), internalModifiers: NSEvent.ModifierFlags.command.rawValue), toolTip: String(localized: OriginalPreviewLocalization.f_1001bf408())) { [weak document] _ in document?.toggle(.italic) },
+            OriginalToolbarButton(symbol: "underline", shortcut: .init(keyCode: Int(OriginalShortcutFunctions.f_1001e94d4("u")), internalModifiers: NSEvent.ModifierFlags.command.rawValue), toolTip: String(localized: OriginalPreviewLocalization.f_1001bf708())) { [weak document] _ in document?.toggle(.underline) },
+            OriginalToolbarButton(symbol: "strikethrough", toolTip: String(localized: OriginalPreviewLocalization.f_1001bf588())) { [weak document] _ in document?.toggle(.strikethrough) }
+        ]
+        super.init(frame: .zero)
+        let row = NSStackView(views: buttons)
+        row.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(row)
+        NSLayoutConstraint.activate([
+            row.leadingAnchor.constraint(equalTo: leadingAnchor),
+            row.trailingAnchor.constraint(equalTo: trailingAnchor),
+            row.topAnchor.constraint(equalTo: topAnchor),
+            row.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        document.onRecoveredTraitsChange = { [weak self] traits in _ = self?.f_1002106d0(traits) }
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    @discardableResult
+    private func f_1002106d0(_ traits: Set<OriginalPreviewTextTraits.Trait>) -> Int {
+        for (index, trait) in [OriginalPreviewTextTraits.Trait.bold, .italic, .underline, .strikethrough].enumerated() {
+            buttons[index].isSelected = OriginalPreviewTextTraits.f_100208290(trait, in: traits)
+        }
+        return 0
     }
 }
 

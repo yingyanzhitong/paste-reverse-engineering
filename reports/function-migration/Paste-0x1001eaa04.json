@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001eaa04",
-  "reviewed_at": "2026-10-23T09:13:58.116346+00:00",
+  "reviewed_at": "2026-10-23T09:48:24.533980+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0157.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "f28fdee4259c884d2af6d53144d30a1f01421259ee22efce9993aa0bad5ed2bf",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift": "4d9f01435d0b4ff2bcac5724479cc21c2175bba5fc9819a8d2d01d3fd5a8253b"
+    "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift": "0ae87812c59edb65d973f77446ff78971c2c465d990df5b0c110dad76a8e0cae"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "manager销毁并释放对象：可选RemoveEventHandler，再释放锁、注册字典和DI依赖，最后按当前类实际布局deallocClassInstance。",
   "review": "当前Swift编译器确实生成独立destroying/deallocating deinit；本轮删除removeAll恢复顺序。独立实现按自身类布局释放，不假称原版ABI。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

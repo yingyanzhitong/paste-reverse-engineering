@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000db2a8",
+  "reviewed_at": "2026-10-23T09:48:24.703124+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0072.c",
+    "line": 1038
+  },
+  "original_pseudocode_sha256": "a772b2d3d473a67abf9907605171ce190606fb1af7da63da0d2a08a84122e9f3",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalInitializedValue.swift": "bde8f2a1c9e4b6c74e9bb332ebff29dcbd3569d2459783a451661ff106d0e1c4"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "初始化泛型容器唯一Optional<Value>字段为none；无其他字段或额外锁/副作用。",
+  "review": "完整REA part-0072.c泛型Optional分支/虚表静态审阅；.local/di-initialized-value-messages-wave3.txt核实两后缀字节；OriginalShortcutTelemetry实际配置factory调用，非孤立计数API。析构和编译器分配wrapper未冒称完成。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "עצור והעתק יומנים";
+"diagnostics.start.message" = "Paste יופעל מחדש כדי להתחיל לאסוף יומני אבחון. אתה יכול לעצור את האבחון";
+"diagnostics.start.title" = "התחל אבחון";
+"diagnostics.stop.message" = "יומני האבחון יועתקו כדי שתוכל לשלוח אותם לתמיכה.";
+"diagnostics.stop.title" = "עצור אבחון";
+"edit-item.toolbar.discard-changes" = "בטל שינויים";
+"edit-item.toolbar.save-changes" = "שמור שינויים";
+"edit-item.toolbar.text.bold" = "מודגש";
+"edit-item.toolbar.text.italic" = "נטוי";
+"edit-item.toolbar.text.strikethrough" = "קו חוצה";
+"edit-item.toolbar.text.underline" = "קו תחתון";
+"general.action.cancel" = "ביטול";
+"general.action.edit" = "ערוך";
+"general.action.restart-paste" = "הפעל מחדש את Paste";
+"general.action.save" = "שמור";

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001bf408",
+  "reviewed_at": "2026-10-23T09:48:24.948021+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0148.c",
+    "line": 788
+  },
+  "original_pseudocode_sha256": "a06b509cdc363ab523842910df405e0b08d7f9782c626a83dd7ce2683770c2a2",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift": "289ade1dac1d425880269c871f1a7a58eb193dd4d6bc2ef7a663514524e9f6c6",
+    "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings": "1a99c90531d875a7101067a42cf88bdf630ad286c35cfa38d36863d77de8aacb",
+    "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings": "cd73bc74058f098f19b31a535ecd9a8bb1f321b14e4e9ccdc8c909ae7e796e75",
+    "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings": "9a85cb579489623503713a5b69ba53f094496de0ac8bb503d625987f60dba451",
+    "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings": "436579ad5ce4314e780e30c4cf1895962015b01325668c46765c76c89a17f8f0",
+    "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings": "7cb481d8a1da4cfa7ce2953a32a4576aaa5c67c2a9551039f1575c9b50335ce9",
+    "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings": "b1032b6dfaa5282d91e09a2f7e2b1195394cd95eceee762c922e8c1a61d34c0d",
+    "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings": "6cdfd9ce9879222e86bbc5eea1786094f3c1ca5c706c6eae57ffd40c62db5304",
+    "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings": "44f6b2e0190cfb9ace8011ef3a89a0d6b65d04ed645547301dbb2e26541b67dd",
+    "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings": "49cbb5c7bcd5f530b859a88f79c5df775c8b13360c8b86202e48d191d021dedc",
+    "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings": "57752cc0ac45105828cbdd351826994ca5ebefe86315d15139c81c3ffd6d0107",
+    "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings": "e6dded84e5eec6d88a9c08ffa793d2af556b3d2e478ae348a1f599563f382bdf",
+    "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings": "0d5037ae4b980c35ad3f10595adcf43c37550ca21b54570093980a24b363eefd",
+    "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings": "99680118da16c79bf1e5c17333585220adfa941569d272be07c2792bde625330",
+    "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings": "173fdd9229ca3109abcf87475e2311b561d75ca913dd8f10af9beb1f1634ef64",
+    "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings": "478a25ba210aec2cf65a8955f72e7bbe3823ece96971339dad855d21716d716e",
+    "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings": "df8eca1a3590ae7d3a17568a8492a6ccafd74423ba11d27914370cc046f34faf",
+    "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings": "04aec59daaae6cdc1589ca5e871bea89871514da2afa5d77f2fb2b941f60bdea"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "用String.LocalizationValue字面key edit-item.toolbar.text.italic构造LocalizedStringResource，table Localizable、locale.current、原本地化资源bundle；不提前转成固定语言字符串。",
+  "review": "decompiled/Paste/part-0148.c:788；原Mach-O heap literal指针+32逐字核实key；17语言原文逐key精确抽取，均存在，无自行翻译。产品bundle身份适配Bundle.module；真实preview工厂以String(localized:)消费。Foundation SDK15.2接口已静态核对。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

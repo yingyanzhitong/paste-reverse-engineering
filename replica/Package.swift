@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "PasteReplica",
+    defaultLocalization: "en",
     platforms: [.macOS(.v14)],
     products: [
         .library(name: "PasteReplicaCore", targets: ["PasteReplicaCore"]),
@@ -12,7 +13,7 @@ let package = Package(
         .executable(name: "paste-replica-core-tests", targets: ["PasteReplicaCoreTests"])
     ],
     targets: [
-        .target(name: "PasteReplicaCore"),
+        .target(name: "PasteReplicaCore", resources: [.process("Resources")]),
         .executableTarget(name: "PasteReplica", dependencies: ["PasteReplicaCore"]),
         .executableTarget(name: "PasteReplicaHelper"),
         .executableTarget(name: "PasteReplicaMCP", dependencies: ["PasteReplicaCore"]),

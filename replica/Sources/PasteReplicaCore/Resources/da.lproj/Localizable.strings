@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "Stop og kopiér logfiler";
+"diagnostics.start.message" = "Paste genstarter for at begynde at indsamle diagnoselogfiler. Du kan stoppe diagnostikken";
+"diagnostics.start.title" = "Start diagnostik";
+"diagnostics.stop.message" = "Diagnoselogfiler kopieres, så du kan sende dem til support.";
+"diagnostics.stop.title" = "Stop diagnostik";
+"edit-item.toolbar.discard-changes" = "Kassér ændringer";
+"edit-item.toolbar.save-changes" = "Gem ændringer";
+"edit-item.toolbar.text.bold" = "Fed";
+"edit-item.toolbar.text.italic" = "Kursiv";
+"edit-item.toolbar.text.strikethrough" = "Gennemstregning";
+"edit-item.toolbar.text.underline" = "Understrege";
+"general.action.cancel" = "Annuller";
+"general.action.edit" = "Rediger";
+"general.action.restart-paste" = "Genstart Paste";
+"general.action.save" = "Gem";

@@ -1,5 +1,4 @@
 import Foundation
-import OSLog
 import os
 
 public protocol OriginalDiagnosticSink {
@@ -13,48 +12,31 @@ extension OriginalDiagnosticSink {
     public func f_1000d4e0c(_ message: String) { emit(level: 3, message: message) }
 }
 
-/// The local sink replaces the original console/file provider registration.
-/// The named logger's initializer and cache do not depend on that backend.
-private struct OriginalOSLogDiagnosticSink: OriginalDiagnosticSink {
-    let logger: Logger
-
-    init(name: String) { logger = Logger(subsystem: "com.pastereplica", category: name) }
-
-    func emit(level: UInt8, message: String) {
-        let levels: [OSLogType] = [.debug, .info, .default, .error]
-        guard Int(level) < levels.count else { return }
-        logger.log(level: levels[Int(level)], "\(message, privacy: .public)")
-    }
-}
-
 extension OriginalDependencyValues {
     public var diagnosticFactory: (String) -> any OriginalDiagnosticSink {
-        { OriginalOSLogDiagnosticSink(name: $0) }
+        { OriginalDiagnosticDispatcher.f_1000d4a94(name: $0) }
     }
 }
 
 public final class OriginalNamedDiagnostic {
     private static let factoryDependency = OriginalDependency(\OriginalDependencyValues.diagnosticFactory)
-    private let cached = OSAllocatedUnfairLock<(any OriginalDiagnosticSink)?>(uncheckedState: nil)
+    private let lock = OSAllocatedUnfairLock<Void>(uncheckedState: ())
     public let name: String
-    private let factory: (String) -> any OriginalDiagnosticSink
+    private var cached: (any OriginalDiagnosticSink)?
 
-    private init(name: String, factory: @escaping (String) -> any OriginalDiagnosticSink) {
+    private init(name: String) {
         self.name = name
-        self.factory = factory
+        self.cached = nil
     }
 
-    public static func f_1000d4624(name: String,
-                                  factory: ((String) -> any OriginalDiagnosticSink)? = nil) -> OriginalNamedDiagnostic {
-        OriginalNamedDiagnostic(name: name, factory: factory ?? {
-            factoryDependency.f_1000da768()($0)
-        })
+    public static func f_1000d4624(name: String) -> OriginalNamedDiagnostic {
+        OriginalNamedDiagnostic(name: name)
     }
 
     public func f_1000d468c() -> any OriginalDiagnosticSink {
-        cached.withLockUnchecked { cached in
+        lock.withLockUnchecked { _ in
             if let cached { return cached }
-            let sink = factory(name)
+            let sink = Self.factoryDependency.f_1000da768()(name)
             cached = sink
             return sink
         }

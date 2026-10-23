@@ -44,9 +44,14 @@ public enum OriginalShortcutValidation {
 
     public static func optionCompatibilityWarning(modifierRawValue: UInt,
                                                   version: OperatingSystemVersion) -> String? {
-        guard modifierRawValue & 0x80000 != 0,
-              modifierRawValue & 0x140000 == 0,
-              version.majorVersion == 15, version.minorVersion < 2 else { return nil }
+        guard requiresOptionCompatibilityWarning(modifierRawValue: modifierRawValue, version: version)
+        else { return nil }
         return OriginalShortcutMessages.value("shortcut-recorder.error.option-key")
+    }
+
+    public static func requiresOptionCompatibilityWarning(modifierRawValue: UInt,
+                                                          version: OperatingSystemVersion) -> Bool {
+        modifierRawValue & 0x80000 != 0 && modifierRawValue & 0x140000 == 0
+            && version.majorVersion == 15 && version.minorVersion < 2
     }
 }

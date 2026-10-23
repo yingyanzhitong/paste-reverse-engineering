@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000f3ef4",
-  "reviewed_at": "2026-10-23T09:13:58.139562+00:00",
+  "reviewed_at": "2026-10-23T09:48:24.564398+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0082.c",
@@ -10,17 +10,17 @@
   },
   "original_pseudocode_sha256": "e3361bc823fa2b9bd6b734fd7435812bb97264969c9e2c631afb9e70cada4359",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalPreviewAttributedText.swift": "36b96ffa221ab7e2368c506bd4705a9537af5388c69f9996d78a18d775eb32e4"
+    "replica/Sources/PasteReplicaCore/OriginalPreviewAttributedText.swift": "f670c5a9d4120859b7c75cb646ae574472ce51bdb320143fb929b48ac6e586ed"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "每次构造HelveticaNeue、13pt字体；不存在时不可继续。",
   "review": "原版0x1000f3f00..3f1c八条MOV/MOVK构成HelveticaNeue，fmov d0=13；nil分支brk1。真实编辑规范化与typingAttributes调用，非死代码。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

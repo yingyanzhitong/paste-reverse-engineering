@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001f12cc",
+  "reviewed_at": "2026-10-23T09:48:24.802059+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0160.c",
+    "line": 304
+  },
+  "original_pseudocode_sha256": "5d1b0961902cf9e2b2403e02618b0140ce4b135e51a0ed1a7a55c33a2c40da39",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "ba907c942f91fe336506e9a47576051f285bfce47ccd43315cb111aedbd237f2"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "独立无payload录制ValidationError的LocalizedError.errorDescription getter每次按当前本地化解析shortcut-recorder.error.option-key并返回非nil字符串；failureReason/recoverySuggestion/helpAnchor使用LocalizedError默认nil。",
+  "review": "原版descriptor0x100ca7548名ValidationError且单emptycase；LocalizedError conformance0x100c33c40 requirementerrorDescription相对入口f1f12cc，导出调用f1e4554，后者字符串VM0x100d9d120确为option-key、Locale.current、bundle资源。其余3 getter指向Foundation默认实现。真实f1f132c成功后版本分支保存enum，SwiftUI alert读取Error.localizedDescription时调用getter。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

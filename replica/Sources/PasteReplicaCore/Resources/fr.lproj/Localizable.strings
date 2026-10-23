@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "Arrêter et copier les journaux";
+"diagnostics.start.message" = "Paste va redémarrer pour commencer à collecter les journaux de diagnostic. Vous pouvez arrêter le diagnostic";
+"diagnostics.start.title" = "Démarrer le diagnostic";
+"diagnostics.stop.message" = "Les journaux de diagnostic seront copiés afin que vous puissiez les envoyer au support.";
+"diagnostics.stop.title" = "Arrêter le diagnostic";
+"edit-item.toolbar.discard-changes" = "Jeter les modifications";
+"edit-item.toolbar.save-changes" = "Enregistrer les modifications";
+"edit-item.toolbar.text.bold" = "Gras";
+"edit-item.toolbar.text.italic" = "Italique";
+"edit-item.toolbar.text.strikethrough" = "Barré";
+"edit-item.toolbar.text.underline" = "Souligner";
+"general.action.cancel" = "Annuler";
+"general.action.edit" = "Modifier";
+"general.action.restart-paste" = "Redémarrer Paste";
+"general.action.save" = "Enregistrer";

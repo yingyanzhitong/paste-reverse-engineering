@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1000457cc",
-  "reviewed_at": "2026-10-23T09:13:58.072316+00:00",
+  "reviewed_at": "2026-10-23T09:48:24.457157+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0025.c",
@@ -11,17 +11,17 @@
   "original_pseudocode_sha256": "ce77ccf5dcb9ee54a5a40985681cd0bed2009a0b11ed1d180405657fb94403ce",
   "source_sha256": {
     "replica/Sources/PasteReplicaCore/OriginalSearchFieldAnimation.swift": "5c415996232f8f009d56ca0e07976ac31bb502f2295b7401cda2c62b4f51cc49",
-    "replica/Sources/PasteReplica/UI/PanelViews.swift": "ab18bd9404516407861af4854845335144310d32ff61aefeae5126136ba83f8d"
+    "replica/Sources/PasteReplica/UI/PanelViews.swift": "23bd2753e0217189d4252eac3c95adceb86eab7bc96169e3efdd3cb9ca2499b5"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "newly_migrated",
   "contract": "取得惰性filtersButton.layer，nil返回0；按(0.5-anchorPoint)*bounds计算中心偏移，对每个scale先translation再scale再反向translation生成transform序列[1,1.16,0.98,1]；keyTimes[0,0.35,0.7,1]、cubic、duration0.28、key filtersBounce，返回0。",
   "review": "MOV/MOVK逐字恢复transform和filtersBounce；完整汇编及浮点常量已保存.local/search-filter-animation-assembly.txt。现有NSMenu打开/关闭事件实际消费动画；SearchBar/FilterBrowserPopover的完整行为仍未恢复，不计为完成。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

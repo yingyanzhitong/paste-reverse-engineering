@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10023f230",
+  "reviewed_at": "2026-10-23T09:48:24.893698+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0196.c",
+    "line": 980
+  },
+  "original_pseudocode_sha256": "59e633051890b009afc023da2b861480a41160f9077cc6ae3804275de13a7bcc",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift": "f4c3920e5f5cd9f515bbe0cce530f4f8f6335b14450f75e471f0272e19412165"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "primary按enabled/pressed选择SystemEffect.none/pressed/disabled，背景accent、label/arrow白色同effect、icon优先显式tint；非primary先clear背景、>=26用foreground否则secondary色，按title设置border，再按disabled→pressed→selected→hover优先级重算前景/背景，所有分支保留显式icon tint优先。",
+  "review": "part-0196.c:978；pressed背景为surface色alpha0.15；selected背景surface色、label色；hover背景border色；未自造动画。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

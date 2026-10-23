@@ -109,34 +109,30 @@ struct ReplicaPanelView: View {
 
     private var searchFilterChips: [ReplicaSearchFilterChip] {
         var result: [ReplicaSearchFilterChip] = []
+        func symbol(_ kind: UInt8, value: String = "") -> NSImage? {
+            OriginalSearchFilterSymbols.f_100054b2c(kind: kind, value: value)
+                .flatMap { OriginalSystemImageFunctions.f_1000f653c($0) }
+        }
         if let kind = state.kind {
-            let symbol: String
-            switch kind {
-            case .text, .richText: symbol = "text.alignleft"
-            case .link: symbol = "link"
-            case .image: symbol = "photo"
-            case .files: symbol = "doc"
-            case .color: symbol = "paintpalette"
-            case .unknown: symbol = "questionmark.square"
-            }
+            let value = kind == .files ? "file" : kind == .richText ? "text" : kind.rawValue
             result.append(.init(selection: .kind(kind), title: kind.displayName,
-                image: NSImage(systemSymbolName: symbol, accessibilityDescription: nil)))
+                image: symbol(1, value: value)))
         }
         if let source = state.sourceFilter {
             let bundleID = state.store.items.first { $0.sourceName == source }?.sourceBundleID
             let appURL = bundleID.flatMap { NSWorkspace.shared.urlForApplication(withBundleIdentifier: $0) }
             let icon = appURL.map { NSWorkspace.shared.icon(forFile: $0.path) }
             result.append(.init(selection: .source(source), title: source,
-                image: icon ?? NSImage(systemSymbolName: "app", accessibilityDescription: nil)))
+                image: icon ?? symbol(0)))
         }
         if let days = state.dateFilterDays {
             let title = [1: "今天", 7: "过去一周", 30: "过去一个月"][days] ?? "\(days) 天"
             result.append(.init(selection: .date(days), title: title,
-                image: NSImage(systemSymbolName: "calendar", accessibilityDescription: nil)))
+                image: symbol(3)))
         }
         if let device = state.deviceFilter {
             result.append(.init(selection: .device(device), title: device,
-                image: NSImage(systemSymbolName: "desktopcomputer", accessibilityDescription: nil)))
+                image: symbol(4)))
         }
         return result
     }

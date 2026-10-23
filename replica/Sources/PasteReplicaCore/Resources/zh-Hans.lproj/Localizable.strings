@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "停止并复制日志";
+"diagnostics.start.message" = "Paste 将会重启以开始收集诊断日志。您可以停止诊断";
+"diagnostics.start.title" = "开始诊断";
+"diagnostics.stop.message" = "将会复制诊断日志，以便您发送给支持团队。";
+"diagnostics.stop.title" = "停止诊断";
+"edit-item.toolbar.discard-changes" = "放弃更改";
+"edit-item.toolbar.save-changes" = "保存更改";
+"edit-item.toolbar.text.bold" = "粗体";
+"edit-item.toolbar.text.italic" = "斜体";
+"edit-item.toolbar.text.strikethrough" = "删除线";
+"edit-item.toolbar.text.underline" = "下划线";
+"general.action.cancel" = "取消";
+"general.action.edit" = "编辑";
+"general.action.restart-paste" = "重启 Paste";
+"general.action.save" = "保存";

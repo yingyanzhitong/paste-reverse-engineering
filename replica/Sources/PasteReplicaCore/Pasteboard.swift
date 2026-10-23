@@ -9,7 +9,16 @@ private let concealedTypes: Set<String> = ["org.nspasteboard.ConcealedType", "co
 private let transientTypes: Set<String> = ["org.nspasteboard.TransientType", "de.petermaurer.TransientPasteboardType", generatedType.rawValue]
 
 extension OriginalDependencyValues {
-    public var pasteboardUndoManager: UndoManager { UndoManager() }
+    public var pasteboardUndoManager: UndoManager { f_10037c4a4() }
+
+    public func f_10037c4a4() -> UndoManager { f_1002fad30() }
+
+    public func f_1002fad30() -> UndoManager {
+        OriginalDependencies.f_1000d80e0(file: "PasteCore/DI+PasteCore.swift", line: 54, column: 19,
+                                         factory: Self.f_1002fd5e4)
+    }
+
+    public static func f_1002fd5e4() -> UndoManager { UndoManager() }
 }
 
 public enum OriginalPasteboardItemCreationError: Error {
@@ -19,6 +28,42 @@ public enum OriginalPasteboardItemCreationError: Error {
 
 extension ClipboardStore {
     public nonisolated static let orderedPasteboardTypesPayloadKey = "com.pastereplica.internal.types+json"
+
+    public nonisolated static func originalPasteboardItems(from payloads: [String: Data]) throws -> [OriginalPasteboardItem] {
+        let items: [OriginalPasteboardItem]
+        if let data = payloads[multiItemPayloadKey] {
+            if let ordered = try? JSONDecoder().decode([OriginalPasteboardItem].self, from: data) {
+                items = ordered
+            } else {
+                let legacy = try JSONDecoder().decode([[String: Data]].self, from: data)
+                items = legacy.map { values in
+                    let object = OriginalPasteboardItem()
+                    for (type, data) in values { object.f_10037d8c8(data, forType: type) }
+                    return object
+                }
+            }
+        } else {
+            let object = OriginalPasteboardItem()
+            let ordered = try payloads[orderedTypesPayloadKey].map { try JSONDecoder().decode([String].self, from: $0) } ?? []
+            for type in ordered { object.f_10037d8c8(payloads[type], forType: type) }
+            for (type, data) in payloads where !ordered.contains(type) { object.f_10037d8c8(data, forType: type) }
+            items = [object]
+        }
+        for item in items {
+            for type in analysisPayloadKeys.union([multiItemPayloadKey, orderedTypesPayloadKey]) { item.f_10037dab0(type) }
+        }
+        return items
+    }
+
+    /// Archive-based checksums need the original runtime class-name evidence.
+    /// Only branches independent of that archive representation are offered.
+    public nonisolated static func knownPasteboardChecksum(from payloads: [String: Data]) throws -> String? {
+        let items = try originalPasteboardItems(from: payloads)
+        let kind = OriginalPasteboardClassification.f_10032362c(items)
+        guard kind != .unknown else { return nil }
+        if kind == .files, !items.contains(where: { $0.f_10037cc6c() != nil }) { return nil }
+        return OriginalPasteboardChecksums.f_1003216bc(items, kind: kind)
+    }
 
     public nonisolated static func pasteboardImage(from payloads: [String: Data]) -> NSImage? {
         for values in normalizedPasteboardPayloads(payloads) {
@@ -183,28 +228,7 @@ extension ClipboardStore {
             objects = [OriginalPasteboardItem.f_10037c6d4(texts.joined(separator: "\n"))]
         } else {
           for item in selected {
-            let representations: [OriginalPasteboardItem]
-            if let data = item.payloads[multiItemPayloadKey] {
-                if let ordered = try? JSONDecoder().decode([OriginalPasteboardItem].self, from: data) {
-                    representations = ordered
-                } else {
-                    // Preserve archives written before ordered type lists were restored.
-                    let legacy = try JSONDecoder().decode([[String: Data]].self, from: data)
-                    representations = legacy.map { values in
-                        let object = OriginalPasteboardItem()
-                        for (type, data) in values { object.f_10037d8c8(data, forType: type) }
-                        return object
-                    }
-                }
-            } else {
-                let object = OriginalPasteboardItem()
-                let ordered = try item.payloads[orderedTypesPayloadKey].map { try JSONDecoder().decode([String].self, from: $0) } ?? []
-                for type in ordered { object.f_10037d8c8(item.payloads[type], forType: type) }
-                for (type, data) in item.payloads where !ordered.contains(type) {
-                    object.f_10037d8c8(data, forType: type)
-                }
-                representations = [object]
-            }
+            let representations = try Self.originalPasteboardItems(from: item.payloads)
             for object in representations {
                 for type in Self.analysisPayloadKeys.union([multiItemPayloadKey, orderedTypesPayloadKey]) {
                     object.f_10037dab0(type)
@@ -212,11 +236,17 @@ extension ClipboardStore {
                 if object.f_10037da6c().isEmpty, let text = item.plainText {
                     object.f_10037c4a8(text, forType: NSPasteboard.PasteboardType.string.rawValue)
                 }
-                if !object.f_10037da6c().isEmpty { objects.append(object) }
+                if !object.f_10037da6c().isEmpty {
+                    object.f_100383574(removingTypesContaining: ["com.microsoft.ole.source"])
+                    object.f_10037c4a8(item.sourceBundleID ?? "", forType: "org.nspasteboard.source")
+                    object.f_1003838bc()
+                    objects.append(object)
+                }
             }
           }
         }
         guard let first = objects.first else { throw ClipboardStoreError.pasteboardWriteFailed }
+        if plainTextOnly { first.f_1003838bc() }
         first.f_10037d8c8(Data(), forType: generatedType.rawValue)
         first.f_10037d8c8(Data(), forType: replicaGeneratedType.rawValue)
         let writer = OriginalPasteboardWriter(pasteboard: pasteboard)
@@ -383,6 +413,10 @@ public final class ClipboardMonitor: NSObject, OriginalPasteboardCaptureDelegate
 
     public func f_10037b034(_ items: [OriginalPasteboardItem]) throws -> Bool {
         guard !items.isEmpty else { throw OriginalPasteboardItemCreationError.emptyContent }
+        guard OriginalPasteboardChecksums.f_1003216bc(items,
+                                                      kind: OriginalPasteboardClassification.f_10032362c(items)) != nil else {
+            throw OriginalPasteboardItemCreationError.unsupportedContent
+        }
         let identifiers = Set(store.items.map(\.id))
         let app = NSWorkspace.shared.frontmostApplication
         guard let captured = try store.capture(pasteboard: pasteboard, sourceName: app?.localizedName ?? "未知应用",

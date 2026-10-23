@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000d489c",
+  "reviewed_at": "2026-10-23T09:48:24.732659+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0069.c",
+    "line": 1552
+  },
+  "original_pseudocode_sha256": "2248bb716d0c358e3acf0dd5829b6bd7562cffcfc7e682faf14d37f940ba6dcc",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift": "95baca2d0ee25cb9ca5a7bcbc111a820bbe70d29feecf46e5d8cd0c1f6d5c911"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "非释放实例的析构核心：按顺序释放 lock、name 和 optional logger 字段。",
+  "review": "本轮删除闲置instance-factory并恢复lock/name/cached三字段后，build15真正生成完整独立非deallocating-deinit符号Cfd。完整体按0x10 swift_release(lock)、0x20 bridgeObjectRelease(name)、0x28可选sink销毁顺序，返回self，不free实例。和原0d489c..0d48c8逐指令语义相同，已不是fD片段冒充。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
+  "compiled_boundary": {
+    "start": "0x1000be67c",
+    "end_exclusive": "0x1000be6a8",
+    "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+  }
+}

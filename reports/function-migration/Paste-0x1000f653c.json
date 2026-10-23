@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000f653c",
+  "reviewed_at": "2026-10-23T09:48:24.691314+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0083.c",
+    "line": 1343
+  },
+  "original_pseudocode_sha256": "f04351b8a1209a62de9277ea64373c65bb439dfa8bf86050b049c73d4f596fb7",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift": "73a9ca9cb90529d7c46665ac1af0241f0310505e56704d441df4e94c816698ef"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "对传入NSImage metatype以系统符号名创建可选NSImage，accessibilityDescription=nil，保留nil失败返回；不自行增加fallback。",
+  "review": "原版执行imageWithSystemSymbolName:accessibilityDescription:，Swift平台API保留同一类工厂语义。实际符号解析路径使用，不将符号配置或原版探测后再次加载的父逻辑计满。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001e7568",
+  "reviewed_at": "2026-10-23T09:48:24.807053+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0156.c",
+    "line": 763
+  },
+  "original_pseudocode_sha256": "be8bca33dd3a6561c8867947dc42d3397e48feedda8811108c6576621a4ba4aa",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift": "73908ddfedcd38cb4f1f64a7a21d1499879bed195dfb13d70f1ebbbeb6ce5b51"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "existing_reused",
+  "contract": "无参validator服务直接getter，按固定文件PasteShortcut/DI+PasteShortcut.swift、line12、column19和f1e75e4具体服务factory解析共享cache，返回服务实例。",
+  "review": "原版0x1001e7568..0x1001e757c准确装载f1ec904 metadata accessor、f1e75e4 factory、line12后tailcallf1e7580；f1e7580传同文件36字节/column19给f0d80e0。与keypathgetterf1f1e64（原版单独specialization）的参数/所有副作用完全相同，可复用当前真实typed provider，不新造孤立func。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

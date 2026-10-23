@@ -115,17 +115,28 @@ public final class OriginalPreviewTextField: NSView, NSTextFieldDelegate {
     public override func resignFirstResponder() -> Bool { f_10023adf0().resignFirstResponder() }
 
     public override func becomeFirstResponder() -> Bool {
+        f_10023c304()
+    }
+
+    public func f_10023c304() -> Bool {
         let field = f_10023adf0()
         let result = field.becomeFirstResponder()
-        if let editor = field.currentEditor() as? NSTextView, let color = field.textColor {
-            editor.insertionPointColor = color
+        if let editor = field.currentEditor() as? NSTextView {
+            // The SDK declares this property nonnull, but the original forwards
+            // the nullable NSTextField.textColor without an extra nil branch.
+            let selector = NSSelectorFromString("setInsertionPointColor:")
+            typealias Setter = @convention(c) (NSTextView, Selector, NSColor?) -> Void
+            let setter = unsafeBitCast(editor.method(for: selector)!, to: Setter.self)
+            setter(editor, selector, field.textColor)
         }
         return result
     }
 
     public override var intrinsicContentSize: NSSize {
         let field = f_10023adf0()
-        return field.sizeThatFits(NSSize(width: CGFloat.infinity, height: field.intrinsicContentSize.height))
+        let height = field.intrinsicContentSize.height
+        let width = field.sizeThatFits(NSSize(width: CGFloat.infinity, height: height)).width
+        return NSSize(width: width.rounded(.toNearestOrAwayFromZero), height: height)
     }
 }
 

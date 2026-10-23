@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10037e44c",
+  "reviewed_at": "2026-10-23T09:48:24.716398+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0282.c",
+    "line": 1478
+  },
+  "original_pseudocode_sha256": "82352b41c44b47702db2b2d393b1c5cea5eff62840c102576c453b4c88777500",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift": "60f862d0779d4f580e89be5eafef96239c75287facd4602ba02b10ce232c7b61"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "existing_reused",
+  "contract": "Decodable协议构造witness：分配对象并调用Decoder初始化，成功才向返回缓冲写实例，错误时不写。",
+  "review": "build15完整witness：分配、Decoder init后1000c1e74 cbnz x21跳过1000c1e78返回缓冲写入。Decodable conformance descriptor1001173ec的resilient witness imp rel@100117404→1000c1e40。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
+  "compiled_boundary": {
+    "start": "0x1000c1e40",
+    "end_exclusive": "0x1000c1e8c",
+    "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+  }
+}

@@ -72,7 +72,9 @@ public final class OriginalShortcutRegistration {
 /// The reference installs one dispatcher handler for all registered shortcuts,
 /// allocates process-wide IDs and delivers a retained action on the main queue.
 public final class OriginalGlobalShortcutMonitor {
-    public static let shared = OriginalGlobalShortcutMonitor()
+    public static var shared: OriginalGlobalShortcutMonitor { OriginalDependencyValues().f_1001e7514() }
+
+    public static func f_1001e752c() -> OriginalGlobalShortcutMonitor { OriginalGlobalShortcutMonitor() }
     private static let logger = Logger(subsystem: "PasteReplica", category: "shortcuts")
     private var handler: EventHandlerRef?
     private let lock = NSLock()

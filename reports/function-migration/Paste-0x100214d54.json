@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100214d54",
+  "reviewed_at": "2026-10-23T09:48:24.820213+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0181.c",
+    "line": 367
+  },
+  "original_pseudocode_sha256": "b86074ffe3cc211a4cef943f6276e213632345d9cb3b6689dae181bf6047b398",
+  "source_sha256": {
+    "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift": "ae30f072ca21b4da6cdc4535ee7f9ed5e0c72b45dd06ea7235f666e045ea48ab"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "先调用super.menu(for:event)，非nil时在同一menu原位调用f21ad80移除原版指定富文本组，nil不操作；返回同一menu。",
+  "review": "part-0181.c:368；复用已迁移OriginalSearchMenu.f21ad80，不修改父持有菜单实现。 仅静态迁移，等待主智能体统一编译。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

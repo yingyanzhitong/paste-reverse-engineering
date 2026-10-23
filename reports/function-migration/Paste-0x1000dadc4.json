@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000dadc4",
+  "reviewed_at": "2026-10-23T09:48:24.705466+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0072.c",
+    "line": 793
+  },
+  "original_pseudocode_sha256": "334d04d11b4b707b8b4729089317843ddc20f2940f7bf0dcf8865e0ae73273bd",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift": "d83f199826f661090cdd74b9d05e185e295bf3570ba2f8e8dc868f9dac219cbf"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "existing_compiler_generated_reused",
+  "contract": "非actor共享cache析构：先释放+0x10的NSRecursiveLock，再释放+0x18的[String:Any]字典，最后以size32/alignment7释放实例；无额外cache字段或异步调度。",
+  "review": "原完整0x1000dadc4..0x1000dadf0汇编纠正Ghidra objc_release省略；build15实际__deallocating_deinit 0x1000e9204..0x1000e9230逐条核定相同字段释放顺序及32/7实例释放。nm下一函数边界0x1000e9230，非内联片段，不将deinit另一个body重复计数。无产品运行或功能验证。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。",
+  "compiled_boundary": {
+    "start": "0x1000e9204",
+    "end_exclusive": "0x1000e9230",
+    "source": "build15 complete nm boundary and static lldb instruction review",
+    "binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87"
+  },
+  "original_static_body": [
+    "ldr x0,[x20,#0x10]",
+    "bl objc_release",
+    "ldr x0,[x20,#0x18]",
+    "bl swift_bridgeObjectRelease",
+    "mov x0,x20",
+    "mov w1,#0x20",
+    "mov w2,#0x7",
+    "b swift_deallocClassInstance"
+  ]
+}

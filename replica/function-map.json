@@ -1493,7 +1493,7 @@
     },
     "Paste:0x1001f132c": {
       "state": "migrated",
-      "contract": "录制回调完整分支：无修饰Delete清除/Escape取消；精确Cmd-W/Q经固定ANSI表匹配，结束录制为unassigned且放行；无显示键保存candidate；非法修饰beep且放行；validator失败恢复previous并发error；成功先onDetect后assigned；macOS15.0/15.1 Option-only提示。",
+      "contract": "录制回调完整分支：无修饰Delete清除/Escape取消；精确Cmd-W/Q经固定ANSI表匹配，结束录制为unassigned且放行；无显示键保存candidate；非法修饰beep且放行；validator失败恢复previous并发error；成功先onDetect后assigned；macOS15.0/15.1 Option-only提示。 非空显示键先resolve并释放validator，再判修饰键；合法后再次resolve并调用服务。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift",
@@ -1502,10 +1502,26 @@
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift",
           "symbol": "let validate = validator.f_1000da768()"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift",
+          "symbol": "_ = validator.f_1000da768()"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "public func validate(_ shortcut: OriginalShortcutValue)"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift",
+          "symbol": "validationError = OriginalShortcutRecorderValidationError.optionKey"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutValidation.swift",
+          "symbol": "public static func requiresOptionCompatibilityWarning"
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "逐分支核对part-0160.c与汇编，补全Published三态(previous/candidate)，纠正旧实现非法组合吞事件及布局相关Cmd-W/Q判断；NSButton→model真实监控调用，旧partial现可标完整。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。 本批复审后保留原恢复契约；真实入口改为直接SwiftUI StateObject组件，移除Native代理事件/窗口观察；当前候选待统一编译，不沿用旧文件摘要。 默认实际路径通过TaskLocal typed DI解析validator；失败Error原样保存而非改写为String或新Error，Option兼容错误仍独立构造；保留所有原版事件返回分支。",
+      "review": "逐分支核对part-0160.c与汇编，补全Published三态(previous/candidate)，纠正旧实现非法组合吞事件及布局相关Cmd-W/Q判断；NSButton→model真实监控调用，旧partial现可标完整。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。 本批复审后保留原恢复契约；真实入口改为直接SwiftUI StateObject组件，移除Native代理事件/窗口观察；当前候选待统一编译，不沿用旧文件摘要。 默认实际路径通过TaskLocal typed DI解析validator；失败Error原样保存而非改写为String或新Error，Option兼容错误仍独立构造；保留所有原版事件返回分支。 本轮汇编确认0x1001f15d8首次resolve在modifier判定前、0x1001f171c再次resolve才校验；现补非法键也触发首次factory/cache的副作用；具体无状态服务替代closure，两次解析均从真实事件路径调用。 进一步核对ValidationError类型descriptor0x100ca7548（单empty-case enum）及LocalizedError requirement0x100c33c60指向f1f12cc，Option成功后的警告现保留独立enum，errorDescription每次获取时本地化，不提前存String。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "source": {
         "path": "decompiled/Paste/part-0160.c",
@@ -1865,8 +1881,8 @@
     },
     "Paste:0x100378664": {
       "state": "partial",
-      "code_ready": false,
-      "contract": "CaptureState初始化含弱delegate=nil、空items、count零值系统分支、两个timer nil及两个惰性日志依赖。",
+      "code_ready": true,
+      "contract": "构造系统剪贴板捕获状态：generalPasteboard、nil弱delegate、空items、nil双timer、Pasteboard namedlogger、lazy事件依赖，零token读取系统changeCount。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPasteboardCaptureState.swift",
@@ -1874,8 +1890,8 @@
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "弱delegate已改为实际可调用协议且从monitor指派；root正恢复通用DI基础设施，未新增重复DI。 已接root新增OriginalDependency(\\OriginalDependencyValues.pasteboardEventLogging)与锁内缓存f1000da768；移除旧事件provider额外cached。",
-      "remaining": "原版provider注册/默认输出契约未知，保持partial；通用TaskLocal/typed override/锁缓存已接入。"
+      "review": "本地字段/初值和namedlogger已恢复；新定位第二DI的keypath c43730:rel32@c43758→37a140，完整branch→08d748；provider f0d80e0(PasteTelemetry/DI+PasteTelemetry.swift,13:19,19b6f0)，说明不是namedlogger重复缓存。现用local event sink替代，保留接口且排除联网遥测。",
+      "remaining": "原遥测后端依用户网络排除范围不恢复，混合构造函数不能据namedlogger修复直接宣称整体等价。"
     },
     "Paste:0x100378ac0": {
       "state": "migrated",
@@ -11564,7 +11580,7 @@
     "Paste:0x1000d4624": {
       "state": "migrated",
       "code_ready": true,
-      "contract": "保存名称和可选logger缓存nil；新建实例unfair锁；不解析factory、不输出日志。",
+      "contract": "新建单 unfair 锁，保存名称，独立 optional logger 缓存为 nil，不解析全局 factory。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift",
@@ -11572,14 +11588,14 @@
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "按root复审纠正：以单个OSAllocatedUnfairLock<optional sink>持有缓存，移除NSLock/分离cached；static惰性factory依赖只在首次get锁内触发。",
+      "review": "简化已完成：删除无调用的 instance factory 注入适配，所有真实注入经全局 Dependency/TaskLocal；声明顺序 lock→name→cached 恢复原字段析构关系；三个产品调用点仅传 name，兼容。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "migration_evidence": "reports/function-migration/Paste-0x1000d4624.json"
     },
     "Paste:0x1000d468c": {
       "state": "migrated",
       "code_ready": true,
-      "contract": "实例unfair锁内检查缓存；未命中时先解析全局唯一惰性factory依赖（全局首次才解析TaskLocal/root），用name建sink并缓存；命中直接返回。",
+      "contract": "实例 unfair 锁内检查缓存；miss 时取得全局单次缓存 factory，factory(name)构造 logger 并缓存；hit 直接返回。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift",
@@ -11587,7 +11603,7 @@
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "已核对f0d44e8全局依赖初始化与f0d468c调用顺序；不同namedlogger不再每次直接fda458重新受TaskLocal影响。一个实例缓存锁和全局factory依赖各司其职，非重复缓存同一对象。",
+      "review": "改为单 OSAllocatedUnfairLock<Void> 保护独立缓存，无第二实例锁；全局 factoryDependency 仍 static 惰性、fda768 首次解析缓存。",
       "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "migration_evidence": "reports/function-migration/Paste-0x1000d468c.json"
     },
@@ -11742,9 +11758,9 @@
       "migration_evidence": "reports/function-migration/Paste-0x10037dd00.json"
     },
     "Paste:0x10037f520": {
-      "state": "partial",
-      "code_ready": false,
-      "contract": "NSCoding编码：按types、dataByType两个键分别桥接NSArray和NSDictionary并调用coder.encode，保持顺序及全部字典内容。",
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "NSCoding 依次把完整 orderedTypes 桥接 NSArray 以 types 键编码，再把完整 dataByType 桥接 NSDictionary 以 dataByType 键编码。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift",
@@ -11752,13 +11768,14 @@
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "完整方法体已恢复，NSSecureCoding encode(with:)确实转入此核心；OriginalPasteboardArchive.encodeItems也已提供，但产品导出调用尚未接入，故不计完整迁移。",
-      "remaining": "等待实际产品原生归档导出接入；方法体已实现，但不计已完整接入。"
+      "review": "此前方法体已实现但无产品编码入口的 partial，本轮由真实 monitor 校验链 unknown checksum→NSKeyedArchiver(false)→encode(with:)调用接入；不把归档 checksum 等价也计满。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10037f520.json"
     },
     "Paste:0x10037f650": {
-      "state": "partial",
-      "code_ready": false,
-      "contract": "ObjC encodeWithCoder:入口将coder转发给NSCoding编码实现。",
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "ObjC encodeWithCoder: 协议入口转发同一 NSCoding 编码实现。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift",
@@ -11766,8 +11783,9 @@
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "Swift NSSecureCoding协议自动产生ObjC入口并调用f_10037f520；产品的原生剪贴板对象导出尚未接入，保持partial，不以孤立helper灌数。",
-      "remaining": "等待实际产品原生归档导出接入；方法体已实现，但不计已完整接入。"
+      "review": "NSObject+NSSecureCoding 真实生成 ObjC 入口；本轮产品归档 checksum 真实使用，核心调用 f37f520；下一编译需核对新边界/selector绑定。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10037f650.json"
     },
     "Paste:0x1001e94d4": {
       "state": "migrated",
@@ -11879,8 +11897,7 @@
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift",
-          "symbol": "public init()",
-          "qualified_symbol": "OriginalGlobalShortcutMonitor.init"
+          "symbol": "public init()"
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift",
@@ -11889,11 +11906,15 @@
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
           "symbol": "var shortcutDiagnostic:"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "OriginalShortcutTelemetry.f_10019b694().localDiagnostic"
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "已使用真正OriginalDependency typed keypath；首次emit经f0da768锁内TaskLocal覆盖/根keypath provider fallback并缓存；无直接注入绕过分支。",
-      "remaining": "原版logger服务provider、共享服务缓存与完整本地输出后端未逐函数恢复，当前默认sink为OSLog；init保守partial。",
+      "review": "已使用真正OriginalDependency typed keypath；首次emit经f0da768锁内TaskLocal覆盖/根keypath provider fallback并缓存；无直接注入绕过分支。 本轮logger共享cache声明键及全局一次tuple配置/3字段构造已恢复接入；默认sink仍旧本地OSLog适配，不冒充原Telemetry协议/Sentry breadcrumb或captureError，故保留partial。",
+      "remaining": "原版Telemetry协议值和Sentry本地breadcrumb/错误scope构造未齐；网络delivery边界须逐地址审阅，不按模块排除。",
       "source": {
         "path": "decompiled/Paste/part-0157.c",
         "line": 1153
@@ -12191,8 +12212,8 @@
       "migration_evidence": "reports/function-migration/Paste-0x1001f1ab4.json"
     },
     "Paste:0x1001f06f8": {
-      "state": "partial",
-      "contract": "初始化nil验证错误、注入validator、nil监控；给定shortcut为assigned否则unassigned；保存onDetect。",
+      "state": "migrated",
+      "contract": "模型初始化按原版顺序构造nil Published<Error?>、具体validator服务的惰性typed-keypath依赖、nil事件monitor、绑定初值对应的Published三态，再保存onDetect回调；服务由其原始声明位置的共享cache解析。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift",
@@ -12200,8 +12221,7 @@
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift",
-          "symbol": "public init(shortcut: OriginalShortcutValue?, onDetect:",
-          "qualified_symbol": "OriginalShortcutRecorder.init"
+          "symbol": "public init(shortcut: OriginalShortcutValue?, onDetect:"
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift",
@@ -12209,16 +12229,25 @@
         },
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
-          "symbol": "var shortcutValidator: @MainActor"
+          "symbol": "var shortcutValidator: OriginalShortcutValidatorService"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "var shortcutValidator: OriginalShortcutValidatorService"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "func f_1001f1e64()"
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "真正DI typed keypath wrapper已接入；合法候选首次通过f0da768解析/缓存MainActor validator；validator现在返回任意Error?并原样存入Published，保留错误身份/LocalizedError动态行为。",
-      "remaining": "原版validator provider对象/共享服务缓存未逐函数恢复；当前provider将完整原版系统/菜单校验消息包装Error，init仍保守partial。",
+      "review": "重读初始化和keypath pattern0x100c33dd8，relative32 getter为f1f1e64；factory f1e75e4汇编仅分配16字节无字段Swift对象。closure替身已改为具体服务类，经root新增真实TaskLocal/global递归锁cache接入。先前provider/sharedcache缺口已补齐，actor析构独立地址仍partial。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
       "source": {
         "path": "decompiled/Paste/part-0159.c",
         "line": 1671
-      }
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1001f06f8.json"
     },
     "Paste:0x1001f0890": {
       "state": "partial",
@@ -15073,8 +15102,8 @@
       "migration_evidence": "reports/function-migration/Paste-0x1000123d4.json"
     },
     "Paste:0x10023b9ec": {
-      "state": "partial",
-      "contract": "初始化callback与lazyNativeField、NSView零frame、安装nativeField与布局。",
+      "state": "migrated",
+      "contract": "初始化callback/lazyNativeField、零frame、安装nativeField及布局。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTitleLabel.swift",
@@ -15082,12 +15111,13 @@
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "本批真实UI调用路径已接入，仅静态迁移，未功能回归。",
-      "remaining": "布局依赖0x100211c08及原版layout环境默认insets尚未完整逐项核实；wrapper becomeFirstResponder的nil textColor分支尚不同（复刻保留既有插入点色）；intrinsic计算原始浮点返回需进一步汇编核准。"
+      "review": "part-0195.c:360；callback/lazyField默认nil、NSView零frame、lazy native init配置、addSubview/translates=false与activate4约束均恢复。part-0165.c f1f9ff4逐值读取NSDirectionalEdgeInsetsZero；part-0180.c f211c08按top/leading正、bottom/trailing负安装，四零值与独立构造相同；本轮intrinsic舍入与nullable插入点色也已恢复。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023b9ec.json"
     },
     "Paste:0x10001333c": {
-      "state": "partial",
-      "contract": "初始化callback/originalText/lazyfield为空、零frame、安装TextField与四边约束。",
+      "state": "migrated",
+      "contract": "初始化onCommitEditing=nil、lazyTextField=nil、originalText=nil，NSView零frame初始化后惰性取得已配置TextField并addSubview，按f13404安装四边零约束。",
       "implementations": [
         {
           "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTitleLabel.swift",
@@ -15095,8 +15125,9 @@
         }
       ],
       "implementation_origin": "newly_migrated",
-      "review": "本批真实UI调用路径已接入，仅静态迁移，未功能回归。",
-      "remaining": "基础TextField构造与intrinsic细节仍partial；本层字段与依赖调用已接入，不能借此把完整依赖算满。"
+      "review": "part-0007.c:2190；真实Header持有该视图。基础TextField构造最后零insets依赖已由f1f9ff4与f211c08核准，未再保留不存在缺口；只适配产品身份/Swift独立对象布局。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10001333c.json"
     },
     "Paste:0x100011e00": {
       "state": "partial",
@@ -15526,6 +15557,3522 @@
       "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
       "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
       "migration_evidence": "reports/function-migration/Paste-0x100bfcb34.json"
+    },
+    "Paste:0x1000d80e0": {
+      "state": "migrated",
+      "contract": "按file.description + \"-\" + UInt line.description + \"-\" + UInt column.description构造缓存键；TaskLocal容器存在时使用该容器的共享服务cache，否则经once取全局cache；同一factory与结果类型原样传递。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift",
+          "symbol": "f_1000d80e0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整REA函数及所需arm64静态核对；typed共享服务已由快捷键validator/monitor真实消费。未执行产品或功能测试，不将其他provider或完整bootstrap标为完成。 .local/di-shared-key-wave3-assembly.txt及otool间接符号slot0x100eacb00=$sSuN、0x100eacb20=$sSus23CustomStringConvertiblesWP确认UInt。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0071.c",
+        "line": 1055
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000d80e0.json"
+    },
+    "Paste:0x1000d8280": {
+      "state": "migrated",
+      "contract": "全局共享服务cache首次初始化为NSRecursiveLock加空[String:Any]字典，后续返回同一对象。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift",
+          "symbol": "private static let globalSharedCache"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整REA函数及所需arm64静态核对；typed共享服务已由快捷键validator/monitor真实消费。未执行产品或功能测试，不将其他provider或完整bootstrap标为完成。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0071.c",
+        "line": 1115
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000d8280.json"
+    },
+    "Paste:0x1000daac0": {
+      "state": "migrated",
+      "contract": "持有NSRecursiveLock读取String键；已存储时必须向请求的Value类型转换成功，否则trap；未存储时持锁调用factory，装箱为Any并保存，返回同一value；Optional.none作为Value时仍缓存。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift",
+          "symbol": "f_1000daac0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整REA函数及所需arm64静态核对；typed共享服务已由快捷键validator/monitor真实消费。未执行产品或功能测试，不将其他provider或完整bootstrap标为完成。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0072.c",
+        "line": 669
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000daac0.json"
+    },
+    "Paste:0x1000dad10": {
+      "state": "migrated",
+      "contract": "对共享cache的String键赋值Optional<Any>；nil移除，some装箱值写入并替换旧值；Swift字典保留写时复制，锁由上层持有。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift",
+          "symbol": "f_1000dad10"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整REA函数及所需arm64静态核对；typed共享服务已由快捷键validator/monitor真实消费。未执行产品或功能测试，不将其他provider或完整bootstrap标为完成。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0072.c",
+        "line": 756
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000dad10.json"
+    },
+    "Paste:0x1000d8388": {
+      "state": "migrated",
+      "contract": "当前TaskLocal容器持有的独立sharedCache转发同一String键、factory和Value类型，不落到全局共享cache。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDependencies.swift",
+          "symbol": "f_1000d8388"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整REA函数及所需arm64静态核对；typed共享服务已由快捷键validator/monitor真实消费。未执行产品或功能测试，不将其他provider或完整bootstrap标为完成。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0071.c",
+        "line": 1223
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000d8388.json"
+    },
+    "Paste:0x1000d86bc": {
+      "state": "partial",
+      "contract": "新建包含独立override注册表与sharedCache的容器，在TaskLocal withValue作用域执行closure并还原外层context。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift",
+          "symbol": "f_1000d86bc"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "作用域/注册/清理局部代码已恢复，但产品bootstrap创建完整scope与注册真实providers的上层尚未迁移，不以当前公开API存在就把整条调用链计满。",
+      "remaining": "等待本轮稳定统一编译及逐项静态复审；全部范围内迁移后统一功能回归。",
+      "source": {
+        "path": "decompiled/Paste/part-0071.c",
+        "line": 1385
+      }
+    },
+    "Paste:0x1000d8d80": {
+      "state": "partial",
+      "contract": "要求当前TaskLocal context存在，否则trap；存在时按typed keypath注册typed factory。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift",
+          "symbol": "f_1000d8d80"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "作用域/注册/清理局部代码已恢复，但产品bootstrap创建完整scope与注册真实providers的上层尚未迁移，不以当前公开API存在就把整条调用链计满。",
+      "remaining": "等待本轮稳定统一编译及逐项静态复审；全部范围内迁移后统一功能回归。",
+      "source": {
+        "path": "decompiled/Paste/part-0071.c",
+        "line": 1762
+      }
+    },
+    "Paste:0x1000d8e10": {
+      "state": "partial",
+      "contract": "要求当前TaskLocal context存在，否则trap；存在时移除该keypath的factory，保留其他factory和sharedCache。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift",
+          "symbol": "f_1000d8e10"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "作用域/注册/清理局部代码已恢复，但产品bootstrap创建完整scope与注册真实providers的上层尚未迁移，不以当前公开API存在就把整条调用链计满。",
+      "remaining": "等待本轮稳定统一编译及逐项静态复审；全部范围内迁移后统一功能回归。",
+      "source": {
+        "path": "decompiled/Paste/part-0071.c",
+        "line": 1786
+      }
+    },
+    "Paste:0x1000d8e88": {
+      "state": "partial",
+      "contract": "要求当前TaskLocal context存在，否则trap；持NSLock将factories置空，保留sharedCache。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift",
+          "symbol": "f_1000d8e88"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "作用域/注册/清理局部代码已恢复，但产品bootstrap创建完整scope与注册真实providers的上层尚未迁移，不以当前公开API存在就把整条调用链计满。",
+      "remaining": "等待本轮稳定统一编译及逐项静态复审；全部范围内迁移后统一功能回归。",
+      "source": {
+        "path": "decompiled/Paste/part-0071.c",
+        "line": 1810
+      }
+    },
+    "Paste:0x10020c714": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 app.dashed 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020c714"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0174.c",
+        "line": 579
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020c714.json"
+    },
+    "Paste:0x10020c934": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 calendar 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020c934"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0174.c",
+        "line": 915
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020c934.json"
+    },
+    "Paste:0x10020cc48": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 circle.fill 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020cc48"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0175.c",
+        "line": 390
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020cc48.json"
+    },
+    "Paste:0x10020cdd0": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 doc 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020cdd0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0175.c",
+        "line": 606
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020cdd0.json"
+    },
+    "Paste:0x10020cf40": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 exclamationmark.triangle.fill 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020cf40"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0176.c",
+        "line": 54
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020cf40.json"
+    },
+    "Paste:0x10020d3b0": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 link 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020d3b0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0177.c",
+        "line": 16
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020d3b0.json"
+    },
+    "Paste:0x10020d434": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 macbook.and.iphone 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020d434"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0177.c",
+        "line": 112
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020d434.json"
+    },
+    "Paste:0x10020d4f4": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 paintpalette 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020d4f4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0177.c",
+        "line": 232
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020d4f4.json"
+    },
+    "Paste:0x10020d6a4": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 photo 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020d6a4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0177.c",
+        "line": 496
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020d6a4.json"
+    },
+    "Paste:0x10020d798": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 questionmark.app 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020d798"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0177.c",
+        "line": 664
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020d798.json"
+    },
+    "Paste:0x10020d9c8": {
+      "state": "migrated",
+      "contract": "返回原版系统符号名 text.alignleft 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_10020d9c8"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0178.c",
+        "line": 246
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10020d9c8.json"
+    },
+    "Paste:0x100054b2c": {
+      "state": "migrated",
+      "contract": "按UInt8 filter tag返回可选系统符号名：0 app.dashed；1对value.lowercased精确匹配link/image/color/text/file/unknown，未知用exclamationmark.triangle.fill；2 nil；3 calendar；4 macbook.and.iphone；其他circle.fill。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_100054b2c"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐分支REA核对；PanelViews真实筛选chip图标已消费，应用图标服务与日期/设备标题仍属父层未完成项，不因本函数恢复提升f0546e0等父函数。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0030.c",
+        "line": 46
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x100054b2c.json"
+    },
+    "Paste:0x1000f653c": {
+      "state": "migrated",
+      "contract": "对传入NSImage metatype以系统符号名创建可选NSImage，accessibilityDescription=nil，保留nil失败返回；不自行增加fallback。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift",
+          "symbol": "f_1000f653c"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原版执行imageWithSystemSymbolName:accessibilityDescription:，Swift平台API保留同一类工厂语义。实际符号解析路径使用，不将符号配置或原版探测后再次加载的父逻辑计满。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0083.c",
+        "line": 1343
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000f653c.json"
+    },
+    "Paste:0x1003214c8": {
+      "state": "partial",
+      "contract": "按内容checksum查重复；命中更新rawType/checksum/原数据但保留title，不命中创建新item并返回isNew。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/ClipboardStore.swift",
+          "symbol": "public func add"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "已按剪贴板agent逐指令证据把双方knownChecksum比较、重复新payload替换接add实际路径；仅归档无关checksum可精确恢复，unknown/file归档fallback和完整repository索引/事务/异步捕获action仍缺，不能提升全函数。旧metadata/title/pins/history保留，原数据不被用户数据覆盖。",
+      "remaining": "等待本轮稳定统一编译及逐项静态复审；全部范围内迁移后统一功能回归。",
+      "source": {
+        "path": "decompiled/Paste/part-0258.c",
+        "line": 84
+      }
+    },
+    "Paste:0x1000dae58": {
+      "state": "migrated",
+      "contract": "读取存储的Optional<Value>；some返回原值（Value本身可为nil）；none以Value类型描述加原后缀 must be defined触发失败，不补锁或默认值。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalInitializedValue.swift",
+          "symbol": "f_1000dae58"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整REA part-0072.c泛型Optional分支/虚表静态审阅；.local/di-initialized-value-messages-wave3.txt核实两后缀字节；OriginalShortcutTelemetry实际配置factory调用，非孤立计数API。析构和编译器分配wrapper未冒称完成。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0072.c",
+        "line": 836
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000dae58.json"
+    },
+    "Paste:0x1000dafe8": {
+      "state": "migrated",
+      "contract": "复制返回完整Optional<Value>，保留未设置与已设置Optional.none的两层区别，不修改存储。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalInitializedValue.swift",
+          "symbol": "f_1000dafe8"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整REA part-0072.c泛型Optional分支/虚表静态审阅；.local/di-initialized-value-messages-wave3.txt核实两后缀字节；OriginalShortcutTelemetry实际配置factory调用，非孤立计数API。析构和编译器分配wrapper未冒称完成。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0072.c",
+        "line": 915
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000dafe8.json"
+    },
+    "Paste:0x1000db054": {
+      "state": "migrated",
+      "contract": "仅外层none允许写入some(newValue)；已设置时以Value类型描述加原后缀 has already been set触发失败；不覆盖，不补锁。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalInitializedValue.swift",
+          "symbol": "f_1000db054"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整REA part-0072.c泛型Optional分支/虚表静态审阅；.local/di-initialized-value-messages-wave3.txt核实两后缀字节；OriginalShortcutTelemetry实际配置factory调用，非孤立计数API。析构和编译器分配wrapper未冒称完成。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0072.c",
+        "line": 936
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000db054.json"
+    },
+    "Paste:0x1000db2dc": {
+      "state": "migrated",
+      "contract": "先经必有值getter（未设置按原路径失败），再Swift只读keypath提取member，保持原值和keypath求值语义。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalInitializedValue.swift",
+          "symbol": "f_1000db2dc"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整REA part-0072.c泛型Optional分支/虚表静态审阅；.local/di-initialized-value-messages-wave3.txt核实两后缀字节；OriginalShortcutTelemetry实际配置factory调用，非孤立计数API。析构和编译器分配wrapper未冒称完成。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0072.c",
+        "line": 1052
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000db2dc.json"
+    },
+    "Paste:0x1000db2a8": {
+      "state": "migrated",
+      "contract": "初始化泛型容器唯一Optional<Value>字段为none；无其他字段或额外锁/副作用。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalInitializedValue.swift",
+          "symbol": "public init()"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整REA part-0072.c泛型Optional分支/虚表静态审阅；.local/di-initialized-value-messages-wave3.txt核实两后缀字节；OriginalShortcutTelemetry实际配置factory调用，非孤立计数API。析构和编译器分配wrapper未冒称完成。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0072.c",
+        "line": 1038
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000db2a8.json"
+    },
+    "Paste:0x1000dadc4": {
+      "state": "migrated",
+      "contract": "非actor共享cache析构：先释放+0x10的NSRecursiveLock，再释放+0x18的[String:Any]字典，最后以size32/alignment7释放实例；无额外cache字段或异步调度。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift",
+          "symbol": "class OriginalSharedDependencyCache"
+        }
+      ],
+      "implementation_origin": "existing_compiler_generated_reused",
+      "review": "原完整0x1000dadc4..0x1000dadf0汇编纠正Ghidra objc_release省略；build15实际__deallocating_deinit 0x1000e9204..0x1000e9230逐条核定相同字段释放顺序及32/7实例释放。nm下一函数边界0x1000e9230，非内联片段，不将deinit另一个body重复计数。无产品运行或功能验证。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0072.c",
+        "line": 793
+      },
+      "compiled_boundary": {
+        "start": "0x1000e9204",
+        "end_exclusive": "0x1000e9230",
+        "source": "build15 complete nm boundary and static lldb instruction review",
+        "binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87"
+      },
+      "original_static_body": [
+        "ldr x0,[x20,#0x10]",
+        "bl objc_release",
+        "ldr x0,[x20,#0x18]",
+        "bl swift_bridgeObjectRelease",
+        "mov x0,x20",
+        "mov w1,#0x20",
+        "mov w2,#0x7",
+        "b swift_deallocClassInstance"
+      ],
+      "migration_evidence": "reports/function-migration/Paste-0x1000dadc4.json"
+    },
+    "Paste:0x10037dd6c": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "ObjC init入口：初始化types=[]、dataByType=[:]，调用NSObject super.init并返回同一个接收者。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift",
+          "symbol": "override init()"
+        }
+      ],
+      "implementation_origin": "existing_reused",
+      "review": "build15完整ObjC init体：读取orderedTypes偏移100168ce8和dataByType偏移100168ce0，分别存空数组和空字典后objc_msgSendSuper2。ObjC类方法表100111d30的首entry.imp相对目标1000bf01c，真实init协议绑定。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "compiled_boundary": {
+        "start": "0x1000bf01c",
+        "end_exclusive": "0x1000bf0a8",
+        "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+      },
+      "original_source": {
+        "path": "decompiled/Paste/part-0282.c",
+        "function": "0x10037dd6c"
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10037dd6c.json"
+    },
+    "Paste:0x10037df40": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "ObjC ivar析构：释放types数组与dataByType字典的Swift桥接对象，无其他状态写入。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift",
+          "symbol": "class OriginalPasteboardItem"
+        }
+      ],
+      "implementation_origin": "existing_reused",
+      "review": "build15完整ivar destroyer只按两个字段偏移释放桥接数组/字典，尾跳swift_bridgeObjectRelease；ObjC类方法表第4 entry.imp→1000c1e08。无新增实例存储，新增types过滤/marker只是方法。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "compiled_boundary": {
+        "start": "0x1000c1e08",
+        "end_exclusive": "0x1000c1e40",
+        "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+      },
+      "original_source": {
+        "path": "decompiled/Paste/part-0282.c",
+        "function": "0x10037df40"
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10037df40.json"
+    },
+    "Paste:0x10037e158": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "分配PasteboardItem实例，调用同一严格可抛错Decoder初始化，保留错误返回寄存器语义。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift",
+          "symbol": "init(from decoder: Decoder)"
+        }
+      ],
+      "implementation_origin": "existing_reused",
+      "review": "build15完整Decoder allocating-init：objc_allocWithZone→1000bf9c0严格init(from:)，保留x21错误寄存器并返回。Current Decodable witness也实际分配同类与调用相同init，非孤立符号。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "compiled_boundary": {
+        "start": "0x1000bf980",
+        "end_exclusive": "0x1000bf9c0",
+        "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+      },
+      "original_source": {
+        "path": "decompiled/Paste/part-0282.c",
+        "function": "0x10037e158"
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10037e158.json"
+    },
+    "Paste:0x10037e44c": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "Decodable协议构造witness：分配对象并调用Decoder初始化，成功才向返回缓冲写实例，错误时不写。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift",
+          "symbol": "init(from decoder: Decoder)"
+        }
+      ],
+      "implementation_origin": "existing_reused",
+      "review": "build15完整witness：分配、Decoder init后1000c1e74 cbnz x21跳过1000c1e78返回缓冲写入。Decodable conformance descriptor1001173ec的resilient witness imp rel@100117404→1000c1e40。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "compiled_boundary": {
+        "start": "0x1000c1e40",
+        "end_exclusive": "0x1000c1e8c",
+        "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+      },
+      "original_source": {
+        "path": "decompiled/Paste/part-0282.c",
+        "function": "0x10037e44c"
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10037e44c.json"
+    },
+    "Paste:0x10037def0": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "CodingKeys的debugDescription协议入口使用本类型CodingKey witness并转发Swift.CodingKey默认debugDescription。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift",
+          "symbol": "enum CodingKeys: String, CodingKey"
+        }
+      ],
+      "implementation_origin": "existing_reused",
+      "review": "build15完整debugDescription witness先获得本类CodingKeys witness1000c2ddc，再尾跳100111040，indirect符号明确CodingKey.debugDescription。对应CustomDebugStringConvertible conformance1001174bc imp-rel@1001174d4→1000bf930。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "compiled_boundary": {
+        "start": "0x1000bf930",
+        "end_exclusive": "0x1000bf958",
+        "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+      },
+      "original_source": {
+        "path": "decompiled/Paste/part-0282.c",
+        "function": "0x10037def0"
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10037def0.json"
+    },
+    "Paste:0x10037df18": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "CodingKeys的description协议入口使用本类型CodingKey witness并转发Swift.CodingKey默认description。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift",
+          "symbol": "enum CodingKeys: String, CodingKey"
+        }
+      ],
+      "implementation_origin": "existing_reused",
+      "review": "build15完整description witness先获得本类CodingKeys witness1000c2ddc，再尾跳100111034，indirect符号明确CodingKey.description。对应CustomStringConvertible conformance100117494 imp-rel@1001174ac→1000bf958。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "compiled_boundary": {
+        "start": "0x1000bf958",
+        "end_exclusive": "0x1000bf980",
+        "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+      },
+      "original_source": {
+        "path": "decompiled/Paste/part-0282.c",
+        "function": "0x10037df18"
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10037df18.json"
+    },
+    "Paste:0x100323324": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "按 Data 有效字节范围对传入 MD5 hasher 执行一次 update，保留已有累计状态；空 Data 更新零字节。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboardChecksums.swift",
+          "symbol": "f_100323324"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原版手工分支处理 small/storage/slice/empty Data，均调用 HashFunction.update(bufferPointer:)；本机 CryptoKit swiftinterface 332-357 与 Foundation Data.withUnsafeBytes 提供相同有效区间契约。已由所有 checksum 分支真实调用。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100323324.json"
+    },
+    "Paste:0x100322fe4": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "按 MD5Digest 迭代顺序对每个 UInt8 用原格式 %02x 转小写两位十六进制字符串，返回数组。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboardChecksums.swift",
+          "symbol": "f_100322fe4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整伪码和 arm64 100323158/15c 与 100323290/294 的立即数恢复格式 %02x；真实 checksum.finalize 后调用并 joined。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100322fe4.json"
+    },
+    "Paste:0x100322d94": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "字符串严格 UTF8、allowLossyConversion=false 编码，失败返回空字符串，成功求 MD5 并拼接每字节 %02x。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboardChecksums.swift",
+          "symbol": "f_100322d94"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "逐失败/成功分支核对，未改为 String(decoding:) 或有损编码；text/color/link 和文件路径分支真实调用。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100322d94.json"
+    },
+    "Paste:0x100322ae4": {
+      "state": "partial",
+      "code_ready": false,
+      "contract": "把全部 PasteboardItem 数组按 NSKeyedArchiver requiringSecureCoding=false 编码，编码失败用空 Data，之后求 MD5。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboardChecksums.swift",
+          "symbol": "f_100322ae4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "真实由 unknown/fileURL均无效的 fallback 分支调用，直接接已恢复 NSCoding encoder。调用结构已恢复；独立重写类的 runtime class name/归档编码顺序是否与原版字节完全相同尚无证据，不宣称原档 checksum 等价。",
+      "remaining": "继续恢复原版归档身份与完整 repo；保持 partial。"
+    },
+    "Paste:0x1003216bc": {
+      "state": "partial",
+      "code_ready": false,
+      "contract": "按原 raw kind 求 checksum：image 首存在图像 Data；text/color/link 首 item 文本 UTF8；files 为 FileSnippet: 加所有有效 URL.path 顺序无分隔拼接；unknown 或 files 无 URL 时归档 fallback。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboardChecksums.swift",
+          "symbol": "f_1003216bc"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "完整源分支已恢复并在 monitor f37b034 创建前做非 nil 验证；已知分支 API knownPasteboardChecksum 排除需归档的情况，供 root 安全接去重。归档 fallback 仍欠原版编码身份。",
+      "remaining": "支持可确定分支，整函数保持 partial，禁止将近似 unknown digest 判定等价。"
+    },
+    "Paste:0x1000d489c": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "非释放实例的析构核心：按顺序释放 lock、name 和 optional logger 字段。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift",
+          "symbol": "class OriginalNamedDiagnostic"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "本轮删除闲置instance-factory并恢复lock/name/cached三字段后，build15真正生成完整独立非deallocating-deinit符号Cfd。完整体按0x10 swift_release(lock)、0x20 bridgeObjectRelease(name)、0x28可选sink销毁顺序，返回self，不free实例。和原0d489c..0d48c8逐指令语义相同，已不是fD片段冒充。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "compiled_boundary": {
+        "start": "0x1000be67c",
+        "end_exclusive": "0x1000be6a8",
+        "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000d489c.json"
+    },
+    "Paste:0x1000d48c8": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "按 lock→name→optional logger 顺序释放字段，再释放类实例。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalLocalDiagnostics.swift",
+          "symbol": "class OriginalNamedDiagnostic"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "build15完整deallocating-deinit CfD按lock/name/cached顺序释放后swift_deallocClassInstance(self,0x50,7)，与原0d48c8..0d48fc的字段/大小/align一致。metadata100168c58前destroy槽100168c48 chained-pointer target→1000be6e8，真实类生命周期绑定；实例offset常量117378/380/388=0x10/0x18/0x28。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "compiled_boundary": {
+        "start": "0x1000be6e8",
+        "end_exclusive": "0x1000be71c",
+        "source": "build15 fresh full symbol+LC_FUNCTION_STARTS+complete disassembly, no earlier binary addresses reused"
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000d48c8.json"
+    },
+    "Paste:0x1000d48fc": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "按文件声明位置37:19共享ConsoleLogConfiguration，透传活跃TaskLocal缓存或全局缓存。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d48fc"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "源part0069完整provider调用f0d80e0；当前dispatcher factory真实调用，未把每次访问改成新实例。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d48fc.json"
+    },
+    "Paste:0x1000d4958": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "分配日志门槛配置，初始level字节为1。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d4958"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "源仅alloc/store1/返回；当前shared factory真实调用，公开level保留可变字段。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d4958.json"
+    },
+    "Paste:0x1000d4994": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "按PasteLogging/DI+PasteLogging.swift的43:19站点共享FileLogOutput。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d4994"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "默认dispatcher第二输出真实通过provider获得，TaskLocal共享缓存作用域由现有f0d80e0保留。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d4994.json"
+    },
+    "Paste:0x1000d49e8": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "构造文件输出：enabled=false，directoryURL/fileURL/fileHandle均nil。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d49e8"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "恢复四个独立存储状态；文件输出真实进入dispatcher输出数组，不是disabled空桩。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d49e8.json"
+    },
+    "Paste:0x1000d4a94": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "以name创建dispatcher，配置取共享37:19，依次system共享56:31、file共享43:19，输出顺序固定system后file。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d4a94"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "已替换diagnosticFactory旧固定OSLog后端；NamedDiagnostic缓存真实解析该factory。源共享file行列常量、system行列常量及数组顺序均核对。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d4a94.json"
+    },
+    "Paste:0x1000d4c18": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "分配system日志输出，名字到Logger缓存初始为空字典。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d4c18"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "真实defaultfactory通过共享站点首次创建；没有额外logger或锁状态。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d4c18.json"
+    },
+    "Paste:0x1000d4e28": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "静态惰性创建label=com.wiheads.paste.logger、utility QoS、空attributes、inherit autorelease的串行queue。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d4e28"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原Mach-O地址100d8fa50逐字节读字符串；当前static let与源swift_once保留首次创建语义。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d4e28.json"
+    },
+    "Paste:0x1000d4fc0": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "每次读取配置门槛，仅minimum<=level时同步进入共享串行queue遍历输出。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d4fc0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原字节比较与dispatch_sync分支核对；低于门槛不初始化queue，输出闭包不逃逸。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d4fc0.json"
+    },
+    "Paste:0x1000d5160": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "按输出数组原顺序向每个output传level/name/message，空数组无输出。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d5160"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "当前for循环传全部三个值，未并行或短路；在同步queue中真实调用。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d5160.json"
+    },
+    "Paste:0x1000d55cc": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "读取并返回配置level字节，不缓存快照、不额外加锁。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d55cc"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "门槛判断每次真实调用，源swift_beginAccess后直接loadbyte。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d55cc.json"
+    },
+    "Paste:0x1000d5840": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "惰性构造ISO8601格式：dash日期、standard日期时间分隔、colon时间、omitted时区分隔、含毫秒、GMT0时区强制解包。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d5840"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "本机SDK.swiftinterface已确认该Foundation构造签名；file emit Date.now.formatted实际调用，不执行格式测试。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d5840.json"
+    },
+    "Paste:0x1000d5aec": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "disabled或directoryURL缺失立即返回；按[ISO时间] [DEBUG/INFO/WARN/ERROR] [name] message换行生成UTF8；缺句柄时若既有fileURL存在则复开并seekToEnd，否则用当前日期yyyy-MM-dd-HHmmss和pid创建paste-diagnostics-文件，记录URL；可用句柄writeData并synchronizeFile。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d5aec"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "源part0070与原arm64:61ac..6484核对dateFormat=yyyy-MM-dd-HHmmss、前缀paste-diagnostics-；不会创建目录。句柄打开失败转nil并保留URL，下次重试；文件方法完整恢复，默认disabled只是原初值，非空壳。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d5aec.json"
+    },
+    "Paste:0x1000d6ad0": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "先按name解析Logger，level0 debug、1 info、2 error、其余fault，以public字符串消息进入系统日志。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d6ad0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原源system level2并非default，level3并非error，现已修复。Logger.log编译器负责isEnabled与public字符串编排，未手工拼C字符串。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d6ad0.json"
+    },
+    "Paste:0x1000d6c8c": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "名字命中则返回缓存Logger，未命中以name同时作subsystem/category构造、写缓存并返回。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d6c8c"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "源dict查找早退与两次相同String入参核对；真实system output调用，串行queue保护缓存。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d6c8c.json"
+    },
+    "Paste:0x1000d6e90": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "对name赋Optional<Logger>：非nil插入/替换，nil删除，保留Swift Dictionary值语义。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d6e90"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "当前字典subscript Optional赋值保留两分支；miss logger路径真实调用非nil分支。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d6e90.json"
+    },
+    "Paste:0x10037c4a4": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "历史管理器UndoManager keypath getter转发至f2fad30共享provider。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+          "symbol": "f_10037c4a4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原keypath DAT100c439e8的rel32@100c43a08指向10037c4a4，完整函数单分支目标1002fad30；当前pasteboardUndoManager真实转发。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10037c4a4.json"
+    },
+    "Paste:0x1002fad30": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "按PasteCore/DI+PasteCore.swift文件54:19共享UndoManager，使用f2fd5e4工厂。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+          "symbol": "f_1002fad30"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "源part0246核对完整函数常量0x36/0x13；当前沿用通用TaskLocal/global sharedcache，不再为每个monitor独享固定backend。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002fad30.json"
+    },
+    "Paste:0x1002fd5e4": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "分配并init原生NSUndoManager，返回新实例。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/Pasteboard.swift",
+          "symbol": "f_1002fd5e4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "源part0248只allocWithZone/init；作为共享站点首次factory被真实调用，既有removeAllActions通过Dependency首次缓存解析。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002fd5e4.json"
+    },
+    "Paste:0x1000d682c": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "关闭可选fileHandle，吞掉close错误，无论成功失败均将句柄清nil。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d682c"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "closeAndReturnError分支与clear字段均恢复；但原版配置开关/导出关闭流程的真实调用路径尚未迁移，不将孤立API计完整。 AppMain已静态复审：makeLocal持有单实例，初始恢复flag，偏好变更下一runloop读取已提交值，persist仅变化save；enable/disable/close形成产品真实调用链。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d682c.json"
+    },
+    "Paste:0x1002fe514": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "尝试创建日志目录（中间目录允许，失败吞掉继续）；关闭旧句柄，设置directoryURL并启用文件输出，将共享console门槛设0。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticsManager.swift",
+          "symbol": "f_1002fe514"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "源part0249完整调用次序已核，目录创建失败后仍启用逻辑保持。 AppMain已静态复审：makeLocal持有单实例，初始恢复flag，偏好变更下一runloop读取已提交值，persist仅变化save；enable/disable/close形成产品真实调用链。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002fe514.json"
+    },
+    "Paste:0x1002fe72c": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "写enabled字段，仅值变化才persist；persist后重新读取self.enabled，为true调用启用流程，否则先禁用file、close、门槛改1。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticsManager.swift",
+          "symbol": "f_1002fe72c"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "保留persist重入可能导致字段变化时的再次读取，未按传入Bool提前决定分支；默认false不自动开启日志。 AppMain已静态复审：makeLocal持有单实例，初始恢复flag，偏好变更下一runloop读取已提交值，persist仅变化save；enable/disable/close形成产品真实调用链。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002fe72c.json"
+    },
+    "Paste:0x1002feb60": {
+      "state": "partial",
+      "code_ready": true,
+      "contract": "返回fileOutput当前可选fileURL，不变更句柄或文件。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticsManager.swift",
+          "symbol": "f_1002feb60"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原只copy可选URL字段，当前明确getter但待UI消费。",
+      "remaining": "待root停止后拷贝/文件展示路径接入。"
+    },
+    "Paste:0x1002febd4": {
+      "state": "partial",
+      "code_ready": true,
+      "contract": "目录枚举失败空数组；筛选pathExtension精确log且lastPathComponent前缀paste-diagnostics-，按lastPathComponent升序排序返回。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticsManager.swift",
+          "symbol": "f_1002febd4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原排序306c84..306d24候选后项与前项String比较，w4=1；本机SDK frozen _StringComparisonResult明确equal,less。只迁移外层业务算法，不将所有SDK排序实现批量计入。",
+      "remaining": "待root日志列表/导出实际消费后统一编译，不将孤立公共API计完整。"
+    },
+    "Paste:0x1000d55fc": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "将传入日志级别字节写到level字段。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d55fc"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "源swift_beginAccess后storebyte，无额外锁/过滤。真实Manager启停互调，当前上游入口待接。 AppMain已静态复审：makeLocal持有单实例，初始恢复flag，偏好变更下一runloop读取已提交值，persist仅变化save；enable/disable/close形成产品真实调用链。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d55fc.json"
+    },
+    "Paste:0x1000d56f8": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "将传入可选URL赋directoryURL，不重置fileURL或句柄。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift",
+          "symbol": "f_1000d56f8"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "源可选URL assignWithTake和独占访问对应Swift属性赋值；Manager开启先close再赋，不主动清fileURL。 AppMain已静态复审：makeLocal持有单实例，初始恢复flag，偏好变更下一runloop读取已提交值，persist仅变化save；enable/disable/close形成产品真实调用链。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1000d56f8.json"
+    },
+    "Paste:0x100383574": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "遍历原orderedTypes快照；type包含任一patterns子串时，稳定删除全部同名types及其data键；未命中保留原顺序，空pattern按String.contains语义。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift",
+          "symbol": "f_100383574"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原part0283完整outer snapshot遍历、Foundation contains与内层removeAll、dict remove核对。现writer每representation真实调用，默认patterns来自原静态数组100fc17c0（count1，com.microsoft.ole.source）。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100383574.json"
+    },
+    "Paste:0x1003838bc": {
+      "state": "migrated",
+      "code_ready": true,
+      "contract": "向types追加com.wiheads.paste，并将其data设为空Data；重复调用仍追加同名type，不删除其他格式。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPasteboard.swift",
+          "symbol": "f_1003838bc"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原字面串100d97b00与Data空表示(0,0xc000000000000000)核对；原setter契约复用，新writer普通representation与plainOnly真实调用。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1003838bc.json"
+    },
+    "Paste:0x10004e8ec": {
+      "state": "partial",
+      "code_ready": true,
+      "contract": "构造Process，executableURL=/bin/sh，参数-c与sleep 0.25 && open双引号包Bundle.main.bundleURL.path，try启动后无论成败均_exit(0)。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalDiagnosticsAppActions.swift",
+          "symbol": "f_10004e8ec"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原Mach-O字符串100d8e8b0与arm64 executable小字符串/bin/sh已核；仅写代码，绝不执行。原菜单确认动作尚未迁移接入，所以不计完成。",
+      "remaining": "等待原完整诊断菜单流程迁移后真实接入；不自动在偏好restore时重启。"
+    },
+    "Paste:0x1001e75e4": {
+      "state": "migrated",
+      "contract": "分配新的无字段validator服务实例并返回；每次factory调用返回独立强引用对象。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "public static func f_1001e75e4()"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原版arm64 0x1001e75e4..0x1001e761c：f1ec904取得具体class metadata后swift_allocObject(size16,align7)，无额外字段或构造依赖。真实provider共享cache miss调用，非孤立实现。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0156.c",
+        "line": 791
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1001e75e4.json"
+    },
+    "Paste:0x1001f1e64": {
+      "state": "migrated",
+      "contract": "以PasteShortcut/DI+PasteShortcut.swift:12:19声明位置为键，经通用共享service cache解析具体validator；miss调用f1e75e4 factory，hit复用同引用。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "func f_1001f1e64()"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "keypath pattern0x100c33dd8+0x20处relative32为0xff5be06c，解出getter0x1001f1e64；导出传文件名36字节、line12、column19和factoryf1e75e4。实际shortcutValidator provider委托本函数，被OriginalDependency首次resolve。root通用cache承担全局/TaskLocal隔离、NSRecursiveLock、typedcast和Optional装箱。 与原泛型helper相同的文件/列固定规则已提取至真实f1e7580，validator按line12调用，manager provider按line6调用。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0160.c",
+        "line": 1061
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1001f1e64.json"
+    },
+    "Paste:0x1001e7580": {
+      "state": "migrated",
+      "contract": "按类型Value将factory、固定声明源文件PasteShortcut/DI+PasteShortcut.swift与列19、调用方行号传给共享service cache，返回相同Value；不引入第二份私有缓存。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "static func f_1001e7580<Value>"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0156.c原版generic helper接受metadataaccessor、line和factory，先取得具体元数据再调用f0d80e0；Swift泛型Value承担typedmetadata/cast，实际manager与validator两个provider调用此helper。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0156.c",
+        "line": 774
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1001e7580.json"
+    },
+    "Paste:0x1001e7514": {
+      "state": "partial",
+      "contract": "全局快捷键monitor provider通过f1e7580，以同源文件line6列19为键，cache miss使用f1e752c factory，hit返回当前TaskLocal或全局cache中的同一monitor。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "func f_1001e7514()"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0156.c与汇编对齐line6/factory；OriginalGlobalShortcutMonitor.shared已从进程staticlet改计算provider，真实GlobalHotKey.register使用该入口并持monitor引用供注销。provider缓存隔离已实现，但factory所调init的完整telemetry logger依赖未完成，保留partial。",
+      "remaining": "manager init仍依赖未齐的Telemetry协议/Sentry sink；本轮已恢复logger配置/具体字段构造，不提升partial。",
+      "source": {
+        "path": "decompiled/Paste/part-0156.c",
+        "line": 735
+      }
+    },
+    "Paste:0x1001e752c": {
+      "state": "partial",
+      "contract": "分配并初始化全局快捷键monitor，返回强引用实例；由共享服务provider miss调用。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalGlobalShortcutMonitor.swift",
+          "symbol": "public static func f_1001e752c()"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0156.c依次取f1eba28 classmetadata、swift_allocObject、f1ea0fc初始化；Swift构造直接对应。f1ea0fc的Carbon安装/锁/字典/typedDI已实现，logger具体factory和telemetry后端仍未逐函数恢复，不能标完整factory。",
+      "remaining": "manager init仍依赖未齐的Telemetry协议/Sentry sink；本轮已恢复logger配置/具体字段构造，不提升partial。",
+      "source": {
+        "path": "decompiled/Paste/part-0156.c",
+        "line": 746
+      }
+    },
+    "Paste:0x1001f12cc": {
+      "state": "migrated",
+      "contract": "独立无payload录制ValidationError的LocalizedError.errorDescription getter每次按当前本地化解析shortcut-recorder.error.option-key并返回非nil字符串；failureReason/recoverySuggestion/helpAnchor使用LocalizedError默认nil。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift",
+          "symbol": "public enum OriginalShortcutRecorderValidationError"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift",
+          "symbol": "public func f_1001f12cc()"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原版descriptor0x100ca7548名ValidationError且单emptycase；LocalizedError conformance0x100c33c40 requirementerrorDescription相对入口f1f12cc，导出调用f1e4554，后者字符串VM0x100d9d120确为option-key、Locale.current、bundle资源。其余3 getter指向Foundation默认实现。真实f1f132c成功后版本分支保存enum，SwiftUI alert读取Error.localizedDescription时调用getter。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0160.c",
+        "line": 304
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1001f12cc.json"
+    },
+    "Paste:0x1000ce40c": {
+      "state": "migrated",
+      "contract": "String-bearing ShortcutValidatorError的LocalizedError.errorDescription读取唯一message字段，返回非nil Optional<String>，以ARC保留String桥对象，无参数分支或其他副作用。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift",
+          "symbol": "public var errorDescription: String? { message }"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "return OriginalShortcutRecorderError(message)"
+        }
+      ],
+      "implementation_origin": "existing_reused",
+      "review": "原版LocalizedError conformance descriptor0x100c337a8的errorDescription requirement位于0x100c337c8，其signed relative32解到f0ce40c；原函数取self前16字节并swift_bridgeObjectRetain后返回，无其他分支。当前真实validatorService构造错误并由Published Error送至SwiftUI .localizedDescription，复用既有getter即可，不增薄空壳。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0065.c",
+        "line": 1098
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1000ce40c.json"
+    },
+    "Paste:0x1001e7568": {
+      "state": "migrated",
+      "contract": "无参validator服务直接getter，按固定文件PasteShortcut/DI+PasteShortcut.swift、line12、column19和f1e75e4具体服务factory解析共享cache，返回服务实例。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "func f_1001f1e64()"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift",
+          "symbol": "Self.f_1001e7580(line: 12)"
+        }
+      ],
+      "implementation_origin": "existing_reused",
+      "review": "原版0x1001e7568..0x1001e757c准确装载f1ec904 metadata accessor、f1e75e4 factory、line12后tailcallf1e7580；f1e7580传同文件36字节/column19给f0d80e0。与keypathgetterf1f1e64（原版单独specialization）的参数/所有副作用完全相同，可复用当前真实typed provider，不新造孤立func。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0156.c",
+        "line": 763
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x1001e7568.json"
+    },
+    "Paste:0x10019b60c": {
+      "state": "migrated",
+      "contract": "首次访问Telemetry全局配置时分配持有带命名tuple的OriginalInitializedValue，初始存储为none；进程共用同一容器。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutTelemetry.swift",
+          "symbol": "public static let configuration"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原版swift_once回调f19b60c解析Generic容器类型、分配并调用f0db2a8置Optional.none、写DAT101057388；当前静态let由Swift生成等价once初始化，真实factory读取此容器。tuple typeref100ce6584标记isEnabled:Bool/distributionType:String/tracesSampleRate:CGFloat，三个投影偏移0/8/24。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "source": {
+        "path": "decompiled/Paste/part-0134.c",
+        "line": 2529
+      },
+      "migration_evidence": "reports/function-migration/Paste-0x10019b60c.json"
+    },
+    "Paste:0x10019b6f0": {
+      "state": "partial",
+      "contract": "读取进程一次配置容器optional；若none，以(false,\"unknown\",CGFloat(0))仅初始化一次；按keypath依次读取3字段，创建不可变TelemetryImpl对应对象。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutTelemetry.swift",
+          "symbol": "public static func f_10019b6f0()"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原类metadata100fb3e58的fielddescriptor100d43f04解出isEnabled:Bool、distributionType:String、tracesSampleRate:CGFloat，GOT100eae520 bind CGFloatVMn；factory与虚表optionalgetter/setOnce/required-keypath getter逐项核对。当前本地存储/构造已接真实provider，返回值仍适配旧本地diagnostic sink；原版协议error capture和breadcrumb方法未恢复，factory完整可替代性不成立，保留partial。",
+      "remaining": "待统一构建；原版Telemetry协议和Sentry error capture/本地breadcrumb链未恢复，不能提升manager init。",
+      "source": {
+        "path": "decompiled/Paste/part-0134.c",
+        "line": 2575
+      }
+    },
+    "Paste:0x10019b694": {
+      "state": "partial",
+      "contract": "按PasteTelemetry/DI+PasteTelemetry.swift:13:19解析共享cache，cache miss调用Telemetry factory，hit复用同一配置服务实例。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalShortcutTelemetry.swift",
+          "symbol": "public static func f_10019b694()"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原版provider传文件名38字节、line13、column19、factoryf19b6f0；monitor logger keypathgetterf1ebb0c仅tailcall本函数。已在shortcutDiagnostic真实默认provider接入，当前保留原OSLog适配，原版protocol existential和Sentry sink未完整实现，明确partial。",
+      "remaining": "待统一构建；原版Telemetry协议和Sentry error capture/本地breadcrumb链未恢复，不能提升manager init。",
+      "source": {
+        "path": "decompiled/Paste/part-0134.c",
+        "line": 2559
+      }
+    },
+    "Paste:0x10023c304": {
+      "state": "migrated",
+      "contract": "调用nativeTextField.becomeFirstResponder并保存Bool返回；currentEditor能转NSTextView时无条件转发可nil textColor至setInsertionPointColor:；最后返回原Bool。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTitleLabel.swift",
+          "symbol": "f_10023c304"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0195.c:756；0x10023c370..38c原始指令确认nil色无条件传递，采用nullable ObjC IMP保持SDK nonnull导入以外的分支。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023c304.json"
+    },
+    "Paste:0x10023be78": {
+      "state": "migrated",
+      "contract": "取得native intrinsicHeight，以(infinity,intrinsicHeight)调用sizeThatFits；width按最近整数、半值远离零舍入，height返回最初intrinsicHeight。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTitleLabel.swift",
+          "symbol": "intrinsicContentSize"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0195.c:525；0x10023bf24保存d1到d8、0x10023bf60 frinta d0,d9、bf64返回原d8，修正旧不舍入实现。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023be78.json"
+    },
+    "Paste:0x100214c20": {
+      "state": "migrated",
+      "contract": "action为changeLayoutOrientation:时false；nil或任何其他action委托super返回结果。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "validateUserInterfaceItem"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0181.c:302；真实inline NSTextView override。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100214c20.json"
+    },
+    "Paste:0x100214d54": {
+      "state": "migrated",
+      "contract": "先调用super.menu(for:event)，非nil时在同一menu原位调用f21ad80移除原版指定富文本组，nil不操作；返回同一menu。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "menu(for"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0181.c:368；复用已迁移OriginalSearchMenu.f21ad80，不修改父持有菜单实现。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100214d54.json"
+    },
+    "Paste:0x100012da8": {
+      "state": "migrated",
+      "contract": "PreviewHeader取消命令调用titleLabel.cancelEditing，不转发super、不关闭窗口。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "cancelOperation"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0007.c:1880；新增Header responder入口，恢复Escape取消原位标题的路径。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100012da8.json"
+    },
+    "Paste:0x100207db8": {
+      "state": "migrated",
+      "contract": "解析attributes为格式Set：font必须能转NSFont，descriptor.bold/italic分别加入0/1；underline/strike必须能转Swift Int且严格==1，分别加入2/3；缺失/不兼容均忽略。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_100207db8"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0171.c:553；无默认font、不把任意非零underline当启用。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100207db8.json"
+    },
+    "Paste:0x100208290": {
+      "state": "migrated",
+      "contract": "返回trait是否在Set中；空集合false。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_100208290"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0171.c:779；以Swift Set的语义实现原版专门化hash查找，不宣称哈希布局相同。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100208290.json"
+    },
+    "Paste:0x1002080e0": {
+      "state": "migrated",
+      "contract": "逐项把输入trait Set加入捕获的累计Set，即并集，无删除。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_1002080e0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0171.c:684；真实选区枚举回调调用。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002080e0.json"
+    },
+    "Paste:0x100208024": {
+      "state": "migrated",
+      "contract": "MainActor属性枚举回调：把当前run的attributes转trait Set后并入累计Set。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_100208024"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0171.c:655；恢复原全段任一run启用即按钮显示已选的策略。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100208024.json"
+    },
+    "Paste:0x1002085e0": {
+      "state": "migrated",
+      "contract": "转发单run属性和捕获的累计Set到f208024。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_1002085e0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0171.c:955；作为实际enumerateAttributes闭包调用路径，不是未使用空壳。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002085e0.json"
+    },
+    "Paste:0x100207b54": {
+      "state": "migrated",
+      "contract": "先读取selection及文本长度；location不超过长度时按有溢出trap的Int加法核对end；合法且第二次selection.length非零时，重新读取文本和selection枚举各run累积并集；否则只解析typingAttributes。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_100207b54"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0171.c:429；保留反复读取selection及storage对象身份，空选区或无效选区不读取attributesAtIndex。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100207b54.json"
+    },
+    "Paste:0x100207648": {
+      "state": "migrated",
+      "contract": "forceRemove=true直接移除trait；false先按当前run traits决定反转。underline/strike移除key或设置Int1；bold/italic无合法font时原样，否则清空descriptor traits后按原traits增删指定bit，再按原字号创建font；descriptor任一步nil回退原descriptor，最终font创建nil则删除font key。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_100207648"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0171.c:242及0x100207684..6b0原始指令确认flag语义；与f0f3f6c末尾失败回原font不同，不能直接复用该helper。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100207648.json"
+    },
+    "Paste:0x1002083e4": {
+      "state": "migrated",
+      "contract": "逐项从storage指定range移除当前run所有原属性key，再添加f207648生成的新属性字典，返回0。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_1002083e4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0171.c:836；保留remove各key+addAttributes操作而非整体替换；外层begin/endEditing合并delegate编辑事件。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002083e4.json"
+    },
+    "Paste:0x1002072a0": {
+      "state": "migrated",
+      "contract": "默认取当前selection，显式range则用原range；length<1切换typingAttrs；否则storage存在才解析首字符trait作为forceRemove，对全段逐run移除/添加属性并begin/endEditing；最后undoManager存在时登记弱editor撤销，携带trait与原range再次调用本函数。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_1002072a0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0171.c:131；0x100207388..3cc确认首字符contains结果写入回调forceRemove捕获；nil storage仍可登记undo，未加额外边界过滤。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002072a0.json"
+    },
+    "Paste:0x100213780": {
+      "state": "migrated",
+      "contract": "依序设editor不可编辑、HelveticaNeue13字体、inset(8,10)、selectable=true、allowsUndo=true、linkTextAttributes仅.cursor=pointingHand、autoresizingMask.width；storage存在时设delegate。返回0。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_100213780"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0180.c:2111；修复旧adapter inset(8,8)；storage bridge在初次文本赋值前安装真实delegate。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100213780.json"
+    },
+    "Paste:0x100219a90": {
+      "state": "migrated",
+      "contract": "构造动态背景色：light为white、dark为RGB20/255和alpha1；provider使用原版appearance选择函数，把对象写入稳定存储槽。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift",
+          "symbol": "f_100219a90"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0183.c:422；颜色原double位0x3fb4141414141414。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100219a90.json"
+    },
+    "Paste:0x100219bc4": {
+      "state": "migrated",
+      "contract": "首次执行背景初始化后返回稳定存储槽的指针，每次地址相同，不返回颜色值替代槽地址。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift",
+          "symbol": "f_100219bc4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0183.c:468；Swift static once+过程生命周期槽，getter/value层严格区分。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100219bc4.json"
+    },
+    "Paste:0x100200560": {
+      "state": "migrated",
+      "contract": "属性value为nil无操作；非nil且range.length为负不可继续；否则按range.length次数向NSCountedSet加入同一桥接value，用UTF16覆盖量计权。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift",
+          "symbol": "f_100200560"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0169.c:596；未按run数量计权，不把非颜色值提前丢弃。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100200560.json"
+    },
+    "Paste:0x1002006b0": {
+      "state": "migrated",
+      "contract": "属性单run回调转发value、range及捕获NSCountedSet到f200560。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift",
+          "symbol": "f_1002006b0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0169.c:676；前景/背景真实枚举调用。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002006b0.json"
+    },
+    "Paste:0x1001ffac0": {
+      "state": "migrated",
+      "contract": "枚举foregroundColor按UTF16次数加入NSCountedSet；没有任何非nil属性对象时true，存在任意非nil对象时false。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift",
+          "symbol": "f_1001ffac0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0169.c:172；原版f20173c将Set转数组再判count，复刻直接Set.count==0等价，未把无效类型误当缺失。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001ffac0.json"
+    },
+    "Paste:0x100200450": {
+      "state": "migrated",
+      "contract": "按tuple.count严格降序进行稳定排序，count相等保留原相对顺序。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift",
+          "symbol": "f_100200450"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0169.c:554及原始专门化merge/insertion分支；Swift标准库稳定sort用于相同输出契约，不主张原专门化算法ABI一致。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x100200450.json"
+    },
+    "Paste:0x1002067d4": {
+      "state": "migrated",
+      "contract": "转deviceRGB失败返回false；成功依序读取RGBA（alpha不参与权重），严格判断0.55<(299R+587G+114B)/1000。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift",
+          "symbol": "f_1002067d4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0170.c:3076；阈值相等为false，不改用其他亮度模型。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002067d4.json"
+    },
+    "Paste:0x1001ffc58": {
+      "state": "migrated",
+      "contract": "分别按UTF16长度统计背景/前景NSCountedSet，保持其fast enumeration顺序；各对象强制NSColor转换且计总覆盖，前景append共享foreground与未覆盖长度并稳定排序；按最大前景亮度选择white或RGB30/255缺省背景；背景append该色与未覆盖长度，稳定排序返回首色。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift",
+          "symbol": "f_1001ffc58"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0169.c:243；合成缺省项直接append，不合并与现有颜色相同项；强制类型、Int加减溢出trap均保留。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001ffc58.json"
+    },
+    "Paste:0x1003eb4a8": {
+      "state": "migrated",
+      "contract": "每次判原文全段无attrs；plain背景取动态背景槽、前景取共享foreground；rich背景按权重主色，只有完全无foreground属性才选共享foreground；始终设背景，前景非nil才设置；plain且当前不可编辑时才设preferred.body font。返回0。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextColors.swift",
+          "symbol": "f_1003eb4a8"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0312.c:513；已真实接入初始化、模型/模式刷新与appearance变化；不覆盖rich已有foreground，不在编辑态替换字号。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1003eb4a8.json"
+    },
+    "Paste:0x1003ebcd4": {
+      "state": "migrated",
+      "contract": "MainActor appearance drawing闭包仅调用文本内容颜色更新f3eb4a8。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "f_1003ebcd4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0312.c:864；新native adapter的effectiveAppearance.performAsCurrentDrawingAppearance实际调用。 仅静态迁移，等待主智能体统一编译。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1003ebcd4.json"
+    },
+    "Paste:0x100213fe8": {
+      "state": "partial",
+      "contract": "typingAttributes KVO派出的MainActor工作：弱owner缺失返回true，存活时更新四格式按钮状态并返回false。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_100213fe8"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "本轮真实调用路径已接入，只静态对照。",
+      "remaining": "本轮已接真实四个ToolbarButton及原样selected→style链；但完整TextEditor owner/lazy editButtons构造与bridge弱持有nativeeditor的生命周期仍未等同，暂保留partial，不以可见功能升满。"
+    },
+    "Paste:0x100214704": {
+      "state": "partial",
+      "contract": "MainActor storage工作先更新四格式按钮，再重新弱加载owner，存在callback才取真实storage并调用。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_100214704"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "本轮真实调用路径已接入，只静态对照。",
+      "remaining": "本轮已接真实四个ToolbarButton及原样selected→style链；但完整TextEditor owner/lazy editButtons构造与bridge弱持有nativeeditor的生命周期仍未等同，暂保留partial，不以可见功能升满。"
+    },
+    "Paste:0x10021453c": {
+      "state": "partial",
+      "contract": "设置nil priority、弱捕获owner、创建MainActor Task执行格式+内容回调。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "f_10021453c"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "本轮真实调用路径已接入，只静态对照。",
+      "remaining": "本轮已接真实四个ToolbarButton及原样selected→style链；但完整TextEditor owner/lazy editButtons构造与bridge弱持有nativeeditor的生命周期仍未等同，暂保留partial，不以可见功能升满。"
+    },
+    "Paste:0x100214a68": {
+      "state": "partial",
+      "contract": "NSTextStorageDelegate didProcessEditing忽略mask/range/delta，弱捕获并调度MainActor Task，先格式后内容。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "textStorage"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "本轮真实调用路径已接入，只静态对照。",
+      "remaining": "本轮已接真实四个ToolbarButton及原样selected→style链；但完整TextEditor owner/lazy editButtons构造与bridge弱持有nativeeditor的生命周期仍未等同，暂保留partial，不以可见功能升满。"
+    },
+    "Paste:0x100213e54": {
+      "state": "partial",
+      "contract": "typingAttributes KVO事件不使用change内容；弱捕获owner并派出独立MainActor Task更新格式状态。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift",
+          "symbol": "OriginalPreviewTextStorageBridge"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "本轮真实调用路径已接入，只静态对照。",
+      "remaining": "本轮已接真实四个ToolbarButton及原样selected→style链；但完整TextEditor owner/lazy editButtons构造与bridge弱持有nativeeditor的生命周期仍未等同，暂保留partial，不以可见功能升满。"
+    },
+    "Paste:0x1003ebb7c": {
+      "state": "partial",
+      "contract": "先super，再以effectiveAppearance作为currentDrawingAppearance同步执行颜色重算。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "viewDidChangeEffectiveAppearance"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "本轮真实调用路径已接入，只静态对照。",
+      "remaining": "颜色链已恢复，但adapter基类为NSScrollView而原TextItemContentView为NSView，完整容器层次仍待恢复，不能声称整体原视图override完整。"
+    },
+    "Paste:0x10023cc80": {
+      "state": "migrated",
+      "contract": "惰性创建NSImageView，缓存并返回同一对象；不额外配置image/tint。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "f_10023cc80"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0195.c:1200；真实内容/样式更新均调用。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023cc80.json"
+    },
+    "Paste:0x10023deb4": {
+      "state": "migrated",
+      "contract": "惰性创建空字符串labelWithString，normal字体preferred.body、large字体preferred.title3，空options；textAlignment raw1=right；缓存并返回。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "f_10023deb4"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:195；精确字体和对齐，不用系统按钮默认label。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023deb4.json"
+    },
+    "Paste:0x10023ce40": {
+      "state": "migrated",
+      "contract": "symbol=nil清icon.image且移除view；非nil按原symbol两次查找/单次fallback与trap规则取图，按normal.body/large.title2配置symbol并追加icon；title空清label并移除，否则赋super.title并追加；hasPullDownArrow真追加arrow否则移除。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "f_10023ce40"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0195.c:1310；每次按icon/label/arrow顺序操作同一NSStackView，不重新创建子视图。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023ce40.json"
+    },
+    "Paste:0x10023fb74": {
+      "state": "migrated",
+      "contract": "返回stack.leading等于button.leading+padding、stack.trailing等于button.trailing-padding两约束。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "f_10023fb74"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:1229；调用者决定激活，本函数仅构造数组。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023fb74.json"
+    },
+    "Paste:0x10023e080": {
+      "state": "migrated",
+      "contract": "large固定32×32、stack左右0；normal高22且宽>=32、stack左右8；stack.centerY=button.centerY，arrow固定8×8；返回全部约束。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "f_10023e080"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:256；同一原生stack/arrow实际接入。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023e080.json"
+    },
+    "Paste:0x10023d784": {
+      "state": "migrated",
+      "contract": "layer存在时按super.title是否空设置borderWidth0/1，再按macOS>=26取bounds.height/2圆角，否则normal5/large6；最后在effectiveAppearance.currentDrawing中重算style。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "f_10023d784"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0195.c:1756；不以系统自带button bezel替代，layer缺失仍执行appearance闭包。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023d784.json"
+    },
+    "Paste:0x10023f230": {
+      "state": "migrated",
+      "contract": "primary按enabled/pressed选择SystemEffect.none/pressed/disabled，背景accent、label/arrow白色同effect、icon优先显式tint；非primary先clear背景、>=26用foreground否则secondary色，按title设置border，再按disabled→pressed→selected→hover优先级重算前景/背景，所有分支保留显式icon tint优先。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "f_10023f230"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:978；pressed背景为surface色alpha0.15；selected背景surface色、label色；hover背景border色；未自造动画。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023f230.json"
+    },
+    "Paste:0x10023e7e8": {
+      "state": "migrated",
+      "contract": "updateLayer的Swift工作体调用样式更新f23d784，不额外调用super。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "updateLayer"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:515；真实NSButton override。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023e7e8.json"
+    },
+    "Paste:0x10023e7f4": {
+      "state": "migrated",
+      "contract": "MainActor native updateLayer入口转入样式更新，无额外业务分支。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "updateLayer"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:526；采用独立产品Swift ObjC桥接，不主张原厂诊断字符串一致。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023e7f4.json"
+    },
+    "Paste:0x10023e804": {
+      "state": "migrated",
+      "contract": "先super；旧tracking存在则移除；以bounds/options0x481/self/nil userInfo创建并添加tracking；pressedMouseButtons非0则hover=false，否则用bounds包含convert(NSEvent.mouseLocation,from:nil)；写hover后更新，再写pressed=false后更新。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "updateTrackingAreas"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:539；原始screen mouseLocation→from:nil顺序按原版保留，未擅改坐标。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023e804.json"
+    },
+    "Paste:0x10023e970": {
+      "state": "migrated",
+      "contract": "MainActor native updateTrackingAreas入口执行恢复后的super/替换tracking/hover与pressed复位路径。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "updateTrackingAreas"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:598；native入口已接AppKit。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023e970.json"
+    },
+    "Paste:0x10023ea30": {
+      "state": "migrated",
+      "contract": "先super.mouseEntered(event)，再hover=true并更新style。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "mouseEntered"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:632；原Swift业务体与独立native override路径一致。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023ea30.json"
+    },
+    "Paste:0x10023ea88": {
+      "state": "migrated",
+      "contract": "MainActor native mouseEntered入口先super，再hover=true和style更新。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "mouseEntered"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:648；不跳过super。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023ea88.json"
+    },
+    "Paste:0x10023ebac": {
+      "state": "migrated",
+      "contract": "先super.mouseExited(event)，再hover=false更新style，随后pressed=false再次更新。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "mouseExited"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:690；保留两次更新顺序。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023ebac.json"
+    },
+    "Paste:0x10023ec10": {
+      "state": "migrated",
+      "contract": "MainActor native mouseExited入口执行super、hover复位/更新、pressed复位/更新。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "mouseExited"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:708；同一原生override接入。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023ec10.json"
+    },
+    "Paste:0x10023ed40": {
+      "state": "migrated",
+      "contract": "pressed=true并更新，调用super.mouseDown(event)，返回后pressed=false并再次更新。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "mouseDown"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:752；原生NSButton保持tracking/target action。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023ed40.json"
+    },
+    "Paste:0x10023edac": {
+      "state": "migrated",
+      "contract": "MainActor native mouseDown入口保留pressed前后状态及两次style更新，super居中。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "mouseDown"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:772；无需自造点击循环。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023edac.json"
+    },
+    "Paste:0x10023eed0": {
+      "state": "migrated",
+      "contract": "先super.viewDidChangeEffectiveAppearance，再更新style。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "viewDidChangeEffectiveAppearance"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:818；原Swift工作路径。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023eed0.json"
+    },
+    "Paste:0x10023ef1c": {
+      "state": "migrated",
+      "contract": "MainActor native appearance入口转入super后style更新。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "viewDidChangeEffectiveAppearance"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:842；当前native override实际接入。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023ef1c.json"
+    },
+    "Paste:0x10023f160": {
+      "state": "migrated",
+      "contract": "MainActor native action无条件调用已保存buttonAction并传self。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "performAction"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:944；required closure，未制造空回调。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023f160.json"
+    },
+    "Paste:0x10023fc94": {
+      "state": "migrated",
+      "contract": "初始化symbol/arrow/primary/selected/hovered/pressed/lazy children/tracking与action/size；创建chevron.down的arrow并设共享tint，水平stack spacing4/distribution2/alignment10；零frame super后setTitle+重建内容、transparent/layer/target/action、加stack和激活尺寸约束；有shortcut才用已迁移按键转换设置keyEquivalent/mask；有tooltip且shortcut时追加括号描述；最后重建内容和style。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "OriginalToolbarButton"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0196.c:1260；真实Header编辑/取消/保存与四格式按钮调用，未在无shortcut分支重写原生默认modifier mask。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023fc94.json"
+    },
+    "Paste:0x10023d9c8": {
+      "state": "migrated",
+      "contract": "返回当前isPrimary Bool，不创建UI对象。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "isPrimary"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0195.c:1855；style主路径实际读取。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023d9c8.json"
+    },
+    "Paste:0x10023da08": {
+      "state": "migrated",
+      "contract": "写入请求Bool后无条件更新style，重复同值也更新。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "isPrimary"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0195.c:1870；保存按钮设置true实际接入，Swift didSet保留相同值写入的副作用。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023da08.json"
+    },
+    "Paste:0x10023dab0": {
+      "state": "migrated",
+      "contract": "返回当前isSelected Bool。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "isSelected"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0195.c:1920；pressed/selected样式路径实际读取。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023dab0.json"
+    },
+    "Paste:0x10023c8d4": {
+      "state": "migrated",
+      "contract": "写isSelected后无条件更新style，重复同值仍更新。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "isSelected"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0195.c:1044；真实四格式按钮选区状态更新逐项调用。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023c8d4.json"
+    },
+    "Paste:0x10023d6e0": {
+      "state": "migrated",
+      "contract": "返回当前hasPullDownArrow Bool。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalToolbarButton.swift",
+          "symbol": "hasPullDownArrow"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0195.c:1713；真实内容重建分支读取。 以独立原生Swift恢复业务契约；源码中的Swift/ObjC同义入口可共用一个高层实现，不主张编译器桥接ABI相同。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x10023d6e0.json"
+    },
+    "Paste:0x1002106d0": {
+      "state": "migrated",
+      "contract": "按bold0、italic1、underline2、strike3顺序查询给定trait Set，每项向对应真实ToolbarButton写isSelected并立即触发style刷新，返回0。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "f_1002106d0"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "part-0180.c:57；四原生按钮由EditButtons容器构造已存在，复刻只在一次恢复后的trait状态回调中执行四次更新，不因四个Published合并产生16次UI刷新；显式返回0。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1002106d0.json"
+    },
+    "Paste:0x100210898": {
+      "state": "partial",
+      "contract": "惰性生成bold/italic/underline的原生图标按钮，绑定toggle trait、Command快捷键和本地化tooltip。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "ReplicaInlinePreviewFormatting"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "仅静态迁移，独立原生UI实际接入。",
+      "remaining": "本地化/原生按钮/按键/回调已恢复；原lazy getter及弱捕获完整EditButtons owner工厂尚未独立对应，当前eager构造并弱document适配，保留partial。"
+    },
+    "Paste:0x100210ed0": {
+      "state": "partial",
+      "contract": "惰性生成strikethrough图标按钮，无快捷键，tooltip使用原本地化。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "ReplicaInlinePreviewFormatting"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "仅静态迁移，独立原生UI实际接入。",
+      "remaining": "本地化/原生图标/动作已接；原lazy getter及弱捕获EditButtons owner工厂尚未对应，保留partial。"
+    },
+    "Paste:0x100211510": {
+      "state": "partial",
+      "contract": "初始化onToggleTrait/lazy四按钮，构造NSStackView(views:4按钮)并四边零insets填充父view。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "ReplicaInlinePreviewFormatting"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "仅静态迁移，独立原生UI实际接入。",
+      "remaining": "原生stack/四按钮/零insets/本地化已恢复；完整可替换onToggleTrait协议及lazy四getter生命周期未独立恢复，保留partial。"
+    },
+    "Paste:0x100013af4": {
+      "state": "partial",
+      "contract": "惰性构造保存ToolbarButton，title/tooltip本地化、Command-S、primary=true，缓存。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "ReplicaInlinePreviewEditorHeader"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "仅静态迁移，独立原生UI实际接入。",
+      "remaining": "真实button/shortcut/primary及本地化title/tooltip已接；当前eager按钮存储未独立恢复原lazy可重复getter，保留partial。"
+    },
+    "Paste:0x100013cec": {
+      "state": "partial",
+      "contract": "惰性构造取消ToolbarButton，title/tooltip本地化、Escape且modifier0，缓存。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplica/UI/OriginalReplicaPreviewAdapter.swift",
+          "symbol": "ReplicaInlinePreviewEditorHeader"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "原版part-0008.c:548精确地址0x100013cec，非0x100013d04。只静态迁移，原生UI实际接入。",
+      "remaining": "真实button/Escape及本地化title/tooltip已接；当前eager局部按钮未独立恢复原lazy缓存getter，保留partial。"
+    },
+    "Paste:0x1001bf288": {
+      "state": "migrated",
+      "contract": "用String.LocalizationValue字面key edit-item.toolbar.text.bold构造LocalizedStringResource，table Localizable、locale.current、原本地化资源bundle；不提前转成固定语言字符串。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift",
+          "symbol": "f_1001bf288"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.bold"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "decompiled/Paste/part-0148.c:742；原Mach-O heap literal指针+32逐字核实key；17语言原文逐key精确抽取，均存在，无自行翻译。产品bundle身份适配Bundle.module；真实preview工厂以String(localized:)消费。Foundation SDK15.2接口已静态核对。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001bf288.json"
+    },
+    "Paste:0x1001bf408": {
+      "state": "migrated",
+      "contract": "用String.LocalizationValue字面key edit-item.toolbar.text.italic构造LocalizedStringResource，table Localizable、locale.current、原本地化资源bundle；不提前转成固定语言字符串。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift",
+          "symbol": "f_1001bf408"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.italic"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "decompiled/Paste/part-0148.c:788；原Mach-O heap literal指针+32逐字核实key；17语言原文逐key精确抽取，均存在，无自行翻译。产品bundle身份适配Bundle.module；真实preview工厂以String(localized:)消费。Foundation SDK15.2接口已静态核对。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001bf408.json"
+    },
+    "Paste:0x1001bf588": {
+      "state": "migrated",
+      "contract": "用String.LocalizationValue字面key edit-item.toolbar.text.strikethrough构造LocalizedStringResource，table Localizable、locale.current、原本地化资源bundle；不提前转成固定语言字符串。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift",
+          "symbol": "f_1001bf588"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.strikethrough"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "decompiled/Paste/part-0148.c:834；原Mach-O heap literal指针+32逐字核实key；17语言原文逐key精确抽取，均存在，无自行翻译。产品bundle身份适配Bundle.module；真实preview工厂以String(localized:)消费。Foundation SDK15.2接口已静态核对。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001bf588.json"
+    },
+    "Paste:0x1001bf708": {
+      "state": "migrated",
+      "contract": "用String.LocalizationValue字面key edit-item.toolbar.text.underline构造LocalizedStringResource，table Localizable、locale.current、原本地化资源bundle；不提前转成固定语言字符串。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift",
+          "symbol": "f_1001bf708"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.text.underline"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "decompiled/Paste/part-0148.c:880；原Mach-O heap literal指针+32逐字核实key；17语言原文逐key精确抽取，均存在，无自行翻译。产品bundle身份适配Bundle.module；真实preview工厂以String(localized:)消费。Foundation SDK15.2接口已静态核对。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001bf708.json"
+    },
+    "Paste:0x1001bf108": {
+      "state": "migrated",
+      "contract": "用String.LocalizationValue字面key edit-item.toolbar.save-changes构造LocalizedStringResource，table Localizable、locale.current、原本地化资源bundle；不提前转成固定语言字符串。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift",
+          "symbol": "f_1001bf108"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.save-changes"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "decompiled/Paste/part-0148.c:696；原Mach-O heap literal指针+32逐字核实key；17语言原文逐key精确抽取，均存在，无自行翻译。产品bundle身份适配Bundle.module；真实preview工厂以String(localized:)消费。Foundation SDK15.2接口已静态核对。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001bf108.json"
+    },
+    "Paste:0x1001c3908": {
+      "state": "migrated",
+      "contract": "用String.LocalizationValue字面key general.action.save构造LocalizedStringResource，table Localizable、locale.current、原本地化资源bundle；不提前转成固定语言字符串。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift",
+          "symbol": "f_1001c3908"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "general.action.save"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "decompiled/Paste/part-0148.c:2904；原Mach-O heap literal指针+32逐字核实key；17语言原文逐key精确抽取，均存在，无自行翻译。产品bundle身份适配Bundle.module；真实preview工厂以String(localized:)消费。Foundation SDK15.2接口已静态核对。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001c3908.json"
+    },
+    "Paste:0x1001c0788": {
+      "state": "migrated",
+      "contract": "用String.LocalizationValue字面key general.action.cancel构造LocalizedStringResource，table Localizable、locale.current、原本地化资源bundle；不提前转成固定语言字符串。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift",
+          "symbol": "f_1001c0788"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "general.action.cancel"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "decompiled/Paste/part-0148.c:1386；原Mach-O heap literal指针+32逐字核实key；17语言原文逐key精确抽取，均存在，无自行翻译。产品bundle身份适配Bundle.module；真实preview工厂以String(localized:)消费。Foundation SDK15.2接口已静态核对。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001c0788.json"
+    },
+    "Paste:0x1001be988": {
+      "state": "migrated",
+      "contract": "用String.LocalizationValue字面key edit-item.toolbar.discard-changes构造LocalizedStringResource，table Localizable、locale.current、原本地化资源bundle；不提前转成固定语言字符串。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift",
+          "symbol": "f_1001be988"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "edit-item.toolbar.discard-changes"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "decompiled/Paste/part-0148.c:466；原Mach-O heap literal指针+32逐字核实key；17语言原文逐key精确抽取，均存在，无自行翻译。产品bundle身份适配Bundle.module；真实preview工厂以String(localized:)消费。Foundation SDK15.2接口已静态核对。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001be988.json"
+    },
+    "Paste:0x1001c1688": {
+      "state": "migrated",
+      "contract": "用String.LocalizationValue字面key general.action.edit构造LocalizedStringResource，table Localizable、locale.current、原本地化资源bundle；不提前转成固定语言字符串。",
+      "implementations": [
+        {
+          "path": "replica/Sources/PasteReplicaCore/OriginalPreviewLocalization.swift",
+          "symbol": "f_1001c1688"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/cs.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/da.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/de.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/en.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/es.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/fr.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/he.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/it.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ja.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ko.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/nl.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pl.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-BR.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/pt-PT.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/ru.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hans.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        },
+        {
+          "path": "replica/Sources/PasteReplicaCore/Resources/zh-Hant.lproj/Localizable.strings",
+          "symbol": "general.action.edit"
+        }
+      ],
+      "implementation_origin": "newly_migrated",
+      "review": "decompiled/Paste/part-0148.c:1846；原Mach-O heap literal指针+32逐字核实key；17语言原文逐key精确抽取，均存在，无自行翻译。产品bundle身份适配Bundle.module；真实preview工厂以String(localized:)消费。Foundation SDK15.2接口已静态核对。",
+      "remaining": "全部范围内代码迁移完成后统一功能回归；本批只有稳定编译和静态对照。",
+      "migration_evidence": "reports/function-migration/Paste-0x1001c1688.json"
+    },
+    "Paste:0x100bf46f8": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf46f8",
+        "symbol": "_$s10Foundation23LocalizedStringResourceV17BundleDescriptionOMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf46f8.json"
+    },
+    "Paste:0x100bf4704": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4704",
+        "symbol": "_$s10Foundation23LocalizedStringResourceVMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4704.json"
+    },
+    "Paste:0x100bf471c": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf471c",
+        "symbol": "_$s10Foundation23LocalizedStringResourceV_5table6locale6bundle7commentACSSAAE17LocalizationValueV_SSSgAA6LocaleVAC17BundleDescriptionOs06StaticC0VSgtcfC"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf471c.json"
+    },
+    "Paste:0x100bf4728": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4728",
+        "symbol": "_$s10Foundation25NSFastEnumerationIteratorV4nextypSgyF"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4728.json"
+    },
+    "Paste:0x100bf4734": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4734",
+        "symbol": "_$s10Foundation25NSFastEnumerationIteratorVMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4734.json"
+    },
+    "Paste:0x100bf4740": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4740",
+        "symbol": "_$s10Foundation27_KeyValueCodingAndObservingPAAE7observe_7options13changeHandlerAA05NSKeyC11ObservationCs0B4PathCyxqd__G_So0kcF7OptionsVyx_AA0kC14ObservedChangeVyqd__GtctlF"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4740.json"
+    },
+    "Paste:0x100bf4788": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4788",
+        "symbol": "_$s10Foundation3URLV13pathExtensionSSvg"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4788.json"
+    },
+    "Paste:0x100bf4ae8": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4ae8",
+        "symbol": "_$s10Foundation4DateV18ISO8601FormatStyleV0B13TimeSeparatorOMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4ae8.json"
+    },
+    "Paste:0x100bf4af4": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4af4",
+        "symbol": "_$s10Foundation4DateV18ISO8601FormatStyleV0B9SeparatorOMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4af4.json"
+    },
+    "Paste:0x100bf4b00": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4b00",
+        "symbol": "_$s10Foundation4DateV18ISO8601FormatStyleV13TimeSeparatorOMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4b00.json"
+    },
+    "Paste:0x100bf4b0c": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4b0c",
+        "symbol": "_$s10Foundation4DateV18ISO8601FormatStyleV13dateSeparator0f4TimeG004timeG00i4ZoneG026includingFractionalSeconds0iJ0A2E0bG0O_AE0bhG0OAE0hG0OAE0hjG0OSbAA0hJ0VtcfC"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4b0c.json"
+    },
+    "Paste:0x100bf4b24": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4b24",
+        "symbol": "_$s10Foundation4DateV18ISO8601FormatStyleV17TimeZoneSeparatorOMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4b24.json"
+    },
+    "Paste:0x100bf4b84": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4b84",
+        "symbol": "_$s10Foundation4DateV18ISO8601FormatStyleVMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4b84.json"
+    },
+    "Paste:0x100bf4b9c": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4b9c",
+        "symbol": "_$s10Foundation4DateV19_bridgeToObjectiveCSo6NSDateCyF"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4b9c.json"
+    },
+    "Paste:0x100bf4c08": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4c08",
+        "symbol": "_$s10Foundation4DateV3nowACvgZ"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4c08.json"
+    },
+    "Paste:0x100bf4c38": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4c38",
+        "symbol": "_$s10Foundation4DateV9formattedy12FormatOutputQzxAA0D5StyleRzAC0D5InputRtzlF"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4c38.json"
+    },
+    "Paste:0x100bf4e78": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4e78",
+        "symbol": "_$s10Foundation8TimeZoneV14secondsFromGMTACSgSi_tcfC"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4e78.json"
+    },
+    "Paste:0x100bf4e9c": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf4e9c",
+        "symbol": "_$s10Foundation8TimeZoneVMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf4e9c.json"
+    },
+    "Paste:0x100bf55c8": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf55c8",
+        "symbol": "_$s7Combine9PublisherPAAE3mapyAA10PublishersO10MapKeyPathVy_xqd__Gs0fG0Cy6OutputQzqd__GlF"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf55c8.json"
+    },
+    "Paste:0x100bf5640": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf5640",
+        "symbol": "_$s7Combine9PublisherPAASQ6OutputRpzrlE16removeDuplicatesAA10PublishersO06RemoveE0Vy_xGyF"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf5640.json"
+    },
+    "Paste:0x100bf71b8": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf71b8",
+        "symbol": "_$s8Dispatch0A3QoSV7utilityACvgZ"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf71b8.json"
+    },
+    "Paste:0x100bf7710": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf7710",
+        "symbol": "_$s9CryptoKit8InsecureO3MD5VMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf7710.json"
+    },
+    "Paste:0x100bf771c": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf771c",
+        "symbol": "_$s9CryptoKit8InsecureO9MD5DigestVMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf771c.json"
+    },
+    "Paste:0x100bf7b60": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf7b60",
+        "symbol": "_$sSS10FoundationE17LocalizationValueV13stringLiteralACSS_tcfC"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf7b60.json"
+    },
+    "Paste:0x100bf7bb4": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf7bb4",
+        "symbol": "_$sSS10FoundationE17LocalizationValueVMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf7bb4.json"
+    },
+    "Paste:0x100bf7c08": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf7c08",
+        "symbol": "_$sSS10FoundationE6format_S2Sh_s7CVarArg_pdtcfC"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf7c08.json"
+    },
+    "Paste:0x100bf7c80": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf7c80",
+        "symbol": "_$sSS10FoundationE9localizedSSAA23LocalizedStringResourceV_tcfC"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf7c80.json"
+    },
+    "Paste:0x100bf7f38": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf7f38",
+        "symbol": "_$sST12makeIterator0B0QzyFTj"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf7f38.json"
+    },
+    "Paste:0x100bf7f50": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf7f50",
+        "symbol": "_$sST19underestimatedCountSivgTj"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf7f50.json"
+    },
+    "Paste:0x100bf8bec": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf8bec",
+        "symbol": "_$sSo13NSUndoManagerC10FoundationE12registerUndo10withTarget7handleryx_yxctRlzClF"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf8bec.json"
+    },
+    "Paste:0x100bf8ca0": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf8ca0",
+        "symbol": "_$sSo17OS_dispatch_queueC8DispatchE10AttributesVMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf8ca0.json"
+    },
+    "Paste:0x100bf8ce8": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf8ce8",
+        "symbol": "_$sSo17OS_dispatch_queueC8DispatchE20AutoreleaseFrequencyOMa"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf8ce8.json"
+    },
+    "Paste:0x100bf8d18": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf8d18",
+        "symbol": "_$sSo17OS_dispatch_queueC8DispatchE5label3qos10attributes20autoreleaseFrequency6targetABSS_AC0D3QoSVAbCE10AttributesVAbCE011AutoreleaseI0OABSgtcfC"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf8d18.json"
+    },
+    "Paste:0x100bf8e98": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf8e98",
+        "symbol": "_$sSo5NSSetC10FoundationE12makeIteratorAC017NSFastEnumerationD0VyF"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf8e98.json"
+    },
+    "Paste:0x100bf9498": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf9498",
+        "symbol": "_$sSzsE11descriptionSSvg"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf9498.json"
+    },
+    "Paste:0x100bf97a4": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bf97a4",
+        "symbol": "_$ss12StaticStringV11descriptionSSvg"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bf97a4.json"
+    },
+    "Paste:0x100bfae78": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bfae78",
+        "symbol": "_CGRectContainsPoint"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bfae78.json"
+    },
+    "Paste:0x100bfb8bc": {
+      "state": "migrated",
+      "contract": "arm64 纯转发：ADRP/LDR 从导入指针槽读取目标并 BR x16；不修改参数寄存器、栈或返回地址。SDK 内部实现不计入此契约。",
+      "sdk_implementation": {
+        "report": "reports/function-migration/sdk-import-reuse.json",
+        "entry_key": "Paste:0x100bfb8bc",
+        "symbol": "_dispatch_sync"
+      },
+      "implementation_origin": "existing_sdk_reused",
+      "review": "完整转发体、间接指针槽绑定、相同原始 SDK 符号/完整 dylib/load-kind/weak/arm64 ABI 已逐地址静态核实；没有新增空壳或实现引用。",
+      "remaining": "SDK/链接版本差异和所有运行期上下文留待全量迁移完成后统一功能回归。",
+      "migration_evidence": "reports/function-migration/Paste-0x100bfb8bc.json"
     }
   }
 }

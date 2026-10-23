@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "Zastavit a zkopírovat záznamy";
+"diagnostics.start.message" = "Paste se restartuje, aby začal sbírat diagnostické záznamy. Diagnostiku můžete zastavit";
+"diagnostics.start.title" = "Spustit diagnostiku";
+"diagnostics.stop.message" = "Diagnostické záznamy budou zkopírovány, abyste je mohli poslat podpoře.";
+"diagnostics.stop.title" = "Zastavit diagnostiku";
+"edit-item.toolbar.discard-changes" = "Zahodit změny";
+"edit-item.toolbar.save-changes" = "Uložit změny";
+"edit-item.toolbar.text.bold" = "Tučné";
+"edit-item.toolbar.text.italic" = "Kurzíva";
+"edit-item.toolbar.text.strikethrough" = "Přeškrtnutí";
+"edit-item.toolbar.text.underline" = "Podtrhnout";
+"general.action.cancel" = "Zrušit";
+"general.action.edit" = "Upravit";
+"general.action.restart-paste" = "Restartovat Paste";
+"general.action.save" = "Uložit";

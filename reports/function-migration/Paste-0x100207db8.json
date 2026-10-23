@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x100207db8",
+  "reviewed_at": "2026-10-23T09:48:24.826053+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0171.c",
+    "line": 555
+  },
+  "original_pseudocode_sha256": "b9b598af171bf59968ef5718b549d1d3b6e05e171df3aec3f8fac5da5d790102",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift": "819f073d5a5a633a4c7794fc0107e7bf3f015b68e74a1543d6edac7b29e31324"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "解析attributes为格式Set：font必须能转NSFont，descriptor.bold/italic分别加入0/1；underline/strike必须能转Swift Int且严格==1，分别加入2/3；缺失/不兼容均忽略。",
+  "review": "part-0171.c:553；无默认font、不把任意非零underline当启用。 仅静态迁移，等待主智能体统一编译。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

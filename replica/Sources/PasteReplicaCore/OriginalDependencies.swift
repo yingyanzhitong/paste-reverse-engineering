@@ -10,6 +10,7 @@ public struct OriginalDependencyValues {
 public final class OriginalDependencyOverrides: @unchecked Sendable {
     private let lock = NSLock()
     private var factories: [AnyKeyPath: () -> Any] = [:]
+    private let sharedCache = OriginalSharedDependencyCache()
 
     public init() {}
 
@@ -23,6 +24,16 @@ public final class OriginalDependencyOverrides: @unchecked Sendable {
     public func f_1000d8600(_ keyPath: AnyKeyPath) {
         lock.lock()
         _ = factories.removeValue(forKey: keyPath)
+        lock.unlock()
+    }
+
+    func f_1000d8388<Value>(key: String, factory: () -> Value) -> Value {
+        sharedCache.f_1000daac0(key: key, factory: factory)
+    }
+
+    func removeAllFactories() {
+        lock.lock()
+        factories.removeAll()
         lock.unlock()
     }
 

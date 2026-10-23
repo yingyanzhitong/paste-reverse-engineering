@@ -98,6 +98,16 @@ public final class OriginalPasteboardItem: NSObject, Codable, NSSecureCoding {
         dataByType.removeValue(forKey: type)
     }
 
+    public func f_100383574(removingTypesContaining patterns: [String]) {
+        for type in orderedTypes where patterns.contains(where: { type.contains($0) }) {
+            f_10037dab0(type)
+        }
+    }
+
+    public func f_1003838bc() {
+        f_10037d8c8(Data(), forType: "com.wiheads.paste")
+    }
+
     public func f_10037e4b8(forType type: String) -> String? {
         guard let data = f_10037d810(forType: type) else { return nil }
         return String(data: data, encoding: .utf8)

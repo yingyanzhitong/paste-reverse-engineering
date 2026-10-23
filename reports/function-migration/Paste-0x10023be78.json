@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10023be78",
+  "reviewed_at": "2026-10-23T09:48:24.815065+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0195.c",
+    "line": 532
+  },
+  "original_pseudocode_sha256": "7ad75c8d2debed144b7a9e8e37540866354407f38d98bf418f2c39f2a4109088",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPreviewTitleLabel.swift": "84e3a33dbd575ad595cded72928d3d9b917ec1ece7eb258ba42ef3cf457bb0e2"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "取得native intrinsicHeight，以(infinity,intrinsicHeight)调用sizeThatFits；width按最近整数、半值远离零舍入，height返回最初intrinsicHeight。",
+  "review": "part-0195.c:525；0x10023bf24保存d1到d8、0x10023bf60 frinta d0,d9、bf64返回原d8，修正旧不舍入实现。 仅静态迁移，等待主智能体统一编译。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

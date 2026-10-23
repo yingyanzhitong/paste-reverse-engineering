@@ -243,12 +243,24 @@ public final class ClipboardStore: ObservableObject {
 
     @discardableResult
     public func add(_ item: ClipboardItem) throws -> UUID {
-        try mutate { state in
-            if let i = state.items.firstIndex(where: {
-                $0.kind == item.kind && $0.plainText == item.plainText
-                    && Self.normalizedPasteboardPayloads($0.payloads)
+        let checksum = try? Self.knownPasteboardChecksum(from: item.payloads)
+        return try mutate { state in
+            if let i = state.items.firstIndex(where: { previous in
+                if let checksum, let previousChecksum = try? Self.knownPasteboardChecksum(from: previous.payloads) {
+                    return checksum == previousChecksum
+                }
+                return previous.kind == item.kind && previous.plainText == item.plainText
+                    && Self.normalizedPasteboardPayloads(previous.payloads)
                     == Self.normalizedPasteboardPayloads(item.payloads)
             }) {
+                let analysis = state.items[i].kind == .image && item.kind == .image
+                    ? state.items[i].payloads.filter { Self.analysisPayloadKeys.contains($0.key) } : [:]
+                state.items[i].kind = item.kind
+                state.items[i].plainText = item.plainText
+                state.items[i].payloads = item.payloads
+                for (type, data) in analysis where state.items[i].payloads[type] == nil {
+                    state.items[i].payloads[type] = data
+                }
                 state.items[i].updatedAt = max(Date(), item.updatedAt)
                 state.items[i].sourceName = item.sourceName
                 state.items[i].sourceBundleID = item.sourceBundleID

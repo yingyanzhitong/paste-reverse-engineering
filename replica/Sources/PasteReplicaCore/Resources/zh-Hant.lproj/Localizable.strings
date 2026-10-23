@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "停止並複製日誌";
+"diagnostics.start.message" = "Paste 將會重新啟動以開始收集診斷日誌。您可以停止診斷";
+"diagnostics.start.title" = "開始診斷";
+"diagnostics.stop.message" = "將會複製診斷日誌，讓您能傳送給支援團隊。";
+"diagnostics.stop.title" = "停止診斷";
+"edit-item.toolbar.discard-changes" = "放棄更改";
+"edit-item.toolbar.save-changes" = "保存變更";
+"edit-item.toolbar.text.bold" = "粗體";
+"edit-item.toolbar.text.italic" = "斜體";
+"edit-item.toolbar.text.strikethrough" = "刪除線";
+"edit-item.toolbar.text.underline" = "底線";
+"general.action.cancel" = "取消";
+"general.action.edit" = "編輯";
+"general.action.restart-paste" = "重新啟動Paste";
+"general.action.save" = "儲存";

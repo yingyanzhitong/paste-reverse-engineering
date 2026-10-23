@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "Zatrzymaj i skopiuj dzienniki";
+"diagnostics.start.message" = "Paste uruchomi się ponownie, aby rozpocząć zbieranie dzienników diagnostycznych. Możesz zatrzymać diagnostykę";
+"diagnostics.start.title" = "Rozpocznij diagnostykę";
+"diagnostics.stop.message" = "Dzienniki diagnostyczne zostaną skopiowane, abyś mógł wysłać je do pomocy technicznej.";
+"diagnostics.stop.title" = "Zatrzymaj diagnostykę";
+"edit-item.toolbar.discard-changes" = "Odrzuć zmiany";
+"edit-item.toolbar.save-changes" = "Zapisz zmiany";
+"edit-item.toolbar.text.bold" = "Pogrubienie";
+"edit-item.toolbar.text.italic" = "Kursywa";
+"edit-item.toolbar.text.strikethrough" = "Przekreślenie";
+"edit-item.toolbar.text.underline" = "Podkreśl";
+"general.action.cancel" = "Anuluj";
+"general.action.edit" = "Edytuj";
+"general.action.restart-paste" = "Uruchom ponownie Paste";
+"general.action.save" = "Zapisz";

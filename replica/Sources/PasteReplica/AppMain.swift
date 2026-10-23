@@ -20,6 +20,8 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
     private var store: ClipboardStore!
     private var ui: ReplicaUIController!
     private var monitor: ClipboardMonitor?
+    private var diagnostics: OriginalDiagnosticsManager?
+    private var diagnosticsObservation: AnyCancellable?
     private let hotKey = GlobalHotKey()
     private let stackHotKey = GlobalHotKey()
     private let stackPasteHotKey = GlobalHotKey()
@@ -66,6 +68,22 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
             let directory = argument("--data-dir").map { URL(fileURLWithPath: $0, isDirectory: true) }
                 ?? ClipboardStore.defaultDirectoryURL
             store = try ClipboardStore(directoryURL: directory)
+            diagnostics = OriginalDiagnosticsManager.makeLocal(
+                logDirectory: directory.appendingPathComponent("Diagnostics", isDirectory: true)
+            ) { [weak self] enabled in
+                guard let self, self.store.preferences.isDiagnosticsEnabled != enabled else { return }
+                self.store.preferences.isDiagnosticsEnabled = enabled
+                do { try self.store.save() }
+                catch { self.ui?.presentError(error) }
+            }
+            diagnostics?.f_1002fe72c(store.preferences.isDiagnosticsEnabled)
+            diagnosticsObservation = store.$preferences.map(\.isDiagnosticsEnabled).removeDuplicates().sink { [weak self] _ in
+                // @Published emits before storage changes; resolve the committed preference next turn.
+                DispatchQueue.main.async {
+                    guard let self else { return }
+                    self.diagnostics?.f_1002fe72c(self.store.preferences.isDiagnosticsEnabled)
+                }
+            }
             try store.save()
             if arguments.contains("--fixture"), store.items.isEmpty { try seedFixture() }
             ui = ReplicaUIController(store: store)
@@ -346,6 +364,7 @@ final class ReplicaAppDelegate: NSObject, NSApplicationDelegate {
         if argument("--data-dir") == nil { BackgroundService.markRunning(false) }
         pasteGeneration = UUID()
         hotKeyObservation?.cancel()
+        diagnosticsObservation?.cancel()
         monitor?.stop(); hotKey.unregister(); stackHotKey.unregister(); stackPasteHotKey.unregister(); refreshTimer?.invalidate()
         if let activationObserver { NSWorkspace.shared.notificationCenter.removeObserver(activationObserver) }
     }

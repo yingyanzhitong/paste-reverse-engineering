@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000daac0",
+  "reviewed_at": "2026-10-23T09:48:24.660609+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0072.c",
+    "line": 669
+  },
+  "original_pseudocode_sha256": "d86e573646df35b994563190c5243b11aade90dd82c1bd4c7a94680738a4090a",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSharedDependencyCache.swift": "d83f199826f661090cdd74b9d05e185e295bf3570ba2f8e8dc868f9dac219cbf"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "持有NSRecursiveLock读取String键；已存储时必须向请求的Value类型转换成功，否则trap；未存储时持锁调用factory，装箱为Any并保存，返回同一value；Optional.none作为Value时仍缓存。",
+  "review": "完整REA函数及所需arm64静态核对；typed共享服务已由快捷键validator/monitor真实消费。未执行产品或功能测试，不将其他provider或完整bootstrap标为完成。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

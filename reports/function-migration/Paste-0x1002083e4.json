@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002083e4",
+  "reviewed_at": "2026-10-23T09:48:24.844126+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0171.c",
+    "line": 829
+  },
+  "original_pseudocode_sha256": "1a40ee604e00ed03b5a262fa91d952f05a3473c26cf8baffbb615e1e9afdc746",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift": "819f073d5a5a633a4c7794fc0107e7bf3f015b68e74a1543d6edac7b29e31324"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "逐项从storage指定range移除当前run所有原属性key，再添加f207648生成的新属性字典，返回0。",
+  "review": "part-0171.c:836；保留remove各key+addAttributes操作而非整体替换；外层begin/endEditing合并delegate编辑事件。 仅静态迁移，等待主智能体统一编译。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

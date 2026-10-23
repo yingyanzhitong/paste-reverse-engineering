@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1000d5aec",
+  "reviewed_at": "2026-10-23T09:48:24.761574+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0070.c",
+    "line": 964
+  },
+  "original_pseudocode_sha256": "32f70dc0cf6d6245e9bb438863f08bb451d1654d80c089be9698e53bda995a6c",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalDiagnosticDispatcher.swift": "7f7ca246acae9248a654db1af4973e8d48c272651a147fffc06cafaf2a103e9f"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "disabled或directoryURL缺失立即返回；按[ISO时间] [DEBUG/INFO/WARN/ERROR] [name] message换行生成UTF8；缺句柄时若既有fileURL存在则复开并seekToEnd，否则用当前日期yyyy-MM-dd-HHmmss和pid创建paste-diagnostics-文件，记录URL；可用句柄writeData并synchronizeFile。",
+  "review": "源part0070与原arm64:61ac..6484核对dateFormat=yyyy-MM-dd-HHmmss、前缀paste-diagnostics-；不会创建目录。句柄打开失败转nil并保留URL，下次重试；文件方法完整恢复，默认disabled只是原初值，非空壳。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

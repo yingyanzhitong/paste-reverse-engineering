@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "Beenden und Protokolle kopieren";
+"diagnostics.start.message" = "Paste wird neu gestartet, um Diagnoseprotokolle zu sammeln. Du kannst die Diagnose stoppen";
+"diagnostics.start.title" = "Diagnose starten";
+"diagnostics.stop.message" = "Diagnoseprotokolle werden kopiert, damit du sie an den Support senden kannst.";
+"diagnostics.stop.title" = "Diagnose stoppen";
+"edit-item.toolbar.discard-changes" = "Änderungen verwerfen";
+"edit-item.toolbar.save-changes" = "Änderungen speichern";
+"edit-item.toolbar.text.bold" = "Fett";
+"edit-item.toolbar.text.italic" = "Kursiv";
+"edit-item.toolbar.text.strikethrough" = "Durchgestrichen";
+"edit-item.toolbar.text.underline" = "Unterstreichen";
+"general.action.cancel" = "Abbrechen";
+"general.action.edit" = "Bearbeiten";
+"general.action.restart-paste" = "Paste neu starten";
+"general.action.save" = "Speichern";

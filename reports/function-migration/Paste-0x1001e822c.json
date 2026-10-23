@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001e822c",
-  "reviewed_at": "2026-10-23T09:13:57.731518+00:00",
+  "reviewed_at": "2026-10-23T09:48:24.067899+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0156.c",
@@ -15,13 +15,13 @@
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "构造 52 项特殊键显示字典：F1…F19、空格、Escape、删除、方向/翻页/首尾、Tab/Return 及数字小键盘；空格标签按原版 17 个本地化区域选择。",
   "review": "part-0156.c:1593 起完整逐项核对字典构建，原版函数没有 F20；符号 U+2327、U+2305、U+2198、U+2196 保留，不再用 Clear/Home/End 代称。唯一语言值 shortcut.space 由原版安装包只读静态核对，复刻只定义常用按键短语。displayLabels 懒加载供显示路径使用。 本轮逐项复审：Core 原始契约不变；录制入口已改接三态 OriginalShortcutRecorder.f_1001f132c，Carbon 转换通过新注册对象真实使用；旧 ShortcutRecorderButton.record 引用已删除。isValidGlobal 现在严格复用原版谓词，不再额外排除 Escape/大于127键码/其他修饰位。 本批复审后保留原恢复契约；真实入口改为直接SwiftUI StateObject组件，移除Native代理事件/窗口观察；当前候选待统一编译，不沿用旧文件摘要。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

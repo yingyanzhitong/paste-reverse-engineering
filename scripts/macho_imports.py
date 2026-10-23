@@ -397,6 +397,9 @@ def _source_manifest(root, product):
     for target in PRODUCT_SOURCE_TARGETS[product]:
         directory = root / 'replica/Sources' / target
         paths.extend(sorted(directory.rglob('*.swift')))
+        resources = directory / 'Resources'
+        if resources.is_dir():
+            paths.extend(sorted(path for path in resources.rglob('*') if path.is_file()))
     return {str(path.relative_to(root)): sha256(path.read_bytes()) for path in sorted(paths)}
 
 
@@ -519,7 +522,7 @@ def generate_reuse_report(root):
             '原版与复刻链接 SDK 版本不同；系统函数可能读取进程 SDK/可用性信息，必须留待统一功能回归。',
             '相同完整 install name、原始符号和 ABI 表明委托入口相同，不证明 dyld 缓存映像字节或所有调用上下文等价。',
             '纯转发体复用不证明调用方参数、状态、UI、网络行为或 SDK 内部实现已经迁移。',
-            '所有源文件及 Package.swift 绑定当前已完成构建的静态快照；源码或二进制变化将使报告失效。',
+            '所有源文件、目标资源及 Package.swift 绑定当前已完成构建的静态快照；源码、资源或二进制变化将使报告失效。',
             'paste-mcp-stdio 不属于本报告显式比较的两个产品，没有据跨产品偶然导入计入迁移。',
         ],
     }

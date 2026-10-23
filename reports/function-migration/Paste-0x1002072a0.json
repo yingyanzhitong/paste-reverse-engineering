@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1002072a0",
+  "reviewed_at": "2026-10-23T09:48:24.846746+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0171.c",
+    "line": 133
+  },
+  "original_pseudocode_sha256": "68b8fb3bd9aac9c42137bccaea84c6b05008f1b2f95f6c7487857d8c3423524d",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalPreviewTextTraits.swift": "819f073d5a5a633a4c7794fc0107e7bf3f015b68e74a1543d6edac7b29e31324"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "默认取当前selection，显式range则用原range；length<1切换typingAttrs；否则storage存在才解析首字符trait作为forceRemove，对全段逐run移除/添加属性并begin/endEditing；最后undoManager存在时登记弱editor撤销，携带trait与原range再次调用本函数。",
+  "review": "part-0171.c:131；0x100207388..3cc确认首字符contains结果写入回调forceRemove捕获；nil storage仍可登记undo，未加额外边界过滤。 仅静态迁移，等待主智能体统一编译。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

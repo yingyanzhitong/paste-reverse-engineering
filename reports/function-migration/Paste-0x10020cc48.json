@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x10020cc48",
+  "reviewed_at": "2026-10-23T09:48:24.669977+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0175.c",
+    "line": 390
+  },
+  "original_pseudocode_sha256": "31a60d8037c825c367a63ea4cdad32211745ddb77b941e163626bdb691845e3c",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalSearchFilterSymbols.swift": "73a9ca9cb90529d7c46665ac1af0241f0310505e56704d441df4e94c816698ef"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "返回原版系统符号名 circle.fill 的稳定Swift String强引用存储槽地址，重复调用返回同一地址；与读取字符串值区分。",
+  "review": "逐地址REA返回常量及slot数据已核对；被f054b2c实际分支读取。长String保存原始常量内容，当前Swift进程寿命只读pointer槽替代原版静态地址，不承诺私有二进制布局/地址相同。.local/search-symbol-constants-wave3.txt、search-symbol-unknown-wave3.txt记录长串与SwiftString储存形状。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}

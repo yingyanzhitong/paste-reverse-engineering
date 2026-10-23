@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x1001ec200",
-  "reviewed_at": "2026-10-23T09:13:57.752435+00:00",
+  "reviewed_at": "2026-10-23T09:48:24.091137+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-0158.c",
@@ -10,19 +10,19 @@
   },
   "original_pseudocode_sha256": "19cd1064cc2d319fefe38dbee4425bf0d59501b1809d519aa27c383fa587454e",
   "source_sha256": {
-    "replica/Sources/PasteReplicaCore/OriginalShortcutValidation.swift": "603461a3f5f5fbafd3e3b52efbfd04ba388076e18da96136b4e25edb14d43dfa",
+    "replica/Sources/PasteReplicaCore/OriginalShortcutValidation.swift": "094cb536243bcfa19d37564a409c032728c4c5756e98b21b375858394ad2d5cc",
     "replica/Sources/PasteReplicaCore/OriginalShortcutMessages.swift": "a359a587810f77d3306db57a0f8b17150dc6d075f1e698be9a1772b9eafa027a",
-    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "f8f1c3701bce3d934d11e16942a0962cd300e84553f60aa349325232779a4001"
+    "replica/Sources/PasteReplicaCore/OriginalShortcutRecorder.swift": "ba907c942f91fe336506e9a47576051f285bfce47ccd43315cb111aedbd237f2"
   },
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,
   "implementation_origin": "existing_reused",
   "contract": "深度优先递归检查菜单：先检查每项 submenu，再比较 item.keyEquivalent.lowercased 与候选菜单等效字符；原始 equivalent 若非候选原样字符串，则强制补 Shift，修饰位仅保留 0x1e0000；完全相符时返回含菜单标题的本地化错误，否则 nil 表示通过。",
   "review": "part-0158.c:903…1180；核对 nil/空菜单、递归先后、候选字符转换、大小写差异隐含 Shift 的 0x1c0000|0x20000 路径、完整 raw modifier 等值比较。返回原版校验错误携带的本地化说明字符串（独立实现使用 String? 替代原版 Result/Swift Error ABI 容器）；17 个原版语言的消息模板只读核对并定义为独立 Swift 字符串。 本轮逐项复审：Core 原始契约不变；录制入口已改接三态 OriginalShortcutRecorder.f_1001f132c，Carbon 转换通过新注册对象真实使用；旧 ShortcutRecorderButton.record 引用已删除。isValidGlobal 现在严格复用原版谓词，不再额外排除 Escape/大于127键码/其他修饰位。 第二次静态复审恢复完整Int键码域：原有UInt32调用通过兼容overload委托宽Int值；仅Carbon注册保留UInt32精确转换。全局回调显式retain保活，事件查找只提取action。 等待此轮统一构建后可提升。 本批复审后保留原恢复契约；真实入口改为直接SwiftUI StateObject组件，移除Native代理事件/窗口观察；当前候选待统一编译，不沿用旧文件摘要。",
-  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "source_review": "已复审本批改动对现有入口的影响；未被替换的恢复函数体/调用契约保持，绑定当前稳定编译。",
   "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
 }

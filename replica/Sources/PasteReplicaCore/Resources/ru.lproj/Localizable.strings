@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "Остановить и скопировать журналы";
+"diagnostics.start.message" = "Paste перезапустится, чтобы начать сбор журналов диагностики. Вы можете остановить диагностику";
+"diagnostics.start.title" = "Запустить диагностику";
+"diagnostics.stop.message" = "Журналы диагностики будут скопированы, чтобы вы могли отправить их в службу поддержки.";
+"diagnostics.stop.title" = "Остановить диагностику";
+"edit-item.toolbar.discard-changes" = "Отменить изменения";
+"edit-item.toolbar.save-changes" = "Сохранить изменения";
+"edit-item.toolbar.text.bold" = "Жирный";
+"edit-item.toolbar.text.italic" = "Курсив";
+"edit-item.toolbar.text.strikethrough" = "Зачеркнутый";
+"edit-item.toolbar.text.underline" = "Подчеркнуть";
+"general.action.cancel" = "Отменить";
+"general.action.edit" = "Редактировать";
+"general.action.restart-paste" = "Перезапустить Paste";
+"general.action.save" = "Сохранить";

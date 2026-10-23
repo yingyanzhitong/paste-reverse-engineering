@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "Detener y copiar registros";
+"diagnostics.start.message" = "Paste se reiniciará para comenzar a recopilar registros de diagnóstico. Puedes detener el diagnóstico";
+"diagnostics.start.title" = "Iniciar diagnóstico";
+"diagnostics.stop.message" = "Los registros de diagnóstico se copiarán para que puedas enviarlos al soporte.";
+"diagnostics.stop.title" = "Detener diagnóstico";
+"edit-item.toolbar.discard-changes" = "Descartar cambios";
+"edit-item.toolbar.save-changes" = "Guardar cambios";
+"edit-item.toolbar.text.bold" = "Negrita";
+"edit-item.toolbar.text.italic" = "Cursiva";
+"edit-item.toolbar.text.strikethrough" = "Tachado";
+"edit-item.toolbar.text.underline" = "Subrayar";
+"general.action.cancel" = "Cancelar";
+"general.action.edit" = "Editar";
+"general.action.restart-paste" = "Reiniciar Paste";
+"general.action.save" = "Guardar";

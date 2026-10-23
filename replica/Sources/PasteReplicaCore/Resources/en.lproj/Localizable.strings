@@ -1,0 +1,15 @@
+"diagnostics.action.stop-and-copy-logs" = "Stop and Copy Logs";
+"diagnostics.start.message" = "Paste will restart to begin collecting diagnostic logs. You can stop diagnostics at any time from the menu.";
+"diagnostics.start.title" = "Start Diagnostics";
+"diagnostics.stop.message" = "Diagnostic logs will be copied so you can send them to support.";
+"diagnostics.stop.title" = "Stop Diagnostics";
+"edit-item.toolbar.discard-changes" = "Discard changes";
+"edit-item.toolbar.save-changes" = "Save changes";
+"edit-item.toolbar.text.bold" = "Bold";
+"edit-item.toolbar.text.italic" = "Italic";
+"edit-item.toolbar.text.strikethrough" = "Strikethrough";
+"edit-item.toolbar.text.underline" = "Underline";
+"general.action.cancel" = "Cancel";
+"general.action.edit" = "Edit";
+"general.action.restart-paste" = "Restart Paste";
+"general.action.save" = "Save";

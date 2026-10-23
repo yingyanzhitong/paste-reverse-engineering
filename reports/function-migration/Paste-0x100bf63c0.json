@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "static_code_migration",
   "function_id": "Paste:0x100bf63c0",
-  "reviewed_at": "2026-10-23T09:13:58.793158+00:00",
+  "reviewed_at": "2026-10-23T09:48:26.001012+00:00",
   "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
   "original_pseudocode": {
     "path": "decompiled/Paste/part-1178.c",
@@ -15,11 +15,11 @@
     "entry_key": "Paste:0x100bf63c0",
     "symbol": "_$s7SwiftUI24ButtonStyleConfigurationV5labelAC5LabelVvg"
   },
-  "sdk_reuse_report_sha256": "8da6de87f39a9976f92d8acb5b803add788b67c0a130c89b70af5f152b43d01a",
+  "sdk_reuse_report_sha256": "b64c90a5fa62efe8028bd0be00b733700299d805929dc5efea2425fd3db73322",
   "implementation_origin": "existing_sdk_reused",
   "build_succeeded": true,
   "build_command": "swift build --package-path replica -c release",
-  "compiled_app_binary_sha256": "cb43a3b15a818d44f9d85f7b2e6317de1d576375d08198b77a175a41ce1c469c",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
   "compiled_product": "PasteReplica",
   "functional_regression_executed": false,
   "equivalence_verified": false,

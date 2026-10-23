@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "static_code_migration",
+  "function_id": "Paste:0x1001f1e64",
+  "reviewed_at": "2026-10-23T09:48:24.797754+00:00",
+  "original_binary_sha256": "871f00354fbb1c165d858a98e6d19d6f43cb9d3f9f958b3e07c7f07eb5c19afb",
+  "original_pseudocode": {
+    "path": "decompiled/Paste/part-0160.c",
+    "line": 1061
+  },
+  "original_pseudocode_sha256": "40741391e1c7735b8cb565de6679e624c621b93bc740dee6a3ec5d01526bb274",
+  "source_sha256": {
+    "replica/Sources/PasteReplicaCore/OriginalShortcutDependencies.swift": "73908ddfedcd38cb4f1f64a7a21d1499879bed195dfb13d70f1ebbbeb6ce5b51"
+  },
+  "build_succeeded": true,
+  "build_command": "swift build --package-path replica -c release",
+  "compiled_app_binary_sha256": "8b90c038fe7b3d12998ad9605bdf3880380da305a6b7864b4fc1ba549ddc2e87",
+  "compiled_product": "PasteReplica",
+  "functional_regression_executed": false,
+  "equivalence_verified": false,
+  "implementation_origin": "newly_migrated",
+  "contract": "以PasteShortcut/DI+PasteShortcut.swift:12:19声明位置为键，经通用共享service cache解析具体validator；miss调用f1e75e4 factory，hit复用同引用。",
+  "review": "keypath pattern0x100c33dd8+0x20处relative32为0xff5be06c，解出getter0x1001f1e64；导出传文件名36字节、line12、column19和factoryf1e75e4。实际shortcutValidator provider委托本函数，被OriginalDependency首次resolve。root通用cache承担全局/TaskLocal隔离、NSRecursiveLock、typedcast和Optional装箱。 与原泛型helper相同的文件/列固定规则已提取至真实f1e7580，validator按line12调用，manager provider按line6调用。",
+  "source_review": "本批新增或重审，依据对应领域续迁清单及稳定构建前后相同源码摘要。",
+  "regression_policy": "全部范围内代码迁移完成后统一功能回归；本批无功能/单测/原版差分/UI/MCP执行。"
+}
